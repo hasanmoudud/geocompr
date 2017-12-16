@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Geocomputation with R</title>
+  <meta name="description" content="Forthcoming book on geographic data with R.">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Geocomputation with R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://geocompr.robinlovelace.net" />
+  
+  <meta property="og:description" content="Forthcoming book on geographic data with R." />
+  <meta name="github-repo" content="Robinlovelace/geocompr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Geocomputation with R" />
+  
+  <meta name="twitter:description" content="Forthcoming book on geographic data with R." />
+  
+
+<meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
+
+
+<meta name="date" content="2017-12-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="location.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.0.27/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-1.1.0/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99618359-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Geocomputation with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#development"><i class="fa fa-check"></i>Development</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-contribute"><i class="fa fa-check"></i>How to contribute?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Foundations</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-geocomputation"><i class="fa fa-check"></i><b>1.1</b> What is geocomputation?</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#why-geocomputation-with-r"><i class="fa fa-check"></i><b>1.2</b> Why Geocomputation with R?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#software-for-geocomputation"><i class="fa fa-check"></i><b>1.3</b> Software for geocomputation</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#rs-spatial-ecosystem"><i class="fa fa-check"></i><b>1.4</b> R’s spatial ecosystem</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#the-history-of-r-spatial"><i class="fa fa-check"></i><b>1.5</b> The history of R-spatial</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="spatial-class.html"><a href="spatial-class.html"><i class="fa fa-check"></i><b>2</b> Geographic data in R</a><ul>
+<li class="chapter" data-level="" data-path="spatial-class.html"><a href="spatial-class.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="2.1" data-path="spatial-class.html"><a href="spatial-class.html#vector-data"><i class="fa fa-check"></i><b>2.1</b> Vector data</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="spatial-class.html"><a href="spatial-class.html#intro-sf"><i class="fa fa-check"></i><b>2.1.1</b> An introduction to simple features</a></li>
+<li class="chapter" data-level="2.1.2" data-path="spatial-class.html"><a href="spatial-class.html#why-simple-features"><i class="fa fa-check"></i><b>2.1.2</b> Why simple features?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="spatial-class.html"><a href="spatial-class.html#basic-map"><i class="fa fa-check"></i><b>2.1.3</b> Basic map making</a></li>
+<li class="chapter" data-level="2.1.4" data-path="spatial-class.html"><a href="spatial-class.html#base-args"><i class="fa fa-check"></i><b>2.1.4</b> Base plot arguments</a></li>
+<li class="chapter" data-level="2.1.5" data-path="spatial-class.html"><a href="spatial-class.html#sf-classes"><i class="fa fa-check"></i><b>2.1.5</b> Simple feature classes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="spatial-class.html"><a href="spatial-class.html#raster-data"><i class="fa fa-check"></i><b>2.2</b> Raster data</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="spatial-class.html"><a href="spatial-class.html#an-introduction-to-raster"><i class="fa fa-check"></i><b>2.2.1</b> An introduction to raster</a></li>
+<li class="chapter" data-level="2.2.2" data-path="spatial-class.html"><a href="spatial-class.html#basic-map-making"><i class="fa fa-check"></i><b>2.2.2</b> Basic map making</a></li>
+<li class="chapter" data-level="2.2.3" data-path="spatial-class.html"><a href="spatial-class.html#raster-classes"><i class="fa fa-check"></i><b>2.2.3</b> Raster classes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="spatial-class.html"><a href="spatial-class.html#crs-intro"><i class="fa fa-check"></i><b>2.3</b> Coordinate Reference Systems</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="spatial-class.html"><a href="spatial-class.html#geographic-coordinate-systems"><i class="fa fa-check"></i><b>2.3.1</b> Geographic coordinate systems</a></li>
+<li class="chapter" data-level="2.3.2" data-path="spatial-class.html"><a href="spatial-class.html#projected-coordinate-systems"><i class="fa fa-check"></i><b>2.3.2</b> Projected coordinate systems</a></li>
+<li class="chapter" data-level="2.3.3" data-path="spatial-class.html"><a href="spatial-class.html#crs-in-r"><i class="fa fa-check"></i><b>2.3.3</b> CRS in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="spatial-class.html"><a href="spatial-class.html#units"><i class="fa fa-check"></i><b>2.4</b> Units</a></li>
+<li class="chapter" data-level="2.5" data-path="spatial-class.html"><a href="spatial-class.html#ex2"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="attr.html"><a href="attr.html"><i class="fa fa-check"></i><b>3</b> Attribute operations</a><ul>
+<li class="chapter" data-level="" data-path="attr.html"><a href="attr.html#prerequisites-1"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="3.1" data-path="attr.html"><a href="attr.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="attr.html"><a href="attr.html#vector-attribute-manipulation"><i class="fa fa-check"></i><b>3.2</b> Vector attribute manipulation</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="attr.html"><a href="attr.html#vector-attribute-subsetting"><i class="fa fa-check"></i><b>3.2.1</b> Vector attribute subsetting</a></li>
+<li class="chapter" data-level="3.2.2" data-path="attr.html"><a href="attr.html#vector-attribute-aggregation"><i class="fa fa-check"></i><b>3.2.2</b> Vector attribute aggregation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="attr.html"><a href="attr.html#vector-attribute-joining"><i class="fa fa-check"></i><b>3.2.3</b> Vector attribute joining</a></li>
+<li class="chapter" data-level="3.2.4" data-path="attr.html"><a href="attr.html#vec-attr-creation"><i class="fa fa-check"></i><b>3.2.4</b> Creating attributes and removing spatial information</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="attr.html"><a href="attr.html#manipulating-raster-objects"><i class="fa fa-check"></i><b>3.3</b> Manipulating raster objects</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="attr.html"><a href="attr.html#raster-subsetting"><i class="fa fa-check"></i><b>3.3.1</b> Raster subsetting</a></li>
+<li class="chapter" data-level="3.3.2" data-path="attr.html"><a href="attr.html#summarizing-raster-objects"><i class="fa fa-check"></i><b>3.3.2</b> Summarizing raster objects</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="attr.html"><a href="attr.html#exercises-1"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="spatial-operations.html"><a href="spatial-operations.html"><i class="fa fa-check"></i><b>4</b> Spatial operations</a><ul>
+<li class="chapter" data-level="" data-path="spatial-operations.html"><a href="spatial-operations.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="4.1" data-path="spatial-operations.html"><a href="spatial-operations.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-vec"><i class="fa fa-check"></i><b>4.2</b> Spatial operations on vector data</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-subsetting"><i class="fa fa-check"></i><b>4.2.1</b> Spatial subsetting</a></li>
+<li class="chapter" data-level="4.2.2" data-path="spatial-operations.html"><a href="spatial-operations.html#topological-relations"><i class="fa fa-check"></i><b>4.2.2</b> Topological relations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-joining"><i class="fa fa-check"></i><b>4.2.3</b> Spatial joining</a></li>
+<li class="chapter" data-level="4.2.4" data-path="spatial-operations.html"><a href="spatial-operations.html#non-overlapping-joins"><i class="fa fa-check"></i><b>4.2.4</b> Non-overlapping joins</a></li>
+<li class="chapter" data-level="4.2.5" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-data-aggregation"><i class="fa fa-check"></i><b>4.2.5</b> Spatial data aggregation</a></li>
+<li class="chapter" data-level="4.2.6" data-path="spatial-operations.html"><a href="spatial-operations.html#distance-relations"><i class="fa fa-check"></i><b>4.2.6</b> Distance relations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-ras"><i class="fa fa-check"></i><b>4.3</b> Spatial operations on raster data</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="attr.html"><a href="attr.html#raster-subsetting"><i class="fa fa-check"></i><b>4.3.1</b> Spatial subsetting</a></li>
+<li class="chapter" data-level="4.3.2" data-path="spatial-operations.html"><a href="spatial-operations.html#map-algebra"><i class="fa fa-check"></i><b>4.3.2</b> Map algebra</a></li>
+<li class="chapter" data-level="4.3.3" data-path="spatial-operations.html"><a href="spatial-operations.html#local-operations"><i class="fa fa-check"></i><b>4.3.3</b> Local operations</a></li>
+<li class="chapter" data-level="4.3.4" data-path="spatial-operations.html"><a href="spatial-operations.html#focal-operations"><i class="fa fa-check"></i><b>4.3.4</b> Focal operations</a></li>
+<li class="chapter" data-level="4.3.5" data-path="spatial-operations.html"><a href="spatial-operations.html#zonal-operations"><i class="fa fa-check"></i><b>4.3.5</b> Zonal operations</a></li>
+<li class="chapter" data-level="4.3.6" data-path="spatial-operations.html"><a href="spatial-operations.html#global-operations-and-distances"><i class="fa fa-check"></i><b>4.3.6</b> Global operations and distances</a></li>
+<li class="chapter" data-level="4.3.7" data-path="spatial-operations.html"><a href="spatial-operations.html#merging-rasters"><i class="fa fa-check"></i><b>4.3.7</b> Merging rasters</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="spatial-operations.html"><a href="spatial-operations.html#exercises-2"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>5</b> Geometric operations</a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#prerequisites-3"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="5.1" data-path="transform.html"><a href="transform.html#reproj-geo-data"><i class="fa fa-check"></i><b>5.1</b> Reprojecting geographic data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="transform.html"><a href="transform.html#which-crs-to-use"><i class="fa fa-check"></i><b>5.1.1</b> Which CRS to use?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="transform.html"><a href="transform.html#reprojecting-vector-geometries"><i class="fa fa-check"></i><b>5.1.2</b> Reprojecting vector geometries</a></li>
+<li class="chapter" data-level="5.1.3" data-path="transform.html"><a href="transform.html#reprojecting-raster-geometries"><i class="fa fa-check"></i><b>5.1.3</b> Reprojecting raster geometries</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="transform.html"><a href="transform.html#geo-vec"><i class="fa fa-check"></i><b>5.2</b> Geometric operations on vector data</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="transform.html"><a href="transform.html#simplification"><i class="fa fa-check"></i><b>5.2.1</b> Simplification</a></li>
+<li class="chapter" data-level="5.2.2" data-path="transform.html"><a href="transform.html#centroids-and-buffers"><i class="fa fa-check"></i><b>5.2.2</b> Centroids and buffers</a></li>
+<li class="chapter" data-level="5.2.3" data-path="transform.html"><a href="transform.html#affine-transformations"><i class="fa fa-check"></i><b>5.2.3</b> Affine transformations</a></li>
+<li class="chapter" data-level="5.2.4" data-path="transform.html"><a href="transform.html#clipping"><i class="fa fa-check"></i><b>5.2.4</b> Clipping</a></li>
+<li class="chapter" data-level="5.2.5" data-path="transform.html"><a href="transform.html#geometry-unions"><i class="fa fa-check"></i><b>5.2.5</b> Geometry unions</a></li>
+<li class="chapter" data-level="5.2.6" data-path="transform.html"><a href="transform.html#type-transformations"><i class="fa fa-check"></i><b>5.2.6</b> Type transformations</a></li>
+<li class="chapter" data-level="5.2.7" data-path="transform.html"><a href="transform.html#rasterization"><i class="fa fa-check"></i><b>5.2.7</b> Rasterization</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="transform.html"><a href="transform.html#geo-ras"><i class="fa fa-check"></i><b>5.3</b> Geometric operations on raster data</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="transform.html"><a href="transform.html#raster-alignment"><i class="fa fa-check"></i><b>5.3.1</b> Raster alignment</a></li>
+<li class="chapter" data-level="5.3.2" data-path="transform.html"><a href="transform.html#ras-agg"><i class="fa fa-check"></i><b>5.3.2</b> Aggregation</a></li>
+<li class="chapter" data-level="5.3.3" data-path="transform.html"><a href="transform.html#vectorization"><i class="fa fa-check"></i><b>5.3.3</b> Vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="transform.html"><a href="transform.html#exercises-3"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="read-write.html"><a href="read-write.html"><i class="fa fa-check"></i><b>6</b> Geographic data I/O</a><ul>
+<li class="chapter" data-level="" data-path="read-write.html"><a href="read-write.html#prerequisites-4"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="6.1" data-path="read-write.html"><a href="read-write.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="read-write.html"><a href="read-write.html#retrieving-data"><i class="fa fa-check"></i><b>6.2</b> Retrieving open data</a></li>
+<li class="chapter" data-level="6.3" data-path="read-write.html"><a href="read-write.html#file-formats"><i class="fa fa-check"></i><b>6.3</b> File formats</a></li>
+<li class="chapter" data-level="6.4" data-path="read-write.html"><a href="read-write.html#data-input"><i class="fa fa-check"></i><b>6.4</b> Data Input (I)</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="read-write.html"><a href="read-write.html#vector-data-1"><i class="fa fa-check"></i><b>6.4.1</b> Vector data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="read-write.html"><a href="read-write.html#raster-data-1"><i class="fa fa-check"></i><b>6.4.2</b> Raster data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="read-write.html"><a href="read-write.html#data-output"><i class="fa fa-check"></i><b>6.5</b> Data output (O)</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="read-write.html"><a href="read-write.html#vector-data-2"><i class="fa fa-check"></i><b>6.5.1</b> Vector data</a></li>
+<li class="chapter" data-level="6.5.2" data-path="read-write.html"><a href="read-write.html#raster-data-2"><i class="fa fa-check"></i><b>6.5.2</b> Raster data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="read-write.html"><a href="read-write.html#visual-outputs"><i class="fa fa-check"></i><b>6.6</b> Visual outputs</a></li>
+<li class="chapter" data-level="6.7" data-path="read-write.html"><a href="read-write.html#exercises-4"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>II Basic applications</b></span></li>
+<li class="chapter" data-level="7" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>7</b> Location analysis</a><ul>
+<li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-5"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="7.1" data-path="location.html"><a href="location.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>7.2</b> Case study: bike shops in Germany</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="location.html"><a href="location.html#tidy-the-input-data"><i class="fa fa-check"></i><b>7.2.1</b> Tidy the input data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="location.html"><a href="location.html#create-census-rasters"><i class="fa fa-check"></i><b>7.2.2</b> Create census rasters</a></li>
+<li class="chapter" data-level="7.2.3" data-path="location.html"><a href="location.html#define-metropolitan-areas"><i class="fa fa-check"></i><b>7.2.3</b> Define metropolitan areas</a></li>
+<li class="chapter" data-level="7.2.4" data-path="location.html"><a href="location.html#points-of-interest"><i class="fa fa-check"></i><b>7.2.4</b> Points of interest</a></li>
+<li class="chapter" data-level="7.2.5" data-path="location.html"><a href="location.html#identifying-suitable-locations"><i class="fa fa-check"></i><b>7.2.5</b> Identifying suitable locations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="location.html"><a href="location.html#discussion-and-next-steps"><i class="fa fa-check"></i><b>7.3</b> Discussion and next steps</a></li>
+<li class="chapter" data-level="7.4" data-path="location.html"><a href="location.html#exercises-5"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="transport.html"><a href="transport.html"><i class="fa fa-check"></i><b>8</b> Transport applications</a><ul>
+<li class="chapter" data-level="" data-path="transport.html"><a href="transport.html#prerequisites-6"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="8.1" data-path="transport.html"><a href="transport.html#input-data-a-case-study-of-bristol"><i class="fa fa-check"></i><b>8.1</b> Input data: a case study of Bristol</a></li>
+<li class="chapter" data-level="8.2" data-path="transport.html"><a href="transport.html#transport-zones"><i class="fa fa-check"></i><b>8.2</b> Transport zones</a></li>
+<li class="chapter" data-level="8.3" data-path="transport.html"><a href="transport.html#nodes-on-the-transport-system"><i class="fa fa-check"></i><b>8.3</b> Nodes on the transport system</a></li>
+<li class="chapter" data-level="8.4" data-path="transport.html"><a href="transport.html#desire-line-analysis"><i class="fa fa-check"></i><b>8.4</b> Desire line analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="transport.html"><a href="transport.html#route-analysis"><i class="fa fa-check"></i><b>8.5</b> Route analysis</a></li>
+<li class="chapter" data-level="8.6" data-path="transport.html"><a href="transport.html#route-networks"><i class="fa fa-check"></i><b>8.6</b> Route networks</a></li>
+<li class="chapter" data-level="8.7" data-path="transport.html"><a href="transport.html#agents-in-the-transport-system"><i class="fa fa-check"></i><b>8.7</b> Agents in the transport system</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="http://robinlovelace.net/">Robin Lovelace</a></li>
+<li><a href="https://nowosad.github.io/">Jakub Nowosad</a></li>
+<li><a href="http://www.geographie.uni-jena.de/en/Muenchow.html">Jannes Muenchow</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Geocomputation with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="transport" class="section level1">
+<h1><span class="header-section-number">8</span> Transport applications</h1>
+<div id="prerequisites-6" class="section level2 unnumbered">
+<h2>Prerequisites</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sf)
+<span class="kw">library</span>(stplanr)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>In no other sector is geographic space more tangible than transport. It is the effort of moving, particularly between places that are far apart, that led to the ‘first law’ of geography defined by Waldo Tobler in 1970 as follows <span class="citation">(Miller <a href="#ref-miller_toblers_2004">2004</a>)</span>:</p>
+<blockquote>
+<p>Everything is related to everything else, but near things are more related than distant things</p>
+</blockquote>
+<p>This ‘law’ applies to phenomena as diverse as friendship networks and ecological diversity and can be explained by the costs of transport — in terms of time, energy and money. These costs are known as the ‘friction of distance’. Thus transport technologies disrupt geographic relationships from the perspective of mobile humans and goods: “the purpose of transportation is to overcome space” <span class="citation">(Rodrigue, Comtois, and Slack <a href="#ref-rodrigue_geography_2013">2013</a>)</span>.</p>
+<p>Transport is an inherently geospatial activity. It involves traversing continuous geographic space between A and B, and infinite localities in between. It is therefore unsurprising that transport researchers have long turned to geocomputational methods to understand movement patterns and that transport problems are a motivator of geocomputational methods.</p>
+<p>This chapter provides an introduction to geographic analysis of transport systems. We will explore how movement patterns can be understood at multiple geographic levels, including:</p>
+<ul>
+<li>Areal units: transport can be understood simply in terms of zonal aggregates such as the main mode and average distance of trips made people living in a particular zone.</li>
+<li>Nodes: these are points in the transport system that can represent common origins and destinations (e.g. with one centroid per zone) and public transport stations such as bus stops and rail stations.</li>
+<li>Desire lines: straight lines that represent ‘origin-destination’ data that records how many people travel (or could travel) between places (points or zones) in geographic space.</li>
+<li>Routes: these are cirquitous (non-straight) routes, typically representing the ‘optimal’ path along the route network between origins and destinations along the desire lines defined in the previous bullet point.</li>
+<li>Route networks: these represent the system of roads, paths and other linear features in an area. They can be represented as purely geographic entities or as a graph. Their features are segments which can be assigned values representing ‘flow’, the number of people expected to use a particular street or path.</li>
+<li>Agents: these are the lowest-level but hardest to model entities in transport systems — mobile entities like you and me.</li>
+</ul>
+<p>These six levels of analysis show that transport systems are highly complex, even before accounting for the innevitable fact that all of them are constantly evolving in continuous time. The purpose of geographic transport modelling can be interpretted as simplifying this complexity in a way that captures the essence of transport problems.</p>
+<p>Typically models are designed to solve a particular problem. For this reason this chapter is based around a policy scenario that asks: how to increase walking and cycling? We will use input data from Bristol, a coastal city in the West of England, described in the next section.</p>
+<!-- Idea: make it about reducing CO2 emissions instead. Thoughts? + Multi-model - more complex -->
+</div>
+<div id="input-data-a-case-study-of-bristol" class="section level2">
+<h2><span class="header-section-number">8.1</span> Input data: a case study of Bristol</h2>
+<p>The case study used for this chapter is a diverse city on the west of England, 30 km east of the Welsh capital Cardiff. As with any case study it is worth taking some time to consider the local geography of the area (see Figure <a href="transport.html#fig:bristol">8.1</a>). This shows the diversity of the city’s transport network, with railways, motorways and cycle paths plotted.</p>
+<p>The data used in this section was downloaded using <strong>osmdata</strong>. To avoid having to request the data from OSM repeadetly, we’ll use a locally saved version of the data, which contains point and line data for the case study area:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ways =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;extdata/ways.Rds&quot;</span>)
+<span class="kw">summary</span>(ways)
+<span class="co">#&gt;      highway        maxspeed         ref                geometry   </span>
+<span class="co">#&gt;  cycleway: 866   30 mph : 494   A38    : 136   LINESTRING   :2938  </span>
+<span class="co">#&gt;  motorway: 206   20 mph : 398   A4018  : 120   epsg:4326    :   0  </span>
+<span class="co">#&gt;  rail    : 590   40 mph : 159   A420   :  65   +proj=long...:   0  </span>
+<span class="co">#&gt;  road    :1276   70 mph : 153   B4054  :  64                       </span>
+<span class="co">#&gt;                  25 mph :  92   B4057  :  61                       </span>
+<span class="co">#&gt;                  (Other): 209   (Other): 961                       </span>
+<span class="co">#&gt;                  NA&#39;s   :1433   NA&#39;s   :1531</span></code></pre></div>
+<p>The above code chunk loaded a few thousand lines, representing segments on the transport network. This an easily manageable dataset size (transport datasets be large but it’s best to start small). Before we use these in our scenario (to boost active travel in the city) let’s one more type of input data: transport zones that represent residential areas that generate trips into the city centre and elsewhere.</p>
+<div class="figure" style="text-align: center"><span id="fig:bristol"></span>
+<img src="figures/bristol.png" alt="Overview map of the city of Bristol" width="671" />
+<p class="caption">
+Figure 8.1: Overview map of the city of Bristol
+</p>
+</div>
+</div>
+<div id="transport-zones" class="section level2">
+<h2><span class="header-section-number">8.2</span> Transport zones</h2>
+<p>Although transport systems are inherently based on linear features and nodes — the nodes and edges of the transport network — it often makes sense to start with areal data. Three types of zone will typically be of particular interest: the study region, origin zones (typically residential areas), and destination zones (which are often the same as the origin zones).</p>
+<p>The simplest definition of the study area is typically the first matching boundary returned by OpenStreetMap, which can be obtained using the <strong>osmdata</strong> package as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">region =<span class="st"> </span><span class="kw">getbb</span>(<span class="st">&quot;Bristol&quot;</span>, <span class="dt">format_out =</span> <span class="st">&quot;polygon&quot;</span>)[<span class="dv">1</span>]</code></pre></div>
+<p>OSM will will often contain valid depiction of the case study city or region of interest (in this case the result is the same as the officially defined area of the Local Authority District). However the approach is problematic because OSM data may not correspond to the most recent administrative areas over which transport planning authorities have control, meaning the analysis may be of limited interest to local transport planners. More importantly, official administrative zones often do not relate to ‘travel watersheds’, areas that can are defined not by (often arbitrary) political decisions but by data on where people actually travel to.</p>
+<p>To overcome this issue for transport data analysis in the UK, the Travel to Work Areas (TTWAs) were created. TTWAs are contiguous zones defined roughly as areas in which 75% of the population both live and work. Because Bristol is a major employer attracting travel from surrounding towns, its TTWA is substantially larger than its administratively defined area, as illustrated in Figure <a href="transport.html#fig:ttwa-bristol">8.2</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">region =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;extdata/bristol-region.Rds&quot;</span>)
+<span class="kw">plot</span>(region)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:ttwa-bristol"></span>
+<img src="figures/ttwa-bristol-1.png" alt="Region definitions in Bristol" width="576" />
+<p class="caption">
+Figure 8.2: Region definitions in Bristol
+</p>
+</div>
+</div>
+<div id="nodes-on-the-transport-system" class="section level2">
+<h2><span class="header-section-number">8.3</span> Nodes on the transport system</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rail_stations =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;extdata/rail_stations.Rds&quot;</span>)</code></pre></div>
+</div>
+<div id="desire-line-analysis" class="section level2">
+<h2><span class="header-section-number">8.4</span> Desire line analysis</h2>
+</div>
+<div id="route-analysis" class="section level2">
+<h2><span class="header-section-number">8.5</span> Route analysis</h2>
+</div>
+<div id="route-networks" class="section level2">
+<h2><span class="header-section-number">8.6</span> Route networks</h2>
+</div>
+<div id="agents-in-the-transport-system" class="section level2">
+<h2><span class="header-section-number">8.7</span> Agents in the transport system</h2>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-miller_toblers_2004">
+<p>Miller, Harvey J. 2004. “Tobler’s First Law and Spatial Analysis.” <em>Annals of the Association of American Geographers</em> 94 (2).</p>
+</div>
+<div id="ref-rodrigue_geography_2013">
+<p>Rodrigue, Jean-Paul, Claude Comtois, and Brian Slack. 2013. <em>The Geography of Transport Systems</em>. 3 edition. London ; New York: Routledge.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="location.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Robinlovelace/geocompr/edit/master/08-transport.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
