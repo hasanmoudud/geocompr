@@ -531,7 +531,7 @@ Figure 11.7: Raster and point representation of <code>elev</code>.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># not shown</span>
 <span class="kw">data</span>(dem, <span class="dt">package =</span> <span class="st">&quot;RQGIS&quot;</span>)
 <span class="kw">plot</span>(dem, <span class="dt">axes =</span> <span class="ot">FALSE</span>)
-<span class="kw">plot</span>(<span class="kw">rasterToContour</span>(dem), <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw">contour</span>(dem, <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Contours can be added to existing plots with functions such as <code>contour()</code>, <code>rasterVis::contourplot()</code> or <code>tmap::tm_iso()</code>. As illustrated in Figure <a href="raster-vector.html#fig:contour">11.8</a> (which was created using the <strong>tmap</strong> package described in Chapter <a href="adv-map.html#adv-map">9</a>), isolines can be labelled.</p>
 <div class="figure" style="text-align: center"><span id="fig:contour"></span>
 <img src="figures/contour-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines." width="576" />
