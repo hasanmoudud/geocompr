@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Geocomputation with R</title>
+  <meta name="description" content="Forthcoming book on geographic data with R.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Geocomputation with R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://geocompr.robinlovelace.net" />
+  
+  <meta property="og:description" content="Forthcoming book on geographic data with R." />
+  <meta name="github-repo" content="Robinlovelace/geocompr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Geocomputation with R" />
+  
+  <meta name="twitter:description" content="Forthcoming book on geographic data with R." />
+  
+
+<meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
+
+
+<meta name="date" content="2018-04-23">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="attr.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.0/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.0/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/PopupTable-0.0.1/popup.css" rel="stylesheet" />
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99618359-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Geocomputation with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#development"><i class="fa fa-check"></i>Development</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-contribute"><i class="fa fa-check"></i>How to contribute?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-geocomputation"><i class="fa fa-check"></i><b>1.1</b> What is geocomputation?</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#why-geocomputation-with-r"><i class="fa fa-check"></i><b>1.2</b> Why Geocomputation with R?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#software-for-geocomputation"><i class="fa fa-check"></i><b>1.3</b> Software for geocomputation</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#rs-spatial-ecosystem"><i class="fa fa-check"></i><b>1.4</b> R’s spatial ecosystem</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#the-history-of-r-spatial"><i class="fa fa-check"></i><b>1.5</b> The history of R-spatial</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>I Basic methods</b></span></li>
+<li class="chapter" data-level="2" data-path="spatial-class.html"><a href="spatial-class.html"><i class="fa fa-check"></i><b>2</b> Geographic data in R</a><ul>
+<li class="chapter" data-level="" data-path="spatial-class.html"><a href="spatial-class.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="2.1" data-path="spatial-class.html"><a href="spatial-class.html#vector-data"><i class="fa fa-check"></i><b>2.1</b> Vector data</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="spatial-class.html"><a href="spatial-class.html#intro-sf"><i class="fa fa-check"></i><b>2.1.1</b> An introduction to simple features</a></li>
+<li class="chapter" data-level="2.1.2" data-path="spatial-class.html"><a href="spatial-class.html#why-simple-features"><i class="fa fa-check"></i><b>2.1.2</b> Why simple features?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="spatial-class.html"><a href="spatial-class.html#basic-map"><i class="fa fa-check"></i><b>2.1.3</b> Basic map making</a></li>
+<li class="chapter" data-level="2.1.4" data-path="spatial-class.html"><a href="spatial-class.html#base-args"><i class="fa fa-check"></i><b>2.1.4</b> Base plot arguments</a></li>
+<li class="chapter" data-level="2.1.5" data-path="spatial-class.html"><a href="spatial-class.html#sf-classes"><i class="fa fa-check"></i><b>2.1.5</b> Simple feature classes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="spatial-class.html"><a href="spatial-class.html#raster-data"><i class="fa fa-check"></i><b>2.2</b> Raster data</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="spatial-class.html"><a href="spatial-class.html#an-introduction-to-raster"><i class="fa fa-check"></i><b>2.2.1</b> An introduction to raster</a></li>
+<li class="chapter" data-level="2.2.2" data-path="spatial-class.html"><a href="spatial-class.html#basic-map-raster"><i class="fa fa-check"></i><b>2.2.2</b> Basic map making</a></li>
+<li class="chapter" data-level="2.2.3" data-path="spatial-class.html"><a href="spatial-class.html#raster-classes"><i class="fa fa-check"></i><b>2.2.3</b> Raster classes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="spatial-class.html"><a href="spatial-class.html#crs-intro"><i class="fa fa-check"></i><b>2.3</b> Coordinate Reference Systems</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="spatial-class.html"><a href="spatial-class.html#geographic-coordinate-systems"><i class="fa fa-check"></i><b>2.3.1</b> Geographic coordinate systems</a></li>
+<li class="chapter" data-level="2.3.2" data-path="spatial-class.html"><a href="spatial-class.html#projected-coordinate-systems"><i class="fa fa-check"></i><b>2.3.2</b> Projected coordinate systems</a></li>
+<li class="chapter" data-level="2.3.3" data-path="spatial-class.html"><a href="spatial-class.html#crs-in-r"><i class="fa fa-check"></i><b>2.3.3</b> CRSs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="spatial-class.html"><a href="spatial-class.html#units"><i class="fa fa-check"></i><b>2.4</b> Units</a></li>
+<li class="chapter" data-level="2.5" data-path="spatial-class.html"><a href="spatial-class.html#ex2"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="attr.html"><a href="attr.html"><i class="fa fa-check"></i><b>3</b> Attribute operations</a><ul>
+<li class="chapter" data-level="" data-path="attr.html"><a href="attr.html#prerequisites-1"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="3.1" data-path="attr.html"><a href="attr.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="attr.html"><a href="attr.html#vector-attribute-manipulation"><i class="fa fa-check"></i><b>3.2</b> Vector attribute manipulation</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="attr.html"><a href="attr.html#vector-attribute-subsetting"><i class="fa fa-check"></i><b>3.2.1</b> Vector attribute subsetting</a></li>
+<li class="chapter" data-level="3.2.2" data-path="attr.html"><a href="attr.html#vector-attribute-aggregation"><i class="fa fa-check"></i><b>3.2.2</b> Vector attribute aggregation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="attr.html"><a href="attr.html#vector-attribute-joining"><i class="fa fa-check"></i><b>3.2.3</b> Vector attribute joining</a></li>
+<li class="chapter" data-level="3.2.4" data-path="attr.html"><a href="attr.html#vec-attr-creation"><i class="fa fa-check"></i><b>3.2.4</b> Creating attributes and removing spatial information</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="attr.html"><a href="attr.html#manipulating-raster-objects"><i class="fa fa-check"></i><b>3.3</b> Manipulating raster objects</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="attr.html"><a href="attr.html#raster-subsetting"><i class="fa fa-check"></i><b>3.3.1</b> Raster subsetting</a></li>
+<li class="chapter" data-level="3.3.2" data-path="attr.html"><a href="attr.html#summarizing-raster-objects"><i class="fa fa-check"></i><b>3.3.2</b> Summarizing raster objects</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="attr.html"><a href="attr.html#exercises-1"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="spatial-operations.html"><a href="spatial-operations.html"><i class="fa fa-check"></i><b>4</b> Spatial operations</a><ul>
+<li class="chapter" data-level="" data-path="spatial-operations.html"><a href="spatial-operations.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="4.1" data-path="spatial-operations.html"><a href="spatial-operations.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-vec"><i class="fa fa-check"></i><b>4.2</b> Spatial operations on vector data</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-subsetting"><i class="fa fa-check"></i><b>4.2.1</b> Spatial subsetting</a></li>
+<li class="chapter" data-level="4.2.2" data-path="spatial-operations.html"><a href="spatial-operations.html#topological-relations"><i class="fa fa-check"></i><b>4.2.2</b> Topological relations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-joining"><i class="fa fa-check"></i><b>4.2.3</b> Spatial joining</a></li>
+<li class="chapter" data-level="4.2.4" data-path="spatial-operations.html"><a href="spatial-operations.html#non-overlapping-joins"><i class="fa fa-check"></i><b>4.2.4</b> Non-overlapping joins</a></li>
+<li class="chapter" data-level="4.2.5" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-aggr"><i class="fa fa-check"></i><b>4.2.5</b> Spatial data aggregation</a></li>
+<li class="chapter" data-level="4.2.6" data-path="spatial-operations.html"><a href="spatial-operations.html#distance-relations"><i class="fa fa-check"></i><b>4.2.6</b> Distance relations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="spatial-operations.html"><a href="spatial-operations.html#spatial-ras"><i class="fa fa-check"></i><b>4.3</b> Spatial operations on raster data</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="attr.html"><a href="attr.html#raster-subsetting"><i class="fa fa-check"></i><b>4.3.1</b> Spatial subsetting</a></li>
+<li class="chapter" data-level="4.3.2" data-path="spatial-operations.html"><a href="spatial-operations.html#map-algebra"><i class="fa fa-check"></i><b>4.3.2</b> Map algebra</a></li>
+<li class="chapter" data-level="4.3.3" data-path="spatial-operations.html"><a href="spatial-operations.html#local-operations"><i class="fa fa-check"></i><b>4.3.3</b> Local operations</a></li>
+<li class="chapter" data-level="4.3.4" data-path="spatial-operations.html"><a href="spatial-operations.html#focal-operations"><i class="fa fa-check"></i><b>4.3.4</b> Focal operations</a></li>
+<li class="chapter" data-level="4.3.5" data-path="spatial-operations.html"><a href="spatial-operations.html#zonal-operations"><i class="fa fa-check"></i><b>4.3.5</b> Zonal operations</a></li>
+<li class="chapter" data-level="4.3.6" data-path="spatial-operations.html"><a href="spatial-operations.html#global-operations-and-distances"><i class="fa fa-check"></i><b>4.3.6</b> Global operations and distances</a></li>
+<li class="chapter" data-level="4.3.7" data-path="spatial-operations.html"><a href="spatial-operations.html#merging-rasters"><i class="fa fa-check"></i><b>4.3.7</b> Merging rasters</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="spatial-operations.html"><a href="spatial-operations.html#exercises-2"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>5</b> Geometric operations</a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#prerequisites-3"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="5.1" data-path="transform.html"><a href="transform.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="transform.html"><a href="transform.html#reproj-geo-data"><i class="fa fa-check"></i><b>5.2</b> Reprojecting geographic data</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="transform.html"><a href="transform.html#which-crs-to-use"><i class="fa fa-check"></i><b>5.2.1</b> Which CRS to use?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="transform.html"><a href="transform.html#reproj-vec-geom"><i class="fa fa-check"></i><b>5.2.2</b> Reprojecting vector geometries</a></li>
+<li class="chapter" data-level="5.2.3" data-path="transform.html"><a href="transform.html#modifying-map-projections"><i class="fa fa-check"></i><b>5.2.3</b> Modifying map projections</a></li>
+<li class="chapter" data-level="5.2.4" data-path="transform.html"><a href="transform.html#reprojecting-raster-geometries"><i class="fa fa-check"></i><b>5.2.4</b> Reprojecting raster geometries</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="transform.html"><a href="transform.html#geo-vec"><i class="fa fa-check"></i><b>5.3</b> Geometric operations on vector data</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="transform.html"><a href="transform.html#simplification"><i class="fa fa-check"></i><b>5.3.1</b> Simplification</a></li>
+<li class="chapter" data-level="5.3.2" data-path="transform.html"><a href="transform.html#centroids"><i class="fa fa-check"></i><b>5.3.2</b> Centroids</a></li>
+<li class="chapter" data-level="5.3.3" data-path="transform.html"><a href="transform.html#buffers"><i class="fa fa-check"></i><b>5.3.3</b> Buffers</a></li>
+<li class="chapter" data-level="5.3.4" data-path="transform.html"><a href="transform.html#affine-transformations"><i class="fa fa-check"></i><b>5.3.4</b> Affine transformations</a></li>
+<li class="chapter" data-level="5.3.5" data-path="transform.html"><a href="transform.html#clipping"><i class="fa fa-check"></i><b>5.3.5</b> Clipping</a></li>
+<li class="chapter" data-level="5.3.6" data-path="transform.html"><a href="transform.html#geometry-unions"><i class="fa fa-check"></i><b>5.3.6</b> Geometry unions</a></li>
+<li class="chapter" data-level="5.3.7" data-path="transform.html"><a href="transform.html#type-trans"><i class="fa fa-check"></i><b>5.3.7</b> Type transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="transform.html"><a href="transform.html#geo-ras"><i class="fa fa-check"></i><b>5.4</b> Geometric operations on raster data</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="transform.html"><a href="transform.html#extent-and-origin"><i class="fa fa-check"></i><b>5.4.1</b> Extent and origin</a></li>
+<li class="chapter" data-level="5.4.2" data-path="transform.html"><a href="transform.html#aggregation-and-disaggregation"><i class="fa fa-check"></i><b>5.4.2</b> Aggregation and disaggregation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="transform.html"><a href="transform.html#exercises-3"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="read-write.html"><a href="read-write.html"><i class="fa fa-check"></i><b>6</b> Geographic data I/O</a><ul>
+<li class="chapter" data-level="" data-path="read-write.html"><a href="read-write.html#prerequisites-4"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="6.1" data-path="read-write.html"><a href="read-write.html#introduction-3"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="read-write.html"><a href="read-write.html#retrieving-data"><i class="fa fa-check"></i><b>6.2</b> Retrieving open data</a></li>
+<li class="chapter" data-level="6.3" data-path="read-write.html"><a href="read-write.html#file-formats"><i class="fa fa-check"></i><b>6.3</b> File formats</a></li>
+<li class="chapter" data-level="6.4" data-path="read-write.html"><a href="read-write.html#data-input"><i class="fa fa-check"></i><b>6.4</b> Data Input (I)</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="read-write.html"><a href="read-write.html#vector-data-1"><i class="fa fa-check"></i><b>6.4.1</b> Vector data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="read-write.html"><a href="read-write.html#raster-data-1"><i class="fa fa-check"></i><b>6.4.2</b> Raster data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="read-write.html"><a href="read-write.html#data-output"><i class="fa fa-check"></i><b>6.5</b> Data output (O)</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="read-write.html"><a href="read-write.html#vector-data-2"><i class="fa fa-check"></i><b>6.5.1</b> Vector data</a></li>
+<li class="chapter" data-level="6.5.2" data-path="read-write.html"><a href="read-write.html#raster-data-2"><i class="fa fa-check"></i><b>6.5.2</b> Raster data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="read-write.html"><a href="read-write.html#visual-outputs"><i class="fa fa-check"></i><b>6.6</b> Visual outputs</a></li>
+<li class="chapter" data-level="6.7" data-path="read-write.html"><a href="read-write.html#exercises-4"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>II Applied geocomputation</b></span></li>
+<li class="chapter" data-level="7" data-path="transport.html"><a href="transport.html"><i class="fa fa-check"></i><b>7</b> Transport applications</a><ul>
+<li class="chapter" data-level="" data-path="transport.html"><a href="transport.html#prerequisites-5"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="7.1" data-path="transport.html"><a href="transport.html#introduction-4"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="transport.html"><a href="transport.html#bris-case"><i class="fa fa-check"></i><b>7.2</b> A case study of Bristol</a></li>
+<li class="chapter" data-level="7.3" data-path="transport.html"><a href="transport.html#transport-zones"><i class="fa fa-check"></i><b>7.3</b> Transport zones</a></li>
+<li class="chapter" data-level="7.4" data-path="transport.html"><a href="transport.html#desire-lines"><i class="fa fa-check"></i><b>7.4</b> Desire lines</a></li>
+<li class="chapter" data-level="7.5" data-path="transport.html"><a href="transport.html#routes"><i class="fa fa-check"></i><b>7.5</b> Routes</a></li>
+<li class="chapter" data-level="7.6" data-path="transport.html"><a href="transport.html#nodes"><i class="fa fa-check"></i><b>7.6</b> Nodes</a></li>
+<li class="chapter" data-level="7.7" data-path="transport.html"><a href="transport.html#route-networks"><i class="fa fa-check"></i><b>7.7</b> Route networks</a></li>
+<li class="chapter" data-level="7.8" data-path="transport.html"><a href="transport.html#prioritizing-new-infrastructure"><i class="fa fa-check"></i><b>7.8</b> Prioritizing new infrastructure</a></li>
+<li class="chapter" data-level="7.9" data-path="transport.html"><a href="transport.html#future-directions-of-travel"><i class="fa fa-check"></i><b>7.9</b> Future directions of travel</a></li>
+<li class="chapter" data-level="7.10" data-path="transport.html"><a href="transport.html#ex-transport"><i class="fa fa-check"></i><b>7.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>8</b> Location analysis</a><ul>
+<li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-6"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="8.1" data-path="location.html"><a href="location.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>8.2</b> Case study: bike shops in Germany</a></li>
+<li class="chapter" data-level="8.3" data-path="location.html"><a href="location.html#tidy-the-input-data"><i class="fa fa-check"></i><b>8.3</b> Tidy the input data</a></li>
+<li class="chapter" data-level="8.4" data-path="location.html"><a href="location.html#create-census-rasters"><i class="fa fa-check"></i><b>8.4</b> Create census rasters</a></li>
+<li class="chapter" data-level="8.5" data-path="location.html"><a href="location.html#define-metropolitan-areas"><i class="fa fa-check"></i><b>8.5</b> Define metropolitan areas</a></li>
+<li class="chapter" data-level="8.6" data-path="location.html"><a href="location.html#points-of-interest"><i class="fa fa-check"></i><b>8.6</b> Points of interest</a></li>
+<li class="chapter" data-level="8.7" data-path="location.html"><a href="location.html#identifying-suitable-locations"><i class="fa fa-check"></i><b>8.7</b> Identifying suitable locations</a></li>
+<li class="chapter" data-level="8.8" data-path="location.html"><a href="location.html#discussion-and-next-steps"><i class="fa fa-check"></i><b>8.8</b> Discussion and next steps</a></li>
+<li class="chapter" data-level="8.9" data-path="location.html"><a href="location.html#exercises-5"><i class="fa fa-check"></i><b>8.9</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>III Advanced methods</b></span></li>
+<li class="chapter" data-level="9" data-path="adv-map.html"><a href="adv-map.html"><i class="fa fa-check"></i><b>9</b> Making maps with R</a><ul>
+<li class="chapter" data-level="" data-path="adv-map.html"><a href="adv-map.html#prerequisites-7"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="9.1" data-path="adv-map.html"><a href="adv-map.html#introduction-6"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="adv-map.html"><a href="adv-map.html#static-maps"><i class="fa fa-check"></i><b>9.2</b> Static maps</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="adv-map.html"><a href="adv-map.html#tmap-basics"><i class="fa fa-check"></i><b>9.2.1</b> tmap basics</a></li>
+<li class="chapter" data-level="9.2.2" data-path="adv-map.html"><a href="adv-map.html#map-objects-shapes-and-layers"><i class="fa fa-check"></i><b>9.2.2</b> Map objects, shapes and layers</a></li>
+<li class="chapter" data-level="9.2.3" data-path="adv-map.html"><a href="adv-map.html#aesthetics"><i class="fa fa-check"></i><b>9.2.3</b> Aesthetics</a></li>
+<li class="chapter" data-level="9.2.4" data-path="adv-map.html"><a href="adv-map.html#color-settings"><i class="fa fa-check"></i><b>9.2.4</b> Color settings</a></li>
+<li class="chapter" data-level="9.2.5" data-path="adv-map.html"><a href="adv-map.html#layouts"><i class="fa fa-check"></i><b>9.2.5</b> Layouts</a></li>
+<li class="chapter" data-level="9.2.6" data-path="adv-map.html"><a href="adv-map.html#faceted-maps"><i class="fa fa-check"></i><b>9.2.6</b> Faceted maps</a></li>
+<li class="chapter" data-level="9.2.7" data-path="adv-map.html"><a href="adv-map.html#inset-maps"><i class="fa fa-check"></i><b>9.2.7</b> Inset maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="adv-map.html"><a href="adv-map.html#animated-maps"><i class="fa fa-check"></i><b>9.3</b> Animated maps</a></li>
+<li class="chapter" data-level="9.4" data-path="adv-map.html"><a href="adv-map.html#interactive-maps"><i class="fa fa-check"></i><b>9.4</b> Interactive maps</a></li>
+<li class="chapter" data-level="9.5" data-path="adv-map.html"><a href="adv-map.html#web-mapping-applications-with-shiny"><i class="fa fa-check"></i><b>9.5</b> Web mapping applications with shiny</a></li>
+<li class="chapter" data-level="9.6" data-path="adv-map.html"><a href="adv-map.html#other-mapping-packages"><i class="fa fa-check"></i><b>9.6</b> Other mapping packages</a></li>
+<li class="chapter" data-level="9.7" data-path="adv-map.html"><a href="adv-map.html#exercises-6"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gis.html"><a href="gis.html"><i class="fa fa-check"></i><b>10</b> Bridges to GIS software</a><ul>
+<li class="chapter" data-level="10.1" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>10.1</b> (R)QGIS</a></li>
+<li class="chapter" data-level="10.2" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>10.2</b> (R)SAGA</a></li>
+<li class="chapter" data-level="10.3" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>10.3</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="10.4" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>10.4</b> When to use what?</a></li>
+<li class="chapter" data-level="10.5" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="raster-vector.html"><a href="raster-vector.html"><i class="fa fa-check"></i><b>11</b> Raster-vector interactions</a><ul>
+<li class="chapter" data-level="" data-path="raster-vector.html"><a href="raster-vector.html#prerequisites-8"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="11.1" data-path="raster-vector.html"><a href="raster-vector.html#introduction-7"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="raster-vector.html"><a href="raster-vector.html#raster-cropping"><i class="fa fa-check"></i><b>11.2</b> Raster cropping</a></li>
+<li class="chapter" data-level="11.3" data-path="raster-vector.html"><a href="raster-vector.html#raster-extraction"><i class="fa fa-check"></i><b>11.3</b> Raster extraction</a></li>
+<li class="chapter" data-level="11.4" data-path="raster-vector.html"><a href="raster-vector.html#rasterization"><i class="fa fa-check"></i><b>11.4</b> Rasterization</a></li>
+<li class="chapter" data-level="11.5" data-path="raster-vector.html"><a href="raster-vector.html#spatial-vectorization"><i class="fa fa-check"></i><b>11.5</b> Spatial vectorization</a></li>
+<li class="chapter" data-level="11.6" data-path="raster-vector.html"><a href="raster-vector.html#exercises-8"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html"><i class="fa fa-check"></i><b>12</b> Algorithms and functions for geocomputation</a><ul>
+<li class="chapter" data-level="" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="12.1" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#geographic-algorithms"><i class="fa fa-check"></i><b>12.1</b> Geographic algorithms</a></li>
+<li class="chapter" data-level="12.2" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#functions"><i class="fa fa-check"></i><b>12.2</b> Functions</a></li>
+<li class="chapter" data-level="12.3" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#implementation"><i class="fa fa-check"></i><b>12.3</b> Implementation</a></li>
+<li class="chapter" data-level="12.4" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>12.4</b> Case study</a></li>
+<li class="chapter" data-level="12.5" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#exercises-9"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>13</b> Statistical learning for geographic data</a><ul>
+<li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-10"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="13.1" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="spatial-cv.html"><a href="spatial-cv.html#case-landslide"><i class="fa fa-check"></i><b>13.2</b> Case study: Landslide susceptibility</a></li>
+<li class="chapter" data-level="13.3" data-path="spatial-cv.html"><a href="spatial-cv.html#conventional-model"><i class="fa fa-check"></i><b>13.3</b> Conventional modeling approach in R</a></li>
+<li class="chapter" data-level="13.4" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv"><i class="fa fa-check"></i><b>13.4</b> Introduction to (spatial) cross-validation</a></li>
+<li class="chapter" data-level="13.5" data-path="spatial-cv.html"><a href="spatial-cv.html#spatial-cv-with-mlr"><i class="fa fa-check"></i><b>13.5</b> Spatial CV with <strong>mlr</strong></a><ul>
+<li class="chapter" data-level="13.5.1" data-path="spatial-cv.html"><a href="spatial-cv.html#glm"><i class="fa fa-check"></i><b>13.5.1</b> Generalized linear model</a></li>
+<li class="chapter" data-level="13.5.2" data-path="spatial-cv.html"><a href="spatial-cv.html#svm"><i class="fa fa-check"></i><b>13.5.2</b> Spatial tuning of machine-learning hyperparameters</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="spatial-cv.html"><a href="spatial-cv.html#conclusions"><i class="fa fa-check"></i><b>13.6</b> Conclusions</a></li>
+<li class="chapter" data-level="13.7" data-path="spatial-cv.html"><a href="spatial-cv.html#exercises-10"><i class="fa fa-check"></i><b>13.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="http://robinlovelace.net/">Robin Lovelace</a></li>
+<li><a href="https://nowosad.github.io/">Jakub Nowosad</a></li>
+<li><a href="http://www.geographie.uni-jena.de/en/Muenchow.html">Jannes Muenchow</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Geocomputation with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spatial-class" class="section level1">
+<h1><span class="header-section-number">2</span> Geographic data in R</h1>
+<div id="prerequisites" class="section level2 unnumbered">
+<h2>Prerequisites</h2>
+<p>This is the first practical chapter of the book, and therefore it comes with some software requirements. We assume that you have an up-to-date version of R installed and that you are comfortable using software with a command-line interface such as the integrated development environment (IDE) RStudio.<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a></p>
+<!-- Another option is to use the RStudio project provided in the root directory of the [`geocompr`](https://github.com/Robinlovelace/geocompr) GitHub repository. -->
+<!-- This will make it easier to run this book's worked examples on your computer. -->
+<p>After you’ve checked you R installation and brushed-up on your R skills where appropriate, the next step is to install and load the packages used in this chapter. Packages are installed with <code>install.packages(&quot;package_name&quot;)</code>. We will use the two packages that provide functions for handling spatial data, loaded with <code>library(package_name)</code> as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sf)          <span class="co"># classes and functions for vector data</span>
+<span class="kw">library</span>(raster)      <span class="co"># classes and functions for raster data</span></code></pre></div>
+<p>The chapter also relies on two data packages: <strong>spData</strong> and <strong>spDataLarge</strong>. Importantly, the <strong>spDataLarge</strong> package needs be installed with the following command: <code>install.packages(&quot;spDataLarge&quot;, repos = &quot;https://nowosad.github.io/drat/&quot;, type = &quot;source&quot;)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(spData)        <span class="co"># load geographic data</span>
+<span class="kw">library</span>(spDataLarge)   <span class="co"># load larger geographic data</span></code></pre></div>
+
+<div class="rmdnote">
+On Mac and Linux a few requirements must be met to install <strong>sf</strong>. These are described in the package’s README at <a href="https://github.com/r-spatial/sf">github.com/r-spatial/sf</a>.
+</div>
+<p></p>
+<p>This chapter will provide brief explanations of the fundamental geographic data models: vector and raster. We will introduce the theory behind each data model and the disciplines in which they predominate, before demonstrating their implementation in R. <!-- Vector and raster models are vital to geospatial analysis [@longley_geographic_2015]. --></p>
+<p>The <em>vector data model</em> represents the world using points, lines and polygons. These have discrete, well-defined borders, meaning that vector datasets usually have a high level of precision (but not necessarily accuracy as we will see in <a href="spatial-class.html#units">2.4</a>). The <em>raster data model</em> divides the surface up into cells of constant size. Raster datasets are the basis of background images used in web-mapping and have been a vital source of geographic data since the origins of aerial photography and satellite-based remote sensing devices. Rasters aggregate spatially specific features to a given resolution, meaning that they are consistent over space and scalable (many worldwide raster datasets are available). <!-- The downside of this is that small features can be blurred or lost. (commented - too specific) --> <!-- todo: add figure(s) showing raster data and blurring? --></p>
+<p>Which to use? The answer likely depends on your domain of application:</p>
+<ul>
+<li>Vector data tends to dominate the social sciences because human settlements tend to have discrete borders.</li>
+<li>Raster often dominates in environmental sciences because of the reliance on remote sensing data.</li>
+</ul>
+<p>There is much overlap in some fields and raster and vector datasets can be used side-by-side: ecologists and demographers, for example, commonly use both vector and raster data. Whether your work involves more use of vector or raster datasets, it is worth understanding the underlying data model before using them, as discussed in subsequent chapters. This book uses <strong>sf</strong> and <strong>raster</strong> packages to work with vector data and raster datasets respectively.</p>
+</div>
+<div id="vector-data" class="section level2">
+<h2><span class="header-section-number">2.1</span> Vector data</h2>
+
+<div class="rmdnote">
+Take care when using the word ‘vector’ as it can have two meanings in this book: geographic vector data and the <code>vector</code> class (note the <code>monospace</code> font) in R. The former is a data model, the latter is an R class just like <code>data.frame</code> and <code>matrix</code>. Still, there is a link between the two: the spatial coordinates which are at the heart of the geographic vector data model can be represented in R using <code>vector</code> objects.
+</div>
+<p></p>
+<p>The geographic vector model is based on points located within a coordinate reference system (CRS). Points can represent self-standing features (e.g. the location of a bus stop) or they can be linked together to form more complex geometries such as lines and polygons. Most point geometries contain only two dimensions (3 dimensional CRSs contain an additional <span class="math inline">\(z\)</span> value, typically representing height above sea level).</p>
+<p>In this system London, for example, can be represented by the coordinates <code>c(-0.1, 51.5)</code>. This means that its location is -0.1 degrees east and 55.5 degrees north of the origin. The origin in this case is at 0 degrees longitude (the Prime Meridian) and 0 degree latitude (the Equator) in a geographic (‘lon/lat’) CRS (Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, left panel). The same point could also be approximated in a projected CRS with ‘Easting/Northing’ values of <code>c(530000, 180000)</code> in the British National Grid (<a href="https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid">BNG</a>), meaning that London is located 530 km <em>East</em> and 180 km <em>North</em> of the <span class="math inline">\(origin\)</span> of the CRS. This can be verified visually: slightly more than 5 ‘boxes’ — square areas bounded by the grey grid lines 100 km in width — separate the point representing London from the origin (Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, right panel).</p>
+<p>The location of BNG’s origin, in the sea beyond South West Peninsular, ensures that most locations in the UK have positive Easting and Northing values.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a> There is more to CRSs, as described in sections <a href="spatial-class.html#crs-intro">2.3</a> and <a href="transform.html#reproj-geo-data">5.2</a> but, for the purposes of this section, it is sufficient to know that coordinates consist of two numbers representing distance from an origin, usually in <span class="math inline">\(x\)</span> then <span class="math inline">\(y\)</span> dimensions.</p>
+<div class="figure" style="text-align: center"><span id="fig:vectorplots"></span>
+<img src="figures/vector_lonlat.png" alt="Illustration of vector (point) data in which location of London (the red X) is represented with reference to an origin (the blue circle). The left plot represents a geographic CRS with an origin at 0° longitude and latitude. The right plot represents a projected CRS with an origin located in the sea west of the South West Peninsula." width="49%" /><img src="figures/vector_projected.png" alt="Illustration of vector (point) data in which location of London (the red X) is represented with reference to an origin (the blue circle). The left plot represents a geographic CRS with an origin at 0° longitude and latitude. The right plot represents a projected CRS with an origin located in the sea west of the South West Peninsula." width="49%" />
+<p class="caption">
+Figure 2.1: Illustration of vector (point) data in which location of London (the red X) is represented with reference to an origin (the blue circle). The left plot represents a geographic CRS with an origin at 0° longitude and latitude. The right plot represents a projected CRS with an origin located in the sea west of the South West Peninsula.
+</p>
+</div>
+<!-- Commented out: not really necessary here - keeping as could be useful elsewhere: -->
+<!-- In mathematical notation these points are typically represented as numbers separated by commas and enclosed by a pair of brackets:  -->
+<!-- $(1, 3)$ for example, represents a point located one unit to the right and three units above the origin. -->
+<!-- Instead of creating these points manually, one would commonly read-in data with functions such as `read_csv()` from the **tidyverse** or `read_sf()` from the **sf** package (see chapter \@ref(read-write)). -->
+<!-- To generate new data (e.g., for testing), one can use the command `c()` (think of 'c' for 'combine'), as illustrated -->
+<!-- below:^[Other methods for generating numbers include with the `seq()` function (short for 'sequence') for generating regular sequences or `runif()`, `rnorm()` and other functions generating random numbers following some kind of probability distribution. -->
+<!-- The **mapedit** package can be used to create spatial data manually on an interactive map. -->
+<!-- ] -->
+<!-- ```{r} -->
+<!-- p = c(1, 3) -->
+<!-- ``` -->
+<!-- Now this can be plotted in Cartesian space, as illustrated in figure \@ref(fig:cartesian): -->
+<!-- ```{r cartesian, fig.cap="Illustration of vector point data in base R."} -->
+<!-- plot(x = p[1], y = p[2], xlim =  c(0, 5), ylim = c(0, 5)) -->
+<!-- ``` -->
+<div id="intro-sf" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> An introduction to simple features</h3>
+<p>Simple features is an open standard developed and endorsed by the Open Geospatial Consortium (<a href="http://portal.opengeospatial.org/files/?artifact_id=25355">OGC</a>) to represent a wide range of geographic information. It is a hierarchical data model that simplifies geographic data by condensing a complex range of geographic forms into a single geometry class. Only 7 out of 17 possible types of simple feature are currently used in the vast majority of GIS operations (Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>). The R package <strong>sf</strong> <span class="citation">(Pebesma <a href="#ref-R-sf">2018</a>)</span> fully supports all of these (including plotting methods etc.).<a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a></p>
+<div class="figure" style="text-align: center"><span id="fig:sf-ogc"></span>
+<img src="figures/sf-classes.png" alt="The subset of the Simple Features class hierarchy supported by sf." width="100%" />
+<p class="caption">
+Figure 2.2: The subset of the Simple Features class hierarchy supported by sf.
+</p>
+</div>
+<p><strong>sf</strong> can represent all common vector geometry types (raster data classes are not supported by <strong>sf</strong>): points, lines, polygons and their respective ‘multi’ versions (which group together features of the same type into a single feature). <strong>sf</strong> also supports geometry collections, which can contain multiple geometry types in a single object. Given the breadth of geographic data forms, it may come as a surprise that a class system to support all of them is provided in a single package, which can be installed from CRAN:<a href="#fn15" class="footnoteRef" id="fnref15"><sup>15</sup></a> <strong>sf</strong> incorporates the functionality of the three main packages of the <strong>sp</strong> paradigm (<strong>sp</strong> <span class="citation">(Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span> for the class system, <strong>rgdal</strong> <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> for reading and writing data, <strong>rgeos</strong> <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2017</a>)</span> for spatial operations undertaken by GEOS) in a single, cohesive whole. This is well-documented in <strong>sf</strong>’s <a href="http://cran.rstudio.com/package=sf">vignettes</a>.</p>
+<p>As the first vignette explains, simple feature objects in R are stored in a data frame, with geographic data occupying a special column, a ‘list-column’. This column is usually named ‘geom’ or ‘geometry’. We will use the <code>world</code> dataset provided by the <strong>spData</strong>, loaded at the beginning of this chapter (see <a href="https://nowosad.github.io/spData/">nowosad.github.io/spData</a> for a list datasets loaded by the package). <code>world</code> is a spatial object containing spatial and attribute columns, the names of which are returned by the function <code>names()</code> (the last column contains the geographic information):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world)
+<span class="co">#&gt;  [1] &quot;iso_a2&quot;    &quot;name_long&quot; &quot;continent&quot; &quot;region_un&quot; &quot;subregion&quot;</span>
+<span class="co">#&gt;  [6] &quot;type&quot;      &quot;area_km2&quot;  &quot;pop&quot;       &quot;lifeExp&quot;   &quot;gdpPercap&quot;</span>
+<span class="co">#&gt; [11] &quot;geom&quot;</span></code></pre></div>
+<p>It is the contents of this modest-looking <code>geom</code> column that gives <code>sf</code> objects their spatial powers, a ‘list-column’ that contains all the coordinates. The <strong>sf</strong> package provides a <code>plot()</code> method for visualizing geographic data: the follow command creates Figure <a href="spatial-class.html#fig:world-all">2.3</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(world)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:world-all"></span>
+<img src="figures/world-all-1.png" alt="A spatial plot of the world using the sf package, with a facet for each attribute." width="576" />
+<p class="caption">
+Figure 2.3: A spatial plot of the world using the sf package, with a facet for each attribute.
+</p>
+</div>
+<p>Note that instead of creating a single map, as most GIS programs would, the <code>plot()</code> command has created multiple maps, one for each variable in the <code>world</code> datasets. This behavior can be useful for exploring the spatial distribution of different variables and is discussed further in <a href="spatial-class.html#basic-map">2.1.3</a> below.</p>
+<p>Being able to treat spatial objects as regular data frames with spatial powers has many advantages, especially if you are already used to working with data frames. The commonly used <code>summary()</code> function, for example, provides a useful overview of the variables within the <code>world</code> object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world[<span class="st">&quot;lifeExp&quot;</span>])
+<span class="co">#&gt;     lifeExp                geom    </span>
+<span class="co">#&gt;  Min.   :48.9   MULTIPOLYGON :177  </span>
+<span class="co">#&gt;  1st Qu.:64.3   epsg:4326    :  0  </span>
+<span class="co">#&gt;  Median :72.8   +proj=long...:  0  </span>
+<span class="co">#&gt;  Mean   :70.6                      </span>
+<span class="co">#&gt;  3rd Qu.:77.1                      </span>
+<span class="co">#&gt;  Max.   :83.6                      </span>
+<span class="co">#&gt;  NA&#39;s   :9</span></code></pre></div>
+<p>Although we have only selected one variable for the <code>summary</code> command, it also outputs a report on the geometry. This demonstrates the ‘sticky’ behavior of the geometry columns of <strong>sf</strong> objects, meaning the geometry is kept unless the user deliberately removes them, as we’ll see in section <a href="attr.html#vector-attribute-manipulation">3.2</a>. The result provides a quick summary of both the non-spatial and spatial data contained in <code>world</code>: the mean average life expectancy is 71 years (ranging from less than 50 to more than 80 years with a median of 73 years) across all countries.</p>
+
+<div class="rmdnote">
+The word <code>MULTIPOLYGON</code> in the summary output above refers to the geometry type of features (countries) in the <code>world</code> object. This representation is necessary for countries with islands such as Indonesia and Greece. Other geometry types are described in section <a href="spatial-class.html#sf-classes">2.1.5</a>.
+</div>
+<p></p>
+<!-- TODO: cross-reference section covering CRSs. -->
+<p>It is worth taking a deeper look at the basic behavior and contents of this simple feature object, which can usefully be thought of as a ’<strong>S</strong>patial data<strong>F</strong>rame).</p>
+<p><code>sf</code> objects are easy to subset. The code below shows its first two rows and three columns. The output shows two major differences compared with a regular <code>data.frame</code>: the inclusion of additional geographic data (<code>geometry type</code>, <code>dimension</code>, <code>bbox</code> and CRS information - <code>epsg (SRID)</code>, <code>proj4string</code>), and the presence of final <code>geometry</code> column:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world[<span class="dv">1</span>:<span class="dv">2</span>, <span class="dv">1</span>:<span class="dv">3</span>]
+<span class="co">#&gt; Simple feature collection with 2 features and 3 fields</span>
+<span class="co">#&gt; geometry type:  MULTIPOLYGON</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 11.6 ymin: -17.9 xmax: 75.2 ymax: 38.5</span>
+<span class="co">#&gt; epsg (SRID):    4326</span>
+<span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
+<span class="co">#&gt;   iso_a2   name_long continent                           geom</span>
+<span class="co">#&gt; 1     AF Afghanistan      Asia MULTIPOLYGON (((61.2 35.7, ...</span>
+<span class="co">#&gt; 2     AO      Angola    Africa MULTIPOLYGON (((16.3 -5.88,...</span></code></pre></div>
+<p>All this may seem rather complex, especially for a class system that is supposed to be simple. However, there are good reasons for organizing things this way and using <strong>sf</strong>.</p>
+<!-- It's a `MULTIPOLYGON` with 177 features and a geographic (longitude/latidue) coordinate reference system (CRS) with an EPSG code of `4326`. -->
+</div>
+<div id="why-simple-features" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Why simple features?</h3>
+<p>Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.</p>
+<p>A more specific question from an R perspective is “why use the <strong>sf</strong> package when <strong>sp</strong> is already tried and tested”? There are many reasons (linked to the advantages of the simple features model) including:</p>
+<ul>
+<li>Fast reading and writing of data</li>
+<li>Enhanced plotting performance</li>
+<li><strong>sf</strong> objects can be treated as data frames in most operations</li>
+<li><strong>sf</strong> functions can be combined using <code>%&gt;%</code> operator and works well with the <a href="http://tidyverse.org/">tidyverse</a> collection of R packages</li>
+<li><strong>sf</strong> function names are relatively consistent and intuitive (all begin with <code>st_</code>)</li>
+</ul>
+<p>Due to such advantages some spatial packages (including <strong>tmap</strong>, <strong>mapview</strong> and <strong>tidycensus</strong>) have added support for <strong>sf</strong>. However, it will take many years for most packages to transition and some will never switch. Fortunately these can still be used in a workflow based on <code>sf</code> objects, by converting them to the <code>Spatial</code> class used in <strong>sp</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sp)
+world_sp =<span class="st"> </span><span class="kw">as</span>(world, <span class="dt">Class =</span> <span class="st">&quot;Spatial&quot;</span>)
+<span class="co"># sp functions ...</span></code></pre></div>
+<p><code>Spatial</code> objects can be converted back to <code>sf</code> in the same way or with <code>st_as_sf()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world_sf =<span class="st"> </span><span class="kw">st_as_sf</span>(world_sp, <span class="st">&quot;sf&quot;</span>)</code></pre></div>
+</div>
+<div id="basic-map" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Basic map making</h3>
+<p>You can quickly create basic maps in <strong>sf</strong> with the base <code>plot()</code> function. By default, <strong>sf</strong> creates a multi-panel plot (like <strong>sp</strong>’s <code>spplot()</code>), one sub-plot for each variable (see left-hand image in Figure <a href="spatial-class.html#fig:sfplot">2.4</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(world[<span class="dv">3</span>:<span class="dv">4</span>])
+<span class="kw">plot</span>(world[<span class="st">&quot;pop&quot;</span>])</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:sfplot"></span>
+<img src="figures/sfplot-1.png" alt="Plotting with sf, with multiple variables (left) and a single variable (right)." width="49%" /><img src="figures/sfplot-2.png" alt="Plotting with sf, with multiple variables (left) and a single variable (right)." width="49%" />
+<p class="caption">
+Figure 2.4: Plotting with sf, with multiple variables (left) and a single variable (right).
+</p>
+</div>
+<p>As with <strong>sp</strong>, you can add further layers to your maps using the <code>add = TRUE</code>-argument of the <code>plot()</code> function .<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a> To illustrate this, and prepare for content covered in chapters <a href="attr.html#attr">3</a> and <a href="spatial-operations.html#spatial-operations">4</a> on attribute and spatial data operations, we will subset and combine countries in the <code>world</code> object, which creates a single object representing Asia:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asia =<span class="st"> </span>world[world$continent ==<span class="st"> &quot;Asia&quot;</span>, ]
+asia =<span class="st"> </span><span class="kw">st_union</span>(asia)</code></pre></div>
+<p>We can now plot the Asian continent over a map of the world. Note that this only works when the initial plot has only one facet and when <code>reset</code> (which resets plot settings) is set to <code>FALSE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(world[<span class="st">&quot;pop&quot;</span>], <span class="dt">reset =</span> <span class="ot">FALSE</span>)
+<span class="kw">plot</span>(asia, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:asia"></span>
+<img src="figures/asia-1.png" alt="A plot of Asia added as a layer on top of countries worldwide." width="50%" />
+<p class="caption">
+Figure 2.5: A plot of Asia added as a layer on top of countries worldwide.
+</p>
+</div>
+<p>This can be very useful for quickly checking the geographic correspondence between two or more layers: the <code>plot()</code> function is fast to execute and requires few lines of code, but does not create interactive maps with a wide range of options. For more advanced map making we recommend using a dedicated visualization package such as <strong>tmap</strong>, <strong>ggplot2</strong>, <strong>mapview</strong>, or <strong>leaflet</strong>. <!-- TODO: cross reference advanced mapping chapter --></p>
+<!-- 
+- plot() function 
+- map export 
+-->
+<!-- Maybe show also somewhere that `world[0]` produces only a plot of the geometry which is rather useful if you do not want to plot a specific attribute. This way, you can for example dismiss the col = "white"-argument in your Nigeria example.
+Sorry for commenting on this again but just to clarify africa[0] selects zero columns but since the geometry column is sticky it won't be dismissed. Nevertheless, to be more explicit one should probably use plot(st_geometry(africa))-->
+</div>
+<div id="base-args" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Base plot arguments</h3>
+<p><strong>sf</strong> simplifies spatial data objects compared with <strong>sp</strong> and provides a near-direct interface to GDAL and GEOS C++ functions. In theory this should make <strong>sf</strong> faster than <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong>. This section introduces <strong>sf</strong> classes in preparation for subsequent chapters which deal with vector data (in particular Chapters <a href="spatial-operations.html#spatial-operations">4</a> and <a href="transform.html#transform">5</a>).</p>
+<p>As a final exercise, we will see one way of how to do a spatial overlay in <strong>sf</strong>. First, we convert the countries of the world into centroids, and then subset those in Asia. Finally, the <code>summary</code> command tells us how many centroids (countries) are part of Asia (43) and how many are not (134).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world_centroids =<span class="st"> </span><span class="kw">st_centroid</span>(world)
+sel_asia =<span class="st"> </span><span class="kw">st_intersects</span>(world_centroids, asia, <span class="dt">sparse =</span> <span class="ot">FALSE</span>)
+<span class="co">#&gt; although coordinates are longitude/latitude, st_intersects assumes that they are planar</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(sel_asia)
+<span class="co">#&gt;      V1         </span>
+<span class="co">#&gt;  Mode :logical  </span>
+<span class="co">#&gt;  FALSE:134      </span>
+<span class="co">#&gt;  TRUE :43</span></code></pre></div>
+<p>Note: <code>st_intersects()</code> uses <a href="https://trac.osgeo.org/geos/">GEOS</a> in the background for the spatial overlay operation (see also Chapter <a href="spatial-operations.html#spatial-operations">4</a>).</p>
+<p>Since <strong>sf</strong>’s <code>plot()</code> function builds on base plotting methods, you may also use its many optional arguments (see <code>?graphics::plot</code> and <code>?par</code>). This provides many options, but may not be the most concise way to generate maps for publication (see Chapter <a href="adv-map.html#adv-map">9</a>). A simple illustration of the flexibility of <code>plot()</code> is provided in Figure <a href="spatial-class.html#fig:contpop">2.6</a>, which adds circles representing population size to a map of the world. A basic version of the map can be created with the following commands (see exercises in section <a href="spatial-class.html#ex2">2.5</a> and the script <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R"><code>02-contplot</code></a> in the GitHub repo for further details):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(world[<span class="st">&quot;continent&quot;</span>], <span class="dt">reset =</span> <span class="ot">FALSE</span>)
+cex =<span class="st"> </span><span class="kw">sqrt</span>(world$pop) /<span class="st"> </span><span class="dv">10000</span>
+<span class="kw">plot</span>(<span class="kw">st_geometry</span>(world_centroids), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> cex)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:contpop"></span>
+<img src="figures/contpop-1.png" alt="Country continents (represented by fill color) and 2015 populations (represented by points, with point area proportional to population) worldwide." width="576" />
+<p class="caption">
+Figure 2.6: Country continents (represented by fill color) and 2015 populations (represented by points, with point area proportional to population) worldwide.
+</p>
+</div>
+<!-- More appropriate for subsequent chapters. -->
+<!-- This shows that there are 43 countries in Asia -->
+<!-- We can check if they are the same countries as follows: -->
+<!-- ```{r} -->
+<!-- africa_centroids2 = world_centroids[sel_africa, ] -->
+<!-- identical(africa_centroids, africa_centroids2) -->
+<!-- ``` -->
+</div>
+<div id="sf-classes" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> Simple feature classes</h3>
+<p>To understand new data formats in depth, it often helps to build them from the ground up. This section walks you through vector spatial classes step-by-step, from the elementary simple feature geometry to simple feature objects of class <code>sf</code> representing complex spatial data. Before describing each geometry type that the <strong>sf</strong> package supports, it is worth taking a step back to understand the building blocks of <code>sf</code> objects. As stated in section <a href="spatial-class.html#intro-sf">2.1.1</a>, simple features are simply data frames with at least one special column that makes it spatial. These spatial columns are often called <code>geom</code> or <code>geometry</code> and can be like non-spatial columns: <code>world$geom</code> refers to the spatial element of the <code>world</code> object described above. These geometry columns are ‘list columns’ of class <code>sfc</code>. In turn, <code>sfc</code> objects are composed of one or more objects of class <code>sfg</code>: simple feature geometries.</p>
+<p>To understand how the spatial components of simple features work, it is vital to understand simple feature geometries. For this reason we cover each currently supported <code>sfg</code> type in the next subsections before moving on to describe how these can be combined to form <code>sfc</code> and eventually full <code>sf</code> objects.</p>
+<div id="geometry" class="section level4">
+<h4><span class="header-section-number">2.1.5.1</span> Simple feature geometry types</h4>
+<!-- This section demonstrates how the full range of geometry types supported by the **sf** package can be created, combined and plotted. -->
+<p>Geometries are the basic building blocks of simple features. Simple features in R can take on one of the 17 geometry types supported by the <strong>sf</strong> package. In this chapter we will focus on the seven most commonly used types: <code>POINT</code>, <code>LINESTRING</code>, <code>POLYGON</code>, <code>MULTIPOINT</code>, <code>MULTILINESTRING</code>, <code>MULTIPOLYGON</code> and <code>GEOMETRYCOLLECTION</code>.<!--FIG--> Find the whole list of possible feature types in <a href="http://postgis.net/docs/using_postgis_dbmanagement.html">the PostGIS manual</a>.</p>
+<p>Generally, well-known binary (WKB) or well-known text (WKT) are the standard encoding for simple feature geometries. WKB representations are usually hexadecimal strings easily readable for computers. This is why GIS and spatial databases use WKB to transfer and store geometry objects. WKT, on the other hand, is a human-readable text markup description of simple features. Both formats are exchangeable, and if we present one, we will naturally choose the WKT representation.</p>
+<p>The basis for each geometry type is the point. A point is simply a coordinate in 2D, 3D or 4D space (see <code>vignette(&quot;sf1&quot;)</code> for more information) such as:</p>
+<ul>
+<li><code>POINT (5 2)</code></li>
+</ul>
+<p><img src="figures/point-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>A linestring is a sequence of points with a straight line connecting the points, for example:</p>
+<ul>
+<li><code>LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)</code></li>
+</ul>
+<p><img src="figures/linestring-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>A polygon is a sequence of points that form a closed, non-intersecting ring. Closed means that the first and the last point of a polygon have the same coordinates. By definition, a polygon has one exterior boundary (outer ring) and can have zero or more interior boundaries (inner rings), also known as holes.</p>
+<ul>
+<li>Polygon without a hole - <code>POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))</code></li>
+</ul>
+<p><img src="figures/polygon-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Polygon with one hole - <code>POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))</code></li>
+</ul>
+<p><img src="figures/polygon_hole-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>So far we have created geometries with only one geometric entity per feature. However, <strong>sf</strong> also allows multiple geometries to exist within a single feature (hence the term ‘geometry collection’) using “multi” version of each geometry type:</p>
+<ul>
+<li>Multipoint - <code>MULTIPOINT (5 2, 1 3, 3 4, 3 2)</code></li>
+<li>Multistring - <code>MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 2, 2 4))</code></li>
+<li>Multipolygon - <code>MULTIPOLYGON (((1 5, 2 2, 4 1, 4 4, 1 5), (0 2, 1 2, 1 3, 0 3, 0 2)))</code></li>
+</ul>
+<p><img src="figures/multis-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Finally, a geometry collection might contain any combination of geometry types:</p>
+<ul>
+<li>Geometry collection - <code>GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)))</code></li>
+</ul>
+<p><img src="figures/geom_collection-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sfg" class="section level4">
+<h4><span class="header-section-number">2.1.5.2</span> Simple feature geometry (sfg) objects</h4>
+<p>The <code>sfg</code> class represents the different simple feature geometry types: point, linestring, polygon (and their ‘multi’ equivalents, such as multipoints) or geometry collection.</p>
+<p>Usually you are spared the tedious task of creating geometries on your own since you can simply import an already existing spatial file. However, there are a set of functions to create simple feature geometry objects (<code>sfg</code>) from scratch if needed. The names of these functions are simple and consistent, as they all start with the <code>st_</code> prefix and end with the name of the geometry type in lowercase letters:</p>
+<ul>
+<li>A point - <code>st_point()</code></li>
+<li>A linestring - <code>st_linestring()</code></li>
+<li>A polygon - <code>st_polygon()</code></li>
+<li>A multipoint - <code>st_multipoint()</code></li>
+<li>A multilinestring - <code>st_multilinestring()</code></li>
+<li>A multipolygon - <code>st_multipolygon()</code></li>
+<li>A geometry collection - <code>st_geometrycollection()</code></li>
+</ul>
+<p><code>sfg</code> objects can be created from three native data types:</p>
+<ol style="list-style-type: decimal">
+<li>A numeric vector - a single point</li>
+<li>A matrix - a set of points, where each row contains a point - a multipoint or linestring</li>
+<li>A list - any other set, e.g. a multilinestring or geometry collection</li>
+</ol>
+<p>To create point objects, we use the <code>st_point()</code> function in conjunction with a numeric vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note that we use a numeric vector for points</span>
+<span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>)) <span class="co"># XY point</span>
+<span class="co">#&gt; POINT (5 2)</span>
+<span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>)) <span class="co"># XYZ point</span>
+<span class="co">#&gt; POINT Z (5 2 3)</span>
+<span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">dim =</span> <span class="st">&quot;XYM&quot;</span>) <span class="co"># XYM point</span>
+<span class="co">#&gt; POINT M (5 2 1)</span>
+<span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)) <span class="co"># XYZM point</span>
+<span class="co">#&gt; POINT ZM (5 2 3 1)</span></code></pre></div>
+<!-- is this really important? -->
+<p>XY, XYZ and XYZM types of points are automatically created based on the length of a numeric vector. Only the XYM type needs to be specified using a <code>dim</code> argument.</p>
+<p>By contrast, use matrices in the case of multipoint (<code>st_multipoint()</code>) and linestring (<code>st_linestring()</code>) objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the rbind function simplifies the creation of matrices</span>
+## MULTIPOINT
+multipoint_matrix =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))
+<span class="kw">st_multipoint</span>(multipoint_matrix)
+<span class="co">#&gt; MULTIPOINT (5 2, 1 3, 3 4, 3 2)</span>
+
+## LINESTRING
+linestring_matrix =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))
+<span class="kw">st_linestring</span>(linestring_matrix)
+<span class="co">#&gt; LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)</span></code></pre></div>
+<p>Finally, use lists for the creation of multilinestrings, (multi-)polygons and geometry collections:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## POLYGON
+polygon_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)))
+<span class="kw">st_polygon</span>(polygon_list)
+<span class="co">#&gt; POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## POLYGON with a hole
+polygon_border =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))
+polygon_hole =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))
+polygon_with_hole_list =<span class="st"> </span><span class="kw">list</span>(polygon_border, polygon_hole)
+<span class="kw">st_polygon</span>(polygon_with_hole_list)
+<span class="co">#&gt; POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## MULTILINESTRING
+multilinestring_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), 
+                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)))
+<span class="kw">st_multilinestring</span>((multilinestring_list))
+<span class="co">#&gt; MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 2, 2 4))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## MULTIPOLYGON
+multipolygon_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))),
+                         <span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))))
+<span class="kw">st_multipolygon</span>(multipolygon_list)
+<span class="co">#&gt; MULTIPOLYGON (((1 5, 2 2, 4 1, 4 4, 1 5)), ((0 2, 1 2, 1 3, 0 3, 0 2)))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## GEOMETRYCOLLECTION
+gemetrycollection_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">st_multipoint</span>(multipoint_matrix),
+                              <span class="kw">st_linestring</span>(linestring_matrix))
+<span class="kw">st_geometrycollection</span>(gemetrycollection_list)
+<span class="co">#&gt; GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))</span></code></pre></div>
+<!-- table -->
+<!-- figure - image/fig1.jpg -->
+<!-- they are interconnected - points could create mulitpoints or lines; -->
+<!-- lines could create mutlilines or polygons, etc. -->
+<!-- https://r-spatial.github.io/sf/articles/sf1.html -->
+</div>
+<div id="sfc" class="section level4">
+<h4><span class="header-section-number">2.1.5.3</span> Simple feature geometry column</h4>
+<p>One <code>sfg</code> object contains only a single simple feature geometry. A simple feature geometry column (<code>sfc</code>) is a list of <code>sfg</code> objects, which is additionally able to contain information about the coordinate reference system in use. For instance, to combine two simple features into one object with two features, we can use the <code>st_sfc()</code> function. This is important since <code>sfc</code> represents the geometry column in <strong>sf</strong> data frames:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sfc POINT</span>
+point1 =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))
+point2 =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))
+<span class="kw">st_sfc</span>(point1, point2)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span>
+<span class="co">#&gt; epsg (SRID):    NA</span>
+<span class="co">#&gt; proj4string:    NA</span>
+<span class="co">#&gt; POINT (5 2)</span>
+<span class="co">#&gt; POINT (1 3)</span></code></pre></div>
+<p>In most cases, an <code>sfc</code> object contains objects of the same geometry type. Therefore, when we convert <code>sfg</code> objects of type polygon into a simple feature geometry column, we would also end up with an <code>sfc</code> object of type polygon. Equally, a geometry column of multilinestrings would result in an <code>sfc</code> object of type multilinestring:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sfc POLYGON</span>
+polygon_list1 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)))
+polygon1 =<span class="st"> </span><span class="kw">st_polygon</span>(polygon_list1)
+polygon_list2 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)))
+polygon2 =<span class="st"> </span><span class="kw">st_polygon</span>(polygon_list2)
+<span class="kw">st_sfc</span>(polygon1, polygon2)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  POLYGON</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 0 ymin: 1 xmax: 4 ymax: 5</span>
+<span class="co">#&gt; epsg (SRID):    NA</span>
+<span class="co">#&gt; proj4string:    NA</span>
+<span class="co">#&gt; POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))</span>
+<span class="co">#&gt; POLYGON ((0 2, 1 2, 1 3, 0 3, 0 2))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sfc MULTILINESTRING</span>
+multilinestring_list1 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), 
+                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)))
+multilinestring1 =<span class="st"> </span><span class="kw">st_multilinestring</span>((multilinestring_list1))
+multilinestring_list2 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">9</span>), <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">9</span>), <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">7</span>)), 
+                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">7</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">8</span>)))
+multilinestring2 =<span class="st"> </span><span class="kw">st_multilinestring</span>((multilinestring_list2))
+<span class="kw">st_sfc</span>(multilinestring1, multilinestring2)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  MULTILINESTRING</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 1 ymin: 1 xmax: 7 ymax: 9</span>
+<span class="co">#&gt; epsg (SRID):    NA</span>
+<span class="co">#&gt; proj4string:    NA</span>
+<span class="co">#&gt; MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 ...</span>
+<span class="co">#&gt; MULTILINESTRING ((2 9, 7 9, 5 6, 4 7, 2 7), (1 ...</span></code></pre></div>
+<p>It is also possible to create an <code>sfc</code> object from <code>sfg</code> objects with different geometry types:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sfc GEOMETRY</span>
+<span class="kw">st_sfc</span>(point1, multilinestring1)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  GEOMETRY</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 1 ymin: 1 xmax: 5 ymax: 5</span>
+<span class="co">#&gt; epsg (SRID):    NA</span>
+<span class="co">#&gt; proj4string:    NA</span>
+<span class="co">#&gt; POINT (5 2)</span>
+<span class="co">#&gt; MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 ...</span></code></pre></div>
+<!-- if you want to use it - st_cast() to a proper geometry type -->
+<!-- or st_is to select only one geometry type -->
+<!-- http://r-spatial.org/r/2017/01/12/newssf.html -->
+<!-- methods(class = "sfc") -->
+<p>As mentioned before, <code>sfc</code> objects can additionally store information on the coordinate reference systems (CRS). <!-- What's CRS --> To specify a certain CRS, we can use the <code>epsg (SRID)</code> or <code>proj4string</code> attributes of an <code>sfc</code> object. The default value of <code>epsg (SRID)</code> and <code>proj4string</code> is <code>NA</code> (<em>Not Available</em>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_sfc</span>(point1, point2)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span>
+<span class="co">#&gt; epsg (SRID):    NA</span>
+<span class="co">#&gt; proj4string:    NA</span>
+<span class="co">#&gt; POINT (5 2)</span>
+<span class="co">#&gt; POINT (1 3)</span></code></pre></div>
+<p>All geometries in an <code>sfc</code> object must have the same CRS.</p>
+<p>We can add coordinate reference system as a <code>crs</code> argument of <code>st_sfc()</code>. This argument accepts either an integer with the <code>epsg</code> code (for example, <code>4326</code>) or a <code>proj4string</code> character string (for example, <code>&quot;+proj=longlat +datum=WGS84 +no_defs&quot;</code>) (see section <a href="spatial-class.html#crs-intro">2.3</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># EPSG definition</span>
+<span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="dv">4326</span>)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span>
+<span class="co">#&gt; epsg (SRID):    4326</span>
+<span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
+<span class="co">#&gt; POINT (5 2)</span>
+<span class="co">#&gt; POINT (1 3)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># PROJ4STRING definition</span>
+<span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84 +no_defs&quot;</span>)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span>
+<span class="co">#&gt; epsg (SRID):    4326</span>
+<span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
+<span class="co">#&gt; POINT (5 2)</span>
+<span class="co">#&gt; POINT (1 3)</span></code></pre></div>
+<p>For example, we can set the UTM Zone 11N projection with <code>epsg</code> code <code>2955</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="dv">2955</span>)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span>
+<span class="co">#&gt; epsg (SRID):    2955</span>
+<span class="co">#&gt; proj4string:    +proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</span>
+<span class="co">#&gt; POINT (5 2)</span>
+<span class="co">#&gt; POINT (1 3)</span></code></pre></div>
+<p>As you can see above, the <code>proj4string</code> definition was automatically added. Now we can try to set the CRS using <code>proj4string</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="st">&quot;+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span>)
+<span class="co">#&gt; Geometry set for 2 features </span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span>
+<span class="co">#&gt; epsg (SRID):    NA</span>
+<span class="co">#&gt; proj4string:    +proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</span>
+<span class="co">#&gt; POINT (5 2)</span>
+<span class="co">#&gt; POINT (1 3)</span></code></pre></div>
+<p>However, the <code>epsg</code> string of our result remained empty. This is because there is no general method to convert from <code>proj4string</code> to <code>epsg</code>.</p>
+<!-- precision -->
+<!-- plots can be made -->
+</div>
+<div id="sf" class="section level4">
+<h4><span class="header-section-number">2.1.5.4</span> Simple feature objects</h4>
+<p>So far, we have only dealt with the pure geometries. Most of the time, however, these geometries come with a set of attributes describing them. These attributes could represent the name of the geometry, measured values, groups to which the geometry belongs, and many more. For example, we measured a temperature of 25°C on Trafalgar Square in London on June 21<sup>st</sup> 2017. Hence, we have a specific point in space (the coordinates), the name of the location (Trafalgar Square), a temperature value and the date of the measurement. Other attributes might include a urbanity category (city or village), or a remark if the measurement was made using an automatic station.</p>
+<p>The simple feature class, <code>sf</code>, is a combination of an attribute table (<code>data.frame</code>) and a simple feature geometry column (<code>sfc</code>). Simple features are created using the <code>st_sf()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sfg objects</span>
+london_point =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">51.5</span>))
+ruan_point =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(-<span class="dv">9</span>, <span class="dv">53</span>))
+
+<span class="co"># sfc object</span>
+our_geometry =<span class="st"> </span><span class="kw">st_sfc</span>(london_point, ruan_point, <span class="dt">crs =</span> <span class="dv">4326</span>)
+
+<span class="co"># data.frame object</span>
+our_attributes =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;London&quot;</span>, <span class="st">&quot;Ruan&quot;</span>),
+                            <span class="dt">temperature =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">13</span>),
+                            <span class="dt">date =</span> <span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2017-06-21&quot;</span>), <span class="kw">as.Date</span>(<span class="st">&quot;2017-06-22&quot;</span>)),
+                            <span class="dt">category =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;village&quot;</span>),
+                            <span class="dt">automatic =</span> <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>))
+
+<span class="co"># sf object</span>
+sf_points =<span class="st"> </span><span class="kw">st_sf</span>(our_attributes, <span class="dt">geometry =</span> our_geometry)</code></pre></div>
+<p>The above example illustrates the components of <code>sf</code> objects. Firstly, coordinates define the geometry of the simple feature geometry (<code>sfg</code>). Secondly, we can combine the geometries in a simple feature geometry column (<code>sfc</code>) which also stores the CRS. Subsequently, we store the attribute information on the geometries in a <code>data.frame</code>. Finally, the <code>st_sf()</code> function combines the attribute table and the <code>sfc</code> object in an <code>sf</code> object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sf_points
+<span class="co">#&gt; Simple feature collection with 2 features and 5 fields</span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: -9 ymin: 51.5 xmax: 0.1 ymax: 53</span>
+<span class="co">#&gt; epsg (SRID):    4326</span>
+<span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
+<span class="co">#&gt;     name temperature       date category automatic         geometry</span>
+<span class="co">#&gt; 1 London          25 2017-06-21     city     FALSE POINT (0.1 51.5)</span>
+<span class="co">#&gt; 2   Ruan          13 2017-06-22  village      TRUE    POINT (-9 53)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(sf_points)
+<span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></code></pre></div>
+<p>The result shows that <code>sf</code> objects actually have two classes, <code>sf</code> and <code>data.frame</code>. Simple features are simply data frames (square tables), but with spatial attributes (usually stored in a special <code>geom</code> list-column in the data frame). This duality is central to the concept of simple features: most of the time a <code>sf</code> can be treated as and behaves like a <code>data.frame</code>. Simple features are, in essence, data frames with a spatial extension.</p>
+<!-- https://r-spatial.github.io/sf/articles/sf1.html#how-attributes-relate-to-geometries -->
+</div>
+</div>
+</div>
+<div id="raster-data" class="section level2">
+<h2><span class="header-section-number">2.2</span> Raster data</h2>
+<p>The geographic raster data model consists of a raster header<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a> and a matrix (with rows and columns) representing equally spaced cells (often also called pixels; Figure <a href="spatial-class.html#fig:raster-intro-plot">2.7</a>:A). The raster header defines the coordinate reference system, the extent and the origin. The origin (or starting point) is frequently the coordinate of the lower-left corner of the matrix (the <strong>raster</strong> package, however, uses the upper left corner, by default (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.7</a>:B)). The header defines the extent via the number of columns, the number of rows and the cell size resolution. Hence, starting from the origin, we can easily access and modify each single cell by either using the ID of a cell (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.7</a>:B) or by explicitly specifying the rows and columns. This matrix representation avoids storing explicitly the coordinates for the four corner points (in fact it only stores one coordinate, namely the origin) of each cell corner as would be the case for rectangular vector polygons. This and map algebra makes raster processing much more efficient and faster than vector data processing. However, in contrast to vector data, a raster cell can only hold a single value. The value might be numeric or categorical (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.7</a>:C).</p>
+<div class="figure" style="text-align: center"><span id="fig:raster-intro-plot"></span>
+<img src="figures/02_raster_intro_plot.png" alt="Raster data: A - cell IDs; B - cell values; C - a colored raster map." width="1125" />
+<p class="caption">
+Figure 2.7: Raster data: A - cell IDs; B - cell values; C - a colored raster map.
+</p>
+</div>
+<p>Raster maps usually represent continuous phenomena such as elevation, temperature, population density or spectral data (Figure <a href="spatial-class.html#fig:raster-intro-plot2">2.8</a>). Of course, we can represent discrete features such as soil or land-cover classes also with the help of a raster data model (Figure <a href="spatial-class.html#fig:raster-intro-plot2">2.8</a>). Consequently, the discrete borders of these features become blurred, and depending on the spatial task a vector representation might be more suitable.</p>
+<div class="figure" style="text-align: center"><span id="fig:raster-intro-plot2"></span>
+<img src="figures/02_raster_intro_plot2.png" alt="Examples of continuous (left) and categorical (right) raster." width="475" />
+<p class="caption">
+Figure 2.8: Examples of continuous (left) and categorical (right) raster.
+</p>
+</div>
+<div id="an-introduction-to-raster" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> An introduction to raster</h3>
+<p>The <strong>raster</strong> package supports raster objects in R. It provides an extensive set of functions to create, read, export, manipulate and process raster datasets. Aside from general raster data manipulation, <strong>raster</strong> provides many low level functions that can form the basis to develop more advanced raster functionality. <strong>raster</strong> also lets you work on large raster datasets that are too large to fit into the main memory. In this case, <strong>raster</strong> provides the possibility to divide the raster into smaller chunks (rows or blocks), and processes these iteratively instead of loading the whole raster file into RAM (for more information, please refer to <code>vignette(&quot;functions&quot;, package = &quot;raster&quot;)</code>.</p>
+<p>For the illustration of <strong>raster</strong> concepts, we will use datasets from the <strong>spDataLarge</strong> (note these packages were loaded at the beginning of the chapter). It consists of a few raster and one vector datasets covering an area of the Zion National Park (Utah, USA). For example, <code>srtm.tif</code> is a digital elevation model of this area (for more details - see its documentation <code>?srtm</code>) First of all, we would like to create a <code>RasterLayer</code> object named <code>new_raster</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raster_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)
+new_raster =<span class="st"> </span><span class="kw">raster</span>(raster_filepath)</code></pre></div>
+<p>Typing the name of the raster into the console, will print out the raster header (extent, dimensions, resolution, CRS) and some additional information (class, data source name, summary of the raster values):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_raster
+<span class="co">#&gt; class       : RasterLayer </span>
+<span class="co">#&gt; dimensions  : 457, 465, 212505  (nrow, ncol, ncell)</span>
+<span class="co">#&gt; resolution  : 0.000833, 0.000833  (x, y)</span>
+<span class="co">#&gt; extent      : -113, -113, 37.1, 37.5  (xmin, xmax, ymin, ymax)</span>
+<span class="co">#&gt; coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="co">#&gt; data source : /home/travis/R/Library/spDataLarge/raster/srtm.tif </span>
+<span class="co">#&gt; names       : srtm </span>
+<span class="co">#&gt; values      : 1024, 2892  (min, max)</span></code></pre></div>
+<p>To access individual header information, you can use following commands: <code>dim(new_raster)</code> (dimensions - number of rows, number of columns, number of cells), <code>res(new_raster)</code> (spatial resolution), <code>extent(new_raster)</code> (spatial extent), and <code>crs(new_raster)</code> (coordinate reference system).</p>
+<!--CRSargs(CRS("+init=epsg:4326"))-->
+<p>Note that in contrast to the <strong>sf</strong> package, <strong>raster</strong> only accepts the <code>proj4string</code> representation of the coordinate reference system.</p>
+<!--
+You can also summarize and plot raster cell values in a non-spatial fashion using base R functions such as `summary()` and `hist()`.
+
+
+```r
+# numerical summary of the data
+summary(new_raster)
+#> Warning in .local(object, ...): summary is an estimate based on a sample of 1e+05 cells (47.06% of all cells)
+#>         srtm
+#> Min.    1024
+#> 1st Qu. 1535
+#> Median  1836
+#> 3rd Qu. 2111
+#> Max.    2892
+#> NA's       0
+```
+
+
+```r
+# histogram of the values
+hist(new_raster)
+#> Warning in .hist1(x, maxpixels = maxpixels, main = main, plot = plot, ...):
+#> 47% of the raster cells were used. 100000 values used.
+```
+
+<img src="figures/new_raster-hist-1.png" width="576" style="display: block; margin: auto;" />
+
+`getValues()` extracts the values of a raster as a numerical vector.
+To only select specific rows, use the `row` parameter.
+
+
+```r
+new_raster_values = getValues(new_raster)
+head(new_raster_values)
+#> [1] 1728 1718 1715 1710 1703 1701
+```
+
+The new vector, `new_raster_values`, can serve as input for subsequent statistical operations.
+-->
+<p>Sometimes it is important to know if all values of a raster are currently in memory or on disk. Find out with the <code>inMemory()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inMemory</span>(new_raster)
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<p><code>help(package = &quot;raster&quot;, topic = &quot;raster-package&quot;)</code> returns a full list of all available <strong>raster</strong> functions.</p>
+</div>
+<div id="basic-map-raster" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Basic map making</h3>
+<p>Similar to the <strong>sf</strong> package, <strong>raster</strong> also provides <code>plot()</code> methods for its own classes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(new_raster)</code></pre></div>
+<p><img src="figures/basic-new-raster-plot-1.png" width="576" style="display: block; margin: auto;" /></p>
+<!-- Moreover, it is possible to plot a raster and overlay it with vector data. -->
+<!-- For this purpose, we need to read-in a vector dataset: -->
+<!-- ```{r, message=FALSE, results='hide'} -->
+<!-- vector_filepath = system.file("vector/zion.gpkg", package="spDataLarge") -->
+<!-- new_vector = st_read(vector_filepath) -->
+<!-- ``` -->
+<!-- Our new object, `new_vector`, is a polygon representing the borders of Zion National Park (`?zion`). -->
+<!-- We can add the borders to the elevation map using the `add` argument of the `plot()`: -->
+<!-- ```{r basic-new-raster-vector-plot} -->
+<!-- plot(new_raster) -->
+<!-- plot(new_vector$geom, add = TRUE) -->
+<!-- ``` -->
+<p>There are several different approaches to plot raster data in R:</p>
+<ul>
+<li>You can use <code>spplot()</code> to visualize several (such as spatiotemporal) layers at once. You can also do so with the <strong>rasterVis</strong> package which provides more advanced methods for plotting raster objects.</li>
+<li>Packages such as <strong>tmap</strong>, <strong>mapview</strong> and <strong>leaflet</strong> facilitate especially interactive mapping of both raster and vector objects. <!-- TODO: cross reference advanced mapping chapter --></li>
+</ul>
+</div>
+<div id="raster-classes" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Raster classes</h3>
+<p>The <code>RasterLayer</code> class represents the simplest form of a raster object, and consists of only one layer. The easiest way to create a raster object in R is to read-in a raster file from disk or from a server.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raster_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)
+new_raster =<span class="st"> </span><span class="kw">raster</span>(raster_filepath)</code></pre></div>
+<p>The <strong>raster</strong> package supports numerous drivers with the help of <strong>rgdal</strong>. To find out which drivers are available on your system, run <code>raster::writeFormats()</code> and <code>rgdal::gdalDrivers()</code>.</p>
+<p>Rasters can also be created from scratch using the <code>raster()</code> function. This is illustrated in the subsequent code chunk, which results in a new <code>RasterLayer</code> object. The resulting raster consists of 36 cells (6 columns and 6 rows specified by <code>nrow</code> and <code>ncol</code>) centered around the Prime Meridian and the Equator (see <code>xmn</code>, <code>xmx</code>, <code>ymn</code> and <code>ymx</code> parameters). The CRS is the default of raster objects: WGS84. This means the unit of the resolution is in degrees which we set to 0.5 (<code>res</code>). Values (<code>vals</code>) are assigned to each cell: 1 to cell 1, 2 to cell 2, and so on. Remember: <code>raster()</code> fills cells row-wise (unlike <code>matrix()</code>) starting at the upper left corner, meaning the top row contains the values 1 to 6, the second 7 to 12 etc.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_raster2 =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">nrow =</span> <span class="dv">6</span>, <span class="dt">ncol =</span> <span class="dv">6</span>, <span class="dt">res =</span> <span class="fl">0.5</span>, 
+                     <span class="dt">xmn =</span> -<span class="fl">1.5</span>, <span class="dt">xmx =</span> <span class="fl">1.5</span>, <span class="dt">ymn =</span> -<span class="fl">1.5</span>, <span class="dt">ymx =</span> <span class="fl">1.5</span>,
+                     <span class="dt">vals =</span> <span class="dv">1</span>:<span class="dv">36</span>)</code></pre></div>
+<p>For still further ways of creating a raster object have a look at the help file - <code>?raster</code>. <!--
+There are several ways to add new values to the `Raster*` objects.
+Values for the whole object could be add with `setValues()`:
+
+
+```r
+# adding random values to the raster object
+new_random_values = sample(seq_len(ncell(new_raster4)))
+setValues(new_raster4, new_random_values)
+```
+
+
+It is also possible to replace cell values by specifying cell numbers, or row and column numbers:
+
+
+```r
+# change the value of 15th cell to 826
+new_raster4[15] = 826
+# change the value of the cell in the second row and forth column to 826
+new_raster4[2, 4] = 826 
+```
+--></p>
+<p>Aside from <code>RasterLayer</code>, there are two additional classes: <code>RasterBrick</code> and <code>RasterStack</code>. Both can handle multiple layers, but differ regarding the number of supported file formats, type of internal representation and processing speed.</p>
+<p>A <code>RasterBrick</code> consists of multiple layers, which typically correspond to a single multispectral satellite file or a single multilayer object in memory. The <code>brick()</code> function creates a <code>RasterBrick</code> object. Usually, you provide it with a filename to a multilayer raster file but might also use another raster object and other spatial objects (see its help page for all supported formats).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multilayer_raster_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/landsat.tif&quot;</span>, <span class="dt">package=</span><span class="st">&quot;spDataLarge&quot;</span>)
+r_brick =<span class="st"> </span><span class="kw">brick</span>(multilayer_raster_filepath)
+r_brick
+<span class="co">#&gt; class       : RasterBrick </span>
+<span class="co">#&gt; dimensions  : 1428, 1128, 1610784, 4  (nrow, ncol, ncell, nlayers)</span>
+<span class="co">#&gt; resolution  : 30, 30  (x, y)</span>
+<span class="co">#&gt; extent      : 301905, 335745, 4111245, 4154085  (xmin, xmax, ymin, ymax)</span>
+<span class="co">#&gt; coord. ref. : +proj=utm +zone=12 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="co">#&gt; data source : /home/travis/R/Library/spDataLarge/raster/landsat.tif </span>
+<span class="co">#&gt; names       : landsat.1, landsat.2, landsat.3, landsat.4 </span>
+<span class="co">#&gt; min values  :      7550,      6404,      5678,      5252 </span>
+<span class="co">#&gt; max values  :     19071,     22051,     25780,     31961</span></code></pre></div>
+<p>The <code>nlayers</code> function retrieves the number of layers stored in a <code>Raster*</code> object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nlayers</span>(r_brick)
+<span class="co">#&gt; [1] 4</span></code></pre></div>
+<p>A <code>RasterStack</code> is similar to a <code>RasterBrick</code> in the sense that it consists also of multiple layers. However, in contrast to <code>RasterBrick</code>, <code>RasterStack</code> allows you to connect several raster objects stored in different files or multiply objects in memory. More specifically, a <code>RasterStack</code> is a list of <code>RasterLayer</code> objects with the same extent and resolution. Hence, one way to create it is with the help of spatial objects already existing in R’s global environment. And again, one can simply specify a path to a file stored on disk. <!-- The possibility to create a `RasterStack` from a file stored on disk and an object residing in R's global environment is one of the main differences compared to a `RasterBrick`. --></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raster_on_disk =<span class="st"> </span><span class="kw">raster</span>(r_brick, <span class="dt">layer =</span> <span class="dv">1</span>)
+raster_in_memory =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">xmn =</span> <span class="dv">301905</span>, <span class="dt">xmx =</span> <span class="dv">335745</span>, <span class="dt">ymn =</span> <span class="dv">4111245</span>, <span class="dt">ymx =</span> <span class="dv">4154085</span>, <span class="dt">res =</span> <span class="dv">30</span>)
+<span class="kw">values</span>(raster_in_memory) =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">ncell</span>(raster_in_memory))
+<span class="kw">crs</span>(raster_in_memory) =<span class="st"> </span><span class="kw">crs</span>(raster_on_disk)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_stack =<span class="st"> </span><span class="kw">stack</span>(raster_in_memory, raster_on_disk)
+r_stack
+<span class="co">#&gt; class       : RasterStack </span>
+<span class="co">#&gt; dimensions  : 1428, 1128, 1610784, 2  (nrow, ncol, ncell, nlayers)</span>
+<span class="co">#&gt; resolution  : 30, 30  (x, y)</span>
+<span class="co">#&gt; extent      : 301905, 335745, 4111245, 4154085  (xmin, xmax, ymin, ymax)</span>
+<span class="co">#&gt; coord. ref. : +proj=utm +zone=12 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="co">#&gt; names       :   layer, landsat.1 </span>
+<span class="co">#&gt; min values  :       1,      7550 </span>
+<span class="co">#&gt; max values  : 1610784,     19071</span></code></pre></div>
+<p>Another difference is that the processing time for <code>RasterBrick</code> objects is usually shorter than for <code>RasterStack</code> objects.</p>
+<p>Decision on which <code>Raster*</code> class should be used depends mostly on a character of input data. Processing of a single mulitilayer file or object is the most effective with <code>RasterBrick</code>, while <code>RasterStack</code> allows calculations based on many files, many <code>Raster*</code> objects, or both.</p>
+
+<div class="rmdnote">
+Operations on <code>RasterBrick</code> and <code>RasterStack</code> objects will typically return a <code>RasterBrick</code>.
+</div>
+<p></p>
+</div>
+</div>
+<div id="crs-intro" class="section level2">
+<h2><span class="header-section-number">2.3</span> Coordinate Reference Systems</h2>
+<p>Vector and raster spatial data types share concepts intrinsic to spatial data. Perhaps the most fundamental of these is the Coordinate Reference System (CRS), which defines how the spatial elements of the data relate to the surface of the Earth (or other bodies). <!-- Coordinates are meaningless without a CRS, as we don't know theirs units (meters, feets, degrees) or what's the origin --> <!-- (-12579102, 4439107) = (-113, 37) --> CRSs are either geographic or projected, as introduced at the beginning of this chapter (see Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>). This section will will explain each type, laying the foundations for section <a href="transform.html#reproj-geo-data">5.2</a> on CRS transformations.</p>
+<div id="geographic-coordinate-systems" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Geographic coordinate systems</h3>
+<p>Geographic coordinate systems identify any location on the Earth’s surface using two values — longitude and latitude. <em>Longitude</em> is location in the East-West direction in angular distance from the Prime Meridian plane. <em>Latitude</em> is angular distance North or South of the equatorial plane. Distance in geographic CRSs are therefore not measured in meters. This has important consequences, as demonstrated in section <a href="transform.html#reproj-geo-data">5.2</a>.</p>
+<p>The surface of the Earth in geographic coordinate systems is represented by a spherical or ellipsoidal surface. Spherical models assume that the Earth is a perfect sphere of a given radius. Spherical models have the advantage of simplicity but are rarely used because they are inaccurate: the Earth is not a sphere! Ellipsoidal models are defined by two parameters: the equatorial radius and the polar radius. These are suitable because the Earth is compressed: the equatorial radius is around 11.5 km longer than the polar radius <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>.<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a></p>
+<p>Ellipsoids are part of a wider component of CRSs: the <em>datum</em>. This contains information on what ellipsoid to use (with the <code>ellps</code> parameter in the proj4 CRS library) and the precise relationship between the Cartesian coordinates and location on the Earth’s surface. These additional details are stored in the <code>towgs84</code> argument of <a href="http://proj4.org/parameters.html#towgs84-datum-transformation-to-wgs84">proj4</a> notation (see <a href="http://proj4.org/parameters.html">proj4.org/parameters.html</a> for details). These allow local variations in Earth’s surface, e.g. due to large mountain ranges, to be accounted for in a local CRS. There are two types of datum — local and geocentric. In a <em>local datum</em> such as <code>NAD83</code> the ellipsoidal surface is shifted to align with the surface at a particular location. In a <em>geocentric datum</em> such as <code>WGS84</code> the center is the Earth’s center of gravity and the accuracy of projections is not optimized for a specific location. Available datum definitions can be seen by executing <code>st_proj_info(type = &quot;datum&quot;)</code>. <!-- plots? --> <!-- plus maybe table (few examples) --></p>
+</div>
+<div id="projected-coordinate-systems" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Projected coordinate systems</h3>
+<p>Projected CRSs are based on Cartesian coordinates on an implicitly flat surface. They have an origin, x and y axes, and a linear unit of measurement such as meters. All projected CRSs are based on a geographic CRS, described in the previous section, and rely on map projections to convert the three-dimensional surface of the Earth into Easting and Northing (x and y) values in a projected CRS.</p>
+<p>This transition cannot be done without adding some distortion. Therefore, some properties of the Earth’s surface are distorted in this process, such as area, direction, distance, and shape. A projected coordinate system can preserve only one or two of those properties. Projections are often named based on a property they preserve: equal-area preserves area, azimuthal preserve direction, equidistant preserve distance, and conformal preserve local shape.</p>
+<p>There are three main groups of projection types - conic, cylindrical, and planar. In a conic projection, the Earth’s surface is projected onto a cone along a single line of tangency or two lines of tangency. Distortions are minimized along the tangency lines and rise with the distance from those lines in this projection. Therefore, it is the best suited for maps of mid-latitude areas. A cylindrical projection maps the surface onto a cylinder. This projection could also be created by touching the Earth’s surface along a single line of tangency or two lines of tangency. Cylindrical projections are used most often when mapping the entire world. A planar projection projects data onto a flat surface touching the globe at a point or along a line of tangency. It is typically used in mapping polar regions. <!-- other projections? --> <!-- https://en.wikipedia.org/wiki/List_of_map_projections --> <!-- plus maybe table (few examples) --> <!-- add good reference to projections --> <code>st_proj_info(type = &quot;proj&quot;)</code> gives a list of the available projections supported by the PROJ.4 library.</p>
+<!-- maybe a new section - how to pick the best projection? -->
+<!-- https://source.opennews.org/articles/choosing-right-map-projection/ -->
+</div>
+<div id="crs-in-r" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> CRSs in R</h3>
+<p>Two main ways to describe CRS in R are an <code>epsg</code> code or a <code>proj4string</code> definition. Both of these approaches have advantages and disadvantages. An <code>epsg</code> code is usually shorter, and therefore easier to remember. The code also refers to only one, well-defined coordinate reference system. On the other hand, a <code>proj4string</code> definition allows you more flexibility when it comes to specifying different parameters such as the projection type, the datum and the ellipsoid.<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a> This way you can specify many different projections, and modify existing ones. This also makes the <code>proj4string</code> approach more complicated. <!-- ^[In the background, `sf` and `raster` use the [PROJ.4](http://proj4.org/) software, which enables transformations between different projections]. --> <code>epsg</code> points to exactly one particular CRS.</p>
+<p>Spatial R packages support a wide range of CRSs and they use the long-established <a href="http://proj4.org/">proj4</a> library. Other than searching for EPSG codes online, another quick way to find out about available CRSs is via the <code>rgdal::make_EPSG()</code> function, which outputs a data frame of available projections. Before going into more detail, it’s worth learning how to view and filter them inside R, as this could save time trawling the internet. The following code will show available CRSs interactively, allowing you to filter ones of interest (try filtering for the OSGB CRSs for example):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crs_data =<span class="st"> </span>rgdal::<span class="kw">make_EPSG</span>()
+<span class="kw">View</span>(crs_data)</code></pre></div>
+<p>In <strong>sf</strong> the CRS of an object can be retrieved using <code>st_crs()</code>. For this, we need to read-in a vector dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vector_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package=</span><span class="st">&quot;spDataLarge&quot;</span>)
+new_vector =<span class="st"> </span><span class="kw">st_read</span>(vector_filepath)</code></pre></div>
+<p>Our new object, <code>new_vector</code>, is a polygon representing the borders of Zion National Park (<code>?zion</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_crs</span>(new_vector) <span class="co"># get CRS</span>
+<span class="co">#&gt; Coordinate Reference System:</span>
+<span class="co">#&gt;   No EPSG code</span>
+<span class="co">#&gt;   proj4string: &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span></code></pre></div>
+<p>In cases when a coordinate reference system (CRS) is missing or the wrong CRS is set, the <code>st_set_crs()</code> function can be used:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_vector =<span class="st"> </span><span class="kw">st_set_crs</span>(new_vector, <span class="dv">26912</span>) <span class="co"># set CRS</span></code></pre></div>
+<p>The warning message informs us that the <code>st_set_crs()</code> function does not transform data from one CRS to another.</p>
+<div class="figure" style="text-align: center"><span id="fig:vector-crs"></span>
+<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="765" />
+<p class="caption">
+Figure 2.9: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.
+</p>
+</div>
+<p>The <code>projection()</code> function can be used to access CRS information from a <code>Raster*</code> object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">projection</span>(new_raster) <span class="co"># get CRS</span>
+<span class="co">#&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span></code></pre></div>
+<p>The same function, <code>projection()</code>, is used to set a CRS for raster objects. The main difference, compared to vector data, is that raster objects only accept <code>proj4</code> definitions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:raster-crs"></span>
+<img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type" width="475" />
+<p class="caption">
+Figure 2.10: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type
+</p>
+</div>
+<p>We will expand on CRSs and how to project from one CRS to another in much more detail in chapter <a href="transform.html#transform">5</a>. <!-- comparing projections? == --> <!-- - st_as_sf(x, coords = c("x","y")) --> <!-- - st_bbox --></p>
+</div>
+</div>
+<div id="units" class="section level2">
+<h2><span class="header-section-number">2.4</span> Units</h2>
+<!-- https://cran.r-project.org/web/packages/units/vignettes/measurement_units_in_R.html -->
+<p>An important feature of CRSs is that they contain information about spatial units. Clearly it is vital to know whether a house’s measurements are in feet or meters, and the same applies to maps. It is good cartographic practice to add a <em>scale bar</em> onto maps to demonstrate the relationship between distances on the page or screen and distances on the ground. Likewise, it is important to formally specify the units in which the geometry data or pixels are measured to provide context, and ensure that subsequent calculations are done in context.</p>
+<p>A novel feature of geometry data in <code>sf</code> objects is that they have <em>native support</em> for units. This means that distance, area and other geometric calculations in <strong>sf</strong> return values that come with a <code>units</code> attribute, defined by the <strong>units</strong> package <span class="citation">(Pebesma, Mailund, and Hiebert <a href="#ref-pebesma_measurement_2016">2016</a>)</span>. This is advantageous because it prevents confusion caused by the fact that different CRSs use different units (most use meters, some use feet). Furthermore, it also provides information on dimensionality, as illustrated by the following calculation which reports the area of Nigeria:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nigeria =<span class="st"> </span>world[world$name_long ==<span class="st"> &quot;Nigeria&quot;</span>, ]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_area</span>(nigeria)
+<span class="co">#&gt; 9.05e+11 m^2</span></code></pre></div>
+<p>The result is in units of square meters (m<sup>2</sup>), showing a) that the result represents two-dimensional space and b) and that Nigeria is a large country! This information, stored as an attribute (which interested readers can discover with <code>attributes(st_area(nigeria))</code>) is advantageous for many reasons, for example it could feed into subsequent calculations such as population density. Reporting units prevents confusion. To take the Nigeria example, if the units remained unspecified, one could incorrectly assume that the units were in km<sup>2</sup>. To translate the huge number into a more digestible size, it is tempting to divide the results by a million (the number of square meters in a square kilometer):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_area</span>(nigeria) /<span class="st"> </span><span class="fl">1e6</span>
+<span class="co">#&gt; 905062 m^2</span></code></pre></div>
+<p>However, the result is incorrectly given again as square meters. The solution is to set the correct units with the <strong>units</strong> package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">units::<span class="kw">set_units</span>(<span class="kw">st_area</span>(nigeria), km^<span class="dv">2</span>)
+<span class="co">#&gt; 905062 km^2</span></code></pre></div>
+<!-- Is that right? I mean, the units DESCRIPTION says "Support for measurement units in R vectors, matrices and arrays". Since raster datasets are just matrices, units might be easily used with them?-->
+<p>Units are of equal importance in the case of raster data. However, so far <strong>sf</strong> is the only spatial package that supports units, meaning that people working on raster data should approach changes in the units of analysis (for example, converting pixel widths from imperial to decimal units) with care. The <code>new_raster</code> object (see above) uses a UTM projection with meters as units. Consequently, its resolution is also given in meters but you have to know it, since the <code>res()</code> function simply returns a numeric vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">res</span>(new_raster)
+<span class="co">#&gt; [1] 0.000833 0.000833</span></code></pre></div>
+<p>If we used the WGS84 projection, the units would change.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repr =<span class="st"> </span><span class="kw">projectRaster</span>(new_raster, <span class="dt">crs =</span> <span class="st">&quot;+init=epsg:4326&quot;</span>)
+<span class="kw">res</span>(repr)
+<span class="co">#&gt; [1] 7.47e-09 7.52e-09</span></code></pre></div>
+<p>Again, the <code>res()</code> command gives back a numeric vector without any unit, forcing us to know that the unit of the WGS84 projection is decimal degrees.</p>
+<!-- Something about when units are not set: -->
+<!-- ```{r} -->
+<!-- st_distance(sf_point1, sf_point2) -->
+<!-- ``` -->
+<!-- ## Precision -->
+</div>
+<div id="ex2" class="section level2">
+<h2><span class="header-section-number">2.5</span> Exercises</h2>
+<!-- vector exercises -->
+<ol style="list-style-type: decimal">
+<li>What does the summary of the <code>geometry</code> column tell us about the <code>world</code> dataset, in terms of:
+<ul>
+<li>The geometry type?</li>
+<li>How many countries there are?</li>
+<li>The coordinate reference system (CRS)?</li>
+</ul></li>
+<li>Using <strong>sf</strong>’s <code>plot()</code> command, create a map of Nigeria in context, building on the code that creates and plots Asia above (see Figure <a href="spatial-class.html#fig:asia">2.5</a> for an example of what this could look like).
+<ul>
+<li>Hint: this used the <code>lwd</code>, <code>main</code> and <code>col</code> arguments of <code>plot()</code>.</li>
+<li>Bonus: make the country boundaries a dotted grey line.</li>
+<li>Hint: <code>border</code> is an additional argument of <code>plot()</code> for <strong>sf</strong> objects.</li>
+</ul></li>
+<li>What does the <code>cex</code> argument do in the <code>plot()</code> function that generates Figure <a href="spatial-class.html#fig:contpop">2.6</a>?
+<ul>
+<li>Why was <code>cex</code> set to the <code>sqrt(world$pop) / 10000</code> instead of just the population directly?</li>
+<li>Bonus: what equivalent arguments to <code>cex</code> exist in the dedicated visualization package <strong>tmap</strong>?</li>
+</ul></li>
+<li>Re-run the code that ‘generated’ Figure <a href="spatial-class.html#fig:contpop">2.6</a> at the end of <a href="spatial-class.html#base-args">2.1.4</a> and find 3 similarities and 3 differences between the plot produced on your computer and that in the book.
+<ul>
+<li>What is similar?</li>
+<li>What has changed?</li>
+<li>Bonus: play around with and research base plotting arguments to make your version of Figure <a href="spatial-class.html#fig:contpop">2.6</a> more attractive. Which arguments were most useful?</li>
+<li>Advanced: try to reproduce the map presented in Figure <a href="spatial-class.html#base-args">2.1.4</a>. Copy-and-pasting is prohibited! <!-- raster exercises --></li>
+</ul></li>
+<li>Read the <code>raster/nlcd2011.tif</code> file from the <strong>spDataLarge</strong> package. What kind of information can you get about the properties of this file? <!-- (crs, ncols, nrow, ncells, bbox, navalues) --></li>
+<li>Create an empty <code>RasterLayer</code> object called <code>my_raster</code> with 10 columns and 10 rows and resolution of 10 units. Assign random values between 0 and 10 to the new raster and plot it. <!-- crs exercises --> <!-- 1. pros and cons of the projection types --> <!-- 1. pros and cons of epsg/proj4 --> <!-- units exercises --> <!-- 1. ?? --></li>
+</ol>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-sf">
+<p>Pebesma, Edzer. 2018. <em>Sf: Simple Features for R</em>. <a href="https://CRAN.R-project.org/package=sf" class="uri">https://CRAN.R-project.org/package=sf</a>.</p>
+</div>
+<div id="ref-R-sp">
+<p>Pebesma, Edzer, and Roger Bivand. 2018. <em>Sp: Classes and Methods for Spatial Data</em>. <a href="https://CRAN.R-project.org/package=sp" class="uri">https://CRAN.R-project.org/package=sp</a>.</p>
+</div>
+<div id="ref-R-rgdal">
+<p>Bivand, Roger, Tim Keitt, and Barry Rowlingson. 2018. <em>Rgdal: Bindings for the ’Geospatial’ Data Abstraction Library</em>. <a href="https://CRAN.R-project.org/package=rgdal" class="uri">https://CRAN.R-project.org/package=rgdal</a>.</p>
+</div>
+<div id="ref-R-rgeos">
+<p>Bivand, Roger, and Colin Rundel. 2017. <em>Rgeos: Interface to Geometry Engine - Open Source (’GEOS’)</em>. <a href="https://CRAN.R-project.org/package=rgeos" class="uri">https://CRAN.R-project.org/package=rgeos</a>.</p>
+</div>
+<div id="ref-maling_coordinate_1992">
+<p>Maling, D. H. 1992. <em>Coordinate Systems and Map Projections</em>. 2nd ed. Oxford ; New York: Pergamon Press.</p>
+</div>
+<div id="ref-pebesma_measurement_2016">
+<p>Pebesma, Edzer, Thomas Mailund, and James Hiebert. 2016. “Measurement Units in R.” <em>The R Journal</em> 8 (2): 486–94. <a href="https://journal.r-project.org/archive/2016-2/pebesma-mailund-hiebert.pdf" class="uri">https://journal.r-project.org/archive/2016-2/pebesma-mailund-hiebert.pdf</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="12">
+<li id="fn12"><p>If you need to install R, we recommend reading <a href="https://csgillespie.github.io/efficientR/set-up.html#r-version">section 2.3</a> and <a href="https://csgillespie.github.io/efficientR/set-up.html#rstudio">section 2.5</a> of the freely available book <em>Efficient R Programming</em> <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>. Packages can be kept up-to-date with <code>update.packages()</code>.</p>
+<p>If you are not a regular R user, we recommend that you familiarize yourself with the language before proceeding with this chapter. You can do so using resources such as <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>, <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span> as well as online interactive guides such as <a href="https://www.datacamp.com/courses/free-introduction-to-r">DataCamp</a>.</p>
+<p>We recommend organising your work as you learn, for example with the help of an RStudio ‘<a href="https://csgillespie.github.io/efficientR/set-up.html#project-management">project</a>’ called <code>geocomp-learning</code>. Creating new script for each chapter or section of interest will help consolidate and extend the skills learned. The code you type to help learn the content of this chapter could be placed in a file called <code>chapter-02.R</code>, for example. Everyone learns in a different way; structure your work so it makes sense to you; and avoid copy-pasting to get used to typing code.<a href="spatial-class.html#fnref12">↩</a></p></li>
+<li id="fn13"><p>The origin we are referring to, depicted in blue in Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, is in fact the ‘false’ origin. The ‘true’ origin, the location at which distortions are at a minimum, is located at 2° W and 49° N. This was selected by the <a href="https://www.ordnancesurvey.co.uk/support/the-national-grid.html">Ordnance Survey</a> to be roughly in the center of the British landmass longitudinally.<a href="spatial-class.html#fnref13">↩</a></p></li>
+<li id="fn14"><p>The full OGC standard includes rather exotic geometry types including ‘surface’ and ‘curve’ geometry types, which currently have limited application in real world applications. All 68 types can be represented with the <strong>sf</strong> package, although (at the time of writing) all methods, such as plotting, are only supported for the 7 types described in this chapter.<a href="spatial-class.html#fnref14">↩</a></p></li>
+<li id="fn15"><p>The development version, which may contain new features, can be installed with <code>devtools::install_github(&quot;r-spatial/sf&quot;).</code><a href="spatial-class.html#fnref15">↩</a></p></li>
+<li id="fn16"><p>In fact, when you <code>plot()</code> an <strong>sf</strong> object, R is calling <code>sf:::plot.sf()</code> behind the scenes. <code>plot()</code> is a generic method that behaves differently depending on the class of object being plotted.<a href="spatial-class.html#fnref16">↩</a></p></li>
+<li id="fn17"><p>Depending on the file format the header is part of the actual image data file, e.g., GeoTiff, or stored in an extra header or world file, e.g., ASCII grid formats<a href="spatial-class.html#fnref17">↩</a></p></li>
+<li id="fn18"><p>The degree of compression is often referred to as <a href="https://en.wikipedia.org/wiki/Flattening"><em>flattening</em></a>, defined in terms of the equitorial radius (<span class="math inline">\(a\)</span>) and polar radius (<span class="math inline">\(b\)</span>) as follows: <span class="math inline">\(f = (a - b) / a\)</span>. The terms <em>ellipticity</em> and <em>compression</em> can also be used <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>. Because <span class="math inline">\(f\)</span> is a rather small value, digital ellipsoid models use the ‘inverse flattening’ (<span class="math inline">\(rf = 1/f\)</span>) to define the Earth’s compression. Values of <span class="math inline">\(a\)</span> and <span class="math inline">\(rf\)</span> used in a variety of ellipsoidal models can be seen be executing <code>st_proj_info(type = &quot;ellps&quot;)</code>.<a href="spatial-class.html#fnref18">↩</a></p></li>
+<li id="fn19"><p>Complete list of the <code>proj4string</code> parameters can be found at <a href="http://proj4.org/parameters.html#parameter-list" class="uri">http://proj4.org/parameters.html#parameter-list</a>.<a href="spatial-class.html#fnref19">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="attr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Robinlovelace/geocompr/edit/master/02-spatial-data.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
