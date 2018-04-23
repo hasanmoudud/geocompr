@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-04-22">
+<meta name="date" content="2018-04-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -378,8 +378,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Both target and cropping objects must have the same projection. The following code chunk therefore not only loads the datasets, from the <strong>spDataLarge</strong> package installed in Chapter <a href="spatial-class.html#spatial-class">2</a>. It also reprojects <code>zion</code> (see section <a href="transform.html#reproj-geo-data">5.2</a> for more on reprojection):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">srtm =<span class="st"> </span><span class="kw">raster</span>(<span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>))
 zion =<span class="st"> </span><span class="kw">read_sf</span>(<span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>))
-(<span class="dt">crs_srtm =</span> raster::<span class="kw">crs</span>(srtm)) 
-zion =<span class="st"> </span><span class="kw">st_transform</span>(zion, crs_srtm@projargs)</code></pre></div>
+zion =<span class="st"> </span><span class="kw">st_transform</span>(zion, <span class="kw">projection</span>(srtm))</code></pre></div>
 <p>We will use <code>crop()</code> from the <strong>raster</strong> package to crop the <code>srtm</code> raster. <code>crop()</code> reduces the rectangular extent of the object passed to its first argument based on the extent of the object passed to its second argument, as demonstrated in the command below (which generates Figure <a href="raster-vector.html#fig:cropmask">11.1</a>:B — note the smaller extent of the raster background):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">srtm_cropped =<span class="st"> </span><span class="kw">crop</span>(srtm, <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>))</code></pre></div>
 <p>Related to <code>crop()</code> is the <strong>raster</strong> function <code>mask()</code>, which sets values outside of the bounds a the object passed to its second argument to <code>NA</code>. The following command therefore masks every cell outside of the the Zion National Park boundaries (Figure <a href="raster-vector.html#fig:cropmask">11.1</a>:C):</p>
@@ -411,10 +410,10 @@ Figure 11.2: Locations of points used for raster extraction.
 <span class="st">  </span><span class="kw">st_sf</span>()</code></pre></div>
 <p>The utility of extracting heights from a linear selector is illustrated by imagining that you are planning a hike. The method demonstrated below provides an ‘elevation profile’ of the route (the line does not need to be straight), useful for estimating how long it will take due to long climbs:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">transect =<span class="st"> </span>raster::<span class="kw">extract</span>(srtm, zion_transect, <span class="dt">along =</span> <span class="ot">TRUE</span>, <span class="dt">cellnumbers =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Note the use of <code>along = TRUE</code> and <code>cellnumbers = TRUE</code> arguments to return cell IDs <em>along</em> the path. and convert a new object to <code>data.frame</code>: The result is a list containing a matrix of cell IDs in the first column and elevation values in the second. The subsequent code chunk first converts this tricky matrix-in-a-list object into a simple data frame, returns the coordinates associated with each extracted cell and finds the associated distances along the transect (see <code>?geosphere::distm()</code> for details):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">transect_df =<span class="st"> </span><span class="kw">as_data_frame</span>(transect[[<span class="dv">1</span>]])
-t_coords =<span class="st"> </span><span class="kw">xyFromCell</span>(srtm, transect_df$cell)
-transect_df$dist =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">cumsum</span>(geosphere::<span class="kw">distGeo</span>(t_coords)))    </code></pre></div>
+<p>Note the use of <code>along = TRUE</code> and <code>cellnumbers = TRUE</code> arguments to return cell IDs <em>along</em> the path. The result is a list containing a matrix of cell IDs in the first column and elevation values in the second. The subsequent code chunk first converts this tricky matrix-in-a-list object into a simple data frame, returns the coordinates associated with each extracted cell and finds the associated distances along the transect (see <code>?geosphere::distm()</code> for details):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">transect_df =<span class="st"> </span><span class="kw">map_dfr</span>(transect, as_data_frame, <span class="dt">.id =</span> <span class="st">&quot;ID&quot;</span>)
+transect_coords =<span class="st"> </span><span class="kw">xyFromCell</span>(srtm, transect_df$cell)
+transect_df$dist =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">cumsum</span>(geosphere::<span class="kw">distGeo</span>(transect_coords)))    </code></pre></div>
 <p>The resulting <code>transect_df</code> can be used to create elevation profiles, as illustrated in Figure <a href="raster-vector.html#fig:lineextr">11.3</a>:B.</p>
 <div class="figure" style="text-align: center"><span id="fig:lineextr"></span>
 <img src="figures/lineextr-1.png" alt="Location of a line used for raster extraction (left) and the elevation along this line (right)." width="576" />
