@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve566e0e0a34236f9b
+preserve6776496662149bfd
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3121,7 +3121,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve858d062cfc35da54
+preserve1f8c6de12110d4bf
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6030,7 +6030,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve623eb32cd4605bfb
+preservefaa3495feda87ebe
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6646,7 +6646,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve9492e0996aa2b1f9
+preservebd8c714f1871048f
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7361,7 +7361,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve246404a47fbba290
+preserve7b1a4780c5677052
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7373,7 +7373,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve25df3c23ee9985f2
+preserve205e1502ffbe6cd9
 
 
 
@@ -7395,7 +7395,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve66baf93dfb400486
+preserve962a488814a22460
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7829,6 +7829,7 @@ Other notes:
 To learn more about **RQGIS** please refer to the (hopefully) forthcoming paper (cite). 
 
 ## (R)SAGA
+
 Similar to QGIS, the System for Automated Geoscientific Analyses (SAGA; Table \@ref(tab:gis-comp)) provides the possibility to run SAGA modules from Python (SAGA Python API).
 In addition, there is also a command line interface (saga_cmd.exe) to execute SAGA modules (see also [https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/](https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/)).
 **RSAGA** uses the latter to run SAGA from within R.
@@ -7908,6 +7909,12 @@ rsaga.wetness.index(in.dem = file.path(tempdir(), "dem"),
 ```
 
 Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-twi)). To load and plot the SAGA output file, we use the **raster** package. 
+
+<div class="figure" style="text-align: center">
+<img src="https://user-images.githubusercontent.com/1825120/39205055-8e68a3ce-47f1-11e8-8874-0142d7f591e2.png" alt="SAGA wetness index of Mount Mongón, Peru."  />
+<p class="caption">(\#fig:saga-twi)SAGA wetness index of Mount Mongón, Peru.</p>
+</div>
+
 
 
 ```r
@@ -8095,11 +8102,17 @@ execGRASS(cmd = "v.net.salesman", input = "streets_points_con",
 
 To visualize our result, we import the output layer into R, and visualize it with the help of the **mapview** package (Figure \@ref(fig:grass-mapview)).
 
+<div class="figure" style="text-align: center">
+<img src="https://user-images.githubusercontent.com/1825120/39206067-544455c8-47f4-11e8-8725-e28299e01f52.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London."  />
+<p class="caption">(\#fig:grass-mapview)Shortest route between 25 cycle hire station on the OSM street network of London.</p>
+</div>
+
+
 
 ```r
 library(mapview)
 route = readVECT("shortest_route")
-mapview(route) +
+mapview(route, map.types = "OpenStreetMap.BlackAndWhite", lwd = 9) +
   mapview(points)
 ```
 

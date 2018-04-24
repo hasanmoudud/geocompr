@@ -471,7 +471,13 @@ saga =<span class="st"> </span><span class="kw">linkSAGA</span>()
 <p>To facilitate the access to the SAGA interface, RSAGA frequently provides user-friendly wrapper-functions with meaningful default values (see RSAGA documentation for examples, e.g., <code>?rsaga.wetness.index</code>). So the function call for calculating the ‘SAGA Wetness Index’ becomes as simple as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rsaga.wetness.index</span>(<span class="dt">in.dem =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;dem&quot;</span>), 
                     <span class="dt">out.wetness.index =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi&quot;</span>))</code></pre></div>
-<p>Of course, we would like to inspect our result visually (Figure <a href="#fig:saga-twi"><strong>??</strong></a>). To load and plot the SAGA output file, we use the <strong>raster</strong> package.</p>
+<p>Of course, we would like to inspect our result visually (Figure <a href="gis.html#fig:saga-twi">10.1</a>). To load and plot the SAGA output file, we use the <strong>raster</strong> package.</p>
+<div class="figure" style="text-align: center"><span id="fig:saga-twi"></span>
+<img src="https://user-images.githubusercontent.com/1825120/39205055-8e68a3ce-47f1-11e8-8874-0142d7f591e2.png" alt="SAGA wetness index of Mount Mongón, Peru."  />
+<p class="caption">
+Figure 10.1: SAGA wetness index of Mount Mongón, Peru.
+</p>
+</div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 twi =<span class="st"> </span>raster::<span class="kw">raster</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi.sdat&quot;</span>))
 <span class="kw">plot</span>(twi, <span class="dt">col =</span> RColorBrewer::<span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">9</span>, <span class="dt">name =</span> <span class="st">&quot;Blues&quot;</span>))
@@ -553,10 +559,16 @@ b_box =<span class="st"> </span>sf::<span class="kw">st_bbox</span>(streets)
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.net.salesman&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets_points_con&quot;</span>,
           <span class="dt">output =</span> <span class="st">&quot;shortest_route&quot;</span>, <span class="dt">center_cats =</span> <span class="kw">paste0</span>(<span class="st">&quot;1-&quot;</span>, <span class="kw">nrow</span>(points)),
           <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>))</code></pre></div>
-<p>To visualize our result, we import the output layer into R, and visualize it with the help of the <strong>mapview</strong> package (Figure <a href="#fig:grass-mapview"><strong>??</strong></a>).</p>
+<p>To visualize our result, we import the output layer into R, and visualize it with the help of the <strong>mapview</strong> package (Figure <a href="gis.html#fig:grass-mapview">10.2</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:grass-mapview"></span>
+<img src="https://user-images.githubusercontent.com/1825120/39206067-544455c8-47f4-11e8-8725-e28299e01f52.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London."  />
+<p class="caption">
+Figure 10.2: Shortest route between 25 cycle hire station on the OSM street network of London.
+</p>
+</div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mapview)
 route =<span class="st"> </span><span class="kw">readVECT</span>(<span class="st">&quot;shortest_route&quot;</span>)
-<span class="kw">mapview</span>(route) +
+<span class="kw">mapview</span>(route, <span class="dt">map.types =</span> <span class="st">&quot;OpenStreetMap.BlackAndWhite&quot;</span>, <span class="dt">lwd =</span> <span class="dv">9</span>) +
 <span class="st">  </span><span class="kw">mapview</span>(points)</code></pre></div>
 <p>Further notes:</p>
 <ul>
