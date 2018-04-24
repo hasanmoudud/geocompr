@@ -29,7 +29,7 @@ This approach encourages contributions, ensures reproducibility and provides acc
 
 The book's development can be divided into four main phases:
 
-1. Basic methods
+1. Foundations
 2. Applied geocomputation
 3. Advanced methods
 4. Geocomputation in the wild
@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6776496662149bfd
+preserve90c3c28c19079532
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -497,7 +497,7 @@ Naturally, this is the reason why we will describe **sf** in detail in Chapter \
 <!--chapter:end:01-introduction.Rmd-->
 
 
-# (PART) Basic methods {-}
+# (PART) Foundations {-}
 
 # Geographic data in R {#spatial-class}
 
@@ -3121,7 +3121,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve1f8c6de12110d4bf
+preserve18f79be034c9980a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6030,7 +6030,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservefaa3495feda87ebe
+preserve169e20a5062db606
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6646,7 +6646,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservebd8c714f1871048f
+preservea864fbcb33dc5dac
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7361,7 +7361,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve7b1a4780c5677052
+preserve48bea51d46a89065
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7373,7 +7373,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve205e1502ffbe6cd9
+preserve8c98d331c3cecca0
 
 
 
@@ -7395,7 +7395,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve962a488814a22460
+preserve5fa29b138695c1c3
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
