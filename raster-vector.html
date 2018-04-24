@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-04-23">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -277,7 +277,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1" data-path="adv-map.html"><a href="adv-map.html#introduction-6"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
 <li class="chapter" data-level="9.2" data-path="adv-map.html"><a href="adv-map.html#static-maps"><i class="fa fa-check"></i><b>9.2</b> Static maps</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="adv-map.html"><a href="adv-map.html#tmap-basics"><i class="fa fa-check"></i><b>9.2.1</b> tmap basics</a></li>
-<li class="chapter" data-level="9.2.2" data-path="adv-map.html"><a href="adv-map.html#map-objects-shapes-and-layers"><i class="fa fa-check"></i><b>9.2.2</b> Map objects, shapes and layers</a></li>
+<li class="chapter" data-level="9.2.2" data-path="adv-map.html"><a href="adv-map.html#map-obj"><i class="fa fa-check"></i><b>9.2.2</b> Map objects, shapes and layers</a></li>
 <li class="chapter" data-level="9.2.3" data-path="adv-map.html"><a href="adv-map.html#aesthetics"><i class="fa fa-check"></i><b>9.2.3</b> Aesthetics</a></li>
 <li class="chapter" data-level="9.2.4" data-path="adv-map.html"><a href="adv-map.html#color-settings"><i class="fa fa-check"></i><b>9.2.4</b> Color settings</a></li>
 <li class="chapter" data-level="9.2.5" data-path="adv-map.html"><a href="adv-map.html#layouts"><i class="fa fa-check"></i><b>9.2.5</b> Layouts</a></li>
@@ -507,7 +507,7 @@ raster_template2 =<span class="st"> </span><span class="kw">raster</span>(<span 
 Figure 11.6: Examples of line and polygon rasterizations.
 </p>
 </div>
-<p>As with <code>raster::extract()</code>, <code>raster::rasterize()</code> works well for most cases but is not performance optimized. Fortunately, there are several alternatives, including the <code>fasterize::fasterize()</code> and <code>gdalUtils::gdal_rasterize()</code>. The former is much (100 times+) faster than <code>rasterize()</code> but is currently limited to polygon rasterization. The latter is part of GDAL and therefore requires a vector file (instead of an <code>sf</code> object) and rasterization parameters (instead of a <code>Raster*</code> template object) as inputs.<a href="#fn60" class="footnoteRef" id="fnref60"><sup>60</sup></a></p>
+<p>As with <code>raster::extract()</code>, <code>raster::rasterize()</code> works well for most cases but is not performance optimized. Fortunately, there are several alternatives, including the <code>fasterize::fasterize()</code> and <code>gdalUtils::gdal_rasterize()</code>. The former is much (100 times+) faster than <code>rasterize()</code> but is currently limited to polygon rasterization. The latter is part of GDAL and therefore requires a vector file (instead of an <code>sf</code> object) and rasterization parameters (instead of a <code>Raster*</code> template object) as inputs.<a href="#fn61" class="footnoteRef" id="fnref61"><sup>61</sup></a></p>
 </div>
 <div id="spatial-vectorization" class="section level2">
 <h2><span class="header-section-number">11.5</span> Spatial vectorization</h2>
@@ -589,8 +589,8 @@ ch =<span class="st"> </span><span class="kw">st_combine</span>(random_points) %
 </div>
 <div class="footnotes">
 <hr />
-<ol start="60">
-<li id="fn60"><p>See more at <a href="http://www.gdal.org/gdal_rasterize.html" class="uri">http://www.gdal.org/gdal_rasterize.html</a>.<a href="raster-vector.html#fnref60">↩</a></p></li>
+<ol start="61">
+<li id="fn61"><p>See more at <a href="http://www.gdal.org/gdal_rasterize.html" class="uri">http://www.gdal.org/gdal_rasterize.html</a>.<a href="raster-vector.html#fnref61">↩</a></p></li>
 </ol>
 </div>
             </section>

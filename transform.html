@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-04-23">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -277,7 +277,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1" data-path="adv-map.html"><a href="adv-map.html#introduction-6"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
 <li class="chapter" data-level="9.2" data-path="adv-map.html"><a href="adv-map.html#static-maps"><i class="fa fa-check"></i><b>9.2</b> Static maps</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="adv-map.html"><a href="adv-map.html#tmap-basics"><i class="fa fa-check"></i><b>9.2.1</b> tmap basics</a></li>
-<li class="chapter" data-level="9.2.2" data-path="adv-map.html"><a href="adv-map.html#map-objects-shapes-and-layers"><i class="fa fa-check"></i><b>9.2.2</b> Map objects, shapes and layers</a></li>
+<li class="chapter" data-level="9.2.2" data-path="adv-map.html"><a href="adv-map.html#map-obj"><i class="fa fa-check"></i><b>9.2.2</b> Map objects, shapes and layers</a></li>
 <li class="chapter" data-level="9.2.3" data-path="adv-map.html"><a href="adv-map.html#aesthetics"><i class="fa fa-check"></i><b>9.2.3</b> Aesthetics</a></li>
 <li class="chapter" data-level="9.2.4" data-path="adv-map.html"><a href="adv-map.html#color-settings"><i class="fa fa-check"></i><b>9.2.4</b> Color settings</a></li>
 <li class="chapter" data-level="9.2.5" data-path="adv-map.html"><a href="adv-map.html#layouts"><i class="fa fa-check"></i><b>9.2.5</b> Layouts</a></li>
@@ -680,9 +680,9 @@ Figure 5.6: Comparison of the original and simplified <code>seine</code> geometr
 </div>
 <p>The resulting <code>seine_simp</code> object is a copy of the original <code>seine</code> but with fewer vertices. This is apparent, with the result being visually simpler (Figure <a href="transform.html#fig:seine-simp">5.6</a>, right) and consuming less memory than the original object, as verified below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">object.size</span>(seine)
-<span class="co">#&gt; 16768 bytes</span>
+<span class="co">#&gt; 17304 bytes</span>
 <span class="kw">object.size</span>(seine_simp)
-<span class="co">#&gt; 7808 bytes</span></code></pre></div>
+<span class="co">#&gt; 8320 bytes</span></code></pre></div>
 <p>Simplification is also applicable for polygons. This is illustrated using <code>us_states</code>, representing the contiguous United States. As we showed in section <a href="transform.html#reproj-geo-data">5.2</a>, GEOS assumes that the data is in a projected CRS and this could lead to unexpected results when using a geographic CRS. Therefore, the first step is to project the data into some adequate projected CRS, such as US National Atlas Equal Area (epsg = 2163) (on the left in Figure <a href="transform.html#fig:us-simp">5.7</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">us_states2163 =<span class="st"> </span><span class="kw">st_transform</span>(us_states, <span class="dv">2163</span>)</code></pre></div>
 <p><code>st_simplify()</code> works equally well with projected polygons:</p>

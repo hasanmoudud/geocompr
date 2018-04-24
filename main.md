@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-04-23'
+date: '2018-04-24'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -39,7 +39,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-04-23 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-04-24 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec66ccd860b971bbd
+preserve51c8a9ef07f7bff3
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3121,7 +3121,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9be2f024b8df0202
+preserveaa8ce0769b194431
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4214,9 +4214,9 @@ This is apparent, with the result being visually simpler (Figure \@ref(fig:seine
 
 ```r
 object.size(seine)
-#> 16768 bytes
+#> 17304 bytes
 object.size(seine_simp)
-#> 7808 bytes
+#> 8320 bytes
 ```
 
 Simplification is also applicable for polygons.
@@ -6030,7 +6030,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserveb27353e81b33ece2
+preserve726ba392f8dc6074
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6646,7 +6646,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservee5fd13ca70c9fe3b
+preserve6ccd16832fe78659
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -6837,7 +6837,7 @@ It is concise and provides a good default visualization in many cases:
 Further, layers can be added concisely using multiple `qtm()` calls, such as `qtm(nz) + qtm(nz_height)`.
 The disadvantage is that it makes aesthetics of individual layers harder to control, explaining why we avoid teaching it in this chapter.</div>\EndKnitrBlock{rmdnote}
 
-### Map objects, shapes and layers
+### Map objects, shapes and layers {#map-obj}
 
 A useful feature of **tmap** is its ability to store *objects* representing maps.
 The code chunk below demonstrates this by saving the last plot in Figure \@ref(fig:tmshape) as an object of class `tmap` (note the use of `tm_polygons()` which condenses `tm_fill()  + tm_borders()` into a single function):
@@ -7341,6 +7341,30 @@ Code to reproduce this map can be found in the script `09-usboundaries.R`.
 
 ## Interactive maps
 
+If static and animated maps breathe life into geographic datasets, interactive maps allow them to take-on a life of their own.
+Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.^[
+A good example of such a dynamically linked visualisation is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on [Twitter](https://twitter.com/kyle_e_walker/status/985948444966768641) and (for the source code) as a GitHub [Gist](https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a).
+]
+
+The most important type of interactivity, however, is the display of geographic data on an interactive or 'slippy' web maps.
+The release of the **leaflet** package in 2015 revolutionized interactive web map creation from within R and a number of packages have built on these foundations adding new features (e.g. **leaflet.extras**) and making the creation of web maps as simple as creating static maps (e.g. **mapview** and **tmap**).
+This section will illustrate each of these web-mapping packages in reverse order, starting with **tmap** (the syntax of which we have already learned) and then progressing to more verbose **leaflet** code (which provides low level control over interactive maps) via the dedicated high-level web mapping package **mapview**.
+
+A unique feature of **tmap** mentioned in section \@ref(static-maps) is its ability to create static and interactive maps using the same code.
+Maps can be viewed interactively at any point by switching to view mode, using the command `tmap_mode("view")`.
+This is demonstrated in the code below, which creates an interactive map of New Zealand based on the `tmap` object `map_nza`, created in section \@ref(map-obj):
+
+
+```r
+tmap_mode("view")
+#> tmap mode set to interactive viewing
+map_nz
+```
+
+preserve9af928bad3b448d0
+
+Now that the interactive mode has been 'switched on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
+
 The easiest way to create an interactive map to view spatial data in R is with the **mapview** package, as illustrated in the following 'one liner':
 
 
@@ -7349,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveef8383159c921cc7
+preservebe56a28f1d83f69f
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
