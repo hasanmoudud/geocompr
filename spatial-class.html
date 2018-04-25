@@ -763,7 +763,8 @@ multilinestring2 =<span class="st"> </span><span class="kw">st_multilinestring</
 <span class="co">#&gt; POINT (5 2)</span>
 <span class="co">#&gt; POINT (1 3)</span></code></pre></div>
 <p>As you can see above, the <code>proj4string</code> definition was automatically added. Now we can try to set the CRS using <code>proj4string</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="st">&quot;+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crs_utm =<span class="st"> &quot;+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span>
+<span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> crs_utm)
 <span class="co">#&gt; Geometry set for 2 features </span>
 <span class="co">#&gt; geometry type:  POINT</span>
 <span class="co">#&gt; dimension:      XY</span>

@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4b38d084f9927056
+preservebffbb0e94b3444c9
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1198,7 +1198,8 @@ Now we can try to set the CRS using `proj4string`:
 
 
 ```r
-st_sfc(point1, point2, crs = "+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
+crs_utm = "+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+st_sfc(point1, point2, crs = crs_utm)
 #> Geometry set for 2 features 
 #> geometry type:  POINT
 #> dimension:      XY
@@ -3121,7 +3122,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9cb326fffa470a22
+preserve6f7a9fb804d607d7
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6008,7 +6009,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserveb1c3fc72ef85687a
+preserve555dad0d876c94d8
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6624,7 +6625,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservefe0e11072b8f17bf
+preserve65c8284ccc0e78a7
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7339,7 +7340,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve8d25b41a1fa0244a
+preserve1eb88ee6db16aaee
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7351,7 +7352,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve534dda7634f5bcc0
+preserve5d7da64f29da8cdc
 
 
 
@@ -7373,7 +7374,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve4520f5cd702c70c2
+preserve56feae6bcf57a459
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
