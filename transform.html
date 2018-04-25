@@ -848,12 +848,6 @@ Figure 5.14: Spatial aggregation on contiguous polygons, illustrated by aggregat
 <!-- a/ points -> lines -> polygons  -->
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">linestring =<span class="st"> </span><span class="kw">st_cast</span>(multipoint, <span class="st">&quot;LINESTRING&quot;</span>)
 polyg =<span class="st"> </span><span class="kw">st_cast</span>(multipoint, <span class="st">&quot;POLYGON&quot;</span>)</code></pre></div>
-<pre><code>#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;
-#&gt; Also defined by &#39;mapview&#39;
-#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;
-#&gt; Also defined by &#39;mapview&#39;
-#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;
-#&gt; Also defined by &#39;mapview&#39;</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:single-cast"></span>
 <img src="figures/single-cast-1.png" alt="Examples of linestring and polygon 'casted' from a multipoint geometry." width="576" />
 <p class="caption">
@@ -864,18 +858,6 @@ Figure 5.15: Examples of linestring and polygon ‘casted’ from a multipoint g
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multipoint_2 =<span class="st"> </span><span class="kw">st_cast</span>(linestring, <span class="st">&quot;MULTIPOINT&quot;</span>)
 multipoint_3 =<span class="st"> </span><span class="kw">st_cast</span>(polyg, <span class="st">&quot;MULTIPOINT&quot;</span>)
 <span class="kw">all.equal</span>(multipoint, multipoint_2, multipoint_3)
-<span class="co">#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;</span>
-<span class="co">#&gt; Also defined by &#39;mapview&#39;</span>
-<span class="co">#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;</span>
-<span class="co">#&gt; Also defined by &#39;mapview&#39;</span>
-<span class="co">#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;</span>
-<span class="co">#&gt; Also defined by &#39;mapview&#39;</span>
-<span class="co">#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;</span>
-<span class="co">#&gt; Also defined by &#39;mapview&#39;</span>
-<span class="co">#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;</span>
-<span class="co">#&gt; Also defined by &#39;mapview&#39;</span>
-<span class="co">#&gt; Found more than one class &quot;XY&quot; in cache; using the first, from namespace &#39;sf&#39;</span>
-<span class="co">#&gt; Also defined by &#39;mapview&#39;</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 
 <div class="rmdnote">
