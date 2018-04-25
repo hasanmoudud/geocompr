@@ -641,9 +641,9 @@ Maybe this section is also a bit too long. How about shortening it, and maybe us
 In this section we focus on a creation of inset maps, so to learn about map styling go to section \@ref(aesthetics).
 --></p>
 <p>In the example below, we create an inset map of the central part of the New Zealand’s Southern Alps. The first step is to define the area of interest, which can be done by creating a new spatial object, <code>nz_region</code>. <!--# mapview::mapview(nz_height, native.crs = TRUE) or mapedit??--></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nz_region =<span class="st"> </span><span class="kw">st_bbox</span>(<span class="kw">c</span>(<span class="dt">xmin =</span> <span class="dv">1340000</span>, <span class="dt">xmax =</span> <span class="dv">1450000</span>, <span class="dt">ymin =</span> <span class="dv">5130000</span>, <span class="dt">ymax =</span> <span class="dv">5210000</span>),
-                    <span class="dt">crs =</span> <span class="kw">st_crs</span>(nz_height)) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">st_as_sfc</span>() </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nz_region =<span class="st"> </span><span class="kw">st_bbox</span>(<span class="kw">c</span>(<span class="dt">xmin =</span> <span class="dv">1340000</span>, <span class="dt">xmax =</span> <span class="dv">1450000</span>, <span class="dt">ymin =</span> <span class="dv">5130000</span>, <span class="dt">ymax =</span> <span class="dv">5210000</span>)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">st_as_sfc</span>() %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">st_set_crs</span>(<span class="kw">st_crs</span>(nz_height))</code></pre></div>
 <p>In the second step, we create a base map showing a lager area. It gives a context and helps to locate the area of interest. Importantly, this map needs to clearly indicate the location of the inset map, for example by stating its borders.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nz_map =<span class="st"> </span><span class="kw">tm_shape</span>(nz) +
 <span class="st">  </span><span class="kw">tm_polygons</span>() +
@@ -904,12 +904,11 @@ Figure 9.21: Map of New Zealand created with ggplot2.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">zion =<span class="st"> </span><span class="kw">st_read</span>((<span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)))</code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>Create a map of the Human Development Index (<code>HDI</code>) of the <code>africa</code> dataset. The <code>HDI</code> values should be represented by one of the three groups - “High human development” (<code>HDI</code> above 0.7), “Medium human development” (<code>HDI</code> between 0.55 and 0.7) and “Low human development” (<code>HDI</code> below 0.55). Additionally, try to improve the map aesthetics, for example by changing the legend title, class labels or color palette.</p></li>
-<li><p>Represent <code>africa</code>’s subregions on the map. Change the default color palette and legend title. Next, combine the maps created in the this and the previous exercise on a one plot.</p></li>
+<li><p>Represent <code>africa</code>’s subregions on the map. Change the default color palette and legend title. Next, combine this map and the map created in the previous exercise on a one plot.</p></li>
 <li><p>Create a land cover map of the Zion National Park. Try to manually change the default colors to match your perception of the land cover categories. Finally, add and arrange a scale bar and north arrow.</p></li>
+<li><p>Improve the map created in the previous example. Add an inset map of the Zion National Park’s location in the context of the Utah state. (Hint: Border of Utah can be subsetted from the <code>us_states</code> dataset.)</p></li>
 </ol>
 <!-- faceted map -->
-<!-- inset map -->
-<!-- Robin, Jannes - any ideas how to make it more appealing? or suggestions of some other example? -->
 <!-- animated map -->
 <!-- @robin -->
 <!-- interactive map -->

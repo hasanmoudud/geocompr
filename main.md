@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve47d6f5d7666416b5
+preservebc1cb3faf0465f75
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3121,7 +3121,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9dc224ea686c9af9
+preserved1027a5d66ed4ed9
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6030,7 +6030,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserveeb2d9bc58892730f
+preserve9c8d30f977526ce4
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6646,7 +6646,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve2d12a3360852f42b
+preserve70982f119d3a922c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7186,9 +7186,9 @@ The first step is to define the area of interest, which can be done by creating 
 
 
 ```r
-nz_region = st_bbox(c(xmin = 1340000, xmax = 1450000, ymin = 5130000, ymax = 5210000),
-                    crs = st_crs(nz_height)) %>% 
-  st_as_sfc() 
+nz_region = st_bbox(c(xmin = 1340000, xmax = 1450000, ymin = 5130000, ymax = 5210000)) %>% 
+  st_as_sfc() %>% 
+  st_set_crs(st_crs(nz_height))
 ```
 
 In the second step, we create a base map showing a lager area. 
@@ -7361,7 +7361,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve74314b4413ee3aee
+preservef40ff87cd86393da
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7373,7 +7373,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve7cfec774a5481241
+preserve766ae0e0d6e6fef4
 
 
 
@@ -7395,7 +7395,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservea8d49a5f975a584c
+preservee967174ce590b6d5
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7609,16 +7609,17 @@ Additionally, try to improve the map aesthetics, for example by changing the leg
 
 1. Represent `africa`'s subregions on the map. 
 Change the default color palette and legend title.
-Next, combine the maps created in the this and the previous exercise on a one plot.
+Next, combine this map and the map created in the previous exercise on a one plot.
 
 1. Create a land cover map of the Zion National Park.
 Try to manually change the default colors to match your perception of the land cover categories.
 Finally, add and arrange a scale bar and north arrow.
 
-<!-- faceted map -->
+1. Improve the map created in the previous example.
+Add an inset map of the Zion National Park's location in the context of the Utah state.
+(Hint: Border of Utah can be subsetted from the `us_states` dataset.) 
 
-<!-- inset map -->
-<!-- Robin, Jannes - any ideas how to make it more appealing? or suggestions of some other example? -->
+<!-- faceted map -->
 
 <!-- animated map -->
 <!-- @robin -->
