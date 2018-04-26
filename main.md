@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3347d5830c0a4686
+preservebf0316cd2d88c8b3
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -379,15 +379,15 @@ See the [r-spatial](https://github.com/r-spatial/) organisation and conversation
 ] and a growing number of actively developed packages which are designed to work in harmony with **sf** (Table \@ref(tab:revdep)). 
 
 
-Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-04-14 there are 69 packages which import sf.
+Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-04-23 there are 71 packages which import sf.
 
 package    Downloads
 --------  ----------
-plotly          1789
-raster          1559
-spdep            944
-spData           898
-leaflet          731
+plotly          1782
+raster          1563
+spData          1152
+spdep           1029
+leaflet          792
 
 ## The history of R-spatial
 
@@ -3122,7 +3122,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve6dc2d9d6ca0acdad
+preserve446f71715bbe41ed
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6009,7 +6009,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve4f51d55ee7748937
+preservea7ee07a173ab90eb
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6625,7 +6625,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve701b6794583bb3b5
+preservefd23c4c1349faf8a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7328,7 +7328,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve0a45f072b230e147
+preserve06201bc7cbff14d1
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7340,7 +7340,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preservebe482fba0475eaac
+preserve2b9edd3297d66e72
 
 
 
@@ -7362,7 +7362,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve69b4f6d26cd7a31f
+preserveda9866678cca2fd0
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
