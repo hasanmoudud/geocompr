@@ -968,7 +968,9 @@ r_brick
 <span class="co">#&gt; [1] 4</span></code></pre></div>
 <p>A <code>RasterStack</code> is similar to a <code>RasterBrick</code> in the sense that it consists also of multiple layers. However, in contrast to <code>RasterBrick</code>, <code>RasterStack</code> allows you to connect several raster objects stored in different files or multiply objects in memory. More specifically, a <code>RasterStack</code> is a list of <code>RasterLayer</code> objects with the same extent and resolution. Hence, one way to create it is with the help of spatial objects already existing in R’s global environment. And again, one can simply specify a path to a file stored on disk. <!-- The possibility to create a `RasterStack` from a file stored on disk and an object residing in R's global environment is one of the main differences compared to a `RasterBrick`. --></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raster_on_disk =<span class="st"> </span><span class="kw">raster</span>(r_brick, <span class="dt">layer =</span> <span class="dv">1</span>)
-raster_in_memory =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">xmn =</span> <span class="dv">301905</span>, <span class="dt">xmx =</span> <span class="dv">335745</span>, <span class="dt">ymn =</span> <span class="dv">4111245</span>, <span class="dt">ymx =</span> <span class="dv">4154085</span>, <span class="dt">res =</span> <span class="dv">30</span>)
+raster_in_memory =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">xmn =</span> <span class="dv">301905</span>, <span class="dt">xmx =</span> <span class="dv">335745</span>,
+                          <span class="dt">ymn =</span> <span class="dv">4111245</span>, <span class="dt">ymx =</span> <span class="dv">4154085</span>, 
+                          <span class="dt">res =</span> <span class="dv">30</span>)
 <span class="kw">values</span>(raster_in_memory) =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">ncell</span>(raster_in_memory))
 <span class="kw">crs</span>(raster_in_memory) =<span class="st"> </span><span class="kw">crs</span>(raster_on_disk)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_stack =<span class="st"> </span><span class="kw">stack</span>(raster_in_memory, raster_on_disk)
@@ -1034,7 +1036,8 @@ Figure 2.9: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zon
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">projection</span>(new_raster) <span class="co"># get CRS</span>
 <span class="co">#&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span></code></pre></div>
 <p>The same function, <code>projection()</code>, is used to set a CRS for raster objects. The main difference, compared to vector data, is that raster objects only accept <code>proj4</code> definitions:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 </span>
+<span class="st">                            +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:raster-crs"></span>
 <img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type" width="475" />
 <p class="caption">
