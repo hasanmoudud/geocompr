@@ -813,9 +813,9 @@ Figure 9.19: coffeeApp, a simple web mapping application for exploring global co
 raster::<span class="kw">plot</span>(nz_elev /<span class="st"> </span><span class="dv">1000</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)
 <span class="kw">plot</span>(<span class="kw">st_geometry</span>(nz), <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nz-plot"></span>
-<img src="figures/nz-plot-1.png" alt="Map of New Zealand created with plot(). The legend to the left refers to elevation (1000 m above sea level)." width="576" />
+<img src="figures/nz-plot-1.png" alt="Map of New Zealand created with plot(). The legend to the right refers to elevation (1000 m above sea level)." width="576" />
 <p class="caption">
-Figure 9.20: Map of New Zealand created with plot(). The legend to the left refers to elevation (1000 m above sea level).
+Figure 9.20: Map of New Zealand created with plot(). The legend to the right refers to elevation (1000 m above sea level).
 </p>
 </div>
 <p>Since version 2.2.2, the <strong>tidyverse</strong> plotting package <strong>ggplot2</strong> has supported <code>sf</code> objects with <code>geom_sf()</code>. The syntax is similar to that used by <strong>tmap</strong>: an initial <code>ggplot()</code> call is followed by one or more layers, that are added with <code>+ geom_*()</code>, where <code>*</code> represents a layer type such as <code>geom_sf()</code> (for sf objects) or <code>geom_points()</code> (for points).</p>
@@ -834,8 +834,7 @@ Figure 9.21: Map of New Zealand created with ggplot2.
 <p>An advantage of <strong>ggplot2</strong> is that it has a strong user-community and many add-on packages. Good additional resources can be found in the open source <a href="https://github.com/hadley/ggplot2-book">ggplot2-book</a> and in the descriptions of the multitude of ‘<strong>gg</strong>packages’ such as <strong>ggrepel</strong> and <strong>tidygraph</strong>.</p>
 <p>Another benefit of maps based on <strong>ggplot2</strong> is that they can easily be given a level of interactivity when printed using the function <code>ggplotly()</code> from the <strong>plotly</strong> package. Try <code>plotly::ggplotly(g1)</code> for example, and compare the result with other <strong>plotly</strong> mapping functions described at <a href="https://blog.cpsievert.me/2018/03/30/visualizing-geo-spatial-data-with-sf-and-plotly/">blog.cpsievert.me</a>.</p>
 <p>We have covered mapping with <strong>sf</strong>, <strong>raster</strong> and <strong>ggplot2</strong> packages first because these packages are highly flexible, allowing for the creation of a wide range of static maps. Many other static mapping packages are more specific.</p>
-<!-- JM: alternative mapping solutions are still missing -->
-<p>Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose static mapping (Table <a href="adv-map.html#tab:map-spkg">9.2</a>).</p>
+<p>Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose static mapping (Table <a href="adv-map.html#tab:map-gpkg">9.1</a>).</p>
 <table>
 <caption><span id="tab:map-gpkg">Table 9.1: </span>Selected general-purpose mapping packages, with associated metrics.</caption>
 <thead>
@@ -875,10 +874,29 @@ Figure 9.21: Map of New Zealand created with ggplot2.
 </tr>
 </tbody>
 </table>
-<p>Table <a href="adv-map.html#tab:map-spkg">9.2</a> shows a range of mapping packages are available, and there are many others not listed in this table. Of note is <strong>cartography</strong>, which generates a range of unusual maps including choropleth, ‘proportional symbol’ and ‘flow’ maps, each of which is documented in the vignette <a href="https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html"><code>cartography</code></a>.</p>
-<!-- Pseudo (unusual) maps  -->
-<!--we need a better name -->
-<!-- I think we are abandoning this section - the links below can go into Other mapping packages (RL) -->
+<p>Table <a href="adv-map.html#tab:map-gpkg">9.1</a> shows a range of mapping packages are available, and there are many others not listed in this table. Of note is <strong>cartography</strong>, which generates a range of unusual maps including choropleth, ‘proportional symbol’ and ‘flow’ maps, each of which is documented in the vignette <a href="https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html"><code>cartography</code></a>.</p>
+<p>A cartogram is a map in which the geometry is proportionately distorted to represent a mapping variable. Creation of this type of map is possible in R with <strong>cartogram</strong>, which allows for creating continuous and non-contigous area cartograms. It is not a mapping package per se, but it allows for construction of distorted spatial objects that could be plotted using any generic mapping package.</p>
+<p>The <code>cartogram()</code> function creates continuous area cartograms. It accepts an <code>sf</code> object and name of the variable (column) as inputs. Additionally, it is possible to modify the <code>intermax</code> argument - maximum number of iterations for the cartogram transformation. For example, we could represent median income in New Zeleand’s regions as a continuous cartogram (the right-hand panel of <a href="adv-map.html#fig:cartomap1">9.22</a>) as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cartogram)
+nz_carto =<span class="st"> </span><span class="kw">cartogram</span>(nz, <span class="st">&quot;Median_income&quot;</span>, <span class="dt">itermax =</span> <span class="dv">5</span>)
+<span class="kw">tm_shape</span>(nz_carto) +<span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;Median_income&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:cartomap1"></span>
+<img src="figures/cartomap1-1.png" alt="Comparison of regular map (left) and continuous area cartogram (right)." width="576" />
+<p class="caption">
+Figure 9.22: Comparison of regular map (left) and continuous area cartogram (right).
+</p>
+</div>
+<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">us_states2163 =<span class="st"> </span><span class="kw">st_transform</span>(us_states, <span class="dv">2163</span>)
+us_states2163_nzcarto =<span class="st"> </span><span class="kw">nc_cartogram</span>(us_states2163, <span class="st">&quot;total_pop_15&quot;</span>)
+<span class="kw">tm_shape</span>(us_states2163) +<span class="st"> </span><span class="kw">tm_borders</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">tm_shape</span>(us_states2163_nzcarto) +<span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;total_pop_15&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:cartomap2"></span>
+<img src="figures/cartomap2-1.png" alt="Comparison of regular map (left) and non-continuous area cartogram (right)." width="576" />
+<p class="caption">
+Figure 9.23: Comparison of regular map (left) and non-continuous area cartogram (right).
+</p>
+</div>
 <table>
 <caption><span id="tab:map-spkg">Table 9.2: </span>Selected specific-purpose mapping packages, with associated metrics.</caption>
 <thead>
@@ -910,26 +928,6 @@ Figure 9.21: Map of New Zealand created with ggplot2.
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cartogram)
-nz_carto =<span class="st"> </span><span class="kw">cartogram</span>(nz, <span class="st">&quot;Median_income&quot;</span>, <span class="dt">itermax =</span> <span class="dv">5</span>)
-<span class="kw">tm_shape</span>(nz_carto) +<span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;Median_income&quot;</span>)</code></pre></div>
-<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
-<div class="figure" style="text-align: center"><span id="fig:cartomap1"></span>
-<img src="figures/cartomap1-1.png" alt="Comparison of regular map (left) and continuous area cartogram (right)." width="576" />
-<p class="caption">
-Figure 9.22: Comparison of regular map (left) and continuous area cartogram (right).
-</p>
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">us_states2163 =<span class="st"> </span><span class="kw">st_transform</span>(us_states, <span class="dv">2163</span>)
-us_states2163_nzcarto =<span class="st"> </span><span class="kw">nc_cartogram</span>(us_states2163, <span class="st">&quot;total_pop_15&quot;</span>)
-<span class="kw">tm_shape</span>(us_states2163) +<span class="st"> </span><span class="kw">tm_borders</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">tm_shape</span>(us_states2163_nzcarto) +<span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;total_pop_15&quot;</span>)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:cartomap2"></span>
-<img src="figures/cartomap2-1.png" alt="Comparison of regular map (left) and non-continuous area cartogram (right)." width="576" />
-<p class="caption">
-Figure 9.23: Comparison of regular map (left) and non-continuous area cartogram (right).
-</p>
-</div>
 <!-- geofacet - https://hafen.github.io/geofacet/-->
 <!-- population lines - https://github.com/rCarto/linemap-->
 <!-- geogrid - https://github.com/jbaileyh/geogrid -->

@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve84c0d5b834953c03
+preservee46b90f25692a1db
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3136,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea7e79c85b0e5d9db
+preserveebd5d7bdc876f01f
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservebcbcaf21886bab93
+preserve60e5ab4e2cd57377
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve6434ffbfb826bc38
+preserve1fe323df263e6e4c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7342,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve121116c0f56ede5c
+preserve915474a23279d040
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7354,7 +7354,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserveeddc29aa508c7aa5
+preserve8970d66013879d85
 
 
 
@@ -7376,7 +7376,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve251a7ee7f9deea06
+preserve5fe8e67625debc2e
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7497,8 +7497,8 @@ plot(st_geometry(nz), add = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/nz-plot-1.png" alt="Map of New Zealand created with plot(). The legend to the left refers to elevation (1000 m above sea level)." width="576" />
-<p class="caption">(\#fig:nz-plot)Map of New Zealand created with plot(). The legend to the left refers to elevation (1000 m above sea level).</p>
+<img src="figures/nz-plot-1.png" alt="Map of New Zealand created with plot(). The legend to the right refers to elevation (1000 m above sea level)." width="576" />
+<p class="caption">(\#fig:nz-plot)Map of New Zealand created with plot(). The legend to the right refers to elevation (1000 m above sea level).</p>
 </div>
 
 
@@ -7536,8 +7536,7 @@ Try `plotly::ggplotly(g1)` for example, and compare the result with other **plot
 We have covered mapping with **sf**, **raster** and **ggplot2** packages first because these packages are highly flexible, allowing for the creation of a wide range of static maps.
 Many other static mapping packages are more specific.
 
-<!-- JM: alternative mapping solutions are still missing -->
-Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose static mapping (Table \@ref(tab:map-spkg)).
+Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose static mapping (Table \@ref(tab:map-gpkg)).
 
 
 Table: (\#tab:map-gpkg)Selected general-purpose mapping packages, with associated metrics.
@@ -7552,23 +7551,17 @@ plotly        Create Interactive Web Graphics via 'plotly.js'
 rasterVis     Visualization Methods for Raster Data                            
 tmap          Thematic Maps                                                    
 
-Table \@ref(tab:map-spkg) shows a range of mapping packages are available, and there are many others not listed in this table.
+Table \@ref(tab:map-gpkg) shows a range of mapping packages are available, and there are many others not listed in this table.
 Of note is **cartography**, which generates a range of unusual maps including choropleth, 'proportional symbol' and 'flow' maps, each of which is documented in the vignette [`cartography`](https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html).
 
-<!-- Pseudo (unusual) maps  -->
-<!--we need a better name -->
-<!-- I think we are abandoning this section - the links below can go into Other mapping packages (RL) -->
+A cartogram is a map in which the geometry is proportionately distorted to represent a mapping variable. 
+Creation of this type of map is possible in R with **cartogram**, which allows for creating continuous and non-contigous area cartograms.
+It is not a mapping package per se, but it allows for construction of distorted spatial objects that could be plotted using any generic mapping package.
 
-
-Table: (\#tab:map-spkg)Selected specific-purpose mapping packages, with associated metrics.
-
-package     title                                                        
-----------  -------------------------------------------------------------
-cartogram   Create Cartograms with R                                     
-geogrid     Turn Geospatial Polygons into Regular or Hexagonal Grids     
-geofacet    'ggplot2' Faceting Utilities for Geographical Data           
-globe       Plot 2D and 3D Views of the Earth, Including Major Coastline 
-linemap     Line Maps                                                    
+The `cartogram()` function creates continuous area cartograms.
+It accepts an `sf` object and name of the variable (column) as inputs.
+Additionally, it is possible to modify the `intermax` argument - maximum number of iterations for the cartogram transformation.
+For example, we could represent median income in New Zeleand's regions as a continuous cartogram (the right-hand panel of \@ref(fig:cartomap1)) as follows:
 
 
 ```r
@@ -7577,12 +7570,12 @@ nz_carto = cartogram(nz, "Median_income", itermax = 5)
 tm_shape(nz_carto) + tm_polygons("Median_income")
 ```
 
-<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
-
 <div class="figure" style="text-align: center">
 <img src="figures/cartomap1-1.png" alt="Comparison of regular map (left) and continuous area cartogram (right)." width="576" />
 <p class="caption">(\#fig:cartomap1)Comparison of regular map (left) and continuous area cartogram (right).</p>
 </div>
+
+<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
 
 
 ```r
@@ -7596,6 +7589,17 @@ tm_shape(us_states2163) + tm_borders() +
 <img src="figures/cartomap2-1.png" alt="Comparison of regular map (left) and non-continuous area cartogram (right)." width="576" />
 <p class="caption">(\#fig:cartomap2)Comparison of regular map (left) and non-continuous area cartogram (right).</p>
 </div>
+
+
+Table: (\#tab:map-spkg)Selected specific-purpose mapping packages, with associated metrics.
+
+package     title                                                        
+----------  -------------------------------------------------------------
+cartogram   Create Cartograms with R                                     
+geogrid     Turn Geospatial Polygons into Regular or Hexagonal Grids     
+geofacet    'ggplot2' Faceting Utilities for Geographical Data           
+globe       Plot 2D and 3D Views of the Earth, Including Major Coastline 
+linemap     Line Maps                                                    
 
 <!-- geofacet - https://hafen.github.io/geofacet/-->
 <!-- population lines - https://github.com/rCarto/linemap-->
