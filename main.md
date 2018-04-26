@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7ab9cdb8fa19a886
+preservebee4d62fd7e840ee
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -523,8 +523,21 @@ We assume that you have an up-to-date version of R installed and that you are co
 <!-- This will make it easier to run this book's worked examples on your computer. -->
 
 After you've checked you R installation and brushed-up on your R skills where appropriate, the next step is to install and load the packages used in this chapter.
-Packages are installed with `install.packages("package_name")`.
-We will use the two packages that provide functions for handling spatial data, loaded with `library(package_name)` as follows:
+Packages are installed with the `install.packages()` function which can be used to get the prerequisites on your computer:^[
+Note that the final package is not on R's main package hosting repository, CRAN, meaning that the `repos` and `type` arguments must be set for it to install.
+In case the installation fails, for example if you do not have rights to install non CRAN packages on your organisation's computers, the data in **spDataLarge** can be loaded by running the script [`spData.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/spData.R) from the `code` folder in the book's GitHub repo at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr).
+]
+
+
+```r
+install.packages("sf")
+install.packages("raster")
+install.packages("spData")
+install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/",
+                 type = "source")
+```
+
+Packages are loaded with the `library()` function, which is used to load the two spatial data processing packages installed previously as follows:
 
 
 ```r
@@ -532,9 +545,7 @@ library(sf)          # classes and functions for vector data
 library(raster)      # classes and functions for raster data
 ```
 
-The chapter also relies on two data packages: **spData** and **spDataLarge**.
-Importantly, the **spDataLarge** package needs be installed with the following command: `install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/", type = "source")`.
-
+The other packages that were installed contain data that will be used in the book:
 
 
 ```r
@@ -3125,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve1950a64a01355eef
+preserveacb4f9dd77fe73c9
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6012,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservedef4e4a78631a143
+preserved38553ea5d963d12
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6628,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve82f83b4dd9402e99
+preserve03ade5fb6ada95c1
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7331,7 +7342,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preservea27356996b41a3bf
+preserve3e8af1283d54a2d9
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7343,7 +7354,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve724697da93255d71
+preserveec1589fd457c7500
 
 
 
@@ -7365,7 +7376,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservea4e2f87a38915fc4
+preserve09f58c8470327dec
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
