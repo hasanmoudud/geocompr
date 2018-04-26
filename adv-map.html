@@ -577,11 +577,11 @@ Figure 9.10: Illustration of selected color-related layout options.
 </p>
 </div>
 <!-- Maybe reverse order and progress from the high- to the low-level control. Overall, this section reads a bit like a vignette. Is this the intention. -->
-<p>Beyond the low-level control over layouts and colors, <strong>tmap</strong> also offers high-level styles, using <code>tm_style_</code> functions (representing the second meaning of ‘style’ in the package). Some styles such as <code>tm_style_cobalt()</code> result in stylized maps while others such as <code>tm_style_grey()</code> make more subtle changes, as illustrated in Figure <a href="adv-map.html#fig:tmstyles">9.11</a>, created using code below (see <code>09-tmstyles.R</code>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map_nza +<span class="st"> </span><span class="kw">tm_style_bw</span>()
-map_nza +<span class="st"> </span><span class="kw">tm_style_classic</span>()
-map_nza +<span class="st"> </span><span class="kw">tm_style_cobalt</span>()
-map_nza +<span class="st"> </span><span class="kw">tm_style_col_blind</span>()</code></pre></div>
+<p>Beyond the low-level control over layouts and colors, <strong>tmap</strong> also offers high-level styles, using the <code>tm_style()</code> function (representing the second meaning of ‘style’ in the package). Some styles such as <code>tm_style(&quot;cobalt&quot;)</code> result in stylized maps while others such as <code>tm_style(&quot;grey)</code> make more subtle changes, as illustrated in Figure <a href="adv-map.html#fig:tmstyles">9.11</a>, created using code below (see <code>09-tmstyles.R</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map_nza +<span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;bw&quot;</span>)
+map_nza +<span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;classic&quot;</span>)
+map_nza +<span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;cobalt&quot;</span>)
+map_nza +<span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;col_blind&quot;</span>)</code></pre></div>
 <pre><code>#&gt; Warning in tm_style_bw(): tm_style_bw is deprecated as of tmap version 2.0.
 #&gt; Please use tm_style(&quot;bw&quot;, ...) instead
 #&gt; Warning in tm_style_classic(): tm_style_classic is deprecated as of tmap

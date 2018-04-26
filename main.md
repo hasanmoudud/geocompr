@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee6168091d312851e
+preserveb446b47fa70e55c5
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3122,7 +3122,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9b4315ef3e6af8c4
+preserveed3b9195f8b6a150
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6009,7 +6009,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve90950b92bc88d664
+preserve4253639a3aaf1f05
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6625,7 +6625,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve0134dec625987b1a
+preserve378e8e00f32e2eef
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7070,15 +7070,15 @@ The impact of changing the color settings listed above is illustrated in Figure 
 </div>
 
 <!-- Maybe reverse order and progress from the high- to the low-level control. Overall, this section reads a bit like a vignette. Is this the intention. -->
-Beyond the low-level control over layouts and colors, **tmap** also offers high-level styles, using `tm_style_` functions (representing the second meaning of 'style' in the package).
-Some styles such as `tm_style_cobalt()` result in stylized maps while others such as `tm_style_grey()` make more subtle changes, as illustrated in Figure \@ref(fig:tmstyles), created using code below (see `09-tmstyles.R`):
+Beyond the low-level control over layouts and colors, **tmap** also offers high-level styles, using the `tm_style()` function (representing the second meaning of 'style' in the package).
+Some styles such as `tm_style("cobalt")` result in stylized maps while others such as `tm_style("grey)` make more subtle changes, as illustrated in Figure \@ref(fig:tmstyles), created using code below (see `09-tmstyles.R`):
 
 
 ```r
-map_nza + tm_style_bw()
-map_nza + tm_style_classic()
-map_nza + tm_style_cobalt()
-map_nza + tm_style_col_blind()
+map_nza + tm_style("bw")
+map_nza + tm_style("classic")
+map_nza + tm_style("cobalt")
+map_nza + tm_style("col_blind")
 ```
 
 
@@ -7340,7 +7340,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve1527896f6a0a1827
+preserveed98bd2e71f522b0
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7352,7 +7352,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve378df7c225850f7a
+preservef4fa8b8960f26e1c
 
 
 
@@ -7374,7 +7374,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve5984d3382b497e44
+preservec45d4dd3692b41f6
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
