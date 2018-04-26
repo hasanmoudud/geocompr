@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve290bff9990750b8c
+preservee6168091d312851e
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3122,7 +3122,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved7d985838a031c19
+preserve9b4315ef3e6af8c4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6009,7 +6009,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve1ebf53bd56893a7a
+preserve90950b92bc88d664
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6625,7 +6625,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserved6b2abeb22d750a1
+preserve0134dec625987b1a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7340,7 +7340,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preservec386b7f6e7c7279e
+preserve1527896f6a0a1827
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7352,7 +7352,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve6fd64642e4232447
+preserve378df7c225850f7a
 
 
 
@@ -7374,7 +7374,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveb4007edaf22fd517
+preserve5984d3382b497e44
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7535,7 +7535,7 @@ We have covered mapping with **sf**, **raster** and **ggplot2** packages first b
 Many other static mapping packages are more specific.
 
 <!-- JM: alternative mapping solutions are still missing -->
-Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose static mapping (Table \@ref(tab:map-pkgs)).
+Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose static mapping (Table \@ref(tab:map-spkg)).
 
 
 Table: (\#tab:map-gpkg)Selected general-purpose mapping packages, with associated metrics.
@@ -7550,7 +7550,7 @@ plotly        Create Interactive Web Graphics via 'plotly.js'
 rasterVis     Visualization Methods for Raster Data                            
 tmap          Thematic Maps                                                    
 
-Table \@ref(tab:map-pkgs) shows a range of mapping packages are available, and there are many others not listed in this table.
+Table \@ref(tab:map-spkg) shows a range of mapping packages are available, and there are many others not listed in this table.
 Of note is **cartography**, which generates a range of unusual maps including choropleth, 'proportional symbol' and 'flow' maps, each of which is documented in the vignette [`cartography`](https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html).
 
 <!-- Pseudo (unusual) maps  -->
