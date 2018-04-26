@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0fa0be74b9c7b10b
+preserveea5bb974dd0f30b9
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3122,7 +3122,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2130fa12f644fea1
+preserve5f31f05ae4c499a1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6009,7 +6009,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservea123a825fe216339
+preserve49fd1ce1d57f63ae
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6625,7 +6625,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve9386fbc591cd9b0f
+preserve296e2ebc3b1f54f9
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7340,7 +7340,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve7b294d2dc0129588
+preserve87f10a5edf2ae70f
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7352,7 +7352,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve319e126339d04313
+preservebd4d184a1b21eff5
 
 
 
@@ -7374,7 +7374,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservef023cbe437864bef
+preserve43f3be5145740f57
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7571,17 +7571,11 @@ linemap     Line Maps
 
 ```r
 library(cartogram)
-us_states2163 = st_transform(us_states, 2163)
-us_states_carto = cartogram(us_states2163, "total_pop_15", itermax = 5)
-#> Mean size error for iteration 1: 3.57625847166086
-#> Mean size error for iteration 2: 2.55839132841766
-#> Mean size error for iteration 3: 2.04152725177029
-#> Mean size error for iteration 4: 1.7027677314499
-#> Mean size error for iteration 5: 1.4710875912221
-tm_shape(us_states_carto) + tm_polygons("total_pop_15")
+nz_carto = cartogram(nz, "Median_income", itermax = 5)
+tm_shape(nz_carto) + tm_polygons("Median_income")
 ```
 
-<img src="figures/unnamed-chunk-34-1.png" width="576" style="display: block; margin: auto;" />
+<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
 
 <div class="figure" style="text-align: center">
 <img src="figures/cartomap1-1.png" alt="Comparison of regular map (left) and continuous area cartogram (right)." width="576" />
@@ -7590,12 +7584,11 @@ tm_shape(us_states_carto) + tm_polygons("total_pop_15")
 
 
 ```r
-nz_nccarto = nc_cartogram(nz, "Median_income")
-tm_shape(nz) + tm_borders() + 
-  tm_shape(nz_nccarto) + tm_polygons("Median_income")
+us_states2163 = st_transform(us_states, 2163)
+us_states2163_nzcarto = nc_cartogram(us_states2163, "total_pop_15")
+tm_shape(us_states2163) + tm_borders() + 
+  tm_shape(us_states2163_nzcarto) + tm_polygons("total_pop_15")
 ```
-
-<img src="figures/unnamed-chunk-35-1.png" width="576" style="display: block; margin: auto;" />
 
 <div class="figure" style="text-align: center">
 <img src="figures/cartomap2-1.png" alt="Comparison of regular map (left) and non-continuous area cartogram (right)." width="576" />
