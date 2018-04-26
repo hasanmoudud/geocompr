@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve656f8b9af1755b79
+preserve3347d5830c0a4686
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3122,7 +3122,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveaf5baeb73e318af9
+preserve6dc2d9d6ca0acdad
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6009,7 +6009,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservea9c1401827026ac5
+preserve4f51d55ee7748937
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6625,7 +6625,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve01f91458369d6f41
+preserve701b6794583bb3b5
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7081,18 +7081,6 @@ map_nza + tm_style("cobalt")
 map_nza + tm_style("col_blind")
 ```
 
-
-```
-#> Warning in tm_style_bw(): tm_style_bw is deprecated as of tmap version 2.0.
-#> Please use tm_style("bw", ...) instead
-#> Warning in tm_style_classic(): tm_style_classic is deprecated as of tmap
-#> version 2.0. Please use tm_style("classic", ...) instead
-#> Warning in tm_style_cobalt(): tm_style_white is deprecated as of tmap
-#> version 2.0. Please use tm_style("cobalt", ...) instead
-#> Warning in tm_style_col_blind(): tm_style_col_blind is deprecated as of
-#> tmap version 2.0. Please use tm_style("col_blind", ...) instead
-```
-
 <div class="figure" style="text-align: center">
 <img src="figures/tmstyles-1.png" alt="Selected tmap styles: bw, classic, cobalt and color blind (from left to right)." width="576" />
 <p class="caption">(\#fig:tmstyles)Selected tmap styles: bw, classic, cobalt and color blind (from left to right).</p>
@@ -7340,7 +7328,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve2df383ec91aea5af
+preserve0a45f072b230e147
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7352,7 +7340,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve0c552a7db990b4f8
+preservebe482fba0475eaac
 
 
 
@@ -7374,7 +7362,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve8a836e4d8d482269
+preserve69b4f6d26cd7a31f
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
