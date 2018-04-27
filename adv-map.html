@@ -875,7 +875,7 @@ Figure 9.21: Map of New Zealand created with ggplot2.
 </tbody>
 </table>
 <p>Table <a href="adv-map.html#tab:map-gpkg">9.1</a> shows a range of mapping packages are available, and there are many others not listed in this table. Of note is <strong>cartography</strong>, which generates a range of unusual maps including choropleth, ‘proportional symbol’ and ‘flow’ maps, each of which is documented in the vignette <a href="https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html"><code>cartography</code></a>.</p>
-<p>Several R packages also allows for plotting of specific map types (Table <a href="adv-map.html#tab:map-spkg">9.2</a>):</p>
+<p>Several R packages also allows for plotting of specific map types (Table <a href="adv-map.html#tab:map-spkg">9.2</a>). <!--summarize them in a one sentence --></p>
 <table>
 <caption><span id="tab:map-spkg">Table 9.2: </span>Selected specific-purpose mapping packages, with associated metrics.</caption>
 <thead>
@@ -911,7 +911,7 @@ Figure 9.21: Map of New Zealand created with ggplot2.
 <!-- geofacet - https://hafen.github.io/geofacet/-->
 <!-- population lines - https://github.com/rCarto/linemap-->
 <!-- geogrid - https://github.com/jbaileyh/geogrid -->
-<!--specific-purpose mapping one sentence intro-->
+<!-- one sentence intro-->
 <p>A cartogram is a map in which the geometry is proportionately distorted to represent a mapping variable. Creation of this type of map is possible in R with <strong>cartogram</strong>, which allows for creating continuous and non-contigous area cartograms. It is not a mapping package per se, but it allows for construction of distorted spatial objects that could be plotted using any generic mapping package.</p>
 <p>The <code>cartogram()</code> function creates continuous area cartograms. It accepts an <code>sf</code> object and name of the variable (column) as inputs. Additionally, it is possible to modify the <code>intermax</code> argument - maximum number of iterations for the cartogram transformation. For example, we could represent median income in New Zeleand’s regions as a continuous cartogram (the right-hand panel of <a href="adv-map.html#fig:cartomap1">9.22</a>) as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cartogram)
