@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb48cd8b26bc57bb2
+preserve5d9f10c58956b8be
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -311,7 +311,7 @@ Furthermore, many server-based applications use Java including among others [Geo
 Java's object-oriented syntax is similar to that of C++ but its memory management, at least from a user's perspective, is simpler and more robust.
 Java is rather unforgiving regarding class, object and variable declarations, which encourages well-designed programming structure, useful in large projects with thousands of lines of codes placed in numerous files.
 Following the *write once, run anywhere* principle, Java is platform-independent (which is unusual for a compiled language) and has excellent performance on large-scale systems.
-This makes Java a suitable language for complex architecture projects such [RStudio](https://github.com/rstudio/rstudio), the Integrated Development Environment (IDE) in which this book was written!
+This makes Java a suitable language for complex architecture projects such as [RStudio](https://github.com/rstudio/rstudio), the Integrated Development Environment (IDE) in which this book was written!
 
 Java is less suitable for statistical modeling and visualization than Python or R.
 Although Java can be used for data science [@brzustowicz_data_2017], it has relatively few statistical libraries, especially compared with R.
@@ -3136,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb2913af7712a1e45
+preserve63605a6bbb16add4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve7c4797f081939bd9
+preservea04cc873efc2477f
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveade630f7e4fa72e3
+preserved2294a47e30674ac
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7342,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve27a81294ec9c0981
+preserve718a208feac664ff
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7354,7 +7354,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preservef9537955ef340d20
+preserve7ebc5c50db2f557d
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7373,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve9765d86aa75e4bee
+preservebbe8ea6a2a898cd5
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
