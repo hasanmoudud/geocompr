@@ -886,7 +886,7 @@ nz_carto =<span class="st"> </span><span class="kw">cartogram</span>(nz, <span c
 Figure 9.22: Comparison of regular map (left) and continuous area cartogram (right).
 </p>
 </div>
-<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
+<p><strong>cartogram</strong> also offers creation of non-contiguous area cartograms with the <code>nc_cartogram()</code> function. These cartograms are created by scaling down each region based on the provided weighting variable. The code chunk below demonstrates creation of a non-contiguous area cartogram of US states’ population (the right-hand panel of <a href="adv-map.html#fig:cartomap2">9.23</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">us_states2163 =<span class="st"> </span><span class="kw">st_transform</span>(us_states, <span class="dv">2163</span>)
 us_states2163_nzcarto =<span class="st"> </span><span class="kw">nc_cartogram</span>(us_states2163, <span class="st">&quot;total_pop_15&quot;</span>)
 <span class="kw">tm_shape</span>(us_states2163) +<span class="st"> </span><span class="kw">tm_borders</span>() +<span class="st"> </span>
@@ -973,6 +973,9 @@ Figure 9.23: Comparison of regular map (left) and non-continuous area cartogram 
 <!-- ggplot2 example? -->
 <!-- other mapping packages 2 -->
 <!-- cartogram example? -->
+<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
+<!-- how about comparing popdensity with popmap on a area cartogram -->
+<!-- advance exercise on one of specific-purpose mapping package -->
 
 </div>
 </div>
