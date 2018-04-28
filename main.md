@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-04-27'
+date: '2018-04-28'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -39,7 +39,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-04-27 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-04-28 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5d9f10c58956b8be
+preservee592ca945579da0f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3136,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve63605a6bbb16add4
+preserve51e77e4476b70267
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservea04cc873efc2477f
+preserve657950edccec6e85
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserved2294a47e30674ac
+preserve5b2085f42d217487
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7342,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve718a208feac664ff
+preservec3a73961a029a574
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7354,7 +7354,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve7ebc5c50db2f557d
+preservee6decec031d9cbdf
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7373,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservebbe8ea6a2a898cd5
+preserve047b40f145f69b6b
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7551,8 +7551,8 @@ tmap          Thematic Maps
 Table \@ref(tab:map-gpkg) shows a range of mapping packages are available, and there are many others not listed in this table.
 Of note is **cartography**, which generates a range of unusual maps including choropleth, 'proportional symbol' and 'flow' maps, each of which is documented in the vignette [`cartography`](https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html).
 
-Several R packages also allows for plotting of specific map types (Table \@ref(tab:map-spkg)).
-<!--summarize them in a one sentence -->
+Several R packages also allows for plotting specific map types (Table \@ref(tab:map-spkg)).
+They prepare cartograms, create line maps, transform polygons into regular or hexagonal grids, and visualize complex data on grids representing geographic topologies.
 
 
 Table: (\#tab:map-spkg)Selected specific-purpose mapping packages, with associated metrics.
@@ -7565,12 +7565,10 @@ geofacet    'ggplot2' Faceting Utilities for Geographical Data
 globe       Plot 2D and 3D Views of the Earth, Including Major Coastline 
 linemap     Line Maps                                                    
 
-<!-- intro about different api and data processing neccessary -->
-<!-- geofacet - https://hafen.github.io/geofacet/-->
-<!-- population lines - https://github.com/rCarto/linemap-->
-<!-- geogrid - https://github.com/jbaileyh/geogrid -->
+All of the aforementioned packages, however, have different approaches for data preparation and map creation.
+In the next paragraph, we focus on the **cartogram** package.
+Therefore, we suggest to read [linemap](https://github.com/rCarto/linemap), [geogrid](https://github.com/jbaileyh/geogrid) and [geofacet](https://github.com/hafen/geofacet) documentations to learn more about them.
 
-<!-- one sentence intro-->
 A cartogram is a map in which the geometry is proportionately distorted to represent a mapping variable. 
 Creation of this type of map is possible in R with **cartogram**, which allows for creating continuous and non-contigous area cartograms.
 It is not a mapping package per se, but it allows for construction of distorted spatial objects that could be plotted using any generic mapping package.
