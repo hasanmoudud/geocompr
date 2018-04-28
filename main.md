@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee592ca945579da0f
+preserveb6a567a17cf07490
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3136,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve51e77e4476b70267
+preserved5a4e67f519adc39
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve657950edccec6e85
+preserve5fde477b1ec032ee
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve5b2085f42d217487
+preservecfbcdfda1e627c28
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7342,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preservec3a73961a029a574
+preserve510fc870dfc6c473
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7354,7 +7354,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preservee6decec031d9cbdf
+preserveed1871f61e9b182c
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7373,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve047b40f145f69b6b
+preserve9bf1003d20f920f2
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7567,7 +7567,7 @@ linemap     Line Maps
 
 All of the aforementioned packages, however, have different approaches for data preparation and map creation.
 In the next paragraph, we focus on the **cartogram** package.
-Therefore, we suggest to read [linemap](https://github.com/rCarto/linemap), [geogrid](https://github.com/jbaileyh/geogrid) and [geofacet](https://github.com/hafen/geofacet) documentations to learn more about them.
+Therefore, we suggest to read the [linemap](https://github.com/rCarto/linemap), [geogrid](https://github.com/jbaileyh/geogrid) and [geofacet](https://github.com/hafen/geofacet) documentations to learn more about them.
 
 A cartogram is a map in which the geometry is proportionately distorted to represent a mapping variable. 
 Creation of this type of map is possible in R with **cartogram**, which allows for creating continuous and non-contigous area cartograms.
