@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve767bbe61ccf5dc3b
+preserveb3a16bb8f0098450
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3136,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef98ec72050b0cab4
+preservef529fc6318259415
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve6755fac33acd9db9
+preserveaa21d0464a229fda
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve63569902acd65203
+preserve66b936993746536f
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7342,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserveba15276a71036a20
+preserve2fb2f806b44e03e6
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7354,7 +7354,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preservea03ab94ade2e82c3
+preserve32d51c9e94127b4d
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7373,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve547cd47eb423e56c
+preserve4f2556e399e3bd58
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7575,7 +7575,7 @@ It is not a mapping package per se, but it allows for construction of distorted 
 The `cartogram()` function creates continuous area cartograms.
 It accepts an `sf` object and name of the variable (column) as inputs.
 Additionally, it is possible to modify the `intermax` argument - maximum number of iterations for the cartogram transformation.
-For example, we could represent median income in New Zeleand's regions as a continuous cartogram (the right-hand panel of \@ref(fig:cartomap1)) as follows:
+For example, we could represent median income in New Zeleand's regions as a continuous cartogram (the right-hand panel of Figure \@ref(fig:cartomap1)) as follows:
 
 
 ```r
@@ -7591,7 +7591,7 @@ tm_shape(nz_carto) + tm_polygons("Median_income")
 
 **cartogram** also offers creation of non-contiguous area cartograms with the `nc_cartogram()` function.
 These cartograms are created by scaling down each region based on the provided weighting variable.
-The code chunk below demonstrates creation of a non-contiguous area cartogram of US states' population (the bottom panel of \@ref(fig:cartomap2)):
+The code chunk below demonstrates creation of a non-contiguous area cartogram of US states' population (the bottom panel of Figure \@ref(fig:cartomap2)):
 
 
 ```r
