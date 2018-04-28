@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebdb234cb9fbd1cc0
+preserveef9ffa314c0b1c79
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3136,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve05cc5afadb94a258
+preservefdf1f54c86b05c73
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve0f381ac6610f1428
+preserve9e482d9f59aee389
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve9e48c66bd89031da
+preserve6867cd2de857ef94
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7342,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve9975b01c462ee993
+preserve75813de3a29af709
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7354,7 +7354,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve0759454e55d5d458
+preserve471cb71e1936a7c2
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7373,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve3fb824ef9aed3bba
+preservebc15c19f364a9625
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7592,7 +7592,7 @@ tm_shape(nz_carto) + tm_polygons("Median_income")
 
 **cartogram** also offers creation of non-contiguous area cartograms with the `nc_cartogram()` function.
 These cartograms are created by scaling down each region based on the provided weighting variable.
-The code chunk below demonstrates creation of a non-contiguous area cartogram of US states' population (the right-hand panel of \@ref(fig:cartomap2)):
+The code chunk below demonstrates creation of a non-contiguous area cartogram of US states' population (the bottom panel of \@ref(fig:cartomap2)):
 
 
 ```r
@@ -7602,8 +7602,8 @@ tm_shape(us_states2163_nzcarto) + tm_polygons("total_pop_15")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/cartomap2-1.png" alt="Comparison of regular map (left) and non-continuous area cartogram (right)." width="576" />
-<p class="caption">(\#fig:cartomap2)Comparison of regular map (left) and non-continuous area cartogram (right).</p>
+<img src="figures/cartomap2-1.png" alt="Comparison of regular map (top) and non-continuous area cartogram (bottom)." width="576" />
+<p class="caption">(\#fig:cartomap2)Comparison of regular map (top) and non-continuous area cartogram (bottom).</p>
 </div>
 
 ## Exercises
@@ -7657,12 +7657,15 @@ It should represent only countries for which this data exists.
 1. Update the code in `coffeeApp/app.R` so that instead of centering on Brazil the user can select which country to focus on:
     - Using `textInput()`
     - Using `selectInput()`
-1. Reproduce Figure \@ref(fig:tmshape) and the 1st and 6th panel of Figure \@ref(break-styles) as closely as possible using the **ggplot2** package.
+1. Reproduce Figure \@ref(fig:tmshape) and the 1st and 6th panel of Figure \@ref(fig:break-styles) as closely as possible using the **ggplot2** package.
 
-<!-- other mapping packages 2 -->
-<!-- cartogram example? -->
-<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
-<!-- how about comparing popdensity with popmap on a area cartogram -->
+1. Join `us_states` and `us_states_df` together and calculate a poverty rate for each state using the new dataset.
+Next, construct a continuous area cartogram based on total population. 
+Finally, create and compare two maps of the poverty rate: (1) a standard choropleth map and (2) a map using the created cartogram boundaries.
+What is the information provided by the first and the second map?
+How it differs from each other?
+
+<!-- other mapping packages 3 -->
 <!-- advance exercise on one of specific-purpose mapping package -->
 
 <!--chapter:end:09-mapping.Rmd-->

@@ -920,14 +920,14 @@ nz_carto =<span class="st"> </span><span class="kw">cartogram</span>(nz, <span c
 Figure 9.22: Comparison of regular map (left) and continuous area cartogram (right).
 </p>
 </div>
-<p><strong>cartogram</strong> also offers creation of non-contiguous area cartograms with the <code>nc_cartogram()</code> function. These cartograms are created by scaling down each region based on the provided weighting variable. The code chunk below demonstrates creation of a non-contiguous area cartogram of US states’ population (the right-hand panel of <a href="adv-map.html#fig:cartomap2">9.23</a>):</p>
+<p><strong>cartogram</strong> also offers creation of non-contiguous area cartograms with the <code>nc_cartogram()</code> function. These cartograms are created by scaling down each region based on the provided weighting variable. The code chunk below demonstrates creation of a non-contiguous area cartogram of US states’ population (the bottom panel of <a href="adv-map.html#fig:cartomap2">9.23</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">us_states2163 =<span class="st"> </span><span class="kw">st_transform</span>(us_states, <span class="dv">2163</span>)
 us_states2163_nzcarto =<span class="st"> </span><span class="kw">nc_cartogram</span>(us_states2163, <span class="st">&quot;total_pop_15&quot;</span>)
 <span class="kw">tm_shape</span>(us_states2163_nzcarto) +<span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;total_pop_15&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cartomap2"></span>
-<img src="figures/cartomap2-1.png" alt="Comparison of regular map (left) and non-continuous area cartogram (right)." width="576" />
+<img src="figures/cartomap2-1.png" alt="Comparison of regular map (top) and non-continuous area cartogram (bottom)." width="576" />
 <p class="caption">
-Figure 9.23: Comparison of regular map (left) and non-continuous area cartogram (right).
+Figure 9.23: Comparison of regular map (top) and non-continuous area cartogram (bottom).
 </p>
 </div>
 </div>
@@ -967,12 +967,10 @@ Figure 9.23: Comparison of regular map (left) and non-continuous area cartogram 
 <li>Using <code>textInput()</code></li>
 <li>Using <code>selectInput()</code></li>
 </ul></li>
-<li>Reproduce Figure <a href="adv-map.html#fig:tmshape">9.1</a> and the 1st and 6th panel of Figure <a href="#break-styles"><strong>??</strong></a> as closely as possible using the <strong>ggplot2</strong> package.</li>
+<li><p>Reproduce Figure <a href="adv-map.html#fig:tmshape">9.1</a> and the 1st and 6th panel of Figure <a href="adv-map.html#fig:break-styles">9.6</a> as closely as possible using the <strong>ggplot2</strong> package.</p></li>
+<li><p>Join <code>us_states</code> and <code>us_states_df</code> together and calculate a poverty rate for each state using the new dataset. Next, construct a continuous area cartogram based on total population. Finally, create and compare two maps of the poverty rate: (1) a standard choropleth map and (2) a map using the created cartogram boundaries. What is the information provided by the first and the second map? How it differs from each other?</p></li>
 </ol>
-<!-- other mapping packages 2 -->
-<!-- cartogram example? -->
-<!-- add a note that one var can be used for changing the geometry and the other one for the color -->
-<!-- how about comparing popdensity with popmap on a area cartogram -->
+<!-- other mapping packages 3 -->
 <!-- advance exercise on one of specific-purpose mapping package -->
 
 </div>
