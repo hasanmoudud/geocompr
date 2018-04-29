@@ -438,8 +438,8 @@ Figure 9.2: Maps with additional layers added to the final map of Figure 9.1.
 </p>
 </div>
 <p>Additional elements such as north arrows (<code>tm_compass()</code>) and scale bars (<code>tm_scale_bar()</code>) can also be added with the <code>+</code> operator (<a href="adv-map.html#fig:na-sb">9.3</a>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map_nz +<span class="st"> </span>
-<span class="st">  </span><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;rose&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;top&quot;</span>)) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map_nz3 +<span class="st"> </span>
+<span class="st">  </span><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;8star&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;top&quot;</span>)) +
 <span class="st">  </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">200</span>), <span class="dt">size =</span> <span class="dv">1</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:na-sb"></span>
 <img src="figures/na-sb-1.png" alt="Map with additional elements - a north arrow and a scale bar." width="576" />
