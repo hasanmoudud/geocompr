@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve824784a5478fed2e
+preserve9296b4dc17941876
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3136,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve38c1114d85dcb023
+preserve4a5484221d67a486
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve8fbbba9663042a1c
+preserve8d486d6c1351c776
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve13713bc64d2ab167
+preserve385dafa80b31c203
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -6798,18 +6798,6 @@ tm_shape(nz) + tm_borders()
 tm_shape(nz) + tm_fill() + tm_borders() 
 ```
 
-<!--
-
-```r
-plot(st_union(st_geometry(nz)), col = "lightgray")
-box()
-plot(st_geometry(nz), col = "white")
-box()
-plot(st_geometry(nz), col = "lightgray")
-box()
-```
--->
-
 <div class="figure" style="text-align: center">
 <img src="figures/tmshape-1.png" alt="New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions." width="576" />
 <p class="caption">(\#fig:tmshape)New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions.</p>
@@ -6890,7 +6878,20 @@ tmap_arrange(map_nz1, map_nz2, map_nz3)
 <p class="caption">(\#fig:tmlayers)Maps with additional layers added to the final map of Figure 9.1.</p>
 </div>
 
-Additional elements such as north arrows (`tm_compass()`), scale bars (`tm_scale_bar()`) and layout options (`tm_layout()`) can also be added with the `+` operator.
+Additional elements such as north arrows (`tm_compass()`) and scale bars (`tm_scale_bar()`) can also be added with the `+` operator (\@ref(fig:na-sb)).
+
+
+```r
+map_nz + 
+  tm_compass(type = "rose", position = c("left", "top")) +
+  tm_scale_bar(breaks = c(0, 100, 200), size = 1)
+```
+
+<div class="figure" style="text-align: center">
+<img src="figures/na-sb-1.png" alt="Map with additional elements - a north arrow and a scale bar." width="576" />
+<p class="caption">(\#fig:na-sb)Map with additional elements - a north arrow and a scale bar.</p>
+</div>
+
 Aesthetic settings, however, are controlled by arguments to layer functions.
 
 ### Aesthetics
@@ -7104,9 +7105,6 @@ map_nza + tm_style("col_blind")
 This creates a folder called `tmap_style_previews` containing (in **tmap** 2.0) 10 images.
 Each image, from `tm_style_albatross.png` to `tm_style_white.png` shows a faceted map of Europe in the corresponding style.
 Note: `tmap_style_catalogue()` takes some time to run.</div>\EndKnitrBlock{rmdnote}
-
-<!-- - north arrow -->
-<!-- - scale bar -->
 
 ### Faceted maps
 
@@ -7342,7 +7340,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve42b054d28ef2fa95
+preserve6ed7b3326ec5d0f7
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7354,7 +7352,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve0715103b9d6b09e4
+preservecae634a3c316c79c
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7373,7 +7371,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve6bb161d9eae4aa72
+preserve78af0836d0a5dd23
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7530,6 +7528,8 @@ Try `plotly::ggplotly(g1)` for example, and compare the result with other **plot
 
 
 
+<!-- ggplot2 disadvantages including a raster support (raster -> df -> ggplot2) and geom_sf limitations (e.g. point's legend) -->
+
 We have covered mapping with **sf**, **raster** and **ggplot2** packages first because these packages are highly flexible, allowing for the creation of a wide range of static maps.
 Many other static mapping packages are more specific.
 
@@ -7649,7 +7649,6 @@ It should represent only countries for which this data exists.
 <!-- @robin -->
 <!-- interactive map -->
 <!-- @robin -->
-<!-- web mapping -->
 1. Sketch out on paper ideas for a web mapping app that could be used to make transport or land-use policies more evidence based:
   - In the city you live in, for a couple of users per day
   - In the country you live in, for dozens of users per day
