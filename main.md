@@ -279,7 +279,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef66bd019f0a28d4c
+preservea78fda45eea28573
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3136,7 +3136,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservefef7c61280609f7b
+preserve19154955d34611c7
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6023,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve9d48fbe46e2b54d5
+preserve4d90e12c03461b2c
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservef178f66cf8982845
+preserve4bef133508bf4fbe
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7342,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve9c59f4c25d71c3a2
+preserve1775db57454182d7
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7354,7 +7354,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve7c7bdf37b508f3f5
+preserve6f4191fb5e980317
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7373,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve644742695dca08c6
+preserveb4bce63fa9da76d9
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7615,7 +7615,8 @@ For these exercises we will create a new object, `africa`, using the `world` and
 africa = world %>% 
   filter(continent == "Africa", !is.na(iso_a2)) %>% 
   left_join(worldbank_df, by = "iso_a2") %>% 
-  select(name, subregion, gdpPercap, HDI, pop_growth)
+  select(name, subregion, gdpPercap, HDI, pop_growth) %>% 
+  st_transform("+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25")
 ```
 
 We will also use `zion` and `nlcd` datasets from **spDataLarge**:

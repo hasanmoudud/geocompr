@@ -937,7 +937,8 @@ Figure 9.23: Comparison of regular map (top) and non-continuous area cartogram (
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">africa =<span class="st"> </span>world %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(continent ==<span class="st"> &quot;Africa&quot;</span>, !<span class="kw">is.na</span>(iso_a2)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">left_join</span>(worldbank_df, <span class="dt">by =</span> <span class="st">&quot;iso_a2&quot;</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(name, subregion, gdpPercap, HDI, pop_growth)</code></pre></div>
+<span class="st">  </span><span class="kw">select</span>(name, subregion, gdpPercap, HDI, pop_growth) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">st_transform</span>(<span class="st">&quot;+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25&quot;</span>)</code></pre></div>
 <p>We will also use <code>zion</code> and <code>nlcd</code> datasets from <strong>spDataLarge</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">zion =<span class="st"> </span><span class="kw">st_read</span>((<span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)))</code></pre></div>
 <ol style="list-style-type: decimal">
