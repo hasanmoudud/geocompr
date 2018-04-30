@@ -169,8 +169,8 @@ Thanks to FOSS4G and the wider open source movement geospatial analysis is no lo
 However, despite the growth of geospatial software that is *open source*, much of it is still not easy to script.
 -->
 Open source Geographic Information Systems (GIS) such as QGIS (see [qgis.org](http://qgis.org/en/site/)) have greatly reduced the 'barrier to entry'.
-Furthermore many GIS programs provide command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see \@ref(gis)) and console windows (such as the [Python Console](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html) in QGIS) to supplement the main graphical user interface (GUI).
-Still, the emphasis of many GIS programs and teaching materials is on the GUI, which can have the unintended consequence of discouraging reproducibility (see Table \@ref(tab:gdsl)).
+Furthermore many GIS programs provide a command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see \@ref(gis)) and console windows (such as the [Python Console](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html) in QGIS) to supplement the main graphical user interface (GUI).
+Still, many GIS programs and teaching materials focus on the GUI, which can have the unintended consequence of discouraging reproducibility (see Table \@ref(tab:gdsl)).
 Motivated by the importance of reproducibility for scientific research and other advantages of typing commands rather than pointing and clicking, this book focuses on R's Command Line Interface (CLI) for GIS operations.
 The reproducible and 'computational' workflows enabled by R's CLI can also help unleash its statistical capabilities on geographic data (see section \@ref(why-geocomputation-with-r)).
 
@@ -221,7 +221,7 @@ A laptop with this specification or above can be acquired second-hand for ~$100 
 Unlike early works in the field all the work presented in this book is reproducible using code and example data supplied alongside the book, in R packages such as **spData**, the installation of which is covered in Chapter \@ref(spatial-class).
 
 Geocomputation is closely related to other terms including Geographic Information Science (GIScience), Geomatics, Geoinformatics, Spatial Information Science, Geoinformation Engineering [@longley_geographic_2015], and the fledgling Geographic Data Science (GDS).
-Each term shares an emphasis on emphasising a scientific (implying reproducible and falsifiable) approach building on GIS software, although their origins and main fields of application differ.
+Each term shares an emphasis on a 'scientific' (implying reproducible and falsifiable) approach building on GIS software, although their origins and main fields of application differ.
 GDS, for example, emphasizes 'data science' skills and large datasets, and can be used as a synonym for Geocomputation.
 A distinguishing feature of Geocomputation, as advocated in this book, is its focus on applied geographic analysis and the application and development of new methods.
 
@@ -301,7 +301,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveda8a4c83b9f93363
+preserve8815459ce4ecabc6
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3158,7 +3158,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved00806d80afc074e
+preserve085d851ff27134d0
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6045,7 +6045,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve611b452127abad1a
+preserve4355f22346316ada
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6661,7 +6661,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve4534d5f5d022e29a
+preservec437e655b03503ae
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7363,7 +7363,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve89aca965f72bbaf9
+preservecd35265558291846
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7375,7 +7375,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve0ca1d46444f1352e
+preservea7359bf7ea49331c
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7394,7 +7394,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve731e36cbd8c504a7
+preservedc31873272fc9475
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
