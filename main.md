@@ -304,7 +304,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3f349584bafea742
+preservebc744fc64f1a5a46
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3161,7 +3161,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve22cc751bafdb38b5
+preserve57be9cbd2066f669
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6048,7 +6048,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve6607e1b0d201424f
+preserved0b46ac910217115
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6664,7 +6664,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve5d1fbe446046bf85
+preserve499512f470f3d1c2
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -6903,20 +6903,7 @@ tmap_arrange(map_nz1, map_nz2, map_nz3)
 <p class="caption">(\#fig:tmlayers)Maps with additional layers added to the final map of Figure 9.1.</p>
 </div>
 
-Additional elements such as north arrows (`tm_compass()`) and scale bars (`tm_scale_bar()`) can also be added with the `+` operator (\@ref(fig:na-sb)).
-
-
-```r
-map_nz3 + 
-  tm_compass(type = "8star", position = c("right", "top")) +
-  tm_scale_bar(breaks = c(0, 100, 200), size = 1)
-```
-
-<div class="figure" style="text-align: center">
-<img src="figures/na-sb-1.png" alt="Map with additional elements - a north arrow and a scale bar." width="192" />
-<p class="caption">(\#fig:na-sb)Map with additional elements - a north arrow and a scale bar.</p>
-</div>
-
+Additional elements can also be added with the `+` operator.
 Aesthetic settings, however, are controlled by arguments to layer functions.
 
 ### Aesthetics
@@ -7072,7 +7059,21 @@ The map layout refers to the combination of all map elements into a cohesive map
 Map elements include among others the objects to be mapped, the title, the scale bar, margins and aspect ratios, while the color settings covered in the previous section relate to the palette and break-points used affect how the map looks.
 Both may result in subtle changes that can have an equally large impact on the impression left by your maps.
 
-**tmap** allows a wide variety of layout settings to be changed, some of which are illustrated in Figure \@ref(fig:layout1), produced using the following code (see `args(tm_layout)` or `?tm_layout` for a full list):
+Additional elements such as north arrows and scale bars have their own functions - `tm_compass()` and `tm_scale_bar()` (Figure \@ref(fig:na-sb)).
+
+
+```r
+map_nz + 
+  tm_compass(type = "8star", position = c("right", "top")) +
+  tm_scale_bar(breaks = c(0, 100, 200), size = 1)
+```
+
+<div class="figure" style="text-align: center">
+<img src="figures/na-sb-1.png" alt="Map with additional elements - a north arrow and scale bar." width="576" />
+<p class="caption">(\#fig:na-sb)Map with additional elements - a north arrow and scale bar.</p>
+</div>
+
+**tmap** also allows a wide variety of layout settings to be changed, some of which are illustrated in Figure \@ref(fig:layout1), produced using the following code (see `args(tm_layout)` or `?tm_layout` for a full list):
 
 
 ```r
@@ -7365,7 +7366,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve8f44f3f581bf7ef6
+preserve67ea0731a4a908a8
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7377,7 +7378,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve7b91c8c9c2fd7eff
+preserve917ede0e25decf0a
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7396,7 +7397,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveb82a2cf64d47b56f
+preserved19b2db8acd2d2f9
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
