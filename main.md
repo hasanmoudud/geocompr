@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-04-29'
+date: '2018-04-30'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -39,7 +39,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-04-29 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-04-30 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -165,10 +165,29 @@ By the end of the book you should be able to create new tools for geocomputation
 
 Over the last few decades free and open source software for geospatial data ('FOSS4G') has progressed at an astonishing rate (see [foss4g.org](http://foss4g.org/)).
 Thanks to FOSS4G and the wider open source movement geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download high performance spatial libraries on their computer.
+<!-- JM: I would delete this, since this is not really true.
 However, despite the growth of geospatial software that is *open source*, much of it is still not easy to script.
-Open source Geographic Information Systems (GIS) such as QGIS (see [qgis.org](http://qgis.org/en/site/)) have greatly reduced the 'barrier to entry' but their emphasis on the Graphical User Interface (GUI) can discourage reproducibility.
-This book focuses on the Command Line Interface (CLI), enabling reproducible, and 'computational' workflows, something we will expand on in Chapter 13.
+-->
+Open source Geographic Information Systems (GIS) such as QGIS (see [qgis.org](http://qgis.org/en/site/)) have greatly reduced the 'barrier to entry'.
+What is more, QGIS and other GIS software packages make command-line based processing easily accessible via application programming interfaces (API), something we will expand on in Chapter 13.
 <!--\@ref(gis) --><!-- REF NEEDS TO BE FIXED IN FUTURE-->
+Nevertheless, many users still prefer the Graphical User Interface (GUI) of GIS which in turn tends to discourage reproducibility (see Table \@ref(tab:gdsl)).
+This book focuses on the Command Line Interface (CLI) and how to use R as a GIS.
+This enables reproducible, and 'computational' workflows while making the most of R's statistical capabilities (see section \@ref(why-geocomputation-with-r)).
+
+<!--
+not sure if this table is needed. I have also modified the content a bit.
+AFAIK there is no GIS field, GIS has always been a software, a method, not a field used by several disciplines. Therefore, I now compare Desktop GUI GIS with R (to avoid apple-with-pear comparisons). I explicilty say Desktop GIS GUI since there are cli-based GIS and you can use virtually all Desktop GIS via the CLI. I think, we should point out the strengths of R ((geo-)statistics, data science, machine learning), and that it is therefore, a good idea to use R for geocomputation and geographic data science, respectively. In turn, we should not say, that GIS make cli-based programming difficult. It is not harder than learning R.
+-->
+
+
+Table: (\#tab:gdsl)Differences in emphasis between software packages (Desktop Geographic Information Systems (GIS) and R).
+
+Attribute          Desktop GIS (GUI)          R                     
+-----------------  -------------------------  ----------------------
+Home disciplines   Geography                  Computing, Statistics 
+Software focus     Graphical User Interface   Command line          
+Reproducibility    Minimal                    Maximal               
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">Reproducibility is a major advantage of command-line interfaces, but what does it mean in practice?
 We define it as follows:
@@ -196,24 +215,30 @@ This book aims to go beyond teaching methods and code: by the end of it you shou
 Our approach differs from early adopters such as Stan Openshaw in one important way, however.
 At the turn of the 21^st^ Century it was unrealistic to expect readers to be able to reproduce code examples, due to barriers preventing access to the necessary hardware, software and data.
 Fast-forward two decades and things have progressed rapidly.
-Anyone with access to a laptop with ~4GB RAM can realistically expect to be able to install and run software for geocompuation on publicly accessible datasets, which are more widely available than ever before (as we'll see in Chapter \@ref(read-write)).^[
+Anyone with access to a laptop with ~4GB RAM can realistically expect to be able to install and run software for geocompuation on publicly accessible datasets, which are more widely available than ever before (as we will see in Chapter \@ref(read-write)).^[
 A laptop with 4GB running a modern operating system such as Ubuntu 16.04 onwards should also be able to reproduce the contents of this book.
 A laptop with this specification or above can be acquired second-hand for ~$100 in many countries nowadays, reducing the financial/hardware barrier to geocomputation far below the levels in operation in the early 2000s, when high-performance computers were unaffordable for most people.
 ]
 Unlike early works in the field all the work presented in this book is reproducible using code and example data supplied alongside the book, in R packages such as **spData**, the installation of which is covered in Chapter \@ref(spatial-class).
 
-Reproducible geographic research is related to Geographical Data Science (GDS).
-This recent concept essentially combines 'data science' with GIS and, like geocomputation, can be defined in comparison with GIS (see Table \@ref(tab:gdsl)).
-The focus on reproducibility and a command-line interface in this book is aligned with GDS.
+One should be aware of the fact that Geocomputation has quite a few close cousins including Geographic Information Science (GIScience), Geomatics, Geoinformatics, Spatial Information Science, Geoinformation Engineering [@longley_geographic_2015], and of late also Geographic Data Science (GDS).
+All these terms share the scientific approach to study geographic data via geographic information systems, and differ mostly in their origin and major field of application, respectively.
+For example, GDS emphasizes the need for reproducible, automated data analysis of (big) geographic data by means of data science methods.
+<!-- @Robin, please rephrase if the distinguition between GDS and geocomputation is not correct --> 
+In fact, GDS can be used as a synonym for Geocomputation with the only difference that Geocomputation has a slightly larger focus on the applied geographic analysis and GDS on creating novel techniques suitable for statistical geoprocessing.
+Overall, the focus on reproducibility via a command-line interface to do geographic analysis are recurring themes of this book.
 
+<!-- 
+Just for your information (can be deleted)
+"The term geographic information science was coined in a paper by Michael Goodchild published in 1992. In it, the author argued that these questions and others like them were important, and that their systematic study constituted a science in its own right. Information science studies the
+fundamental issues arising from the creation, handling, storage, and use of information - similarly, GIScience should study the fundamental issues arising from geographic information, as a well-defined class of information in general. Other terms have much the same meaning:
+geomatics and geoinformatics, spatial information science, geoinformation engineering. All suggest a scientific approach to the fundamental issues raised by the use of GIS and related technologies, though they all have different roots and emphasize different ways of thinking about problems (specifically geographic or more generally spatial, emphasizing engineering or science, etc.)."
+Longley et al. (2005): 28
 
-Table: (\#tab:gdsl)Differences in emphasis between the fields of Geographic Information Systems (GIS) and Geographic Data Science (GDS).
-
-Attribute          GIS                        GDS                              
------------------  -------------------------  ---------------------------------
-Home disciplines   Geography                  Geography, Computing, Statistics 
-Software focus     Graphical User Interface   Code                             
-Reproducibility    Minimal                    Maximal                          
+"There are many close synonyms for geographic information science
+(GIScience), one of which is geocomputation."
+Longley et al. (2005): 32
+-->
 
 Geocomputation is young, but it builds on older fields.
 It can be seen as a part of Geography, which has a 2000+ year history [@talbert_ancient_2014];
@@ -279,7 +304,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec58289fe1c603d80
+preserve3f349584bafea742
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3136,7 +3161,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea2f76f5ea52725e2
+preserve22cc751bafdb38b5
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6023,7 +6048,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve687425db12e29506
+preserve6607e1b0d201424f
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6639,7 +6664,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve155e56febc566e89
+preserve5d1fbe446046bf85
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7340,7 +7365,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve91b77ca9ba481a0a
+preserve8f44f3f581bf7ef6
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7352,7 +7377,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preservecf909917d276aaa2
+preserve7b91c8c9c2fd7eff
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7371,7 +7396,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservefca434e09f977c78
+preserveb82a2cf64d47b56f
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 

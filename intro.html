@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-04-29">
+<meta name="date" content="2018-04-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -354,7 +354,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <p>This book is about harnessing the power of modern computers to <em>do things</em> with geographic data. It teaches a range of spatial skills, including: reading, writing and manipulating geographic data; making static and interactive maps; applying geocomputation to solve real-world problems; and modeling geographic phenomena. By demonstrating how various spatial operations can be linked, in reproducible ‘code chunks’ that intersperse the prose, the book also teaches a transparent and thus scientific workflow. Learning how to use the wealth of geospatial tools available from the R command line can be exciting but creating <em>new ones</em> can be truly liberating, by removing constraints on your creativity imposed by software. By the end of the book you should be able to create new tools for geocomputation in the form of shareable R scripts and functions.</p>
-<p>Over the last few decades free and open source software for geospatial data (‘FOSS4G’) has progressed at an astonishing rate (see <a href="http://foss4g.org/">foss4g.org</a>). Thanks to FOSS4G and the wider open source movement geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download high performance spatial libraries on their computer. However, despite the growth of geospatial software that is <em>open source</em>, much of it is still not easy to script. Open source Geographic Information Systems (GIS) such as QGIS (see <a href="http://qgis.org/en/site/">qgis.org</a>) have greatly reduced the ‘barrier to entry’ but their emphasis on the Graphical User Interface (GUI) can discourage reproducibility. This book focuses on the Command Line Interface (CLI), enabling reproducible, and ‘computational’ workflows, something we will expand on in Chapter 13. <!--\@ref(gis) --><!-- REF NEEDS TO BE FIXED IN FUTURE--></p>
+<p>Over the last few decades free and open source software for geospatial data (‘FOSS4G’) has progressed at an astonishing rate (see <a href="http://foss4g.org/">foss4g.org</a>). Thanks to FOSS4G and the wider open source movement geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download high performance spatial libraries on their computer. <!-- JM: I would delete this, since this is not really true.
+However, despite the growth of geospatial software that is *open source*, much of it is still not easy to script.
+--> Open source Geographic Information Systems (GIS) such as QGIS (see <a href="http://qgis.org/en/site/">qgis.org</a>) have greatly reduced the ‘barrier to entry’. What is more, QGIS and other GIS software packages make command-line based processing easily accessible via application programming interfaces (API), something we will expand on in Chapter 13. <!--\@ref(gis) --><!-- REF NEEDS TO BE FIXED IN FUTURE--> Nevertheless, many users still prefer the Graphical User Interface (GUI) of GIS which in turn tends to discourage reproducibility (see Table <a href="intro.html#tab:gdsl">1.1</a>). This book focuses on the Command Line Interface (CLI) and how to use R as a GIS. This enables reproducible, and ‘computational’ workflows while making the most of R’s statistical capabilities (see section <a href="intro.html#why-geocomputation-with-r">1.2</a>).</p>
+<!--
+not sure if this table is needed. I have also modified the content a bit.
+AFAIK there is no GIS field, GIS has always been a software, a method, not a field used by several disciplines. Therefore, I now compare Desktop GUI GIS with R (to avoid apple-with-pear comparisons). I explicilty say Desktop GIS GUI since there are cli-based GIS and you can use virtually all Desktop GIS via the CLI. I think, we should point out the strengths of R ((geo-)statistics, data science, machine learning), and that it is therefore, a good idea to use R for geocomputation and geographic data science, respectively. In turn, we should not say, that GIS make cli-based programming difficult. It is not harder than learning R.
+-->
+<table>
+<caption><span id="tab:gdsl">Table 1.1: </span>Differences in emphasis between software packages (Desktop Geographic Information Systems (GIS) and R).</caption>
+<thead>
+<tr class="header">
+<th align="left">Attribute</th>
+<th align="left">Desktop GIS (GUI)</th>
+<th align="left">R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Home disciplines</td>
+<td align="left">Geography</td>
+<td align="left">Computing, Statistics</td>
+</tr>
+<tr class="even">
+<td align="left">Software focus</td>
+<td align="left">Graphical User Interface</td>
+<td align="left">Command line</td>
+</tr>
+<tr class="odd">
+<td align="left">Reproducibility</td>
+<td align="left">Minimal</td>
+<td align="left">Maximal</td>
+</tr>
+</tbody>
+</table>
 
 <div class="rmdnote">
 <p>Reproducibility is a major advantage of command-line interfaces, but what does it mean in practice? We define it as follows:</p>
@@ -372,35 +405,19 @@ This may sound simple and easy to achieve (which it is if you carefully maintain
 <p>GeoComputation is about using the various different types of geodata and about developing relevant geo-tools within the overall context of a ‘scientific’ approach.</p>
 </blockquote>
 <p>This book aims to go beyond teaching methods and code: by the end of it you should be able use your geocomputational skills, to do “practical work that is beneficial or useful” <span class="citation">(Openshaw and Abrahart <a href="#ref-openshaw_geocomputation_2000">2000</a>)</span>.</p>
-<p>Our approach differs from early adopters such as Stan Openshaw in one important way, however. At the turn of the 21<sup>st</sup> Century it was unrealistic to expect readers to be able to reproduce code examples, due to barriers preventing access to the necessary hardware, software and data. Fast-forward two decades and things have progressed rapidly. Anyone with access to a laptop with ~4GB RAM can realistically expect to be able to install and run software for geocompuation on publicly accessible datasets, which are more widely available than ever before (as we’ll see in Chapter <a href="read-write.html#read-write">6</a>).<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Unlike early works in the field all the work presented in this book is reproducible using code and example data supplied alongside the book, in R packages such as <strong>spData</strong>, the installation of which is covered in Chapter <a href="spatial-class.html#spatial-class">2</a>.</p>
-<p>Reproducible geographic research is related to Geographical Data Science (GDS). This recent concept essentially combines ‘data science’ with GIS and, like geocomputation, can be defined in comparison with GIS (see Table <a href="intro.html#tab:gdsl">1.1</a>). The focus on reproducibility and a command-line interface in this book is aligned with GDS.</p>
-<table>
-<caption><span id="tab:gdsl">Table 1.1: </span>Differences in emphasis between the fields of Geographic Information Systems (GIS) and Geographic Data Science (GDS).</caption>
-<thead>
-<tr class="header">
-<th align="left">Attribute</th>
-<th align="left">GIS</th>
-<th align="left">GDS</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Home disciplines</td>
-<td align="left">Geography</td>
-<td align="left">Geography, Computing, Statistics</td>
-</tr>
-<tr class="even">
-<td align="left">Software focus</td>
-<td align="left">Graphical User Interface</td>
-<td align="left">Code</td>
-</tr>
-<tr class="odd">
-<td align="left">Reproducibility</td>
-<td align="left">Minimal</td>
-<td align="left">Maximal</td>
-</tr>
-</tbody>
-</table>
+<p>Our approach differs from early adopters such as Stan Openshaw in one important way, however. At the turn of the 21<sup>st</sup> Century it was unrealistic to expect readers to be able to reproduce code examples, due to barriers preventing access to the necessary hardware, software and data. Fast-forward two decades and things have progressed rapidly. Anyone with access to a laptop with ~4GB RAM can realistically expect to be able to install and run software for geocompuation on publicly accessible datasets, which are more widely available than ever before (as we will see in Chapter <a href="read-write.html#read-write">6</a>).<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Unlike early works in the field all the work presented in this book is reproducible using code and example data supplied alongside the book, in R packages such as <strong>spData</strong>, the installation of which is covered in Chapter <a href="spatial-class.html#spatial-class">2</a>.</p>
+<p>One should be aware of the fact that Geocomputation has quite a few close cousins including Geographic Information Science (GIScience), Geomatics, Geoinformatics, Spatial Information Science, Geoinformation Engineering <span class="citation">(Longley <a href="#ref-longley_geographic_2015">2015</a>)</span>, and of late also Geographic Data Science (GDS). All these terms share the scientific approach to study geographic data via geographic information systems, and differ mostly in their origin and major field of application, respectively. For example, GDS emphasizes the need for reproducible, automated data analysis of (big) geographic data by means of data science methods. <!-- @Robin, please rephrase if the distinguition between GDS and geocomputation is not correct --> In fact, GDS can be used as a synonym for Geocomputation with the only difference that Geocomputation has a slightly larger focus on the applied geographic analysis and GDS on creating novel techniques suitable for statistical geoprocessing. Overall, the focus on reproducibility via a command-line interface to do geographic analysis are recurring themes of this book.</p>
+<!-- 
+Just for your information (can be deleted)
+"The term geographic information science was coined in a paper by Michael Goodchild published in 1992. In it, the author argued that these questions and others like them were important, and that their systematic study constituted a science in its own right. Information science studies the
+fundamental issues arising from the creation, handling, storage, and use of information - similarly, GIScience should study the fundamental issues arising from geographic information, as a well-defined class of information in general. Other terms have much the same meaning:
+geomatics and geoinformatics, spatial information science, geoinformation engineering. All suggest a scientific approach to the fundamental issues raised by the use of GIS and related technologies, though they all have different roots and emphasize different ways of thinking about problems (specifically geographic or more generally spatial, emphasizing engineering or science, etc.)."
+Longley et al. (2005): 28
+
+"There are many close synonyms for geographic information science
+(GIScience), one of which is geocomputation."
+Longley et al. (2005): 32
+-->
 <p>Geocomputation is young, but it builds on older fields. It can be seen as a part of Geography, which has a 2000+ year history <span class="citation">(Talbert <a href="#ref-talbert_ancient_2014">2014</a>)</span>; and an extension of <em>Geographic Information Systems</em> (GIS) <span class="citation">(Neteler and Mitasova <a href="#ref-neteler_open_2008">2008</a>)</span>, which emerged in the 1960s <span class="citation">(Coppock and Rhind <a href="#ref-coppock_history_1991">1991</a>)</span>.</p>
 <p>Geography has played an important role in explaining and influencing humanity’s relationship with the natural world long before the invention of the computer, however. Alexander von Humboldt’s travels to South America in the early 1800s illustrates this role: not only did the resulting observations lay the foundations for the traditions of physical and plant geography, they also paved the way towards policies to protect the natural world <span class="citation">(Wulf <a href="#ref-wulf_invention_2015">2015</a>)</span>. This book aims to contribute to the ‘Geographic Tradition’ <span class="citation">(Livingstone <a href="#ref-livingstone_geographical_1992">1992</a>)</span> by harnessing the power of modern computers and open source software. <!-- GIS has become almost synonymous with handling spatial data on a computer, and provides a basis for excellent open source tools which can be accessed from R, as we will see in Chapter 13. --> <!-- todo - add dynamic reference to c13--></p>
 <p>The book’s links to older disciplines were reflected in suggested titles for the book: <em>Geography with R</em> and <em>R for GIS</em>. Each has advantages. The former conveys the message that it comprises much more than just spatial data: non-spatial attribute data are inevitably interwoven with geometry data, and Geography is about more than where something is on the map. The latter communicates that this is a book about using R as a GIS, to perform spatial operations on <em>geographic data</em> <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span>. However, the term GIS conveys some connotations (see Table <a href="intro.html#tab:gdsl">1.1</a>) which simply fail to communicate one of R’s greatest strengths: its console-based ability to seamlessly switch between geographic and non-geographic data processing, modeling and visualization tasks. By contrast, the term geocomputation implies reproducible and creative programming. Of course, (geocomputational) algorithms are powerful tools that can become highly complex. However, all algorithms are composed of smaller parts. By teaching you its foundations and underlying structure, we aim to empower you to create your own innovative solutions to geographic data problems.</p>
@@ -530,6 +547,9 @@ of Statistical Software http://von-tijn.nl/tijn/research/presentations/tmap_user
 </div>
 <div id="ref-openshaw_geocomputation_2000">
 <p>Openshaw, Stan, and Robert J. Abrahart, eds. 2000. <em>Geocomputation</em>. 1 edition. London ; New York: CRC Press.</p>
+</div>
+<div id="ref-longley_geographic_2015">
+<p>Longley, Paul. 2015. <em>Geographic Information Science &amp; Systems</em>. Fourth edition. Hoboken, NJ: Wiley.</p>
 </div>
 <div id="ref-talbert_ancient_2014">
 <p>Talbert, Richard J. A. 2014. <em>Ancient Perspectives: Maps and Their Place in Mesopotamia, Egypt, Greece, and Rome</em>. University of Chicago Press.</p>
