@@ -831,7 +831,7 @@ Figure 9.22: Map of New Zealand created with ggplot2.
 </div>
 <p>An advantage of <strong>ggplot2</strong> is that it has a strong user-community and many add-on packages. Good additional resources can be found in the open source <a href="https://github.com/hadley/ggplot2-book">ggplot2-book</a> and in the descriptions of the multitude of ‘<strong>gg</strong>packages’ such as <strong>ggrepel</strong> and <strong>tidygraph</strong>.</p>
 <p>Another benefit of maps based on <strong>ggplot2</strong> is that they can easily be given a level of interactivity when printed using the function <code>ggplotly()</code> from the <strong>plotly</strong> package. Try <code>plotly::ggplotly(g1)</code> for example, and compare the result with other <strong>plotly</strong> mapping functions described at <a href="https://blog.cpsievert.me/2018/03/30/visualizing-geo-spatial-data-with-sf-and-plotly/">blog.cpsievert.me</a>.</p>
-<!-- ggplot2 disadvantages including a raster support (raster -> df -> ggplot2) and geom_sf limitations (e.g. point's legend) -->
+<p>In the same time, <strong>ggplot2</strong> has a few drawbacks. The <code>geom_sf()</code> function is not always able to create a desired legend to use from the spatial data.<a href="#fn60" class="footnoteRef" id="fnref60"><sup>60</sup></a> Raster objects are also not naively supported in <strong>ggplot2</strong> and need to be converted into a data frame before plotting.</p>
 <p>We have covered mapping with <strong>sf</strong>, <strong>raster</strong> and <strong>ggplot2</strong> packages first because these packages are highly flexible, allowing for the creation of a wide range of static maps. Many other static mapping packages are more specific.</p>
 <p>Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose mapping (Table <a href="adv-map.html#tab:map-gpkg">9.1</a>).</p>
 <table>
@@ -1000,6 +1000,7 @@ Figure 9.24: Comparison of regular map (top) and non-continuous area cartogram (
 <li id="fn57"><p>See the “Color blindness simulator” options in <code>tmaptools::palette_explorer()</code>.<a href="adv-map.html#fnref57">↩</a></p></li>
 <li id="fn58"><p>A good example of such a dynamically linked visualisation is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on <a href="https://twitter.com/kyle_e_walker/status/985948444966768641">Twitter</a> and (for the source code) as a GitHub <a href="https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a">Gist</a>.<a href="adv-map.html#fnref58">↩</a></p></li>
 <li id="fn59"><p>The word ‘app’ in this context refers to ‘web application’ and should not be confused with smartphone apps, the more common meaning of the word.<a href="adv-map.html#fnref59">↩</a></p></li>
+<li id="fn60"><p>See <a href="https://github.com/tidyverse/ggplot2/issues/2037" class="uri">https://github.com/tidyverse/ggplot2/issues/2037</a>.<a href="adv-map.html#fnref60">↩</a></p></li>
 </ol>
 </div>
             </section>

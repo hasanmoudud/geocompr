@@ -301,7 +301,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve50020eb32c371758
+preserveda8a4c83b9f93363
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3158,7 +3158,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2116b9304188b25d
+preserved00806d80afc074e
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6045,7 +6045,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve4c6a7ba1473825ee
+preserve611b452127abad1a
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6661,7 +6661,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve7025c03360905d91
+preserve4534d5f5d022e29a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7363,7 +7363,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve9d1603c10c52d1b4
+preserve89aca965f72bbaf9
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7375,7 +7375,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve3f7fd59bdaa81059
+preserve0ca1d46444f1352e
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7394,7 +7394,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve600d306dc5e5151d
+preserve731e36cbd8c504a7
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7551,7 +7551,9 @@ Try `plotly::ggplotly(g1)` for example, and compare the result with other **plot
 
 
 
-<!-- ggplot2 disadvantages including a raster support (raster -> df -> ggplot2) and geom_sf limitations (e.g. point's legend) -->
+In the same time, **ggplot2** has a few drawbacks.
+The `geom_sf()` function is not always able to create a desired legend to use from the spatial data ^[See https://github.com/tidyverse/ggplot2/issues/2037.].
+Raster objects are also not naively supported in **ggplot2** and need to be converted into a data frame before plotting.
 
 We have covered mapping with **sf**, **raster** and **ggplot2** packages first because these packages are highly flexible, allowing for the creation of a wide range of static maps.
 Many other static mapping packages are more specific.
