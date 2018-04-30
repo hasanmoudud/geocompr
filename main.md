@@ -169,11 +169,10 @@ Thanks to FOSS4G and the wider open source movement geospatial analysis is no lo
 However, despite the growth of geospatial software that is *open source*, much of it is still not easy to script.
 -->
 Open source Geographic Information Systems (GIS) such as QGIS (see [qgis.org](http://qgis.org/en/site/)) have greatly reduced the 'barrier to entry'.
-What is more, QGIS and other GIS software packages make command-line based processing easily accessible via application programming interfaces (API), something we will expand on in Chapter 13.
-<!--\@ref(gis) --><!-- REF NEEDS TO BE FIXED IN FUTURE-->
-Nevertheless, many users still prefer the Graphical User Interface (GUI) of GIS which in turn tends to discourage reproducibility (see Table \@ref(tab:gdsl)).
-This book focuses on the Command Line Interface (CLI) and how to use R as a GIS.
-This enables reproducible, and 'computational' workflows while making the most of R's statistical capabilities (see section \@ref(why-geocomputation-with-r)).
+Furthermore many GIS programs provide command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see \@ref(gis)) and console windows (such as the [Python Console](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html) in QGIS) to supplement the main graphical user interface (GUI).
+Still, the emphasis of many GIS programs and teaching materials is on the GUI, which can have the unintended consequence of discouraging reproducibility (see Table \@ref(tab:gdsl)).
+Motivated by the importance of reproducibility for scientific research and other advantages of typing commands rather than pointing and clicking, this book focuses on R's Command Line Interface (CLI) for GIS operations.
+The reproducible and 'computational' workflows enabled by R's CLI can also help unleash its statistical capabilities on geographic data (see section \@ref(why-geocomputation-with-r)).
 
 <!--
 not sure if this table is needed. I have also modified the content a bit.
@@ -221,12 +220,10 @@ A laptop with this specification or above can be acquired second-hand for ~$100 
 ]
 Unlike early works in the field all the work presented in this book is reproducible using code and example data supplied alongside the book, in R packages such as **spData**, the installation of which is covered in Chapter \@ref(spatial-class).
 
-One should be aware of the fact that Geocomputation has quite a few close cousins including Geographic Information Science (GIScience), Geomatics, Geoinformatics, Spatial Information Science, Geoinformation Engineering [@longley_geographic_2015], and of late also Geographic Data Science (GDS).
-All these terms share the scientific approach to study geographic data via geographic information systems, and differ mostly in their origin and major field of application, respectively.
-For example, GDS emphasizes the need for reproducible, automated data analysis of (big) geographic data by means of data science methods.
-<!-- @Robin, please rephrase if the distinguition between GDS and geocomputation is not correct --> 
-In fact, GDS can be used as a synonym for Geocomputation with the only difference that Geocomputation has a slightly larger focus on the applied geographic analysis and GDS on creating novel techniques suitable for statistical geoprocessing.
-Overall, the focus on reproducibility via a command-line interface to do geographic analysis are recurring themes of this book.
+Geocomputation is closely related to other terms including Geographic Information Science (GIScience), Geomatics, Geoinformatics, Spatial Information Science, Geoinformation Engineering [@longley_geographic_2015], and the fledgling Geographic Data Science (GDS).
+Each term shares an emphasis on emphasising a scientific (implying reproducible and falsifiable) approach building on GIS software, although their origins and main fields of application differ.
+GDS, for example, emphasizes 'data science' skills and large datasets, and can be used as a synonym for Geocomputation.
+A distinguishing feature of Geocomputation, as advocated in this book, is its focus on applied geographic analysis and the application and development of new methods.
 
 <!-- 
 Just for your information (can be deleted)
@@ -304,7 +301,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebc744fc64f1a5a46
+preserve50020eb32c371758
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3161,7 +3158,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve57be9cbd2066f669
+preserve2116b9304188b25d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6048,7 +6045,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserved0b46ac910217115
+preserve4c6a7ba1473825ee
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6664,7 +6661,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve499512f470f3d1c2
+preserve7025c03360905d91
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7366,7 +7363,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve67ea0731a4a908a8
+preserve9d1603c10c52d1b4
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7378,7 +7375,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve917ede0e25decf0a
+preserve3f7fd59bdaa81059
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7397,7 +7394,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserved19b2db8acd2d2f9
+preserve600d306dc5e5151d
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
