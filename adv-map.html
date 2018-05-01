@@ -746,8 +746,8 @@ Figure 9.18: Illustration of mapview in action.
 </p>
 </div>
 <p><strong>mapview</strong> has a concise syntax yet is powerful. It offers advanced controls including the ability to ‘burst’ datasets into multiple layers and the addition of multiple layers with <code>+</code> followed by the name of a geographic object. For further information on <strong>mapview</strong> see the package’s website at <a href="https://r-spatial.github.io/mapview/articles/">r-spatial.github.io/mapview/</a>.</p>
-<!-- leaflet -->
-<!-- leaflet plugins -->
+<p>Another approach to web-mapping is provided by the <strong>googleway</strong> package. It’s <code>google_map()</code> function provides an interactive map that is flexible and extensible. The command <code>google_map(key = key) %&gt;% add_polygons(st_transform(nz, 4326))</code>, for example, plots an interactive map of New Zealand in the viewing console (assuming you have set-up a Google API key and saved it as <code>key</code>). Many other functions are provided by the package, providing an R interface to a wide range of mapping services including routing, traffic visualiztion and geocoding (see the <a href="https://cran.r-project.org/web/packages/googleway/vignettes/googleway-vignette.html"><code>googleway-vignette</code></a> for details).</p>
+<p><strong>tmap</strong> and</p>
 </div>
 <div id="mapping-applications" class="section level2">
 <h2><span class="header-section-number">9.5</span> Mapping applications</h2>

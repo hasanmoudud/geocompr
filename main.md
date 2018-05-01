@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2c4c5de460a1b9f7
+preserve6e7f18128d023361
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve766b5e48a5557595
+preservef1c83678b58b5a73
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservefc99e4d5189718ed
+preserve70dcfd11b993350b
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve6d64b48aaa8d7f65
+preserveb4262542bef19f9d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7351,7 +7351,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preservee9c1d4ff0237219b
+preserveb60f97135e6ecb06
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7363,7 +7363,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preservece332b5d53e2e109
+preserve4ddb82ea7c9c30d0
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7381,7 +7381,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveebb166e464aa63ad
+preserveb38359af14a18706
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7389,8 +7389,12 @@ preserveebb166e464aa63ad
 It offers advanced controls including the ability to 'burst' datasets into multiple layers and the addition of multiple layers with `+` followed by the name of a geographic object.
 For further information on **mapview** see the package's website at [r-spatial.github.io/mapview/](https://r-spatial.github.io/mapview/articles/).
 
-<!-- leaflet -->
-<!-- leaflet plugins -->
+Another approach to web-mapping is provided by the **googleway** package.
+It's `google_map()` function provides an interactive map that is flexible and extensible.
+The command `google_map(key = key) %>% add_polygons(st_transform(nz, 4326))`, for example, plots an interactive map of New Zealand in the viewing console (assuming you have set-up a Google API key and saved it as `key`).
+Many other functions are provided by the package, providing an R interface to a wide range of mapping services including routing, traffic visualiztion and geocoding (see the [`googleway-vignette`](https://cran.r-project.org/web/packages/googleway/vignettes/googleway-vignette.html) for details).
+
+**tmap** and 
 
 ## Mapping applications
 
