@@ -622,7 +622,7 @@ Figure 9.13: Faceted map showing the top 30 largest ‘urban agglomerations’ f
 <div id="inset-maps" class="section level3">
 <h3><span class="header-section-number">9.2.7</span> Inset maps</h3>
 <p>An inset map is a smaller map rendered within or next to the main map. It could serve many different purposes, including providing a context (Figure <a href="adv-map.html#fig:insetmap1">9.14</a>) or bringing some non-contiguous regions closer to ease their comparison (Figure <a href="adv-map.html#fig:insetmap2">9.15</a>). They could be also used to focus on a smaller area in more detail or to cover the same area as the map but representing a different topic.</p>
-<p>In the example below, we create a map of the central part of the New Zealand’s Southern Alps. Our inset map will show where the main map is in relation to the whole New Zeleand. The first step is to define the area of interest, which can be done by creating a new spatial object, <code>nz_region</code>. <!--# mapview::mapview(nz_height, native.crs = TRUE) or mapedit??--></p>
+<p>In the example below, we create a map of the central part of the New Zealand’s Southern Alps. Our inset map will show where the main map is in relation to the whole New Zealand. The first step is to define the area of interest, which can be done by creating a new spatial object, <code>nz_region</code>. <!--# mapview::mapview(nz_height, native.crs = TRUE) or mapedit??--></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nz_region =<span class="st"> </span><span class="kw">st_bbox</span>(<span class="kw">c</span>(<span class="dt">xmin =</span> <span class="dv">1340000</span>, <span class="dt">xmax =</span> <span class="dv">1450000</span>, <span class="dt">ymin =</span> <span class="dv">5130000</span>, <span class="dt">ymax =</span> <span class="dv">5210000</span>)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">st_as_sfc</span>() %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">st_set_crs</span>(<span class="kw">st_crs</span>(nz_height))</code></pre></div>
@@ -631,7 +631,7 @@ Figure 9.13: Faceted map showing the top 30 largest ‘urban agglomerations’ f
 <span class="st">  </span><span class="kw">tm_raster</span>(<span class="dt">style =</span> <span class="st">&quot;cont&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;-Spectral&quot;</span>,
             <span class="dt">auto.palette.mapping =</span> <span class="ot">FALSE</span>, <span class="dt">legend.show =</span> <span class="ot">FALSE</span>) +
 <span class="st">  </span><span class="kw">tm_shape</span>(nz_height) +
-<span class="st">  </span><span class="kw">tm_symbols</span>(<span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="fl">0.2</span>) +
+<span class="st">  </span><span class="kw">tm_symbols</span>(<span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) +
 <span class="st">  </span><span class="kw">tm_scale_bar</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</code></pre></div>
 <p>The third step consists of the inset map creation. It gives a context and helps to locate the area of interest. Importantly, this map needs to clearly indicate the location of the main map, for example by stating its borders.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nz_map =<span class="st"> </span><span class="kw">tm_shape</span>(nz) +
@@ -645,9 +645,9 @@ Figure 9.13: Faceted map showing the top 30 largest ‘urban agglomerations’ f
 nz_height_map
 <span class="kw">print</span>(nz_map, <span class="dt">vp =</span> grid::<span class="kw">viewport</span>(<span class="fl">0.8</span>, <span class="fl">0.27</span>, <span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">height =</span> <span class="fl">0.5</span>))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:insetmap1"></span>
-<img src="figures/insetmap1-1.png" alt="Inset map showing the central part of the Southern Alps in New Zealand." width="576" />
+<img src="figures/insetmap1-1.png" alt="Inset map providing a context - location of the central part of the Southern Alps in New Zealand." width="576" />
 <p class="caption">
-Figure 9.14: Inset map showing the central part of the Southern Alps in New Zealand.
+Figure 9.14: Inset map providing a context - location of the central part of the Southern Alps in New Zealand.
 </p>
 </div>
 <p>Inset map can be save to file either by using a graphic device (see section <a href="read-write.html#visual-outputs">6.6</a>) or the <code>tmap_save()</code> function and its arguments - <code>insets_tm</code> and <code>insets_vp</code>.</p>

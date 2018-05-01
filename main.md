@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7c33e91a9589e011
+preserve2e714579fddd1645
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef022451485fc929b
+preserveb31f9d8a06288af1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservea1a36e403a93bed3
+preservea60a205edac14f73
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve3d59b38b00bed048
+preserve259bf33619a846c1
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7161,7 +7161,7 @@ It could serve many different purposes, including providing a context (Figure \@
 They could be also used to focus on a smaller area in more detail or to cover the same area as the map but representing a different topic.
 
 In the example below, we create a map of the central part of the New Zealand's Southern Alps.
-Our inset map will show where the main map is in relation to the whole New Zeleand.
+Our inset map will show where the main map is in relation to the whole New Zealand.
 The first step is to define the area of interest, which can be done by creating a new spatial object, `nz_region`.
 <!--# mapview::mapview(nz_height, native.crs = TRUE) or mapedit??-->
 
@@ -7181,7 +7181,7 @@ nz_height_map = tm_shape(nz_elev, bbox = tmaptools::bb(nz_region)) +
   tm_raster(style = "cont", palette = "-Spectral",
             auto.palette.mapping = FALSE, legend.show = FALSE) +
   tm_shape(nz_height) +
-  tm_symbols(shape = 2, col = "red", size = 0.2) +
+  tm_symbols(shape = 2, col = "red", size = 1) +
   tm_scale_bar(position = c("left", "bottom"))
 ```
 
@@ -7210,8 +7210,8 @@ print(nz_map, vp = grid::viewport(0.8, 0.27, width = 0.5, height = 0.5))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/insetmap1-1.png" alt="Inset map showing the central part of the Southern Alps in New Zealand." width="576" />
-<p class="caption">(\#fig:insetmap1)Inset map showing the central part of the Southern Alps in New Zealand.</p>
+<img src="figures/insetmap1-1.png" alt="Inset map providing a context - location of the central part of the Southern Alps in New Zealand." width="576" />
+<p class="caption">(\#fig:insetmap1)Inset map providing a context - location of the central part of the Southern Alps in New Zealand.</p>
 </div>
 
 Inset map can be save to file either by using a graphic device (see section \@ref(visual-outputs)) or the `tmap_save()` function and its arguments - `insets_tm` and `insets_vp`.
@@ -7343,7 +7343,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve9a7a96cff58aa3e0
+preservecbbbcd38ddeb0ccb
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7355,7 +7355,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preservecaf137eff38b6424
+preserve80bec1c2bdf25a1e
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7373,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve62f2edb98ff0192c
+preserveec454fda3336f780
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
