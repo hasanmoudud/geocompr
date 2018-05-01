@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6e7f18128d023361
+preserve7c33e91a9589e011
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef1c83678b58b5a73
+preservef022451485fc929b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve70dcfd11b993350b
+preservea1a36e403a93bed3
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveb4262542bef19f9d
+preserve3d59b38b00bed048
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7157,19 +7157,11 @@ In addition to their utility for showing changing spatial relationships, faceted
 ### Inset maps
 
 An inset map is a smaller map rendered within or next to the main map. 
-<!-- I would say inset maps are usually used for the opposite. This is we have a specific area, say a mountain somewhere in Peru, and the inset map shows were in Peru the mountain is located, see Figure 3 in https://journal.r-project.org/archive/2017/RJ-2017-067/RJ-2017-067.pdf
-and
-http://wiki.gis.com/wiki/index.php/Inset_Map
-So maybe it would be an idea to focus on the NZ Alps raster map as the main map and use NZ within the inset map.
-Maybe this section is also a bit too long. How about shortening it, and maybe use the US example as a challenge in the exercise section.
--->
-Inset maps usually cover an area with densely located phenomena that cannot be clearly visible at the original map scale.
-They could be used to focus on a smaller area in more detail (Figure \@ref(fig:insetmap1)) or to bring some non-contiguous regions closer to ease their comparison (Figure \@ref(fig:insetmap2)).
-<!-- find the best distribution of insets 
-In this section we focus on a creation of inset maps, so to learn about map styling go to section \@ref(aesthetics).
--->
+It could serve many different purposes, including providing a context (Figure \@ref(fig:insetmap1)) or bringing some non-contiguous regions closer to ease their comparison (Figure \@ref(fig:insetmap2)).
+They could be also used to focus on a smaller area in more detail or to cover the same area as the map but representing a different topic.
 
-In the example below, we create an inset map of the central part of the New Zealand's Southern Alps.
+In the example below, we create a map of the central part of the New Zealand's Southern Alps.
+Our inset map will show where the main map is in relation to the whole New Zeleand.
 The first step is to define the area of interest, which can be done by creating a new spatial object, `nz_region`.
 <!--# mapview::mapview(nz_height, native.crs = TRUE) or mapedit??-->
 
@@ -7180,22 +7172,7 @@ nz_region = st_bbox(c(xmin = 1340000, xmax = 1450000, ymin = 5130000, ymax = 521
   st_set_crs(st_crs(nz_height))
 ```
 
-In the second step, we create a base map showing a lager area. 
-It gives a context and helps to locate the area of interest. 
-Importantly, this map needs to clearly indicate the location of the inset map, for example by stating its borders.
-
-
-```r
-nz_map = tm_shape(nz) +
-  tm_polygons() +
-  tm_shape(nz_height) +
-  tm_symbols(shape = 2, col = "red", size = 0.1) + 
-  tm_shape(nz_region) +
-  tm_borders(lwd = 3) + 
-  tm_layout(frame = FALSE)
-```
-
-The third step consists of the inset map creation. 
+In the second step, we create a base map showing the New Zealand's Southern Alps area. 
 This is a place where the most important message is stated. 
 
 
@@ -7204,7 +7181,22 @@ nz_height_map = tm_shape(nz_elev, bbox = tmaptools::bb(nz_region)) +
   tm_raster(style = "cont", palette = "-Spectral",
             auto.palette.mapping = FALSE, legend.show = FALSE) +
   tm_shape(nz_height) +
-  tm_symbols(shape = 2, col = "red", size = 0.1)
+  tm_symbols(shape = 2, col = "red", size = 0.2) +
+  tm_scale_bar(position = c("left", "bottom"))
+```
+
+The third step consists of the inset map creation. 
+It gives a context and helps to locate the area of interest. 
+Importantly, this map needs to clearly indicate the location of the main map, for example by stating its borders.
+
+
+```r
+nz_map = tm_shape(nz) +
+  tm_polygons() +
+  tm_shape(nz_height) +
+  tm_symbols(shape = 2, col = "red", size = 0.1) + 
+  tm_shape(nz_region) +
+  tm_borders(lwd = 3) 
 ```
 
 Finally, we combine the two maps.
@@ -7213,8 +7205,8 @@ A viewport from the **grid** package can be used by stating a center location (`
 
 ```r
 library(grid)
-nz_map
-print(nz_height_map, vp = grid::viewport(0.3, 0.7, width = 0.4, height = 0.4))
+nz_height_map
+print(nz_map, vp = grid::viewport(0.8, 0.27, width = 0.5, height = 0.5))
 ```
 
 <div class="figure" style="text-align: center">
@@ -7351,7 +7343,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserveb60f97135e6ecb06
+preserve9a7a96cff58aa3e0
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7363,7 +7355,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve4ddb82ea7c9c30d0
+preservecaf137eff38b6424
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7381,7 +7373,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveb38359af14a18706
+preserve62f2edb98ff0192c
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
