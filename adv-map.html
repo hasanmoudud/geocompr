@@ -287,7 +287,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="adv-map.html"><a href="adv-map.html#animated-maps"><i class="fa fa-check"></i><b>9.3</b> Animated maps</a></li>
 <li class="chapter" data-level="9.4" data-path="adv-map.html"><a href="adv-map.html#interactive-maps"><i class="fa fa-check"></i><b>9.4</b> Interactive maps</a></li>
-<li class="chapter" data-level="9.5" data-path="adv-map.html"><a href="adv-map.html#web-mapping-applications-with-shiny"><i class="fa fa-check"></i><b>9.5</b> Web mapping applications with shiny</a></li>
+<li class="chapter" data-level="9.5" data-path="adv-map.html"><a href="adv-map.html#mapping-applications"><i class="fa fa-check"></i><b>9.5</b> Mapping applications</a></li>
 <li class="chapter" data-level="9.6" data-path="adv-map.html"><a href="adv-map.html#other-mapping-packages"><i class="fa fa-check"></i><b>9.6</b> Other mapping packages</a></li>
 <li class="chapter" data-level="9.7" data-path="adv-map.html"><a href="adv-map.html#exercises-6"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
 </ul></li>
@@ -719,7 +719,7 @@ Figure 9.17: Animated map showing population growth and state formation and boun
 </div>
 <div id="interactive-maps" class="section level2">
 <h2><span class="header-section-number">9.4</span> Interactive maps</h2>
-<p>If static and animated maps breathe life into geographic datasets, interactive maps allow them to take-on a life of their own. Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.<a href="#fn58" class="footnoteRef" id="fnref58"><sup>58</sup></a></p>
+<p>Static and animated maps can breathe life into geographic datasets. Interactive maps can take reader participation to a whole new level, providing results with a life of their own that can be explored in myriad ways. Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.<a href="#fn58" class="footnoteRef" id="fnref58"><sup>58</sup></a></p>
 <p>The most important type of interactivity, however, is the display of geographic data on an interactive or ‘slippy’ web maps. The release of the <strong>leaflet</strong> package in 2015 revolutionized interactive web map creation from within R and a number of packages have built on these foundations adding new features (e.g. <strong>leaflet.extras</strong>) and making the creation of web maps as simple as creating static maps (e.g. <strong>mapview</strong> and <strong>tmap</strong>). This section will illustrate each of these web-mapping packages in reverse order, starting with <strong>tmap</strong> (the syntax of which we have already learned) and then progressing to more verbose <strong>leaflet</strong> code (which provides low level control over interactive maps) via the dedicated high-level web mapping package <strong>mapview</strong>.</p>
 <p>A unique feature of <strong>tmap</strong> mentioned in section <a href="adv-map.html#static-maps">9.2</a> is its ability to create static and interactive maps using the same code. Maps can be viewed interactively at any point by switching to view mode, using the command <code>tmap_mode(&quot;view&quot;)</code>. This is demonstrated in the code below, which creates an interactive map of New Zealand based on the <code>tmap</code> object <code>map_nza</code>, created in section <a href="adv-map.html#map-obj">9.2.2</a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)
@@ -748,8 +748,8 @@ Figure 9.18: Illustration of mapview in action.
 <!-- leaflet -->
 <!-- leaflet plugins -->
 </div>
-<div id="web-mapping-applications-with-shiny" class="section level2">
-<h2><span class="header-section-number">9.5</span> Web mapping applications with shiny</h2>
+<div id="mapping-applications" class="section level2">
+<h2><span class="header-section-number">9.5</span> Mapping applications</h2>
 <p>The interactive web maps demonstrated in section <a href="adv-map.html#interactive-maps">9.4</a> can go far. Careful selection of layers to display, base-maps and pop-ups can be used to communicate the main results of many projects involving geocomputation. But the web mapping approach to interactivity has limitations:</p>
 <ul>
 <li>Although the map is interactive in terms of panning, zooming and clicking, the code is static, meaning the user interface is fixed.</li>

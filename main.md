@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve315757548cbec305
+preserve9a83bbb8f0eff9bb
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb98e4c485454e1b0
+preserve79ece33acb98cded
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve6ec627f5470b01bf
+preserve8d9d4aea1d9921aa
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservea7f9b34186310015
+preserve5cfc800e3a191bfd
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7330,7 +7330,8 @@ Code to reproduce this map can be found in the script `09-usboundaries.R`.
 
 ## Interactive maps
 
-If static and animated maps breathe life into geographic datasets, interactive maps allow them to take-on a life of their own.
+Static and animated maps can breathe life into geographic datasets.
+Interactive maps can take reader participation to a whole new level, providing results with a life of their own that can be explored in myriad ways.
 Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.^[
 A good example of such a dynamically linked visualisation is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on [Twitter](https://twitter.com/kyle_e_walker/status/985948444966768641) and (for the source code) as a GitHub [Gist](https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a).
 ]
@@ -7350,7 +7351,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve2b1a2bb0f0454f97
+preserve945183d8b04dca46
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7362,7 +7363,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve3e5d64c0fa38363d
+preserveafa8340b4f559964
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7381,14 +7382,14 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve5efd85091c562c5b
+preserve36a3bbc28d081f11
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
 <!-- leaflet -->
 <!-- leaflet plugins -->
 
-## Web mapping applications with shiny
+## Mapping applications
 
 The interactive web maps demonstrated in section \@ref(interactive-maps) can go far.
 Careful selection of layers to display, base-maps and pop-ups can be used to communicate the main results of many projects involving geocomputation.
