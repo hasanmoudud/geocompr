@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5f6452073f258a24
+preserve5002d244f217ca82
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -389,15 +389,15 @@ See the [r-spatial](https://github.com/r-spatial/) organisation and conversation
 ] and a growing number of actively developed packages which are designed to work in harmony with **sf** (Table \@ref(tab:revdep)). 
 
 
-Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-04-23 there are 71 packages which import sf.
+Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-05-01 there are 71 packages which import sf.
 
 package    Downloads
 --------  ----------
-plotly          1782
-raster          1563
-spData          1152
-spdep           1029
-leaflet          792
+plotly          2118
+raster          1986
+spData          1498
+spdep           1225
+leaflet         1117
 
 ## The history of R-spatial
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve341cd999a626bfa4
+preserve80989905ff8a88af
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservee1dc75e08d67f42c
+preserve238979145d4e4772
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve701b75fc6afcf5f6
+preserveb0f2cf6d3d6c10d3
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7344,7 +7344,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve832390cdfeceb94f
+preserve8a34155f8db73094
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7356,7 +7356,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preservecea6623b090f2b53
+preserve5c7a5cb55631af3f
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7374,7 +7374,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve3e6e635d3890ff79
+preserve0d1ac71c4b5ab1e3
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7387,7 +7387,8 @@ It's `google_map()` function provides an interactive map that is flexible and ex
 The command `google_map(key = key) %>% add_polygons(st_transform(nz, 4326))`, for example, plots an interactive map of New Zealand in the viewing console (assuming you have set-up a Google API key and saved it as `key`).
 Many other functions are provided by the package, providing an R interface to a wide range of mapping services including routing, traffic visualiztion and geocoding (see the [`googleway-vignette`](https://cran.r-project.org/web/packages/googleway/vignettes/googleway-vignette.html) for details).
 
-**tmap** and 
+Last but not least is **leaflet** which is probably the most mature interactive mapping package in R.
+**leaflet** and packages that extend it such as **leaflet.extras** offering a wide range of low-level controls that closely match the Jav
 
 ## Mapping applications
 
