@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-01'
+date: '2018-05-02'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -39,7 +39,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-01 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-02 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5364f2686892f82b
+preserve79e37e1204daf700
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve03d15f65e0753021
+preserve0f7705742e30e3b1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve45e13699c8907b84
+preserved3370a1a333d2910
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve7ce994c7be2df6dc
+preserve0fec69571e501f25
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7344,7 +7344,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve1be6be898e13147e
+preserve72aaf6c9674288f0
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7356,7 +7356,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve2a63c31f45bbf488
+preserve6f52118c77a57c8c
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7374,7 +7374,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservec26c97ca51762f1e
+preserveffa60536c4d31017
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7732,18 +7732,21 @@ Professional and advanced technical skills will certainly enhance your career pr
 On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous.
 For instance, think of:
 
-- The GUI. The really user-friendly graphical interface spares the user from programming.
+- The GUI.
+The really user-friendly graphical interface spares the user from programming.
 Though you probably wouldn't read the book if this were your main objective.
-- Digitizing and all related tools (trace, snap, topological rules, etc.). Note that there is also the new **mapedit** package but its intention is to allow the quick editing of a few spatial features, and not professional, large-scale cartographic digitizing.
-- Georeferencing
-- Stereoscopic mapping (e.g., LiDAR and structure from motion)
+- Digitizing and all related tools (trace, snap, topological rules, etc.). 
+Note that there is also the new **mapedit** package but its intention is to allow the quick editing of a few spatial features, and not professional, large-scale cartographic digitizing.
+- Georeferencing.
+- Stereoscopic mapping (e.g., LiDAR and structure from motion).
 - The built-in geodatabase management system often integrated in Desktop GIS (ArcGIS, GRASS GIS) and all related advantages such as object relational modeling, topology, fast (spatial) querying, etc.
 - Map production, in case you only want to create a beautiful map once. If you have to produce it over and over again, then maybe the CLI approach is better.
-- Zooming and dragging on WMS (though this is also possible with **mapview** and **leaflet**)
+- Zooming and dragging on WMS (though this is also possible with **mapview** and **leaflet**).
 <!-- any other points that we have missed so far? -->
 - ...
 
-This general overview already points out the differences between R's CLI and desktop GIS. However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
+This general overview already points out the differences between R's CLI and desktop GIS. 
+However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
 The good news is that 'GIS bridges' enable the access to these with the comfort of the R command line.^[
 The term 'bridge' was probably first used in the R-spatial world for the coupling of R with GRASS [@neteler_open_2008].
 Roger Bivand elaborates on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school.
@@ -7768,7 +7771,8 @@ By the end of the chapter you should have a working knowledge of the functionali
 As mentioned in chapter \@ref(intro), doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science.
 
 ## (R)QGIS
-QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing:_2015]. Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
+QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing:_2015]. 
+Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
 
 
 Table: (\#tab:gis-comp)Comparison between three open-source GIS. Hybrid refers to the support of vector and raster operations.
@@ -7800,7 +7804,8 @@ open_app()
 Leaving the `path`-argument of `set_env` unspecified will search the computer for a QGIS installation.
 Hence, it is faster to specify explicitly the path to your QGIS installation.
 Subsequently, `open_app` sets all paths necessary to run QGIS from within R, and finally creates a so-called QGIS custom application [http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications](http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications).
-We are now ready for some QGIS geoprocessing from within R! First of all, we load some data from the **spData**-package, namely the boroughs of London (`lnd`) and cycle hire points in London (`cycle_hire`).
+We are now ready for some QGIS geoprocessing from within R! 
+First of all, we load some data from the **spData**-package, namely the boroughs of London (`lnd`) and cycle hire points in London (`cycle_hire`).
 
 
 ```r
@@ -7808,7 +7813,8 @@ library(spData)
 ```
 
 In chapter \@ref(spatial-class), we already learned how to do a spatial overlay using the **sf**-package.
-Of course, any GIS is also able to perform spatial overlays. Here, we would like to know how many cycle points we can find per borough.
+Of course, any GIS is also able to perform spatial overlays. 
+Here, we would like to know how many cycle points we can find per borough.
 First of all, we need to come up with the name of the function in QGIS. `find_algorithms` lets you search all QGIS geoalgorithms with the help of regular expressions.
 Here, we assume that the short description of the function contains first the word "point" and secondly somewhere later also the word "poly".
 If you have no clue at all what to look for you can leave the `search_term`-argument empty which will return a list of all available QGIS geoalgorithms.
@@ -7838,13 +7844,15 @@ Finally, we can let QGIS do the work.
 Note that the workhorse function `run_qgis` accepts R named arguments, i.e., you can specify the parameter names as returned by `get_usage` as you would do in any other regular R function.
 Note also that `run_qgis` accepts spatial objects residing in R's global environment as input (here: `lnd` and `cycle_hire`). 
 But of course, you could also specify paths to shapefiles stored on disk.
+<!-- only shapefiles or more general - spatial vectors? -->
 Setting the `load_output` to `TRUE` automatically loads the QGIS output into R.
 Since we only indicated the name of the output ("cycle.shp"), `run_qgis` saves the output to a temporary folder as returned by `tempdir()`, and loads it into R as an **sf**-object.
 
 
 ```r
-bike_points = run_qgis(alg, POLYGONS = lnd, POINTS = cycle_hire, FIELD = "no_bikes", 
-                       OUTPUT = "cycle.shp", load_output = TRUE)
+bike_points = run_qgis(alg, POLYGONS = lnd, POINTS = cycle_hire, 
+                       FIELD = "no_bikes", OUTPUT = "cycle.shp",
+                       load_output = TRUE)
 summary(bike_points$no_bikes)
 sum(bike_points$no_bikes > 0)
 ```
@@ -7869,7 +7877,7 @@ Other notes:
 `run_qgis` prints these paths to the console after successfully running the QGIS engine.
 - If the output consists of multiple files and you have set `load_output` to `TRUE`, `run_qgis` will return a list with each element corresponding to one output file.
 
-To learn more about **RQGIS** please refer to the (hopefully) forthcoming paper (cite). 
+To learn more about **RQGIS** please refer to @muenchow_rqgis:_2017. 
 
 ## (R)SAGA
 
@@ -7879,13 +7887,14 @@ In addition, there is also a command line interface (saga_cmd.exe) to execute SA
 
 Though SAGA is a hybrid GIS, its main focus has been on raster processing, and here particularly on digital elevation models (soil properties, terrain attributes, climate parameters). 
 Hence, SAGA is especially good at the fast processing of large (high-resolution) rasters datasets [@conrad_system_2015]. 
-Therefore, we will introduce **RSAGA** with a raster and use case from @muenchow_geomorphic_2012.
+Therefore, we will introduce **RSAGA** with a raster use case from @muenchow_geomorphic_2012.
 Specifically, we would like to compute the SAGA wetness index from a digital elevation model.
 First of all, we need to make sure that **RSAGA** will find SAGA on the computer when called.
 For this, all **RSAGA** functions using SAGA in the background make use of `rsaga.env()`. 
-Usually, `rsaga.env()` will detect SAGA automatically by searching several likely directories (see its help for more information). However, we have 'hidden' SAGA in the OSGEO4W-installation, a location `rsaga.env()` does not search automatically. 
+Usually, `rsaga.env()` will detect SAGA automatically by searching several likely directories (see its help for more information).
+However, it is possible to have 'hidden' SAGA in the OSGEO4W-installation, a location `rsaga.env()` does not search automatically. 
 `linkSAGA` searches your computer for a valid SAGA installation. 
-If it finds one, it adds the newest version to the PATH environment variable thereby making sure that `rsaga.env` runs successfully.
+If it finds one, it adds the newest version to the PATH environment variable thereby making sure that `rsaga.env()` runs successfully.
 
 
 ```r
@@ -7912,10 +7921,9 @@ To find out which libraries are available, run:
 
 
 ```r
-tail(rsaga.get.libraries(), 10)
+rsaga.get.libraries()
 ```
 
-Instead of presenting all available libraries we have shown only the last ten. 
 We choose the library `ta_hydrology` (`ta` is the abbreviation for terrain analysis).
 Subsequently, we can access the available modules of a specific library (here: `ta_hydrology`) as follows:
 
@@ -7942,7 +7950,7 @@ rsaga.geoprocessor(lib = "ta_hydrology", module = "SAGA Wetness Index",
                    param = params)
 ```
 
-To facilitate the access to the SAGA interface, RSAGA frequently provides user-friendly wrapper-functions with meaningful default values (see RSAGA documentation for examples, e.g., `?rsaga.wetness.index`).
+To facilitate the access to the SAGA interface, **RSAGA** frequently provides user-friendly wrapper-functions with meaningful default values (see **RSAGA** documentation for examples, e.g., `?rsaga.wetness.index`).
 So the function call for calculating the 'SAGA Wetness Index' becomes as simple as:
 
 
@@ -7951,7 +7959,8 @@ rsaga.wetness.index(in.dem = file.path(tempdir(), "dem"),
                     out.wetness.index = file.path(tempdir(), "twi"))
 ```
 
-Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-twi)). To load and plot the SAGA output file, we use the **raster** package. 
+Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-twi)). 
+To load and plot the SAGA output file, we use the **raster** package. 
 
 <div class="figure" style="text-align: center">
 <img src="https://user-images.githubusercontent.com/1825120/39205055-8e68a3ce-47f1-11e8-8874-0142d7f591e2.png" alt="SAGA wetness index of Mount Mongón, Peru."  />
@@ -7959,37 +7968,32 @@ Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-t
 </div>
 
 
-
 ```r
 library(raster)
 twi = raster::raster(file.path(tempdir(), "twi.sdat"))
 plot(twi, col = RColorBrewer::brewer.pal(n = 9, name = "Blues"))
-# or using mapview
-# proj4string(twi) = paste0("+proj=utm +zone=17 +south +ellps=WGS84 +towgs84=", 
-#                           "0,0,0,0,0,0,0 +units=m +no_defs")
-# mapview(twi, col.regions = RColorBrewer::brewer.pal(n = 9, "Blues"), 
-#         at = seq(cellStats(twi, "min") - 0.01, cellStats(twi, "max") + 0.01, 
-#                  length.out = 9))
+
 ```
 
-You can find a much more extended version of the here presented example in the RSAGA vignette `vignette("RSAGA-landslides")`.
-This example includes statistical geocomputing, i.e., it uses a GIS to derive terrain attributes as predictors for a non-linear Generalized Linear Model (GAM) to predict spatially landslide susceptibility [@muenchow_geomorphic_2012].
+
+You can find a much more extended version of the presented example in the RSAGA vignette `vignette("RSAGA-landslides")`.
+This example includes statistical geocomputing, i.e., it uses a GIS to derive terrain attributes as predictors for a non-linear Generalized Additive Model (GAM) to predict spatially landslide susceptibility [@muenchow_geomorphic_2012].
 The term statistical geocomputation emphasizes the strength of combining R's data science power with the geoprocessing power of a GIS which is at the very heart of building a bridge from R to GIS.
 
 ## GRASS through **rgrass7**
 
-The U.S. Army - Construction Engineering Research Laboratory (USA-CERL) created the core of the hybrid raster-vector Geographical Resources Analysis Support System (GRASS) [Table \@ref(tab:gis-comp); @neteler_open_2008] from 1982 to 1995. 
+The U.S. Army - Construction Engineering Research Laboratory (USA-CERL) created the core of the Geographical Resources Analysis Support System (GRASS) [Table \@ref(tab:gis-comp); @neteler_open_2008] from 1982 to 1995. 
 Academia continued this work since 1997.
-Similar to SAGA, GRASS focussed on raster processing in the beginning while only later, since GRASS 6.0, adding advanced vector functionality [@bivand_applied_2013].
+Similar to SAGA, GRASS focused on raster processing in the beginning while only later, since GRASS 6.0, adding advanced vector functionality [@bivand_applied_2013].
 
 We will introduce **rgrass7** with one of the most interesting problems in GIScience - the traveling salesman problem. 
 Suppose a traveling salesman would like to visit 24 customers while covering the shortest distance possible.
 Additionally, the salesman would like to set out his journey at home, and come back to it after having finished all customer visits.
 There is a single best solution to this problem, however, to find it, is even for modern computers (mostly) impossible [@longley_geographic_2015].
-In our case, the number of possible solution correspond to `(25 - 1)! / 2` possible solutions, i.e. the factorial of 24 divided by 2 (since we do not differentiate between forward or backward direction).
-Even if one iteration can be done in a nanosecond this still corresponds to 9.837\times 10^{6} years. 
-Luckily, there are clever, almost optimal solutions which run in a tiny fraction of this inconceibable amount of time.
-GRASS GIS provides one of these solutions (for more details see [v.net.salesman](https://grass.osgeo.org/grass72/manuals/v.net.salesman.html)). 
+In our case, the number of possible solution correspond to `(25 - 1)! / 2` possible solutions, i.e., the factorial of 24 divided by 2 (since we do not differentiate between forward or backward direction).
+Even if one iteration can be done in a nanosecond this still corresponds to 9837145 years. 
+Luckily, there are clever, almost optimal solutions which run in a tiny fraction of this inconceivable amount of time.
+GRASS GIS provides one of these solutions (for more details see [v.net.salesman](https://grass.osgeo.org/grass74/manuals/v.net.salesman.html)). 
 In our use case, we would like to find the shortest path between the first 25 bicycle stations (instead of customers) on London's streets.
 
 
@@ -7999,20 +8003,12 @@ data(cycle_hire)
 points = cycle_hire[1:25, ]
 ```
 
-<!--
-
-```r
-# plot(st_geometry(streets))
-# plot(st_geometry(cycle_hire), col = "red", pch = 16, add = TRUE)
-```
--->
-
 Aside from the cycle hire points data, we will need the OpenStreetMap data of London.
 We download it with the help of the **osmdata** package (see also section \@ref(retrieving-data)).
-We constrain the download of the street network (in OSM language called highway) to  the bounding box of the cycle hire data, and attach the corresponding data as an `sf`-object.
+We constrain the download of the street network (in OSM language called "highway") to  the bounding box of the cycle hire data, and attach the corresponding data as an `sf`-object.
 `osmdata_sf` returns a list with several spatial objects (points, lines, polygons, etc.).
 Here, we will only keep the line objects.
-To learn more about how to use the **osmdata**-package, please refer to [https://ropensci.github.io/osmdata/](https://ropensci.github.io/osmdata/).
+<!-- To learn more about how to use the **osmdata**-package, please refer to [https://ropensci.github.io/osmdata/](https://ropensci.github.io/osmdata/). -->
 
 
 ```r
@@ -8030,13 +8026,13 @@ Now that we have the data, we can go on and initiate a GRASS session, i.e., we h
 The GRASS geodatabase system is based on SQLite.
 Consequently, different users can easily work on the same project, possibly with different read/write permissions.
 However, one has to set up this geodatabase (also from within R), and users used to a GIS GUI popping up by one click might find this process a bit intimidating in the beginning.
-First of all, the GRASS database requires its own directory, and contains a location (see the [GRASS GIS Quickstart](https://grass.osgeo.org/grass72/manuals/helptext.html) document and [GRASS GIS Database](https://grass.osgeo.org/grass75/manuals/grass_database.html) help pages at [grass.osgeo.org](https://grass.osgeo.org/grass75/manuals/index.html) for further information).
+First of all, the GRASS database requires its own directory, and contains a location (see the [GRASS GIS Database](https://grass.osgeo.org/grass74/manuals/grass_database.html) help pages at [grass.osgeo.org](https://grass.osgeo.org/grass74/manuals/index.html) for further information).
 The location in turn simply contains the geodata for one project. 
 Within one location several mapsets can exist, and typically refer to different users. 
 PERMANENT is a mandatory mapset, and created automatically.
 It stores the projection, the spatial extent and the default resolution for raster data.
 In order to share spatial data with all users of a project, the database owner can add spatial data to the PERMANENT mapset.
-Please refer to @neteler_open_2008 and the [GRASS GIS quick start](https://grass.osgeo.org/grass72/manuals/helptext.html) for more information on the GRASS geodatabase system.
+Please refer to @neteler_open_2008 and the [GRASS GIS quick start](https://grass.osgeo.org/grass74/manuals/helptext.html) for more information on the GRASS geodatabase system.
 
 You have to set up a location and a mapset if you want to use GRASS from within R.
 First of all, we need to find out if and where GRASS7 is installed on the computer.
@@ -8076,6 +8072,7 @@ initGRASS(gisBase = grass_path,
 ```
 
 Subsequently, we define the projection, the extent and the resolution.
+
 
 ```r
 execGRASS("g.proj", flags = c("c", "quiet"), 
@@ -8151,7 +8148,6 @@ To visualize our result, we import the output layer into R, and visualize it wit
 </div>
 
 
-
 ```r
 library(mapview)
 route = readVECT("shortest_route")
@@ -8168,21 +8164,22 @@ To find out which datasets are currently available, run `execGRASS("g.list", typ
 - Of course, we could have also accessed an already existing GRASS geodatabase from within R.
 Prior to importing data into R, you might want to perform some (spatial) subsetting.
 Use `v.select` and `v.extract` for vector data. 
-`db.select` lets you select subsets of the attribute table of a vector layer without returning the correponding geometry.
+`db.select` lets you select subsets of the attribute table of a vector layer without returning the corresponding geometry.
 - You can start R also from within a running GRASS session [for more information please refer to @bivand_applied_2013 and this [wiki](https://grasswiki.osgeo.org/wiki/R_statistics/rgrass7)].
-- Refer to the excellent [GRASS online help](https://grass.osgeo.org/grass72/manuals/) or `execGRASS("g.manual", flags = "i")` for more information on each available GRASS geoalgorithm.
+- Refer to the excellent [GRASS online help](https://grass.osgeo.org/grass74/manuals/) or `execGRASS("g.manual", flags = "i")` for more information on each available GRASS geoalgorithm.
 - If you would like to use GRASS 6 from within R, use the R package **spgrass6**.
 
 ## When to use what?
 
 To recommend a single R-GIS interface is hard since the usage depends on personal preferences, the tasks at hand and your familiarity with different GIS.
 The latter means if you have already preferred the GUI of a certain GIS, you are quite likely to use the corresponding interface.
-Certainly, **RQGIS** is an appropriate choice for most use cases.
+That being said, **RQGIS** is an appropriate choice for most use cases.
 Its main advantages are:
 
 - An unified access to several GIS, and therefore the provision of >1000 geoalgorithms.
 Of course, this includes duplicated functionality, e.g., you can perform overlay-operations using QGIS-, SAGA- or GRASS-geoalgorithms.
-- The automatic data format conversions. For instance, SAGA uses `.sdat` grid files and GRASS uses its own database format but QGIS will handle the corresponding conversions for you on the fly.
+- The automatic data format conversions. 
+For instance, SAGA uses `.sdat` grid files and GRASS uses its own database format but QGIS will handle the corresponding conversions for you on the fly.
 - **RQGIS** can also handle spatial objects residing in R as input for geoalgorithms, and loads QGIS output automatically back into R if desired.
 - Its convenience functions to support the access of the online help, R named arguments and automatic default value retrieval.
 Please note that **rgrass7** inspired the latter two features.
@@ -8209,6 +8206,7 @@ Select randomly a point from `random_points` and find all `dem` pixels that can 
 Visualize your result.
 For example, plot a hillshade, and on top of it the digital elevation model, your viewshed output and the point.
 Additionally, give `mapview` a try.
+
 
 <!--chapter:end:10-gis.Rmd-->
 
