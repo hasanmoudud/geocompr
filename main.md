@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve79e37e1204daf700
+preserve994016fa0aea455d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve0f7705742e30e3b1
+preservebe066f345ac656cc
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserved3370a1a333d2910
+preservecb15793c5e7f807b
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve0fec69571e501f25
+preserved4e9ca84fa659a46
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7344,7 +7344,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve72aaf6c9674288f0
+preserve40a7f70a41aa1888
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7356,7 +7356,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve6f52118c77a57c8c
+preserve149d81125e241bd9
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7374,7 +7374,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveffa60536c4d31017
+preserve76212ea5fd1d88ea
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -8041,8 +8041,6 @@ First of all, we need to find out if and where GRASS7 is installed on the comput
 ```r
 library(link2GI)
 link = findGRASS() 
-#> Warning in link2GI::searchGRASSX(MP = searchLocation): Did not find any
-#> valid GRASS installation at mount point /usr
 ```
 
 `link` is a `data.frame` which contains in its rows the GRASS 7 installations on your computer. 
