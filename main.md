@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9dc73380b0506d89
+preserved803815d39750809
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve8af333ed5395a937
+preserve13e40abe9929e006
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve883597d422b3acfb
+preserve7b6a920469511d5e
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve288c8e7ecde14d47
+preserveffec65d98db3f800
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7350,7 +7350,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve772ba7d4bd58b235
+preservecd2f70ff411475ee
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7397,7 +7397,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve6e752da4b0c10d74
+preserve52c03b881fc05550
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7430,7 +7430,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve752f15c25a619765
+preserve434f3485a16cb9c7
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7666,7 +7666,7 @@ tm_shape(us_states2163_nzcarto) + tm_polygons("total_pop_15")
 
 ## Exercises
 
-For these exercises we will create a new object, `africa`, using the `world` and `worldbank_df` datasets from the **spData** package (see chapter \@ref(attr) to learn more about attribute operations):
+For these exercises we will create a new object, `africa`, using the `world` and `worldbank_df` datasets from the **spData** package (see chapter \@ref(attr) to learn more about attribute operations) as follows:
 
 
 ```r
@@ -7684,9 +7684,13 @@ We will also use `zion` and `nlcd` datasets from **spDataLarge**:
 zion = st_read((system.file("vector/zion.gpkg", package = "spDataLarge")))
 ```
 
-1. Create a map of the Human Development Index (`HDI`) of the `africa` dataset.
-The `HDI` values should be represented by one of the three groups - "High human development" (`HDI` above 0.7), "Medium human development" (`HDI` between 0.55 and 0.7) and "Low human development" (`HDI` below 0.55).
-Additionally, try to improve the map aesthetics, for example by changing the legend title, class labels or color palette.
+1. Create a map showing the geographic distribution of Human Development Index (`HDI`) across Africa with base graphics (hint: use `plot()`) and **tmap** (hint: use `tm_shape(africa) + ...`).
+    - Name two advantages of each approach
+    - What three other mapping packages could be used to show the same data?
+    - Name an advantage for each
+    - Bonus: create three more maps of Africa using the three package mentioned previously
+2. Extend the map of Africa created with **tmap** for the previous exercise so the legend has three bins: "High" (`HDI` above 0.7), "Medium" (`HDI` between 0.55 and 0.7) and "Low" (`HDI` below 0.55).
+    - Bonus: improve the map aesthetics, for example by changing the legend title, class labels and color palette.
 
 1. Represent `africa`'s subregions on the map. 
 Change the default color palette and legend title.

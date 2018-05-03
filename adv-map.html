@@ -959,7 +959,7 @@ Figure 9.27: Comparison of regular map (top) and non-continuous area cartogram (
 </div>
 <div id="exercises-6" class="section level2">
 <h2><span class="header-section-number">9.7</span> Exercises</h2>
-<p>For these exercises we will create a new object, <code>africa</code>, using the <code>world</code> and <code>worldbank_df</code> datasets from the <strong>spData</strong> package (see chapter <a href="attr.html#attr">3</a> to learn more about attribute operations):</p>
+<p>For these exercises we will create a new object, <code>africa</code>, using the <code>world</code> and <code>worldbank_df</code> datasets from the <strong>spData</strong> package (see chapter <a href="attr.html#attr">3</a> to learn more about attribute operations) as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">africa =<span class="st"> </span>world %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(continent ==<span class="st"> &quot;Africa&quot;</span>, !<span class="kw">is.na</span>(iso_a2)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">left_join</span>(worldbank_df, <span class="dt">by =</span> <span class="st">&quot;iso_a2&quot;</span>) %&gt;%<span class="st"> </span>
@@ -968,7 +968,17 @@ Figure 9.27: Comparison of regular map (top) and non-continuous area cartogram (
 <p>We will also use <code>zion</code> and <code>nlcd</code> datasets from <strong>spDataLarge</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">zion =<span class="st"> </span><span class="kw">st_read</span>((<span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)))</code></pre></div>
 <ol style="list-style-type: decimal">
-<li><p>Create a map of the Human Development Index (<code>HDI</code>) of the <code>africa</code> dataset. The <code>HDI</code> values should be represented by one of the three groups - “High human development” (<code>HDI</code> above 0.7), “Medium human development” (<code>HDI</code> between 0.55 and 0.7) and “Low human development” (<code>HDI</code> below 0.55). Additionally, try to improve the map aesthetics, for example by changing the legend title, class labels or color palette.</p></li>
+<li>Create a map showing the geographic distribution of Human Development Index (<code>HDI</code>) across Africa with base graphics (hint: use <code>plot()</code>) and <strong>tmap</strong> (hint: use <code>tm_shape(africa) + ...</code>).
+<ul>
+<li>Name two advantages of each approach</li>
+<li>What three other mapping packages could be used to show the same data?</li>
+<li>Name an advantage for each</li>
+<li>Bonus: create three more maps of Africa using the three package mentioned previously</li>
+</ul></li>
+<li>Extend the map of Africa created with <strong>tmap</strong> for the previous exercise so the legend has three bins: “High” (<code>HDI</code> above 0.7), “Medium” (<code>HDI</code> between 0.55 and 0.7) and “Low” (<code>HDI</code> below 0.55).
+<ul>
+<li>Bonus: improve the map aesthetics, for example by changing the legend title, class labels and color palette.</li>
+</ul></li>
 <li><p>Represent <code>africa</code>’s subregions on the map. Change the default color palette and legend title. Next, combine this map and the map created in the previous exercise on a one plot.</p></li>
 <li><p>Create a land cover map of the Zion National Park. Try to manually change the default colors to match your perception of the land cover categories. Finally, add and arrange a scale bar and north arrow.</p></li>
 <li><p>Improve the map created in the previous example. Add an inset map of the Zion National Park’s location in the context of the Utah state. (Hint: Border of Utah can be subsetted from the <code>us_states</code> dataset.)</p></li>
