@@ -165,9 +165,6 @@ By the end of the book you should be able to create new tools for geocomputation
 
 Over the last few decades free and open source software for geospatial data ('FOSS4G') has progressed at an astonishing rate (see [foss4g.org](http://foss4g.org/)).
 Thanks to FOSS4G and the wider open source movement geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download high performance spatial libraries on their computer.
-<!-- JM: I would delete this, since this is not really true.
-However, despite the growth of geospatial software that is *open source*, much of it is still not easy to script.
--->
 Open source Geographic Information Systems (GIS) such as QGIS (see [qgis.org](http://qgis.org/en/site/)) have greatly reduced the 'barrier to entry'.
 Furthermore many GIS programs provide a command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see \@ref(gis)) and console windows (such as the [Python Console](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html) in QGIS) to supplement the main graphical user interface (GUI).
 Still, many GIS programs and teaching materials focus on the GUI, which can have the unintended consequence of discouraging reproducibility (see Table \@ref(tab:gdsl)).
@@ -289,7 +286,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve57b9f34294bfdee7
+preserve8d72bdc2d1507daf
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3143,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveccf60f77494b9977
+preserve9ce12717fe75a84a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6030,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservef5e9b41ecec5bbe1
+preserve7e2a392d9beeb3db
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6646,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve99a2e2cf30556b1f
+preservef4134965f9cd7552
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7350,7 +7347,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve13c41304c89f032e
+preserve43affcb0d3ba131d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7397,7 +7394,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve6e14c95824d55f76
+preservefd1773f97d16deda
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7430,7 +7427,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1747a25a1ac044ad
+preservec0438965e4609701
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
