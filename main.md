@@ -171,13 +171,8 @@ Still, many GIS programs and teaching materials focus on the GUI, which can have
 Motivated by the importance of reproducibility for scientific research and other advantages of typing commands rather than pointing and clicking, this book focuses on R's Command Line Interface (CLI) for GIS operations.
 The reproducible and 'computational' workflows enabled by R's CLI can also help unleash its statistical capabilities on geographic data (see section \@ref(why-geocomputation-with-r)).
 
-<!--
-not sure if this table is needed. I have also modified the content a bit.
-AFAIK there is no GIS field, GIS has always been a software, a method, not a field used by several disciplines. Therefore, I now compare Desktop GUI GIS with R (to avoid apple-with-pear comparisons). I explicilty say Desktop GIS GUI since there are cli-based GIS and you can use virtually all Desktop GIS via the CLI. I think, we should point out the strengths of R ((geo-)statistics, data science, machine learning), and that it is therefore, a good idea to use R for geocomputation and geographic data science, respectively. In turn, we should not say, that GIS make cli-based programming difficult. It is not harder than learning R.
--->
 
-
-Table: (\#tab:gdsl)Differences in emphasis between software packages (Desktop Geographic Information Systems (GIS) and R).
+Table: (\#tab:gdsl)Differences in emphasis between software packages (Graphical User Interface (GUI) of Geographic Information Systems (GIS) and R).
 
 Attribute          Desktop GIS (GUI)          R                     
 -----------------  -------------------------  ----------------------
@@ -286,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8d72bdc2d1507daf
+preserve2d0476d59eb31207
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3143,7 +3138,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9ce12717fe75a84a
+preserve4b07fcaf74ae4d10
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6030,7 +6025,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve7e2a392d9beeb3db
+preservec33ac358f9902ee3
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6646,7 +6641,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservef4134965f9cd7552
+preservedf4f841db4787a4a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7347,7 +7342,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve43affcb0d3ba131d
+preserveda6bb744e3d29c8c
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7394,7 +7389,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservefd1773f97d16deda
+preserve3ab5ae2520cada5f
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7427,7 +7422,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec0438965e4609701
+preservec55a459904c98b17
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
