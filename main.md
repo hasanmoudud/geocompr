@@ -274,14 +274,14 @@ The code below illustrates this by generating Figure \@ref(fig:interactive).
 library(leaflet)
 popup = c("Robin", "Jakub", "Jannes")
 leaflet() %>%
-  addProviderTiles("NASAGIBS.ViirsEarthAtNight2012") %>% 
+  # addProviderTiles("NASAGIBS.ViirsEarthAtNight2012") %>% 
   addMarkers(lng = c(-3, 23, 11),
              lat = c(52, 53, 49), 
              popup = popup)
 ```
 
 <div class="figure" style="text-align: center">
-preservea5f72ad8146d57e7
+preservef2e5730e6eb6af19
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3138,7 +3138,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebc71864771fafd2d
+preserve4ca8a4af3b9c8343
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6025,7 +6025,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve7d9b7dfde3e9e058
+preserve2e89693d697db9f7
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6641,7 +6641,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve46ea07cfe853a1b9
+preserveafca1e4dbaef9f3d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7342,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve018fe6e3078d0ff2
+preserve4a6d2073b10fe2d9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7389,7 +7389,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve887e04471a9a0c8f
+preserve485608f7ec48a649
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7422,7 +7422,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb2cfa8476d34ea0f
+preserve3d4757e30faaca72
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
