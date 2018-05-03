@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve04e9f99b29adff1b
+preserve5d4b05f5d5989078
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7467d31153bfe96b
+preserve2526898bd8ce179d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve6d5e6d447328b37b
+preserve3148675208d7c36e
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve73fb10414edbc809
+preserve7eae5f252af047e3
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7345,10 +7345,10 @@ tmap_mode("view")
 map_nz
 ```
 
-preservee39f78acebfd6188
+preserve810e69bdd23d368c
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
-Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
+Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`), as demonstrated below (the result, a map of New Zealand with an interactive topographic basemap, is not shown):
 
 
 ```r
@@ -7357,7 +7357,21 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve316e4c02ad74e2aa
+An impressive and little-known feature of **tmap**'s view mode is that it also works with facetted plots.
+The argument `sync` in `tm_facets()` can be used in this case to produce multiple maps with syncronized zoom and pan settings, as illustrated in Figure \@ref(fig:sync) which was produced by the following code:
+
+
+```r
+world_coffee = left_join(world, coffee_data)
+facets = c("coffee_production_2016", "coffee_production_2017")
+qtm(world_coffee, facets) +
+  tm_facets(nrow = 1, sync = TRUE)
+```
+
+<div class="figure" style="text-align: center">
+<img src="https://user-images.githubusercontent.com/1825120/39561040-ee7ac544-4e9a-11e8-9b73-3b531e9b1f1d.png" alt="Facetted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action."  />
+<p class="caption">(\#fig:sync)Facetted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action.</p>
+</div>
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7375,7 +7389,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservef2823b9f468c6479
+preserved0c0afa98d0ff3af
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
