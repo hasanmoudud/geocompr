@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5d4b05f5d5989078
+preservefcdd528819c74ab2
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2526898bd8ce179d
+preservebf303f4ec661dbf7
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve3148675208d7c36e
+preservef736773f288e7f30
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve7eae5f252af047e3
+preserve7412d4c31e1f1bdc
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7336,18 +7336,25 @@ We will explore how to make slippy maps with **tmap** (the syntax of which we ha
 
 A unique feature of **tmap** mentioned in section \@ref(static-maps) is its ability to create static and interactive maps using the same code.
 Maps can be viewed interactively at any point by switching to view mode, using the command `tmap_mode("view")`.
-This is demonstrated in the code below, which creates an interactive map of New Zealand based on the `tmap` object `map_nza`, created in section \@ref(map-obj):
+This is demonstrated in the code below, which creates an interactive map of New Zealand based on the `tmap` object `map_nza`, created in section \@ref(map-obj), and illustrated in Figure \@ref(fig:tmview):
 
 
 ```r
 tmap_mode("view")
-#> tmap mode set to interactive viewing
 map_nz
 ```
 
-preserve810e69bdd23d368c
 
-Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
+```
+#> tmap mode set to interactive viewing
+```
+
+<div class="figure" style="text-align: center">
+preservedbd04ad9eae7a1c3
+<p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
+</div>
+
+Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch (another way to create interactive maps is with the `tmap_leaflet` function) .
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`), as demonstrated below (the result, a map of New Zealand with an interactive topographic basemap, is not shown):
 
 
@@ -7365,15 +7372,15 @@ The argument `sync` in `tm_facets()` can be used in this case to produce multipl
 world_coffee = left_join(world, coffee_data)
 facets = c("coffee_production_2016", "coffee_production_2017")
 qtm(world_coffee, facets) +
-  tm_facets(nrow = 1, sync = TRUE)
+  tm_facets(nrow = 1, sync = TRUE, free.scales = FALSE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/39561040-ee7ac544-4e9a-11e8-9b73-3b531e9b1f1d.png" alt="Facetted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action."  />
+<img src="https://user-images.githubusercontent.com/1825120/39561412-4dbba7ba-4e9d-11e8-885c-7973b351006b.png" alt="Facetted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action."  />
 <p class="caption">(\#fig:sync)Facetted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action.</p>
 </div>
 
-**tmap** can be returned to its default static mode with the same switch:
+Switch **tmap** back to plotting mode with the same switch:
 
 
 ```r
@@ -7381,7 +7388,8 @@ tmap_mode("plot")
 #> tmap mode set to plotting
 ```
 
-If you are not already accostomed to **tmap**, probably the quickest way to create an interactive map to view spatial data in R is with the **mapview** package, as illustrated in the following 'one liner':
+If you are not proficient with **tmap**, the quickest way to create an interactive maps may be with **mapview**.
+The following 'one liner' is a reliable way to interactively explore a wide range of spatial data formats:
 
 
 ```r
@@ -7389,7 +7397,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserved0c0afa98d0ff3af
+preserve71624ac58c9269f1
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7397,13 +7405,34 @@ preserved0c0afa98d0ff3af
 It offers advanced controls including the ability to 'burst' datasets into multiple layers and the addition of multiple layers with `+` followed by the name of a geographic object.
 For further information on **mapview** see the package's website at [r-spatial.github.io/mapview/](https://r-spatial.github.io/mapview/articles/).
 
-Another approach to web-mapping is provided by the **googleway** package.
-It's `google_map()` function provides an interactive map that is flexible and extensible.
-The command `google_map(key = key) %>% add_polygons(st_transform(nz, 4326))`, for example, plots an interactive map of New Zealand in the viewing console (assuming you have set-up a Google API key and saved it as `key`).
+There are other ways to create interactive maps with R not demonstrated here due to space constraints.
+The **googleway** package, for example, provides an interactive mapping interface that is flexible and extensible with `google_map()`.
+The command `google_map(key = key) %>% add_polygons(st_transform(nz, 4326))` plots an interactive map of New Zealand (it assumes a Google API key is saved as `key`).
 Many other functions are provided by the package, providing an R interface to a wide range of mapping services including routing, traffic visualiztion and geocoding (see the [`googleway-vignette`](https://cran.r-project.org/web/packages/googleway/vignettes/googleway-vignette.html) for details).
 
-Last but not least is **leaflet** which is probably the most mature interactive mapping package in R.
-**leaflet** and packages that extend it such as **leaflet.extras** offering a wide range of low-level controls that closely match the Jav
+Last but not least is **leaflet** which is the most mature and widely used interactive mapping package in R.
+**leaflet** provides a relatively low level interface to the Leaflet JavaScript library and many of its arguments can be understood by reading the documentation of the original JavaScript library (see [leafletjs.com](http://leafletjs.com/reference-1.3.0.html)).
+
+Leaflet maps are created with `leaflet()`, the result of which is a `leaflet` map object which can be piped to other **leaflet** functions.
+This allows multiple map layers and control settings to be added interactively, as demonstrated in the code below which generates Figure \@ref(fig:leaflet) (see [rstudio.github.io/leaflet/](https://rstudio.github.io/leaflet/) for details).
+
+
+```r
+pal = colorNumeric("RdYlBu", domain = cycle_hire$nbikes)
+tiles = providers$Stamen.TonerLite
+leaflet(data = cycle_hire) %>% 
+  addProviderTiles(tiles) %>% 
+  addCircles(col = ~pal(nbikes), opacity = 0.9) %>% 
+  addPolygons(data = lnd, fill = FALSE) %>% 
+  addLegend(pal = pal, values = ~nbikes) %>% 
+  setView(lng = -0.1, 51.5, zoom = 12) %>% 
+  addMiniMap()
+```
+
+<div class="figure" style="text-align: center">
+preserve18fedc6734d6398e
+<p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
+</div>
 
 ## Mapping applications
 
