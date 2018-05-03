@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve72942344957e046e
+preserve9dc73380b0506d89
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7a2f23f9c9b471bb
+preserve8af333ed5395a937
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preservebb3f545d017ce3f1
+preserve883597d422b3acfb
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve512b350329180549
+preserve288c8e7ecde14d47
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7350,7 +7350,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec9e6d4faeec79ddf
+preserve772ba7d4bd58b235
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7397,7 +7397,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve37c15a77e3fb841d
+preserve6e752da4b0c10d74
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7430,7 +7430,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1d2669d1774fc5ae
+preserve752f15c25a619765
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7700,18 +7700,13 @@ Finally, add and arrange a scale bar and north arrow.
 Add an inset map of the Zion National Park's location in the context of the Utah state.
 (Hint: Border of Utah can be subsetted from the `us_states` dataset.) 
 
-1. Create a facet map of a population's growth for countries in Eastern Africa. 
-It should represent only countries for which this data exists.
+1. Create a facet map of a population's growth for countries in Eastern Africa, representing only countries for which this data exists. <!-- animated map, interactive map -->
 
-<!-- animated map -->
-<!-- @robin -->
-<!-- interactive map -->
-<!-- @robin -->
 1. Sketch out on paper ideas for a web mapping app that could be used to make transport or land-use policies more evidence based:
-  - In the city you live in, for a couple of users per day
-  - In the country you live in, for dozens of users per day
-  - Worldwide for hundreds of users per day and large data serving requirements
-1. How would app design, deployment and project management decisions change as the scale of map deployment increases? 
+    - In the city you live in, for a couple of users per day
+    - In the country you live in, for dozens of users per day
+    - Worldwide for hundreds of users per day and large data serving requirements
+1. How would app design, deployment and project management decisions change as the scale of map deployment increases?
 1. Update the code in `coffeeApp/app.R` so that instead of centering on Brazil the user can select which country to focus on:
     - Using `textInput()`
     - Using `selectInput()`
