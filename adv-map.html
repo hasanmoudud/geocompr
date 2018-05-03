@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-02">
+<meta name="date" content="2018-05-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -714,7 +714,7 @@ Figure 9.17: Animated map showing population growth and state formation and boun
 <div id="interactive-maps" class="section level2">
 <h2><span class="header-section-number">9.4</span> Interactive maps</h2>
 <p>Static and animated maps can breathe life into geographic datasets. Interactive maps can take reader participation to a whole new level, providing results with a life of their own that can be explored in myriad ways. Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.<a href="#fn58" class="footnoteRef" id="fnref58"><sup>58</sup></a></p>
-<p>The most important type of interactivity, however, is the display of geographic data on an interactive or ‘slippy’ web maps. The release of the <strong>leaflet</strong> package in 2015 revolutionized interactive web map creation from within R and a number of packages have built on these foundations adding new features (e.g. <strong>leaflet.extras</strong>) and making the creation of web maps as simple as creating static maps (e.g. <strong>mapview</strong> and <strong>tmap</strong>). This section will illustrate each of these web-mapping packages in reverse order, starting with <strong>tmap</strong> (the syntax of which we have already learned) and then progressing to more verbose <strong>leaflet</strong> code (which provides low level control over interactive maps) via the dedicated high-level web mapping package <strong>mapview</strong>.</p>
+<p>The most important type of interactivity, however, is the display of geographic data on an interactive or ‘slippy’ web maps. The release of the <strong>leaflet</strong> package in 2015 revolutionized interactive web map creation from within R and a number of packages have built on these foundations adding new features (e.g. <strong>leaflet.extras</strong>) and making the creation of web maps as simple as creating static maps (e.g. <strong>mapview</strong> and <strong>tmap</strong>). This section illustrate each approach in the opposite order We will explore how to make slippy maps with <strong>tmap</strong> (the syntax of which we have already learned), <strong>mapview</strong> and finally <strong>leaflet</strong> (which provides low level control over interactive maps).</p>
 <p>A unique feature of <strong>tmap</strong> mentioned in section <a href="adv-map.html#static-maps">9.2</a> is its ability to create static and interactive maps using the same code. Maps can be viewed interactively at any point by switching to view mode, using the command <code>tmap_mode(&quot;view&quot;)</code>. This is demonstrated in the code below, which creates an interactive map of New Zealand based on the <code>tmap</code> object <code>map_nza</code>, created in section <a href="adv-map.html#map-obj">9.2.2</a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)
 <span class="co">#&gt; tmap mode set to interactive viewing</span>

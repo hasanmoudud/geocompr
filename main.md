@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-02'
+date: '2018-05-03'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -39,7 +39,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-02 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-03 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5002d244f217ca82
+preserve04e9f99b29adff1b
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3146,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve80989905ff8a88af
+preserve7467d31153bfe96b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6033,7 +6033,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve238979145d4e4772
+preserve6d5e6d447328b37b
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6649,7 +6649,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveb0f2cf6d3d6c10d3
+preserve73fb10414edbc809
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7331,7 +7331,8 @@ A good example of such a dynamically linked visualisation is a map of Nigeria li
 
 The most important type of interactivity, however, is the display of geographic data on an interactive or 'slippy' web maps.
 The release of the **leaflet** package in 2015 revolutionized interactive web map creation from within R and a number of packages have built on these foundations adding new features (e.g. **leaflet.extras**) and making the creation of web maps as simple as creating static maps (e.g. **mapview** and **tmap**).
-This section will illustrate each of these web-mapping packages in reverse order, starting with **tmap** (the syntax of which we have already learned) and then progressing to more verbose **leaflet** code (which provides low level control over interactive maps) via the dedicated high-level web mapping package **mapview**.
+This section illustrate each approach in the opposite order
+We will explore how to make slippy maps with **tmap** (the syntax of which we have already learned), **mapview** and finally **leaflet** (which provides low level control over interactive maps).
 
 A unique feature of **tmap** mentioned in section \@ref(static-maps) is its ability to create static and interactive maps using the same code.
 Maps can be viewed interactively at any point by switching to view mode, using the command `tmap_mode("view")`.
@@ -7344,7 +7345,7 @@ tmap_mode("view")
 map_nz
 ```
 
-preserve8a34155f8db73094
+preservee39f78acebfd6188
 
 Now that the interactive mode has been 'turned on', all maps produced with **tmap** will launch in the Viewer tab in RStudio (or on the default web browser if you are running R from a terminal).
 Notable features of this interactive mode include the ability to specify the basemap using the `basemaps` argument in the function `tm_view()` (also see `?tm_basemap`):
@@ -7356,7 +7357,7 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-preserve5c7a5cb55631af3f
+preserve316e4c02ad74e2aa
 
 **tmap** can be returned to its default static mode with the same switch:
 
@@ -7374,7 +7375,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve0d1ac71c4b5ab1e3
+preservef2823b9f468c6479
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
