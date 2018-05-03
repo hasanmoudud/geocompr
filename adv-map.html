@@ -980,10 +980,30 @@ Figure 9.27: Comparison of regular map (top) and non-continuous area cartogram (
 <li>Bonus: improve the map aesthetics, for example by changing the legend title, class labels and color palette.</li>
 </ul></li>
 <li><p>Represent <code>africa</code>’s subregions on the map. Change the default color palette and legend title. Next, combine this map and the map created in the previous exercise on a one plot.</p></li>
-<li><p>Create a land cover map of the Zion National Park. Try to manually change the default colors to match your perception of the land cover categories. Finally, add and arrange a scale bar and north arrow.</p></li>
-<li><p>Improve the map created in the previous example. Add an inset map of the Zion National Park’s location in the context of the Utah state. (Hint: Border of Utah can be subsetted from the <code>us_states</code> dataset.)</p></li>
-<li><p>Create a facet map of a population’s growth for countries in Eastern Africa, representing only countries for which this data exists. <!-- animated map, interactive map --></p></li>
-<li>Sketch out on paper ideas for a web mapping app that could be used to make transport or land-use policies more evidence based:
+<li>Create a land cover map of the Zion National Park.
+<ul>
+<li>Change the default colors to match your perception of the land cover categories</li>
+<li>Add a scale bar and north arrow and change the position of both to improve the map’s aesthetic appeal</li>
+<li>Bonus: Add an inset map of the Zion National Park’s location in the context of the Utah state. (Hint: an object representing Utah can be subsetted from the <code>us_states</code> dataset.)</li>
+</ul></li>
+<li>Create facet maps of countries Eastern Africa:
+<ul>
+<li>with one facet showing HDI and the other representing population growth (hint: using variables <code>HDI</code> and <code>pop_growth</code> respectively)</li>
+<li>with a ‘small multiple’ per country <!-- animated map, interactive map --></li>
+</ul></li>
+<li>Building on the previous facet map examples, create animated maps of East Africa:
+<ul>
+<li>showing first the spatial distribution of HDI scores then population growth</li>
+<li>showing each country in order</li>
+</ul></li>
+<li>Create an interactive map of Africa:
+<ul>
+<li>with <strong>tmap</strong></li>
+<li>with <strong>mapview</strong></li>
+<li>with <strong>leaflet</strong></li>
+<li>bonus: for each approach add a legend (if not automatically provided) and a scale bar</li>
+</ul></li>
+<li>Sketch on paper ideas for a web mapping app that could be used to make transport or land-use policies more evidence based:
 <ul>
 <li>In the city you live in, for a couple of users per day</li>
 <li>In the country you live in, for dozens of users per day</li>
