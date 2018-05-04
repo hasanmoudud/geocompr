@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-03">
+<meta name="date" content="2018-05-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -502,7 +502,7 @@ Figure 9.5: Illustration of settings that affect color settings. The results sho
 <li><code>style = quantile</code> ensures the same number of observations fall into each category (with the potential down side that bin ranges can vary widely)</li>
 <li><code>style = jenks</code> identifies groups of similar values in the data and maximizes the differences between categories</li>
 <li><code>style = cont</code> (and <code>order</code>) present a large number of colors over continuous color field, and are particularly suited for continuous rasters (<code>order</code> can help visualize skewed distributions)</li>
-<li><code>style = cat</code> was designed to represent categorical values and assures that each category receives a unique color <!-- references for more info --></li>
+<li><code>style = cat</code> was designed to represent categorical values and assures that each category receives a unique color</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:break-styles"></span>
 <img src="figures/break-styles-1.png" alt="Illustration of different binning methods set using the style argument in tmap." width="576" />
@@ -527,7 +527,7 @@ Although <code>style</code> is an argument of <strong>tmap</strong> functions it
 Figure 9.7: Examples of categorical, sequential and diverging palettes.
 </p>
 </div>
-<p>There are two important principles for consideration when working with colors - perceptibility and accessibility. Firstly, colors on maps should match our perception. This means that certain colors are viewed through our experience and also cultural lenses. For example, green color usually represent vegetation or lowlands and blue is connected with water or cool. Color palettes also should be easy to understand by effectively conveying information. It should be clear which values are lower and which are higher, and colors should change gradually. This property is not preserved in the rainbow color palette, therefore we suggest avoiding it in spatial data visualization <span class="citation">(Borland and Ii <a href="#ref-borland_rainbow_2007">2007</a>)</span>. Secondly, changes in colors should be accessible to the largest number of people. Therefore, it is important to use colorblind friendly palettes as often as possible.<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a></p>
+<p>There are two important principles for consideration when working with colors - perceptibility and accessibility. Firstly, colors on maps should match our perception. This means that certain colors are viewed through our experience and also cultural lenses. For example, green color usually represent vegetation or lowlands and blue is connected with water or cool. Color palettes also should be easy to understand by effectively conveying information. It should be clear which values are lower and which are higher, and colors should change gradually. This property is not preserved in the rainbow color palette, therefore we suggest avoiding it in spatial data visualization <span class="citation">(Borland and Ii <a href="#ref-borland_rainbow_2007">2007</a>)</span>. Instead <a href="https://cran.r-project.org/web/packages/viridis/">the viridis color palettes</a> can be used. Secondly, changes in colors should be accessible to the largest number of people. Therefore, it is important to use colorblind friendly palettes as often as possible.<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a></p>
 </div>
 <div id="layouts" class="section level3">
 <h3><span class="header-section-number">9.2.5</span> Layouts</h3>
