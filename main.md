@@ -274,14 +274,14 @@ The code below illustrates this by generating Figure \@ref(fig:interactive).
 library(leaflet)
 popup = c("Robin", "Jakub", "Jannes")
 leaflet() %>%
-  # addProviderTiles("NASAGIBS.ViirsEarthAtNight2012") %>% 
+  addProviderTiles("NASAGIBS.ViirsEarthAtNight2012") %>%
   addMarkers(lng = c(-3, 23, 11),
              lat = c(52, 53, 49), 
              popup = popup)
 ```
 
 <div class="figure" style="text-align: center">
-preservef2e5730e6eb6af19
+preserve131b43ab7d7c887e
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3138,7 +3138,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4ca8a4af3b9c8343
+preserveae55048e47126f9a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6025,7 +6025,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve2e89693d697db9f7
+preserved122be25ab078291
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6641,7 +6641,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveafca1e4dbaef9f3d
+preserve7f32a5a811ba5e1c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -6731,10 +6731,10 @@ library(tidyverse)
 
 
 ```r
+library(tmap)    # for static and interactive maps
 library(leaflet) # for interactive maps
 library(mapview) # for interactive maps
 library(shiny)   # for web applications
-library(tmap)    # for static and interactive maps
 ```
 
 ## Introduction
@@ -6770,7 +6770,7 @@ Map making is therefore a critical part of geocomputation and its emphasis not o
 
 Static maps are the most common type of visual output from geocomputation.
 They are fixed images that can be included in printed outputs or published online.
-The majority of maps contained in this book, for example, are static maps saved as `.png` files (interactive maps are covered in section \@ref(interactive-maps)).
+The majority of maps contained in this book are static maps saved as `.png` files (interactive maps are covered in section \@ref(interactive-maps)).
 
 The generic `plot()` function is often the fastest way to create static maps from vector and raster spatial objects, as demonstrated in sections \@ref(basic-map) and \@ref(basic-map-raster).
 Sometimes the simplicity and speed of this approach is sufficient, especially during the development phase of a project:
@@ -6782,7 +6782,7 @@ Why **tmap**?
 It is a powerful and flexible map-making package with sensible defaults.
 It has a concise syntax that allows for the creation of attractive maps with minimal code, that will be familiar to **ggplot2** users.
 Furthermore, **tmap** has a unique capability to generate static and interactive maps using the same code via `tmap_mode()`.
-It accepts a wider range of spatial classes (including `raster` objects) than alternatives such as **ggplot2**, as documented in vignettes [`tmap-nutshell`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html) and [`tmap-modes`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html) and an excellent academic paper on the subject [@tennekes_tmap_2018].
+It accepts a wider range of spatial classes (including `raster` objects) than alternatives such as **ggplot2**, as documented in vignettes [`tmap-nutshell`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html) and [`tmap-modes`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html) and an academic paper on the subject [@tennekes_tmap_2018].
 This section teaches how to make static maps with **tmap**, emphasizing the important aesthetic and layout options.
 
 ### tmap basics
@@ -6806,7 +6806,7 @@ tm_shape(nz) + tm_fill() + tm_borders()
 </div>
 
 The object passed to `tm_shape()` in this case is `nz`, which represents the regions of New Zealand.
-Layers are added to represent `nz` visually, with `tm_fill()` and `tm_borders()` creating shaded areas (right panel) and border outlines (middle panel) in Figure \@ref(fig:tmshape), respectively.
+Layers are added to represent `nz` visually, with `tm_fill()` and `tm_borders()` creating shaded areas (left panel) and border outlines (middle panel) in Figure \@ref(fig:tmshape), respectively.
 
 This is an intuitive approach to map making:
 the common task of *adding* new layers is undertaken by the addition operator `+`, followed by `tm_*()`.
@@ -6820,7 +6820,7 @@ It is concise and provides a good default visualization in many cases:
 Further, layers can be added concisely using multiple `qtm()` calls, such as `qtm(nz) + qtm(nz_height)`.
 The disadvantage is that it makes aesthetics of individual layers harder to control, explaining why we avoid teaching it in this chapter.</div>\EndKnitrBlock{rmdnote}
 
-### Map objects, shapes and layers {#map-obj}
+### Map objects {#map-obj}
 
 A useful feature of **tmap** is its ability to store *objects* representing maps.
 The code chunk below demonstrates this by saving the last plot in Figure \@ref(fig:tmshape) as an object of class `tmap` (note the use of `tm_polygons()` which condenses `tm_fill()  + tm_borders()` into a single function):
@@ -6836,7 +6836,7 @@ class(map_nz)
 
 New *shapes* can be added with `+ tm_shape(new_obj)`.
 In this case `new_obj` represents a new spatial object to be plotted on top of preceding layers.
-When a new new shape is added in this way all subsequent aesthetic functions refer to it, until another new shape is added.
+When a new shape is added in this way all subsequent aesthetic functions refer to it, until another new shape is added.
 This syntax allows the creation of maps with multiple shapes and layers, as illustrated in the next code chunk which uses the function `tm_raster()` to plot a raster layer (with `alpha` set to make the layer semi-transparent):
 
 
@@ -6845,12 +6845,12 @@ map_nz1 = map_nz +
   tm_shape(nz_elev) + tm_raster(alpha = 0.7)
 ```
 
-Building on the previously created `map_nz` object the preceding code creates a new map object `map_nz1` which contains another shape (`nz_eleve`), representing average elevation across New Zealand (see Figure \@ref(fig:tmlayers), left).
+Building on the previously created `map_nz` object, the preceding code creates a new map object `map_nz1` that contains another shape (`nz_eleve`) representing average elevation across New Zealand (see Figure \@ref(fig:tmlayers), left).
 More shapes and layers can be added, as illustrated in the code chunk below which creates `nz_water`, representing New Zealand's [territorial waters](https://en.wikipedia.org/wiki/Territorial_waters), and adds the resulting lines to an existing map object.
 
 
 ```r
-nz_water = st_union(nz) %>% st_buffer(22200) %>%
+nz_water = st_union(nz) %>% st_buffer(22200) %>% 
   st_cast(to = "LINESTRING")
 map_nz2 = map_nz1 +
   tm_shape(nz_water) + tm_lines()
@@ -6859,7 +6859,7 @@ map_nz2 = map_nz1 +
 There is no limit to the number of layers or shapes that can be added to `tmap` objects.
 The same shape can even be used multiple times.
 The final map illustrated in Figure \@ref(fig:tmlayers) is created by adding a layer representing high points (stored in the object `nz_height`) onto the previously created `map_nz2` object with `tm_dots()` (see `?tm_dots` and `?tm_bubbles` for details on **tmap**'s point plotting functions).
-The resulting map, which has 5 layers, is illustrated in the right-hand panel of:
+The resulting map, which has four layers, is illustrated in the right-hand panel of:
 
 
 ```r
@@ -6892,7 +6892,7 @@ The purpose this section is to show how.
 
 There are two main types of map aesthetics: those that change with the data and those that are constant.
 Unlike **ggplot2** which uses the helper function `aes()` to represent the former, **tmap** layer functions accept aesthetic arguments that are either constant values *or* variable fields.
-The most commonly used aesthetics for fill and border layers include color, transparency, line width and line type, (set with `col`, `alpha`, `lwd`, and `lty` arguments respectively).
+The most commonly used aesthetics for fill and border layers include color, transparency, line width and line type, set with `col`, `alpha`, `lwd`, and `lty` arguments respectively.
 The impact of setting these with fixed values is illustrated in Figure \@ref(fig:tmstatic).
 
 
@@ -6945,18 +6945,16 @@ map_nza = tm_shape(nz) +
   tm_fill(col = "Land_area", title = legend_title) + tm_borders()
 ```
 
-The resulting `tmap` object `map_nza` will be used, alongside `map_nz`, to illustrate different layout settings in the next section.
-
 ### Color settings
 
 Color settings are an important part of map design.
 They can have a major impact on how spatial variability is portrayed as illustrated in Figure \@ref(fig:tmpal).
-This shows four ways of coloring regions in New Zealand depending on median income, from right to left (and demonstrated in the code chunk below):
+This shows four ways of coloring regions in New Zealand depending on median income, from left to right (and demonstrated in the code chunk below):
 
 - The default setting uses 'pretty' breaks, described in the next paragraph
 - `breaks` which allows you to manually set the breaks
-- `n` which sets the number of bins into which numeric variables are categorized and
-- `palette` which defines the color scheme, for example `Reds`
+- `n` which sets the number of bins into which numeric variables are categorized
+- `palette` which defines the color scheme, for example `RdBu`
 
 
 ```r
@@ -6981,7 +6979,7 @@ Six of the most useful break styles are illustrated in Figure \@ref(fig:break-st
 - `style = quantile` ensures the same number of observations fall into each category (with the potential down side that bin ranges can vary widely)
 - `style = jenks` identifies groups of similar values in the data and maximizes the differences between categories
 - `style = cont` (and `order`) present a large number of colors over continuous color field, and are particularly suited for continuous rasters (`order` can help visualize skewed distributions)
-- `style = cat` was designed to represent categorical values and assures that each category receives a unique color.
+- `style = cat` was designed to represent categorical values and assures that each category receives a unique color
 <!-- references for more info -->
 
 <div class="figure" style="text-align: center">
@@ -6991,7 +6989,7 @@ Six of the most useful break styles are illustrated in Figure \@ref(fig:break-st
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">Although `style` is an argument of **tmap** functions it in facts originates as an argument in `classInt::classIntervals()` --- see the help page of this function for details.</div>\EndKnitrBlock{rmdnote}
 
-Palettes define the color ranges associated the bins determined by the `breaks`, `n`, and `style` arguments described above.
+Palettes define the color ranges associated with the bins and  determined by the `breaks`, `n`, and `style` arguments described above.
 The default color palette is specified in `tm_layout()` (see section \@ref(layouts) to learn more), however, it could be quickly changed using the `palette` argument.
 It expects a vector of colors or a new color palette name, which can be selected interactively with `tmaptools::palette_explorer()`.
 You can add a `-` as prefix to reverse the palette order.
@@ -7002,17 +7000,17 @@ Colors should be intuitive: rivers should be blue, for example, and pastures gre
 Avoid too many categories: maps with large legends and many colors can be uninterpretable.^[The `col = "MAP_COLORS"` argument can be used in maps with a large number of individual polygons (for example a map of individual countries). It creates unique colors for adjacent polygons.] 
 
 The second group is sequential palettes.
-These follow a gradient, for example from light to dark colors (light colors tend to represent lower values), and appropriate for continuous (numeric) variables.
+These follow a gradient, for example from light to dark colors (light colors tend to represent lower values), and are appropriate for continuous (numeric) variables.
 Sequential palettes can be single (`Blues` go from light to dark blue for example) or multi-color/hue (`YlOrBr` is gradient from light yellow to brown via orange, for example), as demonstrated in the code chunk below --- output not shown, run the code yourself to see the results!
 
 
 ```r
-tm_shape(nz) + tm_fill("Population", palette = "Blues")
-tm_shape(nz) + tm_fill("Population", palette = "YlOrBr")
+tm_shape(nz) + tm_polygons("Population", palette = "Blues")
+tm_shape(nz) + tm_polygons("Population", palette = "YlOrBr")
 ```
 
 The last group, diverging palettes, typically range between three distinct colors (purple-white-green in Figure \@ref(fig:colpal)) and are usually created by joining two single color sequential palettes with the darker colors at each end.
-Their main purpose is too visualize the difference from an important reference point, e.g. a certain temperature, the median household income or the mean probability for a drought event.
+Their main purpose is to visualize the difference from an important reference point, e.g. a certain temperature, the median household income or the mean probability for a drought event.
 
 <div class="figure" style="text-align: center">
 <img src="figures/colpal-1.png" alt="Examples of categorical, sequential and diverging palettes." width="576" />
@@ -7342,7 +7340,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve4a6d2073b10fe2d9
+preserveff684fb7d4fc6557
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7389,7 +7387,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve485608f7ec48a649
+preserveba8b90ed78a520a5
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7422,7 +7420,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3d4757e30faaca72
+preserve44932b3b4f58d8fa
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
