@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-04">
+<meta name="date" content="2018-05-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -781,13 +781,13 @@ In <strong>shiny</strong> apps these are often split into <code>ui.R</code> (sho
 <p></p>
 <p>Before considering large apps it is worth seeing a minimal example, named ‘lifeApp’, in action.<a href="#fn59" class="footnoteRef" id="fnref59"><sup>59</sup></a> The code below defines and launches — with the command <code>shinyApp()</code> — a lifeApp, which provides an interactive slider allowing users to make countries appear with progressively lower levels of life expectancy (see Figure <a href="adv-map.html#fig:lifeApp">9.22</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ui =<span class="st"> </span><span class="kw">fluidPage</span>(
-  <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;life&quot;</span>, <span class="st">&quot;Life expectancy&quot;</span>, <span class="dv">0</span>, <span class="dv">80</span>, <span class="dt">value =</span> <span class="dv">80</span>),
+  <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;life&quot;</span>, <span class="st">&quot;Life expectancy&quot;</span>, <span class="dv">49</span>, <span class="dv">84</span>, <span class="dt">value =</span> <span class="dv">80</span>),
       <span class="kw">leafletOutput</span>(<span class="dt">outputId =</span> <span class="st">&quot;map&quot;</span>)
   )
 server =<span class="st"> </span>function(input, output) {
   output$map =<span class="st"> </span><span class="kw">renderLeaflet</span>({
     <span class="kw">leaflet</span>() %&gt;%<span class="st"> </span><span class="kw">addProviderTiles</span>(<span class="st">&quot;OpenStreetMap.BlackAndWhite&quot;</span>) %&gt;%
-<span class="st">      </span><span class="kw">addPolygons</span>(<span class="dt">data =</span> world[world$lifeExp &gt;<span class="st"> </span>input$life, ])})
+<span class="st">      </span><span class="kw">addPolygons</span>(<span class="dt">data =</span> world[world$lifeExp &lt;<span class="st"> </span>input$life, ])})
 }
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:lifeApp"></span>
