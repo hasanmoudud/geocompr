@@ -359,6 +359,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In the introduction we promised to teach not how to use existing tools for Geocomputation in R, but also develop new ones, “in the form of shareable R scripts and functions”. This chapter aims to deliver on that promise.</p>
 <p>We will consider example R scripts for geographic data and how to make them more reproducible in section <a href="algorithms-and-functions-for-geocomputation.html#scripts">12.1</a>. Algorithms (or ‘geoalgorithms’ for geographic processes) are recipes for modifying inputs using a series of steps, resulting in an output, as described in section <a href="algorithms-and-functions-for-geocomputation.html#geographic-algorithms">12.2</a>. To ease sharing and reproducibility algorithms can be placed into R function, which can then be distributed either in script files or as R packages, the building blocks of reproducible code. That is the topic of section <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>.</p>
 <p>It should be noted at the outset that none of these topics are specific to geographic data. Although geoalgorithms do have a specific meaning originating in GIS software, most of the concepts apply in other domains. For that reason instead of going into detail, our approach in this chapter is to provide illustrative examples and direct the reader to established resources, to avoid reinventing the wheel.</p>
+<p>The approach taken in this chapter was partly inspired by <span class="citation">Xiao (<a href="#ref-xiao_gis_2016">2016</a>)</span>, who advocates explanations that are neither highly theoretical (as many academic papers are) <!-- , with dozens of lines of non-reproducible psuedo-code and equations --> nor entirely focussed on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). Instead the focus is on understanding, using reproducible code and clear explanation. The methods demonstrated in <em>GIS Algorithms</em> (including finding the centroid of a polygon, an example used in this chapter) are readily available in GIS software. However, the aim is “not to duplicate what is available out there, but to show how things out there work” <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a>)</span>. This chapter takes a similar approach and is therefore the most low-level and potentially advanced (in terms of the code, not application) so far.</p>
 </div>
 <div id="scripts" class="section level2">
 <h2><span class="header-section-number">12.1</span> Scripts</h2>
@@ -384,7 +385,13 @@ A useful tool for reproducibility is the <strong>reprex</strong> package. Its ma
 <div id="geographic-algorithms" class="section level2">
 <h2><span class="header-section-number">12.2</span> Geographic algorithms</h2>
 <p>Algorithms can be understood as the computing equivalent of a cooking recipe. An algorithm is a series of steps which, when taken on appropriate ingredients, results in an output that is more useful (or tasty) than the raw ingredients. Before considering ‘geoalgorithms’, it is worth taking a brief detour to understand how algorithms relate to scripts and functions which are covered next.</p>
-<p>The word algorithm comes from Baghdad when, in the 9<sup>th</sup> Century AD, an early maths book was published called <em>Hisab al-jabr w’al-muqabala</em>, the basis of the word <em>algebra</em>. The book was translated into Latin and became so popular that the author Al-Khwarizmi “was immortalized as a scientific term: Al-Khwarizmi became Alchoarismi, Algorismi and, eventually, algorithm” <span class="citation">(Bellos <a href="#ref-bellos_alex_2011">2011</a>)</span>. In the the computing age algorithm refers to a series of steps that take clearly defined input to produce an output. Algorithms are often first developed in flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R. Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>).</p>
+<p>The word algorithm comes from Baghdad when, in the 9<sup>th</sup> Century AD, an early maths book was published called <em>Hisab al-jabr w’al-muqabala</em>. The book was translated into Latin and became so popular that the author Al-Khwarizmi “was immortalized as a scientific term: Al-Khwarizmi became Alchoarismi, Algorismi and, eventually, algorithm” <span class="citation">(Bellos <a href="#ref-bellos_alex_2011">2011</a>)</span>.<a href="#fn64" class="footnoteRef" id="fnref64"><sup>64</sup></a></p>
+<p>In the the computing age algorithm refers to a series of steps that take clearly defined input to produce an output. Algorithms are often first envisioned flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R. Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>).</p>
+<p>Geoalgorithms (also referred to as <em>GIS Algorithms</em>, in a book of the same name) are a special case of algorithm that take geographic data as input and, generally, return geographic results <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a>)</span>. A simple example is an algorithm that finds the centroid of an object. This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes. The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we’ll touch on later). In this case we’ll create a polygon with 19 vertices, following an example from <em>GIS Algorithms</em> (see <a href="https://github.com/gisalgs/geom">github.com/gisalgs</a> for Python source code):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">poly_csv =<span class="st"> &quot;0,5,10,15,20,25,30,40,45,50,40,30,25,20,15,10,8,4,0</span>
+<span class="st">            10,0,10,0,10,0,20,20,0,50,40,50,20,50,10,50,8,50,10&quot;</span>
+poly_df =<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">text =</span> poly_csv, <span class="dt">header =</span> <span class="ot">FALSE</span>)
+poly_mat =<span class="st"> </span><span class="kw">t</span>(poly_df)</code></pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">12.3</span> Functions</h2>
@@ -399,9 +406,18 @@ A useful tool for reproducibility is the <strong>reprex</strong> package. Its ma
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-xiao_gis_2016">
+<p>Xiao, Ningchuan. 2016. <em>GIS Algorithms: Theory and Applications for Geographic Information Science &amp; Technology</em>. 55 City Road, London. doi:<a href="https://doi.org/10.4135/9781473921498">10.4135/9781473921498</a>.</p>
+</div>
 <div id="ref-bellos_alex_2011">
 <p>Bellos, Alex. 2011. <em>Alex’s Adventures in Numberland</em>. London: Bloomsbury Paperbacks.</p>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="64">
+<li id="fn64"><p>The book’s title was also influential, forming the basis of the word <em>algebra</em>.<a href="algorithms-and-functions-for-geocomputation.html#fnref64">↩</a></p></li>
+</ol>
 </div>
             </section>
 
