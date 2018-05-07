@@ -281,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9c2a3b08c7816a00
+preservea0b70451cd559cdc
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3138,7 +3138,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservec748268bfefc0e54
+preserve345f85bb1f4fcf0a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6025,7 +6025,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve9ba4075c72d3f9b9
+preserve26fa5a31394b334c
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6641,7 +6641,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveba592d2433223653
+preserve912308f6a5dc95db
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7330,7 +7330,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve7e7be692e7278e58
+preserve883aeb459e9c66e4
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7377,7 +7377,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve0d28abd0f954db7c
+preserve43f271c6689f2a63
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7409,7 +7409,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefba094438fe4e561
+preservebf4771739b7d566b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8669,8 +8669,29 @@ It should be noted at the outset that none of these topics are specific to geogr
 Although geoalgorithms do have a specific meaning originating in GIS software, most of the concepts apply in other domains.
 For that reason instead of going into detail, our approach in this chapter is to provide illustrative examples and direct the reader to established resources, to avoid reinventing the wheel.
 
-
 ## Scripts
+
+If packages are the building blocks of reproducible code, scripts are the glue that holds them together.
+There are no strict rules on what can and cannot go into script files.
+and nothing to prevent you from saving broken, non-reproducible code
+There are, however, some rules of thumb and conventions worth following when writing R scipts, outlined below:
+
+- Write the script in order. Just like the script of a play, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
+- Make the script reproducible. Scripts will be of more use to you and others if they are self-contained and can be run by other people. This involves stating dependencies (loading required packages at the outset, like the 'Prerequisites' section), reading-in data from persistent sources (e.g. from a reliable website or API) and mentioning any code that must be run before running the script (e.g. with a comment `# run script0.R before this`).
+- Comment the script sufficiently for others (and your future self) to understand it but not so much that the comments themselves become hard to maintain. At a minimum a good script file should contain information on the purpose of the script (see Figure \@ref(fig:codecheck)) and division into chunks, perhaps by appending `----` to section headings, which allows 'folding' of R scripts in RStudio.
+
+Although there is no way to enforce reproducibility in R scripts, there are tools that can help.
+By default RStudio 'code-checks' R scripts and underlines faulty code with a red way line, as illustrated below:
+
+<div class="figure" style="text-align: center">
+<img src="https://user-images.githubusercontent.com/1825120/39698841-6e600584-51ee-11e8-9dd0-2c17b2836f79.png" alt="Illustration of 'code checking' in RStudio, which identifies the incorrect dublicate pipe operator at the outset of a script."  />
+<p class="caption">(\#fig:codecheck)Illustration of 'code checking' in RStudio, which identifies the incorrect dublicate pipe operator at the outset of a script.</p>
+</div>
+
+
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">Furthermore, the **reprex** package enables testing of lines of R code to check if they are reproduible and to facilitate communication on sites such as GitHub.
+See [reprex.tidyverse.org/](http://reprex.tidyverse.org/) for details.</div>\EndKnitrBlock{rmdnote}
+
 
 ## Geographic algorithms
 
