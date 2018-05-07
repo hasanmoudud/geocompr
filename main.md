@@ -281,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedfd3c6648b99804a
+preserveb1c8654b3ffaf2b2
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3138,7 +3138,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveef83f3ca8b9b9dbe
+preserve7407ecba46d14b64
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6025,7 +6025,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve1fdb735ced4089aa
+preserve441ee6d71c4e1a78
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6641,7 +6641,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve19604e490f0df02b
+preserve94aecbee2105ab43
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7330,7 +7330,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve07f0b7778922c246
+preserved666e40de080ab25
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7377,7 +7377,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservec155e60d41bc3250
+preserve016c70680d85833e
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7409,7 +7409,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefeaee98eefc517e7
+preserve6c2a5a53d42b69ce
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8693,8 +8693,17 @@ By default RStudio 'code-checks' R scripts and underlines faulty code with a red
 Its main function `reprex()` tests of lines of R code to check if they are reproduible, and provides markdown output to facilitate communication on sites such as GitHub.
 See [reprex.tidyverse.org/](http://reprex.tidyverse.org/) for details.</div>\EndKnitrBlock{rmdnote}
 
-
 ## Geographic algorithms
+
+Algorithms can be understood as the computing equivalent of a cooking recipe.
+An algorithm is a series of steps which, when taken on appropriate ingredients, results in an output that is more useful (or tasty) than the raw ingredients.
+Before considering 'geoalgorithms', it is worth taking a brief detour to understand how algorithms relate to scripts and functions which are covered next.
+
+The word algorithm comes from Baghdad when, in the 9^th^ Century AD, an early maths book was published called *Hisab al-jabr w’al-muqabala*, the basis of the word *algebra*.
+The book was translated into Latin and became so popular that the author Al-Khwarizmi "was immortalized as a scientific term: Al-Khwarizmi became Alchoarismi, Algorismi and, eventually, algorithm" [@bellos_alex_2011].
+In the the computing age algorithm refers to a series of steps that take clearly defined input to produce an output.
+Algorithms are often first developed in flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R.
+Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section \@ref(functions)).
 
 ## Functions
 
