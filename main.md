@@ -281,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve243500f865de08a4
+preservef6fb78c77f45cb27
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3138,7 +3138,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve141eddbdef125c3d
+preserve630203030aae8fb5
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6025,7 +6025,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve2de49ceac7258ee2
+preservef1dcf37a86bbdfd3
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6641,7 +6641,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve2dc791c59059d770
+preserve3ddddcd2104b0d05
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7330,7 +7330,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve591fa4d4cd0cc26d
+preserve9f65215b10f0d090
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7377,7 +7377,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservefc2fe0c16175fd86
+preserveec28e25b58c5128f
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7409,7 +7409,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0f8654d29895817c
+preserve21ec6ff2227a9961
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8655,11 +8655,24 @@ Using these objects:
 
 ## Prerequisites {-}
 
+In the introduction we promised to teach not how to use existing tools for Geocomputation in R, but also develop new ones, "in the form of shareable R scripts and functions".
+This chapter aims to deliver on that promise.
+
+We will consider example R scripts for geographic data and how to make them more reproducible in section \@ref(scripts).
+Algorithms (or 'geoalgorithms' for geographic processes) are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
+To ease sharing and reproducibility algorithms can be placed into R function, which can then be distributed either in script files or as R packages, the building blocks of reproducible code.
+That is the topic of section \@ref(functions).
+
+It should be noted at the outset that none of these topics are specific to geographic data.
+Although geoalgorithms do have a specific meaning originating in GIS software, most of the concepts apply in other domains.
+For that reason instead of going into detail, our approach in this chapter is to provide illustrative examples and direct the reader to established resources, to avoid reinventing the wheel.
+
+
+## Scripts
+
 ## Geographic algorithms
 
 ## Functions
-
-## Implementation
 
 ## Case study
 
