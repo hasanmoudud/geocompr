@@ -281,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedfa6f8e82431025b
+preserveb11c8106f8c62817
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3138,7 +3138,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve8b4b5cd9fad7be6b
+preserve8c6857168d4afeb1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6025,7 +6025,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve48f6bee96a99bbed
+preserve306d14e4847b96b7
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6641,7 +6641,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveaf5e29b49ee226d2
+preservef6013aad4d41235f
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7330,7 +7330,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea5e7183deafee90b
+preserve1be65a873e683795
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7377,7 +7377,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveb86a0ceb9b77c133
+preserveaf5d91ced5701cd3
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7409,7 +7409,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve16bd05ae9790e218
+preservece7653fa4d767099
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8739,6 +8739,11 @@ poly_mat = t(poly_df)
 ## Case study
 
 ## Exercises
+
+1. In section \@ref(geographic-algorithms) we created a function that finds the geographic centroid of a shape, which is implemented in the **sf** function `st_centroid()`.
+Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
+
+<!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
 
 <!--chapter:end:12-algorithms.Rmd-->
 
