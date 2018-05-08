@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-07'
+date: '2018-05-08'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -39,7 +39,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-07 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-08 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -281,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveabd13614761a98b1
+preserve7c9c7861a0627a12
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3138,7 +3138,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve6d0c0e9edb4af735
+preserve4b81352b8de37854
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6025,7 +6025,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve42f6cfe631c63c07
+preserve6ae88e56df838e81
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6641,7 +6641,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservef555ae5321d403be
+preservecd3f582dc7fb5053
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7330,7 +7330,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve8e3868cd89afda7f
+preserve2b3621170ce2c4c9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7377,7 +7377,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve2272cc2ce596d669
+preserve0d76e881afd4751b
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7409,7 +7409,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveec6c7d0dc782b181
+preserve0400adbeef2fd47c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8730,6 +8730,53 @@ poly_csv = "0,5,10,15,20,25,30,40,45,50,40,30,25,20,15,10,8,4,0
 poly_df = read.csv(text = poly_csv, header = FALSE)
 poly_mat = t(poly_df)
 ```
+
+As with many computational (or other) problems, it makes sense to break the problem into smaller chunks.
+With this in mind, let's find the centroid of the first triangle that can be identified within the polygon, which is simply $1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangles vertices:
+
+
+```r
+O = poly_mat[1, ]
+T1 = rbind(O, poly_mat[2:3, ], O)
+C1 = (T1[1, ] + T1[2, ] + T1[3, ]) / 3
+```
+
+
+```r
+plot(poly_mat)
+lines(poly_mat)
+lines(triangle1, col = "blue", lwd = 5)
+text(x = C1[1], y = C1[2], "C1")
+```
+
+If we calculate the centroids of all such polygons the solution should be the average x and y values of all centroids.
+There is one problem though: some triangles are more important (larger) than others.
+Therefore to find the geographic centroid we need to take the *weighted mean* of all sub-triangles, with weigths proportional to area. 
+This is still straightforward computationally, with the formula to calculate the area of a triangle being:
+
+$$
+
+$$
+
+The next triangle on the list must have the same origin and can be created as follows:
+
+
+```r
+T2 = rbind(O, poly_mat[3:4, ], O)
+C2 = (T2[1, ] + T2[2, ] + T2[3, ]) / 3
+```
+
+
+```r
+plot(poly_mat)
+lines(poly_mat)
+lines(T1, col = "blue", lwd = 2)
+text(x = C1[1], y = C1[2], "C1", col = "blue")
+lines(T2, col = "red", lwd = 2)
+text(x = C2[1], y = C2[2], "C2", col = "red")
+```
+
+<img src="figures/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" />
 
 
 
