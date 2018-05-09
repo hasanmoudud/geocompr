@@ -281,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5ec64cc4416c6dcc
+preserve82c71f8db5e6b233
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -533,6 +533,10 @@ In case the installation fails, for example if you do not have rights to install
 
 ```r
 install.packages("sf")
+```
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">On Mac and Linux a few requirements must be met to install **sf**.
+These are described in the package's README at [github.com/r-spatial/sf](https://github.com/r-spatial/sf).</div>\EndKnitrBlock{rmdnote}
+```
 install.packages("raster")
 install.packages("spData")
 install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/",
@@ -554,9 +558,6 @@ The other packages that were installed contain data that will be used in the boo
 library(spData)        # load geographic data
 library(spDataLarge)   # load larger geographic data
 ```
-
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">On Mac and Linux a few requirements must be met to install **sf**.
-These are described in the package's README at [github.com/r-spatial/sf](https://github.com/r-spatial/sf).</div>\EndKnitrBlock{rmdnote}
 
 This chapter will provide brief explanations of the fundamental geographic data models: vector and raster.
 We will introduce the theory behind each data model and the disciplines in which they predominate, before demonstrating their implementation in R.
@@ -3138,7 +3139,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservee5f1d1028e3648e8
+preserve92af3ef7a8e770ea
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6025,7 +6026,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve478afa5daf635460
+preserve0b9ddafb28a0f033
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6641,7 +6642,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve1772f3d2b72b9b90
+preservea8b52090cc3b7ae6
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7330,7 +7331,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve00349a95239758c2
+preservea8156b4d61950767
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7377,7 +7378,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve31276a76d592fb88
+preserve834ea5fffeabcb73
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7409,7 +7410,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6d1db56e2952327b
+preserve6e3e24a10d1a5f15
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 

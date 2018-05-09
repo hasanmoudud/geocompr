@@ -360,22 +360,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <!-- Another option is to use the RStudio project provided in the root directory of the [`geocompr`](https://github.com/Robinlovelace/geocompr) GitHub repository. -->
 <!-- This will make it easier to run this book's worked examples on your computer. -->
 <p>After you’ve checked you R installation and brushed-up on your R skills where appropriate, the next step is to install and load the packages used in this chapter. Packages are installed with the <code>install.packages()</code> function which can be used to get the prerequisites on your computer:<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;sf&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;raster&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;spData&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;spDataLarge&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;https://nowosad.github.io/drat/&quot;</span>,
-                 <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</code></pre></div>
+
+<div class="rmdnote">
+On Mac and Linux a few requirements must be met to install <strong>sf</strong>. These are described in the package’s README at <a href="https://github.com/r-spatial/sf">github.com/r-spatial/sf</a>.
+</div>
+<p></p>
+<pre><code>install.packages(&quot;raster&quot;)
+install.packages(&quot;spData&quot;)
+install.packages(&quot;spDataLarge&quot;, repos = &quot;https://nowosad.github.io/drat/&quot;,
+                 type = &quot;source&quot;)</code></pre>
 <p>Packages are loaded with the <code>library()</code> function, which is used to load the two spatial data processing packages installed previously as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sf)          <span class="co"># classes and functions for vector data</span>
 <span class="kw">library</span>(raster)      <span class="co"># classes and functions for raster data</span></code></pre></div>
 <p>The other packages that were installed contain data that will be used in the book:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(spData)        <span class="co"># load geographic data</span>
 <span class="kw">library</span>(spDataLarge)   <span class="co"># load larger geographic data</span></code></pre></div>
-
-<div class="rmdnote">
-On Mac and Linux a few requirements must be met to install <strong>sf</strong>. These are described in the package’s README at <a href="https://github.com/r-spatial/sf">github.com/r-spatial/sf</a>.
-</div>
-<p></p>
 <p>This chapter will provide brief explanations of the fundamental geographic data models: vector and raster. We will introduce the theory behind each data model and the disciplines in which they predominate, before demonstrating their implementation in R. <!-- Vector and raster models are vital to geospatial analysis [@longley_geographic_2015]. --></p>
 <p>The <em>vector data model</em> represents the world using points, lines and polygons. These have discrete, well-defined borders, meaning that vector datasets usually have a high level of precision (but not necessarily accuracy as we will see in <a href="spatial-class.html#units">2.4</a>). The <em>raster data model</em> divides the surface up into cells of constant size. Raster datasets are the basis of background images used in web-mapping and have been a vital source of geographic data since the origins of aerial photography and satellite-based remote sensing devices. Rasters aggregate spatially specific features to a given resolution, meaning that they are consistent over space and scalable (many worldwide raster datasets are available). <!-- The downside of this is that small features can be blurred or lost. (commented - too specific) --> <!-- todo: add figure(s) showing raster data and blurring? --></p>
 <p>Which to use? The answer likely depends on your domain of application:</p>
