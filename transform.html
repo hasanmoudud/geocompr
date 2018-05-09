@@ -839,7 +839,7 @@ Figure 5.14: Spatial aggregation on contiguous polygons, illustrated by aggregat
 <p>The equivalent result can be achieved using <strong>tidyverse</strong> functions as follows (result not shown):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions2 =<span class="st"> </span>us_states %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(REGION) %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(<span class="dt">pop =</span> total_pop_15, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(total_pop_15, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
 </div>
 <div id="type-trans" class="section level3">
 <h3><span class="header-section-number">5.3.7</span> Type transformations</h3>
