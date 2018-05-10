@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-09'
+date: '2018-05-10'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -39,7 +39,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-09 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-10 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -281,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve18c27e4f52129761
+preserve97916686184acf37
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3139,7 +3139,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve27a2c74c61b484be
+preserve9ec21430928f49ab
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6026,7 +6026,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve13f99943068328d0
+preserve1683b0fff51c68ac
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6642,7 +6642,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservef554468c9f37572b
+preservee8db2df83fee41b1
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7331,7 +7331,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve39e689347901fc54
+preservee6f71eb7aada6eb6
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7378,7 +7378,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve9d4d8ab5a067100f
+preserve58360ae42e7252a2
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7410,7 +7410,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1cea6cadde9a5caa
+preserve77ce26ed7ff7b6b4
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8756,9 +8756,48 @@ Therefore to find the geographic centroid we need to take the *weighted mean* of
 This is still straightforward computationally, with the formula to calculate the area of a triangle being:
 
 $$
-
+\frac{Ax ( B y − C y ) + B x ( C y − A y ) + C x ( A y − B y )}
+{ 2 }
 $$
 
+Where $A$ to $C$ are the triangle's three points and $x$ and $y$ refer to the x and y dimensions.
+A translation of this formula into R code that works with the data in the matrix representation of a triangle `T1` is:
+
+
+```r
+T1[1, 1] * (T1[2, 2] - T1[3, 2]) +
+  T1[2, 1] * (T1[3, 2] - T1[1, 2]) +
+  T1[3, 1] * (T1[1, 2] - T1[2, 2]) / 2
+#>  O 
+#> 50
+```
+
+This code chunk works and outputs the correct result.^[
+as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height --- $A = B * H / 2$ --- ($10 * 10 / 2$ in this case, as can be seen in Figure \@ref(fig:polycent)).
+]
+The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same 'triangle matrix' format.
+To make the code more generalisable, let's convert the code into a function (something described in \@ref(functions)):
+
+
+```r
+t_area = function(x) {
+  x[1, 1] * (x[2, 2] - x[3, 2]) +
+  x[2, 1] * (x[3, 2] - x[1, 2]) +
+  x[3, 1] * (x[1, 2] - x[2, 2]) / 2
+}
+```
+
+The function `t_area` assumes an input with the same dimensions as the triangle represented in `T1`, with the first three rows and two columns representing coordinates of its edges.
+We can verify it works not only on the triangle matrix `T1` as follows:
+
+
+```r
+t_area(T1)
+#>  O 
+#> 50
+```
+
+With this setup tested on the first triangle we can proceed to create many triangles.
 The next triangle on the list must have the same origin and can be created as follows:
 
 
@@ -8777,7 +8816,18 @@ lines(T2, col = "red", lwd = 2)
 text(x = C2[1], y = C2[2], "C2", col = "red")
 ```
 
-<img src="figures/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="figures/polycent-1.png" alt="Illustration of centroid calculation." width="576" />
+<p class="caption">(\#fig:polycent)Illustration of centroid calculation.</p>
+</div>
+
+
+```r
+i = 2:(nrow(poly_mat) - 1)
+Ti = purrr::map(i, ~rbind(O, poly_mat[.:(. + 1), ], O))
+A = purrr::map_dbl(Ti, ~t_area(.))
+```
+
 
 
 
