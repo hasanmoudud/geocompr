@@ -281,7 +281,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve97916686184acf37
+preserve8526410a43a69d31
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3139,7 +3139,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9ec21430928f49ab
+preservef6c27b0b2d7f30f3
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6026,7 +6026,7 @@ The result of this code, visualized in Figure \@ref(fig:cycleways), identifies r
 Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
 
 <div class="figure" style="text-align: center">
-preserve1683b0fff51c68ac
+preserve806811b04e5da019
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6642,7 +6642,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservee8db2df83fee41b1
+preserve6f39b9d0b6396726
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7331,7 +7331,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservee6f71eb7aada6eb6
+preserve8d86b072c48e8b13
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7378,7 +7378,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve58360ae42e7252a2
+preserve6af62b6e681ef5db
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7410,7 +7410,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve77ce26ed7ff7b6b4
+preservee221ff714e80afc1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8722,33 +8722,30 @@ Geoalgorithms (also referred to as *GIS Algorithms*, in a book of the same name)
 A simple example is an algorithm that finds the centroid of an object.
 This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes.
 The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we'll touch on later).
-In this case we'll create a polygon with 19 vertices, following an example from *GIS Algorithms* (see [github.com/gisalgs](https://github.com/gisalgs/geom) for Python source code):
+In this case we'll create a polygon with 10 vertices, following an example from *GIS Algorithms* (see [github.com/gisalgs](https://github.com/gisalgs/geom) for Python source code):
+
+
 
 
 ```r
-poly_csv = "0,5,10,15,20,25,30,40,45,50,40,30,25,20,15,10,8,4,0
-            10,0,10,0,10,0,20,20,0,50,40,50,20,50,10,50,8,50,10"
+poly_csv = "0,5,10,15,20,25,30,40,45,50,0
+            10,0,10,0,10,0,20,20,0,50,10"
 poly_df = read.csv(text = poly_csv, header = FALSE)
 poly_mat = t(poly_df)
 ```
 
 As with many computational (or other) problems, it makes sense to break the problem into smaller chunks.
-With this in mind, let's find the centroid of the first triangle that can be identified within the polygon, which is simply $1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangles vertices:
+With this in mind, the following commands create a new triangle (`T1`), the first that can be split-out from the polygon and finds its centroid based on the [formula](https://math.stackexchange.com/questions/1702595/proof-for-centroid-formula-for-a-polygon)
+$1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangles vertices:
 
 
 ```r
-O = poly_mat[1, ]
-T1 = rbind(O, poly_mat[2:3, ], O)
-C1 = (T1[1, ] + T1[2, ] + T1[3, ]) / 3
+O = poly_mat[1, ] # create a point representing the origin
+T1 = rbind(O, poly_mat[2:3, ], O) # create 'triangle matrix'
+C1 = (T1[1, ] + T1[2, ] + T1[3, ]) / 3 # find centroid
 ```
 
 
-```r
-plot(poly_mat)
-lines(poly_mat)
-lines(triangle1, col = "blue", lwd = 5)
-text(x = C1[1], y = C1[2], "C1")
-```
 
 If we calculate the centroids of all such polygons the solution should be the average x and y values of all centroids.
 There is one problem though: some triangles are more important (larger) than others.
@@ -8776,7 +8773,7 @@ This code chunk works and outputs the correct result.^[
 as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height --- $A = B * H / 2$ --- ($10 * 10 / 2$ in this case, as can be seen in Figure \@ref(fig:polycent)).
 ]
 The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same 'triangle matrix' format.
-To make the code more generalisable, let's convert the code into a function (something described in \@ref(functions)):
+To make the code more generalizable, let's convert the code into a function (something described in \@ref(functions)):
 
 
 ```r
@@ -8787,7 +8784,7 @@ t_area = function(x) {
 }
 ```
 
-The function `t_area` assumes an input with the same dimensions as the triangle represented in `T1`, with the first three rows and two columns representing coordinates of its edges.
+The function `t_area` generalizes the solution by taking any object `x`, assumed to have the same dimensions as the triangle represented in `T1`.
 We can verify it works not only on the triangle matrix `T1` as follows:
 
 
@@ -8797,13 +8794,44 @@ t_area(T1)
 #> 50
 ```
 
-With this setup tested on the first triangle we can proceed to create many triangles.
-The next triangle on the list must have the same origin and can be created as follows:
+Likewise we can create a function that find's the triangle's centroid:
 
 
 ```r
-T2 = rbind(O, poly_mat[3:4, ], O)
-C2 = (T2[1, ] + T2[2, ] + T2[3, ]) / 3
+t_centroid = function(x) {
+  (x[1, ] + x[2, ] + x[3, ]) / 3
+}
+t_centroid(T1)
+#> [1] 5.00 6.67
+```
+
+With these functions created and tested on the first triangle of the polygon, we can we can apply the solution to many triangles, which will be created with the **decido** package:
+
+
+```r
+ind = decido::earcut(poly_mat)
+decido::plot_ears(poly_mat, idx = ind)
+i = seq(1, length(ind), by = 3)
+i_list = purrr::map(i, ~c(.:(.+2), .))
+T_all = purrr::map(i_list, ~poly_mat[ind[.], ])
+```
+
+<img src="figures/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" />
+
+
+
+
+<!-- Following this pattern, we can use iteration to create all triangles representing the polygon. -->
+<!-- We could use a `for()` loop or `lapply()` for this work but have chosen `map()` from the **purrr** package because it allows concise code: -->
+<!-- the `.` in the commands below refer to 'each element of the object `i`' (see `?purrr::map` for details): -->
+
+
+
+
+```r
+# Aim: show how to create more triangles - commented out in favor of decido solution
+A = purrr::map_dbl(T_all, ~t_area(.))
+C = t(sapply(T_all, t_centroid))
 ```
 
 
@@ -8812,8 +8840,8 @@ plot(poly_mat)
 lines(poly_mat)
 lines(T1, col = "blue", lwd = 2)
 text(x = C1[1], y = C1[2], "C1", col = "blue")
-lines(T2, col = "red", lwd = 2)
-text(x = C2[1], y = C2[2], "C2", col = "red")
+lines(T_all[[2]], col = "red", lwd = 2)
+text(x = C[2, 1], y = C[2, 2], "C2", col = "red")
 ```
 
 <div class="figure" style="text-align: center">
@@ -8822,16 +8850,15 @@ text(x = C2[1], y = C2[2], "C2", col = "red")
 </div>
 
 
+
 ```r
-i = 2:(nrow(poly_mat) - 1)
-Ti = purrr::map(i, ~rbind(O, poly_mat[.:(. + 1), ], O))
-A = purrr::map_dbl(Ti, ~t_area(.))
+library(sf)
+#> Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0
+T_sf = list(poly_mat) %>% 
+  st_polygon()
+st_area(T_sf)
+#> [1] 950
 ```
-
-
-
-
-
 
 ## Functions
 
