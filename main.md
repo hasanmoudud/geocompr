@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-10'
+date: '2018-05-11'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -39,7 +39,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-10 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-11 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -146,6 +146,12 @@ On the other hand, we embed the shown methods into the bigger field of GIScience
 -->
 
 ## Acknowledgements {-}
+
+
+
+Many thanks to all the people who contributed to the book via GitHub: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [rsbivand](https://github.com/rsbivand), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [richfitz](https://github.com/richfitz), [wdearden](https://github.com/wdearden), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah).
+
+
 We thank Patrick Schratz (University of Jena) for fruitful discussions on **mlr** and for providing code input (Chapter \@ref(spatial-cv)).
 
 <!-- add list of people who helped with this book -->
@@ -281,7 +287,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9e2640d96d671ed8
+preserve9a0747a8403c7722
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -381,15 +387,15 @@ See the [r-spatial](https://github.com/r-spatial/) organisation and conversation
 ] and a growing number of actively developed packages which are designed to work in harmony with **sf** (Table \@ref(tab:revdep)). 
 
 
-Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-05-01 there are 71 packages which import sf.
+Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-05-09 there are 71 packages which import sf.
 
 package    Downloads
 --------  ----------
-plotly          2118
-raster          1986
-spData          1498
-spdep           1225
-leaflet         1117
+plotly          2179
+raster          2060
+spData          1698
+leaflet         1200
+spdep           1179
 
 ## The history of R-spatial
 
@@ -3139,7 +3145,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservead40b6d8a4d17bff
+preserve242fb5e5ed4cf27c
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6022,11 +6028,17 @@ route_cycleway$all = c(desire_rail$all, desire_carshort$all)
 
 
 
-The result of this code, visualized in Figure \@ref(fig:cycleways), identifies routes of interest in terms of car dependency and key opportunities to invest in public transport-cycling integration.
-Although other routes between zones are likely to be used --- in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode --- the results demonstrate routes along which cycle paths could be prioritized.
+The results of the preceding code are visualized in Figure \@ref(fig:cycleways), which shows routes with high levels of car dependency and highlights opportunities for cycling rail stations (the subsequent code chunk creates a simple version of the figure --- see `code/07-cycleways.R` to reproduce the figure exactly).
+The method has some the limitations: in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode.
+However the results demonstrate routes along which cycle paths could be prioritized from car dependency and public transport perspectives.
+
+
+```r
+qtm(route_cycleway, lines.lwd = "all")
+```
 
 <div class="figure" style="text-align: center">
-preservefb68a665540ef837
+<img src="figures/cycleways-1.png" alt="Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips." width="576" />
 <p class="caption">(\#fig:cycleways)Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.</p>
 </div>
 
@@ -6642,7 +6654,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve0c8f85794d31c13a
+preserve146d1d3177c58b38
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7331,7 +7343,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservef2d7de21289bfdbd
+preserve5b37413085f79e18
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7378,7 +7390,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve57388bb6c49a30ef
+preserveb51e4cbc5f5d3870
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7410,7 +7422,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1d77a3bdbe5663cf
+preserve7006f478f0271e67
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
