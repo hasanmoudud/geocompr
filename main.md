@@ -214,7 +214,7 @@ At the turn of the 21^st^ Century it was unrealistic to expect readers to be abl
 Fast-forward two decades and things have progressed rapidly.
 Anyone with access to a laptop with ~4GB RAM can realistically expect to be able to install and run software for geocompuation on publicly accessible datasets, which are more widely available than ever before (as we will see in Chapter \@ref(read-write)).^[
 A laptop with 4GB running a modern operating system such as Ubuntu 16.04 onwards should also be able to reproduce the contents of this book.
-A laptop with this specification or above can be acquired second-hand for ~$100 in many countries nowadays, reducing the financial/hardware barrier to geocomputation far below the levels in operation in the early 2000s, when high-performance computers were unaffordable for most people.
+A laptop with this specification or above can be acquired second-hand for ~US$100 in many countries nowadays, reducing the financial/hardware barrier to geocomputation far below the levels in operation in the early 2000s, when high-performance computers were unaffordable for most people.
 ]
 Unlike early works in the field all the work presented in this book is reproducible using code and example data supplied alongside the book, in R packages such as **spData**, the installation of which is covered in Chapter \@ref(spatial-class).
 
@@ -265,15 +265,15 @@ Instead we use R as a 'tool for the trade' for understanding the world, similar 
 Although programming can seem like a reductionist activity, the aim is to teach Geocomputation with R not only for fun, but for understanding the world.
 
 R is a multi-platform, open source language and environment for statistical computing and graphics ([r-project.org/](https://www.r-project.org/)).
-With a wide range of packages R also supports advanced geospatial statistics, modeling and visualization.^[The integrated development environment (IDE) [RStudio](https://www.rstudio.com/) deserves mention here from a user perspective as it has made the interactive use of R more accessible].
+With a wide range of packages R also supports advanced geospatial statistics, modeling and visualization.^[The integrated development environment (IDE) [RStudio](https://www.rstudio.com/) deserves mention here from a user perspective as it has made the interactive use of R more accessible]
 At its core R is an object-oriented, [functional programming language](http://adv-r.had.co.nz/Functional-programming.html) [@wickham_advanced_2014], and was specifically designed as an interactive interface to other software [@chambers_extending_2016]. 
 The latter also includes many 'bridges' to a treasure trove of GIS software, 'geolibraries' and functions (see Chapter \@ref(gis)).
-It is thus ideal for quickly creating 'geo-tools', without needing to master lower level languages (compared to R) such as C, FORTRAN and Java (see section \@ref(software-for-geocomputation)). 
-This can feel like breaking free from the metaphorical 'glass ceiling' imposed by GUI-based proprietary geographic information systems (see Table \@ref(tab:gdsl) for a definition of GUI).
+It is thus ideal for quickly creating 'geo-tools', without needing to master lower level languages (compared to R) such as C, FORTRAN or Java (see section \@ref(software-for-geocomputation)). 
+This can feel like breaking free from the metaphorical 'glass ceiling' imposed by GUI-based proprietary geographic information systems (see Table \@ref(tab:gdsl) for a definition of GUI) without having to setup a complex IDE environment needed for some languages.
 What is more, advanced users might even extend R with the power of other languages (e.g., C++ through **Rcpp** or Python through **reticulate**; see also section \@ref(software-for-geocomputation)).
 
 An example showing R's flexibility with regard to geographic software development is its support for generating interactive maps thanks to **leaflet** [@R-leaflet].
-The packages **tmap** and **mapview** [@R-tmap; @R-mapview] are built on and extend **leaflet**.
+The packages **tmap** and **mapview** [@R-tmap; @R-mapview] extend and build on **leaflet**.
 These packages help overcome the criticism that R has "limited interactive [plotting] facilities" [@bivand_applied_2013]. 
 The code below illustrates this by generating Figure \@ref(fig:interactive).
 
@@ -291,7 +291,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve008e020f22e3bff4
+preserve78a622822212db78
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -308,7 +308,7 @@ Therefore knowing what else is out there can also be useful from an R-spatial pe
 With this motivation in mind this section briefly introduces the languages [C++](https://isocpp.org/), [Java](https://www.oracle.com/java/index.html) and [Python](https://www.python.org/) for geocomputation, with reference to R.
 
 A natural choice for geocomputation would be C++ since major GIS packages (e.g., [GDAL](http://www.gdal.org/), [QGIS](www.qgis.org), [GRASS](https://grass.osgeo.org/), [SAGA](www.saga-gis.org), and even [ArcGIS](https://www.arcgis.com/)) often rely in great parts on it.
-This is because well-written C++ can be blazing fast, which makes it a good choice for performance-critical applications such as the processing of large spatial data.
+This is because well-written C++ can be very fast, which makes it a good choice for performance-critical applications such as the processing of large spatial data.
 Usually, people find it harder to learn than Python or R.
 It is also likely that you have to invest a lot of time to code things that are readily available in R.
 Therefore, we would recommend to learn R, and subsequently to learn C++ through **Rcpp** if a need for performance optimization arises.
@@ -3148,7 +3148,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea49d2fdb0a29e757
+preserve7808006780c4a8a3
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6657,7 +6657,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservedc380d396c7afd71
+preserve43734c5c48183f0b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7346,7 +7346,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserved107af3ea0dbd970
+preservefb5711b49af9caa3
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7393,7 +7393,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve3fe3df90ccd74ed8
+preservefc41aba586eb7c52
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7421,7 +7421,7 @@ trails %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3744a7ce170fe6a9
+preservee13dbb3dcbf4f154
 <p class="caption">(\#fig:mapview2)Using mapview at the end of a sf based pipe expression.</p>
 </div>
 
@@ -7453,7 +7453,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved1f48925471fcee4
+preserveb3bfbad9232dee4a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
