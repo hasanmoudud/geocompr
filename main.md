@@ -291,7 +291,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7324170236158022
+preserve008e020f22e3bff4
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3148,7 +3148,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef43347f22932318c
+preservea49d2fdb0a29e757
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6657,7 +6657,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve3f0ca2319dcbe096
+preservedc380d396c7afd71
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7346,7 +7346,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservecc1454b9f411da7d
+preserved107af3ea0dbd970
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7393,7 +7393,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve3348ea5301e5decf
+preserve3fe3df90ccd74ed8
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7418,12 +7418,10 @@ trails %>%
 
 ```
 #> although coordinates are longitude/latitude, st_intersection assumes that they are planar
-#> Warning: attribute variables are assumed to be spatially constant
-#> throughout all geometries
 ```
 
 <div class="figure" style="text-align: center">
-preserveeb0a3dbc971ca5b0
+preserve3744a7ce170fe6a9
 <p class="caption">(\#fig:mapview2)Using mapview at the end of a sf based pipe expression.</p>
 </div>
 
@@ -7455,7 +7453,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1a76b5d10d3e2bfd
+preserved1f48925471fcee4
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
