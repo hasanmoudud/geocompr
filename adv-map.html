@@ -745,7 +745,6 @@ Figure 9.20: Illustration of mapview in action.
 </div>
 <p><strong>mapview</strong> has a concise syntax yet is powerful. By default, it provides some standard GIS functionality such as mouse position information, attribute queries (via pop-ups), scale bar, zoom-to-layer buttons. It offers advanced controls including the ability to ‘burst’ datasets into multiple layers and the addition of multiple layers with <code>+</code> followed by the name of a geographic object. Additionlaly, it provides automatic coloring of attributes (via argument <code>zcol</code>). In essence, it can be considered a data-driven <strong>leaflet</strong> API (see below for more information about <strong>leaflet</strong>) which is highlighted by the following piece of code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mapview)
-
 <span class="kw">mapview</span>(franconia, <span class="dt">zcol =</span> <span class="st">&quot;district&quot;</span>, <span class="dt">burst =</span> <span class="ot">TRUE</span>) +<span class="st"> </span>breweries</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:mapview2"></span>
 <div id="htmlwidget-a261f1c13aea9e511342" style="width:576px;height:355.968px;" class="leaflet html-widget"></div>
