@@ -291,7 +291,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveef9f10715bc79524
+preserve7324170236158022
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3148,7 +3148,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve27cbbf994ffc9821
+preservef43347f22932318c
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6657,7 +6657,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve78a9bdeff477e6db
+preserve3f0ca2319dcbe096
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7346,7 +7346,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve6ede4df5eadada16
+preservecc1454b9f411da7d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7393,26 +7393,41 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservebbf748b68970ffe9
+preserve3348ea5301e5decf
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
-**mapview** has a concise syntax yet is powerful.
-By default, it provides some standard GIS functionality such as mouse position information, attribute queries (via pop-ups), scale bar, zoom-to-layer buttons.
-It offers advanced controls including the ability to 'burst' datasets into multiple layers and the addition of multiple layers with `+` followed by the name of a geographic object.
-Additionlaly, it provides automatic coloring of attributes (via argument `zcol`).
-In essence, it can be considered a data-driven **leaflet** API (see below for more information about **leaflet**) which is highlighted by the following piece of code:
+**mapview** has a concise syntax yet is powerful. By default, it provides some standard GIS functionality such as mouse position information, attribute queries (via pop-ups), scale bar, zoom-to-layer buttons.
+It offers advanced controls including the ability to 'burst' datasets into multiple layers and the addition of multiple layers with `+` followed by the name of a geographic object. Additionlaly, it provides automatic coloring of attributes (via argument `zcol`). In essence, it can be considered a data-driven **leaflet** API (see below for more information about **leaflet**). Given that **mapview** always expects a spatial object (sf, sp, raster) as its first argument, it works well at the end of piped expressions. Consider the following example where **sf** is used to intersect lines and polygons and then visualised with **mapview**.
 
 
 ```r
 library(mapview)
-mapview(franconia, zcol = "district", burst = TRUE) + breweries
+library(dplyr)
+library(sf)
+
+trails %>%
+  st_transform(st_crs(franconia)) %>%
+  st_intersection(franconia[franconia$district == "Oberfranken", ]) %>%
+  st_collection_extract("LINE") %>%
+  mapview(color = "red", lwd = 3, layer.name = "trails") +
+  mapview(franconia, zcol = "district", burst = TRUE) +
+  breweries
+```
+
+
+```
+#> although coordinates are longitude/latitude, st_intersection assumes that they are planar
+#> Warning: attribute variables are assumed to be spatially constant
+#> throughout all geometries
 ```
 
 <div class="figure" style="text-align: center">
-preserve9feb653827ce46a6
-<p class="caption">(\#fig:mapview2)Using zcol to color attributes and + to add layers in mapview.</p>
+preserveeb0a3dbc971ca5b0
+<p class="caption">(\#fig:mapview2)Using mapview at the end of a sf based pipe expression.</p>
 </div>
+
+One important thing to keep in mind is that **mapview** layers are added via the `+` operator (similar to **ggplot2**). This is a frequent [gotcha](https://en.wikipedia.org/wiki/Gotcha_(programming)) in piped workflows where the main binding operator is `%>%`.
 
 For further information on **mapview** see the package's website at [r-spatial.github.io/mapview/](https://r-spatial.github.io/mapview/articles/).
 
@@ -7440,7 +7455,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec4be8d1c9c5194e7
+preserve1a76b5d10d3e2bfd
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
