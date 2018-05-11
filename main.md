@@ -287,7 +287,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9a0747a8403c7722
+preserve4da8ee7d87bdb6c2
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3145,7 +3145,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve242fb5e5ed4cf27c
+preserve199124c873632aea
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3544,7 +3544,7 @@ This returns the statistics for each category, here the mean altitude for each g
 ### Global operations and distances
 
 *Global* operations are a special case of zonal operations with the entire raster dataset representing a single zone.
-The most common global operations are descriptive statistics for the entire raster dataset such as the minimum or maximum (see previous chapter).
+The most common global operations are descriptive statistics for the entire raster dataset such as the minimum or maximum (see section \@ref(summarizing-raster-objects)).
 Aside from that, global operations are also useful for the computation of distance and weight rasters.
 In the first case, one can calculate the distance from each cell to a specific target cell.
 For example, one might want to compute the distance to the nearest coast (see also `raster::distance()`).
@@ -6654,7 +6654,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve146d1d3177c58b38
+preservea7c045f33b74847b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7343,7 +7343,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5b37413085f79e18
+preserve5829383429cee1f6
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7390,7 +7390,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveb51e4cbc5f5d3870
+preserve3c34e4ac17e4fbac
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7422,7 +7422,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7006f478f0271e67
+preserve1320c2c83cb8a8b1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
