@@ -78,41 +78,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -313,7 +341,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.1" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#scripts"><i class="fa fa-check"></i><b>12.1</b> Scripts</a></li>
 <li class="chapter" data-level="12.2" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#geographic-algorithms"><i class="fa fa-check"></i><b>12.2</b> Geographic algorithms</a></li>
 <li class="chapter" data-level="12.3" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#functions"><i class="fa fa-check"></i><b>12.3</b> Functions</a></li>
-<li class="chapter" data-level="12.4" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>12.4</b> Case study</a></li>
+<li class="chapter" data-level="12.4" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#case-study-1"><i class="fa fa-check"></i><b>12.4</b> Case study</a></li>
 <li class="chapter" data-level="12.5" data-path="algorithms-and-functions-for-geocomputation.html"><a href="algorithms-and-functions-for-geocomputation.html#exercises-9"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>13</b> Statistical learning for geographic data</a><ul>
@@ -356,20 +384,37 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">12</span> Algorithms and functions for geocomputation</h1>
 <div id="prerequisites-9" class="section level2 unnumbered">
 <h2>Prerequisites</h2>
-<p>In the introduction we promised to teach not only how to use existing tools for Geocomputation in R, but also develop new ones: “in the form of shareable R scripts and functions”. This chapter aims to deliver on that promise.</p>
-<p>We will consider example R scripts for geographic data and how to make them more reproducible in section <a href="algorithms-and-functions-for-geocomputation.html#scripts">12.1</a>. Algorithms (or ‘geoalgorithms’ for geographic processes) are recipes for modifying inputs using a series of steps, resulting in an output, as described in section <a href="algorithms-and-functions-for-geocomputation.html#geographic-algorithms">12.2</a>. To ease sharing and reproducibility algorithms can be placed into R function, which can then be distributed either in script files or as R packages, the building blocks of reproducible code. That is the topic of section <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>.</p>
-<p>It should be noted at the outset that none of these topics are specific to geographic data. Although geoalgorithms do have a specific meaning originating in GIS software, most of the concepts apply in other domains. For that reason instead of going into detail, our approach in this chapter is to provide illustrative examples and direct the reader to established resources, to avoid reinventing the wheel.</p>
-<p>The approach taken in this chapter was partly inspired by <span class="citation">Xiao (<a href="#ref-xiao_gis_2016">2016</a>)</span>, who advocates explanations that are neither highly theoretical (as many academic papers are) <!-- , with dozens of lines of non-reproducible psuedo-code and equations --> nor entirely focussed on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). Instead the focus is on understanding, using reproducible code and clear explanation. The methods demonstrated in <em>GIS Algorithms</em> (including finding the centroid of a polygon, an example used in this chapter) are readily available in GIS software. However, the aim is “not to duplicate what is available out there, but to show how things out there work” <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a>)</span>. This chapter takes a similar approach and is therefore the most low-level and potentially advanced (in terms of the code, not application) so far.</p>
+<p>In the introduction we promised to teach not only how to use existing tools for Geocomputation in R, but also develop new ones:
+“in the form of shareable R scripts and functions”.
+This chapter aims to deliver on that promise.</p>
+<p>We will consider example R scripts for geographic data and how to make them more reproducible in section <a href="algorithms-and-functions-for-geocomputation.html#scripts">12.1</a>.
+Algorithms (or ‘geoalgorithms’ for geographic processes) are recipes for modifying inputs using a series of steps, resulting in an output, as described in section <a href="algorithms-and-functions-for-geocomputation.html#geographic-algorithms">12.2</a>.
+To ease sharing and reproducibility algorithms can be placed into R function, which can then be distributed either in script files or as R packages, the building blocks of reproducible code.
+That is the topic of section <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>.</p>
+<p>It should be noted at the outset that none of these topics are specific to geographic data.
+Although geoalgorithms do have a specific meaning originating in GIS software, most of the concepts apply in other domains.
+For that reason instead of going into detail, our approach in this chapter is to provide illustrative examples and direct the reader to established resources, to avoid reinventing the wheel.</p>
+<p>The approach taken in this chapter was partly inspired by <span class="citation">Xiao (<a href="#ref-xiao_gis_2016">2016</a>)</span>, who advocates explanations that are neither highly theoretical (as many academic papers are)
+<!-- , with dozens of lines of non-reproducible psuedo-code and equations -->
+nor entirely focussed on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages).
+Instead the focus is on understanding, using reproducible code and clear explanation.
+The methods demonstrated in <em>GIS Algorithms</em> (including finding the centroid of a polygon, an example used in this chapter) are readily available in GIS software.
+However, the aim is “not to duplicate what is available out there, but to show how things out there work” <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a>)</span>.
+This chapter takes a similar approach and is therefore the most low-level and potentially advanced (in terms of the code, not application) so far.</p>
 </div>
 <div id="scripts" class="section level2">
 <h2><span class="header-section-number">12.1</span> Scripts</h2>
-<p>If packages are the building blocks of reproducible code, scripts are the glue that holds them together. There are no strict rules on what can and cannot go into script files. and nothing to prevent you from saving broken, non-reproducible code There are, however, some rules of thumb and conventions worth following when writing R scipts, outlined below:</p>
+<p>If packages are the building blocks of reproducible code, scripts are the glue that holds them together.
+There are no strict rules on what can and cannot go into script files.
+and nothing to prevent you from saving broken, non-reproducible code
+There are, however, some rules of thumb and conventions worth following when writing R scipts, outlined below:</p>
 <ul>
 <li>Write the script in order. Just like the script of a play, scripts should have a clear order such as ‘setup’, ‘data processing’ and ‘save results’ (roughly equivalent to ‘beginning’, ‘middle’ and ‘end’ in a film).</li>
 <li>Make the script reproducible. Scripts will be of more use to you and others if they are self-contained and can be run by other people. This involves stating dependencies (loading required packages at the outset, like the ‘Prerequisites’ section), reading-in data from persistent sources (e.g. from a reliable website or API) and mentioning any code that must be run before running the script (e.g. with a comment <code># run script0.R before this</code>).</li>
 <li>Comment the script sufficiently for others (and your future self) to understand it but not so much that the comments themselves become hard to maintain. At a minimum a good script file should contain information on the purpose of the script (see Figure <a href="algorithms-and-functions-for-geocomputation.html#fig:codecheck">12.1</a>) and division into chunks, perhaps by appending <code>----</code> to section headings, which allows ‘folding’ of R scripts in RStudio.</li>
 </ul>
-<p>Although there is no way to enforce reproducibility in R scripts, there are tools that can help. By default RStudio ‘code-checks’ R scripts and underlines faulty code with a red way line, as illustrated below:</p>
+<p>Although there is no way to enforce reproducibility in R scripts, there are tools that can help.
+By default RStudio ‘code-checks’ R scripts and underlines faulty code with a red way line, as illustrated below:</p>
 <div class="figure" style="text-align: center"><span id="fig:codecheck"></span>
 <img src="https://user-images.githubusercontent.com/1825120/39698841-6e600584-51ee-11e8-9dd0-2c17b2836f79.png" alt="Illustration of 'code checking' in RStudio, which identifies the incorrect dublicate pipe operator at the outset of a script."  />
 <p class="caption">
@@ -378,93 +423,114 @@ Figure 12.1: Illustration of ‘code checking’ in RStudio, which identifies th
 </div>
 
 <div class="rmdnote">
-A useful tool for reproducibility is the <strong>reprex</strong> package. Its main function <code>reprex()</code> tests of lines of R code to check if they are reproduible, and provides markdown output to facilitate communication on sites such as GitHub. See <a href="http://reprex.tidyverse.org/">reprex.tidyverse.org/</a> for details.
+A useful tool for reproducibility is the <strong>reprex</strong> package.
+Its main function <code>reprex()</code> tests of lines of R code to check if they are reproduible, and provides markdown output to facilitate communication on sites such as GitHub.
+See <a href="http://reprex.tidyverse.org/">reprex.tidyverse.org/</a> for details.
 </div>
-<p></p>
+
 </div>
 <div id="geographic-algorithms" class="section level2">
 <h2><span class="header-section-number">12.2</span> Geographic algorithms</h2>
-<p>Algorithms can be understood as the computing equivalent of a cooking recipe. An algorithm is a series of steps which, when taken on appropriate ingredients, results in an output that is more useful (or tasty) than the raw ingredients. Before considering ‘geoalgorithms’, it is worth taking a brief detour to understand how algorithms relate to scripts and functions which are covered next.</p>
-<p>The word algorithm comes from Baghdad when, in the 9<sup>th</sup> Century AD, an early maths book was published called <em>Hisab al-jabr w’al-muqabala</em>. The book was translated into Latin and became so popular that the author Muḥammad ibn Mūsā <a href="https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi">al-Khwārizmī</a> “was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm” <span class="citation">(Bellos <a href="#ref-bellos_alex_2011">2011</a>)</span>.<a href="#fn64" class="footnoteRef" id="fnref64"><sup>64</sup></a></p>
-<p>In the the computing age algorithm refers to a series of steps that take clearly defined input to produce an output. Algorithms are often first envisioned flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R. Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>).</p>
-<p>Geoalgorithms (also referred to as <em>GIS Algorithms</em>, in a book of the same name) are a special case of algorithm that take geographic data as input and, generally, return geographic results <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a>)</span>. A simple example is an algorithm that finds the centroid of an object. This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes. The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we’ll touch on later). In this case we’ll create a polygon with 10 vertices, following an example from <em>GIS Algorithms</em> (see <a href="https://github.com/gisalgs/geom">github.com/gisalgs</a> for Python source code):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">poly_csv =<span class="st"> &quot;0,5,10,15,20,25,30,40,45,50,0</span>
-<span class="st">            10,0,10,0,10,0,20,20,0,50,10&quot;</span>
-poly_df =<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">text =</span> poly_csv, <span class="dt">header =</span> <span class="ot">FALSE</span>)
-poly_mat =<span class="st"> </span><span class="kw">t</span>(poly_df)</code></pre></div>
-<p>As with many computational (or other) problems, it makes sense to break the problem into smaller chunks. With this in mind, the following commands create a new triangle (<code>T1</code>), the first that can be split-out from the polygon and finds its centroid based on the <a href="https://math.stackexchange.com/questions/1702595/proof-for-centroid-formula-for-a-polygon">formula</a> <span class="math inline">\(1/3(a + b + c)\)</span> where <span class="math inline">\(a\)</span> to <span class="math inline">\(c\)</span> are coordinates representing the triangles vertices:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">O =<span class="st"> </span>poly_mat[<span class="dv">1</span>, ] <span class="co"># create a point representing the origin</span>
-T1 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">2</span>:<span class="dv">3</span>, ], O) <span class="co"># create &#39;triangle matrix&#39;</span>
-C1 =<span class="st"> </span>(T1[<span class="dv">1</span>, ] +<span class="st"> </span>T1[<span class="dv">2</span>, ] +<span class="st"> </span>T1[<span class="dv">3</span>, ]) /<span class="st"> </span><span class="dv">3</span> <span class="co"># find centroid</span></code></pre></div>
-<p>If we calculate the centroids of all such polygons the solution should be the average x and y values of all centroids. There is one problem though: some triangles are more important (larger) than others. Therefore to find the geographic centroid we need to take the <em>weighted mean</em> of all sub-triangles, with weigths proportional to area. This is still straightforward computationally, with the formula to calculate the area of a triangle being:</p>
+<p>Algorithms can be understood as the computing equivalent of a cooking recipe.
+An algorithm is a series of steps which, when taken on appropriate ingredients, results in an output that is more useful (or tasty) than the raw ingredients.
+Before considering ‘geoalgorithms’, it is worth taking a brief detour to understand how algorithms relate to scripts and functions which are covered next.</p>
+<p>The word algorithm comes from Baghdad when, in the 9<sup>th</sup> Century AD, an early maths book was published called <em>Hisab al-jabr w’al-muqabala</em>.
+The book was translated into Latin and became so popular that the author Muḥammad ibn Mūsā <a href="https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi">al-Khwārizmī</a> “was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm” <span class="citation">(Bellos <a href="#ref-bellos_alex_2011">2011</a>)</span>.<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a></p>
+<p>In the the computing age algorithm refers to a series of steps that take clearly defined input to produce an output.
+Algorithms are often first envisioned flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R.
+Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>).</p>
+<p>Geoalgorithms (also referred to as <em>GIS Algorithms</em>, in a book of the same name) are a special case of algorithm that take geographic data as input and, generally, return geographic results <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a>)</span>.
+A simple example is an algorithm that finds the centroid of an object.
+This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes.
+The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we’ll touch on later).
+In this case we’ll create a polygon with 10 vertices, following an example from <em>GIS Algorithms</em> (see <a href="https://github.com/gisalgs/geom">github.com/gisalgs</a> for Python source code):</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">poly_csv =<span class="st"> &quot;0,5,10,15,20,25,30,40,45,50,0</span></a>
+<a class="sourceLine" id="cb379-2" data-line-number="2"><span class="st">            10,0,10,0,10,0,20,20,0,50,10&quot;</span></a>
+<a class="sourceLine" id="cb379-3" data-line-number="3">poly_df =<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">text =</span> poly_csv, <span class="dt">header =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb379-4" data-line-number="4">poly_mat =<span class="st"> </span><span class="kw">t</span>(poly_df)</a></code></pre></div>
+<p>As with many computational (or other) problems, it makes sense to break the problem into smaller chunks.
+With this in mind, the following commands create a new triangle (<code>T1</code>), the first that can be split-out from the polygon and finds its centroid based on the <a href="https://math.stackexchange.com/questions/1702595/proof-for-centroid-formula-for-a-polygon">formula</a>
+<span class="math inline">\(1/3(a + b + c)\)</span> where <span class="math inline">\(a\)</span> to <span class="math inline">\(c\)</span> are coordinates representing the triangles vertices:</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1">O =<span class="st"> </span>poly_mat[<span class="dv">1</span>, ] <span class="co"># create a point representing the origin</span></a>
+<a class="sourceLine" id="cb380-2" data-line-number="2">T1 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ], O) <span class="co"># create &#39;triangle matrix&#39;</span></a>
+<a class="sourceLine" id="cb380-3" data-line-number="3">C1 =<span class="st"> </span>(T1[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span> <span class="co"># find centroid</span></a></code></pre></div>
+<p>If we calculate the centroids of all such polygons the solution should be the average x and y values of all centroids.
+There is one problem though: some triangles are more important (larger) than others.
+Therefore to find the geographic centroid we need to take the <em>weighted mean</em> of all sub-triangles, with weigths proportional to area.
+This is still straightforward computationally, with the formula to calculate the area of a triangle being:</p>
 <p><span class="math display">\[
 \frac{Ax ( B y − C y ) + B x ( C y − A y ) + C x ( A y − B y )}
 { 2 }
 \]</span></p>
-<p>Where <span class="math inline">\(A\)</span> to <span class="math inline">\(C\)</span> are the triangle’s three points and <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> refer to the x and y dimensions. A translation of this formula into R code that works with the data in the matrix representation of a triangle <code>T1</code> is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">T1[<span class="dv">1</span>, <span class="dv">1</span>] *<span class="st"> </span>(T1[<span class="dv">2</span>, <span class="dv">2</span>] -<span class="st"> </span>T1[<span class="dv">3</span>, <span class="dv">2</span>]) +
-<span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] *<span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] -<span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) +
-<span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] *<span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] -<span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) /<span class="st"> </span><span class="dv">2</span>
-<span class="co">#&gt;  O </span>
-<span class="co">#&gt; 50</span></code></pre></div>
-<p>This code chunk works and outputs the correct result.<a href="#fn65" class="footnoteRef" id="fnref65"><sup>65</sup></a> The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same ‘triangle matrix’ format. To make the code more generalizable, let’s convert the code into a function (something described in <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_area =<span class="st"> </span>function(x) {
-  x[<span class="dv">1</span>, <span class="dv">1</span>] *<span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] -<span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) +
-<span class="st">  </span>x[<span class="dv">2</span>, <span class="dv">1</span>] *<span class="st"> </span>(x[<span class="dv">3</span>, <span class="dv">2</span>] -<span class="st"> </span>x[<span class="dv">1</span>, <span class="dv">2</span>]) +
-<span class="st">  </span>x[<span class="dv">3</span>, <span class="dv">1</span>] *<span class="st"> </span>(x[<span class="dv">1</span>, <span class="dv">2</span>] -<span class="st"> </span>x[<span class="dv">2</span>, <span class="dv">2</span>]) /<span class="st"> </span><span class="dv">2</span>
-}</code></pre></div>
-<p>The function <code>t_area</code> generalizes the solution by taking any object <code>x</code>, assumed to have the same dimensions as the triangle represented in <code>T1</code>. We can verify it works not only on the triangle matrix <code>T1</code> as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_area</span>(T1)
-<span class="co">#&gt;  O </span>
-<span class="co">#&gt; 50</span></code></pre></div>
+<p>Where <span class="math inline">\(A\)</span> to <span class="math inline">\(C\)</span> are the triangle’s three points and <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> refer to the x and y dimensions.
+A translation of this formula into R code that works with the data in the matrix representation of a triangle <code>T1</code> is:</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1">T1[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb381-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb381-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb381-4" data-line-number="4"><span class="co">#&gt;  O </span></a>
+<a class="sourceLine" id="cb381-5" data-line-number="5"><span class="co">#&gt; 50</span></a></code></pre></div>
+<p>This code chunk works and outputs the correct result.<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a>
+The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same ‘triangle matrix’ format.
+To make the code more generalizable, let’s convert the code into a function (something described in <a href="algorithms-and-functions-for-geocomputation.html#functions">12.3</a>):</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1">t_area =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb382-2" data-line-number="2">  x[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb382-3" data-line-number="3"><span class="st">  </span>x[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb382-4" data-line-number="4"><span class="st">  </span>x[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">2</span>, <span class="dv">2</span>]) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb382-5" data-line-number="5">}</a></code></pre></div>
+<p>The function <code>t_area</code> generalizes the solution by taking any object <code>x</code>, assumed to have the same dimensions as the triangle represented in <code>T1</code>.
+We can verify it works not only on the triangle matrix <code>T1</code> as follows:</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1"><span class="kw">t_area</span>(T1)</a>
+<a class="sourceLine" id="cb383-2" data-line-number="2"><span class="co">#&gt;  O </span></a>
+<a class="sourceLine" id="cb383-3" data-line-number="3"><span class="co">#&gt; 50</span></a></code></pre></div>
 <p>Likewise we can create a function that find’s the triangle’s centroid:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_centroid =<span class="st"> </span>function(x) {
-  (x[<span class="dv">1</span>, ] +<span class="st"> </span>x[<span class="dv">2</span>, ] +<span class="st"> </span>x[<span class="dv">3</span>, ]) /<span class="st"> </span><span class="dv">3</span>
-}
-<span class="kw">t_centroid</span>(T1)
-<span class="co">#&gt; [1] 5.00 6.67</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1">t_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb384-2" data-line-number="2">  (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb384-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb384-4" data-line-number="4"><span class="kw">t_centroid</span>(T1)</a>
+<a class="sourceLine" id="cb384-5" data-line-number="5"><span class="co">#&gt; [1] 5.00 6.67</span></a></code></pre></div>
 <p>With these functions created and tested on the first triangle of the polygon, we can we can apply the solution to many triangles, which will be created with the <strong>decido</strong> package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind =<span class="st"> </span>decido::<span class="kw">earcut</span>(poly_mat)
-decido::<span class="kw">plot_ears</span>(poly_mat, <span class="dt">idx =</span> ind)
-i =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="kw">length</span>(ind), <span class="dt">by =</span> <span class="dv">3</span>)
-i_list =<span class="st"> </span>purrr::<span class="kw">map</span>(i, ~<span class="kw">c</span>(.:(.+<span class="dv">2</span>), .))
-T_all =<span class="st"> </span>purrr::<span class="kw">map</span>(i_list, ~poly_mat[ind[.], ])</code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1">ind =<span class="st"> </span>decido<span class="op">::</span><span class="kw">earcut</span>(poly_mat)</a>
+<a class="sourceLine" id="cb385-2" data-line-number="2">decido<span class="op">::</span><span class="kw">plot_ears</span>(poly_mat, <span class="dt">idx =</span> ind)</a>
+<a class="sourceLine" id="cb385-3" data-line-number="3">i =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="kw">length</span>(ind), <span class="dt">by =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb385-4" data-line-number="4">i_list =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(i, <span class="op">~</span><span class="kw">c</span>(.<span class="op">:</span>(.<span class="op">+</span><span class="dv">2</span>), .))</a>
+<a class="sourceLine" id="cb385-5" data-line-number="5">T_all =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(i_list, <span class="op">~</span>poly_mat[ind[.], ])</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>
 <!-- Following this pattern, we can use iteration to create all triangles representing the polygon. -->
 <!-- We could use a `for()` loop or `lapply()` for this work but have chosen `map()` from the **purrr** package because it allows concise code: -->
 <!-- the `.` in the commands below refer to 'each element of the object `i`' (see `?purrr::map` for details): -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Aim: show how to create more triangles - commented out in favor of decido solution</span>
-A =<span class="st"> </span>purrr::<span class="kw">map_dbl</span>(T_all, ~<span class="kw">t_area</span>(.))
-C =<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(T_all, t_centroid))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(poly_mat)
-<span class="kw">lines</span>(poly_mat)
-<span class="kw">lines</span>(T1, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
-<span class="kw">text</span>(<span class="dt">x =</span> C1[<span class="dv">1</span>], <span class="dt">y =</span> C1[<span class="dv">2</span>], <span class="st">&quot;C1&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
-<span class="kw">lines</span>(T_all[[<span class="dv">2</span>]], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
-<span class="kw">text</span>(<span class="dt">x =</span> C[<span class="dv">2</span>, <span class="dv">1</span>], <span class="dt">y =</span> C[<span class="dv">2</span>, <span class="dv">2</span>], <span class="st">&quot;C2&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="co"># Aim: show how to create more triangles - commented out in favor of decido solution</span></a>
+<a class="sourceLine" id="cb386-2" data-line-number="2">A =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_dbl</span>(T_all, <span class="op">~</span><span class="kw">t_area</span>(.))</a>
+<a class="sourceLine" id="cb386-3" data-line-number="3">C =<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(T_all, t_centroid))</a></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1"><span class="kw">plot</span>(poly_mat)</a>
+<a class="sourceLine" id="cb387-2" data-line-number="2"><span class="kw">lines</span>(poly_mat)</a>
+<a class="sourceLine" id="cb387-3" data-line-number="3"><span class="kw">lines</span>(T1, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb387-4" data-line-number="4"><span class="kw">text</span>(<span class="dt">x =</span> C1[<span class="dv">1</span>], <span class="dt">y =</span> C1[<span class="dv">2</span>], <span class="st">&quot;C1&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb387-5" data-line-number="5"><span class="kw">lines</span>(T_all[[<span class="dv">2</span>]], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb387-6" data-line-number="6"><span class="kw">text</span>(<span class="dt">x =</span> C[<span class="dv">2</span>, <span class="dv">1</span>], <span class="dt">y =</span> C[<span class="dv">2</span>, <span class="dv">2</span>], <span class="st">&quot;C2&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:polycent"></span>
 <img src="figures/polycent-1.png" alt="Illustration of centroid calculation." width="576" />
 <p class="caption">
 Figure 12.2: Illustration of centroid calculation.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sf)
-<span class="co">#&gt; Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0</span>
-T_sf =<span class="st"> </span><span class="kw">list</span>(poly_mat) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">st_polygon</span>()
-<span class="kw">st_area</span>(T_sf)
-<span class="co">#&gt; [1] 950</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb388-2" data-line-number="2"><span class="co">#&gt; Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0</span></a>
+<a class="sourceLine" id="cb388-3" data-line-number="3">T_sf =<span class="st"> </span><span class="kw">list</span>(poly_mat) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb388-4" data-line-number="4"><span class="st">  </span><span class="kw">st_polygon</span>()</a>
+<a class="sourceLine" id="cb388-5" data-line-number="5"><span class="kw">st_area</span>(T_sf)</a>
+<a class="sourceLine" id="cb388-6" data-line-number="6"><span class="co">#&gt; [1] 950</span></a></code></pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">12.3</span> Functions</h2>
 </div>
-<div id="case-study" class="section level2">
+<div id="case-study-1" class="section level2">
 <h2><span class="header-section-number">12.4</span> Case study</h2>
 </div>
 <div id="exercises-9" class="section level2">
 <h2><span class="header-section-number">12.5</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>In section <a href="algorithms-and-functions-for-geocomputation.html#geographic-algorithms">12.2</a> we created a function that finds the geographic centroid of a shape, which is implemented in the <strong>sf</strong> function <code>st_centroid()</code>. Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.</li>
+<li>In section <a href="algorithms-and-functions-for-geocomputation.html#geographic-algorithms">12.2</a> we created a function that finds the geographic centroid of a shape, which is implemented in the <strong>sf</strong> function <code>st_centroid()</code>.
+Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.</li>
 </ol>
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
 
@@ -473,7 +539,7 @@ T_sf =<span class="st"> </span><span class="kw">list</span>(poly_mat) %&gt;%<spa
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-xiao_gis_2016">
-<p>Xiao, Ningchuan. 2016. <em>GIS Algorithms: Theory and Applications for Geographic Information Science &amp; Technology</em>. 55 City Road, London. doi:<a href="https://doi.org/10.4135/9781473921498">10.4135/9781473921498</a>.</p>
+<p>Xiao, Ningchuan. 2016. <em>GIS Algorithms: Theory and Applications for Geographic Information Science &amp; Technology</em>. 55 City Road, London. <a href="https://doi.org/10.4135/9781473921498" class="uri">https://doi.org/10.4135/9781473921498</a>.</p>
 </div>
 <div id="ref-bellos_alex_2011">
 <p>Bellos, Alex. 2011. <em>Alex’s Adventures in Numberland</em>. London: Bloomsbury Paperbacks.</p>
@@ -482,8 +548,10 @@ T_sf =<span class="st"> </span><span class="kw">list</span>(poly_mat) %&gt;%<spa
 <div class="footnotes">
 <hr />
 <ol start="64">
-<li id="fn64"><p>The book’s title was also influential, forming the basis of the word <em>algebra</em>.<a href="algorithms-and-functions-for-geocomputation.html#fnref64">↩</a></p></li>
-<li id="fn65"><p>as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height — <span class="math inline">\(A = B * H / 2\)</span> — (<span class="math inline">\(10 * 10 / 2\)</span> in this case, as can be seen in Figure <a href="algorithms-and-functions-for-geocomputation.html#fig:polycent">12.2</a>).<a href="algorithms-and-functions-for-geocomputation.html#fnref65">↩</a></p></li>
+<li id="fn64"><p>
+The book’s title was also influential, forming the basis of the word <em>algebra</em>.<a href="algorithms-and-functions-for-geocomputation.html#fnref64" class="footnote-back">↩</a></p></li>
+<li id="fn65"><p>
+as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height — <span class="math inline">\(A = B * H / 2\)</span> — (<span class="math inline">\(10 * 10 / 2\)</span> in this case, as can be seen in Figure <a href="algorithms-and-functions-for-geocomputation.html#fig:polycent">12.2</a>).<a href="algorithms-and-functions-for-geocomputation.html#fnref65" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -538,7 +606,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

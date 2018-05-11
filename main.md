@@ -287,7 +287,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1b7d5c07873fe5d0
+preserve04f4de4586065521
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -328,9 +328,8 @@ Interpreted languages (such as R and Python) are better suited for the type of i
 Unlike Java (and most other languages) R has native support for data frames and matrices, making it especially well suited for (geographic) data analysis.
 
 Python is the final language for geocomputation that deserves attention in this section.
-Like R, Python has gained popularity due to the rapid growth of data science [@robinson_impressive_2017].
-Both languages are object-oriented, and have lots of further things in common.
-Due to their similarities there is much on-line discussion framing the relative merits of each language as a competition, as exemplified by an [infographic](https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis) by DataCamp titled "DATA SCIENCE WARS: R vs Python", which arguably generates more heat than light.
+Like R, Python has gained recent popularity as a tool for data science although it is a more general purpose language, as explored in an article on '[The Impressive Growth of R](https://stackoverflow.blog/2017/10/10/impressive-growth-r/)' on the programming question and answer site StackOverflow.
+Both languages are object-oriented, and have many areas of overlap, leading to initiatives such as the **reticulate** package that facilitates access to Python from R and the [Ursa Labs](https://ursalabs.org/) initiative to support portable libraries of benefit to the entire open source data science ecosystem.
 
 In practice both languages have their strengths and to some extent which you use is less important than the domain of application and communication of results.
 Learning either will provide a head-start in learning the other.
@@ -2841,7 +2840,7 @@ identical(canterbury_height, canterbury_height3)
 ```
 
 <div class="rmdnote">
-<p>This discarding of row names is not something that is specific to spatial data, as illustrated in the code chunk below. <strong>dplyr</strong> discards row names by design. For further discussion of this decision, and some controversy, see the (closed) issue <a href="https://github.com/tidyverse/dplyr/issues/366">#366</a> in the package's issue tracker.</p>
+<p>This discarding of row names is not something that is specific to spatial data, as illustrated in the code chunk below. <strong>dplyr</strong> discards row names by design. For further discussion of this decision, and some controversy, see the (closed) issue <a href="https://github.com/tidyverse/dplyr/issues/366">#366</a> in the package’s issue tracker.</p>
 </div>
 
 `sel` is not, as one might imagine, a `logical` `vector` (although it behaves as one as it only has one column) but a `logical` `matrix`:
@@ -3145,7 +3144,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved7434aa97d1328ba
+preserve848ae688eb9ac698
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5568,7 +5567,7 @@ The geographic resolution of these zones is important: small zones with high geo
 
 
 <div class="rmdnote">
-<p>Another issue with small zones is related to anonymity rules. To make it impossible to infer the identity of individuals in zones, detailed socio-demographic variables are often only available at low geographic resolution. Breakdowns of travel mode by age and sex, for example, are available at the Local Authority level in the UK, but not at the much higher Output Area level, each of which contains around 100 households --- see <a href="https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography">ons.gov.uk</a> for further details.</p>
+<p>Another issue with small zones is related to anonymity rules. To make it impossible to infer the identity of individuals in zones, detailed socio-demographic variables are often only available at low geographic resolution. Breakdowns of travel mode by age and sex, for example, are available at the Local Authority level in the UK, but not at the much higher Output Area level, each of which contains around 100 households — see <a href="https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography">ons.gov.uk</a> for further details.</p>
 </div>
 
 The 102 zones used are illustrated in Figure \@ref(fig:zones).
@@ -6654,7 +6653,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveeb1366bcaf3643bd
+preserveba09b0baec035996
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7343,7 +7342,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve762500df6fc9d9bd
+preserve4ec530f40d262562
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7390,7 +7389,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve44f1d3043f4e6e11
+preservedc621dffead0fbe1
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7407,7 +7406,7 @@ mapview(franconia, zcol = "district", burst = TRUE) + breweries
 ```
 
 <div class="figure" style="text-align: center">
-preserveb5cf039cb791f453
+preserve99b5ef043e2192af
 <p class="caption">(\#fig:mapview2)Using zcol to color attributes and + to add layers in mapview.</p>
 </div>
 
@@ -7437,7 +7436,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9ebc635d474c466e
+preserve598c12ee6ac6492b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7510,7 +7509,7 @@ These include `reactive()` and `observe()` (for creating outputs that respond to
 Such elements are critical to the creation of web mapping applications implemented in **shiny**.
 
 <div class="rmdnote">
-<p>There are a number of ways to run a <strong>shiny</strong> app. For RStudio users the simplest way is probably to click on the 'Run App' button located in the top right of the source pane when an <code>app.R</code>, <code>ui.R</code> or <code>server.R</code> script is open. <strong>shiny</strong> apps can also be initiated by using <code>runApp()</code> with the first argument being the folder containing the app code and data: <code>runApp(&quot;coffeeApp&quot;)</code> in this case (which assumes a folder named <code>coffeeApp</code> containing the <code>app.R</code> script is in your working directory). You can also launch apps from a Unix command line with the command <code>Rscript -e 'shiny::runApp(&quot;coffeeApp&quot;)'</code>.</p>
+<p>There are a number of ways to run a <strong>shiny</strong> app. For RStudio users the simplest way is probably to click on the ‘Run App’ button located in the top right of the source pane when an <code>app.R</code>, <code>ui.R</code> or <code>server.R</code> script is open. <strong>shiny</strong> apps can also be initiated by using <code>runApp()</code> with the first argument being the folder containing the app code and data: <code>runApp(&quot;coffeeApp&quot;)</code> in this case (which assumes a folder named <code>coffeeApp</code> containing the <code>app.R</code> script is in your working directory). You can also launch apps from a Unix command line with the command <code>Rscript -e 'shiny::runApp(&quot;coffeeApp&quot;)'</code>.</p>
 </div>
 
 Experimenting with apps such as `coffeeApp` will build not only your knowledge of web mapping applications in R but your practical skills.
