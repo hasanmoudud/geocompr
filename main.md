@@ -172,7 +172,7 @@ By the end of the book you should be able to create new tools for geocomputation
 Over the last few decades free and open source software for geospatial data ('FOSS4G') has progressed at an astonishing rate (see [foss4g.org](http://foss4g.org/)).
 Thanks to FOSS4G and the wider open source movement geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download high performance spatial libraries on their computer.
 Open source Geographic Information Systems (GIS) such as QGIS (see [qgis.org](http://qgis.org/en/site/)) have greatly reduced the 'barrier to entry'.
-Furthermore many GIS programs provide a command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see \@ref(gis)) and console windows (such as the [Python Console](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html) in QGIS) to supplement the main graphical user interface (GUI).
+Furthermore many GIS programs provide a command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see Chapter \@ref(gis)) and console windows (such as the [Python Console](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html) in QGIS) to supplement the main graphical user interface (GUI).
 Still, many GIS programs and teaching materials focus on the GUI, which can have the unintended consequence of discouraging reproducibility (see Table \@ref(tab:gdsl)).
 Motivated by the importance of reproducibility for scientific research and other advantages of typing commands rather than pointing and clicking, this book focuses on R's Command Line Interface (CLI) for GIS operations.
 The reproducible and 'computational' workflows enabled by R's CLI can also help unleash its statistical capabilities on geographic data (see section \@ref(why-geocomputation-with-r)).
@@ -248,19 +248,23 @@ By teaching you its foundations and underlying structure, we aim to empower you 
 
 ## Why Geocomputation with R?
 
-Early geographers used a variety of tools including rulers, compasses and sextants to advance knowledge about the world. 
-However, until John Harrison invented the marine chronometer in the 18th century it had been impossible to determine the exact longitude at sea ('the longitude problem').
-Prior to his invention ships followed for centuries a line of constant latitude making each journey much longer, more expensive and often more dangerous.
-Nowadays this seems unimaginable with every smartphone having a GPS receiver at its disposal and a multitude of other sensors measuring the world in real-time (satellites, radar, autonomous cars, citizens, etc.).
-For instance, an autonomous car could create 100 GB or more per day (see e.g., this [article](https://www.economist.com/news/science-and-technology/21696925-building-highly-detailed-maps-robotic-vehicles-autonomous-cars-reality)).
-Equally, earth observation data (satellite imagery) has become so big that it is impossible to analyze the corresponding data with a single computer (see [http://r-spatial.org/2016/11/29/openeo.html](http://r-spatial.org/2016/11/29/openeo.html)).
-Hence, we need computational power, software and related tools to handle and extract the most interesting patterns of this ever-increasing amount of (geo-)data.
-(Geo-)Databases help with data management, storing and querying such large amounts of data.
-Through interfaces, we can access subsets of these data for further analysis, information extraction and visualization.
-In this book we treat R as a 'tool for the trade' for the latter.
-<!-- What is 'the latter'? --> 
+Early geographers used a variety of tools including barometers, compasses and [sextants](https://en.wikipedia.org/wiki/Sextant) to advance knowledge about the world [@wulf_invention_2015]. 
+It was only with the invention of the marine [chronometer](https://en.wikipedia.org/wiki/Marine_chronometer) in 1761 that it became possible to calculate longitude at sea, enabling ships to take more direct routes and accurate maps of the world.
 
-R is a multi-platform, open source language and environment for statistical computing and graphics ([https://www.r-project.org/](https://www.r-project.org/)).
+Nowadays such lack of geographic data is hard to imagine.
+Every smartphone has a global positioning (GPS) receiver and a multitude of sensors on devides ranging from satellites and semi-autonomous vehicles to citizen scientists incessantly measure every part of the world.
+The rate of data produced is overwhelming.
+An autonomous vehicle, for example, can generate 100 GB of data per day [@theeconomist_autonomous_2016].
+Remote sensing data from satellites has become too large to analyze the corresponding data with a single computer, leading to initiatives such as  [OpenEO](http://r-spatial.org/2016/11/29/openeo.html).
+
+This 'geodata revolution' drives demand for high performance computer hardware and efficent, scalable software to handle and extract signal from the noise to understand and perhaps change the world.
+'Geodatabases' enable storage and generation of manageble subsets from the vast geographic data stores, making interfaces for gaining knowledge from them vital tools for the future.
+R is one such tool, with advanced analysis, modelling and visualization capabilities.
+In this context the focus of the book is not on the language itself [see @wickham_advanced_2014].
+Instead we use R as a 'tool for the trade' for understanding the world, similar to Humboldt's use of tools to gain a deep understanding of nature in all its complexity and interconnections @wulf_invention_2015.
+Although programming can seem like a reductionist activity, the aim is to teach Geocomputation with R not only for fun, but for understanding the world.
+
+R is a multi-platform, open source language and environment for statistical computing and graphics ([r-project.org/](https://www.r-project.org/)).
 With a wide range of packages R also supports advanced geospatial statistics, modeling and visualization.^[The integrated development environment (IDE) [RStudio](https://www.rstudio.com/) deserves mention here from a user perspective as it has made the interactive use of R more accessible].
 At its core R is an object-oriented, [functional programming language](http://adv-r.had.co.nz/Functional-programming.html) [@wickham_advanced_2014], and was specifically designed as an interactive interface to other software [@chambers_extending_2016]. 
 The latter also includes many 'bridges' to a treasure trove of GIS software, 'geolibraries' and functions (see Chapter \@ref(gis)).
@@ -287,7 +291,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve04f4de4586065521
+preserveef9f10715bc79524
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3144,7 +3148,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve848ae688eb9ac698
+preserve27cbbf994ffc9821
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6653,7 +6657,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveba09b0baec035996
+preserve78a9bdeff477e6db
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7342,7 +7346,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve4ec530f40d262562
+preserve6ede4df5eadada16
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7389,7 +7393,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservedc621dffead0fbe1
+preservebbf748b68970ffe9
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7406,7 +7410,7 @@ mapview(franconia, zcol = "district", burst = TRUE) + breweries
 ```
 
 <div class="figure" style="text-align: center">
-preserve99b5ef043e2192af
+preserve9feb653827ce46a6
 <p class="caption">(\#fig:mapview2)Using zcol to color attributes and + to add layers in mapview.</p>
 </div>
 
@@ -7436,7 +7440,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve598c12ee6ac6492b
+preservec4be8d1c9c5194e7
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 

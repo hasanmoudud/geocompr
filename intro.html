@@ -390,7 +390,7 @@ By the end of the book you should be able to create new tools for geocomputation
 <p>Over the last few decades free and open source software for geospatial data (‘FOSS4G’) has progressed at an astonishing rate (see <a href="http://foss4g.org/">foss4g.org</a>).
 Thanks to FOSS4G and the wider open source movement geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download high performance spatial libraries on their computer.
 Open source Geographic Information Systems (GIS) such as QGIS (see <a href="http://qgis.org/en/site/">qgis.org</a>) have greatly reduced the ‘barrier to entry’.
-Furthermore many GIS programs provide a command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see <a href="gis.html#gis">10</a>) and console windows (such as the <a href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html">Python Console</a> in QGIS) to supplement the main graphical user interface (GUI).
+Furthermore many GIS programs provide a command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see Chapter <a href="gis.html#gis">10</a>) and console windows (such as the <a href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html">Python Console</a> in QGIS) to supplement the main graphical user interface (GUI).
 Still, many GIS programs and teaching materials focus on the GUI, which can have the unintended consequence of discouraging reproducibility (see Table <a href="intro.html#tab:gdsl">1.1</a>).
 Motivated by the importance of reproducibility for scientific research and other advantages of typing commands rather than pointing and clicking, this book focuses on R’s Command Line Interface (CLI) for GIS operations.
 The reproducible and ‘computational’ workflows enabled by R’s CLI can also help unleash its statistical capabilities on geographic data (see section <a href="intro.html#why-geocomputation-with-r">1.2</a>).</p>
@@ -476,18 +476,20 @@ By teaching you its foundations and underlying structure, we aim to empower you 
 </div>
 <div id="why-geocomputation-with-r" class="section level2">
 <h2><span class="header-section-number">1.2</span> Why Geocomputation with R?</h2>
-<p>Early geographers used a variety of tools including rulers, compasses and sextants to advance knowledge about the world.
-However, until John Harrison invented the marine chronometer in the 18th century it had been impossible to determine the exact longitude at sea (‘the longitude problem’).
-Prior to his invention ships followed for centuries a line of constant latitude making each journey much longer, more expensive and often more dangerous.
-Nowadays this seems unimaginable with every smartphone having a GPS receiver at its disposal and a multitude of other sensors measuring the world in real-time (satellites, radar, autonomous cars, citizens, etc.).
-For instance, an autonomous car could create 100 GB or more per day (see e.g., this <a href="https://www.economist.com/news/science-and-technology/21696925-building-highly-detailed-maps-robotic-vehicles-autonomous-cars-reality">article</a>).
-Equally, earth observation data (satellite imagery) has become so big that it is impossible to analyze the corresponding data with a single computer (see <a href="http://r-spatial.org/2016/11/29/openeo.html" class="uri">http://r-spatial.org/2016/11/29/openeo.html</a>).
-Hence, we need computational power, software and related tools to handle and extract the most interesting patterns of this ever-increasing amount of (geo-)data.
-(Geo-)Databases help with data management, storing and querying such large amounts of data.
-Through interfaces, we can access subsets of these data for further analysis, information extraction and visualization.
-In this book we treat R as a ‘tool for the trade’ for the latter.
-<!-- What is 'the latter'? --></p>
-<p>R is a multi-platform, open source language and environment for statistical computing and graphics (<a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>).
+<p>Early geographers used a variety of tools including barometers, compasses and <a href="https://en.wikipedia.org/wiki/Sextant">sextants</a> to advance knowledge about the world <span class="citation">(Wulf <a href="#ref-wulf_invention_2015">2015</a>)</span>.
+It was only with the invention of the marine <a href="https://en.wikipedia.org/wiki/Marine_chronometer">chronometer</a> in 1761 that it became possible to calculate longitude at sea, enabling ships to take more direct routes and accurate maps of the world.</p>
+<p>Nowadays such lack of geographic data is hard to imagine.
+Every smartphone has a global positioning (GPS) receiver and a multitude of sensors on devides ranging from satellites and semi-autonomous vehicles to citizen scientists incessantly measure every part of the world.
+The rate of data produced is overwhelming.
+An autonomous vehicle, for example, can generate 100 GB of data per day <span class="citation">(The Economist <a href="#ref-theeconomist_autonomous_2016">2016</a>)</span>.
+Remote sensing data from satellites has become too large to analyze the corresponding data with a single computer, leading to initiatives such as <a href="http://r-spatial.org/2016/11/29/openeo.html">OpenEO</a>.</p>
+<p>This ‘geodata revolution’ drives demand for high performance computer hardware and efficent, scalable software to handle and extract signal from the noise to understand and perhaps change the world.
+‘Geodatabases’ enable storage and generation of manageble subsets from the vast geographic data stores, making interfaces for gaining knowledge from them vital tools for the future.
+R is one such tool, with advanced analysis, modelling and visualization capabilities.
+In this context the focus of the book is not on the language itself <span class="citation">(see Wickham <a href="#ref-wickham_advanced_2014">2014</a>)</span>.
+Instead we use R as a ‘tool for the trade’ for understanding the world, similar to Humboldt’s use of tools to gain a deep understanding of nature in all its complexity and interconnections <span class="citation">Wulf (<a href="#ref-wulf_invention_2015">2015</a>)</span>.
+Although programming can seem like a reductionist activity, the aim is to teach Geocomputation with R not only for fun, but for understanding the world.</p>
+<p>R is a multi-platform, open source language and environment for statistical computing and graphics (<a href="https://www.r-project.org/">r-project.org/</a>).
 With a wide range of packages R also supports advanced geospatial statistics, modeling and visualization.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.
 At its core R is an object-oriented, <a href="http://adv-r.had.co.nz/Functional-programming.html">functional programming language</a> <span class="citation">(Wickham <a href="#ref-wickham_advanced_2014">2014</a>)</span>, and was specifically designed as an interactive interface to other software <span class="citation">(Chambers <a href="#ref-chambers_extending_2016">2016</a>)</span>.
 The latter also includes many ‘bridges’ to a treasure trove of GIS software, ‘geolibraries’ and functions (see Chapter <a href="gis.html#gis">10</a>).
@@ -744,6 +746,9 @@ Naturally, this is the reason why we will describe <strong>sf</strong> in detail
 </div>
 <div id="ref-bivand_applied_2013">
 <p>Bivand, Roger S., Edzer Pebesma, and Virgilio Gómez-Rubio. 2013. <em>Applied Spatial Data Analysis with R</em>. 2nd ed. 2013 edition. New York: Springer.</p>
+</div>
+<div id="ref-theeconomist_autonomous_2016">
+<p>The Economist. 2016. “The Autonomous Car’s Reality Check.” <em>The Economist</em>, 2016. <a href="https://www.economist.com/news/science-and-technology/21696925-building-highly-detailed-maps-robotic-vehicles-autonomous-cars-reality" class="uri">https://www.economist.com/news/science-and-technology/21696925-building-highly-detailed-maps-robotic-vehicles-autonomous-cars-reality</a>.</p>
 </div>
 <div id="ref-wickham_advanced_2014">
 <p>Wickham, Hadley. 2014. <em>Advanced R</em>. CRC Press. <a href="http://www.crcpress.com/product/isbn/9781466586963 http://adv-r.had.co.nz http://www.crcpress.com/product/isbn/9781466586963 http://adv-r.had.co.nz" class="uri">http://www.crcpress.com/product/isbn/9781466586963 http://adv-r.had.co.nz http://www.crcpress.com/product/isbn/9781466586963 http://adv-r.had.co.nz</a>.</p>
