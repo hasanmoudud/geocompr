@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-11'
+date: '2018-05-12'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -27,19 +27,17 @@ Welcome to the online home of *Geocomputation with R*, a forthcoming book with [
 Inspired by [**bookdown**](https://github.com/rstudio/bookdown) and other open source projects we are developing this book in the open.
 This approach encourages contributions, ensures reproducibility and provides access to the material as it evolves.
 
-The book's development can be divided into four main phases:
+The book development can be divided into three main phases:
 
 1. Foundations
-2. Applied geocomputation
-3. Advanced methods
-4. Geocomputation in the wild
+2. Extensions
+3. Applications
 
-Currently we are working on Part 3.
-New chapters will be added to this website as the project progresses, hosted at [geocompr.robinlovelace.net](https://geocompr.robinlovelace.net) and kept up-to-date thanks to [Travis](https://travis-ci.org/Robinlovelace/geocompr), which rebuilds the book each time its source code changes, and provides a visual indicator that reports the build status:
+New chapters will be added to this website as the project progresses, hosted at [geocompr.robinlovelace.net](https://geocompr.robinlovelace.net) and kept up-to-date thanks to [Travis](https://travis-ci.org/Robinlovelace/geocompr) which ensures the reproducibility:
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-11 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-12 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -291,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve78a622822212db78
+preserve4f27ad5b15733036
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3148,7 +3146,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7808006780c4a8a3
+preservec6405d19d1d46525
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6657,7 +6655,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve43734c5c48183f0b
+preserve73b359d676af4d87
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7346,7 +7344,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservefb5711b49af9caa3
+preserve6d6ed6aedf68d4d1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7393,7 +7391,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preservefc41aba586eb7c52
+preservefbd6273093a6772e
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7421,7 +7419,7 @@ trails %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee13dbb3dcbf4f154
+preserve37c0aff77ffc721c
 <p class="caption">(\#fig:mapview2)Using mapview at the end of a sf based pipe expression.</p>
 </div>
 
@@ -7453,7 +7451,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb3bfbad9232dee4a
+preservef5bdcaa1856abc96
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
