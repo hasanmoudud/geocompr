@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-12">
+<meta name="date" content="2018-05-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -438,8 +438,7 @@ The following code chunk first creates an object representing Canterbury, then u
 Figure 4.1: Illustration of spatial subsetting with red triangles representing 101 high points in New Zealand, clustered near the central Canterbuy region (left). The points in Canterbury were created with the <code>[</code> subsetting operator (highlighted in grey, right).
 </p>
 </div>
-<p>Like attribute subsetting <code>x[y, ]</code> subsets features of a <em>target</em>
-<code>x</code> using the contents of a <em>source</em> object <code>y</code>.
+<p>Like attribute subsetting <code>x[y, ]</code> subsets features of a <em>target</em> <code>x</code> using the contents of a <em>source</em> object <code>y</code>.
 Instead of <code>y</code> being of class <code>logical</code> or <code>integer</code> — a vector of <code>TRUE</code> and <code>FALSE</code> values or whole numbers — for spatial subsetting it is another spatial (<code>sf</code>) object.</p>
 <p>Various <em>topological relations</em> can be used for spatial subsetting.
 These determine the type of spatial relationship that features in the target object must have with the subsetting object to be selected, including <em>touches</em>, <em>crosses</em> or <em>within</em> (see section <a href="spatial-operations.html#topological-relations">4.2.2</a>).
@@ -525,15 +524,16 @@ It did this in four stages:</p>
 <p>Topological relations define the spatial relationships between objects.
 To understand them, it helps to have some simple test data to work with.
 Figure <a href="spatial-operations.html#fig:relation-objects">4.2</a> contains a polygon (<code>a</code>), a line (<code>l</code>) and some points (<code>p</code>), which are created in the code below.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">a_poly =<span class="st"> </span><span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-1</span>))))</a>
-<a class="sourceLine" id="cb126-2" data-line-number="2">a =<span class="st"> </span><span class="kw">st_sfc</span>(a_poly)</a>
-<a class="sourceLine" id="cb126-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb126-4" data-line-number="4">l_line =<span class="st"> </span><span class="kw">st_linestring</span>(<span class="dt">x =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-1</span>, <span class="fl">-0.5</span>, <span class="dv">1</span>), , <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb126-5" data-line-number="5">l =<span class="st"> </span><span class="kw">st_sfc</span>(l_line)</a>
-<a class="sourceLine" id="cb126-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb126-7" data-line-number="7">p_matrix =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb126-8" data-line-number="8">p_multi =<span class="st"> </span><span class="kw">st_multipoint</span>(<span class="dt">x =</span> p_matrix)</a>
-<a class="sourceLine" id="cb126-9" data-line-number="9">p =<span class="st"> </span><span class="kw">st_sf</span>(<span class="kw">st_cast</span>(<span class="kw">st_sfc</span>(p_multi), <span class="st">&quot;POINT&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="co"># create a polygon</span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2">a_poly =<span class="st"> </span><span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-1</span>))))</a>
+<a class="sourceLine" id="cb126-3" data-line-number="3">a =<span class="st"> </span><span class="kw">st_sfc</span>(a_poly)</a>
+<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="co"># create a line</span></a>
+<a class="sourceLine" id="cb126-5" data-line-number="5">l_line =<span class="st"> </span><span class="kw">st_linestring</span>(<span class="dt">x =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-1</span>, <span class="fl">-0.5</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb126-6" data-line-number="6">l =<span class="st"> </span><span class="kw">st_sfc</span>(l_line)</a>
+<a class="sourceLine" id="cb126-7" data-line-number="7"><span class="co"># create points</span></a>
+<a class="sourceLine" id="cb126-8" data-line-number="8">p_matrix =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb126-9" data-line-number="9">p_multi =<span class="st"> </span><span class="kw">st_multipoint</span>(<span class="dt">x =</span> p_matrix)</a>
+<a class="sourceLine" id="cb126-10" data-line-number="10">p =<span class="st"> </span><span class="kw">st_sf</span>(<span class="kw">st_cast</span>(<span class="kw">st_sfc</span>(p_multi), <span class="st">&quot;POINT&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:relation-objects"></span>
 <img src="figures/relation-objects-1.png" alt="Points (p 1 to 4), line and polygon objects arranged to demonstrate spatial relations." width="576" />
 <p class="caption">
@@ -583,6 +583,14 @@ This is illustrated in the code chunk below, the second line of which converts t
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">sel =<span class="st"> </span><span class="kw">st_is_within_distance</span>(p, a, <span class="dt">dist =</span> <span class="fl">0.9</span>) <span class="co"># can only return a sparse matrix</span></a>
 <a class="sourceLine" id="cb132-2" data-line-number="2"><span class="kw">lengths</span>(sel) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span></a>
 <a class="sourceLine" id="cb132-3" data-line-number="3"><span class="co">#&gt; [1]  TRUE  TRUE FALSE  TRUE</span></a></code></pre></div>
+
+<div class="rmdnote">
+Functions for calculating topological relations use spatial indices to largely speed up spatial query performance.
+They achieve that using the Sort-Tile-Recursive (STR) algorithm.
+The <code>st_join</code> function, mentioned in the next section, also uses the spatial indexing.
+You can learn more at <a href="https://www.r-spatial.org/r/2017/06/22/spatial-index.html" class="uri">https://www.r-spatial.org/r/2017/06/22/spatial-index.html</a>.
+</div>
+
 <!-- Equals: -->
 <!-- https://postgis.net/docs/ST_Equals.html -->
 <!-- ```{r, eval=FALSE} -->

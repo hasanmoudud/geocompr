@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-12'
+date: '2018-05-13'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-12 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-13 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefd1882bd1fb0885c
+preserve7d18a9efdfcbf2fa
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2769,8 +2769,7 @@ canterbury_height = nz_height[canterbury, ]
 <p class="caption">(\#fig:nz-subset)Illustration of spatial subsetting with red triangles representing 101 high points in New Zealand, clustered near the central Canterbuy region (left). The points in Canterbury were created with the `[` subsetting operator (highlighted in grey, right).</p>
 </div>
 
-Like attribute subsetting `x[y, ]` subsets features of a *target* 
-`x` using the contents of a *source* object `y`.
+Like attribute subsetting `x[y, ]` subsets features of a *target* `x` using the contents of a *source* object `y`.
 Instead of `y` being of class `logical` or `integer` --- a vector of `TRUE` and `FALSE` values or whole numbers --- for spatial subsetting it is another spatial (`sf`) object.
 
 Various *topological relations* can be used for spatial subsetting.
@@ -2896,12 +2895,13 @@ Figure \@ref(fig:relation-objects) contains a polygon (`a`), a line (`l`) and so
 
 
 ```r
+# create a polygon
 a_poly = st_polygon(list(rbind(c(-1, -1), c(1, -1), c(1, 1), c(-1, -1))))
 a = st_sfc(a_poly)
-
-l_line = st_linestring(x = matrix(c(-1, -1, -0.5, 1), , 2))
+# create a line
+l_line = st_linestring(x = matrix(c(-1, -1, -0.5, 1), ncol = 2))
 l = st_sfc(l_line)
-
+# create points
 p_matrix = matrix(c(0.5, 1, -1, 0, 0, 1, 0.5, 1), ncol = 2)
 p_multi = st_multipoint(x = p_matrix)
 p = st_sf(st_cast(st_sfc(p_multi), "POINT"))
@@ -2988,7 +2988,10 @@ lengths(sel) > 0
 ```
 
 
-
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">Functions for calculating topological relations use spatial indices to largely speed up spatial query performance.
+They achieve that using the Sort-Tile-Recursive (STR) algorithm.
+The `st_join` function, mentioned in the next section, also uses the spatial indexing. 
+You can learn more at https://www.r-spatial.org/r/2017/06/22/spatial-index.html.</div>\EndKnitrBlock{rmdnote}
 
 
 
@@ -3082,7 +3085,6 @@ lengths(sel) > 0
 <!-- blobs = st_buffer(x = blob_points, dist = 1) -->
 <!-- plot(blobs) -->
 
-
 ### Spatial joining 
 
 Joining two non-spatial datasets relies on a shared 'key' variable, as described in section \@ref(vector-attribute-joining).
@@ -3146,7 +3148,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4c7a5e60e6c2d928
+preserveba96ffcc93b220e2
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6655,7 +6657,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve4fab35fd122b0867
+preserve9e5900a52fb22333
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7344,7 +7346,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1675f20de8350830
+preserve9e5750bed209e822
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7391,7 +7393,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve87a69e9611e485b5
+preserve7e2b8cc81086e218
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7419,7 +7421,7 @@ trails %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4e019c3e713cff58
+preserve2532bb3d255c30af
 <p class="caption">(\#fig:mapview2)Using mapview at the end of a sf based pipe expression.</p>
 </div>
 
@@ -7451,7 +7453,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee5f2c1b2336e08b3
+preserve1f14efb258e6e4eb
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
