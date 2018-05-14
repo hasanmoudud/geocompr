@@ -465,7 +465,7 @@ Often the geographic units of destinations are the geographic units that compris
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1"><span class="co"># requires the development version of osmdata</span></a>
 <a class="sourceLine" id="cb242-2" data-line-number="2"><span class="co"># devtools::install_github(&quot;ropensci/osmdata&quot;)</span></a>
 <a class="sourceLine" id="cb242-3" data-line-number="3">bristol_region =<span class="st"> </span>osmdata<span class="op">::</span><span class="kw">getbb</span>(<span class="st">&quot;Bristol&quot;</span>, <span class="dt">format_out =</span> <span class="st">&quot;sf_polygon&quot;</span>)</a></code></pre></div>
-<p>The result is an <code>sf</code> object representing the bounds of the largest matching city region, either a rectangular polygon of the bounding box or a detailed polygonal boundary.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a>
+<p>The result is an <code>sf</code> object representing the bounds of the largest matching city region, either a rectangular polygon of the bounding box or a detailed polygonal boundary.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a>
 In this case the command returns a detailed polygon representing the official boundary of Bristol (see the inner blue boundary in Figure <a href="transport.html#fig:bristol">7.1</a>).
 There are a couple of issues associated with using OSM definitions of regions, however.
 First, the first OSM boundary returned by OSM may not be the official boundary used by local authorities.
@@ -501,7 +501,7 @@ The code first read-in data to create <code>bristol_od</code>, a data frame obje
 Then the chained operation performed three main steps:</p>
 <ul>
 <li>Grouped the data by zone of origin (contained in the column <code>o</code>).</li>
-<li>Aggregated the variables in the <code>bristol_od</code> dataset <em>if</em> they were numeric, to find the total number of people living in each zone by mode of transport.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></li>
+<li>Aggregated the variables in the <code>bristol_od</code> dataset <em>if</em> they were numeric, to find the total number of people living in each zone by mode of transport.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></li>
 <li>Renamed the grouping variable <code>o</code> so it matches the ID column <code>geo_code</code> in the <code>bristol_zones</code> object.</li>
 </ul>
 <p>The resulting object <code>zones_attr</code> is a data frame with rows representing zones and an ID variable.
@@ -509,7 +509,7 @@ We can verify that the IDs match those in the <code>zones</code> dataset using <
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">summary</span>(zones_attr<span class="op">$</span>geo_code <span class="op">%in%</span><span class="st"> </span>bristol_zones<span class="op">$</span>geo_code)</a>
 <a class="sourceLine" id="cb245-2" data-line-number="2"><span class="co">#&gt;    Mode    TRUE </span></a>
 <a class="sourceLine" id="cb245-3" data-line-number="3"><span class="co">#&gt; logical     102</span></a></code></pre></div>
-<p>The results show that all 102 zones are present in the new object and that <code>zone_attr</code> is in a form that can be joined onto the zones.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>
+<p>The results show that all 102 zones are present in the new object and that <code>zone_attr</code> is in a form that can be joined onto the zones.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>
 This is done using the joining function <code>left_join()</code> (note that <code>inner_join()</code> would produce here the same result):</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">zones_joined =<span class="st"> </span><span class="kw">left_join</span>(bristol_zones, zones_attr)</a>
 <a class="sourceLine" id="cb246-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;geo_code&quot;</span></a>
@@ -619,7 +619,7 @@ What is needed is a way to plot this origin-destination data on the map.</p>
 <p>The solution is to convert the non-geographic <code>bristol_od</code> dataset into geographical desire lines that can be plotted on a map.
 The geographic representation of the <em>interzonal</em> OD pairs (in which the destination is different from the origin) presented in Table <a href="transport.html#tab:od">7.1</a> are displayed as straight black lines in <a href="transport.html#fig:desire">7.3</a>.
 These are clearly more useful from a policy perspective.
-The conversion from <code>data.frame</code> to <code>sf</code> class is done by the <strong>stplanr</strong> function <code>od2line()</code>, which matches the IDs in the first two columns of the <code>bristol_od</code> object to the <code>zone_code</code> ID column in the geographic <code>zones_od</code> object.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
+The conversion from <code>data.frame</code> to <code>sf</code> class is done by the <strong>stplanr</strong> function <code>od2line()</code>, which matches the IDs in the first two columns of the <code>bristol_od</code> object to the <code>zone_code</code> ID column in the geographic <code>zones_od</code> object.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">od_intra =<span class="st"> </span><span class="kw">filter</span>(bristol_od, o <span class="op">==</span><span class="st"> </span>d)</a>
 <a class="sourceLine" id="cb249-2" data-line-number="2">od_inter =<span class="st"> </span><span class="kw">filter</span>(bristol_od, o <span class="op">!=</span><span class="st"> </span>d)</a>
 <a class="sourceLine" id="cb249-3" data-line-number="3">desire_lines =<span class="st"> </span><span class="kw">od2line</span>(od_inter, zones_od)</a>
@@ -652,9 +652,9 @@ In any case, local routing requires the route network to be stored on a local co
 By contrast, remote routing services use a web API to receive queries about origin and destination points, run the routing on the route network on a powerful server and return just the results, the routes, to the user, the so-called client.
 There are many advantages of using remote routing services, including the fact that they can be up-to-date, have global coverage, and run on a set-up that was designed for the job, explaining this section’s focus on online routing services.</p>
 <p>Before proceeding, there are couple of important disadvantages of online routing services to consider: they can be slow (because they rely on data transfer over the internet) and expensive.
-The Google routing API, for example, has a limit of 2500 free queries per day.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
+The Google routing API, for example, has a limit of 2500 free queries per day.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
 <!-- Todo: add link to Mark's presentation on dodgr vs Google routing costs (RL) --></p>
-<p>A popular and free routing service is the Open Source Routing Machine (<a href="http://project-osrm.org/">OSRM</a>).<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
+<p>A popular and free routing service is the Open Source Routing Machine (<a href="http://project-osrm.org/">OSRM</a>).<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
 Instead of routing <em>all</em> desire lines generated in the previous section, which would be time and memory-consuming, we will focus on the desire lines of policy interest.
 The benefits of cycling trips are greatest when they replace car trips.
 Clearly not all car trips can realistically be replaced by cycling, but 5 km Euclidean distance (or around 6-8 km of route distance) is easily accessible within 30 minutes for most people.
@@ -674,7 +674,7 @@ However, for the purposes of this chapter we are only interested in the geometry
 The following command makes use of the ability of simple features objects to contain multiple geographic columns:</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">desire_carshort<span class="op">$</span>geom_car =<span class="st"> </span>route_carshort<span class="op">$</span>geometry</a></code></pre></div>
 <p>This allows plotting the desire lines along which many short car journeys take place alongside likely routes traveled by cars, with the width of the routes proportional to the number of car journeys that could potentially be replaced.
-The code below results in Figure <a href="transport.html#fig:routes">7.4</a>, demonstrating along which routes people are driving short distances<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>:</p>
+The code below results in Figure <a href="transport.html#fig:routes">7.4</a>, demonstrating along which routes people are driving short distances<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>:</p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">plot</span>(desire_carshort<span class="op">$</span>geometry)</a>
 <a class="sourceLine" id="cb254-2" data-line-number="2"><span class="kw">plot</span>(desire_carshort<span class="op">$</span>geom_car, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb254-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">st_centroid</span>(zones_od)<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -817,7 +817,7 @@ Figure 7.6: Illustration of a small route network, with segment thickness propor
 <p>One can also find the shortest route between origins and destinations using this graph representation of the route network.
 This is can be done using the <code>sum_network_routes()</code> function from <strong>stplanr</strong>, which uses local route network data instead of the online routing service described in section <a href="transport.html#routes">7.5</a>.
 This finds the shortest path between arbitrary nodes 1 and 20, on the network —
-‘shortest’ with reference to the <code>weightfield</code> slot of <code>ways_sln</code> (route distance by default).<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>
+‘shortest’ with reference to the <code>weightfield</code> slot of <code>ways_sln</code> (route distance by default).<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>
 The result is a spatial linestring object that can be plotted using <strong>sf</strong> plotting methods (result not shown — readers are encouraged to plot the result locally):</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">path =<span class="st"> </span><span class="kw">sum_network_routes</span>(ways_sln, <span class="dv">1</span>, <span class="dv">20</span>, <span class="st">&quot;length&quot;</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="kw">plot</span>(path<span class="op">$</span>geometry, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">10</span>)</a>
@@ -953,26 +953,26 @@ Similar tools could be used to encourage evidence-based transport policies relat
 </div>
 <div class="footnotes">
 <hr />
-<ol start="44">
-<li id="fn44"><p>
-In cases where the first match does not provide the right name, the country or region should be specified, for example <code>Bristol Tennessee</code> for a Bristol located in America.<a href="transport.html#fnref44" class="footnote-back">↩</a></p></li>
+<ol start="45">
 <li id="fn45"><p>
-the <code>_if</code> affix requires a <code>TRUE</code>/<code>FALSE</code> question to be asked of the variables, in this case ‘is it numeric?’ and only variables returning true are summarized.<a href="transport.html#fnref45" class="footnote-back">↩</a></p></li>
+In cases where the first match does not provide the right name, the country or region should be specified, for example <code>Bristol Tennessee</code> for a Bristol located in America.<a href="transport.html#fnref45" class="footnote-back">↩</a></p></li>
 <li id="fn46"><p>
-It would also be important to check that IDs match in the opposite direction on real data.
-This could be done by reversing the order of the ID’s in the commend — <code>summary(bristol_zones$geo_code %in% zones_attr$geo_code)</code> — or by using <code>setdiff()</code> as follows: <code>setdiff(bristol_zones$geo_code, zones_attr$geo_code)</code>.<a href="transport.html#fnref46" class="footnote-back">↩</a></p></li>
+the <code>_if</code> affix requires a <code>TRUE</code>/<code>FALSE</code> question to be asked of the variables, in this case ‘is it numeric?’ and only variables returning true are summarized.<a href="transport.html#fnref46" class="footnote-back">↩</a></p></li>
 <li id="fn47"><p>
+It would also be important to check that IDs match in the opposite direction on real data.
+This could be done by reversing the order of the ID’s in the commend — <code>summary(bristol_zones$geo_code %in% zones_attr$geo_code)</code> — or by using <code>setdiff()</code> as follows: <code>setdiff(bristol_zones$geo_code, zones_attr$geo_code)</code>.<a href="transport.html#fnref47" class="footnote-back">↩</a></p></li>
+<li id="fn48"><p>
 Note that the operation emits a warning: this is <code>od2line()</code> works by allocating the start and end points of each origin-destination pair to the <em>centroid</em> of its zone of origin and destination.
 This represents a straight line between the centroid of zone <code>E02003047</code> and the centroid of <code>E02003043</code> for the second origin-destination pair represented in Table <a href="transport.html#tab:od">7.1</a>, for example.
-For real-world use one would use centroid values generated from projected data or, preferably, use <em>population-weighted</em> centroids <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.<a href="transport.html#fnref47" class="footnote-back">↩</a></p></li>
-<li id="fn48"><p><code>ggmap::route()</code> lets you use Google’s routing API through R and the <strong>dodgr</strong> package allows for rapid routing on locally stored route network data.<a href="transport.html#fnref48" class="footnote-back">↩</a></p></li>
-<li id="fn49"><p>Another popular OSM routing API is <a href="https://openrouteservice.org/" class="uri">https://openrouteservice.org/</a>.<a href="transport.html#fnref49" class="footnote-back">↩</a></p></li>
-<li id="fn50"><p>
+For real-world use one would use centroid values generated from projected data or, preferably, use <em>population-weighted</em> centroids <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.<a href="transport.html#fnref48" class="footnote-back">↩</a></p></li>
+<li id="fn49"><p><code>ggmap::route()</code> lets you use Google’s routing API through R and the <strong>dodgr</strong> package allows for rapid routing on locally stored route network data.<a href="transport.html#fnref49" class="footnote-back">↩</a></p></li>
+<li id="fn50"><p>Another popular OSM routing API is <a href="https://openrouteservice.org/" class="uri">https://openrouteservice.org/</a>.<a href="transport.html#fnref50" class="footnote-back">↩</a></p></li>
+<li id="fn51"><p>
 In this plot the origins of the red routes and black desire lines are not identical.
 This is because zone centroids rarely lie on the route network: instead the route originate from the transport network node nearest the centroid.
-Note also that routes are assumed to originate in the zone centroids, a simplifying assumption which is used in transport models to reduce the computational resources needed to calculate the shortest path between all combinations of possible origins and destinations <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.<a href="transport.html#fnref50" class="footnote-back">↩</a></p></li>
-<li id="fn51"><p>
-To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref51" class="footnote-back">↩</a></p></li>
+Note also that routes are assumed to originate in the zone centroids, a simplifying assumption which is used in transport models to reduce the computational resources needed to calculate the shortest path between all combinations of possible origins and destinations <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.<a href="transport.html#fnref51" class="footnote-back">↩</a></p></li>
+<li id="fn52"><p>
+To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref52" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

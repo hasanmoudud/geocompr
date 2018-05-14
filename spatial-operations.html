@@ -745,7 +745,7 @@ This section demonstrates how the same functions work using spatial grouping var
 This is a good example of spatial aggregation: it is the geometry of the source (<code>y</code> or <code>nz</code> in this case) that defines how values in the target object (<code>x</code> or <code>nz_height</code>) are grouped.
 This is illustrated using the base <code>aggregate()</code> function below:</p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">nz_avheight =<span class="st"> </span><span class="kw">aggregate</span>(<span class="dt">x =</span> nz_height, nz, <span class="dt">FUN =</span> mean)</a></code></pre></div>
-<p>The result of the previous command is an <code>sf</code> object with the same geometry as the (spatial) aggregating object (<code>nz</code>).<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>
+<p>The result of the previous command is an <code>sf</code> object with the same geometry as the (spatial) aggregating object (<code>nz</code>).<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>
 The result of the previous operation is illustrated in Figure <a href="spatial-operations.html#fig:spatial-aggregation">4.5</a>.
 The same result can also be generated using the ‘tidy’ functions <code>group_by()</code> and <code>summarize()</code> (used in combination with <code>st_join()</code>):</p>
 <div class="figure" style="text-align: center"><span id="fig:spatial-aggregation"></span>
@@ -1120,8 +1120,8 @@ A more advanced approach might instead weight by flow direction, i.e. favor the
 </div>
 <div class="footnotes">
 <hr />
-<ol start="24">
-<li id="fn24"><p>This can be verified with <code>identical(st_geometry(nz), nz_avheight$geometry)</code>.<a href="spatial-operations.html#fnref24" class="footnote-back">↩</a></p></li>
+<ol start="25">
+<li id="fn25"><p>This can be verified with <code>identical(st_geometry(nz), nz_avheight$geometry)</code>.<a href="spatial-operations.html#fnref25" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

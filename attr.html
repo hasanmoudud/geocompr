@@ -453,7 +453,7 @@ Let’s start by using base R functions to get a measure of the <code>world</cod
 <p>This can be useful if the geometry column causes problems, e.g. by occupying large amounts of RAM, or to focus the attention on the attribute data.
 For most cases, however, there is no harm in keeping the geometry column because non-spatial data operations on <code>sf</code> objects only change an object’s geometry when appropriate (e.g. by dissolving borders between adjacent polygons following aggregation).
 This means that proficiency with attribute data in <code>sf</code> objects equates to proficiency with data frames in R.
-For many applications, the tidyverse package <strong>dplyr</strong> offers the most effective and intuitive approach of working with data frames, hence the focus on this approach in this section.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
+For many applications, the tidyverse package <strong>dplyr</strong> offers the most effective and intuitive approach of working with data frames, hence the focus on this approach in this section.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
 <div id="vector-attribute-subsetting" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Vector attribute subsetting</h3>
 <p>Base R subsetting functions include <code>[</code>, <code>subset()</code> and <code>$</code>.
@@ -777,7 +777,7 @@ Fortunately non-spatial data frames with a geometry list column (like <code>coff
 </div>
 
 <p>The contents of this section should equip you with know-how to deal with the majority of spatial data use cases.
-For more advanced coverage of joins, beyond that in <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span>, we recommend checking-out the capabilities of <strong>data.table</strong>, a high-performance data processing package that is compatible with <code>sf</code> objects, and other on-line materials.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>
+For more advanced coverage of joins, beyond that in <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span>, we recommend checking-out the capabilities of <strong>data.table</strong>, a high-performance data processing package that is compatible with <code>sf</code> objects, and other on-line materials.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>
 Another type of join is a spatial join, covered in the next chapter (section <a href="spatial-operations.html#spatial-joining">4.2.3</a>).</p>
 </div>
 <div id="vec-attr-creation" class="section level3">
@@ -818,7 +818,7 @@ This is illustrated below, which outputs the same <code>world</code> object, but
 As mentioned at the outset of the chapter, it can be useful to remove the geometry.
 To do this, you have to explicitly remove it because <code>sf</code> explicitly makes the geometry column sticky.
 This behavior ensures that data frame operations do not accidentally remove the geometry column.
-Hence, an approach such as <code>select(world, -geom)</code> will be unsuccessful and you should instead use <code>st_set_geometry()</code>.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></p>
+Hence, an approach such as <code>select(world, -geom)</code> will be unsuccessful and you should instead use <code>st_set_geometry()</code>.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a></p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">world_data =<span class="st"> </span>world <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_set_geometry</span>(<span class="ot">NULL</span>)</a>
 <a class="sourceLine" id="cb104-2" data-line-number="2"><span class="kw">class</span>(world_data)</a>
 <a class="sourceLine" id="cb104-3" data-line-number="3"><span class="co">#&gt; [1] &quot;data.frame&quot;</span></a></code></pre></div>
@@ -1010,14 +1010,14 @@ Create a raster stack using <code>dem</code> and <code>ndvi</code>, and make a <
 </div>
 <div class="footnotes">
 <hr />
-<ol start="21">
-<li id="fn21"><p>
-Unlike objects of class <code>Spatial</code> of the <strong>sp</strong> package, <code>sf</code> objects are also compatible with the <strong>tidyverse</strong> packages <strong>dplyr</strong> and <strong>ggplot2</strong>.
-The former provides fast and powerful functions for data manipulation (see <a href="https://csgillespie.github.io/efficientR/data-carpentry.html#data-processing-with-data.table">Section 6.7</a> of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>), and the latter provides powerful plotting capabilities.<a href="attr.html#fnref21" class="footnote-back">↩</a></p></li>
+<ol start="22">
 <li id="fn22"><p>
+Unlike objects of class <code>Spatial</code> of the <strong>sp</strong> package, <code>sf</code> objects are also compatible with the <strong>tidyverse</strong> packages <strong>dplyr</strong> and <strong>ggplot2</strong>.
+The former provides fast and powerful functions for data manipulation (see <a href="https://csgillespie.github.io/efficientR/data-carpentry.html#data-processing-with-data.table">Section 6.7</a> of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>), and the latter provides powerful plotting capabilities.<a href="attr.html#fnref22" class="footnote-back">↩</a></p></li>
+<li id="fn23"><p>
 The use of <strong>data.table</strong> for geocomputation is not well-documented but a taster of what is possible is provided in a blog post entitled <em>Using data.table and Rcpp to scale geo-spatial analysis with sf</em> by Tim Applehans hosted at <a href="http://r-spatial.org/r/2017/11/13/perp-performance.html">r-spatial.org</a>.
-A more in-depth explanation of joining is provided in <code>join.Rmd</code>, a reproducible document in the <code>vignettes/</code> folder hosted at <a href="https://github.com/Robinlovelace/geocompr/tree/master/vignettes">github.com/Robinlovelace/geocompr</a>.<a href="attr.html#fnref22" class="footnote-back">↩</a></p></li>
-<li id="fn23"><p>Note that <code>st_geometry(world_st) = NULL</code> also works to remove the geometry from <code>world</code> but overwrites the original object.<a href="attr.html#fnref23" class="footnote-back">↩</a></p></li>
+A more in-depth explanation of joining is provided in <code>join.Rmd</code>, a reproducible document in the <code>vignettes/</code> folder hosted at <a href="https://github.com/Robinlovelace/geocompr/tree/master/vignettes">github.com/Robinlovelace/geocompr</a>.<a href="attr.html#fnref23" class="footnote-back">↩</a></p></li>
+<li id="fn24"><p>Note that <code>st_geometry(world_st) = NULL</code> also works to remove the geometry from <code>world</code> but overwrites the original object.<a href="attr.html#fnref24" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
