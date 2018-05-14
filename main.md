@@ -270,7 +270,8 @@ It is thus ideal for quickly creating 'geo-tools', without needing to master low
 This can feel like breaking free from the metaphorical 'glass ceiling' imposed by GUI-based proprietary geographic information systems (see Table \@ref(tab:gdsl) for a definition of GUI) without having to setup a complex IDE environment needed for some languages.
 What is more, advanced users might even extend R with the power of other languages (e.g., C++ through **Rcpp** or Python through **reticulate**; see also section \@ref(software-for-geocomputation)).
 
-An example showing R's flexibility with regard to geographic software development the development of **leaflet** [@R-leaflet], a package for making interactive maps that has been extended by the R community, as we'll see in Chapter \@ref(adv-map).
+An example showing R's flexibility and evolving geographic capabilities is **leaflet** [@R-leaflet].
+We'll see in Chapter \@ref(adv-map) how this interactive mapping package has been extended: there are now many ways to generate interactive geographic data visualizations from the R command line.
 Thanks to these developments the statement that R has "limited interactive [plotting] facilities" [@bivand_applied_2013] is no longer true.
 This is demonstrated by the following code chunk (which creates Figure \@ref(fig:interactive)).
 
@@ -288,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved1c1101fde9b6598
+preserve92da72654d9b09f1
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3147,7 +3148,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve56fe6c5bd5f416bd
+preservebd801b9506aea393
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6656,7 +6657,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve4a635cc56f5c309d
+preserve8e2074c8e08f1533
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7345,7 +7346,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservecebb4f0c118f6d88
+preserve2809c9a169f3da93
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7443,7 +7444,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve92a194ed2c6e36a1
+preservef2aadedebed4ddd0
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
