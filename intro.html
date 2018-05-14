@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-13">
+<meta name="date" content="2018-05-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -496,10 +496,9 @@ The latter also includes many ‘bridges’ to a treasure trove of GIS software,
 It is thus ideal for quickly creating ‘geo-tools’, without needing to master lower level languages (compared to R) such as C, FORTRAN or Java (see section <a href="intro.html#software-for-geocomputation">1.3</a>).
 This can feel like breaking free from the metaphorical ‘glass ceiling’ imposed by GUI-based proprietary geographic information systems (see Table <a href="intro.html#tab:gdsl">1.1</a> for a definition of GUI) without having to setup a complex IDE environment needed for some languages.
 What is more, advanced users might even extend R with the power of other languages (e.g., C++ through <strong>Rcpp</strong> or Python through <strong>reticulate</strong>; see also section <a href="intro.html#software-for-geocomputation">1.3</a>).</p>
-<p>An example showing R’s flexibility with regard to geographic software development is its support for generating interactive maps thanks to <strong>leaflet</strong> <span class="citation">(Cheng, Karambelkar, and Xie <a href="#ref-R-leaflet">2018</a>)</span>.
-The packages <strong>tmap</strong> and <strong>mapview</strong> <span class="citation">(Tennekes <a href="#ref-R-tmap">2018</a><a href="#ref-R-tmap">a</a>; Appelhans et al. <a href="#ref-R-mapview">2018</a>)</span> extend and build on <strong>leaflet</strong>.
-These packages help overcome the criticism that R has “limited interactive [plotting] facilities” <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span>.
-The code below illustrates this by generating Figure <a href="intro.html#fig:interactive">1.1</a>.</p>
+<p>An example showing R’s flexibility with regard to geographic software development the development of <strong>leaflet</strong> <span class="citation">(Cheng, Karambelkar, and Xie <a href="#ref-R-leaflet">2018</a>)</span>, a package for making interactive maps that has been extended by the R community, as we’ll see in Chapter <a href="adv-map.html#adv-map">9</a>.
+Thanks to these developments the statement that R has “limited interactive [plotting] facilities” <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span> is no longer true.
+This is demonstrated by the following code chunk (which creates Figure <a href="intro.html#fig:interactive">1.1</a>).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(leaflet)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">popup =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Jakub&quot;</span>, <span class="st">&quot;Jannes&quot;</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">leaflet</span>() <span class="op">%&gt;%</span></a>
@@ -759,12 +758,6 @@ Naturally, this is the reason why we will describe <strong>sf</strong> in detail
 <div id="ref-R-leaflet">
 <p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2018. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="https://CRAN.R-project.org/package=leaflet" class="uri">https://CRAN.R-project.org/package=leaflet</a>.</p>
 </div>
-<div id="ref-R-tmap">
-<p>Tennekes, Martijn. 2018a. <em>Tmap: Thematic Maps</em>. <a href="https://github.com/mtennekes/tmap" class="uri">https://github.com/mtennekes/tmap</a>.</p>
-</div>
-<div id="ref-R-mapview">
-<p>Appelhans, Tim, Florian Detsch, Christoph Reudenbach, and Stefan Woellauer. 2018. <em>Mapview: Interactive Viewing of Spatial Data in R</em>. <a href="https://github.com/r-spatial/mapview" class="uri">https://github.com/r-spatial/mapview</a>.</p>
-</div>
 <div id="ref-brzustowicz_data_2017">
 <p>Brzustowicz, Michael R. 2017. <em>Data Science with Java: [Practical Methods for Scientists and Engineers]</em>. First edition. Beijing Boston Farnham: O´Reilly.</p>
 </div>
@@ -854,6 +847,12 @@ Naturally, this is the reason why we will describe <strong>sf</strong> in detail
 </div>
 <div id="ref-lamigueiro_displaying_2014">
 <p>Lamigueiro, Óscar Perpiñán. 2014. <em>Displaying Time Series, Spatial, and Space-Time Data with R</em>. CRC Press.</p>
+</div>
+<div id="ref-R-tmap">
+<p>Tennekes, Martijn. 2018a. <em>Tmap: Thematic Maps</em>. <a href="https://github.com/mtennekes/tmap" class="uri">https://github.com/mtennekes/tmap</a>.</p>
+</div>
+<div id="ref-R-mapview">
+<p>Appelhans, Tim, Florian Detsch, Christoph Reudenbach, and Stefan Woellauer. 2018. <em>Mapview: Interactive Viewing of Spatial Data in R</em>. <a href="https://github.com/r-spatial/mapview" class="uri">https://github.com/r-spatial/mapview</a>.</p>
 </div>
 <div id="ref-R-sf">
 <p>Pebesma, Edzer. 2018. <em>Sf: Simple Features for R</em>. <a href="https://github.com/r-spatial/sf/" class="uri">https://github.com/r-spatial/sf/</a>.</p>

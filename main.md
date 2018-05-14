@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-13'
+date: '2018-05-14'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-13 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-14 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -270,10 +270,9 @@ It is thus ideal for quickly creating 'geo-tools', without needing to master low
 This can feel like breaking free from the metaphorical 'glass ceiling' imposed by GUI-based proprietary geographic information systems (see Table \@ref(tab:gdsl) for a definition of GUI) without having to setup a complex IDE environment needed for some languages.
 What is more, advanced users might even extend R with the power of other languages (e.g., C++ through **Rcpp** or Python through **reticulate**; see also section \@ref(software-for-geocomputation)).
 
-An example showing R's flexibility with regard to geographic software development is its support for generating interactive maps thanks to **leaflet** [@R-leaflet].
-The packages **tmap** and **mapview** [@R-tmap; @R-mapview] extend and build on **leaflet**.
-These packages help overcome the criticism that R has "limited interactive [plotting] facilities" [@bivand_applied_2013]. 
-The code below illustrates this by generating Figure \@ref(fig:interactive).
+An example showing R's flexibility with regard to geographic software development the development of **leaflet** [@R-leaflet], a package for making interactive maps that has been extended by the R community, as we'll see in Chapter \@ref(adv-map).
+Thanks to these developments the statement that R has "limited interactive [plotting] facilities" [@bivand_applied_2013] is no longer true.
+This is demonstrated by the following code chunk (which creates Figure \@ref(fig:interactive)).
 
 
 
@@ -289,7 +288,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7d18a9efdfcbf2fa
+preservedd084adb120aa4ad
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3148,7 +3147,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveba96ffcc93b220e2
+preservea410236ea89ba1d8
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6657,7 +6656,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve9e5900a52fb22333
+preserve35f7790809aeb582
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7346,7 +7345,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve9e5750bed209e822
+preserve411c4e8fa55ef1b3
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7393,7 +7392,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserve7e2b8cc81086e218
+preserveb6c7f1cbf7c0baae
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7402,10 +7401,6 @@ It offers advanced controls including the ability to 'burst' datasets into multi
 
 
 ```r
-library(mapview)
-library(dplyr)
-library(sf)
-
 trails %>%
   st_transform(st_crs(franconia)) %>%
   st_intersection(franconia[franconia$district == "Oberfranken", ]) %>%
@@ -7415,13 +7410,8 @@ trails %>%
   breweries
 ```
 
-
-```
-#> although coordinates are longitude/latitude, st_intersection assumes that they are planar
-```
-
 <div class="figure" style="text-align: center">
-preserve2532bb3d255c30af
+<img src="https://user-images.githubusercontent.com/1825120/39979271-5f515256-573d-11e8-9ede-e472ca007d73.png" alt="Using mapview at the end of a sf based pipe expression."  />
 <p class="caption">(\#fig:mapview2)Using mapview at the end of a sf based pipe expression.</p>
 </div>
 
@@ -7453,7 +7443,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1f14efb258e6e4eb
+preserve3606823447140b4c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
