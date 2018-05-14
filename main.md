@@ -288,7 +288,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedd084adb120aa4ad
+preserved1c1101fde9b6598
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3147,7 +3147,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea410236ea89ba1d8
+preserve56fe6c5bd5f416bd
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6656,7 +6656,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve35f7790809aeb582
+preserve4a635cc56f5c309d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7345,7 +7345,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve411c4e8fa55ef1b3
+preservecebb4f0c118f6d88
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7392,7 +7392,7 @@ mapview::mapview(nz)
 ```
 
 <div class="figure" style="text-align: center">
-preserveb6c7f1cbf7c0baae
+<img src="https://user-images.githubusercontent.com/1825120/39979522-e8277398-573e-11e8-8c55-d72c6bcc58a4.png" alt="Illustration of mapview in action."  />
 <p class="caption">(\#fig:mapview)Illustration of mapview in action.</p>
 </div>
 
@@ -7443,7 +7443,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3606823447140b4c
+preserve92a194ed2c6e36a1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
