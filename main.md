@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec82f89aaeedbf646
+preservea779853160ba521d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2703,7 +2703,6 @@ Create a raster stack using `dem` and `ndvi`, and make a `pairs()` plot
 <!--chapter:end:03-attribute-operations.Rmd-->
 
 
-
 # Spatial operations
 
 ## Prerequisites {-}
@@ -3156,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef1025e817e3c6eda
+preserve11018e2c443c2a5b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6678,7 +6677,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preservecf9a43a5afdc4de4
+preservef855e1a40858320e
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7367,7 +7366,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve769109e0c2b90314
+preserve4f1c1499c874de1a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7465,7 +7464,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveec150b72835f24c1
+preserve050e0570db835c39
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
