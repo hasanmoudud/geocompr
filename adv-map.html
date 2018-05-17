@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-16">
+<meta name="date" content="2018-05-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1142,7 +1142,21 @@ Additionally, it is possible to modify the <code>intermax</code> argument - maxi
 For example, we could represent median income in New Zeleand’s regions as a continuous cartogram (the right-hand panel of Figure <a href="adv-map.html#fig:cartomap1">9.27</a>) as follows:</p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1"><span class="kw">library</span>(cartogram)</a>
 <a class="sourceLine" id="cb328-2" data-line-number="2">nz_carto =<span class="st"> </span><span class="kw">cartogram</span>(nz, <span class="st">&quot;Median_income&quot;</span>, <span class="dt">itermax =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb328-3" data-line-number="3"><span class="kw">tm_shape</span>(nz_carto) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;Median_income&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb328-3" data-line-number="3"><span class="co">#&gt; Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are</span></a>
+<a class="sourceLine" id="cb328-4" data-line-number="4"><span class="co">#&gt; constant over geometries of x</span></a>
+<a class="sourceLine" id="cb328-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb328-6" data-line-number="6"><span class="co">#&gt; Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are</span></a>
+<a class="sourceLine" id="cb328-7" data-line-number="7"><span class="co">#&gt; constant over geometries of x</span></a>
+<a class="sourceLine" id="cb328-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb328-9" data-line-number="9"><span class="co">#&gt; Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are</span></a>
+<a class="sourceLine" id="cb328-10" data-line-number="10"><span class="co">#&gt; constant over geometries of x</span></a>
+<a class="sourceLine" id="cb328-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb328-12" data-line-number="12"><span class="co">#&gt; Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are</span></a>
+<a class="sourceLine" id="cb328-13" data-line-number="13"><span class="co">#&gt; constant over geometries of x</span></a>
+<a class="sourceLine" id="cb328-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb328-15" data-line-number="15"><span class="co">#&gt; Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are</span></a>
+<a class="sourceLine" id="cb328-16" data-line-number="16"><span class="co">#&gt; constant over geometries of x</span></a>
+<a class="sourceLine" id="cb328-17" data-line-number="17"><span class="kw">tm_shape</span>(nz_carto) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;Median_income&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cartomap1"></span>
 <img src="figures/cartomap1-1.png" alt="Comparison of regular map (left) and continuous area cartogram (right)." width="576" />
 <p class="caption">

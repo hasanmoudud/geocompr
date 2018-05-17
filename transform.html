@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-16">
+<meta name="date" content="2018-05-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -879,14 +879,22 @@ Figure 5.7: Polygon simplification in action, comparing the original geometry of
 <p>The <code>st_centroid()</code> function calculates the geometric center of a geometry.
 We can create centroids for polygons, lines (see black points on Figure <a href="transform.html#fig:centr">5.8</a>) and multipoints:</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">nz_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(nz)</a>
-<a class="sourceLine" id="cb186-2" data-line-number="2">seine_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(seine)</a></code></pre></div>
+<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="co">#&gt; Warning in st_centroid.sf(nz): st_centroid assumes attributes are constant</span></a>
+<a class="sourceLine" id="cb186-3" data-line-number="3"><span class="co">#&gt; over geometries of x</span></a>
+<a class="sourceLine" id="cb186-4" data-line-number="4">seine_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(seine)</a>
+<a class="sourceLine" id="cb186-5" data-line-number="5"><span class="co">#&gt; Warning in st_centroid.sf(seine): st_centroid assumes attributes are</span></a>
+<a class="sourceLine" id="cb186-6" data-line-number="6"><span class="co">#&gt; constant over geometries of x</span></a></code></pre></div>
 <p>Centroids could be useful to represent more complex objects - lines and polygons, for example to calculate distances between centers of polygons.
 They are also often used as places where polygons or lines labels are put.
 However, it is important to know that centroids could be located outside of the given object, e.g. in cases of irregular shaped polygons or lines.
 Examples of this can be seen on the right plot on Figure <a href="transform.html#fig:centr">5.8</a>.</p>
 <p>Alternatively, the <code>st_point_on_surface()</code> can be used.</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">nz_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(nz)</a>
-<a class="sourceLine" id="cb187-2" data-line-number="2">seine_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(seine)</a></code></pre></div>
+<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="co">#&gt; Warning in st_point_on_surface.sf(nz): st_point_on_surface assumes</span></a>
+<a class="sourceLine" id="cb187-3" data-line-number="3"><span class="co">#&gt; attributes are constant over geometries of x</span></a>
+<a class="sourceLine" id="cb187-4" data-line-number="4">seine_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(seine)</a>
+<a class="sourceLine" id="cb187-5" data-line-number="5"><span class="co">#&gt; Warning in st_point_on_surface.sf(seine): st_point_on_surface assumes</span></a>
+<a class="sourceLine" id="cb187-6" data-line-number="6"><span class="co">#&gt; attributes are constant over geometries of x</span></a></code></pre></div>
 <p>This ensures that the created point lies on the given object (see red points on Figure <a href="transform.html#fig:centr">5.8</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:centr"></span>
 <img src="figures/centr-1.png" alt="Centroids (black points) and 'points on surface' (red points) of New Zeleand's regions (left) and the Seine (right) datasets." width="576" />

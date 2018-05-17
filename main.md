@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-16'
+date: '2018-05-17'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-16 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-17 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve89df656eadfd9d80
+preservec82f89aaeedbf646
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2703,6 +2703,7 @@ Create a raster stack using `dem` and `ndvi`, and make a `pairs()` plot
 <!--chapter:end:03-attribute-operations.Rmd-->
 
 
+
 # Spatial operations
 
 ## Prerequisites {-}
@@ -3078,8 +3079,6 @@ You can learn more at https://www.r-spatial.org/r/2017/06/22/spatial-index.html.
 <!-- examples (lines/polygons) -->
 
 <!-- TODO? create a series of polygons distributed evenly over the surface of the Earth and clip them. -->
-
-<!-- ```{r} -->
 <!-- set.seed(2018) -->
 <!-- blob_points = st_sample(x = world, size = 2) -->
 <!-- blobs = st_buffer(x = blob_points, dist = 1) -->
@@ -3088,35 +3087,44 @@ You can learn more at https://www.r-spatial.org/r/2017/06/22/spatial-index.html.
 ### Spatial joining 
 
 Joining two non-spatial datasets relies on a shared 'key' variable, as described in section \@ref(vector-attribute-joining).
-Spatial data joining applies the same concept, but instead relies on shared areas of geographic space.
-As with attribute data, joining adds a new column to the target object (the argument `x` in joining functions) from a source object (`y`).
-<!-- Think the last sentence needs a comma, but not sure where? -->
+Spatial data joining applies the same concept, but instead relies on shared areas of geographic space (it is also know as spatial overlay).
+As with attribute data, joining adds a new column to the target object (the argument `x` in joining functions), from a source object (`y`).
 
-The process is illustrated in Figure \@ref(fig:spatial-join), which shows a target object (the `asia` dataset, left) being joined to a source dataset (the three most populous cities of the world), resulting in a new attribute being added to the `joined` dataset (right).
-<!-- Idea: use random points over Earth's surface to allocate data to world countries. -->
-<!-- I'm not sure this is a good starting example to show how st_join works - thoughts? -->
+The process can be illustrated by an example.
+Imagine you have 10 points randomly distributed across the Earth's surface.
+Of the points that are on land, which countries are they in?
+Random points to demonstrate spatial joining are created as follows:
 
 
 ```r
-asia = world %>% 
-  filter(continent == "Asia")
-urb = urban_agglomerations %>% 
-  filter(year == 2020) %>% 
-  top_n(n = 3, wt = population_millions)
+set.seed(2018) # set seed for reproducibility
+(bb_world = st_bbox(world)) # the world's bounds
+#>   xmin   ymin   xmax   ymax 
+#> -180.0  -90.0  180.0   83.6
+random_df = tibble(
+  x = runif(n = 10, min = bb_world[1], max = bb_world[3]),
+  y = runif(n = 10, min = bb_world[2], max = bb_world[4])
+)
+random_points = st_as_sf(random_df, coords = c("x", "y")) %>% 
+  st_set_crs(4326) # generate points with geographic CRS
 ```
 
+<!-- This may seem a trivial question but if you consider being placed somewhere at random it would surely take some time to discover where you were and you'd probably have to ask someone. **comment - removed as it's too long-winded (RL)** -->
+The scenario is illustrated in Figure \@ref(fig:spatial-join).
+The `random_points` object (left) has no attribute data, while the `world` (middle) does.
+The spatial join operation is done by `st_join()`, which adds the `name_long` variable to the points, resulting in `random_joined` which is illustrated in Figure \@ref(fig:spatial-join) (right --- see [`04-spatial-join.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/04-spatial-join.R)).
+
 
 ```r
-joined = st_join(x = asia, y = urb) %>% 
-  na.omit()
+world_random = world[random_points, ]
+random_joined = st_join(random_points, world["name_long"])
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/spatial-join-1.png" alt="Illustration of a spatial join: the populations of the world's three largest agglomerations joined onto their respective countries." width="576" /><img src="figures/spatial-join-2.png" alt="Illustration of a spatial join: the populations of the world's three largest agglomerations joined onto their respective countries." width="576" />
-<p class="caption">(\#fig:spatial-join)Illustration of a spatial join: the populations of the world's three largest agglomerations joined onto their respective countries.</p>
+<img src="figures/spatial-join-1.png" alt="Illustration of a spatial join: the names of the source world object are added to random points." width="576" />
+<p class="caption">(\#fig:spatial-join)Illustration of a spatial join: the names of the source world object are added to random points.</p>
 </div>
 
-This operation is also know as spatial overlay.
 By default, `st_join()` performs a left join (see section \@ref(vector-attribute-joining)), but it can also do inner joins by setting the argument `left = FALSE`.
 Like spatial subsetting, the default topological operator used by `st_join()` is `st_intersects()`.
 This can be changed with the `join` argument (see `?st_join` for details).
@@ -3148,7 +3156,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservee63bd7a1439df178
+preservef1025e817e3c6eda
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3291,6 +3299,8 @@ This is illustrated in the code chunk below, which finds the distance between th
 ```r
 nz_heighest = nz_height %>% top_n(n = 1, wt = elevation)
 canterbury_centroid = st_centroid(canterbury)
+#> Warning in st_centroid.sf(canterbury): st_centroid assumes attributes are
+#> constant over geometries of x
 st_distance(nz_heighest, canterbury_centroid)
 #> Units: m
 #>        [,1]
@@ -4298,7 +4308,11 @@ We can create centroids for polygons, lines (see black points on Figure \@ref(fi
 
 ```r
 nz_centroid = st_centroid(nz)
+#> Warning in st_centroid.sf(nz): st_centroid assumes attributes are constant
+#> over geometries of x
 seine_centroid = st_centroid(seine)
+#> Warning in st_centroid.sf(seine): st_centroid assumes attributes are
+#> constant over geometries of x
 ```
 
 Centroids could be useful to represent more complex objects - lines and polygons, for example to calculate distances between centers of polygons.
@@ -4311,7 +4325,11 @@ Alternatively, the `st_point_on_surface()` can be used.
 
 ```r
 nz_pos = st_point_on_surface(nz)
+#> Warning in st_point_on_surface.sf(nz): st_point_on_surface assumes
+#> attributes are constant over geometries of x
 seine_pos = st_point_on_surface(seine)
+#> Warning in st_point_on_surface.sf(seine): st_point_on_surface assumes
+#> attributes are constant over geometries of x
 ```
 
 This ensures that the created point lies on the given object (see red points on Figure \@ref(fig:centr)).
@@ -5709,6 +5727,8 @@ For real-world use one would use centroid values generated from projected data o
 od_intra = filter(bristol_od, o == d)
 od_inter = filter(bristol_od, o != d)
 desire_lines = od2line(od_inter, zones_od)
+#> Warning in st_centroid.sf(zones): st_centroid assumes attributes are
+#> constant over geometries of x
 #> Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =
 #> of_largest_polygon): st_centroid does not give correct centroids for
 #> longitude/latitude data
@@ -6658,7 +6678,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserve9dd8a275a8cb8e54
+preservecf9a43a5afdc4de4
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7347,7 +7367,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5b2559a93f5146e8
+preserve769109e0c2b90314
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7445,7 +7465,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved864127db55b3c3e
+preserveec150b72835f24c1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7649,6 +7669,20 @@ For example, we could represent median income in New Zeleand's regions as a cont
 ```r
 library(cartogram)
 nz_carto = cartogram(nz, "Median_income", itermax = 5)
+#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
+#> constant over geometries of x
+
+#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
+#> constant over geometries of x
+
+#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
+#> constant over geometries of x
+
+#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
+#> constant over geometries of x
+
+#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
+#> constant over geometries of x
 tm_shape(nz_carto) + tm_polygons("Median_income")
 ```
 
