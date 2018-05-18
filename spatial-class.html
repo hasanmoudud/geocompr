@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-17">
+<meta name="date" content="2018-05-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1001,7 +1001,7 @@ First of all, we would like to create a <code>RasterLayer</code> object named <c
 <a class="sourceLine" id="cb40-7" data-line-number="7"><span class="co">#&gt; data source : /home/travis/R/Library/spDataLarge/raster/srtm.tif </span></a>
 <a class="sourceLine" id="cb40-8" data-line-number="8"><span class="co">#&gt; names       : srtm </span></a>
 <a class="sourceLine" id="cb40-9" data-line-number="9"><span class="co">#&gt; values      : 1024, 2892  (min, max)</span></a></code></pre></div>
-<p>To access individual header information, you can use following commands: <code>dim(new_raster)</code> (dimensions - number of rows, number of columns, number of cells), <code>res(new_raster)</code> (spatial resolution), <code>extent(new_raster)</code> (spatial extent), and <code>crs(new_raster)</code> (coordinate reference system).</p>
+<p>To access individual header information, you can use following commands: <code>dim(new_raster)</code> (dimensions - number of rows, number of columns, number of raster layers), <code>ncell(new_raster)</code> (number of raster cells), <code>res(new_raster)</code> (spatial resolution), <code>extent(new_raster)</code> (spatial extent), and <code>crs(new_raster)</code> (coordinate reference system).</p>
 <!--CRSargs(CRS("+init=epsg:4326"))-->
 <p>Note that in contrast to the <strong>sf</strong> package, <strong>raster</strong> only accepts the <code>proj4string</code> representation of the coordinate reference system.</p>
 <!--
