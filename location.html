@@ -609,9 +609,9 @@ Be careful with geographic CRS where grid cell areas constantly decrease in pole
 </div>
 
 <div class="figure" style="text-align: center"><span id="fig:census-stack"></span>
-<img src="figures/08_census_stack.png" alt="Gridded German census data of 2011. See Table \@ref(tab:census-desc) for a description of the classes." width="765" />
+<img src="figures/08_census_stack.png" alt="Gridded German census data of 2011. See Table \@ref(tab:census-desc) for a description of the classes. For reproducing this figure, see `code/08-location-jm.R`." width="765" />
 <p class="caption">
-Figure 8.1: Gridded German census data of 2011. See Table <a href="location.html#tab:census-desc">8.1</a> for a description of the classes.
+Figure 8.1: Gridded German census data of 2011. See Table <a href="location.html#tab:census-desc">8.1</a> for a description of the classes. For reproducing this figure, see <code>code/08-location-jm.R</code>.
 </p>
 </div>
 <!-- find out about new lines in headings + blank cells-->
@@ -746,9 +746,9 @@ st_centroid(metros) %>%
 ```
 -->
 <div class="figure" style="text-align: center"><span id="fig:metro-areas"></span>
-<img src="figures/08_metro_areas.png" alt="The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names." width="450" />
+<img src="figures/08_metro_areas.png" alt="The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names. For reproducing this figure, see `code/08-location-jm.R`." width="450" />
 <p class="caption">
-Figure 8.2: The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names.
+Figure 8.2: The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names. For reproducing this figure, see <code>code/08-location-jm.R</code>.
 </p>
 </div>
 <p>The defined metropolitan areas (Fig. <a href="location.html#fig:metro-areas">8.2</a>) suitable for bike shops are still missing a name.
@@ -889,7 +889,7 @@ With clean data the final step, calculating a final score by summing up all rast
 <div id="htmlwidget-ec897849c5c50a6f7846" style="width:576px;height:355.968px;" class="leaflet html-widget"></div>
 <script type="application/json" data-for="htmlwidget-ec897849c5c50a6f7846">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRasterImage","args":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAM0lEQVRYhe3SMQ0AMAwEsQcb/hTSuQSaVLIR3HAJAADfqfR0wm1dEC9VevcCq+MAAIBhB20vBvBK3JZrAAAAAElFTkSuQmCC",[[52.696600856383,13.0820026147986],[52.3210740877061,13.6981591380976]],0.8,null,null,null]},{"method":"addLegend","args":[{"colors":["darkgreen"],"labels":["potential locations"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"bottomright","type":"unknown","title":"Legend","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[52.3210740877061,52.696600856383],"lng":[13.0820026147986,13.6981591380976]}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 8.3: Suitable areas (i.e. raster cells with a score &gt; 9) in accordance with our hypothetical survey for bike stores in Berlin.
+Figure 8.3: Suitable areas (i.e. raster cells with a score &gt; 9) in accordance with our hypothetical survey for bike stores in Berlin. For reproducing this figure, see <code>code/08-location-jm.R</code>.
 </p>
 </div>
 </div>

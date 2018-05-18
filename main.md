@@ -289,7 +289,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve071100a47ece47b9
+preservee867f188c45f80a3
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3154,7 +3154,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve03c24a935cd7c164
+preservead3d24a0b75ef85e
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6305,8 +6305,8 @@ Since we are using mainly densities such as the number of inhabitants or the por
 Be careful with geographic CRS where grid cell areas constantly decrease in poleward directions (see also sections \@ref(crs-intro) and \@ref(reproj-geo-data)). </div>\EndKnitrBlock{rmdnote}
 
 <div class="figure" style="text-align: center">
-<img src="figures/08_census_stack.png" alt="Gridded German census data of 2011. See Table \@ref(tab:census-desc) for a description of the classes." width="765" />
-<p class="caption">(\#fig:census-stack)Gridded German census data of 2011. See Table \@ref(tab:census-desc) for a description of the classes.</p>
+<img src="figures/08_census_stack.png" alt="Gridded German census data of 2011. See Table \@ref(tab:census-desc) for a description of the classes. For reproducing this figure, see `code/08-location-jm.R`." width="765" />
+<p class="caption">(\#fig:census-stack)Gridded German census data of 2011. See Table \@ref(tab:census-desc) for a description of the classes. For reproducing this figure, see `code/08-location-jm.R`.</p>
 </div>
 
 <!-- find out about new lines in headings + blank cells-->
@@ -6482,8 +6482,8 @@ st_centroid(metros) %>%
 
 
 <div class="figure" style="text-align: center">
-<img src="figures/08_metro_areas.png" alt="The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names." width="450" />
-<p class="caption">(\#fig:metro-areas)The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names.</p>
+<img src="figures/08_metro_areas.png" alt="The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names. For reproducing this figure, see `code/08-location-jm.R`." width="450" />
+<p class="caption">(\#fig:metro-areas)The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names. For reproducing this figure, see `code/08-location-jm.R`.</p>
 </div>
 
 
@@ -6676,8 +6676,8 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin)).
 
 <div class="figure" style="text-align: center">
-preserveebc20567efe26512
-<p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
+preserve0603b6ad30cf65a5
+<p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin. For reproducing this figure, see `code/08-location-jm.R`.</p>
 </div>
 
 ## Discussion and next steps
@@ -7365,7 +7365,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve0cb011c41dfd94c9
+preserved489127512e115b6
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7463,7 +7463,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0ed3d134d2437e97
+preserve40a54df57e931b88
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
