@@ -148,7 +148,7 @@ On the other hand, we embed the shown methods into the bigger field of GIScience
 
 
 
-Many thanks to all the people who contributed to the book via GitHub: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [rsbivand](https://github.com/rsbivand), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [richfitz](https://github.com/richfitz), [wdearden](https://github.com/wdearden), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah).
+Many thanks to all the people who contributed to the book via GitHub: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [rsbivand](https://github.com/rsbivand), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [katiejolly](https://github.com/katiejolly), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [nickbearman](https://github.com/nickbearman), [richfitz](https://github.com/richfitz), [wdearden](https://github.com/wdearden), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah), [tim-salabim](https://github.com/tim-salabim).
 
 
 We thank Patrick Schratz (University of Jena) for fruitful discussions on **mlr** and for providing code input (Chapter \@ref(spatial-cv)).
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8949d0f254c9e4fa
+preserve7b0a7e31bb5a458b
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -389,15 +389,15 @@ See the [r-spatial](https://github.com/r-spatial/) organisation and conversation
 ] and a growing number of actively developed packages which are designed to work in harmony with **sf** (Table \@ref(tab:revdep)). 
 
 
-Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-05-09 there are 71 packages which import sf.
+Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-05-17 there are 72 packages which import sf.
 
 package    Downloads
 --------  ----------
-plotly          2179
-raster          2060
-spData          1698
-leaflet         1200
-spdep           1179
+plotly          2145
+raster          2008
+spData          1776
+leaflet         1217
+spdep           1104
 
 ## The history of R-spatial
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2b127b320bacbdff
+preserve14ffba37ef72bdef
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6677,7 +6677,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservedfb3b2e975820b15
+preservea69720ec8c0aa3d9
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7366,7 +7366,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea4b18db561a06dff
+preservee64f0638e6330792
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7464,7 +7464,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve506c5278bed04bf3
+preservee66bfd001bf07f34
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
