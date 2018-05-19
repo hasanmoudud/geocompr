@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-18'
+date: '2018-05-19'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,12 +37,13 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-18 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-19 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
 **bookdown** makes editing a book as easy as editing a wiki, provided you have a GitHub account ([sign-up at github.com](https://github.com/)).
-Once logged-in to GitHub, clicking on the 'edit me' icon highlighted in the image below will take you to the source [R Markdown](http://rmarkdown.rstudio.com/) where you can make changes:
+Once logged-in to GitHub, click on the 'edit me' icon highlighted with a red ellipse in the image below.
+This will take you to an editable version of the the source [R Markdown](http://rmarkdown.rstudio.com/) file that generated the page you're on:
 
 [![](figures/editme.png)](https://github.com/Robinlovelace/geocompr/edit/master/index.Rmd)
 
@@ -289,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve11f3863fb38b2f58
+preserve8949d0f254c9e4fa
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3154,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea7211c53c84f8800
+preserve2b127b320bacbdff
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6676,7 +6677,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8355082f23f97eab
+preservedfb3b2e975820b15
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7365,7 +7366,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve43e007eb7d82eda2
+preservea4b18db561a06dff
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7463,7 +7464,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve86aec9eee0d3067f
+preserve506c5278bed04bf3
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
