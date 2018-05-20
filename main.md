@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservece2cd2fab2f50c57
+preserve634c81059fcba36e
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve99a762f5bb6712f4
+preservefadcd0d5f58f0769
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6677,7 +6677,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve384508aa3c7b36db
+preserve06f9c68777549d43
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7366,7 +7366,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve61269431c5475e39
+preservea41f6c97d9d599a0
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7464,7 +7464,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve530a4aab28676813
+preservea7e7f0ff1278313a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8321,7 +8321,7 @@ library(spDataLarge)
 
 ## Introduction
 
-This section focuses on interactions between raster and data vector geographic data models, introduced in Chapter \@ref(spatial-class).
+This section focuses on interactions between raster and vector geographic data models, introduced in Chapter \@ref(spatial-class).
 It includes four main techniques:
 raster cropping and masking using vector objects (section \@ref(raster-cropping));
 extracting raster values using different types of vector data (section \@ref(raster-extraction));
