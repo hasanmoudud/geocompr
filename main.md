@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve634c81059fcba36e
+preserve26566cf64db2c477
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservefadcd0d5f58f0769
+preserve769a29e8de1693ee
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6677,7 +6677,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve06f9c68777549d43
+preserve51c1fc5d1f523c36
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7208,6 +7208,9 @@ nz_height_map = tm_shape(nz_elev, bbox = tmaptools::bb(nz_region)) +
             auto.palette.mapping = FALSE, legend.show = FALSE) +
   tm_shape(nz_height) + tm_symbols(shape = 2, col = "red", size = 1) +
   tm_scale_bar(position = c("left", "bottom"))
+#> Warning: The argument auto.palette.mapping is deprecated. Please use
+#> midpoint for numeric data and stretch.palette for categorical data to
+#> control the palette mapping.
 ```
 
 The third step consists of the inset map creation. 
@@ -7366,7 +7369,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea41f6c97d9d599a0
+preserve49055e1dd659df55
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7464,7 +7467,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea7e7f0ff1278313a
+preservebf628f2254dceccc
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8375,6 +8378,21 @@ Changing the settings of `mask()` yields in different results.
 Setting `maskvalue = 0`, for example, would set all pixels outside the national park to 0.
 Setting `inverse = TRUE` would mask everything *inside* the bounds of the park (see `?mask` for details).
 
+
+```
+#> Warning: The argument auto.palette.mapping is deprecated. Please use
+#> midpoint for numeric data and stretch.palette for categorical data to
+#> control the palette mapping.
+
+#> Warning: The argument auto.palette.mapping is deprecated. Please use
+#> midpoint for numeric data and stretch.palette for categorical data to
+#> control the palette mapping.
+
+#> Warning: The argument auto.palette.mapping is deprecated. Please use
+#> midpoint for numeric data and stretch.palette for categorical data to
+#> control the palette mapping.
+```
+
 <div class="figure" style="text-align: center">
 <img src="figures/cropmask-1.png" alt="Illustration of raster cropping (center) and raster masking (right)." width="576" />
 <p class="caption">(\#fig:cropmask)Illustration of raster cropping (center) and raster masking (right).</p>
@@ -9077,6 +9095,13 @@ The first three rows of the resulting data frame, still named `lsl` look like th
 ```
 
 As a convenience to the reader, `lsl` is also available in the **spDataLarge** package along with the corresponding terrain attributes stored in a raster stack (`data("ta", package = "spDataLarge")`).
+
+
+```
+#> Warning: The argument auto.palette.mapping is deprecated. Please use
+#> midpoint for numeric data and stretch.palette for categorical data to
+#> control the palette mapping.
+```
 
 <div class="figure" style="text-align: center">
 <img src="figures/lsl-map-1.png" alt="Landslide initiation points (red) and points unaffected by landsliding (blue) in Southern Ecuador." width="576" />
