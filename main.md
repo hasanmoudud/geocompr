@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea48982223bb5765d
+preserve3ad83570fdd07cd5
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve6d1b026bc69dfa11
+preserveb8f28895ac2c5fc1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5870,70 +5870,21 @@ desire_rail = top_n(desire_lines, n = 3, wt = train)
 
 The challenge now is to 'break-up' each of these lines into three pieces, representing travel via public transport nodes.
 This can be done by converting a desire line into a multiline object consisting of three line geometries representing origin, public transport and destination legs of the trip.
-The first stage is to create matrices of coordinates that will subsequently be used to create matrices representing each leg:
+This operation can be divided into three stages: matrix creation (of origins, destinations and the 'via' points representing rail stations), identification of nearest neighbors and conversion to multilines.
+These are undertaken by `line_via()`.
+This **stplanr** function takes input lines and points and returns a copy of the desire lines (see [`07-line-via.Rmd`](https://github.com/Robinlovelace/geocompr/blob/master/vignettes/07-line-via.Rmd)) in the book's repo and `?line_via` for details on how this works).
+The output is the same as the input line, except it has new geometry columns representing the journey via public transport nodes, as demonstrated below:
 
 
 ```r
-mat_orig = as.matrix(line2df(desire_rail)[c("fx", "fy")])
-mat_dest = as.matrix(line2df(desire_rail)[c("tx", "ty")])
-mat_rail = st_coordinates(bristol_stations)
+ncol(desire_rail)
+#> [1] 9
+desire_rail = line_via(desire_rail, bristol_stations)
+ncol(desire_rail)
+#> [1] 12
 ```
 
-The outputs are three matrices representing the starting points of the trips, their destinations and possible intermediary points at public transport nodes (named `orig`, `dest` and `rail` respectively).
-But how to identify *which* intermediary points to use for each desire line?
-The `knn()` function from the **nabor** package (which is used internally by **stplanr** so it should already be installed) solves this problem by finding *k nearest neighbors* between two sets of coordinates.
-By setting the `k` parameter, one can define how many nearest neighbors should be returned. 
-Of course, `k` cannot exceed the number of observations in the input (here: `mat_rail`).
-We are interested in just one nearest neighbor, namely, the closest railway station.
-:
-
-
-```r
-knn_orig = nabor::knn(mat_rail, query = mat_orig, k = 1)$nn.idx
-knn_dest = nabor::knn(mat_rail, query = mat_dest, k = 1)$nn.idx
-```
-
-This results not in matrices of coordinates, but row indices that can subsequently be used to subset the `mat_rail`.
-It is worth taking a look at the results to ensure that the process has worked properly, and to explain what has happened:
-
-
-```r
-as.numeric(knn_orig)
-#> [1] 27  3  2
-as.numeric(knn_dest)
-#> [1] 29 29 29
-```
-
-The output demonstrates that each object contains three whole numbers (the number of rows in `desire_rail`) representing the rail station closest to the origin and destination of each desire line.
-Note that while each 'origin station' is different, the destination (station `30`) is the same for all desire lines.
-This is to be expected because rail travel in cities tends to converge on a single large station (in this case Bristol Temple Meads).
-The indices can now be used to create matrices representing the rail station of origin and destination:
-
-
-```r
-mat_rail_o = mat_rail[knn_orig, ]
-mat_rail_d = mat_rail[knn_dest, ]
-```
-
-The final stage is to convert these matrices into meaningful geographic objects, in this case simple feature 'multilinestrings' that capture the fact that each stage is a separate line, but part of the same overall trip:
-
-
-```r
-mats2line = function(mat1, mat2) {
-  lapply(1:nrow(mat1), function(i) {
-    rbind(mat1[i, ], mat2[i, ]) %>%
-    st_linestring()
-  }) %>% st_sfc()
-}
-desire_rail$leg_orig = mats2line(mat_orig, mat_rail_o)
-desire_rail$leg_rail = mats2line(mat_rail_o, mat_rail_d)
-desire_rail$leg_dest = mats2line(mat_rail_d, mat_dest)
-```
-
-
-
-Now we are in a position to visualize the results, in Figure \@ref(fig:stations):
-the three initial `desire_rail` lines now have three additional geometry list-columns representing travel from home to the origin station, from there to the destination, and finally from the destination station to the destination.
+As illustrated in Figure \@ref(fig:stations), the initial `desire_rail` lines now have three additional geometry list-columns representing travel from home to the origin station, from there to the destination, and finally from the destination station to the destination.
 In this case the destination leg is very short (walking distance) but the origin legs may be sufficiently far to justify investment in cycling infrastructure to encourage people to cycle to the stations on the outward leg of peoples' journey to work in the residential areas surrounding the three origin stations in Figure \@ref(fig:stations).
 
 <div class="figure" style="text-align: center">
@@ -5996,8 +5947,8 @@ plot(ways_sln@sl$geometry, lwd = e / 500)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/unnamed-chunk-27-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text." width="576" />
-<p class="caption">(\#fig:unnamed-chunk-27)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text.</p>
+<img src="figures/unnamed-chunk-22-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text." width="576" />
+<p class="caption">(\#fig:unnamed-chunk-22)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text.</p>
 </div>
 
 
@@ -6677,7 +6628,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9872b437c7af4330
+preserve2e8573a0ee6ddf61
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7369,7 +7320,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve6ac95bea2d444811
+preserve59c58909a8278a07
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7467,7 +7418,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveddc2b613ec7753b5
+preserve948cf840332ec666
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
