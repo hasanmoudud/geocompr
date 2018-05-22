@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve19c93858f401caa6
+preserve1e6ba6c952d37497
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebdc69ab22f389bf9
+preserve797c90be53769886
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6628,7 +6628,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee8cdceea42587a2c
+preservef25e435e93e126b9
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -6860,6 +6860,12 @@ This is demonstrated in the code chunk below which plots `map_nz1` to `map_nz3`,
 
 ```r
 tmap_arrange(map_nz1, map_nz2, map_nz3)
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
 ```
 
 <div class="figure" style="text-align: center">
@@ -6967,6 +6973,12 @@ Six of the most useful break styles are illustrated in Figure \@ref(fig:break-st
 - `style = jenks` identifies groups of similar values in the data and maximizes the differences between categories
 - `style = cont` (and `order`) present a large number of colors over continuous color field, and are particularly suited for continuous rasters (`order` can help visualize skewed distributions)
 - `style = cat` was designed to represent categorical values and assures that each category receives a unique color
+
+
+```
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+```
 
 <div class="figure" style="text-align: center">
 <img src="figures/break-styles-1.png" alt="Illustration of different binning methods set using the style argument in tmap." width="576" />
@@ -7182,6 +7194,7 @@ A viewport from the **grid** package can be used by stating a center location (`
 ```r
 library(grid)
 nz_height_map
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
 print(nz_map, vp = grid::viewport(0.8, 0.27, width = 0.5, height = 0.5))
 ```
 
@@ -7320,7 +7333,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec810a95ac4a2fce0
+preserve7a18648c33396c9d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7418,7 +7431,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve50e62654c9150f05
+preserve83619471e08e9283
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7622,20 +7635,6 @@ For example, we could represent median income in New Zeleand's regions as a cont
 ```r
 library(cartogram)
 nz_carto = cartogram(nz, "Median_income", itermax = 5)
-#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
-#> constant over geometries of x
-
-#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
-#> constant over geometries of x
-
-#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
-#> constant over geometries of x
-
-#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
-#> constant over geometries of x
-
-#> Warning in st_centroid.sf(shp.iter): st_centroid assumes attributes are
-#> constant over geometries of x
 tm_shape(nz_carto) + tm_polygons("Median_income")
 ```
 
@@ -9052,6 +9051,7 @@ As a convenience to the reader, `lsl` is also available in the **spDataLarge** p
 #> Warning: The argument auto.palette.mapping is deprecated. Please use
 #> midpoint for numeric data and stretch.palette for categorical data to
 #> control the palette mapping.
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
 ```
 
 <div class="figure" style="text-align: center">
@@ -9129,6 +9129,12 @@ pred = raster::predict(object = ta, model = fit,
                        type = "response")
 ```
 
+
+
+```
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
+```
 
 <div class="figure" style="text-align: center">
 <img src="figures/lsl-susc-1.png" alt="Spatial prediction of landslide susceptibility using a GLM." width="576" />
