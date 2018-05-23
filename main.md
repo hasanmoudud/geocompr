@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve224542081e55c91b
+preservef1a660a0ed4725b3
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb22ad5ce58e31596
+preservedd7bb0ba879c8c90
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6628,7 +6628,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve1040be07cfd7b30c
+preserve1848cf0aed908466
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7009,6 +7009,7 @@ tm_shape(nz) + tm_polygons("Population", palette = "YlOrBr")
 
 The last group, diverging palettes, typically range between three distinct colors (purple-white-green in Figure \@ref(fig:colpal)) and are usually created by joining two single color sequential palettes with the darker colors at each end.
 Their main purpose is to visualize the difference from an important reference point, e.g. a certain temperature, the median household income or the mean probability for a drought event.
+The reference point's value can be adjusted in **tmap** using the `midpoint` argument.
 
 <div class="figure" style="text-align: center">
 <img src="figures/colpal-1.png" alt="Examples of categorical, sequential and diverging palettes." width="576" />
@@ -7167,8 +7168,7 @@ This is a place where the most important message is stated.
 
 ```r
 nz_height_map = tm_shape(nz_elev, bbox = tmaptools::bb(nz_region)) +
-  tm_raster(style = "cont", palette = "YlGn",
-            midpoint = NA, legend.show = TRUE) +
+  tm_raster(style = "cont", palette = "YlGn", legend.show = TRUE) +
   tm_shape(nz_height) + tm_symbols(shape = 2, col = "red", size = 1) +
   tm_scale_bar(position = c("left", "bottom"))
 ```
@@ -7329,7 +7329,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveacd9f4df588f7052
+preserve821652dbf555b29e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7427,7 +7427,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve681ab43a5deb501b
+preservead73624e89b2bca0
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
