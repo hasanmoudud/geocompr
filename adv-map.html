@@ -752,13 +752,10 @@ The first step is to define the area of interest, which can be done by creating 
 <p>In the second step, we create a base map showing the New Zealand’s Southern Alps area.
 This is a place where the most important message is stated.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">nz_height_map =<span class="st"> </span><span class="kw">tm_shape</span>(nz_elev, <span class="dt">bbox =</span> tmaptools<span class="op">::</span><span class="kw">bb</span>(nz_region)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb306-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_raster</span>(<span class="dt">style =</span> <span class="st">&quot;cont&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;-Spectral&quot;</span>,</a>
-<a class="sourceLine" id="cb306-3" data-line-number="3">            <span class="dt">auto.palette.mapping =</span> <span class="ot">FALSE</span>, <span class="dt">legend.show =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb306-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_raster</span>(<span class="dt">style =</span> <span class="st">&quot;cont&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;YlGn&quot;</span>,</a>
+<a class="sourceLine" id="cb306-3" data-line-number="3">            <span class="dt">midpoint =</span> <span class="ot">NA</span>, <span class="dt">legend.show =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb306-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_shape</span>(nz_height) <span class="op">+</span><span class="st"> </span><span class="kw">tm_symbols</span>(<span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb306-5" data-line-number="5"><span class="st">  </span><span class="kw">tm_scale_bar</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a>
-<a class="sourceLine" id="cb306-6" data-line-number="6"><span class="co">#&gt; Warning: The argument auto.palette.mapping is deprecated. Please use</span></a>
-<a class="sourceLine" id="cb306-7" data-line-number="7"><span class="co">#&gt; midpoint for numeric data and stretch.palette for categorical data to</span></a>
-<a class="sourceLine" id="cb306-8" data-line-number="8"><span class="co">#&gt; control the palette mapping.</span></a></code></pre></div>
+<a class="sourceLine" id="cb306-5" data-line-number="5"><span class="st">  </span><span class="kw">tm_scale_bar</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
 <p>The third step consists of the inset map creation.
 It gives a context and helps to locate the area of interest.
 Importantly, this map needs to clearly indicate the location of the main map, for example by stating its borders.</p>
@@ -769,8 +766,7 @@ Importantly, this map needs to clearly indicate the location of the main map, fo
 A viewport from the <strong>grid</strong> package can be used by stating a center location (<code>x</code> and <code>y</code>) and a size (<code>width</code> and <code>height</code>) of the inset map.</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">library</span>(grid)</a>
 <a class="sourceLine" id="cb308-2" data-line-number="2">nz_height_map</a>
-<a class="sourceLine" id="cb308-3" data-line-number="3"><span class="co">#&gt; Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.</span></a>
-<a class="sourceLine" id="cb308-4" data-line-number="4"><span class="kw">print</span>(nz_map, <span class="dt">vp =</span> grid<span class="op">::</span><span class="kw">viewport</span>(<span class="fl">0.8</span>, <span class="fl">0.27</span>, <span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">height =</span> <span class="fl">0.5</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb308-3" data-line-number="3"><span class="kw">print</span>(nz_map, <span class="dt">vp =</span> grid<span class="op">::</span><span class="kw">viewport</span>(<span class="fl">0.8</span>, <span class="fl">0.27</span>, <span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">height =</span> <span class="fl">0.5</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:insetmap1"></span>
 <img src="figures/insetmap1-1.png" alt="Inset map providing a context - location of the central part of the Southern Alps in New Zealand." width="576" />
 <p class="caption">

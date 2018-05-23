@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve35d2463d1bbd7592
+preservec6c8f6a2ca9332c7
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve0b61b0680d1267c8
+preservecb192b7f7a1630e7
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6628,7 +6628,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve3e9f7da124ed2957
+preservefece8eccdc70ff17
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7167,13 +7167,10 @@ This is a place where the most important message is stated.
 
 ```r
 nz_height_map = tm_shape(nz_elev, bbox = tmaptools::bb(nz_region)) +
-  tm_raster(style = "cont", palette = "-Spectral",
-            auto.palette.mapping = FALSE, legend.show = FALSE) +
+  tm_raster(style = "cont", palette = "YlGn",
+            midpoint = NA, legend.show = TRUE) +
   tm_shape(nz_height) + tm_symbols(shape = 2, col = "red", size = 1) +
   tm_scale_bar(position = c("left", "bottom"))
-#> Warning: The argument auto.palette.mapping is deprecated. Please use
-#> midpoint for numeric data and stretch.palette for categorical data to
-#> control the palette mapping.
 ```
 
 The third step consists of the inset map creation. 
@@ -7194,7 +7191,6 @@ A viewport from the **grid** package can be used by stating a center location (`
 ```r
 library(grid)
 nz_height_map
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
 print(nz_map, vp = grid::viewport(0.8, 0.27, width = 0.5, height = 0.5))
 ```
 
@@ -7333,7 +7329,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve34b5ee9d5e2b3c0b
+preserve8b75d6c9dd9c1fa1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7431,7 +7427,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve02321cac723fdfcb
+preserveca8c8ba8264136a2
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8328,21 +8324,6 @@ Changing the settings of `mask()` yields in different results.
 Setting `maskvalue = 0`, for example, would set all pixels outside the national park to 0.
 Setting `inverse = TRUE` would mask everything *inside* the bounds of the park (see `?mask` for details).
 
-
-```
-#> Warning: The argument auto.palette.mapping is deprecated. Please use
-#> midpoint for numeric data and stretch.palette for categorical data to
-#> control the palette mapping.
-
-#> Warning: The argument auto.palette.mapping is deprecated. Please use
-#> midpoint for numeric data and stretch.palette for categorical data to
-#> control the palette mapping.
-
-#> Warning: The argument auto.palette.mapping is deprecated. Please use
-#> midpoint for numeric data and stretch.palette for categorical data to
-#> control the palette mapping.
-```
-
 <div class="figure" style="text-align: center">
 <img src="figures/cropmask-1.png" alt="Illustration of raster cropping (center) and raster masking (right)." width="576" />
 <p class="caption">(\#fig:cropmask)Illustration of raster cropping (center) and raster masking (right).</p>
@@ -9048,9 +9029,6 @@ As a convenience to the reader, `lsl` is also available in the **spDataLarge** p
 
 
 ```
-#> Warning: The argument auto.palette.mapping is deprecated. Please use
-#> midpoint for numeric data and stretch.palette for categorical data to
-#> control the palette mapping.
 #> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
 ```
 
@@ -9129,12 +9107,6 @@ pred = raster::predict(object = ta, model = fit,
                        type = "response")
 ```
 
-
-
-```
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-```
 
 <div class="figure" style="text-align: center">
 <img src="figures/lsl-susc-1.png" alt="Spatial prediction of landslide susceptibility using a GLM." width="576" />
