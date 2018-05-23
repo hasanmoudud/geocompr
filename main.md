@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef1a660a0ed4725b3
+preserveea22640191f10df3
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservedd7bb0ba879c8c90
+preserve2b8604db9acd1055
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4783,7 +4783,7 @@ Additionally, the output cell value should correspond to the mean of the input c
 
 
 ```r
-elev_agg = raster::aggregate(elev, fact = 2, fun = mean)
+elev_agg = aggregate(elev, fact = 2, fun = mean)
 par(mfrow = c(1, 2))
 plot(elev)
 plot(elev_agg)
@@ -6628,7 +6628,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve1848cf0aed908466
+preserve48ff8148ead4df04
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7329,7 +7329,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve821652dbf555b29e
+preserve1c75f603c6b6eee9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7427,7 +7427,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservead73624e89b2bca0
+preserve60c857cd39281dc9
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
