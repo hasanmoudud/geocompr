@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec6c8f6a2ca9332c7
+preserve224542081e55c91b
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservecb192b7f7a1630e7
+preserveb22ad5ce58e31596
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4783,7 +4783,7 @@ Additionally, the output cell value should correspond to the mean of the input c
 
 
 ```r
-elev_agg = aggregate(elev, fact = 2, fun = mean)
+elev_agg = raster::aggregate(elev, fact = 2, fun = mean)
 par(mfrow = c(1, 2))
 plot(elev)
 plot(elev_agg)
@@ -6628,7 +6628,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservefece8eccdc70ff17
+preserve1040be07cfd7b30c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7329,7 +7329,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve8b75d6c9dd9c1fa1
+preserveacd9f4df588f7052
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7427,7 +7427,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveca8c8ba8264136a2
+preserve681ab43a5deb501b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9026,11 +9026,6 @@ The first three rows of the resulting data frame, still named `lsl` look like th
 ```
 
 As a convenience to the reader, `lsl` is also available in the **spDataLarge** package along with the corresponding terrain attributes stored in a raster stack (`data("ta", package = "spDataLarge")`).
-
-
-```
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-```
 
 <div class="figure" style="text-align: center">
 <img src="figures/lsl-map-1.png" alt="Landslide initiation points (red) and points unaffected by landsliding (blue) in Southern Ecuador." width="576" />
