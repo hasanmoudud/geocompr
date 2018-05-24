@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-23'
+date: '2018-05-24'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-23 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-24 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved5d79563e3ce0dce
+preserve1dbe960221a473ab
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3155,7 +3155,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4a2e34c823a9cfa0
+preserve5f3800a63848938e
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6628,7 +6628,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve321672a023e4937d
+preserve6bd1dd0a3edc0d12
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -6860,12 +6860,6 @@ This is demonstrated in the code chunk below which plots `map_nz1` to `map_nz3`,
 
 ```r
 tmap_arrange(map_nz1, map_nz2, map_nz3)
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
 ```
 
 <div class="figure" style="text-align: center">
@@ -6973,12 +6967,6 @@ Six of the most useful break styles are illustrated in Figure \@ref(fig:break-st
 - `style = jenks` identifies groups of similar values in the data and maximizes the differences between categories
 - `style = cont` (and `order`) present a large number of colors over continuous color field, and are particularly suited for continuous rasters (`order` can help visualize skewed distributions)
 - `style = cat` was designed to represent categorical values and assures that each category receives a unique color
-
-
-```
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-#> Variable contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show to full spectrum of the color palette.
-```
 
 <div class="figure" style="text-align: center">
 <img src="figures/break-styles-1.png" alt="Illustration of different binning methods set using the style argument in tmap." width="576" />
@@ -7329,7 +7317,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve0302d5e60deefbdd
+preservef01ef52480f9b8df
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7427,7 +7415,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4eedf0b488cdbc50
+preservebc2c2943ba61583d
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
