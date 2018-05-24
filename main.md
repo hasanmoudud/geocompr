@@ -75,7 +75,7 @@ Further details can be found at [github.com/Robinlovelace/geocompr](https://gith
 This book is aimed at people who want to do spatial data analysis, visualization and modeling using open source software and reproducible workflows.
 It is based on R, a flexible language for 'data science' with powerful geospatial capabilities and a strong ecosystem of add-on packages dedicated to spatial data (see the 'Spatial Task View' at [cran.r-project.org/web/views](https://cran.r-project.org/web/views/Spatial.html)).
 
-R enables reproducibility through its command-line interace and ensures accessibility because it is freely available and works on most modern operating systems (including Linux, Windows and Mac).
+R enables reproducibility through its command-line interface and ensures accessibility because it is freely available and works on most modern operating systems (including Linux, Windows and Mac).
 The book will therefore be of interest to a wide range of people worldwide, although we expect it to be especially useful for:
 
 - People who have learned spatial analysis skills using a desktop Geographic Information System (GIS) such as [QGIS](http://qgis.org/en/site/), [ArcMap](http://desktop.arcgis.com/en/arcmap/), [GRASS](https://grass.osgeo.org/) or [SAGA](http://www.saga-gis.org/en/index.html), who want access to a powerful (geo)statistical and visualization programming language and the benefits of a command-line approach [@sherman_desktop_2008]:
@@ -84,7 +84,7 @@ The book will therefore be of interest to a wide range of people worldwide, alth
 
 - Graduate students and researchers from fields specializing in geographic data including Geography, Remote Sensing, Planning, GIS and Geographic Data Science
 - Academics and post-graduate students working on projects in fields including Geology, Regional Science, Biology and Ecology, Agricultural Sciences (precision farming), Archaeology, Epidemiology, Transport Modeling, and broadly defined Data Science which require the power and flexibility of R for their research <!-- please add further fields-->
-- Applied researchers and analysts in public, private or third-sector organisations who need the reproducibility, speed and flexibility of a command-line language such as R in applications dealing with spatial data as diverse as Urban and Transport Planning, Logistics, Geo-marketing (store location analysis) and Emergency Planning <!-- please add further examples-->
+- Applied researchers and analysts in public, private or third-sector organizations who need the reproducibility, speed and flexibility of a command-line language such as R in applications dealing with spatial data as diverse as Urban and Transport Planning, Logistics, Geo-marketing (store location analysis) and Emergency Planning <!-- please add further examples-->
 
 The book is designed for intermediate-to-advanced R users interested in geocomputation and R beginners who have prior experience with geographic data.
 If you are new to both R and geographic data do not be discouraged: we provide links to further materials and describe the nature of spatial data from a beginner's perspective in Chapter \@ref(spatial-class) and in links provided below.
@@ -97,7 +97,7 @@ Completing these encourages using R interactively to solve geospatial problems, 
 Impatient readers are welcome to dive straight into the practical examples, starting in Chapter \@ref(spatial-class).
 However, we recommend reading about the wider context of *Geocomputation with R* in Chapter \@ref(intro) first.
 If you are new to R we also recommend learning more about the language before attempting to run the code chunks provided in each chapter (unless you're reading the book for an understanding of the concepts).
-Fortunately for R begginers R has supportive community that has developed a wealth of resources that can help.
+Fortunately for R beginners R has supportive community that has developed a wealth of resources that can help.
 We particularly recommend three tutorials:  [R for Data Science](http://r4ds.had.co.nz/) [@grolemund_r_2016] and [Efficient R Programming](https://csgillespie.github.io/efficientR/) [@gillespie_efficient_2016], especially [Chapter 2](https://csgillespie.github.io/efficientR/set-up.html#r-version) (on installing and setting-up R/RStudio) and [Chapter 10](https://csgillespie.github.io/efficientR/learning.html) (on learning to learn), and  [An introduction to R](http://colinfay.me/intro-to-r/) [@venables_introduction_2017].
 A good interactive tutorial is DataCamp's [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r).
 <!-- and tutorials created with [**learnr**](https://rstudio.github.io/learnr/examples.html). -->
@@ -107,7 +107,7 @@ Although R has a steep learning curve the command-line approach advocated in thi
 As you'll learn in subsequent chapters, R is an effective tool for tackling a wide range of geographic data challenges.
 We expect that, with practice, R will become the program of choice in your geospatial toolbox for many applications.
 Typing and executing commands at the command-line is, in many cases, faster than pointing-and-clicking around the graphical user interface (GUI) a desktop GIS.
-For some applications such as Spatial Statistics and modelling R may be the *only* realistic way to get the work done.
+For some applications such as Spatial Statistics and modeling R may be the *only* realistic way to get the work done.
 
 As outlined in section \@ref(why-geocomputation-with-r) there are many reasons for using R for geocomputation:
 R is well-suited to the interactive use required in many geographic data analysis workflows compared with other languages.
@@ -118,7 +118,7 @@ There you will find script files in the `code/` folder that generate figures:
 when code generating a figure is not provided in the main text of the book the name of the script file that generated it is provided in the caption (see for example the caption for Figure \@ref(fig:zones)).
 
 Other languages such as Python, Java and C++ can be used for geocomputation  and there are excellent resources for learning geocomputation *without R*, as discussed in section \@ref(software-for-geocomputation).
-None of these provide the unique combination of package ecosystem, statistical capabilities, visualisation options, powerful IDEs offered by the R community.
+None of these provide the unique combination of package ecosystem, statistical capabilities, visualization options, powerful IDEs offered by the R community.
 Furthermore, by teaching how to use one language (R) in depth, this book will equip you with the concepts and confidence needed to do geocomputation in other languages.
 
 *Geocomputation with R* will equip you with knowledge and skills to tackle a wide range of issues, including those with scientific, societal and environmental implications, manifested in geographic data.
@@ -139,7 +139,7 @@ these are covered in Chapter \@ref(intro).
 
 Put the competing books into categories, e.g., introduction to spatial analysis (Brundsdon, Dorman, Hijmans), advanced spatial analysis (Bivand), topical spatial analysis (Quiang, Wegmann),  (mainly) spatial modeling (Bivand, Blangiardo, Hijmans, Quiang, Zuur).
 Point out where our book fits in and which gap it is filling -> somewhere between advanced (but not that hard) and spatial modeling with a broad range of topics (not just one like ecology).
-We try to address a broad audiecence with an interest in spatial data, and how things can be **get done**, not just theoretically but in an applied way.
+We try to address a broad audience with an interest in spatial data, and how things can be **get done**, not just theoretically but in an applied way.
 On the other hand, we embed the shown methods into the bigger field of GIScience, provide context and refer to further literature for the interested reader.
 
 -->
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve77b1c5afc0d86393
+preserveb0c8244950ccc697
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -523,7 +523,7 @@ We assume that you have an up-to-date version of R installed and that you are co
     If you are not a regular R user, we recommend that you familiarize yourself with the language before proceeding with this chapter.
     You can do so using resources such as @gillespie_efficient_2016, @grolemund_r_2016 as well as online interactive guides such as [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r).
 
-    We recommend organising your work as you learn, for example with the help of an RStudio '[project](https://csgillespie.github.io/efficientR/set-up.html#project-management)' called `geocomp-learning`.
+    We recommend organizing your work as you learn, for example with the help of an RStudio '[project](https://csgillespie.github.io/efficientR/set-up.html#project-management)' called `geocomp-learning`.
     Creating new script for each chapter or section of interest will help consolidate and extend the skills learned.
     The code you type to help learn the content of this chapter could be placed in a file called `chapter-02.R`, for example.
     Everyone learns in a different way; structure your work so it makes sense to you; and avoid copy-pasting to get used to typing code.
@@ -553,7 +553,7 @@ install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/",
                  type = "source")
 ```
 
-Packages are loaded with the `library()` function, which is used to load the two spatial data processing packages installed previously as follows:
+Packages are 'loaded' (technically they are attached) with the `library()` function, which is used to load the two spatial data processing packages installed previously as follows:
 
 
 ```r
@@ -607,7 +607,7 @@ In this system London, for example, can be represented by the coordinates `c(-0.
 This means that its location is -0.1 degrees east and 51.5 degrees north of the origin.
 The origin in this case is at 0 degrees longitude (the Prime Meridian) and 0 degree latitude (the Equator) in a geographic ('lon/lat') CRS (Figure \@ref(fig:vectorplots), left panel).
 The same point could also be approximated in a projected CRS with 'Easting/Northing' values of `c(530000, 180000)` in the British National Grid ([BNG](https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid)), meaning that London is located 530 km *East* and 180 km *North* of the $origin$ of the CRS.
-This can be verified visually: slightly more than 5 'boxes' --- square areas bounded by the grey grid lines 100 km in width --- separate the point representing London from the origin (Figure \@ref(fig:vectorplots), right panel).
+This can be verified visually: slightly more than 5 'boxes' --- square areas bounded by the gray grid lines 100 km in width --- separate the point representing London from the origin (Figure \@ref(fig:vectorplots), right panel).
 
 The location of BNG's origin, in the sea beyond South West Peninsular, ensures that most locations in the UK have positive Easting and Northing values.^[
 The origin we are referring to, depicted in blue in Figure \@ref(fig:vectorplots), is in fact the 'false' origin.
@@ -894,7 +894,7 @@ To understand new data formats in depth, it often helps to build them from the g
 This section walks you through vector spatial classes step-by-step, from the elementary simple feature geometry to simple feature objects of class `sf` representing complex spatial data.
 Before describing each geometry type that the **sf** package supports, it is worth taking a step back to understand the building blocks of `sf` objects. 
 As stated in section \@ref(intro-sf), simple features are simply data frames with at least one special column that makes it spatial.
-These spatial columns are often called `geom` or `geometry` and can be like non-spatial columns: `world$geom` refers to the spatial element of the `world` object described above.
+These spatial columns are often called `geom` or `geometry` and can be accessed like non-spatial columns: `world$geom` refers to the spatial element of the `world` object described above.
 These geometry columns are 'list columns' of class `sfc`.
 In turn, `sfc` objects are composed of one or more objects of class `sfg`: simple feature geometries.
 
@@ -1315,7 +1315,7 @@ The header defines the extent via the number of columns, the number of rows and 
 Hence, starting from the origin, we can easily access and modify each single cell by either using the ID of a cell  (Figure  \@ref(fig:raster-intro-plot):B) or by explicitly specifying the rows and columns.
 This matrix representation avoids storing explicitly the coordinates for the four corner points (in fact it only stores one coordinate, namely the origin) of each cell corner as would be the case for rectangular vector polygons.
 This and map algebra makes raster processing much more efficient and faster than vector data processing.
-However, in contrast to vector data, a raster cell can only hold a single value.
+However, in contrast to vector data, the cell of one raster layer can only hold a single value.
 The value might be numeric or categorical (Figure  \@ref(fig:raster-intro-plot):C).
 
 <div class="figure" style="text-align: center">
@@ -1421,6 +1421,9 @@ inMemory(new_raster)
 ```
 
 `help(package = "raster", topic = "raster-package")` returns a full list of all available **raster** functions.
+
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">The **raster** package is not yet fully compatible with objects from the **sf** package.
+Thus, we suggest to convert **sf** objects to **Spatial^*^** class() when using a vector data inside a **raster** function, for example `crop(raster_obj, as(sf_object, "Spatial")`.</div>\EndKnitrBlock{rmdnote}
 
 ### Basic map making {#basic-map-raster}
 
@@ -1552,7 +1555,7 @@ raster_on_disk = raster(r_brick, layer = 1)
 raster_in_memory = raster(xmn = 301905, xmx = 335745,
                           ymn = 4111245, ymx = 4154085, 
                           res = 30)
-values(raster_in_memory) = sample(1:ncell(raster_in_memory))
+values(raster_in_memory) = sample(seq_len(ncell(raster_in_memory)))
 crs(raster_in_memory) = crs(raster_on_disk)
 ```
 
@@ -1811,7 +1814,7 @@ Again, the `res()` command gives back a numeric vector without any unit, forcing
     - The coordinate reference system (CRS)?
 1. Using **sf**'s `plot()` command, create a map of Nigeria in context, building on the code that creates and plots Asia above (see Figure \@ref(fig:asia) for an example of what this could look like). 
     - Hint: this used the `lwd`, `main` and `col` arguments of `plot()`. 
-    - Bonus: make the country boundaries a dotted grey line.
+    - Bonus: make the country boundaries a dotted gray line.
     - Hint: `border` is an additional argument of `plot()` for **sf**  objects.
 1. What does the `cex` argument do in the `plot()` function that generates Figure \@ref(fig:contpop)?
     - Why was `cex` set to the `sqrt(world$pop) / 10000` instead of just the population directly?
@@ -1840,7 +1843,7 @@ Assign random values between 0 and 10 to the new raster and plot it.
 
 ## Prerequisites {-}
 
-- This chapter requires the following packages to be installed and loaded: 
+- This chapter requires the following packages to be installed and attached: 
 
 
 ```r
@@ -2013,7 +2016,7 @@ This is especially useful when working with big data as well as **dplyr**'s data
 The main **dplyr** subsetting functions are `select()`, `slice()`, `filter()` and `pull()`.
 
 <div class="rmdnote">
-<p><strong>raster</strong> and <strong>dplyr</strong> packages have a function called <code>select()</code>. If both packages are loaded, this can generate error messages containing the text: <code>unable to find an inherited method for function ‘select’ for signature ‘&quot;sf&quot;’</code>. To avoid this error message, and prevent ambiguity, we use the long-form function name, prefixed by the package name and two colons (usually omitted from R scripts for concise code): <code>dplyr::select()</code>.</p>
+<p><strong>raster</strong> and <strong>dplyr</strong> packages have a function called <code>select()</code>. When using both packages, the function in the most recently attached package will be used, ‘masking’ the incumbent function. This can generate error messages containing text like: <code>unable to find an inherited method for function ‘select’ for signature ‘&quot;sf&quot;’</code>. To avoid this error message, and prevent ambiguity, we use the long-form function name, prefixed by the package name and two colons (usually omitted from R scripts for concise code): <code>dplyr::select()</code>.</p>
 </div>
 
 `select()` selects columns by name or position.
@@ -2125,10 +2128,8 @@ Symbol      Name
 <!-- add warning about = vs == -->
 <!-- add info about combination of &, |, ! -->
 
-A benefit of **dplyr** is its compatibility with the *pipe* operator ` %>% `.
-This 'R pipe', which takes its name from the Unix pipe `|` and is part of the **magrittr** package, enables expressive code by 'piping' the output of a previous command into the first argument of the next function.
-This allows *chaining* data analysis commands, with the data frame being passed from one function to the next.
-
+**dplyr** works well with the ['pipe'](http://r4ds.had.co.nz/pipes.html) operator `%>%`, which takes its name from the Unix pipe `|` [@grolemund_r_2016].
+It enables expressive code: the output of a previous becomes the first argument of the next function, enabling *chaining*.
 This is illustrated below, in which the `world` dataset is subset by columns (`name_long` and `continent`) and the first five rows (result not shown).
 
 
@@ -2141,7 +2142,7 @@ world7 = world %>%
 
 The above chunk shows how the pipe operator allows commands to be written in a clear order:
 the above run from top to bottom (line-by-line) and left to right.
-Without `%>%` one would be forced to create intermediary objects or use nested function calls, e.g.:
+The alternative to `%>%` is nested function calls, which is harder to read:
 
 
 ```r
@@ -2152,9 +2153,10 @@ world8 = slice(
   1:5)
 ```
 
-This generates the same result --- verify this with `identical(world7, world8)` --- in the same number of lines of code, but in a much more confusing way, starting with the function that is called last!
+<!-- I commented-this out as it's overly wordy (RL) -->
+<!-- This generates the same result --- verify this with `identical(world7, world8)` --- in the same number of lines of code, but in a much more confusing way, starting with the function that is called last! -->
 
-There are additional advantages of pipes from a communication perspective: they encourage adding comments to self-contained functions and allow single lines *commented-out* without breaking the code.
+<!-- There are additional advantages of pipes from a communication perspective: they encourage adding comments to self-contained functions and allow single lines *commented-out* without breaking the code. -->
 
 ### Vector attribute aggregation
 
@@ -2192,25 +2194,25 @@ It usually follows `group_by()`, which specifies the grouping variable, as illus
 
 
 ```r
-world_agg3 = group_by(world, continent) %>%
+world_agg3 = world %>%
+  group_by(continent) %>%
   summarize(pop = sum(pop, na.rm = TRUE))
 ```
 
-This approach is flexible, allowing the resulting columns to be named.
-`summarize()` can also be used to calculate the Earth's total population (~7 billion) and number of countries as you will see if execute the following command (result not shown):
+This approach is flexible and gives control over the new column names.
+This is illustrated below: the command calculates the Earth's population (~7 billion) and number of countries (result not shown):
 
 
 ```r
 world %>% 
-  summarize(pop = sum(pop, na.rm = TRUE), n_countries = n())
+  summarize(pop = sum(pop, na.rm = TRUE), n = n())
 ```
 
-Again, this returns spatial data frame of class `sf`: the aggregation procedure dissolves boundaries within continental land masses (explained in detail in section \@ref(geometry-unions)), resulting in a single feature representing the world.
-In the previous code chunk `pop` and `n_countries` are column names in the result.
+In the previous code chunk `pop` and `n` are column names in the result.
 `sum()` and `n()` were the aggregating functions.
+The result is an `sf` object with a single row representing the world (this works thanks to the geometric operation 'union', as explained in section \@ref(geometry-unions)).
 
-Let's combine what we've learned so far about **dplyr** by chaining together functions to find the world's 3 most populous continents (with `dplyr::n()` ) and the number of countries they contain.
-The output of the following code is presented in Table \@ref(tab:continents)):
+Let's combine what we've learned so far about **dplyr** by chaining together functions to find the world's 3 most populous continents (with `dplyr::n()` ) and the number of countries they contain (the result of this command is presented in Table \@ref(tab:continents)):
 
 
 ```r
@@ -2786,100 +2788,42 @@ This is demonstrated in the following command which returns the opposite of `st_
 nz_height[canterbury, , op = st_disjoint]
 ```
 
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">Note the empty argument --- donoted with `, ,` --- in the preceding code chunk is not necessary (`nz_height[canterbury, op = st_disjoint]` returns the same result) but is included to emphasise the fact that `op` is the third argument in `[` for `sf` objects, after arguments for subsetting rows and columns.
-`nz_height[canterbury, 2, op = st_disjoint]`, for example, returns the same rows but only includes the second attribute column.
-Interested readers can see this default value of `op` set in the first line of the function call by entering its long-form name into the console `` sf:::`[.sf` ``.
-The `?sf` help page documents this also.</div>\EndKnitrBlock{rmdnote}
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">Note the empty argument --- donoted with `, ,` --- in the preceding code chunk is included to highlight `op`, the third argument in `[` for `sf` objects.
+One can use this to change the subsetting operation in many ways.
+`nz_height[canterbury, 2, op = st_disjoint]`, for example, returns the same rows but only includes the second attribute column (see `` sf:::`[.sf` `` and the `?sf` for details)</div>\EndKnitrBlock{rmdnote}
 
 For many applications this is all you'll need to know about spatial subsetting for vector data.
-If this is the case, you can safely skip to the next section (\@ref(topological-relations)).
+In this case, you can safely skip to the next section (\@ref(topological-relations)).
+
 If you're interested in the details, including other ways of subsetting, read-on.
-
 Another way of doing spatial subsetting uses objects returned by *topological operators*.
-This is demonstrated in the first command below which uses the `sparse = FALSE` (meaning in English 'return a dense matrix not a sparse one') argument in the topological operator `st_intersects()` to ensure a `logical` result is returned:
+This is demonstrated in the first command below:
 
 
 ```r
-sel = st_intersects(x = nz_height, y = canterbury, sparse = FALSE)
-canterbury_height2 = nz_height[sel, ]
+sel_sgbp = st_intersects(x = nz_height, y = canterbury)
+class(sel_sgbp)
+#> [1] "sgbp"
+sel_logical = lengths(sel_sgbp) > 0
+canterbury_height2 = nz_height[sel_logical, ]
 ```
 
-This creates `sel` (short for 'selection object') containing only `TRUE` and `FALSE` values, which are used in the second line of the pevious code chunk to create `canterbury_height2`, which is identical to `canterbury_height`.
-`sel` can also be used with `filter()`:
+In the above code chunk an object of class `sgbp` (a sparse geometry binary predicate, a list of length `x` in the spatial operation) is created and then converted into a logical vector `sel_logical` (containing only `TRUE` and `FALSE` values).
+The function `lengths()` identifies which features in `nz_height` intersect with *any* objects in `y`.
+In this case 1 is the greatest possible value but for more complex operations one could use the method to subset only features that intersect with, for example, 2 or more features from the source object.
+
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">Note: another way to return a logical output is by setting `sparse = FALSE` (meaning 'return a dense matrix not a sparse one') in operators such as `st_intersects()`. The command `st_intersects(x = nz_height, y = canterbury, sparse = FALSE)[, 1]`, for example, would return an output identical `sel_logical`.
+Note: the solution involving `sgbp` objects is more generalisable though, as it works for many-to-many operations and has lower memory requirements.</div>\EndKnitrBlock{rmdnote}
+
+It should be noted that the logical selection object can also be used with `filter()` as follows:
 
 
 ```r
-canterbury_height3 = nz_height %>% filter(sel)
+canterbury_height3 = nz_height %>% filter(sel_logical)
 ```
 
-At this point there are three versions of `canterbury_height`, one created with spatial subsetting directly and the other two via the intermediary object `sel`.
-We can test whether they are identical as follows:
-
-
-```r
-identical(x = canterbury_height, y = canterbury_height2)
-#> [1] TRUE
-identical(x = canterbury_height, y = canterbury_height3)
-#> [1] FALSE
-```
-
-What is different about `canterbury_height3`?
-The only difference is that `filter()` changed the row names:
-
-
-```r
-row.names(canterbury_height)[1:3]
-#> [1] "5" "6" "7"
-row.names(canterbury_height3)[1:3]
-#> [1] "1" "2" "3"
-```
-
-If the row names are re-set, the objects become identical:
-
-
-```r
-attr(canterbury_height3, "row.names") = attr(x = canterbury_height, "row.names")
-identical(canterbury_height, canterbury_height3)
-#> [1] TRUE
-```
-
-<div class="rmdnote">
-<p>This discarding of row names is not something that is specific to spatial data, as illustrated in the code chunk below. <strong>dplyr</strong> discards row names by design. For further discussion of this decision, and some controversy, see the (closed) issue <a href="https://github.com/tidyverse/dplyr/issues/366">#366</a> in the package’s issue tracker.</p>
-</div>
-
-`sel` is not, as one might imagine, a `logical` `vector` (although it behaves as one as it only has one column) but a `logical` `matrix`:
-
-
-```r
-class(sel)
-#> [1] "matrix"
-typeof(sel)
-#> [1] "logical"
-dim(sel)
-#> [1] 101   1
-```
-
-The dimensions of `sel` (returned by the base R command `dim()`) show one row per feature in the target object (`nz_height`) and a column per feature in the subsetting object (`canterbury`).
-The general pattern here is that `sel[i, j]` is `TRUE` if the i^th^ feature in the target object intersects with the j^th^ feature in the subsetting object.
-If there is more than one feature in `y` the resulting selection `matrix` must be converted into a `vector` before it is used for subsetting, e.g. with `rowSums(sel_matrix) > 0`.
-Another solution is to convert the default sparse matrix (`list`) output from `st_intersects()` to a `logical` vector using the function `lengths()`.
-This approach to spatial subsetting, used internally by **sf** (see the source code of `` sf:::`[.sf` ``), is illustrated in the code chunk below:
-
-
-```r
-co = filter(nz, grepl("Canter|Otag", Name))
-sel_sparse = st_intersects(nz_height, co)
-sel_vector = lengths(sel_sparse) > 0
-heights_co = nz_height[sel_vector, ]
-```
-
-The above code chunk results in an object, `heights_co`, that represents the high points that intersect with either Canterbury *or* Otago region (hence the object name `co`).
-It did this in four stages:
-
-1. Subset the regions of `nz` containing "Canter" or "Otago" in their names. This was done using the pattern matching function `grepl()` in combination with the `|` character, which means 'or', resulting in the subsetting object `co`.
-2. Create a sparse geometry binary predicate `sgbp` object, a list representing which features of `nz_height` intersect with the regions in `co`.
-3. Convert the selection list into a `logical` 'selection vector'. `lengths()`  finds the features in `nz_height` matching *any* features in `co`.
-4. Use the result to subset `nz_heights`, creating a new object `heights_co`. 
+At this point there are three versions of `canterbury_height`, one created with spatial subsetting directly and the other two via intermediary selection objects.
+To explore these objects in more detail and understand spatial subsetting in more depth see the supplementary vignette [`09-advanced-subsetting.Rmd`](https://github.com/Robinlovelace/geocompr/blob/master/vignettes/09-advanced-subsetting.Rmd).
 
 ### Topological relations
 
@@ -2960,7 +2904,7 @@ st_disjoint(p, a, sparse = FALSE)[, 1]
 ```
 
 `st_within()` returns `TRUE` only for objects that are completely within the selecting object.
-This applies only to the second object, which is inside the triangular polygon, as illustrated below:
+This applies only to the first object, which is inside the triangular polygon, as illustrated below:
 
 
 ```r
@@ -3107,8 +3051,9 @@ random_df = tibble(
   x = runif(n = 10, min = bb_world[1], max = bb_world[3]),
   y = runif(n = 10, min = bb_world[2], max = bb_world[4])
 )
-random_points = st_as_sf(random_df, coords = c("x", "y")) %>% 
-  st_set_crs(4326) # generate points with geographic CRS
+random_points = random_df %>% 
+  st_as_sf(coords = c("x", "y")) %>% # set coordinates
+  st_set_crs(4326) # set geographic CRS
 ```
 
 <!-- This may seem a trivial question but if you consider being placed somewhere at random it would surely take some time to discover where you were and you'd probably have to ask someone. **comment - removed as it's too long-winded (RL)** -->
@@ -3138,13 +3083,13 @@ In our example we would have ended up with two polygons representing China.
 ### Non-overlapping joins
 
 Sometimes two geographic datasets do not touch but still have a strong geographic relationship enabling joins.
-The datasets `cycle_hire` and `cycle_hire_osm`, already loaded in the **spData** package, provide a good example.
+The datasets `cycle_hire` and `cycle_hire_osm`, already attached in the **spData** package, provide a good example.
 Plotting them shows that they are often closely related but they do not touch, as shown in Figure \@ref(fig:cycle-hire), a base version of which is created with the following code below:
 
 
 ```r
-plot(cycle_hire$geometry, col = "blue")
-plot(cycle_hire_osm$geometry, add = TRUE, pch = 3, col = "red")
+plot(st_geometry(cycle_hire), col = "blue")
+plot(st_geometry(cycle_hire_osm), add = TRUE, pch = 3, col = "red")
 ```
 
 We can check if any points are the same `st_intersects()` as shown below:
@@ -3158,7 +3103,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve62c0bac7d1d537cd
+preserve30126ac0f1624246
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3236,7 +3181,7 @@ This is illustrated using the base `aggregate()` function below:
 nz_avheight = aggregate(x = nz_height, nz, FUN = mean)
 ```
 
-The result of the previous command is an `sf` object with the same geometry as the (spatial) aggregating object (`nz`).^[This can be verified with `identical(st_geometry(nz), nz_avheight$geometry)`.]
+The result of the previous command is an `sf` object with the same geometry as the (spatial) aggregating object (`nz`).^[This can be verified with `identical(st_geometry(nz), st_geometry(nz_avheight))`.]
 The result of the previous operation is illustrated in Figure \@ref(fig:spatial-aggregation).
 The same result can also be generated using the 'tidy' functions `group_by()` and `summarize()` (used in combination with `st_join()`):
 
@@ -3247,7 +3192,8 @@ The same result can also be generated using the 'tidy' functions `group_by()` an
 
 
 ```r
-nz_avheight2 = st_join(nz, nz_height) %>%
+nz_avheight2 = nz %>%
+  st_join(nz_height) %>%
   group_by(Name) %>%
   summarize(elevation = mean(elevation, na.rm = TRUE))
 ```
@@ -3309,12 +3255,17 @@ st_distance(nz_heighest, canterbury_centroid)
 #> [1,] 115540
 ```
 
-There are two potentially surprising things about the result: 1) it comes with a `units` attribute, so you know that it's just over 100,000 m (not 100,000 inches, or any other measure of distance!); and 2) it is returned as a matrix, even though the result only contains a single value.
+There are two potentially surprising things about the result:
+
+- It has `units`, telling us the distance is 100,000 meters, not 100,000 inches, or any other measure of distance.
+- It is returned as a matrix, even though the result only contains a single value.
+
 This second feature hints at another useful feature of `st_distance()`, its ability to return *distance matrices* between all combinations of features in objects `x` and `y`.
 This is illustrated in the command below, which finds the distances between the first three features in `nz_height` and the Otago and Canterbury regions of New Zealand represented by the object `co`.
 
 
 ```r
+co = filter(nz, grepl("Canter|Otag", Name))
 st_distance(nz_height[1:3, ], co)
 #> Units: m
 #>        [,1]  [,2]
@@ -3329,10 +3280,9 @@ The second and third points in `nz_height` are *in* Otago, which can be verified
 
 
 ```r
-plot(co$geometry[2])
-plot(nz_height$geometry[2:3], add = TRUE)
+plot(st_geometry(co)[2])
+plot(st_geometry(nz_height)[2:3], add = TRUE)
 ```
-
 
 ## Spatial operations on raster data {#spatial-ras}
 
@@ -3344,7 +3294,7 @@ For the reader's convenience, these datasets can be also found in the **spData**
 The previous chapter (section \@ref(manipulating-raster-objects)) demonstrated how to subset raster datasets using cell IDs.
 Raster cell values can also be extracted by location (coordinates) and other spatial objects.
 To use coordinates for subsetting, one can 'translate' the coordinates into a cell ID with the **raster** function `cellFromXY()`.
-An alternative is to use `raster::extract()` (there is also a function called `extract()` in the **tidyverse**) to extract values.
+An alternative is to use `raster::extract()` (be careful, there is also a function called `extract()` in the **tidyverse**) to extract values.
 Both methods are demonstrated below to find the value of the cell that covers a point located 0.1 units from the origin.
 
 
@@ -3355,7 +3305,7 @@ elev[id]
 raster::extract(elev, data.frame(x = 0.1, y = 0.1))
 ```
 
-It is convenient that both functions also accept objects of class `SpatialObjects` and `sf`.
+It is convenient that both functions also accept objects of class `Spatial* Objects`.
 Raster objects can also be subset with another raster object, as illustrated in Figure \@ref(fig:raster-subset) (left panel) and demonstrated in the code chunk below:
 
 
@@ -3369,32 +3319,14 @@ elev[clip]
 ```
 
 Basically, this amounts to retrieving the values of the first raster (here: `elev`) falling within the extent of a second raster (here: `clip`).
-To retrieve a spatial output, we can tell R to keep the matrix structure.
-This will return the two output values as a raster object.
-
-
-```r
-elev[clip, drop = FALSE]
-#> class       : RasterLayer 
-#> dimensions  : 2, 1, 2  (nrow, ncol, ncell)
-#> resolution  : 0.5, 0.5  (x, y)
-#> extent      : 1, 1.5, -0.5, 0.5  (xmin, xmax, ymin, ymax)
-#> coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
-#> data source : in memory
-#> names       : layer 
-#> values      : 18, 24  (min, max)
-```
-
-For the same operation we can also use the `intersect()` and `crop()` command.
 
 <div class="figure" style="text-align: center">
 <img src="figures/04_raster_subset.png" alt="Subsetting raster values with the help of another raster (left). Raster mask (middle). Output of masking a raster." width="1125" />
 <p class="caption">(\#fig:raster-subset)Subsetting raster values with the help of another raster (left). Raster mask (middle). Output of masking a raster.</p>
 </div>
 
-Frequently, however, we have two rasters with the same extent and resolution where one raster object serves as a mask (Figure \@ref(fig:raster-subset) middle and right panel).
-In these cases `intersect()` and `crop()` are of little use.
-Instead we can use the `[` again or the `mask()` and `overlay()` commands:
+Another typical use case is having two rasters with the same extent and resolution where one raster object serves as a mask (Figure \@ref(fig:raster-subset) middle and right panel).
+In these case, we can use `[` or the `mask()` and `overlay()` commands:
 
 
 ```r
@@ -3404,9 +3336,10 @@ rmask = raster(nrow = 6, ncol = 6, res = 0.5,
 elev[rmask, drop = FALSE]
 # using the mask command
 mask(elev, rmask, maskvalue = TRUE)
-# using overlay
+
+# or using overlay
 # first we replace FALSE by NA
-rmask[rmask == FALSE] = NA
+rmask[!rmask] = NA
 # then we retrieve the maximum values
 overlay(elev, rmask, fun = "max")
 ```
@@ -3681,7 +3614,7 @@ A more advanced approach might instead weight by flow direction, i.e. favor the 
 
 ## Prerequisites {-}
 
-- This chapter uses the same packages as Chapter \@ref(spatial-operations) but with the addition of **spDataLarge**, which was installed in Chapter \@ref(spatial-class) (**lwgeom** is also used, but does not need to be loaded):
+- This chapter uses the same packages as Chapter \@ref(spatial-operations) but with the addition of **spDataLarge**, which was installed in Chapter \@ref(spatial-class) (**lwgeom** is also used, but does not need to be attached):
 
 
 ```r
@@ -3763,7 +3696,7 @@ the buffer is elongated in the north-south direction because lines of longitude 
 This shrinks to zero at the poles.
 At the latitude of London, for example, meridians are less than 70 km apart (challenge: execute code that verifies this).
 <!-- `geosphere::distGeo(c(0, 51.5), c(1, 51.5))` -->
-Lines of latitude, by contrast, have are of constant distance from each other irrespective of latitude: they are always around 111 km apart, including at the equator and near the poles.
+Lines of latitude, by contrast, have constant distance from each other irrespective of latitude: they are always around 111 km apart, including at the equator and near the poles.
 This is illustrated in Figures \@ref(fig:crs-buf) and \@ref(fig:wintriproj).  </div>\EndKnitrBlock{rmdnote}
 
 Do not interpret the warning about the geographic (`longitude/latitude`) CRS as "the CRS should not be set": it almost always should be!
@@ -3801,7 +3734,7 @@ but 1 degree converted into m distance at the latitude of London:
 coords = st_coordinates(london)
 geosphere::alongTrackDistance(coords, coords + c(1, 0), coords + c(1, 0))
 -->
-As pointed out above, moving one degree means moving a bit more than 111 km at the equator (to be precise: 111,320 meters; to verify this, check out also `geosphere::alongTrackDistance(c(0, 0), c(1, 0), c(1, 0))`).
+As pointed out above, moving one degree means moving a bit more than 111 km at the equator (to be precise: 111,320 meters).
 This is used as the new buffer distance:
 
 
@@ -3813,8 +3746,8 @@ The result in Figure \@ref(fig:crs-buf) (right panel) shows that buffers based o
 every part of the buffer's border is equidistant to London.
 
 <div class="figure" style="text-align: center">
-<img src="figures/crs-buf-1.png" alt="Buffer on vector represenations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK." width="45%" /><img src="figures/crs-buf-2.png" alt="Buffer on vector represenations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK." width="45%" />
-<p class="caption">(\#fig:crs-buf)Buffer on vector represenations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK.</p>
+<img src="figures/crs-buf-1.png" alt="Buffer on vector representations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK." width="45%" /><img src="figures/crs-buf-2.png" alt="Buffer on vector representations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK." width="45%" />
+<p class="caption">(\#fig:crs-buf)Buffer on vector representations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK.</p>
 </div>
 
 The importance of CRSs (primarily whether they are projected or geographic) has been demonstrated using the example of London.
@@ -3879,11 +3812,15 @@ This means that when working with local data sources, it is likely preferable to
 The example of London was easy to answer because a) the CRS 'BNG' (with its associated EPSG code 27700) is well-known and b) the original dataset (`london`) already had that CRS.
 
 What about when a projected CRS is needed but the study region lacks a well-known CRS?
-Again, although there is no universal answer there is a sensible default CRS: Universal Transverse Mercator ([UTM](https://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system)).
-UTM is not actually a single CRS but a system of CRSs that covers the entire world, and breaks it into 60 segments, each containing 6 degrees of longitude.
-All UTM projections have the same datum (WGS84) and their EPSG codes run sequentially from 32601 to 32660.
-This makes it possible to create a function (we'll call it `lonlat2UTM`) to calculate the EPSG code associated with any point on the planet as follows:^[
-Thanks to Josh O'Brien who provided the basis for this function in an answer to a question on [stackoverflow](https://stackoverflow.com/a/9188972).
+Again there is no universal answer but a commonly used default:
+Universal Transverse Mercator ([UTM](https://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system)), a set of CRSs that divides the Earth into 60 longitudinal wedges and 20 latitudinal segments.
+This system gives gives everywhere on Earth a UTM code, such as "60H" which refers to northern New Zealand where R was invented.
+All UTM projections have the same datum (WGS84) and their EPSG codes run sequentially from 32601 to 32660 (for northern hemisphere locations) and 32701 to 32760 (southern hemisphere locations).
+
+
+
+To show how the system works let's create a function, `lonlat2UTM()` to calculate the EPSG code associated with any point on the planet as follows:^[
+Credit: Josh O'Brien's post on [stackoverflow](https://stackoverflow.com/a/9188972) inspired this function.
 ] 
 
 <!-- Idea: create full function with message and flexibility in later chapter (RL) -->
@@ -3892,31 +3829,36 @@ Thanks to Josh O'Brien who provided the basis for this function in an answer to 
 ```r
 lonlat2UTM = function(lonlat) {
   utm = (floor((lonlat[1] + 180) / 6) %% 60) + 1
-  utm + 32600
+  if(lonlat[2] > 0) utm + 32600 else
+    utm + 32700
 }
 ```
 
-The following command uses this function to identify the UTM zone and associated EPSG code for London:
+The following commands uses this function to identify the UTM zone and associated EPSG code for Auckland and London:
+
+
+
 
 
 ```r
-(epsg_utm = lonlat2UTM(st_coordinates(london)))
-#> [1] 32630
-st_crs(epsg_utm)
-#> Coordinate Reference System:
-#>   EPSG: 32630 
-#>   proj4string: "+proj=utm +zone=30 +datum=WGS84 +units=m +no_defs"
+epsg_utm_auk = lonlat2UTM(c(174.7, -36.9))
+epsg_utm_lnd = lonlat2UTM(st_coordinates(london))
+st_crs(epsg_utm_auk)$proj4string
+#> [1] "+proj=utm +zone=60 +south +datum=WGS84 +units=m +no_defs"
+st_crs(epsg_utm_lnd)$proj4string
+#> [1] "+proj=utm +zone=30 +datum=WGS84 +units=m +no_defs"
 ```
 
-As expected by viewing a map of UTM zones (such as that provided by [dmap.co.uk](http://www.dmap.co.uk/utmworld.htm)), the EPSG code returned refers to UTM zone 30, which would represent a good projected CRS for England if the BNG did not exist.
+Maps of UTM zones such as that provided by [dmap.co.uk](http://www.dmap.co.uk/utmworld.htm) confirm: the London is in UTM zone 30U.
 <!-- London can be transformed into this CRS as follows (result not shown): -->
+<!-- idea: create figure showing UTM zones -->
 
 <!-- ```{r} -->
 <!-- lnd_utm = st_transform(london, crs = epsg_utm) -->
 <!-- ``` -->
 
 Another approach to automatically selecting a projected CRS specific to a local dataset is to create an azimuthal equidistant ([AEQD](https://en.wikipedia.org/wiki/Azimuthal_equidistant_projection)) projection for the center-point of the study area.
-This involves creating a custom CRS (with no EPSG code) with units of meters based on the centrepoint of a dataset.
+This involves creating a custom CRS (with no EPSG code) with units of meters based on the centerpoint of a dataset.
 This approach should be used with caution: no other datasets will be compatible with the custom CRS created and results may not be accurate when used on extensive datasets covering hundreds of kilometers.
 
 Although we used vector datasets to illustrate the points outlined in this section, the principles apply equally to raster datasets.
@@ -4012,7 +3954,7 @@ However in some cases it is desirable to create a new CRS, using a custom `proj4
 This system allows a very wide range of projections to be created, as we'll see in some of the custom map projections in this section.
 <!-- as we mentioned in section \@ref(crs-in-r). -->
 
-A long and growing list of projections has been developed and many of these these can be set with the `+proj=` element of `proj4string`s.^[See the Wikepedia page '[List of map projections](https://en.wikipedia.org/wiki/List_of_map_projections)' for 70+ projections, and illustrations.]
+A long and growing list of projections has been developed and many of these these can be set with the `+proj=` element of `proj4string`s.^[See the Wikipedia page '[List of map projections](https://en.wikipedia.org/wiki/List_of_map_projections)' for 70+ projections, and illustrations.]
 When mapping the world while preserving areal relationships, the Mollweide projection is a good choice [@jenny_guide_2017] (Figure \@ref(fig:mollproj)).
 To use this projection, we need to specify it using the `proj4string` element, `"+proj=moll"`, in the `st_transform` function:
 
@@ -4098,10 +4040,11 @@ The projection concepts described in the previous section apply equally to raste
 However, there are important differences in reprojection of vectors and rasters:
 transforming a vector object involves changing the coordinates of every vertex but this does not apply to raster data.
 Rasters are composed of rectangular cells of the same size (expressed by map units, such as degrees or meters), so it is impossible to transform coordinates of pixels separately.
-
 Raster reprojection involves creating a new raster object, often with a different number of columns and rows than the original.
 The attributes must subsequently be re-estimated, allowing the new pixels to be 'filled' with appropriate values.
-This two-stage process is done with `projectRaster()` from the **raster** package.
+Thus in most cases when both raster and vector data are used, it is better to avoid reprojecting rasters and reproject vectors instead.
+
+The raster reprojection process is done with `projectRaster()` from the **raster** package.
 Like the `st_transform()` function demonstrated in the previous section, `projectRaster()` takes a geographic object (a raster dataset in this case) and a `crs` argument.
 However, `projectRaster()` only accepts the lengthy `proj4string` definitions of a CRS rather than concise EPSG codes.
 
@@ -4150,7 +4093,7 @@ Many properties of the new object differ from the previous one, which include th
 <!-- freq(cat_raster) -->
 
 
-Table: (\#tab:catraster)Key attributes in the original and projected categorical raster datasets.
+Table: (\#tab:catraster)Key attributes in the original ('cat_raster') and projected ('cat_raster_wgs84') categorical raster datasets.
 
 CRS      nrow   ncol     ncell   resolution   unique_categories
 ------  -----  -----  --------  -----------  ------------------
@@ -4200,7 +4143,7 @@ This can have implications for file sizes when raster datasets are saved.
 ]:
 
 
-Table: (\#tab:rastercrs)Key attributes original and projected continuous (numeric) raster datasets.
+Table: (\#tab:rastercrs)Key attributes original ('con_raster') and projected ('con_raster') continuous raster datasets.
 
 CRS           nrow   ncol    ncell   resolution   mean
 -----------  -----  -----  -------  -----------  -----
@@ -4334,7 +4277,7 @@ seine_pos = st_point_on_surface(seine)
 #> attributes are constant over geometries of x
 ```
 
-This ensures that the created point lies on the given object (see red points on Figure \@ref(fig:centr)).
+This ensures that the created point lies on the given object (see red points on Figure \@ref(fig:centr)).^[Explanation of this algorithm can be found at https://gis.stackexchange.com/a/76563/20955.]
 
 <div class="figure" style="text-align: center">
 <img src="figures/centr-1.png" alt="Centroids (black points) and 'points on surface' (red points) of New Zeleand's regions (left) and the Seine (right) datasets." width="576" />
@@ -4351,7 +4294,7 @@ Which demographic groups are within travel distance of this new shop?
 These kinds of questions can be answered and visualized by creating buffers around the geographic entities of interest.
 
 Figure \@ref(fig:buffs) illustrates buffers of different sizes (5 and 20 km) surrounding the river Seine and tributaries.
-These buffers were created with commands below, which show that the command `st_buffer()` requires at least two arguments: an input geometry and a distance:
+These buffers were created with commands below, which show that the command `st_buffer()` requires at least two arguments: an input geometry and a distance, provided in the units of the CRS (in this case meters):
 
 
 ```r
@@ -4494,7 +4437,7 @@ plot(b)
 plot(x_and_y, col = "lightgrey", add = TRUE) # color intersecting area
 ```
 
-<img src="figures/unnamed-chunk-53-1.png" width="576" style="display: block; margin: auto;" />
+<img src="figures/unnamed-chunk-55-1.png" width="576" style="display: block; margin: auto;" />
 
 The subsequent code chunk demonstrates how this works for all combinations of the 'Venn' diagram representing `x` and `y`, inspired by [Figure 5.1](http://r4ds.had.co.nz/transform.html#logical-operators) of the book R for Data Science [@grolemund_r_2016].
 <!-- Todo: reference r4ds -->
@@ -4506,11 +4449,7 @@ The subsequent code chunk demonstrates how this works for all combinations of th
 
 To illustrate the relationship between subsetting and clipping spatial data, we will subset points that cover the bounding box of the circles `x` and `y` in Figure \@ref(fig:venn-clip).
 Some points will be inside just one circle, some will be inside both and some will be inside neither.
-
-There are two different ways to subset points that fit into combinations of the circles: via clipping and logical operators.
-But first we must generate some points.
-We will use the *simple random* sampling strategy to sample from a box representing the extent of `x` and `y` using the **sf** function `st_sample()`.
-This generates objects plotted in Figure \@ref(fig:venn-subset):
+`st_sample()` is used below to generate a *simple random* distribution of points within the extent of circles `x` and `y`, resulting in output illustrated in Figure \@ref(fig:venn-subset).
 
 
 ```r
@@ -4531,25 +4470,33 @@ text(x = c(-0.5, 1.5), y = 1, labels = l)
 <p class="caption">(\#fig:venn-subset)Randomly distributed points within the bounding box enclosing circles x and y.</p>
 </div>
 
+The logical operator way would find the points inside both `x` and `y` using a spatial predicate such as `st_intersects()` whereas the intersection method simply finds the points inside the intersecting region created above as `x_and_y`.
+As demonstrated below the results are identical, but the method that uses the clipped polygon is more concise:
+
+
+```r
+sel_p_xy = st_intersects(p, x, sparse = FALSE)[, 1] &
+  st_intersects(p, y, sparse = FALSE)[, 1]
+p_xy1 = p[sel_p_xy]
+p_xy2 = p[x_and_y]
+identical(p_xy1, p_xy2)
+#> [1] TRUE
+```
+
+
 
 
 ### Geometry unions
 
-Spatial aggregation can also be done in the **tidyverse**, using **dplyr** functions as follows:
-
-
-```r
-group_by(us_states, REGION) %>%
-  summarize(sum(pop = total_pop_15, na.rm = TRUE))
-```
-
-Further to what was covered in section \@ref(vector-attribute-aggregation), aggregation of polygons often silently dissolves the geometries of touching polygons in the same group.
-This is demonstrated in the code chunk below, in which the `REGION` variable in `us_states` is used to aggregate the states into four regions, illustrated in Figure \@ref(fig:us-regions):
+As we saw in section \@ref(vector-attribute-aggregation), spatial aggregation can silently dissolve the geometries of touching polygons in the same group.
+This is demonstrated in the code chunk below in which 49 `us_states` are aggregated into 4 regions using base and **tidyverse** functions (see results in Figure \@ref(fig:us-regions)):
 
 
 ```r
 regions = aggregate(x = us_states[, "total_pop_15"], by = list(us_states$REGION),
                     FUN = sum, na.rm = TRUE)
+regions2 = us_states %>% group_by(REGION) %>%
+  summarize(pop = sum(total_pop_15, na.rm = TRUE))
 ```
 
 
@@ -4559,14 +4506,25 @@ regions = aggregate(x = us_states[, "total_pop_15"], by = list(us_states$REGION)
 <p class="caption">(\#fig:us-regions)Spatial aggregation on contiguous polygons, illustrated by aggregating the population of US states into regions, with population represented by color. Note the operation automatically dissolves boundaries between states.</p>
 </div>
 
-The equivalent result can be achieved using **tidyverse** functions as follows (result not shown):
+What is going on in terms of the geometries?
+Behind the scenes, both `aggregate()` and `summarize()` combine the geometries and disolve the boundaries between them using `st_union()`.
+This is demonstrated in the code chunk below which creates a united western US: 
 
 
 ```r
-regions2 = us_states %>% 
-  group_by(REGION) %>%
-  summarize(pop = sum(total_pop_15, na.rm = TRUE))
+us_west = us_states[us_states$REGION == "West", ]
+us_west_union = st_union(us_west)
 ```
+
+The function can take two geometries and union them, as demonstrated in the code chunk below which creates a united western block incorporating Texas (challenge: reproduce and plot the result):
+
+
+```r
+texas = us_states[us_states$NAME == "Texas", ]
+texas_union = st_union(us_west_union, texas)
+```
+
+
 
 ### Type transformations {#type-trans}
 
@@ -4595,7 +4553,11 @@ polyg = st_cast(multipoint, "POLYGON")
 <p class="caption">(\#fig:single-cast)Examples of linestring and polygon 'casted' from a multipoint geometry.</p>
 </div>
 
-This process can be also reversed using `st_cast`:
+Conversion from mulitpoint to linestring is a common operation that creates a line object from ordered point observations, such as GPS measurements or geotagged media.
+This allows spatial operations such as the length of the path traveled.
+Conversion from multipoint or linestring to polygon is often used to calculate an area, for example from the set of GPS measurements taken around a lake or from the corners of a building lot.
+
+The transformation process can be also reversed using `st_cast`:
 
 
 ```r
@@ -4683,29 +4645,54 @@ linestring_sf2
 #> 3 LINESTRING (2 2, 4 2)    Foulke St   2.00
 ```
 
-<!-- ### Class conversion -->
-<!-- placeholder for: -->
-<!-- sf -> sp -->
-<!-- sp -> sf -->
-<!-- stars; https://github.com/r-spatial/stars/blob/master/vignettes/blog1.Rmd -->
+<!-- idea: example where a collection of points referring to different objects are combined to MULTIPOINT by object, then casted to LINESTRING geometries per object -->
 
 ## Geometric operations on raster data {#geo-ras}
 
 Geometric raster operations include the shift, flipping, mirroring, scaling, rotation or warping of images.
 These operations are e.g. necessary when geolocating a raster image.
-In turn, geolocating requires the rectification of the image, which includes one or several of the following steps depending on the task at hand [see also @liu_essential_2009]:
+In turn, geolocating requires the rectification of the image, which usually includes some manual intervention one or several of the following steps depending on the task at hand [see also @liu_essential_2009]:
 
 - Georeferencing with ground control points.
 - Orthorectification also georeferences an image but additionally takes into account local topography.
 - Image (co-)registration is the process of aligning one image with another (in terms of CRS, origin and resolution). 
 Registration becomes necessary for images from the same scene but shot from different sensors or from different angles or at different points in time.
 
-In this section we will first show how to change the extent, the resolution and the origin of an image.
-As mentioned before, most of the times, we need these operations in order to align several images.
+R is unsuitable for the first two points since these often require manual intervention which is why they are usually done with the help of a Desktop GIS (see also Chapter \@ref(gis)).
+On the other hand, aligning several images is possible in R and this section shows among other how to do so.
+This often includes changing the extent, the resolution and the origin of an image.
 A matching projection is of course also required but is already covered in section \@ref(reprojecting-raster-geometries).
 In any case, there are other reasons why to perform a geometric operation on a single raster image.
 For instance, in chapter \@ref(location) we define metropolitan areas in Germany as 20 km^2^ pixels with more than 500,000 inhabitants. 
 The original inhabitant raster, however, has a resolution of 1 km^2^ which is why we will decrease (aggregate) the resolution by a factor of 20 (see section \@ref(define-metropolitan-areas)).
+Another reason for aggregating a raster is simply to decrease runtime or save disk space.
+Of course, this is only possible if the task at hand allows a coarser resolution.
+Sometimes a coarser resolution is sufficient for the task at hand.
+
+### Geometric intersections
+
+In section \@ref(raster-subsetting) we have shown how to extract values from a raster overlaid by other spatial objects.
+To retrieve a spatial output, we can use almost the same subsetting syntax.
+The only difference is that we have to make clear that we would like to keep the matrix structure by setting the `drop`-parameter to `FALSE`.
+This will return a raster object containing the cells whose midpoints overlap with `clip`.
+
+
+```r
+data("elev", package = "spData")
+clip = raster(nrow = 3, ncol = 3, res = 0.3, xmn = 0.9, xmx = 1.8, 
+              ymn = -0.45, ymx = 0.45, vals = rep(1, 9))
+elev[clip, drop = FALSE]
+#> class       : RasterLayer 
+#> dimensions  : 2, 1, 2  (nrow, ncol, ncell)
+#> resolution  : 0.5, 0.5  (x, y)
+#> extent      : 1, 1.5, -0.5, 0.5  (xmin, xmax, ymin, ymax)
+#> coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+#> data source : in memory
+#> names       : layer 
+#> values      : 18, 24  (min, max)
+```
+
+For the same operation we can also use the `intersect()` and `crop()` command.
 
 ### Extent and origin
 
@@ -4748,7 +4735,7 @@ The newly added rows and column receive the default value of the `value` paramet
 elev_4 = extend(elev, elev_2)
 ```
 
-The origin is the point closest to (0, 0) if you moved towards it in steps of x and y resolution.
+The origin is the point closest to (0, 0) if you moved towards it (starting from any given cell corner of the raster) in steps of x and y resolution.
 
 
 ```r
@@ -4778,18 +4765,19 @@ Note that changing the resolution frequently (next section) also changes the ori
 
 ### Aggregation and disaggregation
 
-<!-- differentiate between spatial, spectral, temporal and radiometric resolution-->
 Raster datasets can also differ with regard to their resolution. 
-To match resolutions, one can either decrease  (`aggregate()`) or increase (`disaggregate()`) the resolution of one raster.^[It is important to note that we here are solely referring to the spatial resolution but that in remote sensing the spectral (spectral bands), temporal (observations through time of the same area) and radiometric (color depth) resolution are equally important.]
-As an example, we here change the spatial resolution of `elev` from 0.5 to 2 decimal degree, that means, we aggregate by a factor of 2 (Fig. \@ref(fig:aggregate-example)).
+To match resolutions, one can either decrease  (`aggregate()`) or increase (`disaggregate()`) the resolution of one raster.^[It is important to note that we here are solely referring to the spatial resolution but that in remote sensing the spectral (spectral bands), temporal (observations through time of the same area) and radiometric (color depth) resolution are equally important.
+Check out the `stackApply()` example in the documentation for getting an idea how to do temporal raster aggregation.]
+As an example, we here change the spatial resolution of `dem` (found in the **RQGIS** package) by a factor of 5 (Fig. \@ref(fig:aggregate-example)).
 Additionally, the output cell value should correspond to the mean of the input cells (note that one could use other functions as well, such as `median()`, `sum()` etc.):
 
 
 ```r
-elev_agg = aggregate(elev, fact = 2, fun = mean)
+data("dem", package = "RQGIS")
+dem_agg = aggregate(dem, fact = 5, fun = mean)
 par(mfrow = c(1, 2))
-plot(elev)
-plot(elev_agg)
+plot(dem)
+plot(dem_agg)
 ```
 
 <div class="figure" style="text-align: center">
@@ -4801,15 +4789,14 @@ By contrast, the`disaggregate()` function increases the resolution.
 However, we have to specify a method how to fill the new cells.
 The `disaggregate()` function provides two methods.
 The first (nearest neighbor, `method = ""`) simply gives all output cells the value of the nearest input cell, and hence duplicates values which leads to a blocky output image.
-For example, the four cells building up the upper left cell of the aggregated raster (Fig. \@ref(fig:aggregate-example)) will retrieve all the same value, namely 4.5.
 
 The `bilinear` method, in turn, is an interpolation technique that uses the four nearest pixel centers of the input image (salmon colored points in Fig. \@ref(fig:bilinear)) to compute an average weighted by distance (arrows in Fig. \@ref(fig:bilinear) as the value of the output cell - square in the upper left corner in Fig. \@ref(fig:bilinear)).
 
 
 ```r
-elev_disagg = disaggregate(elev_agg, fact = 2, method = "bilinear")
-all(values(elev) == values(elev_disagg))
-#> [1] TRUE
+dem_disagg = disaggregate(dem_agg, fact = 5, method = "bilinear")
+identical(dem, dem_disagg)
+#> [1] FALSE
 ```
 
 <div class="figure" style="text-align: center">
@@ -4817,9 +4804,8 @@ all(values(elev) == values(elev_disagg))
 <p class="caption">(\#fig:bilinear)The distance-weighted average of the four closest input cells determine the output when using the bilinear method for disaggregation.</p>
 </div>
 
-Comparing the values of `elev` and `elev_disagg` tells us that both are identical (you can also use `compareRaster()` or `all.equal()`).
-Please note that the disaggregation only predicted correctly the values at a higher resolution due to our artificial input data set (`elev`) and the fact that we have used the mean for the aggregation (`elev_agg`).
-However, this is usually not to be expected, since disaggregating is a simple interpolation technique.
+Comparing the values of `dem` and `dem_disagg` tells us that they are not identical (you can also use `compareRaster()` or `all.equal()`).
+However, this was hardly to be expected, since disaggregating is a simple interpolation technique.
 It is important to keep in mind that disaggregating results in a finer resolution, the corresponding values, however, are only as accurate as their lower resolution source.
 
 The process of computing values for new pixel locations is also called resampling. 
@@ -4830,8 +4816,8 @@ By default, it uses the `bilinear`-interpolation.
 
 ```r
 # add 2 rows and columns, i.e. change the extent
-elev_agg = extend(elev_agg, 2)
-elev_disagg_2 = resample(elev_agg, elev)
+dem_agg = extend(dem_agg, 2)
+dem_disagg_2 = resample(dem_agg, dem)
 ```
 
 Finally, in order to align many (possibly hundreds or thousands of) images stored on disk, you could use the `gdalUtils::align_rasters()` function.
@@ -5465,14 +5451,17 @@ Export this map to a file called `cycle_hire.html`.
 
 ## Prerequisites {-}
 
-- This chapter requires the following packages to be loaded (it also uses **osmdata** and **nabor** although these do not need to be loaded):
+- This chapter requires the following packages to be attached, all but the last two of which have been used previously^[
+**osmdata** and **nabor** must also be installed although these packages do not need to be attached.
+]
 
 
 ```r
 library(sf)
 library(tidyverse)
-library(stplanr)
 library(spDataLarge)
+library(stplanr)      # a package for transport data
+library(tmap)         # a visualization package
 ```
 
 ## Introduction
@@ -5506,8 +5495,7 @@ ABM is a powerful approach to transport research with great potential for integr
 Beyond geographic levels and agents, the basic unit of analysis in most transport models is the **trip**, a single purpose journey from an origin 'A' to a destination 'B' [@hollander_transport_2016].
 Trips join-up the different levels of transport systems: they are usually represented as *desire lines* connecting *zone* centroids (*nodes*), they can be allocated onto the *route network* as *routes*, and are made by people who can be represented as *agents*.
 
-Another complication is time.
-Although many trips are regular and predictable --- such as the daily commute to work --- transport systems are dynamic and constantly evolving over time.
+Transport systems are dynamic systems adding additional complexity.
 The purpose of geographic transport modeling can be interpreted as simplifying this complexity in a way that captures the essence of transport problems.
 Selecting an appropriate level of geographic analysis can help simplify this complexity, to capture the essence of a transport system without losing its most important features and variables [@hollander_transport_2016].
 
@@ -5515,6 +5503,11 @@ Typically, models are designed to solve a particular problem.
 For this reason, this chapter is based around a policy scenario that asks:
 how to increase walking and cycling in the city of Bristol?
 Both policies aim to prevent traffic jams, reduce carbon emissions, and promote a healthier life style, all of which makes the city greener and thus more attractive and enjoyable to live in.
+
+The next chapter \@ref(location) demonstrates another application of Geocomputation:
+prioritising the location of new bike shops.
+There is a link between the chapters because bike shops may benefit from new cycling infrastructure, demonstrating an important feature of transport systems: they are closely linked to broader social, economic and land-use patterns.
+This section ties-together the various strands that explored some geographic features of Bristol's transport system, covered in sections \@ref(transport-zones) to \@ref(route-networks).
 
 <!-- Idea: make it about reducing CO2 emissions instead. Thoughts? + Multi-model - more complex -->
 
@@ -5562,24 +5555,15 @@ Although transport systems are primarily based on linear features and nodes --- 
 Two zone types will typically be of particular interest: the study region and origin (typically residential areas) and destination (typically containing 'trip attractors' such as schools and shops) zones.
 Often the geographic units of destinations are the geographic units that comprise the origins, but a different zoning system, such as '[Workplace Zones](https://data.gov.uk/dataset/workplace-zones-a-new-geography-for-workplace-statistics3)', may be appropriate to represent the increased density of trip destinations in central areas [@office_for_national_statistics_workplace_2014].
 
-The simplest way to define a study area is often the first matching boundary returned by OpenStreetMap, which can be obtained using **osmdata** as follows:
-
-
-```r
-# requires the development version of osmdata
-# devtools::install_github("ropensci/osmdata")
-bristol_region = osmdata::getbb("Bristol", format_out = "sf_polygon")
-```
-
-The result is an `sf` object representing the bounds of the largest matching city region, either a rectangular polygon of the bounding box or a detailed polygonal boundary.^[
+The simplest way to define a study area is often the first matching boundary returned by OpenStreetMap, which can be obtained using **osmdata** with a command such as `bristol_region = osmdata::getbb("Bristol", format_out = "sf_polygon")`. This results in an `sf` object representing the bounds of the largest matching city region, either a rectangular polygon of the bounding box or a detailed polygonal boundary.^[
 In cases where the first match does not provide the right name, the country or region should be specified, for example `Bristol Tennessee` for a Bristol located in America.
 ]
-In this case the command returns a detailed polygon representing the official boundary of Bristol (see the inner blue boundary in Figure \@ref(fig:bristol)).
-There are a couple of issues associated with using OSM definitions of regions, however.
-First, the first OSM boundary returned by OSM may not be the official boundary used by local authorities.
-Second, even if OSM returns the official boundary, this may be inappropriate for transport research because they bear little relation to where people travel.
+For Bristol, UK, a detailed polygon is returned, representing the official boundary of Bristol (see the inner blue boundary in Figure \@ref(fig:bristol)) but there are a couple of issues with this approach:
 
-Travel to Work Areas (TTWAs) overcome the second issue by creating a zoning system analogous to hydrological watersheds.
+- The first OSM boundary returned by OSM may not be the official boundary used by local authorities.
+- Even if OSM returns the official boundary, this may be inappropriate for transport research because they bear little relation to where people travel.
+
+Travel to Work Areas (TTWAs) address these issues by creating a zoning system analogous to hydrological watersheds.
 TTWAs were first defined as contiguous zones within which 75% of the population travels to work [@coombes_efficient_1986], and this is the definition used in this chapter.
 Because Bristol is a major employer attracting travel from surrounding towns, its TTWA is substantially larger than the city bounds (see Figure \@ref(fig:bristol)).
 The polygon representing this transport-orientated boundary is stored in the object `bristol_ttwa`, provided by the **spDataLarge** package loaded at the beginning of this chapter.
@@ -5595,33 +5579,52 @@ The geographic resolution of these zones is important: small zones with high geo
 <p>Another issue with small zones is related to anonymity rules. To make it impossible to infer the identity of individuals in zones, detailed socio-demographic variables are often only available at low geographic resolution. Breakdowns of travel mode by age and sex, for example, are available at the Local Authority level in the UK, but not at the much higher Output Area level, each of which contains around 100 households — see <a href="https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography">ons.gov.uk</a> for further details.</p>
 </div>
 
-The 102 zones used are illustrated in Figure \@ref(fig:zones).
-These are stored in the `bristol_zones` object from the **spDataLarge** package, which divides-up space into sensible parcels, with each zone housing a similar number of people.
-However at present the dataset contains no attribute data, other than the zone name and zone code:
+The 102 zones used in this chapter are stored in `bristol_zones`, as illustrated in Figure \@ref(fig:zones).
+Note the zones get smaller in densly populated areas: each houses a similar number of people.
+`bristol_zones` contains no attribute data on transport, however, shown in the first two rows of the dataset:
 
 
 ```r
-names(bristol_zones)
-#> [1] "geo_code" "name"     "geometry"
+head(bristol_zones, 2)
+#> Simple feature collection with 2 features and 2 fields
+#> geometry type:  MULTIPOLYGON
+#> dimension:      XY
+#> bbox:           xmin: -2.53 ymin: 51.4 xmax: -2.46 ymax: 51.4
+#> epsg (SRID):    4326
+#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#>    geo_code                             name
+#> 1 E02002985 Bath and North East Somerset 001
+#> 2 E02002987 Bath and North East Somerset 003
+#>                         geometry
+#> 1 MULTIPOLYGON (((-2.51 51.4,...
+#> 2 MULTIPOLYGON (((-2.48 51.4,...
 ```
 
-Chapter \@ref(attr) demonstrated how to join attribute data onto geographic variables.
-This is a common task which usually involves joining a table containing official zonal statistics to a geographic object via a shared key variable, as described in section \@ref(vector-attribute-joining).
-In this case we use data provided by [ons.gov.uk](https://www.ons.gov.uk/help/localstatistics), which maintains datasets at various geographic levels across the UK.
-
-Instead of accessing an area-level travel dataset directly, we will create zonal data by aggregating an object (`bristol_od` from **spDataLarge**) representing origin-destination (OD) data by zone of origin (exactly what this means and the nature of this OD dataset is described in more detail in section \@ref(desire-lines)).
-This is demonstrated below:
+To add travel data we will join a non geographic table on travel behavior to the zones, a common task described in section \@ref(vector-attribute-joining).
+We will use travel derived from the UK's 2011 census question on travel to work, data stored in `bristol_od`, which was provided by the [ons.gov.uk](https://www.ons.gov.uk/help/localstatistics) data portal.
+`bristol_od` is an orgin-destination (OD) dataset representing travel to work between zones from the UK's 2011 Census (see section \@ref(desire-lines)).
+The first column is the ID of the zone of origin and the second column is the zone of destination.
+`bristol_od` is provided at higher geographic resolution than `bristol_zones`, as can be seen from the number of rows in each:
 
 
 ```r
-zones_attr = group_by(bristol_od, o) %>% 
+nrow(bristol_od)
+#> [1] 2910
+nrow(bristol_zones)
+#> [1] 102
+```
+
+The results of the previous code chunk shows that there are more than 10 OD pairs for every zone, meaning we will need to aggregate the origin-destination data before it is joined with `bristol_zones`, as illustrated below (origin-destination data is described in section \@ref(desire-lines)):
+
+
+```r
+zones_attr = bristol_od %>% 
+  group_by(o) %>% 
   summarize_if(is.numeric, sum) %>% 
   rename(geo_code = o)
 ```
 
-What just happened?
-The code first read-in data to create `bristol_od`, a data frame object representing travel to work between zones from the UK's 2011 Census in which the first column is the ID of the zone of origin and the second column is the zone of destination (`bristol_od` is described more fully in the next section).
-Then the chained operation performed three main steps:
+The preceding chunk performed three main steps:
 
 - Grouped the data by zone of origin (contained in the column `o`).
 - Aggregated the variables in the `bristol_od` dataset *if* they were numeric, to find the total number of people living in each zone by mode of transport.^[
@@ -5672,10 +5675,19 @@ The result is `zones_od`, which contains a new column reporting the number of tr
 
 
 ```r
-zones_od = group_by(bristol_od, d) %>% 
+zones_od = bristol_od %>% 
+  group_by(d) %>% 
   summarize_if(is.numeric, sum) %>% 
   dplyr::select(geo_code = d, all_dest = all) %>% 
   inner_join(zones_joined, ., by = "geo_code")
+```
+
+A simplified version of Figure \@ref(fig:zones) is created with the code below (see `07-zones.R` in the [`code`](https://github.com/Robinlovelace/geocompr/tree/master/code) folder of the book's GitHub repo to reproduce the figure and section \@ref(faceted-maps) for details on facetted maps with **tmap**):
+
+
+```r
+qtm(zones_od, c("all", "all_dest")) +
+  tm_layout(panel.labels = c("Origin", "Destination"))
 ```
 
 <div class="figure" style="text-align: center">
@@ -5686,7 +5698,7 @@ zones_od = group_by(bristol_od, d) %>%
 ## Desire lines
 
 Unlike zones, which represent trip origins and destinations, desire lines connect the centroid of the origin and the destination zone, and thereby represent where people *desire* to go between zones.
-If it were not for obstacles such as buildings and windy roads, people would travel in a 'bee-line' from one place to the next, explaining why desire lines are straight (we will see how to convert desire lines into routes in the next section).
+They represent the quickest 'bee line' or 'crow flies' route between A and B that would be taken, if it were not for obstacles such as buildings and windy roads getting in the way (we will see how to convert desire lines into routes in the next section).
 
 We have already loaded data representing desire lines in the dataset `bristol_od`.
 This origin-destination (OD) data frame object represents the number of people traveling between the zone represented in `o` and `d`, as illustrated in Table \@ref(tab:od).
@@ -5694,7 +5706,8 @@ To arrange the OD data by all trips and then filter-out only the top 5, type (pl
 
 
 ```r
-od_top5 = arrange(bristol_od, desc(all)) %>% 
+od_top5 = bristol_od %>% 
+  arrange(desc(all)) %>% 
   top_n(5, wt = all)
 ```
 
@@ -5719,8 +5732,8 @@ The solution is to convert the non-geographic `bristol_od` dataset into geograph
 The geographic representation of the *interzonal* OD pairs (in which the destination is different from the origin) presented in Table \@ref(tab:od) are displayed as straight black lines in \@ref(fig:desire).
 These are clearly more useful from a policy perspective.
 The conversion from `data.frame` to `sf` class is done by the **stplanr** function `od2line()`, which matches the IDs in the first two columns of the `bristol_od` object to the `zone_code` ID column in the geographic `zones_od` object.^[
-Note that the operation emits a warning: this is `od2line()` works by allocating the start and end points of each origin-destination pair to the *centroid* of its zone of origin and destination.
-This represents a straight line between the centroid of zone `E02003047` and the centroid of `E02003043` for the second origin-destination pair represented in Table \@ref(tab:od), for example.
+Note that the operation emits a warning because `od2line()` works by allocating the start and end points of each origin-destination pair to the *centroid* of its zone of origin and destination.
+<!-- This represents a straight line between the centroid of zone `E02003047` and the centroid of `E02003043` for the second origin-destination pair represented in Table \@ref(tab:od), for example. -->
 For real-world use one would use centroid values generated from projected data or, preferably, use *population-weighted* centroids [@lovelace_propensity_2017].
 ]
 
@@ -5729,23 +5742,15 @@ For real-world use one would use centroid values generated from projected data o
 od_intra = filter(bristol_od, o == d)
 od_inter = filter(bristol_od, o != d)
 desire_lines = od2line(od_inter, zones_od)
-#> Warning in st_centroid.sf(zones): st_centroid assumes attributes are
-#> constant over geometries of x
-#> Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =
-#> of_largest_polygon): st_centroid does not give correct centroids for
-#> longitude/latitude data
 ```
 
 The first two lines of the preceding code chunk split the `bristol_od` dataset into two mutually exclusive objects, `od_intra` (which only contains OD pairs representing intrazone trips) and `od_inter` (which represents interzonal travel).
 The third line generates a geographic object `desire_lines` (of class `sf`) that allows a subsequent geographic visualization of interzone trips.
-An illustration of the results is presented in Figure \@ref(fig:desire) (we will cover the visualization methods that produced this plot in Chapter 9)<!-- to do: add reference to chapter -->.
-The map shows that the city center dominates transport patterns in the region, suggesting policies should be prioritized there, although a number of peripheral sub-centers can also be seen.
-Next it would be interesting to have a look at the distribution of interzonal modes, e.g. between which zones is cycling the least or the most common means of transport. <!-- maybe an idea for an exercise? -->
-<!-- These include Bradley Stoke to the North and Portishead to the West. -->
+An illustration of the results is presented in Figure \@ref(fig:desire), a simplified version of which is created with the following command (see the code in `07-desire.R` to reproduce the figure exactly and Chapter \@ref(adv-map) for details on visualisation with **tmap**):
 
 
 ```r
-plot(desire_lines$geometry, lwd = desire_lines$all / 500)
+qtm(desire_lines, lines.lwd = "all")
 ```
 
 <div class="figure" style="text-align: center">
@@ -5753,24 +5758,34 @@ plot(desire_lines$geometry, lwd = desire_lines$all / 500)
 <p class="caption">(\#fig:desire)Desire lines representing trip patterns in the Bristol Travel to Work Area. The four black lines represent the object the top 5 desire lines illustrated in Table 7.1.</p>
 </div>
 
+The map shows that the city center dominates transport patterns in the region, suggesting policies should be prioritized there, although a number of peripheral sub-centers can also be seen.
+Next it would be interesting to have a look at the distribution of interzonal modes, e.g. between which zones is cycling the least or the most common means of transport. <!-- maybe an idea for an exercise? -->
+<!-- These include Bradley Stoke to the North and Portishead to the West. -->
+
 ## Routes
 
 From a geographical perspective routes are desire lines that are no longer straight:
 the origin and destination points are the same, but the pathway to get from A to B is more complex.
 Desire lines contain only two vertices (their beginning and end points) but routes can contain hundreds of vertices if they cover a large distance or represent travel patterns on an intricate road network (routes on simple grid-based road networks require relatively few vertices).
+Routes are generated from desire lines --- or more commonly origin-destination pairs --- using routing services which either run locally or remotely.
 
-Routes are generated from desire lines --- or more commonly origin-destination pairs --- using routing algorithms.
-Routing algorithms can either run locally or remotely.
-Routing is computationally intensive and might be slow on a local machine (depending on the hardware).
-In any case, local routing requires the route network to be stored on a local computer (we will see how in section \@ref(route-networks)).
-By contrast, remote routing services use a web API to receive queries about origin and destination points, run the routing on the route network on a powerful server and return just the results, the routes, to the user, the so-called client.
-There are many advantages of using remote routing services, including the fact that they can be up-to-date, have global coverage, and run on a set-up that was designed for the job, explaining this section's focus on online routing services.
+**Local routing** can be advantageous in terms of speed of execution and control over the weighting profile for different modes of transport.
+Disadvantages include the difficulty of representing complex networks locally; temporal dynamics (e.g. due to traffic); and the need for specialized software such as 'pgRouting' and PostGIS (an issue that developers of packages **stplanr** and **dodgr** seek to resolve  see section \@ref(route-networks)).
 
-Before proceeding, there are couple of important disadvantages of online routing services to consider: they can be slow (because they rely on data transfer over the internet) and expensive.
-The Google routing API, for example, has a limit of 2500 free queries per day.^[`ggmap::route()` lets you use Google's routing API through R and the **dodgr** package allows for rapid routing on locally stored route network data.]
+**Remote routing** services, by contrast, use a web API to send queries about origins and destinations and return results generated on a powerful server running specialised software.
+This gives remote routing services various advantages, including that they usually:
+
+- update regularly
+- have global coverage
+- and run on specialist hardware and software set-up for the job
+
+<!-- , explaining this section's focus on online routing services. -->
+
+Disadvantages of remote routing services include speed (they rely on data transfer over the internet) and price (the Google routing API, for example, has a limit of 2500 free queries per day).
+The **googleway** package provides an interface to Google's routing API
 <!-- Todo: add link to Mark's presentation on dodgr vs Google routing costs (RL) -->
+Free (but rate limited) routing service include [OSRM](http://project-osrm.org/) and [openrouteservice.org](https://openrouteservice.org/).
 
-A popular and free routing service is the Open Source Routing Machine ([OSRM](http://project-osrm.org/)).^[Another popular OSM routing API is https://openrouteservice.org/.]
 Instead of routing *all* desire lines generated in the previous section, which would be time and memory-consuming, we will focus on the desire lines of policy interest.
 The benefits of cycling trips are greatest when they replace car trips.
 Clearly not all car trips can realistically be replaced by cycling, but 5 km Euclidean distance (or around 6-8 km of route distance) is easily accessible within 30 minutes for most people.
@@ -5790,7 +5805,6 @@ desire_carshort = dplyr::filter(desire_lines, car_driver > 300 & distance < 5000
 route_carshort = line2route(desire_carshort, route_fun = route_osrm)
 ```
 
-
 `st_length()` determines the length of a linestring, and falls into the distance relations category (see also section \@ref(distance-relations)).
 Subsequently, we apply a simple attribute filter operation (see section \@ref(vector-attribute-subsetting)) before letting the OSRM service do the routing on a remote server.
 Note that the routing only works with a working internet connection.
@@ -5802,7 +5816,7 @@ The following command makes use of the ability of simple features objects to con
 
 
 ```r
-desire_carshort$geom_car = route_carshort$geometry
+desire_carshort$geom_car = st_geometry(route_carshort)
 ```
 
 This allows plotting the desire lines along which many short car journeys take place alongside likely routes traveled by cars, with the width of the routes proportional to the number of car journeys that could potentially be replaced.
@@ -5814,9 +5828,9 @@ Note also that routes are assumed to originate in the zone centroids, a simplify
 
 
 ```r
-plot(desire_carshort$geometry)
-plot(desire_carshort$geom_car, col = "red", add = TRUE)
-plot(st_centroid(zones_od)$geometry, add = TRUE)
+plot(st_geometry(desire_carshort))
+plot(st_geometry(desire_carshort), col = "red", add = TRUE)
+plot(st_geometry(st_centroid(zones_od)), add = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
@@ -5918,7 +5932,7 @@ This an easily manageable dataset size (transport datasets can be large but it's
 
 As mentioned, route networks can usefully be represented as mathematical graphs, with nodes on the network connected by edges.
 A number of R packages have been developed for dealing with such graphs, notably **igraph**.
-One can manually convert a route network into an `igraph` object, but that process risks loosing the geographic attributes.
+One can manually convert a route network into an `igraph` object, but the geographic attributes will be lost.
 To overcome this issue `SpatialLinesNetwork()` was developed in the **stplanr** package to represent route networks simultaneously as graphs *and* a set of geographic lines.
 This function is demonstrated below using a subset of the `bristol_ways` object used in previous sections.
 
@@ -5950,19 +5964,19 @@ plot(ways_sln@sl$geometry, lwd = e / 500)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/unnamed-chunk-22-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text." width="576" />
-<p class="caption">(\#fig:unnamed-chunk-22)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text.</p>
+<img src="figures/unnamed-chunk-23-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text." width="576" />
+<p class="caption">(\#fig:unnamed-chunk-23)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text.</p>
 </div>
 
 
 
 One can also find the shortest route between origins and destinations using this graph representation of the route network.
-This is can be done using the `sum_network_routes()` function from **stplanr**, which uses local route network data instead of the online routing service described in section \@ref(routes).
-This finds the shortest path between arbitrary nodes 1 and 20, on the network ---
-'shortest' with reference to the `weightfield` slot of `ways_sln` (route distance by default).^[
+This is can be done with `sum_network_routes()` from **stplanr**, which undertakes 'local routing' (see section \@ref(routes)).
+The code below finds the shortest path between two nodes on the network ---
+'shortest' with reference to the `weightfield` slot of `ways_sln` (route distance by default
+--- and returns a linestring (plot not shown):^[
 To select nodes by geographic location the **stplanr** function `find_network_nodes()` can be used.
 ]
-The result is a spatial linestring object that can be plotted using **sf** plotting methods (result not shown --- readers are encouraged to plot the result locally):
 
 
 ```r
@@ -5970,18 +5984,13 @@ path = sum_network_routes(ways_sln, 1, 20, "length")
 ```
 
 ```r
-plot(path$geometry, col = "red", lwd = 10)
+plot(st_geometry(path), col = "red", lwd = 10)
 plot(ways_sln@sl$geometry, add = TRUE)
 ```
 
 ## Prioritizing new infrastructure
 
 This chapter's final practical section demonstrates the policy-relevance of geocomputation for transport applications by identifying locations where new transport infrastructure may be needed.
-The next chapter (\@ref(location)) demonstrates another application:
-prioritising the location of new bike shops.
-Bike shops may benefit from new cycling infrastructure, demonstrating an important feature of transport systems: they are closely linked to broader social, economic and land-use patterns.
-This section ties-together the various strands that explored some geographic features of Bristol's transport system, covered in sections \@ref(transport-zones) to \@ref(route-networks).
-
 Clearly the types of analysis presented here would need to be extended and complimented by other methods to be used in real-world applications, as discussed in section \@ref(future-directions-of-travel).
 However each stage could be useful on its own, and feed-into wider analyses.
 To summarize, these were: identifying short but car-dependent commuting routes (generated from desire lines)in section \@ref(routes); creating desire lines representing trips to rail stations in section \@ref(nodes); and analysis of transport systems at the route network using graph theory in section \@ref(route-networks).
@@ -5991,7 +6000,8 @@ It adds the car-dependent routes in `route_carshort` with a newly-created object
 
 
 ```r
-route_rail = st_set_geometry(desire_rail, "leg_orig") %>% 
+route_rail = desire_rail %>% 
+  st_set_geometry("leg_orig") %>% 
   line2route(route_fun = route_osrm) %>% 
   st_set_crs(4326)
 ```
@@ -6078,7 +6088,7 @@ Similar tools could be used to encourage evidence-based transport policies relat
 <!--chapter:end:07-transport.Rmd-->
 
 
-# Location analysis {#location}
+# Geomarketing application {#location}
 
 ## Prerequisites {-}
 
@@ -6090,21 +6100,23 @@ library(sf)
 library(raster)
 library(tidyverse)
 library(osmdata)
+library(spDataLarge)
 ```
 
 - Required data will be downloaded in due course.
+As a convenience to the reader and to ensure easy reproducibility we have made available the downloaded data in the **spDataLarge** package.
 
 ## Introduction
 
-This chapter demonstrates how the skills learned in Part I can be applied to a particular domain: location analysis (also called geomarketing).
-This is a broad field of research and commercial application, the aim of which is usually to decide the optimal location for new services.
+This chapter demonstrates how the skills learned in Part I can be applied to a particular domain: geomarketing (sometimes also referred to as location analysis or location intelligence).
+This is a broad field of research and commercial application.
 A typical example is where to locate a new shop.
 The aim here is to attract most visitors and, ultimately, make most profit.
 There are also many non-commercial applications that can use the technique for public benefit, for example where to locate new health services [@tomintz_geography_2008].
 
 People are fundamental to location analysis, in particular where they are likely to spend their time and other resources.
 Interestingly, ecological concepts and models are quite similar to those used for store location analysis.
-Animals and plants can best meet their needs in certain 'optimal' locations, based on variables that change over space (@muenchow_review_2018; see also chapter \@ref(eco)) .
+Animals and plants can best meet their needs in certain 'optimal' locations, based on variables that change over space (@muenchow_review_2018<!--; see also chapter \@ref(eco)-->) .
 This is one of the great strengths of geocomputation and GIScience in general.
 Concepts and methods are transferable to other fields.
 <!-- add reference!! -->
@@ -6128,7 +6140,7 @@ The stores should be placed in urban areas with as many potential customers as p
 Additionally, a survey^[This is a hypothetical survey, i.e. it never took place.] suggests that single young males (aged 20 to 40) are most likely to buy your products: this is the *target audience*.
 You are in the lucky position to have sufficient capital to open a number of shops.
 But where should they be placed?
-Consulting companies (employing location analysts) would happily charge high rates to answer such questions.
+Consulting companies (employing geomarketing analysts) would happily charge high rates to answer such questions.
 Luckily, we can do so ourselves with the help of open data and open source software.
 The following sections will demonstrate how the techniques learned during the first chapters of the book can be applied to undertake the following steps:
 
@@ -6153,12 +6165,28 @@ unzip("census.zip") # unzip the files
 census_de = readr::read_csv2(list.files(pattern = "Gitter.csv"))
 ```
 
+As a convenience to the reader, the corresponding data has been put into **spDataLarge** and can be accessed as follows
 
+
+```r
+data("census_de", package = "spDataLarge")
+```
 
 The `census_de` object is a data frame containing 13 variables for more than 300,000 grid cells across Germany.
-For our work we only need a subset of these: Easting and Northing, number of inhabitants (population), mean average age, proportion of women and average household size.
-These variables and selected and renamed in the code chunk below and summarized in Table \@ref(tab:census-desc). 
+For our work we only need a subset of these: Easting (`x`) and Northing (`y`), number of inhabitants (population; `pop`), mean average age (`mean_age`), proportion of women (`women`) and average household size (`hh_size`).
+These variables are selected and renamed from German into English in the code chunk below and summarized in Table \@ref(tab:census-desc). 
 Further, `mutate_all()` is used to convert values -1 and -9 (meaning unknown) to `NA`.
+
+
+```r
+# pop = population, hh_size = household size
+input = dplyr::select(census_de, x = x_mp_1km, y = y_mp_1km, pop = Einwohner,
+                      women = Frauen_A, mean_age = Alter_D,
+                      hh_size = HHGroesse_D)
+# set -1 and -9 to NA
+input_tidy = mutate_all(input, funs(ifelse(. %in% c(-1, -9), NA, .)))
+```
+
 
 <table>
 <caption>(\#tab:census-desc)Excerpt from the data description 'Datensatzbeschreibung_klassierte_Werte_1km-Gitter.xlsx' located in the downloaded file census.zip describing the classes of the retained variables. The classes -1 and -9 refer to uninhabited areas or areas which have to be kept secret, for example due to the need to preserve anonymity.</caption>
@@ -6221,17 +6249,6 @@ Further, `mutate_all()` is used to convert values -1 and -9 (meaning unknown) to
 </tbody>
 </table>
 
-
-
-```r
-# pop = population, hh_size = household size
-input = dplyr::select(census_de, x = x_mp_1km, y = y_mp_1km, pop = Einwohner,
-                      women = Frauen_A, mean_age = Alter_D,
-                      hh_size = HHGroesse_D)
-# set -1 and -9 to NA
-input_tidy = mutate_all(input, funs(ifelse(. %in% c(-1, -9), NA, .)))
-```
-
 ## Create census rasters
  
 After the preprocessing, the data can be converted into a raster stack or brick (see sections \@ref(raster-classes) and \@ref(raster-subsetting)).
@@ -6290,32 +6307,33 @@ rcl_hh = rcl_women
 rcl = list(rcl_pop, rcl_women, rcl_age, rcl_hh)
 ```
 
+<!--
 We can loop with `map2()`, the **purrr** version of base R's `mapply()`, in parallel over two vectors (here `lists`; for more information please refer to @wickham_advanced_2014 and @grolemund_r_2016).
-Note that we have to transform the raster brick into a list for the loop to work.
-Finally, we convert the output list back into a raster stack. 
+-->
+
+Note that we have made sure that the order of the reclassification matrices in the list is the same as for the elements of `input_ras`.
+For instance, the first element corresponds in both cases to the population.
+The `for`-loop runs in parallel through each of the elements and applies the reclassification to the corresponding raster layer.
+Finally, the code chunk below makes sure that the `reclass` layers have the same name as the layers of `input_ras`.
 
 
 ```r
-reclass = map2(as.list(input_ras), rcl, function(x, y) {
-  reclassify(x = x, rcl = y, right = NA)
-}) %>% 
-  stack
+reclass = input_ras
+for (i in 1:raster::nlayers(reclass)) {
+  reclass[[i]] = reclassify(x = reclass[[i]], rcl = rcl[[i]], right = NA)
+}
 names(reclass) = names(input_ras)
 reclass
-#> class       : RasterStack 
+#> class       : RasterBrick 
 #> dimensions  : 868, 642, 557256, 4  (nrow, ncol, ncell, nlayers)
 #> resolution  : 1000, 1000  (x, y)
 #> extent      : 4031000, 4673000, 2684000, 3552000  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+#> data source : in memory
 #> names       :  pop, women, mean_age, hh_size 
 #> min values  :  127,     0,        0,       0 
 #> max values  : 8000,     3,        3,       3
 ```
-
-<!-- 
-
--->
-
 
 ## Define metropolitan areas
 
@@ -6328,45 +6346,39 @@ The command below uses the argument `fact = 20` to reduce the resolution of the 
 pop_agg = aggregate(reclass$pop, fact = 20, fun = sum)
 ```
 
-The next stage is to keep only cells with more than half a million people, and convert the result cells into a vector object of class `sf`.
+The next stage is to keep only cells with more than half a million people.
 
-
-```r
-polys = rasterToPolygons(pop_agg[pop_agg > 500000, drop = FALSE]) %>% 
-  st_as_sf(polys)
-```
-
-Plotting these polygons reveals eight metropolitan regions (Fig. \@ref(fig:metro-areas)).
-Each region consists of one or more polygons (raster cells).
-It would be nice if we could join all polygons belonging to one region.
-One approach is to union the polygons (see section \@ref(clipping)).
 
 
 ```r
-polys = st_union(polys)
+pop_agg = pop_agg[pop_agg > 500000, drop = FALSE] 
 ```
 
-This returns one multipolygon feature with its elements corresponding to the metropolitan regions. 
-To extract these polygons from the multipolygon, we can use `st_cast()`.
+Plotting this reveals eight metropolitan regions (Fig. \@ref(fig:metro-areas)).
+Each region consists of one or more raster cells.
+It would be nice if we could join all cells belonging to one region.
+**raster**'s `clump()` command does exactly that.
+Subsequently, `rasterToPolygons()` converts the raster object into spatial polygons, and `st_as_sf()` converts it into an `sf`-object.
 
 
 ```r
-metros = st_cast(polys, "POLYGON")
+polys = pop_agg %>% 
+  clump %>%
+  rasterToPolygons %>%
+  st_as_sf
+#> Loading required namespace: igraph
 ```
 
-However, visual inspection reveals eight metropolitan areas whereas the unioning-casting approach comes up with nine.
-This is because one polygon just touches the corner of another polygon (western Germany, Cologne/Düsseldorf area; Fig. \@ref(fig:metro-areas)).
-
-One could assign it to the neighboring region using a dissolving procedure, however, we leave this as an exercise to the reader, and simply delete the offending polygon.
+`polys` now features a column named `clumps` which indicates to which metropolitan region each polygon belongs and which we will use to dissolve the polygons into coherent single regions (see also section \@ref(geometry-unions)):
 
 
 ```r
-# find out about the offending polygon
-int = st_intersects(metros, metros)
-# polygons 5 and 9 share one border, delete polygon number 5
-metros_2 = metros[-5]
+metros = polys %>%
+  group_by(clumps) %>%
+  summarize
 ```
 
+Given no other column as input, `summarize()` only dissolves the geometry.
 
 <!-- maybe a good if advanced exercise
 This requires finding the nearest neighbors (`st_intersects()`), and some additional processing.
@@ -6441,37 +6453,40 @@ st_centroid(metros) %>%
 <p class="caption">(\#fig:metro-areas)The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names.</p>
 </div>
 
-
-The defined metropolitan areas (Fig. \@ref(fig:metro-areas); see also `code/08-location-jm.R`) suitable for bike shops are still missing a name.
+The resulting eight metropolitan areas suitable for bike shops (Fig. \@ref(fig:metro-areas); see also `code/08-location-jm.R` for creating the figure) are still missing a name.
 A reverse geocoding approach can settle this problem.
 Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
 The **ggmap** package makes use of the one provided by Google.^[Note that Google allows each user to access its services on a free basis for a maximum of 2500 queries a day.]
-`ggmap::revgeocode()` only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (chapter \@ref(transform)).
+`ggmap::revgeocode()` only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter \@ref(transform)).
 
 
 ```r
 metros_wgs = st_transform(metros, 4326)
 coords = st_centroid(metros_wgs) %>%
   st_coordinates() %>%
-  round(., 4)
-#> Warning in st_centroid.sfc(metros_wgs): st_centroid does not give correct
-#> centroids for longitude/latitude data
+  round(4)
+#> Warning in st_centroid.sf(metros_wgs): st_centroid assumes attributes are
+#> constant over geometries of x
+#> Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =
+#> of_largest_polygon): st_centroid does not give correct centroids for
+#> longitude/latitude data
 ```
 
 Additionally, `ggmap::revgeocode()` only accepts one coordinate at a time, which is why we iterate over each coordinate of `coords` via a loop (`map_dfr()`).
-`map_dfr()` does exactly the same as `lapply()` except for returning a `data.frame` instead of a `list`.^[To learn more about the split-apply-combine strategy for data analysis, we refer the reader to @wickham_split-apply-combine_2011.]
+`map_dfr()` does exactly the same as `lapply()` except for returning a `data.frame` instead of a `list`.^[To learn more about `lapply()` please refer to @wickham_advanced_2014 and @grolemund_r_2016; for the split-apply-combine strategy for data analysis, we refer the reader to @wickham_split-apply-combine_2011.]
 Sometimes, Google's reverse geocoding API is unable to find an address returning `NA`.
 Usually, trying the same coordinate again returns an address at the second or third attempt (see `while()-loop`).
-However, if three attempts have already failed, this is a good indication that the requested information is indeed unavailable.
+However, if ten attempts have already failed, this is a good indication that the requested information is indeed unavailable.
 Since we aim to be good cyberspace citizens, we try not to overburden the server with too many queries within a short amount of time by letting the loop sleep between one and four seconds after each iteration before accessing the reverse geocoding API again.
+Choosing `more` as `revgeocode()`'s `output` option will give back a `data.frame` with several columns referring to the location including the address, locality and various administrative levels.
 
 
 ```r
 # reverse geocoding to find out the names of the metropolitan areas
 metro_names = map_dfr(1:nrow(coords), function(i) {
   add = ggmap::revgeocode(coords[i, ], output = "more")
-  x = 2
+  x = 9
   while (is.na(add$address) & x > 0) {
     add = ggmap::revgeocode(coords[i, ], output = "more")
     # just try three times
@@ -6484,20 +6499,43 @@ metro_names = map_dfr(1:nrow(coords), function(i) {
 })
 ```
 
+Though the `while`-loop helps to make the reverse geocoding more successful, it sometimes might still fail or even give back results slightly differing from those we here have produced here.
+Therefore, to make sure that the reader uses the exact same results, we have put them into **spDataLarge**:
 
 
+```r
+# attach metro_names from spDataLarge
+data("metro_names", package = "spDataLarge")
+```
 
-Choosing `more` as `revgeocode()`'s `output` option will give back a `data.frame` with several columns referring to the location including the address, locality and various administrative levels.
-Overall, we are satisfied with the `locality` column serving as metropolitan names (München, Nürnberg, Stuttgart, Frankfurt, Hamburg, Berlin, Leipzig) apart from one exception, namely Velbert.
-Hence, we replace Velbert with the corresponding name in the `administrative_area_level_2` column, that is Düsseldorf (Fig. \@ref(fig:metro-areas)).
+
+Table: (\#tab:metro-names)Result of the reverse geocoding.
+
+locality            country 
+------------------  --------
+München             Germany 
+Nürnberg            Germany 
+Stuttgart           Germany 
+Frankfurt am Main   Germany 
+Hamburg             Germany 
+Berlin              Germany 
+Leipzig             Germany 
+Velbert             Germany 
+
+Overall, we are satisfied with the `locality` column serving as metropolitan names (Table \@ref(tab:metro-names)) apart from one exception, namely Wülfrath.
+Hence, we replace Wülfrath with the corresponding name in the `administrative_area_level_2` column, that is Düsseldorf (Fig. \@ref(fig:metro-areas)).
 Umlauts like `ü` might lead to trouble further on, for example when determining the bounding box of a metropolitan area with `opq()` (see further below), which is why we replace them.
 
 
 ```r
 metro_names = 
   dplyr::select(metro_names, locality, administrative_area_level_2) %>%
-  # replace Velbert and umlaut ü
-  mutate(locality = ifelse(locality == "Velbert", administrative_area_level_2, 
+  # replace Wülfrath and umlaut ü
+  # mutate(locality = ifelse(locality == "Wülfrath",
+  #                          administrative_area_level_2,
+  #                          locality),
+  mutate(locality = ifelse(locality == "Velbert",
+                           administrative_area_level_2,
                            locality),
          locality = gsub("ü", "ue", locality)) %>%
   pull(locality)
@@ -6516,6 +6554,8 @@ Here, we will only keep the point objects.
 As with Google's reverse geocode API, the OSM-download will sometimes fail at the first attempt.
 The `while` loop increases the number of download trials to three. 
 If then still no features can be downloaded, it is likely that either there are none available or that another error has occurred before (e.g. due to erroneous output from `opq()`).
+Before running the next code chunk, keep in mind that this will download almost 2GB of data. 
+As a convenience to the reader, we have put the further processed output into the **spDataLarge** package (`data("shops", package = "spDataLarge")`; see also further below).
 
 
 ```r
@@ -6556,16 +6596,20 @@ Finally, we `rbind` all shops into one large `sf` object.
 
 
 ```r
-# select only specific columns and rbind all list elements
-shops = map(shops, dplyr::select, osm_id, shop) %>%
-  reduce(rbind)
+# select only specific columns
+shops = map(shops, dplyr::select, osm_id, shop)
+# putting all list elements into a single dataframe
+shops = do.call(shops, rbind)
 ```
-
-
-
 
 It would have been easier to simply use `map_dfr()`. 
 Unfortunately, so far it does not work in harmony with `sf` objects.
+Please note that the `shops` object is also available in the `spDataLarge` package:
+
+
+```r
+data("shops", package = "spDataLarge")
+```
 
 The only thing left to do is to convert the spatial point object into a raster (see section \@ref(rasterization)).
 The `sf` object, `shops`, is converted into a raster having the same parameters (dimensions, resolution, CRS) as the `reclass` object.
@@ -6631,7 +6675,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8cd5751b040de137
+preserve0a2eecfb1e74e7a8
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -6657,7 +6701,7 @@ The bike paths density might be another interesting variable as well as the purc
 However, to find out about such an interaction we would need customer data.
 
 In short, the presented analysis is far from perfect.
-Nevertheless, it should have given you a first impression and understanding of how to obtain, and deal with spatial data in R within a location analysis context.
+Nevertheless, it should have given you a first impression and understanding of how to obtain, and deal with spatial data in R within a geomarketing context.
 
 Finally, we have to point out that the presented analysis would be merely the first step of finding suitable locations.
 So far we have identified areas, 1 by 1 km in size, potentially suitable for a bike shop in accordance with our survey.
@@ -6684,9 +6728,6 @@ gridded(input) = TRUE
 input = stack(input)
 -->
 
-1. In the text we have deleted one polygon of the `metros` object (polygon number 5) since it only touches the border of another polygon.
-Recreate the `metros` object and instead of deleting polygon number 5, make it part of the Cologne/Düsseldorf metropolitan region (hint: create a column named region_id, add polygon number 5 to the Cologne/Düsseldorf area and dissolve).
-
 1. Download the csv file containing inhabitant information for a 100 m cell resolution (https://www.zensus2011.de/SharedDocs/Downloads/DE/Pressemitteilung/DemografischeGrunddaten/csv_Bevoelkerung_100m_Gitter.zip?__blob=publicationFile&v=3).
 Please note that the unzipped file has a size of 1.23 GB.
 To read it into R you can use `readr::read_csv`.
@@ -6712,6 +6753,7 @@ Change the age raster accordingly, repeat the remaining analyses and compare the
 
 ```r
 library(sf)
+library(raster)
 library(spData)
 library(spDataLarge)
 library(tidyverse)
@@ -7077,7 +7119,7 @@ The impact of changing the color settings listed above is illustrated in Figure 
 
 <!-- Maybe reverse order and progress from the high- to the low-level control. Overall, this section reads a bit like a vignette. Is this the intention. -->
 Beyond the low-level control over layouts and colors, **tmap** also offers high-level styles, using the `tm_style()` function (representing the second meaning of 'style' in the package).
-Some styles such as `tm_style("cobalt")` result in stylized maps while others such as `tm_style("grey)` make more subtle changes, as illustrated in Figure \@ref(fig:tmstyles), created using code below (see `09-tmstyles.R`):
+Some styles such as `tm_style("cobalt")` result in stylized maps while others such as `tm_style("grey")` make more subtle changes, as illustrated in Figure \@ref(fig:tmstyles), created using code below (see `09-tmstyles.R`):
 
 
 ```r
@@ -7296,7 +7338,7 @@ Code to reproduce this map can be found in the script `09-usboundaries.R`.
 Static and animated maps can breathe life into geographic datasets.
 Interactive maps can take reader participation to a whole new level, providing results with a life of their own that can be explored in myriad ways.
 Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.^[
-A good example of such a dynamically linked visualisation is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on [Twitter](https://twitter.com/kyle_e_walker/status/985948444966768641) and (for the source code) as a GitHub [Gist](https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a).
+A good example of such a dynamically linked visualization is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on [Twitter](https://twitter.com/kyle_e_walker/status/985948444966768641) and (for the source code) as a GitHub [Gist](https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a).
 ]
 
 The most important type of interactivity, however, is the display of geographic data on an interactive or 'slippy' web maps.
@@ -7320,7 +7362,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservee39376692f3b2112
+preserve2e6b4b0e2c57b254
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7334,8 +7376,8 @@ map_nz +
   tm_view(basemaps = basemap)
 ```
 
-An impressive and little-known feature of **tmap**'s view mode is that it also works with facetted plots.
-The argument `sync` in `tm_facets()` can be used in this case to produce multiple maps with syncronized zoom and pan settings, as illustrated in Figure \@ref(fig:sync) which was produced by the following code:
+An impressive and little-known feature of **tmap**'s view mode is that it also works with faceted plots.
+The argument `sync` in `tm_facets()` can be used in this case to produce multiple maps with synchronized zoom and pan settings, as illustrated in Figure \@ref(fig:sync) which was produced by the following code:
 
 
 ```r
@@ -7345,9 +7387,10 @@ tm_shape(world_coffee) + tm_polygons(facets) +
   tm_facets(nrow = 1, sync = TRUE)
 ```
 
+
 <div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/39561412-4dbba7ba-4e9d-11e8-885c-7973b351006b.png" alt="Screenshot showing facetted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action."  />
-<p class="caption">(\#fig:sync)Screenshot showing facetted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action.</p>
+<img src="https://user-images.githubusercontent.com/1825120/39561412-4dbba7ba-4e9d-11e8-885c-7973b351006b.png" alt="Faceted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action."  />
+<p class="caption">(\#fig:sync)Faceted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action.</p>
 </div>
 
 Switch **tmap** back to plotting mode with the same function:
@@ -7418,7 +7461,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservece3eece248498657
+preserve3f91432ca4589fb8
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7655,7 +7698,7 @@ For these exercises we will create a new object, `africa`, using the `world` and
 africa = world %>% 
   filter(continent == "Africa", !is.na(iso_a2)) %>% 
   left_join(worldbank_df, by = "iso_a2") %>% 
-  select(name, subregion, gdpPercap, HDI, pop_growth) %>% 
+  dplyr::select(name, subregion, gdpPercap, HDI, pop_growth) %>% 
   st_transform("+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25")
 ```
 
@@ -7763,7 +7806,6 @@ If you are missing an algorithm you need, the CLI gives you the freedom to write
 Professional and advanced technical skills will certainly enhance your career prospects, and are in dire need across a wide range of disciplines.
 - Is fun, but admittedly that is a subjective argument.
 <!-- any other points that we have missed? -->
-- ... 
 
 On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous.
 For instance, think of:
@@ -7773,7 +7815,7 @@ The really user-friendly graphical interface spares the user from programming.
 Though you probably wouldn't read the book if this were your main objective.
 - Digitizing and all related tools (trace, snap, topological rules, etc.). 
 Note that there is also the new **mapedit** package but its intention is to allow the quick editing of a few spatial features, and not professional, large-scale cartographic digitizing.
-- Georeferencing.
+- Georeferencing with ground control points and orthorectification. The process of locating control points, choosing the right transformation model, and evaluating the registration error are inherently interactive, and thus unsuitable to be done with R, or any other programming language for that matter
 - Stereoscopic mapping (e.g., LiDAR and structure from motion).
 - The built-in geodatabase management system often integrated in Desktop GIS (ArcGIS, GRASS GIS) and all related advantages such as object relational modeling, topology, fast (spatial) querying, etc.
 - Map production, in case you only want to create a beautiful map once. If you have to produce it over and over again, then maybe the CLI approach is better.
@@ -8308,7 +8350,7 @@ The following command therefore masks every cell outside of the the Zion Nationa
 
 
 ```r
-srtm_masked = mask(srtm, zion)
+srtm_masked = mask(srtm, as(zion, "Spatial"))
 ```
 
 Changing the settings of `mask()` yields in different results.
@@ -8333,7 +8375,7 @@ The following command extracts elevation values from `srtm` and assigns the resu
 
 
 ```r
-zion_points$elevation = raster::extract(srtm, zion_points)
+zion_points$elevation = raster::extract(srtm, as(zion_points, "Spatial"))
 ```
 
 
@@ -8360,13 +8402,12 @@ zion_transect = cbind(c(-113.2, -112.9), c(37.45, 37.2)) %>%
 
 
 
-
 The utility of extracting heights from a linear selector is illustrated by imagining that you are planning a hike.
 The method demonstrated below provides an 'elevation profile' of the route (the line does not need to be straight), useful for estimating how long it will take due to long climbs:
 
 
 ```r
-transect = raster::extract(srtm, zion_transect, along = TRUE, cellnumbers = TRUE)
+transect = raster::extract(srtm, as(zion_transect, "Spatial"), along = TRUE, cellnumbers = TRUE)
 ```
 
 Note the use of `along = TRUE` and `cellnumbers = TRUE` arguments to return cell IDs *along* the path. 
@@ -8396,7 +8437,7 @@ This is demonstrated in the command below, which results in a data frame with co
 
 
 ```r
-zion_srtm_values = raster::extract(x = srtm, y = zion, df = TRUE)
+zion_srtm_values = raster::extract(x = srtm, y = as(zion, "Spatial"), df = TRUE)
 ```
 
 Such results can be used to generate summary statistics for raster values per polygon, for example to  to characterize a single region or to compare many regions.
@@ -8421,7 +8462,7 @@ This is illustrated with a land cover dataset (`nlcd`) from the **spDataLarge** 
 
 
 ```r
-zion_nlcd = raster::extract(nlcd, zion, df = TRUE, factors = TRUE)
+zion_nlcd = raster::extract(nlcd, as(zion, "Spatial"), df = TRUE, factors = TRUE)
 dplyr::select(zion_nlcd, ID, levels) %>% 
   gather(key, value, -ID) %>%
   group_by(ID, key, value) %>%
@@ -8896,8 +8937,8 @@ Package **pROC**, **RSAGA** and **spDataLarge** must also be installed although 
 
 ```r
 library(sf)
-library(mlr)
 library(raster)
+library(mlr)
 library(tidyverse)
 library(parallelMap)
 ```

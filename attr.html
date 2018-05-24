@@ -249,8 +249,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.7" data-path="transform.html"><a href="transform.html#type-trans"><i class="fa fa-check"></i><b>5.3.7</b> Type transformations</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="transform.html"><a href="transform.html#geo-ras"><i class="fa fa-check"></i><b>5.4</b> Geometric operations on raster data</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="transform.html"><a href="transform.html#extent-and-origin"><i class="fa fa-check"></i><b>5.4.1</b> Extent and origin</a></li>
-<li class="chapter" data-level="5.4.2" data-path="transform.html"><a href="transform.html#aggregation-and-disaggregation"><i class="fa fa-check"></i><b>5.4.2</b> Aggregation and disaggregation</a></li>
+<li class="chapter" data-level="5.4.1" data-path="transform.html"><a href="transform.html#geometric-intersections"><i class="fa fa-check"></i><b>5.4.1</b> Geometric intersections</a></li>
+<li class="chapter" data-level="5.4.2" data-path="transform.html"><a href="transform.html#extent-and-origin"><i class="fa fa-check"></i><b>5.4.2</b> Extent and origin</a></li>
+<li class="chapter" data-level="5.4.3" data-path="transform.html"><a href="transform.html#aggregation-and-disaggregation"><i class="fa fa-check"></i><b>5.4.3</b> Aggregation and disaggregation</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="transform.html"><a href="transform.html#exercises-3"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
 </ul></li>
@@ -284,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="transport.html"><a href="transport.html#future-directions-of-travel"><i class="fa fa-check"></i><b>7.9</b> Future directions of travel</a></li>
 <li class="chapter" data-level="7.10" data-path="transport.html"><a href="transport.html#ex-transport"><i class="fa fa-check"></i><b>7.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>8</b> Location analysis</a><ul>
+<li class="chapter" data-level="8" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>8</b> Geomarketing application</a><ul>
 <li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-6"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="8.1" data-path="location.html"><a href="location.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
 <li class="chapter" data-level="8.2" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>8.2</b> Case study: bike shops in Germany</a></li>
@@ -380,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prerequisites-1" class="section level2 unnumbered">
 <h2>Prerequisites</h2>
 <ul>
-<li>This chapter requires the following packages to be installed and loaded:</li>
+<li>This chapter requires the following packages to be installed and attached:</li>
 </ul>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
 <a class="sourceLine" id="cb61-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
@@ -489,7 +490,7 @@ This is especially useful when working with big data as well as <strong>dplyr</s
 The main <strong>dplyr</strong> subsetting functions are <code>select()</code>, <code>slice()</code>, <code>filter()</code> and <code>pull()</code>.</p>
 <div class="rmdnote">
 <p>
-<strong>raster</strong> and <strong>dplyr</strong> packages have a function called <code>select()</code>. If both packages are loaded, this can generate error messages containing the text: <code>unable to find an inherited method for function ‘select’ for signature ‘“sf”’</code>. To avoid this error message, and prevent ambiguity, we use the long-form function name, prefixed by the package name and two colons (usually omitted from R scripts for concise code): <code>dplyr::select()</code>.
+<strong>raster</strong> and <strong>dplyr</strong> packages have a function called <code>select()</code>. When using both packages, the function in the most recently attached package will be used, ‘masking’ the incumbent function. This can generate error messages containing text like: <code>unable to find an inherited method for function ‘select’ for signature ‘“sf”’</code>. To avoid this error message, and prevent ambiguity, we use the long-form function name, prefixed by the package name and two colons (usually omitted from R scripts for concise code): <code>dplyr::select()</code>.
 </p>
 </div>
 <p><code>select()</code> selects columns by name or position.
@@ -573,24 +574,24 @@ It keeps only rows matching given criteria, e.g. only countries with a very hig
 <!-- describe these: ==, !=, >, >=, <, <=, &, | -->
 <!-- add warning about = vs == -->
 <!-- add info about combination of &, |, ! -->
-<p>A benefit of <strong>dplyr</strong> is its compatibility with the <em>pipe</em> operator <code>%&gt;%</code>.
-This ‘R pipe’, which takes its name from the Unix pipe <code>|</code> and is part of the <strong>magrittr</strong> package, enables expressive code by ‘piping’ the output of a previous command into the first argument of the next function.
-This allows <em>chaining</em> data analysis commands, with the data frame being passed from one function to the next.</p>
-<p>This is illustrated below, in which the <code>world</code> dataset is subset by columns (<code>name_long</code> and <code>continent</code>) and the first five rows (result not shown).</p>
+<p><strong>dplyr</strong> works well with the <a href="http://r4ds.had.co.nz/pipes.html">‘pipe’</a> operator <code>%&gt;%</code>, which takes its name from the Unix pipe <code>|</code> <span class="citation">(Grolemund and Wickham <a href="#ref-grolemund_r_2016">2016</a>)</span>.
+It enables expressive code: the output of a previous becomes the first argument of the next function, enabling <em>chaining</em>.
+This is illustrated below, in which the <code>world</code> dataset is subset by columns (<code>name_long</code> and <code>continent</code>) and the first five rows (result not shown).</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">world7 =<span class="st"> </span>world <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb82-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb82-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(name_long, continent) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb82-4" data-line-number="4"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a></code></pre></div>
 <p>The above chunk shows how the pipe operator allows commands to be written in a clear order:
 the above run from top to bottom (line-by-line) and left to right.
-Without <code>%&gt;%</code> one would be forced to create intermediary objects or use nested function calls, e.g.:</p>
+The alternative to <code>%&gt;%</code> is nested function calls, which is harder to read:</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">world8 =<span class="st"> </span><span class="kw">slice</span>(</a>
 <a class="sourceLine" id="cb83-2" data-line-number="2">  dplyr<span class="op">::</span><span class="kw">select</span>(</a>
 <a class="sourceLine" id="cb83-3" data-line-number="3">    <span class="kw">filter</span>(world, continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>),</a>
 <a class="sourceLine" id="cb83-4" data-line-number="4">    name_long, continent),</a>
 <a class="sourceLine" id="cb83-5" data-line-number="5">  <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a></code></pre></div>
-<p>This generates the same result — verify this with <code>identical(world7, world8)</code> — in the same number of lines of code, but in a much more confusing way, starting with the function that is called last!</p>
-<p>There are additional advantages of pipes from a communication perspective: they encourage adding comments to self-contained functions and allow single lines <em>commented-out</em> without breaking the code.</p>
+<!-- I commented-this out as it's overly wordy (RL) -->
+<!-- This generates the same result --- verify this with `identical(world7, world8)` --- in the same number of lines of code, but in a much more confusing way, starting with the function that is called last! -->
+<!-- There are additional advantages of pipes from a communication perspective: they encourage adding comments to self-contained functions and allow single lines *commented-out* without breaking the code. -->
 </div>
 <div id="vector-attribute-aggregation" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Vector attribute aggregation</h3>
@@ -613,17 +614,17 @@ This can be done with the base R function <code>aggregate()</code> as follows:</
 <code>world_agg2</code> which is a spatial object containing 6 polygons representing the columns of the world.</p>
 <p><code>summarize()</code> is the <strong>dplyr</strong> equivalent of <code>aggregate()</code>.
 It usually follows <code>group_by()</code>, which specifies the grouping variable, as illustrated below:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">world_agg3 =<span class="st"> </span><span class="kw">group_by</span>(world, continent) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(pop, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
-<p>This approach is flexible, allowing the resulting columns to be named.
-<code>summarize()</code> can also be used to calculate the Earth’s total population (~7 billion) and number of countries as you will see if execute the following command (result not shown):</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">world_agg3 =<span class="st"> </span>world <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(pop, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<p>This approach is flexible and gives control over the new column names.
+This is illustrated below: the command calculates the Earth’s population (~7 billion) and number of countries (result not shown):</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(pop, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">n_countries =</span> <span class="kw">n</span>())</a></code></pre></div>
-<p>Again, this returns spatial data frame of class <code>sf</code>: the aggregation procedure dissolves boundaries within continental land masses (explained in detail in section <a href="transform.html#geometry-unions">5.3.6</a>), resulting in a single feature representing the world.
-In the previous code chunk <code>pop</code> and <code>n_countries</code> are column names in the result.
-<code>sum()</code> and <code>n()</code> were the aggregating functions.</p>
-<p>Let’s combine what we’ve learned so far about <strong>dplyr</strong> by chaining together functions to find the world’s 3 most populous continents (with <code>dplyr::n()</code> ) and the number of countries they contain.
-The output of the following code is presented in Table <a href="attr.html#tab:continents">3.2</a>):</p>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(pop, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">n =</span> <span class="kw">n</span>())</a></code></pre></div>
+<p>In the previous code chunk <code>pop</code> and <code>n</code> are column names in the result.
+<code>sum()</code> and <code>n()</code> were the aggregating functions.
+The result is an <code>sf</code> object with a single row representing the world (this works thanks to the geometric operation ‘union’, as explained in section <a href="transform.html#geometry-unions">5.3.6</a>).</p>
+<p>Let’s combine what we’ve learned so far about <strong>dplyr</strong> by chaining together functions to find the world’s 3 most populous continents (with <code>dplyr::n()</code> ) and the number of countries they contain (the result of this command is presented in Table <a href="attr.html#tab:continents">3.2</a>):</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb88-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(pop, continent) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb88-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span></a>

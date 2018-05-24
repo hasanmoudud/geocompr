@@ -249,8 +249,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.7" data-path="transform.html"><a href="transform.html#type-trans"><i class="fa fa-check"></i><b>5.3.7</b> Type transformations</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="transform.html"><a href="transform.html#geo-ras"><i class="fa fa-check"></i><b>5.4</b> Geometric operations on raster data</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="transform.html"><a href="transform.html#extent-and-origin"><i class="fa fa-check"></i><b>5.4.1</b> Extent and origin</a></li>
-<li class="chapter" data-level="5.4.2" data-path="transform.html"><a href="transform.html#aggregation-and-disaggregation"><i class="fa fa-check"></i><b>5.4.2</b> Aggregation and disaggregation</a></li>
+<li class="chapter" data-level="5.4.1" data-path="transform.html"><a href="transform.html#geometric-intersections"><i class="fa fa-check"></i><b>5.4.1</b> Geometric intersections</a></li>
+<li class="chapter" data-level="5.4.2" data-path="transform.html"><a href="transform.html#extent-and-origin"><i class="fa fa-check"></i><b>5.4.2</b> Extent and origin</a></li>
+<li class="chapter" data-level="5.4.3" data-path="transform.html"><a href="transform.html#aggregation-and-disaggregation"><i class="fa fa-check"></i><b>5.4.3</b> Aggregation and disaggregation</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="transform.html"><a href="transform.html#exercises-3"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
 </ul></li>
@@ -284,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="transport.html"><a href="transport.html#future-directions-of-travel"><i class="fa fa-check"></i><b>7.9</b> Future directions of travel</a></li>
 <li class="chapter" data-level="7.10" data-path="transport.html"><a href="transport.html#ex-transport"><i class="fa fa-check"></i><b>7.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>8</b> Location analysis</a><ul>
+<li class="chapter" data-level="8" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>8</b> Geomarketing application</a><ul>
 <li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-6"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="8.1" data-path="location.html"><a href="location.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
 <li class="chapter" data-level="8.2" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>8.2</b> Case study: bike shops in Germany</a></li>
@@ -379,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Preface</h1>
 <p>This book is aimed at people who want to do spatial data analysis, visualization and modeling using open source software and reproducible workflows.
 It is based on R, a flexible language for ‘data science’ with powerful geospatial capabilities and a strong ecosystem of add-on packages dedicated to spatial data (see the ‘Spatial Task View’ at <a href="https://cran.r-project.org/web/views/Spatial.html">cran.r-project.org/web/views</a>).</p>
-<p>R enables reproducibility through its command-line interace and ensures accessibility because it is freely available and works on most modern operating systems (including Linux, Windows and Mac).
+<p>R enables reproducibility through its command-line interface and ensures accessibility because it is freely available and works on most modern operating systems (including Linux, Windows and Mac).
 The book will therefore be of interest to a wide range of people worldwide, although we expect it to be especially useful for:</p>
 <ul>
 <li>People who have learned spatial analysis skills using a desktop Geographic Information System (GIS) such as <a href="http://qgis.org/en/site/">QGIS</a>, <a href="http://desktop.arcgis.com/en/arcmap/">ArcMap</a>, <a href="https://grass.osgeo.org/">GRASS</a> or <a href="http://www.saga-gis.org/en/index.html">SAGA</a>, who want access to a powerful (geo)statistical and visualization programming language and the benefits of a command-line approach <span class="citation">(Sherman <a href="#ref-sherman_desktop_2008">2008</a>)</span>:</li>
@@ -390,7 +391,7 @@ The book will therefore be of interest to a wide range of people worldwide, alth
 <ul>
 <li>Graduate students and researchers from fields specializing in geographic data including Geography, Remote Sensing, Planning, GIS and Geographic Data Science</li>
 <li>Academics and post-graduate students working on projects in fields including Geology, Regional Science, Biology and Ecology, Agricultural Sciences (precision farming), Archaeology, Epidemiology, Transport Modeling, and broadly defined Data Science which require the power and flexibility of R for their research <!-- please add further fields--></li>
-<li>Applied researchers and analysts in public, private or third-sector organisations who need the reproducibility, speed and flexibility of a command-line language such as R in applications dealing with spatial data as diverse as Urban and Transport Planning, Logistics, Geo-marketing (store location analysis) and Emergency Planning <!-- please add further examples--></li>
+<li>Applied researchers and analysts in public, private or third-sector organizations who need the reproducibility, speed and flexibility of a command-line language such as R in applications dealing with spatial data as diverse as Urban and Transport Planning, Logistics, Geo-marketing (store location analysis) and Emergency Planning <!-- please add further examples--></li>
 </ul>
 <p>The book is designed for intermediate-to-advanced R users interested in geocomputation and R beginners who have prior experience with geographic data.
 If you are new to both R and geographic data do not be discouraged: we provide links to further materials and describe the nature of spatial data from a beginner’s perspective in Chapter <a href="spatial-class.html#spatial-class">2</a> and in links provided below.</p>
@@ -401,7 +402,7 @@ Completing these encourages using R interactively to solve geospatial problems, 
 <p>Impatient readers are welcome to dive straight into the practical examples, starting in Chapter <a href="spatial-class.html#spatial-class">2</a>.
 However, we recommend reading about the wider context of <em>Geocomputation with R</em> in Chapter <a href="intro.html#intro">1</a> first.
 If you are new to R we also recommend learning more about the language before attempting to run the code chunks provided in each chapter (unless you’re reading the book for an understanding of the concepts).
-Fortunately for R begginers R has supportive community that has developed a wealth of resources that can help.
+Fortunately for R beginners R has supportive community that has developed a wealth of resources that can help.
 We particularly recommend three tutorials: <a href="http://r4ds.had.co.nz/">R for Data Science</a> <span class="citation">(Grolemund and Wickham <a href="#ref-grolemund_r_2016">2016</a>)</span> and <a href="https://csgillespie.github.io/efficientR/">Efficient R Programming</a> <span class="citation">(Gillespie and Lovelace <a href="#ref-gillespie_efficient_2016">2016</a>)</span>, especially <a href="https://csgillespie.github.io/efficientR/set-up.html#r-version">Chapter 2</a> (on installing and setting-up R/RStudio) and <a href="https://csgillespie.github.io/efficientR/learning.html">Chapter 10</a> (on learning to learn), and <a href="http://colinfay.me/intro-to-r/">An introduction to R</a> <span class="citation">(Venables, Smith, and Team <a href="#ref-venables_introduction_2017">2017</a>)</span>.
 A good interactive tutorial is DataCamp’s <a href="https://www.datacamp.com/courses/free-introduction-to-r">Introduction to R</a>.
 <!-- and tutorials created with [**learnr**](https://rstudio.github.io/learnr/examples.html). --></p>
@@ -410,7 +411,7 @@ A good interactive tutorial is DataCamp’s <a href="https://www.datacamp.com/co
 As you’ll learn in subsequent chapters, R is an effective tool for tackling a wide range of geographic data challenges.
 We expect that, with practice, R will become the program of choice in your geospatial toolbox for many applications.
 Typing and executing commands at the command-line is, in many cases, faster than pointing-and-clicking around the graphical user interface (GUI) a desktop GIS.
-For some applications such as Spatial Statistics and modelling R may be the <em>only</em> realistic way to get the work done.</p>
+For some applications such as Spatial Statistics and modeling R may be the <em>only</em> realistic way to get the work done.</p>
 <p>As outlined in section <a href="intro.html#why-geocomputation-with-r">1.2</a> there are many reasons for using R for geocomputation:
 R is well-suited to the interactive use required in many geographic data analysis workflows compared with other languages.
 R excels in the rapidly growing fields of Data Science (which includes data carpentry, statistical learning techniques and data visualization) and Big Data (via efficient interfaces to databases and distributed computing systems).
@@ -419,7 +420,7 @@ To ensure reproducibility in this book we have made its source code available at
 There you will find script files in the <code>code/</code> folder that generate figures:
 when code generating a figure is not provided in the main text of the book the name of the script file that generated it is provided in the caption (see for example the caption for Figure <a href="transport.html#fig:zones">7.2</a>).</p>
 <p>Other languages such as Python, Java and C++ can be used for geocomputation and there are excellent resources for learning geocomputation <em>without R</em>, as discussed in section <a href="intro.html#software-for-geocomputation">1.3</a>.
-None of these provide the unique combination of package ecosystem, statistical capabilities, visualisation options, powerful IDEs offered by the R community.
+None of these provide the unique combination of package ecosystem, statistical capabilities, visualization options, powerful IDEs offered by the R community.
 Furthermore, by teaching how to use one language (R) in depth, this book will equip you with the concepts and confidence needed to do geocomputation in other languages.</p>
 <p><em>Geocomputation with R</em> will equip you with knowledge and skills to tackle a wide range of issues, including those with scientific, societal and environmental implications, manifested in geographic data.
 As described in section <a href="intro.html#what-is-geocomputation">1.1</a>, geocomputation is not only about using computers to process geographic data:
@@ -438,7 +439,7 @@ these are covered in Chapter <a href="intro.html#intro">1</a>.</p>
 
 Put the competing books into categories, e.g., introduction to spatial analysis (Brundsdon, Dorman, Hijmans), advanced spatial analysis (Bivand), topical spatial analysis (Quiang, Wegmann),  (mainly) spatial modeling (Bivand, Blangiardo, Hijmans, Quiang, Zuur).
 Point out where our book fits in and which gap it is filling -> somewhere between advanced (but not that hard) and spatial modeling with a broad range of topics (not just one like ecology).
-We try to address a broad audiecence with an interest in spatial data, and how things can be **get done**, not just theoretically but in an applied way.
+We try to address a broad audience with an interest in spatial data, and how things can be **get done**, not just theoretically but in an applied way.
 On the other hand, we embed the shown methods into the bigger field of GIScience, provide context and refer to further literature for the interested reader.
 
 -->
