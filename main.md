@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb0c8244950ccc697
+preservee468d4d84713733d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3103,7 +3103,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve30126ac0f1624246
+preservee814d516452af914
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4244,45 +4244,41 @@ Finally, the visual comparison of the original dataset and the two simplified ve
 
 ### Centroids
 
-<!-- centroids intro -->
-There are two main functions that create single point representations of more complex vector objects - `st_centroid()` and `st_point_on_surface()`.
+Centroid operations identify the center of geographic objects.
+Like statistical measures of central tendency (including mean and median definitions of 'average'), there are many ways to define the geographic center of an object.
+All of create single point representations of more complex vector objects.
 
-The `st_centroid()` function calculates the geometric center of a geometry.
-We can create centroids for polygons, lines (see black points on Figure \@ref(fig:centr)) and multipoints:
+The most commonly used centroid operation is the *geographic centroid*.
+This type of centroid operation (often referred to as 'the centoid') represents the centre of mass in a spatial object (think of balancing a plate on your finger).
+Geographic centroids have many uses, for example to create a simple point representation of complex geometries, or to estimate distances between polygons.
+They can be calculated with the **sf** function `st_centroid()` as demonstrated in the code below, which generates the geographic centroids of regions in New Zealand and tributaries to the River Seine, illustrated with black points in Figure \@ref(fig:centr).
 
 
 ```r
 nz_centroid = st_centroid(nz)
-#> Warning in st_centroid.sf(nz): st_centroid assumes attributes are constant
-#> over geometries of x
 seine_centroid = st_centroid(seine)
-#> Warning in st_centroid.sf(seine): st_centroid assumes attributes are
-#> constant over geometries of x
 ```
 
-Centroids could be useful to represent more complex objects - lines and polygons, for example to calculate distances between centers of polygons.
-They are also often used as places where polygons or lines labels are put. 
-However, it is important to know that centroids could be located outside of the given object, e.g. in cases of irregular shaped polygons or lines.
-Examples of this can be seen on the right plot on Figure \@ref(fig:centr).
-
-Alternatively, the `st_point_on_surface()` can be used.
+Sometimes the geographic centroid falls outside the boundaries of their parent objects (think of a dohnut).
+In such cases *point on surface* operations can be used to guarantee the point will be in the parent object (e.g. for labelling irregular multipolygon objects such as island states), as illustrated by the red points in Figure \@ref(fig:centr).
+Notice that these red points always lie on their parent objects.
+They were created with `st_point_on_surface()` as follows:^[
+A description of how `st_point_on_surface()` works is provided at [gis.stackexchange.com/q/76498](https://gis.stackexchange.com/a/76563/20955).
+]
 
 
 ```r
 nz_pos = st_point_on_surface(nz)
-#> Warning in st_point_on_surface.sf(nz): st_point_on_surface assumes
-#> attributes are constant over geometries of x
 seine_pos = st_point_on_surface(seine)
-#> Warning in st_point_on_surface.sf(seine): st_point_on_surface assumes
-#> attributes are constant over geometries of x
 ```
-
-This ensures that the created point lies on the given object (see red points on Figure \@ref(fig:centr)).^[Explanation of this algorithm can be found at https://gis.stackexchange.com/a/76563/20955.]
 
 <div class="figure" style="text-align: center">
 <img src="figures/centr-1.png" alt="Centroids (black points) and 'points on surface' (red points) of New Zeleand's regions (left) and the Seine (right) datasets." width="576" />
 <p class="caption">(\#fig:centr)Centroids (black points) and 'points on surface' (red points) of New Zeleand's regions (left) and the Seine (right) datasets.</p>
 </div>
+
+Other types of centroid exist, including the *Chebyshev center* and the *visual center*.
+We will not explore these here but it is possible to calculate them using R, as we'll see Chapter \@ref(algorithms).
 
 ### Buffers
 
@@ -6675,7 +6671,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve0a2eecfb1e74e7a8
+preserve2a52089ceaa61eea
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7362,7 +7358,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2e6b4b0e2c57b254
+preserve860ffca297de39bc
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7461,7 +7457,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3f91432ca4589fb8
+preserve751294db1bba2480
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 

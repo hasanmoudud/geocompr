@@ -879,34 +879,29 @@ Figure 5.7: Polygon simplification in action, comparing the original geometry of
 </div>
 <div id="centroids" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> Centroids</h3>
-<!-- centroids intro -->
-<p>There are two main functions that create single point representations of more complex vector objects - <code>st_centroid()</code> and <code>st_point_on_surface()</code>.</p>
-<p>The <code>st_centroid()</code> function calculates the geometric center of a geometry.
-We can create centroids for polygons, lines (see black points on Figure <a href="transform.html#fig:centr">5.8</a>) and multipoints:</p>
+<p>Centroid operations identify the center of geographic objects.
+Like statistical measures of central tendency (including mean and median definitions of ‘average’), there are many ways to define the geographic center of an object.
+All of create single point representations of more complex vector objects.</p>
+<p>The most commonly used centroid operation is the <em>geographic centroid</em>.
+This type of centroid operation (often referred to as ‘the centoid’) represents the centre of mass in a spatial object (think of balancing a plate on your finger).
+Geographic centroids have many uses, for example to create a simple point representation of complex geometries, or to estimate distances between polygons.
+They can be calculated with the <strong>sf</strong> function <code>st_centroid()</code> as demonstrated in the code below, which generates the geographic centroids of regions in New Zealand and tributaries to the River Seine, illustrated with black points in Figure <a href="transform.html#fig:centr">5.8</a>.</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">nz_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(nz)</a>
-<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="co">#&gt; Warning in st_centroid.sf(nz): st_centroid assumes attributes are constant</span></a>
-<a class="sourceLine" id="cb180-3" data-line-number="3"><span class="co">#&gt; over geometries of x</span></a>
-<a class="sourceLine" id="cb180-4" data-line-number="4">seine_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(seine)</a>
-<a class="sourceLine" id="cb180-5" data-line-number="5"><span class="co">#&gt; Warning in st_centroid.sf(seine): st_centroid assumes attributes are</span></a>
-<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co">#&gt; constant over geometries of x</span></a></code></pre></div>
-<p>Centroids could be useful to represent more complex objects - lines and polygons, for example to calculate distances between centers of polygons.
-They are also often used as places where polygons or lines labels are put.
-However, it is important to know that centroids could be located outside of the given object, e.g. in cases of irregular shaped polygons or lines.
-Examples of this can be seen on the right plot on Figure <a href="transform.html#fig:centr">5.8</a>.</p>
-<p>Alternatively, the <code>st_point_on_surface()</code> can be used.</p>
+<a class="sourceLine" id="cb180-2" data-line-number="2">seine_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(seine)</a></code></pre></div>
+<p>Sometimes the geographic centroid falls outside the boundaries of their parent objects (think of a dohnut).
+In such cases <em>point on surface</em> operations can be used to guarantee the point will be in the parent object (e.g. for labelling irregular multipolygon objects such as island states), as illustrated by the red points in Figure <a href="transform.html#fig:centr">5.8</a>.
+Notice that these red points always lie on their parent objects.
+They were created with <code>st_point_on_surface()</code> as follows:<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">nz_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(nz)</a>
-<a class="sourceLine" id="cb181-2" data-line-number="2"><span class="co">#&gt; Warning in st_point_on_surface.sf(nz): st_point_on_surface assumes</span></a>
-<a class="sourceLine" id="cb181-3" data-line-number="3"><span class="co">#&gt; attributes are constant over geometries of x</span></a>
-<a class="sourceLine" id="cb181-4" data-line-number="4">seine_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(seine)</a>
-<a class="sourceLine" id="cb181-5" data-line-number="5"><span class="co">#&gt; Warning in st_point_on_surface.sf(seine): st_point_on_surface assumes</span></a>
-<a class="sourceLine" id="cb181-6" data-line-number="6"><span class="co">#&gt; attributes are constant over geometries of x</span></a></code></pre></div>
-<p>This ensures that the created point lies on the given object (see red points on Figure <a href="transform.html#fig:centr">5.8</a>).<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
+<a class="sourceLine" id="cb181-2" data-line-number="2">seine_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(seine)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:centr"></span>
 <img src="figures/centr-1.png" alt="Centroids (black points) and 'points on surface' (red points) of New Zeleand's regions (left) and the Seine (right) datasets." width="576" />
 <p class="caption">
 Figure 5.8: Centroids (black points) and ‘points on surface’ (red points) of New Zeleand’s regions (left) and the Seine (right) datasets.
 </p>
 </div>
+<p>Other types of centroid exist, including the <em>Chebyshev center</em> and the <em>visual center</em>.
+We will not explore these here but it is possible to calculate them using R, as we’ll see Chapter <a href="#algorithms"><strong>??</strong></a>.</p>
 </div>
 <div id="buffers" class="section level3">
 <h3><span class="header-section-number">5.3.3</span> Buffers</h3>
@@ -1403,7 +1398,8 @@ Another minor change, that is not represented in Table <a href="transform.html#t
 This is because the <code>bilinear</code> method works with continuous data and the results are rarely coerced into whole integer values.
 This can have implications for file sizes when raster datasets are saved.<a href="transform.html#fnref33" class="footnote-back">↩</a></p></li>
 <li id="fn34"><p>Simplification of multipolygon objects could remove small internal polygons, even if the <code>keep_shapes</code> argument is set to TRUE. To prevent this, you need to set <code>explode = TRUE</code>. This option converts all mutlipolygons into separate polygons before its simplification.<a href="transform.html#fnref34" class="footnote-back">↩</a></p></li>
-<li id="fn35"><p>Explanation of this algorithm can be found at <a href="https://gis.stackexchange.com/a/76563/20955" class="uri">https://gis.stackexchange.com/a/76563/20955</a>.<a href="transform.html#fnref35" class="footnote-back">↩</a></p></li>
+<li id="fn35"><p>
+A description of how <code>st_point_on_surface()</code> works is provided at <a href="https://gis.stackexchange.com/a/76563/20955">gis.stackexchange.com/q/76498</a>.<a href="transform.html#fnref35" class="footnote-back">↩</a></p></li>
 <li id="fn36"><p>If the origins of two raster datasets are just marginally apart, it sometimes is sufficient to simply increase the <code>tolerance</code> argument of <code>raster::rasterOptions()</code>.<a href="transform.html#fnref36" class="footnote-back">↩</a></p></li>
 <li id="fn37"><p>It is important to note that we here are solely referring to the spatial resolution but that in remote sensing the spectral (spectral bands), temporal (observations through time of the same area) and radiometric (color depth) resolution are equally important.
 Check out the <code>stackApply()</code> example in the documentation for getting an idea how to do temporal raster aggregation.<a href="transform.html#fnref37" class="footnote-back">↩</a></p></li>
