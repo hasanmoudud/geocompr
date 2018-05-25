@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve45f2a216e912fb1d
+preserve87aab7337b3f2e35
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve6f79013cc6222aa4
+preserve237f53e0dea3fdba
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5439,7 +5439,7 @@ Export this map to a file called `cycle_hire.html`.
 
 ## Prerequisites {-}
 
-- This chapter requires the following packages to be attached, all but the last two of which have been used previously^[
+- This chapter requires the following packages to be attached, all but the last two of which have been used previously:^[
 **osmdata** and **nabor** must also be installed although these packages do not need to be attached.
 ]
 
@@ -6663,7 +6663,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve6be5464d5c5e7b0b
+preservedb663c7b27b133e5
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7350,7 +7350,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveea5a28ff4460ae0d
+preserve625ba56a3bb39229
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7449,7 +7449,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve46e8431ea899db73
+preservedc5e9463d8c9bb80
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
