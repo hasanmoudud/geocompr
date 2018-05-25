@@ -411,28 +411,32 @@ Because of the importance of reprojection, introduced in Chapter <a href="spatia
 </div>
 <div id="reproj-geo-data" class="section level2">
 <h2><span class="header-section-number">5.2</span> Reprojecting geographic data</h2>
-<p>Section <a href="spatial-class.html#crs-intro">2.3</a> introduced coordinate reference systems (CRSs) and demonstrated their importance for geocomputation.
-This section goes further, by demonstrating some problems that can arise when using an inappropriate CRS and how to <em>transform</em> geometries from one CRS to another.</p>
-<p>Many spatial operations assume that you are using a <em>projected</em> CRS.
-The GEOS engine underlying most spatial operations in <strong>sf</strong>, for example, assumes your data is in a projected CRS.
-For this reason <strong>sf</strong> contains a function for checking if geometries have a geographic or projected CRS.
-This is illustrated below using the example of London introduced in section <a href="spatial-class.html#vector-data">2.1</a>, which is created by <em>coercing</em> a <code>data.frame</code> into an <code>sf</code> object (the <code>coords</code> argument specifies the coordinates):</p>
+<p>Section <a href="spatial-class.html#crs-intro">2.3</a> introduced coordinate reference systems (CRSs) and demonstrated their importance.
+This section goes further.
+It highlights issues that can arise when using inappropriate CRSs and how to <em>transform</em> data from one CRS to another.</p>
+<p>As illustrated in Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, there are two types of CRS: <em>geographic</em> (‘lon/lat’, with units in degrees longitude and latitude) and <em>projected</em> (typically in units of meters from a datum).
+This has consequences because many geometric operations a <em>projected</em> CRS:
+most geometric operations in <strong>sf</strong>, for example, assume a projected CRS and generate warnings if the data is <em>geographic</em>, using the function <code>st_is_longlat()</code> (this is because under the hood GEOS assumes projected data).
+Unfortunately R does not always know the CRS of an object, as shown below using the example of London introduced in section <a href="spatial-class.html#vector-data">2.1</a>:</p>
+<!-- , which is created by *coercing* a `data.frame` into an `sf` object (the `coords` argument specifies the coordinates): -->
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">london =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lon =</span> <span class="fl">-0.1</span>, <span class="dt">lat =</span> <span class="fl">51.5</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb149-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>))</a>
 <a class="sourceLine" id="cb149-3" data-line-number="3"><span class="kw">st_is_longlat</span>(london)</a>
 <a class="sourceLine" id="cb149-4" data-line-number="4"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
-<p>The results show that when geographic data is created from scratch, or is loaded from a source that has no CRS metadata, the CRS is unspecified by default.
-The CRS can be set with <code>st_set_crs()</code>:<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">london =<span class="st"> </span><span class="kw">st_set_crs</span>(london, <span class="dv">4326</span>)</a>
-<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="kw">st_is_longlat</span>(london)</a>
+<p>This shows that unless a CRS is manually specifified or is loaded from a source that has CRS metadata, the CRS is <code>NA</code>.
+A CRS can be added to <code>sf</code> objects with <code>st_set_crs()</code> as follows:<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">london_geo =<span class="st"> </span><span class="kw">st_set_crs</span>(london, <span class="dv">4326</span>)</a>
+<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="kw">st_is_longlat</span>(london_geo)</a>
 <a class="sourceLine" id="cb150-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
-<p>Many spatial operations assume that input vector objects are projected, even when in reality they are not.
-This can lead to problems, as illustrated by the following code chunk, which creates a buffer of one degree around <code>london</code>:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">london_buff =<span class="st"> </span><span class="kw">st_buffer</span>(london, <span class="dt">dist =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="co">#&gt; Warning in st_buffer.sfc(st_geometry(x), dist, nQuadSegs): st_buffer does</span></a>
-<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co">#&gt; not correctly buffer longitude/latitude data</span></a>
-<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co">#&gt; dist is assumed to be in decimal degrees (arc_degrees).</span></a></code></pre></div>
-<p>The message stating that <code>dist is assumed to be in decimal degrees</code> is useful: it warns that the result may be of limited use because it is in units of latitude and longitude, rather than meters or some other suitable measure of distance.
+<p>If the CRS of an object with lon/lat coordinates is not specified CRSs, this can lead to problems.
+An example is provided below, which creates a buffer of one unit around <code>london</code> and <code>london_geo</code> objects:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">london_buff_no_crs =<span class="st"> </span><span class="kw">st_buffer</span>(london, <span class="dt">dist =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb151-2" data-line-number="2">london_buff =<span class="st"> </span><span class="kw">st_buffer</span>(london_geo, <span class="dt">dist =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co">#&gt; Warning in st_buffer.sfc(st_geometry(x), dist, nQuadSegs): st_buffer does</span></a>
+<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co">#&gt; not correctly buffer longitude/latitude data</span></a>
+<a class="sourceLine" id="cb151-5" data-line-number="5"><span class="co">#&gt; dist is assumed to be in decimal degrees (arc_degrees).</span></a></code></pre></div>
+<p>Only the second operation generates a warning.
+The warning message it useful, telling us that result may be of limited use because it is in units of latitude and longitude, rather than meters or some other suitable measure of distance assumed by <code>st_buffer()</code>.
 The consequences of a failure to work on projected data are illustrated in Figure <a href="transform.html#fig:crs-buf">5.1</a> (left panel):
 the buffer is elongated in the north-south direction because lines of longitude converge towards the Earth’s poles.</p>
 
@@ -494,12 +498,12 @@ Conversely, if the outputs of a project are to be published in an online map, it
 If the visualization phase of a project involves publishing results using <a href="https://github.com/Leaflet/Leaflet">leaflet</a> via the common format <a href="http://geojson.org/">GeoJSON</a> (a common scenario) projected data should probably be transformed to WGS84.
 Another case is when two objects with different CRSs must be compared or combined: performing a geometric operation on two objects with different CRSs results in an error.
 This is demonstrated in the code chunk below, which attempts to find the distance between the projected and unprojected versions of <code>london</code>:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">st_distance</span>(london, london_proj)</a>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">st_distance</span>(london_geo, london_proj)</a>
 <a class="sourceLine" id="cb155-2" data-line-number="2"><span class="co"># &gt; Error: st_crs(x) == st_crs(y) is not TRUE</span></a></code></pre></div>
 <p>To make the <code>london</code> and <code>london_proj</code> objects geographically comparable one of them must be transformed into the CRS of the other.
 But which CRS to use?
 The answer is usually ‘to the projected CRS’, which in this case is the British National Grid (BNG, EPSG:27700):</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">london2 =<span class="st"> </span><span class="kw">st_transform</span>(london, <span class="dv">27700</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">london2 =<span class="st"> </span><span class="kw">st_transform</span>(london_geo, <span class="dv">27700</span>)</a></code></pre></div>
 <p>Now that a transformed version of <code>london</code> has been created, using the <strong>sf</strong> function <code>st_transform()</code>, the distance between the two representations of London can be found.
 It may come as a surprise that <code>london</code> and <code>london2</code> are just over 2 km apart!<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a></p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">st_distance</span>(london2, london_proj)</a>
@@ -1378,7 +1382,8 @@ Hint: The <code>st_length</code> function computes the length of a <code>LINESTR
 <div class="footnotes">
 <hr />
 <ol start="26">
-<li id="fn26"><p>The CRS can also be added when creating <code>sf</code> objects with the <code>crs</code> argument (e.g. <code>st_sf(geometry = st_sfc(st_point(c(-0.1, 51.5))), crs = 4326)</code>).
+<li id="fn26"><p>
+The CRS can also be added when creating <code>sf</code> objects with the <code>crs</code> argument (e.g. <code>st_sf(geometry = st_sfc(st_point(c(-0.1, 51.5))), crs = 4326)</code>).
 The same argument can also be used to set the CRS when creating raster datasets (e.g. <code>raster(crs = &quot;+proj=longlat&quot;)</code>).<a href="transform.html#fnref26" class="footnote-back">↩</a></p></li>
 <li id="fn27"><p>
 For a short description of the most relevant projection parameters and related concepts, see the fourth lecture by Jochen Albrecht: <a href="http://www.geography.hunter.cuny.edu/~jochen/GTECH361/lectures/lecture04/concepts/Map%20coordinate%20systems/Projection%20parameters.htm">geography.hunter.cuny.edu/~jochen/GTECH361/lectures/</a> as well as <a href="http://proj4.org/parameters.html" class="uri">http://proj4.org/parameters.html</a>.

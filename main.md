@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve87aab7337b3f2e35
+preserve540f13b32f3b6a65
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve237f53e0dea3fdba
+preserved6658af9268a48a0
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3642,13 +3642,16 @@ Because of the importance of reprojection, introduced in Chapter \@ref(spatial-c
 
 ## Reprojecting geographic data {#reproj-geo-data}
 
-Section \@ref(crs-intro) introduced coordinate reference systems (CRSs) and demonstrated their importance for geocomputation.
-This section goes further, by demonstrating some problems that can arise when using an inappropriate CRS and how to *transform* geometries from one CRS to another.
+Section \@ref(crs-intro) introduced coordinate reference systems (CRSs) and demonstrated their importance.
+This section goes further.
+It highlights issues that can arise when using inappropriate CRSs and how to *transform* data from one CRS to another.
 
-Many spatial operations assume that you are using a *projected* CRS.
-The GEOS engine underlying most spatial operations in **sf**, for example, assumes your data is in a projected CRS.
-For this reason **sf** contains a function for checking if geometries have a geographic or projected CRS.
-This is illustrated below using the example of London introduced in section \@ref(vector-data), which is created by *coercing* a `data.frame` into an `sf` object (the `coords` argument specifies the coordinates):
+As illustrated in Figure \@ref(fig:vectorplots), there are two types of CRS: *geographic* ('lon/lat', with units in degrees longitude and latitude) and *projected* (typically in units of meters from a datum).
+This has consequences because many geometric operations a *projected* CRS:
+most geometric operations in **sf**, for example, assume a projected CRS and generate warnings if the data is *geographic*, using the function `st_is_longlat()` (this is because under the hood GEOS assumes projected data).
+Unfortunately R does not always know the CRS of an object, as shown below using the example of London introduced in section \@ref(vector-data):
+
+<!-- , which is created by *coercing* a `data.frame` into an `sf` object (the `coords` argument specifies the coordinates): -->
 
 
 ```r
@@ -3658,29 +3661,33 @@ st_is_longlat(london)
 #> [1] NA
 ```
 
-The results show that when geographic data is created from scratch, or is loaded from a source that has no CRS metadata, the CRS is unspecified by default.
-The CRS can be set with `st_set_crs()`:^[The CRS can also be added when creating `sf` objects with the `crs` argument (e.g. `st_sf(geometry = st_sfc(st_point(c(-0.1, 51.5))), crs = 4326)`).
-The same argument can also be used to set the CRS when creating raster datasets (e.g. `raster(crs = "+proj=longlat")`).]
+This shows that unless a CRS is manually specifified or is loaded from a source that has CRS metadata, the CRS is `NA`.
+A CRS can be added to `sf` objects with `st_set_crs()` as follows:^[
+The CRS can also be added when creating `sf` objects with the `crs` argument (e.g. `st_sf(geometry = st_sfc(st_point(c(-0.1, 51.5))), crs = 4326)`).
+The same argument can also be used to set the CRS when creating raster datasets (e.g. `raster(crs = "+proj=longlat")`).
+]
 
 
 ```r
-london = st_set_crs(london, 4326)
-st_is_longlat(london)
+london_geo = st_set_crs(london, 4326)
+st_is_longlat(london_geo)
 #> [1] TRUE
 ```
 
-Many spatial operations assume that input vector objects are projected, even when in reality they are not.
-This can lead to problems, as illustrated by the following code chunk, which creates a buffer of one degree around `london`:
+If the CRS of an object with lon/lat coordinates is not specified CRSs, this can lead to problems.
+An example is provided below, which creates a buffer of one unit around `london` and `london_geo` objects:
 
 
 ```r
-london_buff = st_buffer(london, dist = 1)
+london_buff_no_crs = st_buffer(london, dist = 1)
+london_buff = st_buffer(london_geo, dist = 1)
 #> Warning in st_buffer.sfc(st_geometry(x), dist, nQuadSegs): st_buffer does
 #> not correctly buffer longitude/latitude data
 #> dist is assumed to be in decimal degrees (arc_degrees).
 ```
 
-The message stating that `dist is assumed to be in decimal degrees` is useful: it warns that the result may be of limited use because it is in units of latitude and longitude, rather than meters or some other suitable measure of distance.
+Only the second operation generates a warning.
+The warning message it useful, telling us that result may be of limited use because it is in units of latitude and longitude, rather than meters or some other suitable measure of distance assumed by `st_buffer()`.
 The consequences of a failure to work on projected data are illustrated in Figure \@ref(fig:crs-buf) (left panel):
 the buffer is elongated in the north-south direction because lines of longitude converge towards the Earth's poles.
 
@@ -3763,7 +3770,7 @@ This is demonstrated in the code chunk below, which attempts to find the distanc
 
 
 ```r
-st_distance(london, london_proj)
+st_distance(london_geo, london_proj)
 # > Error: st_crs(x) == st_crs(y) is not TRUE
 ```
 
@@ -3773,7 +3780,7 @@ The answer is usually 'to the projected CRS', which in this case is the British 
 
 
 ```r
-london2 = st_transform(london, 27700)
+london2 = st_transform(london_geo, 27700)
 ```
 
 Now that a transformed version of `london` has been created, using the **sf** function `st_transform()`, the distance between the two representations of London can be found.
@@ -6663,7 +6670,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservedb663c7b27b133e5
+preserveb85c049569278eac
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7350,7 +7357,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve625ba56a3bb39229
+preservef7a4e6d85f00b548
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7449,7 +7456,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedc5e9463d8c9bb80
+preserve3071ee07133bae04
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
