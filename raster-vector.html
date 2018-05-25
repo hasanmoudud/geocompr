@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-24">
+<meta name="date" content="2018-05-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -383,11 +383,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>This chapter requires the following packages:</li>
 </ul>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb352-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb352-3" data-line-number="3"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb352-4" data-line-number="4"><span class="kw">library</span>(spData)</a>
-<a class="sourceLine" id="cb352-5" data-line-number="5"><span class="kw">library</span>(spDataLarge)</a></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb350-3" data-line-number="3"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb350-4" data-line-number="4"><span class="kw">library</span>(spData)</a>
+<a class="sourceLine" id="cb350-5" data-line-number="5"><span class="kw">library</span>(spDataLarge)</a></code></pre></div>
 </div>
 <div id="introduction-7" class="section level2">
 <h2><span class="header-section-number">11.1</span> Introduction</h2>
@@ -416,15 +416,15 @@ Both operations reduce object memory use and associated computational resources 
 <p>Both target and cropping objects must have the same projection.
 The following code chunk therefore not only loads the datasets, from the <strong>spDataLarge</strong> package installed in Chapter <a href="spatial-class.html#spatial-class">2</a>.
 It also reprojects <code>zion</code> (see section <a href="transform.html#reproj-geo-data">5.2</a> for more on reprojection):</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">srtm =<span class="st"> </span><span class="kw">raster</span>(<span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>))</a>
-<a class="sourceLine" id="cb353-2" data-line-number="2">zion =<span class="st"> </span><span class="kw">read_sf</span>(<span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>))</a>
-<a class="sourceLine" id="cb353-3" data-line-number="3">zion =<span class="st"> </span><span class="kw">st_transform</span>(zion, <span class="kw">projection</span>(srtm))</a></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1">srtm =<span class="st"> </span><span class="kw">raster</span>(<span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>))</a>
+<a class="sourceLine" id="cb351-2" data-line-number="2">zion =<span class="st"> </span><span class="kw">read_sf</span>(<span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>))</a>
+<a class="sourceLine" id="cb351-3" data-line-number="3">zion =<span class="st"> </span><span class="kw">st_transform</span>(zion, <span class="kw">projection</span>(srtm))</a></code></pre></div>
 <p>We will use <code>crop()</code> from the <strong>raster</strong> package to crop the <code>srtm</code> raster.
 <code>crop()</code> reduces the rectangular extent of the object passed to its first argument based on the extent of the object passed to its second argument, as demonstrated in the command below (which generates Figure <a href="raster-vector.html#fig:cropmask">11.1</a>:B — note the smaller extent of the raster background):</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1">srtm_cropped =<span class="st"> </span><span class="kw">crop</span>(srtm, <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">srtm_cropped =<span class="st"> </span><span class="kw">crop</span>(srtm, <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
 <p>Related to <code>crop()</code> is the <strong>raster</strong> function <code>mask()</code>, which sets values outside of the bounds a the object passed to its second argument to <code>NA</code>.
 The following command therefore masks every cell outside of the the Zion National Park boundaries (Figure <a href="raster-vector.html#fig:cropmask">11.1</a>:C):</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1">srtm_masked =<span class="st"> </span><span class="kw">mask</span>(srtm, <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">srtm_masked =<span class="st"> </span><span class="kw">mask</span>(srtm, <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
 <p>Changing the settings of <code>mask()</code> yields in different results.
 Setting <code>maskvalue = 0</code>, for example, would set all pixels outside the national park to 0.
 Setting <code>inverse = TRUE</code> would mask everything <em>inside</em> the bounds of the park (see <code>?mask</code> for details).</p>
@@ -444,7 +444,7 @@ The reverse of raster extraction — assigning raster cell values based on vecto
 For this purpose we will use <code>zion_points</code>, which contain a sample of 30 locations with the Zion National Park (Figure <a href="raster-vector.html#fig:pointextr">11.2</a>).
 <!-- They could represent places where soils properties were measured and we want to know what is the elevation of each point. -->
 The following command extracts elevation values from <code>srtm</code> and assigns the resulting vector to a new column (<code>elevation</code>) in the <code>zion_points</code> dataset:</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">zion_points<span class="op">$</span>elevation =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(srtm, <span class="kw">as</span>(zion_points, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1">zion_points<span class="op">$</span>elevation =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(srtm, <span class="kw">as</span>(zion_points, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
 <p>The <code>buffer</code> argument can be used to specify a buffer radius (in meters) around each point.
 The result of <code>raster::extract(srtm, zion_points, buffer = 1000)</code>, for example, is a list of vectors, each of which representing the values of cells inside the buffer associated with each point.
 In practice this example is a special case of extraction with a polygon selector, described below.</p>
@@ -456,19 +456,19 @@ Figure 11.2: Locations of points used for raster extraction.
 </div>
 <p>Raster extraction also works with <strong>line</strong> selectors.
 To demonstrate this, the code below creates <code>zion_transect</code>, a straight line going from northwest to southeast of the Zion National Park, illustrated in Figure <a href="raster-vector.html#fig:lineextr">11.3</a>:A (see section <a href="spatial-class.html#vector-data">2.1</a> for a recap on the vector data model):</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1">zion_transect =<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="op">-</span><span class="fl">113.2</span>, <span class="fl">-112.9</span>), <span class="kw">c</span>(<span class="fl">37.45</span>, <span class="fl">37.2</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb357-2" data-line-number="2"><span class="st">  </span><span class="kw">st_linestring</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb357-3" data-line-number="3"><span class="st">  </span><span class="kw">st_sfc</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb357-4" data-line-number="4"><span class="st">  </span><span class="kw">st_sf</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1">zion_transect =<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="op">-</span><span class="fl">113.2</span>, <span class="fl">-112.9</span>), <span class="kw">c</span>(<span class="fl">37.45</span>, <span class="fl">37.2</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb355-2" data-line-number="2"><span class="st">  </span><span class="kw">st_linestring</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb355-3" data-line-number="3"><span class="st">  </span><span class="kw">st_sfc</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb355-4" data-line-number="4"><span class="st">  </span><span class="kw">st_sf</span>()</a></code></pre></div>
 <p>The utility of extracting heights from a linear selector is illustrated by imagining that you are planning a hike.
 The method demonstrated below provides an ‘elevation profile’ of the route (the line does not need to be straight), useful for estimating how long it will take due to long climbs:</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1">transect =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(srtm, <span class="kw">as</span>(zion_transect, <span class="st">&quot;Spatial&quot;</span>), <span class="dt">along =</span> <span class="ot">TRUE</span>, <span class="dt">cellnumbers =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">transect =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(srtm, <span class="kw">as</span>(zion_transect, <span class="st">&quot;Spatial&quot;</span>), <span class="dt">along =</span> <span class="ot">TRUE</span>, <span class="dt">cellnumbers =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Note the use of <code>along = TRUE</code> and <code>cellnumbers = TRUE</code> arguments to return cell IDs <em>along</em> the path.
 The result is a list containing a matrix of cell IDs in the first column and elevation values in the second.
 The subsequent code chunk first converts this tricky matrix-in-a-list object into a simple data frame, returns the coordinates associated with each extracted cell and finds the associated distances along the transect (see <code>?geosphere::distm()</code> for details):</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1">transect_df =<span class="st"> </span><span class="kw">map_dfr</span>(transect, as_data_frame, <span class="dt">.id =</span> <span class="st">&quot;ID&quot;</span>)</a>
-<a class="sourceLine" id="cb359-2" data-line-number="2">transect_coords =<span class="st"> </span><span class="kw">xyFromCell</span>(srtm, transect_df<span class="op">$</span>cell)</a>
-<a class="sourceLine" id="cb359-3" data-line-number="3">transect_df<span class="op">$</span>dist =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">cumsum</span>(geosphere<span class="op">::</span><span class="kw">distGeo</span>(transect_coords)))    </a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1">transect_df =<span class="st"> </span><span class="kw">map_dfr</span>(transect, as_data_frame, <span class="dt">.id =</span> <span class="st">&quot;ID&quot;</span>)</a>
+<a class="sourceLine" id="cb357-2" data-line-number="2">transect_coords =<span class="st"> </span><span class="kw">xyFromCell</span>(srtm, transect_df<span class="op">$</span>cell)</a>
+<a class="sourceLine" id="cb357-3" data-line-number="3">transect_df<span class="op">$</span>dist =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">cumsum</span>(geosphere<span class="op">::</span><span class="kw">distGeo</span>(transect_coords)))    </a></code></pre></div>
 <p>The resulting <code>transect_df</code> can be used to create elevation profiles, as illustrated in Figure <a href="raster-vector.html#fig:lineextr">11.3</a>:B.</p>
 <div class="figure" style="text-align: center"><span id="fig:lineextr"></span>
 <img src="figures/lineextr-1.png" alt="Location of a line used for raster extraction (left) and the elevation along this line (right)." width="576" />
@@ -479,32 +479,32 @@ Figure 11.3: Location of a line used for raster extraction (left) and the elevat
 <p>The final type of geographic vector object for raster extraction is <strong>polygons</strong>.
 Like lines and buffers, polygons tend to return many raster values per polygon.
 This is demonstrated in the command below, which results in a data frame with column names <code>ID</code> (the row number of the polygon) and <code>srtm</code> (associated elevation values):</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1">zion_srtm_values =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(<span class="dt">x =</span> srtm, <span class="dt">y =</span> <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>), <span class="dt">df =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1">zion_srtm_values =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(<span class="dt">x =</span> srtm, <span class="dt">y =</span> <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>), <span class="dt">df =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Such results can be used to generate summary statistics for raster values per polygon, for example to to characterize a single region or to compare many regions.
 The generation of summary statistics is demonstrated the code below, which creates the object <code>zion_srtm_df</code> containing summary statistics for elevation values in Zion National Park (see <a href="raster-vector.html#fig:polyextr">11.4</a>:A):</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1"><span class="kw">group_by</span>(zion_srtm_values, ID) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb361-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize_at</span>(<span class="kw">vars</span>(srtm), <span class="kw">funs</span>(min, mean, max))</a>
-<a class="sourceLine" id="cb361-3" data-line-number="3"><span class="co">#&gt; # A tibble: 1 x 4</span></a>
-<a class="sourceLine" id="cb361-4" data-line-number="4"><span class="co">#&gt;      ID   min  mean   max</span></a>
-<a class="sourceLine" id="cb361-5" data-line-number="5"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb361-6" data-line-number="6"><span class="co">#&gt; 1    1. 1122. 1818. 2661.</span></a></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="kw">group_by</span>(zion_srtm_values, ID) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb359-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize_at</span>(<span class="kw">vars</span>(srtm), <span class="kw">funs</span>(min, mean, max))</a>
+<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="co">#&gt; # A tibble: 1 x 4</span></a>
+<a class="sourceLine" id="cb359-4" data-line-number="4"><span class="co">#&gt;      ID   min  mean   max</span></a>
+<a class="sourceLine" id="cb359-5" data-line-number="5"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb359-6" data-line-number="6"><span class="co">#&gt; 1    1. 1122. 1818. 2661.</span></a></code></pre></div>
 <p>The preceding code chunk used the <strong>tidyverse</strong> to provide summary statistics for cell values per polygon ID, as described in Chapter <a href="attr.html#attr">3</a>.
 The results provide useful summaries, for example that the maximum height in the park is around 2,661 meters (other summary statistics such as standard deviation can also be calculated in this way).
 Because there is only one polygon in the example a data frame with a single row is returned, but the method works when multiple selector polygons are used.</p>
 <p>The same approach works for counting occurrences of categorical raster values within polygons.
 This is illustrated with a land cover dataset (<code>nlcd</code>) from the <strong>spDataLarge</strong> package in <a href="raster-vector.html#fig:polyextr">11.4</a>:B and demonstrated in the code below:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1">zion_nlcd =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(nlcd, <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>), <span class="dt">df =</span> <span class="ot">TRUE</span>, <span class="dt">factors =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb362-2" data-line-number="2">dplyr<span class="op">::</span><span class="kw">select</span>(zion_nlcd, ID, levels) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb362-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(key, value, <span class="op">-</span>ID) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb362-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(ID, key, value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb362-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb362-6" data-line-number="6"><span class="st">  </span><span class="kw">spread</span>(value, n, <span class="dt">fill =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb362-7" data-line-number="7"><span class="co">#&gt; # A tibble: 1 x 9</span></a>
-<a class="sourceLine" id="cb362-8" data-line-number="8"><span class="co">#&gt; # Groups:   ID, key [1]</span></a>
-<a class="sourceLine" id="cb362-9" data-line-number="9"><span class="co">#&gt;      ID key    Barren Cultivated Developed  Forest Herbaceous Shrubland</span></a>
-<a class="sourceLine" id="cb362-10" data-line-number="10"><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb362-11" data-line-number="11"><span class="co">#&gt; 1    1. levels 98285.        62.     4205. 298299.       235.   203701.</span></a>
-<a class="sourceLine" id="cb362-12" data-line-number="12"><span class="co">#&gt; # ... with 1 more variable: Wetlands &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1">zion_nlcd =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(nlcd, <span class="kw">as</span>(zion, <span class="st">&quot;Spatial&quot;</span>), <span class="dt">df =</span> <span class="ot">TRUE</span>, <span class="dt">factors =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb360-2" data-line-number="2">dplyr<span class="op">::</span><span class="kw">select</span>(zion_nlcd, ID, levels) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb360-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(key, value, <span class="op">-</span>ID) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb360-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(ID, key, value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb360-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb360-6" data-line-number="6"><span class="st">  </span><span class="kw">spread</span>(value, n, <span class="dt">fill =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb360-7" data-line-number="7"><span class="co">#&gt; # A tibble: 1 x 9</span></a>
+<a class="sourceLine" id="cb360-8" data-line-number="8"><span class="co">#&gt; # Groups:   ID, key [1]</span></a>
+<a class="sourceLine" id="cb360-9" data-line-number="9"><span class="co">#&gt;      ID key    Barren Cultivated Developed  Forest Herbaceous Shrubland</span></a>
+<a class="sourceLine" id="cb360-10" data-line-number="10"><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb360-11" data-line-number="11"><span class="co">#&gt; 1    1. levels 98285.        62.     4205. 298299.       235.   203701.</span></a>
+<a class="sourceLine" id="cb360-12" data-line-number="12"><span class="co">#&gt; # ... with 1 more variable: Wetlands &lt;dbl&gt;</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:polyextr"></span>
 <img src="figures/polyextr-1.png" alt="Area used for continuous (left) and categorical (right) raster extraction." width="576" />
 <p class="caption">
@@ -536,23 +536,23 @@ Its first two arguments are <code>x</code>, vector object to be rasterized and <
 The geographic resolution of the input raster has a major impact on the results: if it is too low (cell size is too large) the result may miss the full geographic variability of the vector data; if it is too high computational times may be excessive.
 There are no simple rules to follow when deciding an appropriate geographic resolution, which is heavily dependent on the intended use of the results.</p>
 <p>To demonstrate rasterization in action, we will use a template raster that has the same extent and CRS as the input vector data <code>cycle_hire_osm_projected</code> (a dataset on cycle hire points in London illustrated in Figure <a href="raster-vector.html#fig:vector-rasterization1">11.5</a>:A) and spatial resolution of 1000 meters:</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1">cycle_hire_osm_projected =<span class="st"> </span><span class="kw">st_transform</span>(cycle_hire_osm, <span class="dv">27700</span>)</a>
-<a class="sourceLine" id="cb363-2" data-line-number="2">raster_template =<span class="st"> </span><span class="kw">raster</span>(<span class="kw">extent</span>(cycle_hire_osm_projected), <span class="dt">resolution =</span> <span class="dv">1000</span>,</a>
-<a class="sourceLine" id="cb363-3" data-line-number="3">                         <span class="dt">crs =</span> <span class="kw">st_crs</span>(cycle_hire_osm_projected)<span class="op">$</span>proj4string)</a></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1">cycle_hire_osm_projected =<span class="st"> </span><span class="kw">st_transform</span>(cycle_hire_osm, <span class="dv">27700</span>)</a>
+<a class="sourceLine" id="cb361-2" data-line-number="2">raster_template =<span class="st"> </span><span class="kw">raster</span>(<span class="kw">extent</span>(cycle_hire_osm_projected), <span class="dt">resolution =</span> <span class="dv">1000</span>,</a>
+<a class="sourceLine" id="cb361-3" data-line-number="3">                         <span class="dt">crs =</span> <span class="kw">st_crs</span>(cycle_hire_osm_projected)<span class="op">$</span>proj4string)</a></code></pre></div>
 <p>Rasterization is a very flexible operation: the results depend not only on the nature of the template raster, but also on the type of input vector (e.g. points, polygons) and a variety arguments taken by the <code>rasterize()</code> function.</p>
 <p>To illustrate this flexibility we will try three different approaches rasterization.
 First we create a raster representing the presence or absence of cycle hire points (known as presence/absence rasters).
 In this case <code>rasterize()</code> requires only one argument in addition to <code>x</code> and <code>y</code> (the aformentioned vector and raster objects): a value to be transferred to all non-empty cells specified by <code>field</code> (results illustrated Figure <a href="raster-vector.html#fig:vector-rasterization1">11.5</a>:B).</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1">ch_raster1 =<span class="st"> </span><span class="kw">rasterize</span>(cycle_hire_osm_projected, raster_template, <span class="dt">field =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1">ch_raster1 =<span class="st"> </span><span class="kw">rasterize</span>(cycle_hire_osm_projected, raster_template, <span class="dt">field =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p>The <code>fun</code> argument specifies summary statistics used to covert multiple observations in close proximity into associate cells in the raster object.
 By default <code>fun = 'last</code> is used but other options such as <code>fun = &quot;count&quot;</code> can be used, in this case to count the number of cycle hire points in each grid cell (the results of this operation are illustrated in Figure <a href="raster-vector.html#fig:vector-rasterization1">11.5</a>:C).</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1">ch_raster2 =<span class="st"> </span><span class="kw">rasterize</span>(cycle_hire_osm_projected, raster_template, </a>
-<a class="sourceLine" id="cb365-2" data-line-number="2">                       <span class="dt">field =</span> <span class="dv">1</span>, <span class="dt">fun =</span> <span class="st">&quot;count&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1">ch_raster2 =<span class="st"> </span><span class="kw">rasterize</span>(cycle_hire_osm_projected, raster_template, </a>
+<a class="sourceLine" id="cb363-2" data-line-number="2">                       <span class="dt">field =</span> <span class="dv">1</span>, <span class="dt">fun =</span> <span class="st">&quot;count&quot;</span>)</a></code></pre></div>
 <p>The new output, <code>ch_raster2</code>, shows the number of cycle hire points in each grid cell.
 The cycle hire locations have different numbers of bicycles described by the <code>capacity</code> variable, raising the question, what’s the capacity in each grid cell?
 To calculate that we must <code>sum</code> the field (<code>&quot;capacity&quot;</code>), resulting in output illustrated in Figure <a href="raster-vector.html#fig:vector-rasterization1">11.5</a>:D, calculated with the following command (other summary functions such as <code>mean</code> could be used):</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1">ch_raster3 =<span class="st"> </span><span class="kw">rasterize</span>(cycle_hire_osm_projected, raster_template, </a>
-<a class="sourceLine" id="cb366-2" data-line-number="2">                       <span class="dt">field =</span> <span class="st">&quot;capacity&quot;</span>, <span class="dt">fun =</span> sum)</a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1">ch_raster3 =<span class="st"> </span><span class="kw">rasterize</span>(cycle_hire_osm_projected, raster_template, </a>
+<a class="sourceLine" id="cb364-2" data-line-number="2">                       <span class="dt">field =</span> <span class="st">&quot;capacity&quot;</span>, <span class="dt">fun =</span> sum)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:vector-rasterization1"></span>
 <img src="figures/vector-rasterization1-1.png" alt="Examples of point's rasterization." width="576" />
 <p class="caption">
@@ -561,15 +561,15 @@ Figure 11.5: Examples of point’s rasterization.
 </div>
 <p>Another dataset based on California’s polygons and borders (created below) illustrates raterization of lines.
 After casting the polygon objects into a multilinestring, a template raster is created, with a resolution of a 0.5 degree:</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1">california =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(us_states, NAME <span class="op">==</span><span class="st"> &quot;California&quot;</span>)</a>
-<a class="sourceLine" id="cb367-2" data-line-number="2">california_borders =<span class="st"> </span><span class="kw">st_cast</span>(california, <span class="st">&quot;MULTILINESTRING&quot;</span>)</a>
-<a class="sourceLine" id="cb367-3" data-line-number="3">raster_template2 =<span class="st"> </span><span class="kw">raster</span>(<span class="kw">extent</span>(california), <span class="dt">resolution =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb367-4" data-line-number="4">                         <span class="dt">crs =</span> <span class="kw">st_crs</span>(california)<span class="op">$</span>proj4string)</a></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1">california =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(us_states, NAME <span class="op">==</span><span class="st"> &quot;California&quot;</span>)</a>
+<a class="sourceLine" id="cb365-2" data-line-number="2">california_borders =<span class="st"> </span><span class="kw">st_cast</span>(california, <span class="st">&quot;MULTILINESTRING&quot;</span>)</a>
+<a class="sourceLine" id="cb365-3" data-line-number="3">raster_template2 =<span class="st"> </span><span class="kw">raster</span>(<span class="kw">extent</span>(california), <span class="dt">resolution =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb365-4" data-line-number="4">                         <span class="dt">crs =</span> <span class="kw">st_crs</span>(california)<span class="op">$</span>proj4string)</a></code></pre></div>
 <p>Line rasterization is demonstrated in the code below.
 In the resulting raster, all cells that are touched by a line get a value, as illustrated in Figure <a href="raster-vector.html#fig:vector-rasterization2">11.6</a>:A.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1">california_raster1 =<span class="st"> </span><span class="kw">rasterize</span>(california_borders, raster_template2)</a></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1">california_raster1 =<span class="st"> </span><span class="kw">rasterize</span>(california_borders, raster_template2)</a></code></pre></div>
 <p>Polygon rasterization, by contrast, selects only cells whose centroids are inside the selector polygon, as illustrated in Figure <a href="raster-vector.html#fig:vector-rasterization2">11.6</a>:B.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1">california_raster2 =<span class="st"> </span><span class="kw">rasterize</span>(california, raster_template2)</a></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1">california_raster2 =<span class="st"> </span><span class="kw">rasterize</span>(california, raster_template2)</a></code></pre></div>
 <!-- getCover? -->
 <!-- the fraction of each grid cell that is covered by the polygons-->
 <!-- ```{r, echo=FALSE, eval=FALSE} -->
@@ -606,8 +606,8 @@ In R vectorization refers to the possibility of replacing <code>for</code>-loops
 <p>The simplest form of vectorization is to convert the centroids of raster cells into points.
 <code>rasterToPoints()</code> does exactly this for all non-<code>NA</code> raster grid cells (Figure <a href="raster-vector.html#fig:raster-vectorization1">11.7</a>).
 Setting the <code>spatial</code> parameter to <code>TRUE</code> ensures the output is a spatial object, not a matrix.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1">elev_point =<span class="st"> </span><span class="kw">rasterToPoints</span>(elev, <span class="dt">spatial =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1">elev_point =<span class="st"> </span><span class="kw">rasterToPoints</span>(elev, <span class="dt">spatial =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb368-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:raster-vectorization1"></span>
 <img src="figures/raster-vectorization1-1.png" alt="Raster and point representation of `elev`." width="576" />
 <p class="caption">
@@ -618,10 +618,10 @@ Figure 11.7: Raster and point representation of <code>elev</code>.
 We will use a real-world digital elevation model (DEM) because the artificial raster <code>elev</code> produces parallel lines (task: verify this and explain why this happens).
 <!-- because when creating it we made the upper left corner the lowest and the lower right corner the highest value while increasing cell values by one from left to right. -->
 Contour lines can be created with the <strong>raster</strong> function <code>rasterToContour()</code>, which is itself a wrapper around <code>contourLines()</code>, as demonstrated below:</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1"><span class="co"># not shown</span></a>
-<a class="sourceLine" id="cb371-2" data-line-number="2"><span class="kw">data</span>(dem, <span class="dt">package =</span> <span class="st">&quot;RQGIS&quot;</span>)</a>
-<a class="sourceLine" id="cb371-3" data-line-number="3"><span class="kw">plot</span>(dem, <span class="dt">axes =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb371-4" data-line-number="4"><span class="kw">contour</span>(dem, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1"><span class="co"># not shown</span></a>
+<a class="sourceLine" id="cb369-2" data-line-number="2"><span class="kw">data</span>(dem, <span class="dt">package =</span> <span class="st">&quot;RQGIS&quot;</span>)</a>
+<a class="sourceLine" id="cb369-3" data-line-number="3"><span class="kw">plot</span>(dem, <span class="dt">axes =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb369-4" data-line-number="4"><span class="kw">contour</span>(dem, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Contours can be added to existing plots with functions such as <code>contour()</code>, <code>rasterVis::contourplot()</code> or <code>tmap::tm_iso()</code>.
 As illustrated in Figure <a href="raster-vector.html#fig:contour">11.8</a> (which was created using the <strong>tmap</strong> package described in Chapter <a href="adv-map.html#adv-map">9</a>), isolines can be labelled.</p>
 <div class="figure" style="text-align: center"><span id="fig:contour"></span>
@@ -635,11 +635,11 @@ This can be done with <code>raster::rasterToPolygons()</code>, wich converts eac
 <p>This is illustrated below by converting the <code>grain</code> object into polygons and subsequently dissolving borders between polygons with the same attribute values.
 Attributes in this case are stored in a collumn called <code>layer</code> (see section <a href="transform.html#geometry-unions">5.3.6</a> and Figure <a href="raster-vector.html#fig:raster-vectorization2">11.9</a>).
 (Note: a convenient alternative for converting rasters into polygons is <code>spex::polygonize()</code> which by default returns an <code>sf</code> object.)</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1">grain_poly =<span class="st"> </span><span class="kw">rasterToPolygons</span>(grain) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb372-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>()</a>
-<a class="sourceLine" id="cb372-3" data-line-number="3">grain_poly2 =<span class="st"> </span>grain_poly <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb372-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(layer) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb372-5" data-line-number="5"><span class="st">  </span><span class="kw">summarize</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1">grain_poly =<span class="st"> </span><span class="kw">rasterToPolygons</span>(grain) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>()</a>
+<a class="sourceLine" id="cb370-3" data-line-number="3">grain_poly2 =<span class="st"> </span>grain_poly <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb370-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(layer) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb370-5" data-line-number="5"><span class="st">  </span><span class="kw">summarize</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:raster-vectorization2"></span>
 <img src="figures/raster-vectorization2-1.png" alt="Illustration of vectorization of raster (left) into polygon (center) and polygon aggregation (right)." width="576" />
 <p class="caption">
@@ -652,11 +652,11 @@ Figure 11.9: Illustration of vectorization of raster (left) into polygon (center
 <h2><span class="header-section-number">11.6</span> Exercises</h2>
 <p>The next two exercises will use a vector (<code>random_points</code>) and raster dataset (<code>ndvi</code>) from the <strong>RQGIS</strong> package.
 It also uses a polygonal ‘convex hull’ derived from the vector dataset (<code>ch</code>) to represent the area of interest:</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
-<a class="sourceLine" id="cb373-2" data-line-number="2"><span class="kw">data</span>(random_points)</a>
-<a class="sourceLine" id="cb373-3" data-line-number="3"><span class="kw">data</span>(ndvi)</a>
-<a class="sourceLine" id="cb373-4" data-line-number="4">ch =<span class="st"> </span><span class="kw">st_combine</span>(random_points) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb373-5" data-line-number="5"><span class="st">  </span><span class="kw">st_convex_hull</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
+<a class="sourceLine" id="cb371-2" data-line-number="2"><span class="kw">data</span>(random_points)</a>
+<a class="sourceLine" id="cb371-3" data-line-number="3"><span class="kw">data</span>(ndvi)</a>
+<a class="sourceLine" id="cb371-4" data-line-number="4">ch =<span class="st"> </span><span class="kw">st_combine</span>(random_points) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb371-5" data-line-number="5"><span class="st">  </span><span class="kw">st_convex_hull</span>()</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>Crop the <code>ndvi</code> raster using (1) the <code>random_points</code> dataset and (2) the <code>ch</code> dataset.
 Are there any difference in the output maps?

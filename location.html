@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-24">
+<meta name="date" content="2018-05-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -383,11 +383,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>This chapter requires the following packages (<strong>ggmap</strong> must also be installed):</li>
 </ul>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb262-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb262-3" data-line-number="3"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb262-4" data-line-number="4"><span class="kw">library</span>(osmdata)</a>
-<a class="sourceLine" id="cb262-5" data-line-number="5"><span class="kw">library</span>(spDataLarge)</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb260-3" data-line-number="3"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb260-4" data-line-number="4"><span class="kw">library</span>(osmdata)</a>
+<a class="sourceLine" id="cb260-5" data-line-number="5"><span class="kw">library</span>(spDataLarge)</a></code></pre></div>
 <ul>
 <li>Required data will be downloaded in due course.
 As a convenience to the reader and to ensure easy reproducibility we have made available the downloaded data in the <strong>spDataLarge</strong> package.</li>
@@ -442,22 +442,22 @@ The following sections will demonstrate how the techniques learned during the fi
 <h2><span class="header-section-number">8.3</span> Tidy the input data</h2>
 <p>The German government provides gridded census data at either 1 km or 100 m resolution.
 The following code chunk downloads, unzips and reads-in the 1 km data.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="kw">download.file</span>(<span class="st">&quot;https://tinyurl.com/ybtpkwxz&quot;</span>, </a>
-<a class="sourceLine" id="cb263-2" data-line-number="2">              <span class="dt">destfile =</span> <span class="st">&quot;census.zip&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</a>
-<a class="sourceLine" id="cb263-3" data-line-number="3"><span class="kw">unzip</span>(<span class="st">&quot;census.zip&quot;</span>) <span class="co"># unzip the files</span></a>
-<a class="sourceLine" id="cb263-4" data-line-number="4">census_de =<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv2</span>(<span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;Gitter.csv&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">download.file</span>(<span class="st">&quot;https://tinyurl.com/ybtpkwxz&quot;</span>, </a>
+<a class="sourceLine" id="cb261-2" data-line-number="2">              <span class="dt">destfile =</span> <span class="st">&quot;census.zip&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</a>
+<a class="sourceLine" id="cb261-3" data-line-number="3"><span class="kw">unzip</span>(<span class="st">&quot;census.zip&quot;</span>) <span class="co"># unzip the files</span></a>
+<a class="sourceLine" id="cb261-4" data-line-number="4">census_de =<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv2</span>(<span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;Gitter.csv&quot;</span>))</a></code></pre></div>
 <p>As a convenience to the reader, the corresponding data has been put into <strong>spDataLarge</strong> and can be accessed as follows</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;census_de&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;census_de&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
 <p>The <code>census_de</code> object is a data frame containing 13 variables for more than 300,000 grid cells across Germany.
 For our work we only need a subset of these: Easting (<code>x</code>) and Northing (<code>y</code>), number of inhabitants (population; <code>pop</code>), mean average age (<code>mean_age</code>), proportion of women (<code>women</code>) and average household size (<code>hh_size</code>).
 These variables are selected and renamed from German into English in the code chunk below and summarized in Table <a href="location.html#tab:census-desc">8.1</a>.
 Further, <code>mutate_all()</code> is used to convert values -1 and -9 (meaning unknown) to <code>NA</code>.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="co"># pop = population, hh_size = household size</span></a>
-<a class="sourceLine" id="cb265-2" data-line-number="2">input =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(census_de, <span class="dt">x =</span> x_mp_1km, <span class="dt">y =</span> y_mp_1km, <span class="dt">pop =</span> Einwohner,</a>
-<a class="sourceLine" id="cb265-3" data-line-number="3">                      <span class="dt">women =</span> Frauen_A, <span class="dt">mean_age =</span> Alter_D,</a>
-<a class="sourceLine" id="cb265-4" data-line-number="4">                      <span class="dt">hh_size =</span> HHGroesse_D)</a>
-<a class="sourceLine" id="cb265-5" data-line-number="5"><span class="co"># set -1 and -9 to NA</span></a>
-<a class="sourceLine" id="cb265-6" data-line-number="6">input_tidy =<span class="st"> </span><span class="kw">mutate_all</span>(input, <span class="kw">funs</span>(<span class="kw">ifelse</span>(. <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-9</span>), <span class="ot">NA</span>, .)))</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="co"># pop = population, hh_size = household size</span></a>
+<a class="sourceLine" id="cb263-2" data-line-number="2">input =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(census_de, <span class="dt">x =</span> x_mp_1km, <span class="dt">y =</span> y_mp_1km, <span class="dt">pop =</span> Einwohner,</a>
+<a class="sourceLine" id="cb263-3" data-line-number="3">                      <span class="dt">women =</span> Frauen_A, <span class="dt">mean_age =</span> Alter_D,</a>
+<a class="sourceLine" id="cb263-4" data-line-number="4">                      <span class="dt">hh_size =</span> HHGroesse_D)</a>
+<a class="sourceLine" id="cb263-5" data-line-number="5"><span class="co"># set -1 and -9 to NA</span></a>
+<a class="sourceLine" id="cb263-6" data-line-number="6">input_tidy =<span class="st"> </span><span class="kw">mutate_all</span>(input, <span class="kw">funs</span>(<span class="kw">ifelse</span>(. <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-9</span>), <span class="ot">NA</span>, .)))</a></code></pre></div>
 <table>
 <caption>
 <span id="tab:census-desc">Table 8.1: </span>Excerpt from the data description ‘Datensatzbeschreibung_klassierte_Werte_1km-Gitter.xlsx’ located in the downloaded file census.zip describing the classes of the retained variables. The classes -1 and -9 refer to uninhabited areas or areas which have to be kept secret, for example due to the need to preserve anonymity.
@@ -594,18 +594,18 @@ household size<br />
 <code>rasterFromXYZ()</code> makes this really easy.
 It requires an input data frame where the first two columns represent coordinates on a regular grid.
 All the remaining columns (here: <code>pop</code>, <code>women</code>, <code>mean_age</code>, <code>hh_size</code>) will serve as input for the raster brick layers (Figure <a href="location.html#fig:census-stack">8.1</a>; see also <code>code/08-location-jm.R</code>).</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">input_ras =<span class="st"> </span><span class="kw">rasterFromXYZ</span>(input_tidy, <span class="dt">crs =</span> <span class="kw">st_crs</span>(<span class="dv">3035</span>)<span class="op">$</span>proj4string)</a>
-<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="co"># print the output to the console</span></a>
-<a class="sourceLine" id="cb266-3" data-line-number="3">input_ras</a>
-<a class="sourceLine" id="cb266-4" data-line-number="4"><span class="co">#&gt; class       : RasterBrick </span></a>
-<a class="sourceLine" id="cb266-5" data-line-number="5"><span class="co">#&gt; dimensions  : 868, 642, 557256, 4  (nrow, ncol, ncell, nlayers)</span></a>
-<a class="sourceLine" id="cb266-6" data-line-number="6"><span class="co">#&gt; resolution  : 1000, 1000  (x, y)</span></a>
-<a class="sourceLine" id="cb266-7" data-line-number="7"><span class="co">#&gt; extent      : 4031000, 4673000, 2684000, 3552000  (xmin, xmax, ymin, ymax)</span></a>
-<a class="sourceLine" id="cb266-8" data-line-number="8"><span class="co">#&gt; coord. ref. : +proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs </span></a>
-<a class="sourceLine" id="cb266-9" data-line-number="9"><span class="co">#&gt; data source : in memory</span></a>
-<a class="sourceLine" id="cb266-10" data-line-number="10"><span class="co">#&gt; names       : pop, women, mean_age, hh_size </span></a>
-<a class="sourceLine" id="cb266-11" data-line-number="11"><span class="co">#&gt; min values  :   1,     1,        1,       1 </span></a>
-<a class="sourceLine" id="cb266-12" data-line-number="12"><span class="co">#&gt; max values  :   6,     5,        5,       5</span></a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">input_ras =<span class="st"> </span><span class="kw">rasterFromXYZ</span>(input_tidy, <span class="dt">crs =</span> <span class="kw">st_crs</span>(<span class="dv">3035</span>)<span class="op">$</span>proj4string)</a>
+<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="co"># print the output to the console</span></a>
+<a class="sourceLine" id="cb264-3" data-line-number="3">input_ras</a>
+<a class="sourceLine" id="cb264-4" data-line-number="4"><span class="co">#&gt; class       : RasterBrick </span></a>
+<a class="sourceLine" id="cb264-5" data-line-number="5"><span class="co">#&gt; dimensions  : 868, 642, 557256, 4  (nrow, ncol, ncell, nlayers)</span></a>
+<a class="sourceLine" id="cb264-6" data-line-number="6"><span class="co">#&gt; resolution  : 1000, 1000  (x, y)</span></a>
+<a class="sourceLine" id="cb264-7" data-line-number="7"><span class="co">#&gt; extent      : 4031000, 4673000, 2684000, 3552000  (xmin, xmax, ymin, ymax)</span></a>
+<a class="sourceLine" id="cb264-8" data-line-number="8"><span class="co">#&gt; coord. ref. : +proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs </span></a>
+<a class="sourceLine" id="cb264-9" data-line-number="9"><span class="co">#&gt; data source : in memory</span></a>
+<a class="sourceLine" id="cb264-10" data-line-number="10"><span class="co">#&gt; names       : pop, women, mean_age, hh_size </span></a>
+<a class="sourceLine" id="cb264-11" data-line-number="11"><span class="co">#&gt; min values  :   1,     1,        1,       1 </span></a>
+<a class="sourceLine" id="cb264-12" data-line-number="12"><span class="co">#&gt; max values  :   6,     5,        5,       5</span></a></code></pre></div>
 
 <div class="rmdnote">
 Note that we are using an equal-area projection (EPSG:3035; Lambert Equal Area Europe), i.e. a projected CRS where each grid cell has the same area, here 1000 x 1000 square meters.
@@ -630,15 +630,15 @@ However, the level of detail is sufficient to delineate metropolitan areas (see 
 Class 1 in the variable <code>women</code>, for instance, represents areas in which 0 to 40% of the population is female;
 these are reclassified with a comparatively high weight of 3 because the target demographic is predominantly male.
 Similarly, the classes containing the youngest people and highest proportion of single households are reclassified to have high weights.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">rcl_pop =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">127</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">375</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1250</span>, </a>
-<a class="sourceLine" id="cb267-2" data-line-number="2">                   <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3000</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6000</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">8000</span>), </a>
-<a class="sourceLine" id="cb267-3" data-line-number="3">                 <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb267-4" data-line-number="4">rcl_women =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">0</span>), </a>
-<a class="sourceLine" id="cb267-5" data-line-number="5">                   <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb267-6" data-line-number="6">rcl_age =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb267-7" data-line-number="7">                 <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb267-8" data-line-number="8">rcl_hh =<span class="st"> </span>rcl_women</a>
-<a class="sourceLine" id="cb267-9" data-line-number="9">rcl =<span class="st"> </span><span class="kw">list</span>(rcl_pop, rcl_women, rcl_age, rcl_hh)</a></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">rcl_pop =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">127</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">375</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1250</span>, </a>
+<a class="sourceLine" id="cb265-2" data-line-number="2">                   <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3000</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6000</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">8000</span>), </a>
+<a class="sourceLine" id="cb265-3" data-line-number="3">                 <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb265-4" data-line-number="4">rcl_women =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb265-5" data-line-number="5">                   <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb265-6" data-line-number="6">rcl_age =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb265-7" data-line-number="7">                 <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb265-8" data-line-number="8">rcl_hh =<span class="st"> </span>rcl_women</a>
+<a class="sourceLine" id="cb265-9" data-line-number="9">rcl =<span class="st"> </span><span class="kw">list</span>(rcl_pop, rcl_women, rcl_age, rcl_hh)</a></code></pre></div>
 <!--
 We can loop with `map2()`, the **purrr** version of base R's `mapply()`, in parallel over two vectors (here `lists`; for more information please refer to @wickham_advanced_2014 and @grolemund_r_2016).
 -->
@@ -646,44 +646,44 @@ We can loop with `map2()`, the **purrr** version of base R's `mapply()`, in para
 For instance, the first element corresponds in both cases to the population.
 The <code>for</code>-loop runs in parallel through each of the elements and applies the reclassification to the corresponding raster layer.
 Finally, the code chunk below makes sure that the <code>reclass</code> layers have the same name as the layers of <code>input_ras</code>.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">reclass =<span class="st"> </span>input_ras</a>
-<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>raster<span class="op">::</span><span class="kw">nlayers</span>(reclass)) {</a>
-<a class="sourceLine" id="cb268-3" data-line-number="3">  reclass[[i]] =<span class="st"> </span><span class="kw">reclassify</span>(<span class="dt">x =</span> reclass[[i]], <span class="dt">rcl =</span> rcl[[i]], <span class="dt">right =</span> <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb268-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb268-5" data-line-number="5"><span class="kw">names</span>(reclass) =<span class="st"> </span><span class="kw">names</span>(input_ras)</a>
-<a class="sourceLine" id="cb268-6" data-line-number="6">reclass</a>
-<a class="sourceLine" id="cb268-7" data-line-number="7"><span class="co">#&gt; class       : RasterBrick </span></a>
-<a class="sourceLine" id="cb268-8" data-line-number="8"><span class="co">#&gt; dimensions  : 868, 642, 557256, 4  (nrow, ncol, ncell, nlayers)</span></a>
-<a class="sourceLine" id="cb268-9" data-line-number="9"><span class="co">#&gt; resolution  : 1000, 1000  (x, y)</span></a>
-<a class="sourceLine" id="cb268-10" data-line-number="10"><span class="co">#&gt; extent      : 4031000, 4673000, 2684000, 3552000  (xmin, xmax, ymin, ymax)</span></a>
-<a class="sourceLine" id="cb268-11" data-line-number="11"><span class="co">#&gt; coord. ref. : +proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs </span></a>
-<a class="sourceLine" id="cb268-12" data-line-number="12"><span class="co">#&gt; data source : in memory</span></a>
-<a class="sourceLine" id="cb268-13" data-line-number="13"><span class="co">#&gt; names       :  pop, women, mean_age, hh_size </span></a>
-<a class="sourceLine" id="cb268-14" data-line-number="14"><span class="co">#&gt; min values  :  127,     0,        0,       0 </span></a>
-<a class="sourceLine" id="cb268-15" data-line-number="15"><span class="co">#&gt; max values  : 8000,     3,        3,       3</span></a></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">reclass =<span class="st"> </span>input_ras</a>
+<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>raster<span class="op">::</span><span class="kw">nlayers</span>(reclass)) {</a>
+<a class="sourceLine" id="cb266-3" data-line-number="3">  reclass[[i]] =<span class="st"> </span><span class="kw">reclassify</span>(<span class="dt">x =</span> reclass[[i]], <span class="dt">rcl =</span> rcl[[i]], <span class="dt">right =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb266-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb266-5" data-line-number="5"><span class="kw">names</span>(reclass) =<span class="st"> </span><span class="kw">names</span>(input_ras)</a>
+<a class="sourceLine" id="cb266-6" data-line-number="6">reclass</a>
+<a class="sourceLine" id="cb266-7" data-line-number="7"><span class="co">#&gt; class       : RasterBrick </span></a>
+<a class="sourceLine" id="cb266-8" data-line-number="8"><span class="co">#&gt; dimensions  : 868, 642, 557256, 4  (nrow, ncol, ncell, nlayers)</span></a>
+<a class="sourceLine" id="cb266-9" data-line-number="9"><span class="co">#&gt; resolution  : 1000, 1000  (x, y)</span></a>
+<a class="sourceLine" id="cb266-10" data-line-number="10"><span class="co">#&gt; extent      : 4031000, 4673000, 2684000, 3552000  (xmin, xmax, ymin, ymax)</span></a>
+<a class="sourceLine" id="cb266-11" data-line-number="11"><span class="co">#&gt; coord. ref. : +proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs </span></a>
+<a class="sourceLine" id="cb266-12" data-line-number="12"><span class="co">#&gt; data source : in memory</span></a>
+<a class="sourceLine" id="cb266-13" data-line-number="13"><span class="co">#&gt; names       :  pop, women, mean_age, hh_size </span></a>
+<a class="sourceLine" id="cb266-14" data-line-number="14"><span class="co">#&gt; min values  :  127,     0,        0,       0 </span></a>
+<a class="sourceLine" id="cb266-15" data-line-number="15"><span class="co">#&gt; max values  : 8000,     3,        3,       3</span></a></code></pre></div>
 </div>
 <div id="define-metropolitan-areas" class="section level2">
 <h2><span class="header-section-number">8.5</span> Define metropolitan areas</h2>
 <p>We define metropolitan areas as pixels of 20 km<sup>2</sup> inhabited by more than 500,000 people.
 Pixels at this coarse resolution can rapidly be created using <code>aggregate()</code>, as introduced in section <a href="transform.html#aggregation-and-disaggregation">5.4.3</a>.
 The command below uses the argument <code>fact = 20</code> to reduce the resolution of the result twenty-fold (recall the original raster resolution was 1 km<sup>2</sup>):</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1">pop_agg =<span class="st"> </span><span class="kw">aggregate</span>(reclass<span class="op">$</span>pop, <span class="dt">fact =</span> <span class="dv">20</span>, <span class="dt">fun =</span> sum)</a></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">pop_agg =<span class="st"> </span><span class="kw">aggregate</span>(reclass<span class="op">$</span>pop, <span class="dt">fact =</span> <span class="dv">20</span>, <span class="dt">fun =</span> sum)</a></code></pre></div>
 <p>The next stage is to keep only cells with more than half a million people.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">pop_agg =<span class="st"> </span>pop_agg[pop_agg <span class="op">&gt;</span><span class="st"> </span><span class="dv">500000</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>] </a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">pop_agg =<span class="st"> </span>pop_agg[pop_agg <span class="op">&gt;</span><span class="st"> </span><span class="dv">500000</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>] </a></code></pre></div>
 <p>Plotting this reveals eight metropolitan regions (Fig. <a href="location.html#fig:metro-areas">8.2</a>).
 Each region consists of one or more raster cells.
 It would be nice if we could join all cells belonging to one region.
 <strong>raster</strong>’s <code>clump()</code> command does exactly that.
 Subsequently, <code>rasterToPolygons()</code> converts the raster object into spatial polygons, and <code>st_as_sf()</code> converts it into an <code>sf</code>-object.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">polys =<span class="st"> </span>pop_agg <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb271-2" data-line-number="2"><span class="st">  </span>clump <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb271-3" data-line-number="3"><span class="st">  </span>rasterToPolygons <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb271-4" data-line-number="4"><span class="st">  </span>st_as_sf</a>
-<a class="sourceLine" id="cb271-5" data-line-number="5"><span class="co">#&gt; Loading required namespace: igraph</span></a></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1">polys =<span class="st"> </span>pop_agg <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb269-2" data-line-number="2"><span class="st">  </span>clump <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb269-3" data-line-number="3"><span class="st">  </span>rasterToPolygons <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb269-4" data-line-number="4"><span class="st">  </span>st_as_sf</a>
+<a class="sourceLine" id="cb269-5" data-line-number="5"><span class="co">#&gt; Loading required namespace: igraph</span></a></code></pre></div>
 <p><code>polys</code> now features a column named <code>clumps</code> which indicates to which metropolitan region each polygon belongs and which we will use to dissolve the polygons into coherent single regions (see also section <a href="transform.html#geometry-unions">5.3.6</a>):</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">metros =<span class="st"> </span>polys <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb272-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(clumps) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb272-3" data-line-number="3"><span class="st">  </span>summarize</a></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">metros =<span class="st"> </span>polys <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb270-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(clumps) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb270-3" data-line-number="3"><span class="st">  </span>summarize</a></code></pre></div>
 <p>Given no other column as input, <code>summarize()</code> only dissolves the geometry.</p>
 <!-- maybe a good if advanced exercise
 This requires finding the nearest neighbors (`st_intersects()`), and some additional processing.
@@ -763,15 +763,15 @@ Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
 The <strong>ggmap</strong> package makes use of the one provided by Google.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a>
 <code>ggmap::revgeocode()</code> only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter <a href="transform.html#transform">5</a>).</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">metros_wgs =<span class="st"> </span><span class="kw">st_transform</span>(metros, <span class="dv">4326</span>)</a>
-<a class="sourceLine" id="cb273-2" data-line-number="2">coords =<span class="st"> </span><span class="kw">st_centroid</span>(metros_wgs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb273-3" data-line-number="3"><span class="st">  </span><span class="kw">st_coordinates</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb273-4" data-line-number="4"><span class="st">  </span><span class="kw">round</span>(<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb273-5" data-line-number="5"><span class="co">#&gt; Warning in st_centroid.sf(metros_wgs): st_centroid assumes attributes are</span></a>
-<a class="sourceLine" id="cb273-6" data-line-number="6"><span class="co">#&gt; constant over geometries of x</span></a>
-<a class="sourceLine" id="cb273-7" data-line-number="7"><span class="co">#&gt; Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =</span></a>
-<a class="sourceLine" id="cb273-8" data-line-number="8"><span class="co">#&gt; of_largest_polygon): st_centroid does not give correct centroids for</span></a>
-<a class="sourceLine" id="cb273-9" data-line-number="9"><span class="co">#&gt; longitude/latitude data</span></a></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">metros_wgs =<span class="st"> </span><span class="kw">st_transform</span>(metros, <span class="dv">4326</span>)</a>
+<a class="sourceLine" id="cb271-2" data-line-number="2">coords =<span class="st"> </span><span class="kw">st_centroid</span>(metros_wgs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb271-3" data-line-number="3"><span class="st">  </span><span class="kw">st_coordinates</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb271-4" data-line-number="4"><span class="st">  </span><span class="kw">round</span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb271-5" data-line-number="5"><span class="co">#&gt; Warning in st_centroid.sf(metros_wgs): st_centroid assumes attributes are</span></a>
+<a class="sourceLine" id="cb271-6" data-line-number="6"><span class="co">#&gt; constant over geometries of x</span></a>
+<a class="sourceLine" id="cb271-7" data-line-number="7"><span class="co">#&gt; Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =</span></a>
+<a class="sourceLine" id="cb271-8" data-line-number="8"><span class="co">#&gt; of_largest_polygon): st_centroid does not give correct centroids for</span></a>
+<a class="sourceLine" id="cb271-9" data-line-number="9"><span class="co">#&gt; longitude/latitude data</span></a></code></pre></div>
 <p>Additionally, <code>ggmap::revgeocode()</code> only accepts one coordinate at a time, which is why we iterate over each coordinate of <code>coords</code> via a loop (<code>map_dfr()</code>).
 <code>map_dfr()</code> does exactly the same as <code>lapply()</code> except for returning a <code>data.frame</code> instead of a <code>list</code>.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a>
 Sometimes, Google’s reverse geocoding API is unable to find an address returning <code>NA</code>.
@@ -779,24 +779,24 @@ Usually, trying the same coordinate again returns an address at the second or th
 However, if ten attempts have already failed, this is a good indication that the requested information is indeed unavailable.
 Since we aim to be good cyberspace citizens, we try not to overburden the server with too many queries within a short amount of time by letting the loop sleep between one and four seconds after each iteration before accessing the reverse geocoding API again.
 Choosing <code>more</code> as <code>revgeocode()</code>’s <code>output</code> option will give back a <code>data.frame</code> with several columns referring to the location including the address, locality and various administrative levels.</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="co"># reverse geocoding to find out the names of the metropolitan areas</span></a>
-<a class="sourceLine" id="cb274-2" data-line-number="2">metro_names =<span class="st"> </span><span class="kw">map_dfr</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(coords), <span class="cf">function</span>(i) {</a>
-<a class="sourceLine" id="cb274-3" data-line-number="3">  add =<span class="st"> </span>ggmap<span class="op">::</span><span class="kw">revgeocode</span>(coords[i, ], <span class="dt">output =</span> <span class="st">&quot;more&quot;</span>)</a>
-<a class="sourceLine" id="cb274-4" data-line-number="4">  x =<span class="st"> </span><span class="dv">9</span></a>
-<a class="sourceLine" id="cb274-5" data-line-number="5">  <span class="cf">while</span> (<span class="kw">is.na</span>(add<span class="op">$</span>address) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb274-6" data-line-number="6">    add =<span class="st"> </span>ggmap<span class="op">::</span><span class="kw">revgeocode</span>(coords[i, ], <span class="dt">output =</span> <span class="st">&quot;more&quot;</span>)</a>
-<a class="sourceLine" id="cb274-7" data-line-number="7">    <span class="co"># just try three times</span></a>
-<a class="sourceLine" id="cb274-8" data-line-number="8">    x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb274-9" data-line-number="9">  }</a>
-<a class="sourceLine" id="cb274-10" data-line-number="10">  <span class="co"># give the server a bit time</span></a>
-<a class="sourceLine" id="cb274-11" data-line-number="11">  <span class="kw">Sys.sleep</span>(<span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>), <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb274-12" data-line-number="12">  <span class="co"># return the result</span></a>
-<a class="sourceLine" id="cb274-13" data-line-number="13">  add</a>
-<a class="sourceLine" id="cb274-14" data-line-number="14">})</a></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="co"># reverse geocoding to find out the names of the metropolitan areas</span></a>
+<a class="sourceLine" id="cb272-2" data-line-number="2">metro_names =<span class="st"> </span><span class="kw">map_dfr</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(coords), <span class="cf">function</span>(i) {</a>
+<a class="sourceLine" id="cb272-3" data-line-number="3">  add =<span class="st"> </span>ggmap<span class="op">::</span><span class="kw">revgeocode</span>(coords[i, ], <span class="dt">output =</span> <span class="st">&quot;more&quot;</span>)</a>
+<a class="sourceLine" id="cb272-4" data-line-number="4">  x =<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb272-5" data-line-number="5">  <span class="cf">while</span> (<span class="kw">is.na</span>(add<span class="op">$</span>address) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb272-6" data-line-number="6">    add =<span class="st"> </span>ggmap<span class="op">::</span><span class="kw">revgeocode</span>(coords[i, ], <span class="dt">output =</span> <span class="st">&quot;more&quot;</span>)</a>
+<a class="sourceLine" id="cb272-7" data-line-number="7">    <span class="co"># just try three times</span></a>
+<a class="sourceLine" id="cb272-8" data-line-number="8">    x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb272-9" data-line-number="9">  }</a>
+<a class="sourceLine" id="cb272-10" data-line-number="10">  <span class="co"># give the server a bit time</span></a>
+<a class="sourceLine" id="cb272-11" data-line-number="11">  <span class="kw">Sys.sleep</span>(<span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>), <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb272-12" data-line-number="12">  <span class="co"># return the result</span></a>
+<a class="sourceLine" id="cb272-13" data-line-number="13">  add</a>
+<a class="sourceLine" id="cb272-14" data-line-number="14">})</a></code></pre></div>
 <p>Though the <code>while</code>-loop helps to make the reverse geocoding more successful, it sometimes might still fail or even give back results slightly differing from those we here have produced here.
 Therefore, to make sure that the reader uses the exact same results, we have put them into <strong>spDataLarge</strong>:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="co"># attach metro_names from spDataLarge</span></a>
-<a class="sourceLine" id="cb275-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;metro_names&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1"><span class="co"># attach metro_names from spDataLarge</span></a>
+<a class="sourceLine" id="cb273-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;metro_names&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
 <table>
 <caption><span id="tab:metro-names">Table 8.2: </span>Result of the reverse geocoding.</caption>
 <thead>
@@ -807,7 +807,23 @@ Therefore, to make sure that the reader uses the exact same results, we have put
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">München</td>
+<td align="left">Hamburg</td>
+<td align="left">Germany</td>
+</tr>
+<tr class="even">
+<td align="left">Berlin</td>
+<td align="left">Germany</td>
+</tr>
+<tr class="odd">
+<td align="left">Wülfrath</td>
+<td align="left">Germany</td>
+</tr>
+<tr class="even">
+<td align="left">Leipzig</td>
+<td align="left">Germany</td>
+</tr>
+<tr class="odd">
+<td align="left">Frankfurt am Main</td>
 <td align="left">Germany</td>
 </tr>
 <tr class="even">
@@ -819,23 +835,7 @@ Therefore, to make sure that the reader uses the exact same results, we have put
 <td align="left">Germany</td>
 </tr>
 <tr class="even">
-<td align="left">Frankfurt am Main</td>
-<td align="left">Germany</td>
-</tr>
-<tr class="odd">
-<td align="left">Hamburg</td>
-<td align="left">Germany</td>
-</tr>
-<tr class="even">
-<td align="left">Berlin</td>
-<td align="left">Germany</td>
-</tr>
-<tr class="odd">
-<td align="left">Leipzig</td>
-<td align="left">Germany</td>
-</tr>
-<tr class="even">
-<td align="left">Velbert</td>
+<td align="left">München</td>
 <td align="left">Germany</td>
 </tr>
 </tbody>
@@ -843,17 +843,17 @@ Therefore, to make sure that the reader uses the exact same results, we have put
 <p>Overall, we are satisfied with the <code>locality</code> column serving as metropolitan names (Table <a href="location.html#tab:metro-names">8.2</a>) apart from one exception, namely Wülfrath.
 Hence, we replace Wülfrath with the corresponding name in the <code>administrative_area_level_2</code> column, that is Düsseldorf (Fig. <a href="location.html#fig:metro-areas">8.2</a>).
 Umlauts like <code>ü</code> might lead to trouble further on, for example when determining the bounding box of a metropolitan area with <code>opq()</code> (see further below), which is why we replace them.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">metro_names =<span class="st"> </span></a>
-<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(metro_names, locality, administrative_area_level_<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="st">  </span><span class="co"># replace Wülfrath and umlaut ü</span></a>
-<a class="sourceLine" id="cb276-4" data-line-number="4"><span class="st">  </span><span class="co"># mutate(locality = ifelse(locality == &quot;Wülfrath&quot;,</span></a>
-<a class="sourceLine" id="cb276-5" data-line-number="5"><span class="st">  </span><span class="co">#                          administrative_area_level_2,</span></a>
-<a class="sourceLine" id="cb276-6" data-line-number="6"><span class="st">  </span><span class="co">#                          locality),</span></a>
-<a class="sourceLine" id="cb276-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">locality =</span> <span class="kw">ifelse</span>(locality <span class="op">==</span><span class="st"> &quot;Velbert&quot;</span>,</a>
-<a class="sourceLine" id="cb276-8" data-line-number="8">                           administrative_area_level_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb276-9" data-line-number="9">                           locality),</a>
-<a class="sourceLine" id="cb276-10" data-line-number="10">         <span class="dt">locality =</span> <span class="kw">gsub</span>(<span class="st">&quot;ü&quot;</span>, <span class="st">&quot;ue&quot;</span>, locality)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb276-11" data-line-number="11"><span class="st">  </span><span class="kw">pull</span>(locality)</a></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">metro_names =<span class="st"> </span></a>
+<a class="sourceLine" id="cb274-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(metro_names, locality, administrative_area_level_<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb274-3" data-line-number="3"><span class="st">  </span><span class="co"># replace Wülfrath and umlaut ü</span></a>
+<a class="sourceLine" id="cb274-4" data-line-number="4"><span class="st">  </span><span class="co"># mutate(locality = ifelse(locality == &quot;Wülfrath&quot;,</span></a>
+<a class="sourceLine" id="cb274-5" data-line-number="5"><span class="st">  </span><span class="co">#                          administrative_area_level_2,</span></a>
+<a class="sourceLine" id="cb274-6" data-line-number="6"><span class="st">  </span><span class="co">#                          locality),</span></a>
+<a class="sourceLine" id="cb274-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">locality =</span> <span class="kw">ifelse</span>(locality <span class="op">==</span><span class="st"> &quot;Velbert&quot;</span>,</a>
+<a class="sourceLine" id="cb274-8" data-line-number="8">                           administrative_area_level_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb274-9" data-line-number="9">                           locality),</a>
+<a class="sourceLine" id="cb274-10" data-line-number="10">         <span class="dt">locality =</span> <span class="kw">gsub</span>(<span class="st">&quot;ü&quot;</span>, <span class="st">&quot;ue&quot;</span>, locality)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb274-11" data-line-number="11"><span class="st">  </span><span class="kw">pull</span>(locality)</a></code></pre></div>
 </div>
 <div id="points-of-interest" class="section level2">
 <h2><span class="header-section-number">8.6</span> Points of interest</h2>
@@ -870,41 +870,41 @@ The <code>while</code> loop increases the number of download trials to three.
 If then still no features can be downloaded, it is likely that either there are none available or that another error has occurred before (e.g. due to erroneous output from <code>opq()</code>).
 Before running the next code chunk, keep in mind that this will download almost 2GB of data.
 As a convenience to the reader, we have put the further processed output into the <strong>spDataLarge</strong> package (<code>data(&quot;shops&quot;, package = &quot;spDataLarge&quot;)</code>; see also further below).</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">shops =<span class="st"> </span><span class="kw">map</span>(metro_names, <span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb277-2" data-line-number="2">  <span class="kw">message</span>(<span class="st">&quot;Downloading shops of: &quot;</span>, x, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb277-3" data-line-number="3">  <span class="co"># give the server a bit time</span></a>
-<a class="sourceLine" id="cb277-4" data-line-number="4">  <span class="kw">Sys.sleep</span>(<span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="fl">0.1</span>), <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb277-5" data-line-number="5">  query =<span class="st"> </span><span class="kw">opq</span>(x) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb277-6" data-line-number="6"><span class="st">    </span><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">&quot;shop&quot;</span>)</a>
-<a class="sourceLine" id="cb277-7" data-line-number="7">  points =<span class="st"> </span><span class="kw">osmdata_sf</span>(query)</a>
-<a class="sourceLine" id="cb277-8" data-line-number="8">  <span class="co"># request the same data again if nothing has been downloaded</span></a>
-<a class="sourceLine" id="cb277-9" data-line-number="9">  iter =<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb277-10" data-line-number="10">  <span class="cf">while</span> (<span class="kw">nrow</span>(points<span class="op">$</span>osm_points) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>iter <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb277-11" data-line-number="11">    points =<span class="st"> </span><span class="kw">osmdata_sf</span>(query)</a>
-<a class="sourceLine" id="cb277-12" data-line-number="12">    iter =<span class="st"> </span>iter <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb277-13" data-line-number="13">  }</a>
-<a class="sourceLine" id="cb277-14" data-line-number="14">  points =<span class="st"> </span><span class="kw">st_set_crs</span>(points<span class="op">$</span>osm_points, <span class="dv">4326</span>)</a>
-<a class="sourceLine" id="cb277-15" data-line-number="15">})</a></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">shops =<span class="st"> </span><span class="kw">map</span>(metro_names, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb275-2" data-line-number="2">  <span class="kw">message</span>(<span class="st">&quot;Downloading shops of: &quot;</span>, x, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb275-3" data-line-number="3">  <span class="co"># give the server a bit time</span></a>
+<a class="sourceLine" id="cb275-4" data-line-number="4">  <span class="kw">Sys.sleep</span>(<span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="fl">0.1</span>), <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb275-5" data-line-number="5">  query =<span class="st"> </span><span class="kw">opq</span>(x) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb275-6" data-line-number="6"><span class="st">    </span><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">&quot;shop&quot;</span>)</a>
+<a class="sourceLine" id="cb275-7" data-line-number="7">  points =<span class="st"> </span><span class="kw">osmdata_sf</span>(query)</a>
+<a class="sourceLine" id="cb275-8" data-line-number="8">  <span class="co"># request the same data again if nothing has been downloaded</span></a>
+<a class="sourceLine" id="cb275-9" data-line-number="9">  iter =<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb275-10" data-line-number="10">  <span class="cf">while</span> (<span class="kw">nrow</span>(points<span class="op">$</span>osm_points) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>iter <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb275-11" data-line-number="11">    points =<span class="st"> </span><span class="kw">osmdata_sf</span>(query)</a>
+<a class="sourceLine" id="cb275-12" data-line-number="12">    iter =<span class="st"> </span>iter <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb275-13" data-line-number="13">  }</a>
+<a class="sourceLine" id="cb275-14" data-line-number="14">  points =<span class="st"> </span><span class="kw">st_set_crs</span>(points<span class="op">$</span>osm_points, <span class="dv">4326</span>)</a>
+<a class="sourceLine" id="cb275-15" data-line-number="15">})</a></code></pre></div>
 <p>It is highly unlikely that there are no shops in any of our defined metropolitan areas.
 The following <code>if</code> condition simply checks if there is at least one shop for each region.
 If not, we would try to download the shops again for this/these specific region/s.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="co"># checking if we have downloaded shops for each metropolitan area</span></a>
-<a class="sourceLine" id="cb278-2" data-line-number="2">ind =<span class="st"> </span><span class="kw">map</span>(shops, nrow) <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb278-3" data-line-number="3"><span class="cf">if</span> (<span class="kw">any</span>(ind)) {</a>
-<a class="sourceLine" id="cb278-4" data-line-number="4">  <span class="kw">message</span>(<span class="st">&quot;There are/is still (a) metropolitan area/s without any features:</span><span class="ch">\n</span><span class="st">&quot;</span>,</a>
-<a class="sourceLine" id="cb278-5" data-line-number="5">          <span class="kw">paste</span>(metro_names[ind], <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Please fix it!&quot;</span>)</a>
-<a class="sourceLine" id="cb278-6" data-line-number="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="co"># checking if we have downloaded shops for each metropolitan area</span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2">ind =<span class="st"> </span><span class="kw">map</span>(shops, nrow) <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="cf">if</span> (<span class="kw">any</span>(ind)) {</a>
+<a class="sourceLine" id="cb276-4" data-line-number="4">  <span class="kw">message</span>(<span class="st">&quot;There are/is still (a) metropolitan area/s without any features:</span><span class="ch">\n</span><span class="st">&quot;</span>,</a>
+<a class="sourceLine" id="cb276-5" data-line-number="5">          <span class="kw">paste</span>(metro_names[ind], <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Please fix it!&quot;</span>)</a>
+<a class="sourceLine" id="cb276-6" data-line-number="6">}</a></code></pre></div>
 <p>To make sure that each list element (an <code>sf</code> data frame) comes with the same columns, we only keep the <code>osm_id</code> and the <code>shop</code> columns with the help of another <code>map</code> loop.
 This is not a given since OSM contributors are not equally meticulous when collecting data.
 Finally, we <code>rbind</code> all shops into one large <code>sf</code> object.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="co"># select only specific columns</span></a>
-<a class="sourceLine" id="cb279-2" data-line-number="2">shops =<span class="st"> </span><span class="kw">map</span>(shops, dplyr<span class="op">::</span>select, osm_id, shop)</a>
-<a class="sourceLine" id="cb279-3" data-line-number="3"><span class="co"># putting all list elements into a single dataframe</span></a>
-<a class="sourceLine" id="cb279-4" data-line-number="4">shops =<span class="st"> </span><span class="kw">do.call</span>(shops, rbind)</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="co"># select only specific columns</span></a>
+<a class="sourceLine" id="cb277-2" data-line-number="2">shops =<span class="st"> </span><span class="kw">map</span>(shops, dplyr<span class="op">::</span>select, osm_id, shop)</a>
+<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="co"># putting all list elements into a single dataframe</span></a>
+<a class="sourceLine" id="cb277-4" data-line-number="4">shops =<span class="st"> </span><span class="kw">do.call</span>(shops, rbind)</a></code></pre></div>
 <p>It would have been easier to simply use <code>map_dfr()</code>.
 Unfortunately, so far it does not work in harmony with <code>sf</code> objects.
 Please note that the <code>shops</code> object is also available in the <code>spDataLarge</code> package:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;shops&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;shops&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
 <p>The only thing left to do is to convert the spatial point object into a raster (see section <a href="raster-vector.html#rasterization">11.4</a>).
 The <code>sf</code> object, <code>shops</code>, is converted into a raster having the same parameters (dimensions, resolution, CRS) as the <code>reclass</code> object.
 Importantly, the <code>count()</code> function is used here to calculate the number shops in each cell.</p>
@@ -916,22 +916,22 @@ This is because the <code>shop</code> column contains <code>NA</code> values, wh
 
 <p>The result of the subsequent code chunk is therefore an estimate of shop density (shops/km<sup>2</sup>).
 <code>st_transform()</code> is used before <code>rasterize()</code> to ensure the CRS of both inputs match.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1">shops =<span class="st"> </span><span class="kw">st_transform</span>(shops, <span class="kw">proj4string</span>(reclass))</a>
-<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="co"># create poi raster</span></a>
-<a class="sourceLine" id="cb281-3" data-line-number="3">poi =<span class="st"> </span><span class="kw">rasterize</span>(<span class="dt">x =</span> shops, <span class="dt">y =</span> reclass, <span class="dt">field =</span> <span class="st">&quot;osm_id&quot;</span>, <span class="dt">fun =</span> <span class="st">&quot;count&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">shops =<span class="st"> </span><span class="kw">st_transform</span>(shops, <span class="kw">proj4string</span>(reclass))</a>
+<a class="sourceLine" id="cb279-2" data-line-number="2"><span class="co"># create poi raster</span></a>
+<a class="sourceLine" id="cb279-3" data-line-number="3">poi =<span class="st"> </span><span class="kw">rasterize</span>(<span class="dt">x =</span> shops, <span class="dt">y =</span> reclass, <span class="dt">field =</span> <span class="st">&quot;osm_id&quot;</span>, <span class="dt">fun =</span> <span class="st">&quot;count&quot;</span>)</a></code></pre></div>
 <p>As with the other raster layers (population, women, mean age, household size) the <code>poi</code> raster is reclassified into four classes (see section <a href="location.html#create-census-rasters">8.4</a>).
 Defining class intervals is an arbitrary undertaking to a certain degree.
 One can use equal breaks, quantile breaks, fixed values or others.
 Here, we choose the Fisher-Jenks natural breaks approach which minimizes within-class variance, the result of which provides an input for the reclassification matrix.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="co"># construct reclassification matrix</span></a>
-<a class="sourceLine" id="cb282-2" data-line-number="2">int =<span class="st"> </span>classInt<span class="op">::</span><span class="kw">classIntervals</span>(<span class="kw">values</span>(poi), <span class="dt">n =</span> <span class="dv">4</span>, <span class="dt">style =</span> <span class="st">&quot;fisher&quot;</span>)</a>
-<a class="sourceLine" id="cb282-3" data-line-number="3">int =<span class="st"> </span><span class="kw">round</span>(int<span class="op">$</span>brks)</a>
-<a class="sourceLine" id="cb282-4" data-line-number="4">rcl_poi =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(int[<span class="dv">1</span>], <span class="kw">rep</span>(int[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(int))], <span class="dt">each =</span> <span class="dv">2</span>), </a>
-<a class="sourceLine" id="cb282-5" data-line-number="5">                   int[<span class="kw">length</span>(int)] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb282-6" data-line-number="6">rcl_poi =<span class="st"> </span><span class="kw">cbind</span>(rcl_poi, <span class="dv">0</span><span class="op">:</span><span class="dv">3</span>)  </a>
-<a class="sourceLine" id="cb282-7" data-line-number="7"><span class="co"># reclassify</span></a>
-<a class="sourceLine" id="cb282-8" data-line-number="8">poi =<span class="st"> </span><span class="kw">reclassify</span>(poi, <span class="dt">rcl =</span> rcl_poi, <span class="dt">right =</span> <span class="ot">NA</span>) </a>
-<a class="sourceLine" id="cb282-9" data-line-number="9"><span class="kw">names</span>(poi) =<span class="st"> &quot;poi&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="co"># construct reclassification matrix</span></a>
+<a class="sourceLine" id="cb280-2" data-line-number="2">int =<span class="st"> </span>classInt<span class="op">::</span><span class="kw">classIntervals</span>(<span class="kw">values</span>(poi), <span class="dt">n =</span> <span class="dv">4</span>, <span class="dt">style =</span> <span class="st">&quot;fisher&quot;</span>)</a>
+<a class="sourceLine" id="cb280-3" data-line-number="3">int =<span class="st"> </span><span class="kw">round</span>(int<span class="op">$</span>brks)</a>
+<a class="sourceLine" id="cb280-4" data-line-number="4">rcl_poi =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(int[<span class="dv">1</span>], <span class="kw">rep</span>(int[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(int))], <span class="dt">each =</span> <span class="dv">2</span>), </a>
+<a class="sourceLine" id="cb280-5" data-line-number="5">                   int[<span class="kw">length</span>(int)] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb280-6" data-line-number="6">rcl_poi =<span class="st"> </span><span class="kw">cbind</span>(rcl_poi, <span class="dv">0</span><span class="op">:</span><span class="dv">3</span>)  </a>
+<a class="sourceLine" id="cb280-7" data-line-number="7"><span class="co"># reclassify</span></a>
+<a class="sourceLine" id="cb280-8" data-line-number="8">poi =<span class="st"> </span><span class="kw">reclassify</span>(poi, <span class="dt">rcl =</span> rcl_poi, <span class="dt">right =</span> <span class="ot">NA</span>) </a>
+<a class="sourceLine" id="cb280-9" data-line-number="9"><span class="kw">names</span>(poi) =<span class="st"> &quot;poi&quot;</span></a></code></pre></div>
 </div>
 <div id="identifying-suitable-locations" class="section level2">
 <h2><span class="header-section-number">8.7</span> Identifying suitable locations</h2>
@@ -941,14 +941,14 @@ First of all, we have already delineated metropolitan areas, that is areas where
 Secondly, though it is advantageous to have many potential customers within a specific catchment area, the sheer number alone might not actually represent the desired target group.
 For instance, residential tower blocks are areas with a high population density but not necessarily with a high purchasing power for expensive cycle components.
 This is achieved with the complimentary functions <code>addLayer()</code> and <code>dropLayer()</code>:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="co"># add poi raster</span></a>
-<a class="sourceLine" id="cb283-2" data-line-number="2">reclass =<span class="st"> </span><span class="kw">addLayer</span>(reclass, poi)</a>
-<a class="sourceLine" id="cb283-3" data-line-number="3"><span class="co"># delete population raster</span></a>
-<a class="sourceLine" id="cb283-4" data-line-number="4">reclass =<span class="st"> </span><span class="kw">dropLayer</span>(reclass, <span class="st">&quot;pop&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="co"># add poi raster</span></a>
+<a class="sourceLine" id="cb281-2" data-line-number="2">reclass =<span class="st"> </span><span class="kw">addLayer</span>(reclass, poi)</a>
+<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="co"># delete population raster</span></a>
+<a class="sourceLine" id="cb281-4" data-line-number="4">reclass =<span class="st"> </span><span class="kw">dropLayer</span>(reclass, <span class="st">&quot;pop&quot;</span>)</a></code></pre></div>
 <p>In common with other data science projects, data retrieval and ‘tidying’ have consumed much of the overall workload so far.
 With clean data the final step, calculating a final score by summing up all raster layers, can be accomplished in a single line.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="co"># calculate the total score</span></a>
-<a class="sourceLine" id="cb284-2" data-line-number="2">result =<span class="st"> </span><span class="kw">sum</span>(reclass)</a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="co"># calculate the total score</span></a>
+<a class="sourceLine" id="cb282-2" data-line-number="2">result =<span class="st"> </span><span class="kw">sum</span>(reclass)</a></code></pre></div>
 <p>For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure <a href="location.html#fig:bikeshop-berlin">8.3</a>; see also <code>code/08-location-jm.R</code>).</p>
 <div class="figure" style="text-align: center"><span id="fig:bikeshop-berlin"></span>
 <div id="htmlwidget-ec897849c5c50a6f7846" style="width:576px;height:355.968px;" class="leaflet html-widget"></div>

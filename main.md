@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-24'
+date: '2018-05-25'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-24 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-25 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve030798ae5d0ce707
+preserve8603e3a31ef399a1
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1968,15 +1968,7 @@ The results are not shown; check the results on your own computer:
 
 ```r
 world[1:6, ] # subset rows by position
-```
-
-
-```r
 world[, 1:3] # subset columns by position
-```
-
-
-```r
 world[, c("name_long", "lifeExp")] # subset columns by name
 ```
 
@@ -3103,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve951f8c2db3f90fba
+preserve0ebfca07a476e9f4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6509,14 +6501,14 @@ Table: (\#tab:metro-names)Result of the reverse geocoding.
 
 locality            country 
 ------------------  --------
-München             Germany 
-Nürnberg            Germany 
-Stuttgart           Germany 
-Frankfurt am Main   Germany 
 Hamburg             Germany 
 Berlin              Germany 
+Wülfrath            Germany 
 Leipzig             Germany 
-Velbert             Germany 
+Frankfurt am Main   Germany 
+Nürnberg            Germany 
+Stuttgart           Germany 
+München             Germany 
 
 Overall, we are satisfied with the `locality` column serving as metropolitan names (Table \@ref(tab:metro-names)) apart from one exception, namely Wülfrath.
 Hence, we replace Wülfrath with the corresponding name in the `administrative_area_level_2` column, that is Düsseldorf (Fig. \@ref(fig:metro-areas)).
@@ -6671,7 +6663,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservedab6e829d6b8ff17
+preserve88c6935ad75a4922
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7358,7 +7350,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve9604defacdf24949
+preserve71f18f475872152c
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7457,7 +7449,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2116389b122eb831
+preserve015d97839a5ebe09
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
