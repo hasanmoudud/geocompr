@@ -496,7 +496,7 @@ Figure <a href="spatial-operations.html#fig:relation-objects">4.2</a> contains a
 <a class="sourceLine" id="cb119-7" data-line-number="7"><span class="co"># create points</span></a>
 <a class="sourceLine" id="cb119-8" data-line-number="8">p_matrix =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb119-9" data-line-number="9">p_multi =<span class="st"> </span><span class="kw">st_multipoint</span>(<span class="dt">x =</span> p_matrix)</a>
-<a class="sourceLine" id="cb119-10" data-line-number="10">p =<span class="st"> </span><span class="kw">st_sf</span>(<span class="kw">st_cast</span>(<span class="kw">st_sfc</span>(p_multi), <span class="st">&quot;POINT&quot;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb119-10" data-line-number="10">p =<span class="st"> </span><span class="kw">st_cast</span>(<span class="kw">st_sfc</span>(p_multi), <span class="st">&quot;POINT&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:relation-objects"></span>
 <img src="figures/relation-objects-1.png" alt="Points (p 1 to 4), line and polygon objects arranged to demonstrate spatial relations." width="576" />
 <p class="caption">
