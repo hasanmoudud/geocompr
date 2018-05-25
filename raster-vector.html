@@ -234,10 +234,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#prerequisites-3"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="5.1" data-path="transform.html"><a href="transform.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="transform.html"><a href="transform.html#reproj-geo-data"><i class="fa fa-check"></i><b>5.2</b> Reprojecting geographic data</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="transform.html"><a href="transform.html#which-crs-to-use"><i class="fa fa-check"></i><b>5.2.1</b> Which CRS to use?</a></li>
-<li class="chapter" data-level="5.2.2" data-path="transform.html"><a href="transform.html#reproj-vec-geom"><i class="fa fa-check"></i><b>5.2.2</b> Reprojecting vector geometries</a></li>
-<li class="chapter" data-level="5.2.3" data-path="transform.html"><a href="transform.html#modifying-map-projections"><i class="fa fa-check"></i><b>5.2.3</b> Modifying map projections</a></li>
-<li class="chapter" data-level="5.2.4" data-path="transform.html"><a href="transform.html#reprojecting-raster-geometries"><i class="fa fa-check"></i><b>5.2.4</b> Reprojecting raster geometries</a></li>
+<li class="chapter" data-level="5.2.1" data-path="transform.html"><a href="transform.html#when-to-reproject"><i class="fa fa-check"></i><b>5.2.1</b> When to reproject?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="transform.html"><a href="transform.html#which-crs-to-use"><i class="fa fa-check"></i><b>5.2.2</b> Which CRS to use?</a></li>
+<li class="chapter" data-level="5.2.3" data-path="transform.html"><a href="transform.html#reproj-vec-geom"><i class="fa fa-check"></i><b>5.2.3</b> Reprojecting vector geometries</a></li>
+<li class="chapter" data-level="5.2.4" data-path="transform.html"><a href="transform.html#modifying-map-projections"><i class="fa fa-check"></i><b>5.2.4</b> Modifying map projections</a></li>
+<li class="chapter" data-level="5.2.5" data-path="transform.html"><a href="transform.html#reprojecting-raster-geometries"><i class="fa fa-check"></i><b>5.2.5</b> Reprojecting raster geometries</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="transform.html"><a href="transform.html#geo-vec"><i class="fa fa-check"></i><b>5.3</b> Geometric operations on vector data</a><ul>
 <li class="chapter" data-level="5.3.1" data-path="transform.html"><a href="transform.html#simplification"><i class="fa fa-check"></i><b>5.3.1</b> Simplification</a></li>
@@ -591,7 +592,7 @@ Figure 11.6: Examples of line and polygon rasterizations.
 <p>As with <code>raster::extract()</code>, <code>raster::rasterize()</code> works well for most cases but is not performance optimized.
 Fortunately, there are several alternatives, including the <code>fasterize::fasterize()</code> and <code>gdalUtils::gdal_rasterize()</code>.
 The former is much (100 times+) faster than <code>rasterize()</code> but is currently limited to polygon rasterization.
-The latter is part of GDAL and therefore requires a vector file (instead of an <code>sf</code> object) and rasterization parameters (instead of a <code>Raster*</code> template object) as inputs.<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a></p>
+The latter is part of GDAL and therefore requires a vector file (instead of an <code>sf</code> object) and rasterization parameters (instead of a <code>Raster*</code> template object) as inputs.<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
 </div>
 <div id="spatial-vectorization" class="section level2">
 <h2><span class="header-section-number">11.5</span> Spatial vectorization</h2>
@@ -692,8 +693,8 @@ Using these objects:
 </div>
 <div class="footnotes">
 <hr />
-<ol start="64">
-<li id="fn64"><p>See more at <a href="http://www.gdal.org/gdal_rasterize.html" class="uri">http://www.gdal.org/gdal_rasterize.html</a>.<a href="raster-vector.html#fnref64" class="footnote-back">↩</a></p></li>
+<ol start="65">
+<li id="fn65"><p>See more at <a href="http://www.gdal.org/gdal_rasterize.html" class="uri">http://www.gdal.org/gdal_rasterize.html</a>.<a href="raster-vector.html#fnref65" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

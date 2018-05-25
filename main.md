@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve540f13b32f3b6a65
+preserveddc408521b41c7f8
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved6658af9268a48a0
+preserved99eaf1dadb34849
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3752,21 +3752,20 @@ every part of the buffer's border is equidistant to London.
 The importance of CRSs (primarily whether they are projected or geographic) has been demonstrated using the example of London.
 The subsequent sections go into more depth, exploring which CRS to use and the details of reprojecting vector and raster objects.
 
-### Which CRS to use?
+### When to reproject?
 
-While CRSs can be set manually --- as illustrated in the previous section with `st_set_crs(london, 4326)` --- it is more common in real world applications for CRSs to be set automatically when data is read-in.
-The main task involving CRSs is often to *transform* objects provided in one CRS into another.
+The previous section showed how to set the CRS manually, with `st_set_crs(london, 4326)`.
+In real world applications, however, CRSs are usually set automatically when data is read-in.
+The main task involving CRSs is often to *transform* objects, from one CRS into another.
 But when should data be transformed? And into which CRS?
 There are no clear-cut answers to these questions and CRS selection always involves trade-offs [@maling_coordinate_1992].
 However there are some general principles, provided in this section, that can help decide. 
 
-The question of *when to transform* is easier to answer.
-In some cases transformation to a projected CRS is essential for geocomputational work.
-An example is when geometric operations involving distance measurements or area calculations are required.
-Conversely, if the outputs of a project are to be published in an online map, it may be necessary to convert them to a geographic CRS.
-If the visualization phase of a project involves publishing results using [leaflet](https://github.com/Leaflet/Leaflet) via the common format [GeoJSON](http://geojson.org/) (a common scenario) projected data should probably be transformed to WGS84. 
-Another case is when two objects with different CRSs must be compared or combined: performing a geometric operation on two objects with different CRSs results in an error.
-This is demonstrated in the code chunk below, which attempts to find the distance between the projected and unprojected versions of `london`:
+First it's worth considering *when to transform*.
+In some cases transformation to a projected CRS is essential, such as when using geometric functions such as `st_buffer()`, Figure \@ref(fig:crs-buf) shows.
+Conversely, publishing data online with the **leaflet** package may require a geographic CRS.
+<!-- If the visualization phase of a project involves publishing results using [leaflet](https://github.com/Leaflet/Leaflet) via the common format [GeoJSON](http://geojson.org/) (a common scenario) projected data should probably be transformed to WGS84.  -->
+Another case is when two objects with different CRSs must be compared or combined, as shown when we try to find the distance between two objects with different CRSs:
 
 
 ```r
@@ -3798,7 +3797,9 @@ st_distance(london2, london_proj)
 #> [1,] 2018
 ```
 
-The question of *which CRS* is tricky, and there is often no 'right' answer:
+### Which CRS to use?
+
+The question of *which CRS* is tricky, and there is rarely a 'right' answer:
 "There exist no all-purpose projections, all involve distortion when far from the center of the specified frame" [@bivand_applied_2013].
 For geographic CRSs the answer is often [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System#A_new_World_Geodetic_System:_WGS_84), not only for web mapping (covered in the previous paragraph) but also because GPS datasets and thousands of raster and vector datasets are provided in this CRS by default.
 WGS84 is the most common CRS in the world, so it is worth knowing its EPSG code: 4326.
@@ -3807,13 +3808,29 @@ This 'magic number' can be used to convert objects with unusual projected CRSs i
 What about when a projected CRS is required?
 In some cases it is not something that we are free to decide:
 "often the choice of projection is made by a public mapping agency" [@bivand_applied_2013].
-This means that when working with local data sources, it is likely preferable to work with the CRS in which the data was provided, to ensure compatibility, even if the 'official' CRS is not the most accurate.
+This means that when working with local data sources, it is likely preferable to work with the CRS in which the data was provided, to ensure compatibility, even if the official CRS is not the most accurate.
 The example of London was easy to answer because a) the CRS 'BNG' (with its associated EPSG code 27700) is well-known and b) the original dataset (`london`) already had that CRS.
 
-What about when a projected CRS is needed but the study region lacks a well-known CRS?
-Again there is no universal answer but a commonly used default:
-Universal Transverse Mercator ([UTM](https://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system)), a set of CRSs that divides the Earth into 60 longitudinal wedges and 20 latitudinal segments.
-This system gives gives everywhere on Earth a UTM code, such as "60H" which refers to northern New Zealand where R was invented.
+In cases where an appropriate CRS is not immediately clear, the choice of CRS should depend on the properties that are most important to preserve in the subsequent maps and analysis.
+All CRSs are either equal area, equi-distant, conformal (with shapes remaining unchanged), or some combination of compromises of those.
+Custom CRSs with local parameters can be created for a region of interest and multiple CRSs can be used in projects when no single CRS suits all tasks.
+'Geodesic calculations' can provide a fall-back if no CRSs are appropriate (see [proj4.org/geodesic.html](https://proj4.org/geodesic.html)).
+For any projected CRS the results may not be accurate when used on geometries covering hundreds of kilometers.
+
+When deciding a custom CRS we recommend the following:^[
+Many thanks to an anonymous reviewer whose comments formed the basis of this advice.
+]
+
+- A Lambert azimuthal equal-area ([LAEA](https://en.wikipedia.org/wiki/Lambert_azimuthal_equal-area_projection)) projection for a custom local projection (set `lon_0` and `lat_0` to the center of the study area), which is an equal-area projection at all locations but distorts shapes beyond thousands of kilometres.
+-  Azimuthal equidistant ([AEQD](https://en.wikipedia.org/wiki/Azimuthal_equidistant_projection)) projections for a specifically accurate straight-line distance between a point and the centre point of the local projection.
+- Lambert conformal conic ([LCC](https://en.wikipedia.org/wiki/Lambert_conformal_conic_projection)) projections for regions covering thousands of kilometres, with the cone set to keep distance and area properties reasonable between the secant lines.
+- Stereographic ([STERE](https://en.wikipedia.org/wiki/Stereographic_projection)) projections for polar regions, but taking care not to rely on area and distance calculations thousands of kilometres from the center.
+
+A commonly used default is Universal Transverse Mercator ([UTM](https://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system)), a set of CRSs that divides the Earth into 60 longitudinal wedges and 20 latitudinal segments.
+The transverse Mercator projection used by UTM CRSs is conformal but distorts areas and distances with increasing severity with distance from the center of the UTM zone.
+Documentation from the GIS software Manifold therefore suggests restricting the longitudinal extent of projects using UTM zones to 6 degrees from the central meridian (source: [manifold.net](http://www.manifold.net/doc/mfd9/universal_transverse_mercator_projection.htm)).
+
+Almost everywhere on Earth has a UTM code, such as "60H" which refers to northern New Zealand where R was invented.
 All UTM projections have the same datum (WGS84) and their EPSG codes run sequentially from 32601 to 32660 (for northern hemisphere locations) and 32701 to 32760 (southern hemisphere locations).
 
 
@@ -4154,6 +4171,10 @@ Equal-area     467    478   223226       0.0003   1842
 At best we can comply with two out of three spatial properties (distance, area, direction).
 Therefore, the task at hand determines which projection to choose. 
 For instance, if we are interested in a density (points per grid cell or inhabitants per grid cell) we should use an equal-area projection (see also chapter \@ref(location)).</div>\EndKnitrBlock{rmdnote}
+
+There is more to learn about CRSs.
+An excellent resource in this area, also implemented in R, is the website R Spatial.
+Chapter 6 for this free online book is recommended reading --- see [rspatial.org/spatial/rst/6-crs.html](http://rspatial.org/spatial/rst/6-crs.html)
 
 <!-- why new na? -->
 
@@ -6670,7 +6691,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb85c049569278eac
+preserve0334ff734eb9af67
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7357,7 +7378,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservef7a4e6d85f00b548
+preserve845940bb242a88ed
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7456,7 +7477,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3071ee07133bae04
+preservee17d2e2555fec88b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
