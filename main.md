@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveddc408521b41c7f8
+preserve2a568748c5e452a6
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved99eaf1dadb34849
+preservef67fc7de106c2566
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6323,10 +6323,6 @@ rcl_hh = rcl_women
 rcl = list(rcl_pop, rcl_women, rcl_age, rcl_hh)
 ```
 
-<!--
-We can loop with `map2()`, the **purrr** version of base R's `mapply()`, in parallel over two vectors (here `lists`; for more information please refer to @wickham_advanced_2014 and @grolemund_r_2016).
--->
-
 Note that we have made sure that the order of the reclassification matrices in the list is the same as for the elements of `input_ras`.
 For instance, the first element corresponds in both cases to the population.
 The `for`-loop runs in parallel through each of the elements and applies the reclassification to the corresponding raster layer.
@@ -6382,7 +6378,6 @@ polys = pop_agg %>%
   clump %>%
   rasterToPolygons %>%
   st_as_sf
-#> Loading required namespace: igraph
 ```
 
 `polys` now features a column named `clumps` which indicates to which metropolitan region each polygon belongs and which we will use to dissolve the polygons into coherent single regions (see also section \@ref(geometry-unions)):
@@ -6547,10 +6542,7 @@ Umlauts like `ü` might lead to trouble further on, for example when determining
 metro_names = 
   dplyr::select(metro_names, locality, administrative_area_level_2) %>%
   # replace Wülfrath and umlaut ü
-  # mutate(locality = ifelse(locality == "Wülfrath",
-  #                          administrative_area_level_2,
-  #                          locality),
-  mutate(locality = ifelse(locality == "Velbert",
+  mutate(locality = ifelse(locality == "Wülfrath",
                            administrative_area_level_2,
                            locality),
          locality = gsub("ü", "ue", locality)) %>%
@@ -6691,7 +6683,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve0334ff734eb9af67
+preserve1ff36f3d79b1766c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -7378,7 +7370,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve845940bb242a88ed
+preserve9aef24ea3260fd52
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7477,7 +7469,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee17d2e2555fec88b
+preservecdee506a8225d465
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 

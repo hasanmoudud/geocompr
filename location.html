@@ -640,9 +640,6 @@ Similarly, the classes containing the youngest people and highest proportion of 
 <a class="sourceLine" id="cb265-7" data-line-number="7">                 <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb265-8" data-line-number="8">rcl_hh =<span class="st"> </span>rcl_women</a>
 <a class="sourceLine" id="cb265-9" data-line-number="9">rcl =<span class="st"> </span><span class="kw">list</span>(rcl_pop, rcl_women, rcl_age, rcl_hh)</a></code></pre></div>
-<!--
-We can loop with `map2()`, the **purrr** version of base R's `mapply()`, in parallel over two vectors (here `lists`; for more information please refer to @wickham_advanced_2014 and @grolemund_r_2016).
--->
 <p>Note that we have made sure that the order of the reclassification matrices in the list is the same as for the elements of <code>input_ras</code>.
 For instance, the first element corresponds in both cases to the population.
 The <code>for</code>-loop runs in parallel through each of the elements and applies the reclassification to the corresponding raster layer.
@@ -679,8 +676,7 @@ Subsequently, <code>rasterToPolygons()</code> converts the raster object into sp
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1">polys =<span class="st"> </span>pop_agg <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb269-2" data-line-number="2"><span class="st">  </span>clump <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb269-3" data-line-number="3"><span class="st">  </span>rasterToPolygons <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb269-4" data-line-number="4"><span class="st">  </span>st_as_sf</a>
-<a class="sourceLine" id="cb269-5" data-line-number="5"><span class="co">#&gt; Loading required namespace: igraph</span></a></code></pre></div>
+<a class="sourceLine" id="cb269-4" data-line-number="4"><span class="st">  </span>st_as_sf</a></code></pre></div>
 <p><code>polys</code> now features a column named <code>clumps</code> which indicates to which metropolitan region each polygon belongs and which we will use to dissolve the polygons into coherent single regions (see also section <a href="transform.html#geometry-unions">5.3.6</a>):</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">metros =<span class="st"> </span>polys <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb270-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(clumps) <span class="op">%&gt;%</span></a>
@@ -847,14 +843,11 @@ Umlauts like <code>ü</code> might lead to trouble further on, for example when 
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">metro_names =<span class="st"> </span></a>
 <a class="sourceLine" id="cb274-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(metro_names, locality, administrative_area_level_<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb274-3" data-line-number="3"><span class="st">  </span><span class="co"># replace Wülfrath and umlaut ü</span></a>
-<a class="sourceLine" id="cb274-4" data-line-number="4"><span class="st">  </span><span class="co"># mutate(locality = ifelse(locality == &quot;Wülfrath&quot;,</span></a>
-<a class="sourceLine" id="cb274-5" data-line-number="5"><span class="st">  </span><span class="co">#                          administrative_area_level_2,</span></a>
-<a class="sourceLine" id="cb274-6" data-line-number="6"><span class="st">  </span><span class="co">#                          locality),</span></a>
-<a class="sourceLine" id="cb274-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">locality =</span> <span class="kw">ifelse</span>(locality <span class="op">==</span><span class="st"> &quot;Velbert&quot;</span>,</a>
-<a class="sourceLine" id="cb274-8" data-line-number="8">                           administrative_area_level_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb274-9" data-line-number="9">                           locality),</a>
-<a class="sourceLine" id="cb274-10" data-line-number="10">         <span class="dt">locality =</span> <span class="kw">gsub</span>(<span class="st">&quot;ü&quot;</span>, <span class="st">&quot;ue&quot;</span>, locality)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb274-11" data-line-number="11"><span class="st">  </span><span class="kw">pull</span>(locality)</a></code></pre></div>
+<a class="sourceLine" id="cb274-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">locality =</span> <span class="kw">ifelse</span>(locality <span class="op">==</span><span class="st"> &quot;Wülfrath&quot;,</span></a>
+<a class="sourceLine" id="cb274-5" data-line-number="5"><span class="st">                           administrative_area_level_2,</span></a>
+<a class="sourceLine" id="cb274-6" data-line-number="6"><span class="st">                           locality),</span></a>
+<a class="sourceLine" id="cb274-7" data-line-number="7"><span class="st">         locality = gsub(&quot;</span>ü<span class="st">&quot;, &quot;</span>ue<span class="st">&quot;, locality)) %&gt;%</span></a>
+<a class="sourceLine" id="cb274-8" data-line-number="8"><span class="st">  pull(locality)</span></a></code></pre></div>
 </div>
 <div id="points-of-interest" class="section level2">
 <h2><span class="header-section-number">8.6</span> Points of interest</h2>
