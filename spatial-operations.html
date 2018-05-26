@@ -788,12 +788,10 @@ The distance between two objects is calculated with the <code>st_distance()</cod
 This is illustrated in the code chunk below, which finds the distance between the highest point in New Zealand and the geographic centroid of the Canterbury region, created in section <a href="spatial-operations.html#spatial-subsetting">4.2.1</a>:</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">nz_heighest =<span class="st"> </span>nz_height <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">top_n</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">wt =</span> elevation)</a>
 <a class="sourceLine" id="cb137-2" data-line-number="2">canterbury_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(canterbury)</a>
-<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="co">#&gt; Warning in st_centroid.sf(canterbury): st_centroid assumes attributes are</span></a>
-<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="co">#&gt; constant over geometries of x</span></a>
-<a class="sourceLine" id="cb137-5" data-line-number="5"><span class="kw">st_distance</span>(nz_heighest, canterbury_centroid)</a>
-<a class="sourceLine" id="cb137-6" data-line-number="6"><span class="co">#&gt; Units: m</span></a>
-<a class="sourceLine" id="cb137-7" data-line-number="7"><span class="co">#&gt;        [,1]</span></a>
-<a class="sourceLine" id="cb137-8" data-line-number="8"><span class="co">#&gt; [1,] 115540</span></a></code></pre></div>
+<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="kw">st_distance</span>(nz_heighest, canterbury_centroid)</a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="co">#&gt; Units: m</span></a>
+<a class="sourceLine" id="cb137-5" data-line-number="5"><span class="co">#&gt;        [,1]</span></a>
+<a class="sourceLine" id="cb137-6" data-line-number="6"><span class="co">#&gt; [1,] 115540</span></a></code></pre></div>
 <p>There are two potentially surprising things about the result:</p>
 <ul>
 <li>It has <code>units</code>, telling us the distance is 100,000 meters, not 100,000 inches, or any other measure of distance.</li>
