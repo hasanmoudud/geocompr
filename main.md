@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve38efcafba72671e2
+preserve37116ff9ad642cbb
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve396b85601ec537b6
+preserve212819a5c8405c66
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3634,6 +3634,9 @@ This involves changing the size and number of the underlying pixels, and assigni
 It teaches how to change the resolution (also called raster aggregation and disaggregation), the extent and the origin of a raster.
 These operations are especially useful if one would like to align raster datasets from diverse sources.
 Aligned raster objects share the same header information, allowing them to be processed using map algebra operations, described in section \@ref(map-algebra). 
+
+Section \@ref(raster-vector) connects vector and raster objects. 
+It includes raster cropping and masking based on vector data location, raster values extraction using vector objects, and raster-vector conversions.
 
 ## Geometric operations on vector data {#geo-vec}
 
@@ -6494,7 +6497,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserved54c3e338aadbc87
+preserve11e7fd2184126f2d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6593,7 +6596,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2de9932d42db4001
+preserve0e87c12db28e9add
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9609,7 +9612,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve42c8172a2748b640
+preserve61b1df8af9015fe4
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
