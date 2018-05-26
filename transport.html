@@ -25,14 +25,14 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-25">
+<meta name="date" content="2018-05-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="read-write.html">
+<link rel="prev" href="spatial-cv.html">
 <link rel="next" href="location.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -254,106 +254,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="transform.html"><a href="transform.html#extent-and-origin"><i class="fa fa-check"></i><b>5.4.2</b> Extent and origin</a></li>
 <li class="chapter" data-level="5.4.3" data-path="transform.html"><a href="transform.html#aggregation-and-disaggregation"><i class="fa fa-check"></i><b>5.4.3</b> Aggregation and disaggregation</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="transform.html"><a href="transform.html#exercises-3"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="transform.html"><a href="transform.html#raster-vector"><i class="fa fa-check"></i><b>5.5</b> Raster-vector interactions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="transform.html"><a href="transform.html#raster-cropping"><i class="fa fa-check"></i><b>5.5.1</b> Raster cropping</a></li>
+<li class="chapter" data-level="5.5.2" data-path="transform.html"><a href="transform.html#raster-extraction"><i class="fa fa-check"></i><b>5.5.2</b> Raster extraction</a></li>
+<li class="chapter" data-level="5.5.3" data-path="transform.html"><a href="transform.html#rasterization"><i class="fa fa-check"></i><b>5.5.3</b> Rasterization</a></li>
+<li class="chapter" data-level="5.5.4" data-path="transform.html"><a href="transform.html#spatial-vectorization"><i class="fa fa-check"></i><b>5.5.4</b> Spatial vectorization</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="read-write.html"><a href="read-write.html"><i class="fa fa-check"></i><b>6</b> Geographic data I/O</a><ul>
-<li class="chapter" data-level="" data-path="read-write.html"><a href="read-write.html#prerequisites-4"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="6.1" data-path="read-write.html"><a href="read-write.html#introduction-3"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="read-write.html"><a href="read-write.html#retrieving-data"><i class="fa fa-check"></i><b>6.2</b> Retrieving open data</a></li>
-<li class="chapter" data-level="6.3" data-path="read-write.html"><a href="read-write.html#file-formats"><i class="fa fa-check"></i><b>6.3</b> File formats</a></li>
-<li class="chapter" data-level="6.4" data-path="read-write.html"><a href="read-write.html#data-input"><i class="fa fa-check"></i><b>6.4</b> Data Input (I)</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="read-write.html"><a href="read-write.html#vector-data-1"><i class="fa fa-check"></i><b>6.4.1</b> Vector data</a></li>
-<li class="chapter" data-level="6.4.2" data-path="read-write.html"><a href="read-write.html#raster-data-1"><i class="fa fa-check"></i><b>6.4.2</b> Raster data</a></li>
+<li class="chapter" data-level="5.6" data-path="transform.html"><a href="transform.html#exercises-3"><i class="fa fa-check"></i><b>5.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="read-write.html"><a href="read-write.html#data-output"><i class="fa fa-check"></i><b>6.5</b> Data output (O)</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="read-write.html"><a href="read-write.html#vector-data-2"><i class="fa fa-check"></i><b>6.5.1</b> Vector data</a></li>
-<li class="chapter" data-level="6.5.2" data-path="read-write.html"><a href="read-write.html#raster-data-2"><i class="fa fa-check"></i><b>6.5.2</b> Raster data</a></li>
+<li class="chapter" data-level="6" data-path="transform.html"><a href="transform.html#reproj-geo-data"><i class="fa fa-check"></i><b>6</b> Reprojecting geographic data</a><ul>
+<li class="chapter" data-level="" data-path="reproj-geo-data.html"><a href="reproj-geo-data.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="6.1" data-path="reproj-geo-data.html"><a href="reproj-geo-data.html#introduction-3"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="reproj-geo-data.html"><a href="reproj-geo-data.html#when-to-reproject-1"><i class="fa fa-check"></i><b>6.2</b> When to reproject?</a></li>
+<li class="chapter" data-level="6.3" data-path="reproj-geo-data.html"><a href="reproj-geo-data.html#which-crs-to-use-1"><i class="fa fa-check"></i><b>6.3</b> Which CRS to use?</a></li>
+<li class="chapter" data-level="6.4" data-path="transform.html"><a href="transform.html#reproj-vec-geom"><i class="fa fa-check"></i><b>6.4</b> Reprojecting vector geometries</a></li>
+<li class="chapter" data-level="6.5" data-path="reproj-geo-data.html"><a href="reproj-geo-data.html#modifying-map-projections-1"><i class="fa fa-check"></i><b>6.5</b> Modifying map projections</a></li>
+<li class="chapter" data-level="6.6" data-path="reproj-geo-data.html"><a href="reproj-geo-data.html#reprojecting-raster-geometries-1"><i class="fa fa-check"></i><b>6.6</b> Reprojecting raster geometries</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="read-write.html"><a href="read-write.html#visual-outputs"><i class="fa fa-check"></i><b>6.6</b> Visual outputs</a></li>
-<li class="chapter" data-level="6.7" data-path="read-write.html"><a href="read-write.html#exercises-4"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
+<li class="chapter" data-level="7" data-path="read-write.html"><a href="read-write.html"><i class="fa fa-check"></i><b>7</b> Geographic data I/O</a><ul>
+<li class="chapter" data-level="" data-path="read-write.html"><a href="read-write.html#prerequisites-5"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="7.1" data-path="read-write.html"><a href="read-write.html#introduction-4"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="read-write.html"><a href="read-write.html#retrieving-data"><i class="fa fa-check"></i><b>7.2</b> Retrieving open data</a></li>
+<li class="chapter" data-level="7.3" data-path="read-write.html"><a href="read-write.html#file-formats"><i class="fa fa-check"></i><b>7.3</b> File formats</a></li>
+<li class="chapter" data-level="7.4" data-path="read-write.html"><a href="read-write.html#data-input"><i class="fa fa-check"></i><b>7.4</b> Data Input (I)</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="read-write.html"><a href="read-write.html#vector-data-1"><i class="fa fa-check"></i><b>7.4.1</b> Vector data</a></li>
+<li class="chapter" data-level="7.4.2" data-path="read-write.html"><a href="read-write.html#raster-data-1"><i class="fa fa-check"></i><b>7.4.2</b> Raster data</a></li>
 </ul></li>
-<li class="part"><span><b>II Applied geocomputation</b></span></li>
-<li class="chapter" data-level="7" data-path="transport.html"><a href="transport.html"><i class="fa fa-check"></i><b>7</b> Transport applications</a><ul>
-<li class="chapter" data-level="" data-path="transport.html"><a href="transport.html#prerequisites-5"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="7.1" data-path="transport.html"><a href="transport.html#introduction-4"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="transport.html"><a href="transport.html#bris-case"><i class="fa fa-check"></i><b>7.2</b> A case study of Bristol</a></li>
-<li class="chapter" data-level="7.3" data-path="transport.html"><a href="transport.html#transport-zones"><i class="fa fa-check"></i><b>7.3</b> Transport zones</a></li>
-<li class="chapter" data-level="7.4" data-path="transport.html"><a href="transport.html#desire-lines"><i class="fa fa-check"></i><b>7.4</b> Desire lines</a></li>
-<li class="chapter" data-level="7.5" data-path="transport.html"><a href="transport.html#routes"><i class="fa fa-check"></i><b>7.5</b> Routes</a></li>
-<li class="chapter" data-level="7.6" data-path="transport.html"><a href="transport.html#nodes"><i class="fa fa-check"></i><b>7.6</b> Nodes</a></li>
-<li class="chapter" data-level="7.7" data-path="transport.html"><a href="transport.html#route-networks"><i class="fa fa-check"></i><b>7.7</b> Route networks</a></li>
-<li class="chapter" data-level="7.8" data-path="transport.html"><a href="transport.html#prioritizing-new-infrastructure"><i class="fa fa-check"></i><b>7.8</b> Prioritizing new infrastructure</a></li>
-<li class="chapter" data-level="7.9" data-path="transport.html"><a href="transport.html#future-directions-of-travel"><i class="fa fa-check"></i><b>7.9</b> Future directions of travel</a></li>
-<li class="chapter" data-level="7.10" data-path="transport.html"><a href="transport.html#ex-transport"><i class="fa fa-check"></i><b>7.10</b> Exercises</a></li>
+<li class="chapter" data-level="7.5" data-path="read-write.html"><a href="read-write.html#data-output"><i class="fa fa-check"></i><b>7.5</b> Data output (O)</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="read-write.html"><a href="read-write.html#vector-data-2"><i class="fa fa-check"></i><b>7.5.1</b> Vector data</a></li>
+<li class="chapter" data-level="7.5.2" data-path="read-write.html"><a href="read-write.html#raster-data-2"><i class="fa fa-check"></i><b>7.5.2</b> Raster data</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>8</b> Geomarketing application</a><ul>
-<li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-6"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="8.1" data-path="location.html"><a href="location.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.2" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>8.2</b> Case study: bike shops in Germany</a></li>
-<li class="chapter" data-level="8.3" data-path="location.html"><a href="location.html#tidy-the-input-data"><i class="fa fa-check"></i><b>8.3</b> Tidy the input data</a></li>
-<li class="chapter" data-level="8.4" data-path="location.html"><a href="location.html#create-census-rasters"><i class="fa fa-check"></i><b>8.4</b> Create census rasters</a></li>
-<li class="chapter" data-level="8.5" data-path="location.html"><a href="location.html#define-metropolitan-areas"><i class="fa fa-check"></i><b>8.5</b> Define metropolitan areas</a></li>
-<li class="chapter" data-level="8.6" data-path="location.html"><a href="location.html#points-of-interest"><i class="fa fa-check"></i><b>8.6</b> Points of interest</a></li>
-<li class="chapter" data-level="8.7" data-path="location.html"><a href="location.html#identifying-suitable-locations"><i class="fa fa-check"></i><b>8.7</b> Identifying suitable locations</a></li>
-<li class="chapter" data-level="8.8" data-path="location.html"><a href="location.html#discussion-and-next-steps"><i class="fa fa-check"></i><b>8.8</b> Discussion and next steps</a></li>
-<li class="chapter" data-level="8.9" data-path="location.html"><a href="location.html#exercises-5"><i class="fa fa-check"></i><b>8.9</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="read-write.html"><a href="read-write.html#visual-outputs"><i class="fa fa-check"></i><b>7.6</b> Visual outputs</a></li>
+<li class="chapter" data-level="7.7" data-path="read-write.html"><a href="read-write.html#exercises-4"><i class="fa fa-check"></i><b>7.7</b> Exercises</a></li>
 </ul></li>
-<li class="part"><span><b>III Advanced methods</b></span></li>
-<li class="chapter" data-level="9" data-path="adv-map.html"><a href="adv-map.html"><i class="fa fa-check"></i><b>9</b> Making maps with R</a><ul>
-<li class="chapter" data-level="" data-path="adv-map.html"><a href="adv-map.html#prerequisites-7"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="9.1" data-path="adv-map.html"><a href="adv-map.html#introduction-6"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
-<li class="chapter" data-level="9.2" data-path="adv-map.html"><a href="adv-map.html#static-maps"><i class="fa fa-check"></i><b>9.2</b> Static maps</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="adv-map.html"><a href="adv-map.html#tmap-basics"><i class="fa fa-check"></i><b>9.2.1</b> tmap basics</a></li>
-<li class="chapter" data-level="9.2.2" data-path="adv-map.html"><a href="adv-map.html#map-obj"><i class="fa fa-check"></i><b>9.2.2</b> Map objects</a></li>
-<li class="chapter" data-level="9.2.3" data-path="adv-map.html"><a href="adv-map.html#aesthetics"><i class="fa fa-check"></i><b>9.2.3</b> Aesthetics</a></li>
-<li class="chapter" data-level="9.2.4" data-path="adv-map.html"><a href="adv-map.html#color-settings"><i class="fa fa-check"></i><b>9.2.4</b> Color settings</a></li>
-<li class="chapter" data-level="9.2.5" data-path="adv-map.html"><a href="adv-map.html#layouts"><i class="fa fa-check"></i><b>9.2.5</b> Layouts</a></li>
-<li class="chapter" data-level="9.2.6" data-path="adv-map.html"><a href="adv-map.html#faceted-maps"><i class="fa fa-check"></i><b>9.2.6</b> Faceted maps</a></li>
-<li class="chapter" data-level="9.2.7" data-path="adv-map.html"><a href="adv-map.html#inset-maps"><i class="fa fa-check"></i><b>9.2.7</b> Inset maps</a></li>
+<li class="part"><span><b>II Advanced methods</b></span></li>
+<li class="chapter" data-level="8" data-path="adv-map.html"><a href="adv-map.html"><i class="fa fa-check"></i><b>8</b> Making maps with R</a><ul>
+<li class="chapter" data-level="" data-path="adv-map.html"><a href="adv-map.html#prerequisites-6"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="8.1" data-path="adv-map.html"><a href="adv-map.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="adv-map.html"><a href="adv-map.html#static-maps"><i class="fa fa-check"></i><b>8.2</b> Static maps</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="adv-map.html"><a href="adv-map.html#tmap-basics"><i class="fa fa-check"></i><b>8.2.1</b> tmap basics</a></li>
+<li class="chapter" data-level="8.2.2" data-path="adv-map.html"><a href="adv-map.html#map-obj"><i class="fa fa-check"></i><b>8.2.2</b> Map objects</a></li>
+<li class="chapter" data-level="8.2.3" data-path="adv-map.html"><a href="adv-map.html#aesthetics"><i class="fa fa-check"></i><b>8.2.3</b> Aesthetics</a></li>
+<li class="chapter" data-level="8.2.4" data-path="adv-map.html"><a href="adv-map.html#color-settings"><i class="fa fa-check"></i><b>8.2.4</b> Color settings</a></li>
+<li class="chapter" data-level="8.2.5" data-path="adv-map.html"><a href="adv-map.html#layouts"><i class="fa fa-check"></i><b>8.2.5</b> Layouts</a></li>
+<li class="chapter" data-level="8.2.6" data-path="adv-map.html"><a href="adv-map.html#faceted-maps"><i class="fa fa-check"></i><b>8.2.6</b> Faceted maps</a></li>
+<li class="chapter" data-level="8.2.7" data-path="adv-map.html"><a href="adv-map.html#inset-maps"><i class="fa fa-check"></i><b>8.2.7</b> Inset maps</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="adv-map.html"><a href="adv-map.html#animated-maps"><i class="fa fa-check"></i><b>9.3</b> Animated maps</a></li>
-<li class="chapter" data-level="9.4" data-path="adv-map.html"><a href="adv-map.html#interactive-maps"><i class="fa fa-check"></i><b>9.4</b> Interactive maps</a></li>
-<li class="chapter" data-level="9.5" data-path="adv-map.html"><a href="adv-map.html#mapping-applications"><i class="fa fa-check"></i><b>9.5</b> Mapping applications</a></li>
-<li class="chapter" data-level="9.6" data-path="adv-map.html"><a href="adv-map.html#other-mapping-packages"><i class="fa fa-check"></i><b>9.6</b> Other mapping packages</a></li>
-<li class="chapter" data-level="9.7" data-path="adv-map.html"><a href="adv-map.html#exercises-6"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
+<li class="chapter" data-level="8.3" data-path="adv-map.html"><a href="adv-map.html#animated-maps"><i class="fa fa-check"></i><b>8.3</b> Animated maps</a></li>
+<li class="chapter" data-level="8.4" data-path="adv-map.html"><a href="adv-map.html#interactive-maps"><i class="fa fa-check"></i><b>8.4</b> Interactive maps</a></li>
+<li class="chapter" data-level="8.5" data-path="adv-map.html"><a href="adv-map.html#mapping-applications"><i class="fa fa-check"></i><b>8.5</b> Mapping applications</a></li>
+<li class="chapter" data-level="8.6" data-path="adv-map.html"><a href="adv-map.html#other-mapping-packages"><i class="fa fa-check"></i><b>8.6</b> Other mapping packages</a></li>
+<li class="chapter" data-level="8.7" data-path="adv-map.html"><a href="adv-map.html#exercises-5"><i class="fa fa-check"></i><b>8.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="gis.html"><a href="gis.html"><i class="fa fa-check"></i><b>10</b> Bridges to GIS software</a><ul>
-<li class="chapter" data-level="10.1" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>10.1</b> (R)QGIS</a></li>
-<li class="chapter" data-level="10.2" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>10.2</b> (R)SAGA</a></li>
-<li class="chapter" data-level="10.3" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>10.3</b> GRASS through <strong>rgrass7</strong></a></li>
-<li class="chapter" data-level="10.4" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>10.4</b> When to use what?</a></li>
-<li class="chapter" data-level="10.5" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
+<li class="chapter" data-level="9" data-path="gis.html"><a href="gis.html"><i class="fa fa-check"></i><b>9</b> Bridges to GIS software</a><ul>
+<li class="chapter" data-level="9.1" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>9.1</b> (R)QGIS</a></li>
+<li class="chapter" data-level="9.2" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.2</b> (R)SAGA</a></li>
+<li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.3</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.4</b> When to use what?</a></li>
+<li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#exercises-6"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="raster-vector.html"><a href="raster-vector.html"><i class="fa fa-check"></i><b>11</b> Raster-vector interactions</a><ul>
-<li class="chapter" data-level="" data-path="raster-vector.html"><a href="raster-vector.html#prerequisites-8"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="11.1" data-path="raster-vector.html"><a href="raster-vector.html#introduction-7"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
-<li class="chapter" data-level="11.2" data-path="raster-vector.html"><a href="raster-vector.html#raster-cropping"><i class="fa fa-check"></i><b>11.2</b> Raster cropping</a></li>
-<li class="chapter" data-level="11.3" data-path="raster-vector.html"><a href="raster-vector.html#raster-extraction"><i class="fa fa-check"></i><b>11.3</b> Raster extraction</a></li>
-<li class="chapter" data-level="11.4" data-path="raster-vector.html"><a href="raster-vector.html#rasterization"><i class="fa fa-check"></i><b>11.4</b> Rasterization</a></li>
-<li class="chapter" data-level="11.5" data-path="raster-vector.html"><a href="raster-vector.html#spatial-vectorization"><i class="fa fa-check"></i><b>11.5</b> Spatial vectorization</a></li>
-<li class="chapter" data-level="11.6" data-path="raster-vector.html"><a href="raster-vector.html#exercises-8"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="10" data-path="algorithms.html"><a href="algorithms.html"><i class="fa fa-check"></i><b>10</b> Algorithms and functions</a><ul>
+<li class="chapter" data-level="" data-path="algorithms.html"><a href="algorithms.html#prerequisites-7"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="10.1" data-path="algorithms.html"><a href="algorithms.html#scripts"><i class="fa fa-check"></i><b>10.1</b> Scripts</a></li>
+<li class="chapter" data-level="10.2" data-path="algorithms.html"><a href="algorithms.html#geographic-algorithms"><i class="fa fa-check"></i><b>10.2</b> Geographic algorithms</a></li>
+<li class="chapter" data-level="10.3" data-path="algorithms.html"><a href="algorithms.html#functions"><i class="fa fa-check"></i><b>10.3</b> Functions</a></li>
+<li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>10.4</b> Case study</a></li>
+<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#exercises-7"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="algorithms.html"><a href="algorithms.html"><i class="fa fa-check"></i><b>12</b> Algorithms and functions</a><ul>
-<li class="chapter" data-level="" data-path="algorithms.html"><a href="algorithms.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="12.1" data-path="algorithms.html"><a href="algorithms.html#scripts"><i class="fa fa-check"></i><b>12.1</b> Scripts</a></li>
-<li class="chapter" data-level="12.2" data-path="algorithms.html"><a href="algorithms.html#geographic-algorithms"><i class="fa fa-check"></i><b>12.2</b> Geographic algorithms</a></li>
-<li class="chapter" data-level="12.3" data-path="algorithms.html"><a href="algorithms.html#functions"><i class="fa fa-check"></i><b>12.3</b> Functions</a></li>
-<li class="chapter" data-level="12.4" data-path="algorithms.html"><a href="algorithms.html#case-study-1"><i class="fa fa-check"></i><b>12.4</b> Case study</a></li>
-<li class="chapter" data-level="12.5" data-path="algorithms.html"><a href="algorithms.html#exercises-9"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+<li class="chapter" data-level="11" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>11</b> Statistical learning for geographic data</a><ul>
+<li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-8"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="11.1" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="spatial-cv.html"><a href="spatial-cv.html#case-landslide"><i class="fa fa-check"></i><b>11.2</b> Case study: Landslide susceptibility</a></li>
+<li class="chapter" data-level="11.3" data-path="spatial-cv.html"><a href="spatial-cv.html#conventional-model"><i class="fa fa-check"></i><b>11.3</b> Conventional modeling approach in R</a></li>
+<li class="chapter" data-level="11.4" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv"><i class="fa fa-check"></i><b>11.4</b> Introduction to (spatial) cross-validation</a></li>
+<li class="chapter" data-level="11.5" data-path="spatial-cv.html"><a href="spatial-cv.html#spatial-cv-with-mlr"><i class="fa fa-check"></i><b>11.5</b> Spatial CV with <strong>mlr</strong></a><ul>
+<li class="chapter" data-level="11.5.1" data-path="spatial-cv.html"><a href="spatial-cv.html#glm"><i class="fa fa-check"></i><b>11.5.1</b> Generalized linear model</a></li>
+<li class="chapter" data-level="11.5.2" data-path="spatial-cv.html"><a href="spatial-cv.html#svm"><i class="fa fa-check"></i><b>11.5.2</b> Spatial tuning of machine-learning hyperparameters</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>13</b> Statistical learning for geographic data</a><ul>
-<li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-10"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="13.1" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
-<li class="chapter" data-level="13.2" data-path="spatial-cv.html"><a href="spatial-cv.html#case-landslide"><i class="fa fa-check"></i><b>13.2</b> Case study: Landslide susceptibility</a></li>
-<li class="chapter" data-level="13.3" data-path="spatial-cv.html"><a href="spatial-cv.html#conventional-model"><i class="fa fa-check"></i><b>13.3</b> Conventional modeling approach in R</a></li>
-<li class="chapter" data-level="13.4" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv"><i class="fa fa-check"></i><b>13.4</b> Introduction to (spatial) cross-validation</a></li>
-<li class="chapter" data-level="13.5" data-path="spatial-cv.html"><a href="spatial-cv.html#spatial-cv-with-mlr"><i class="fa fa-check"></i><b>13.5</b> Spatial CV with <strong>mlr</strong></a><ul>
-<li class="chapter" data-level="13.5.1" data-path="spatial-cv.html"><a href="spatial-cv.html#glm"><i class="fa fa-check"></i><b>13.5.1</b> Generalized linear model</a></li>
-<li class="chapter" data-level="13.5.2" data-path="spatial-cv.html"><a href="spatial-cv.html#svm"><i class="fa fa-check"></i><b>13.5.2</b> Spatial tuning of machine-learning hyperparameters</a></li>
+<li class="chapter" data-level="11.6" data-path="spatial-cv.html"><a href="spatial-cv.html#conclusions"><i class="fa fa-check"></i><b>11.6</b> Conclusions</a></li>
+<li class="chapter" data-level="11.7" data-path="spatial-cv.html"><a href="spatial-cv.html#exercises-8"><i class="fa fa-check"></i><b>11.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13.6" data-path="spatial-cv.html"><a href="spatial-cv.html#conclusions"><i class="fa fa-check"></i><b>13.6</b> Conclusions</a></li>
-<li class="chapter" data-level="13.7" data-path="spatial-cv.html"><a href="spatial-cv.html#exercises-10"><i class="fa fa-check"></i><b>13.7</b> Exercises</a></li>
+<li class="part"><span><b>III Applied geocomputation</b></span></li>
+<li class="chapter" data-level="12" data-path="transport.html"><a href="transport.html"><i class="fa fa-check"></i><b>12</b> Transport applications</a><ul>
+<li class="chapter" data-level="" data-path="transport.html"><a href="transport.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="12.1" data-path="transport.html"><a href="transport.html#introduction-6"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="transport.html"><a href="transport.html#bris-case"><i class="fa fa-check"></i><b>12.2</b> A case study of Bristol</a></li>
+<li class="chapter" data-level="12.3" data-path="transport.html"><a href="transport.html#transport-zones"><i class="fa fa-check"></i><b>12.3</b> Transport zones</a></li>
+<li class="chapter" data-level="12.4" data-path="transport.html"><a href="transport.html#desire-lines"><i class="fa fa-check"></i><b>12.4</b> Desire lines</a></li>
+<li class="chapter" data-level="12.5" data-path="transport.html"><a href="transport.html#routes"><i class="fa fa-check"></i><b>12.5</b> Routes</a></li>
+<li class="chapter" data-level="12.6" data-path="transport.html"><a href="transport.html#nodes"><i class="fa fa-check"></i><b>12.6</b> Nodes</a></li>
+<li class="chapter" data-level="12.7" data-path="transport.html"><a href="transport.html#route-networks"><i class="fa fa-check"></i><b>12.7</b> Route networks</a></li>
+<li class="chapter" data-level="12.8" data-path="transport.html"><a href="transport.html#prioritizing-new-infrastructure"><i class="fa fa-check"></i><b>12.8</b> Prioritizing new infrastructure</a></li>
+<li class="chapter" data-level="12.9" data-path="transport.html"><a href="transport.html#future-directions-of-travel"><i class="fa fa-check"></i><b>12.9</b> Future directions of travel</a></li>
+<li class="chapter" data-level="12.10" data-path="transport.html"><a href="transport.html#ex-transport"><i class="fa fa-check"></i><b>12.10</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="13" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>13</b> Geomarketing application</a><ul>
+<li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-10"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="13.1" data-path="location.html"><a href="location.html#introduction-7"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>13.2</b> Case study: bike shops in Germany</a></li>
+<li class="chapter" data-level="13.3" data-path="location.html"><a href="location.html#tidy-the-input-data"><i class="fa fa-check"></i><b>13.3</b> Tidy the input data</a></li>
+<li class="chapter" data-level="13.4" data-path="location.html"><a href="location.html#create-census-rasters"><i class="fa fa-check"></i><b>13.4</b> Create census rasters</a></li>
+<li class="chapter" data-level="13.5" data-path="location.html"><a href="location.html#define-metropolitan-areas"><i class="fa fa-check"></i><b>13.5</b> Define metropolitan areas</a></li>
+<li class="chapter" data-level="13.6" data-path="location.html"><a href="location.html#points-of-interest"><i class="fa fa-check"></i><b>13.6</b> Points of interest</a></li>
+<li class="chapter" data-level="13.7" data-path="location.html"><a href="location.html#identifying-suitable-locations"><i class="fa fa-check"></i><b>13.7</b> Identifying suitable locations</a></li>
+<li class="chapter" data-level="13.8" data-path="location.html"><a href="location.html#discussion-and-next-steps"><i class="fa fa-check"></i><b>13.8</b> Discussion and next steps</a></li>
+<li class="chapter" data-level="13.9" data-path="location.html"><a href="location.html#exercises-9"><i class="fa fa-check"></i><b>13.9</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>IV Geocomputation in the wild</b></span></li>
+<li class="chapter" data-level="14" data-path="eco.html"><a href="eco.html"><i class="fa fa-check"></i><b>14</b> Geocomputation for Ecology: A case study of fog oases</a><ul>
+<li class="chapter" data-level="" data-path="eco.html"><a href="eco.html#prerequisites-11"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="14.1" data-path="eco.html"><a href="eco.html#introduction-8"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="eco.html"><a href="eco.html#background"><i class="fa fa-check"></i><b>14.2</b> Background</a></li>
+<li class="chapter" data-level="14.3" data-path="eco.html"><a href="eco.html#reducing-dimensionality"><i class="fa fa-check"></i><b>14.3</b> Reducing dimensionality</a></li>
+<li class="chapter" data-level="14.4" data-path="eco.html"><a href="eco.html#exercises-10"><i class="fa fa-check"></i><b>14.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="synthesis-and-next-steps.html"><a href="synthesis-and-next-steps.html"><i class="fa fa-check"></i><b>15</b> Synthesis and next steps</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="http://robinlovelace.net/">Robin Lovelace</a></li>
@@ -378,20 +393,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="transport" class="section level1">
-<h1><span class="header-section-number">7</span> Transport applications</h1>
-<div id="prerequisites-5" class="section level2 unnumbered">
+<h1><span class="header-section-number">12</span> Transport applications</h1>
+<div id="prerequisites-9" class="section level2 unnumbered">
 <h2>Prerequisites</h2>
 <ul>
-<li>This chapter requires the following packages to be attached, all but the last two of which have been used previously:<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></li>
+<li>This chapter requires the following packages to be attached, all but the last two of which have been used previously:<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a></li>
 </ul>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb235-3" data-line-number="3"><span class="kw">library</span>(spDataLarge)</a>
-<a class="sourceLine" id="cb235-4" data-line-number="4"><span class="kw">library</span>(stplanr)      <span class="co"># a package for transport data</span></a>
-<a class="sourceLine" id="cb235-5" data-line-number="5"><span class="kw">library</span>(tmap)         <span class="co"># a visualization package</span></a></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb388-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb388-3" data-line-number="3"><span class="kw">library</span>(spDataLarge)</a>
+<a class="sourceLine" id="cb388-4" data-line-number="4"><span class="kw">library</span>(stplanr)      <span class="co"># a package for transport data</span></a>
+<a class="sourceLine" id="cb388-5" data-line-number="5"><span class="kw">library</span>(tmap)         <span class="co"># a visualization package</span></a></code></pre></div>
 </div>
-<div id="introduction-4" class="section level2">
-<h2><span class="header-section-number">7.1</span> Introduction</h2>
+<div id="introduction-6" class="section level2">
+<h2><span class="header-section-number">12.1</span> Introduction</h2>
 <p>In few other sectors is geographic space more tangible than transport.
 The effort of moving (overcoming distance) is central to the ‘first law’ of geography, defined by Waldo Tobler in 1970 as follows <span class="citation">(Miller <a href="#ref-miller_toblers_2004">2004</a>)</span>:</p>
 <blockquote>
@@ -425,23 +440,23 @@ Selecting an appropriate level of geographic analysis can help simplify this com
 For this reason, this chapter is based around a policy scenario that asks:
 how to increase walking and cycling in the city of Bristol?
 Both policies aim to prevent traffic jams, reduce carbon emissions, and promote a healthier life style, all of which makes the city greener and thus more attractive and enjoyable to live in.</p>
-<p>The next chapter <a href="location.html#location">8</a> demonstrates another application of Geocomputation:
+<p>The next chapter <a href="location.html#location">13</a> demonstrates another application of Geocomputation:
 prioritising the location of new bike shops.
 There is a link between the chapters because bike shops may benefit from new cycling infrastructure, demonstrating an important feature of transport systems: they are closely linked to broader social, economic and land-use patterns.
-This section ties-together the various strands that explored some geographic features of Bristol’s transport system, covered in sections <a href="transport.html#transport-zones">7.3</a> to <a href="transport.html#route-networks">7.7</a>.</p>
+This section ties-together the various strands that explored some geographic features of Bristol’s transport system, covered in sections <a href="transport.html#transport-zones">12.3</a> to <a href="transport.html#route-networks">12.7</a>.</p>
 <!-- Idea: make it about reducing CO2 emissions instead. Thoughts? + Multi-model - more complex -->
 </div>
 <div id="bris-case" class="section level2">
-<h2><span class="header-section-number">7.2</span> A case study of Bristol</h2>
+<h2><span class="header-section-number">12.2</span> A case study of Bristol</h2>
 <p>The case study used for this chapter is located in Bristol, a city in the west of England, around 30 km east of the Welsh capital Cardiff.
-An overview of the region’s transport network is illustrated in Figure <a href="transport.html#fig:bristol">7.1</a>, which shows a diversity of transport infrastructure, for cycling, public transport, and private motor vehicles.</p>
+An overview of the region’s transport network is illustrated in Figure <a href="transport.html#fig:bristol">12.1</a>, which shows a diversity of transport infrastructure, for cycling, public transport, and private motor vehicles.</p>
 <div class="figure" style="text-align: center"><span id="fig:bristol"></span>
 <img src="https://user-images.githubusercontent.com/1825120/34452756-985267de-ed3e-11e7-9f59-fda1f3852253.png" alt="Bristol's transport network represented by colored lines for active (green), public (railways, black) and private motor (red) modes of travel. Blue border lines represent the inner city boundary and the larger Travel To Work Area (TTWA)."  />
 <p class="caption">
-Figure 7.1: Bristol’s transport network represented by colored lines for active (green), public (railways, black) and private motor (red) modes of travel. Blue border lines represent the inner city boundary and the larger Travel To Work Area (TTWA).
+Figure 12.1: Bristol’s transport network represented by colored lines for active (green), public (railways, black) and private motor (red) modes of travel. Blue border lines represent the inner city boundary and the larger Travel To Work Area (TTWA).
 </p>
 </div>
-<p>Bristol is the 10<sup>th</sup> largest city council in England, with a population of half a million people, although its travel catchment area is larger (see section <a href="transport.html#transport-zones">7.3</a>).
+<p>Bristol is the 10<sup>th</sup> largest city council in England, with a population of half a million people, although its travel catchment area is larger (see section <a href="transport.html#transport-zones">12.3</a>).
 It has a vibrant economy with aerospace, media, financial service and tourism companies, alongside two major universities.
 Bristol shows a high average income per capita but also contains areas of severe deprivation <span class="citation">(Bristol City Council <a href="#ref-bristol_city_council_deprivation_2015">2015</a>)</span>.</p>
 <p>In terms of transport, Bristol is well served by rail and road links, and has a relatively high level of active travel.
@@ -463,19 +478,19 @@ This high-level aim will be met via the following objectives:</p>
 These zone-level data are small but often vital for gaining a basic understanding of a settlement’s overall transport system.</p>
 </div>
 <div id="transport-zones" class="section level2">
-<h2><span class="header-section-number">7.3</span> Transport zones</h2>
+<h2><span class="header-section-number">12.3</span> Transport zones</h2>
 <p>Although transport systems are primarily based on linear features and nodes — including pathways and stations — it often makes sense to start with areal data, to break continuous space into tangible units <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.
 Two zone types will typically be of particular interest: the study region and origin (typically residential areas) and destination (typically containing ‘trip attractors’ such as schools and shops) zones.
 Often the geographic units of destinations are the geographic units that comprise the origins, but a different zoning system, such as ‘<a href="https://data.gov.uk/dataset/workplace-zones-a-new-geography-for-workplace-statistics3">Workplace Zones</a>’, may be appropriate to represent the increased density of trip destinations in central areas <span class="citation">(Office for National Statistics <a href="#ref-office_for_national_statistics_workplace_2014">2014</a>)</span>.</p>
-<p>The simplest way to define a study area is often the first matching boundary returned by OpenStreetMap, which can be obtained using <strong>osmdata</strong> with a command such as <code>bristol_region = osmdata::getbb(&quot;Bristol&quot;, format_out = &quot;sf_polygon&quot;)</code>. This results in an <code>sf</code> object representing the bounds of the largest matching city region, either a rectangular polygon of the bounding box or a detailed polygonal boundary.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
-For Bristol, UK, a detailed polygon is returned, representing the official boundary of Bristol (see the inner blue boundary in Figure <a href="transport.html#fig:bristol">7.1</a>) but there are a couple of issues with this approach:</p>
+<p>The simplest way to define a study area is often the first matching boundary returned by OpenStreetMap, which can be obtained using <strong>osmdata</strong> with a command such as <code>bristol_region = osmdata::getbb(&quot;Bristol&quot;, format_out = &quot;sf_polygon&quot;)</code>. This results in an <code>sf</code> object representing the bounds of the largest matching city region, either a rectangular polygon of the bounding box or a detailed polygonal boundary.<a href="#fn74" class="footnote-ref" id="fnref74"><sup>74</sup></a>
+For Bristol, UK, a detailed polygon is returned, representing the official boundary of Bristol (see the inner blue boundary in Figure <a href="transport.html#fig:bristol">12.1</a>) but there are a couple of issues with this approach:</p>
 <ul>
 <li>The first OSM boundary returned by OSM may not be the official boundary used by local authorities.</li>
 <li>Even if OSM returns the official boundary, this may be inappropriate for transport research because they bear little relation to where people travel.</li>
 </ul>
 <p>Travel to Work Areas (TTWAs) address these issues by creating a zoning system analogous to hydrological watersheds.
 TTWAs were first defined as contiguous zones within which 75% of the population travels to work <span class="citation">(Coombes, Green, and Openshaw <a href="#ref-coombes_efficient_1986">1986</a>)</span>, and this is the definition used in this chapter.
-Because Bristol is a major employer attracting travel from surrounding towns, its TTWA is substantially larger than the city bounds (see Figure <a href="transport.html#fig:bristol">7.1</a>).
+Because Bristol is a major employer attracting travel from surrounding towns, its TTWA is substantially larger than the city bounds (see Figure <a href="transport.html#fig:bristol">12.1</a>).
 The polygon representing this transport-orientated boundary is stored in the object <code>bristol_ttwa</code>, provided by the <strong>spDataLarge</strong> package loaded at the beginning of this chapter.</p>
 <p>The origin and destination zones used in this chapter are the same: officially defined zones of intermediate geographic resolution (their <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualsmallareapopulationestimates/2014-10-23">official</a> name is Middle layer Super Output Areas or MSOAs).
 Each house around 8,000 people.
@@ -486,58 +501,58 @@ Such administrative zones can provide vital context to transport analysis, such 
 Another issue with small zones is related to anonymity rules. To make it impossible to infer the identity of individuals in zones, detailed socio-demographic variables are often only available at low geographic resolution. Breakdowns of travel mode by age and sex, for example, are available at the Local Authority level in the UK, but not at the much higher Output Area level, each of which contains around 100 households — see <a href="https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography">ons.gov.uk</a> for further details.
 </p>
 </div>
-<p>The 102 zones used in this chapter are stored in <code>bristol_zones</code>, as illustrated in Figure <a href="transport.html#fig:zones">7.2</a>.
+<p>The 102 zones used in this chapter are stored in <code>bristol_zones</code>, as illustrated in Figure <a href="transport.html#fig:zones">12.2</a>.
 Note the zones get smaller in densly populated areas: each houses a similar number of people.
 <code>bristol_zones</code> contains no attribute data on transport, however, shown in the first two rows of the dataset:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="kw">head</span>(bristol_zones, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb236-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 2 features and 2 fields</span></a>
-<a class="sourceLine" id="cb236-3" data-line-number="3"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
-<a class="sourceLine" id="cb236-4" data-line-number="4"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb236-5" data-line-number="5"><span class="co">#&gt; bbox:           xmin: -2.53 ymin: 51.4 xmax: -2.46 ymax: 51.4</span></a>
-<a class="sourceLine" id="cb236-6" data-line-number="6"><span class="co">#&gt; epsg (SRID):    4326</span></a>
-<a class="sourceLine" id="cb236-7" data-line-number="7"><span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span></a>
-<a class="sourceLine" id="cb236-8" data-line-number="8"><span class="co">#&gt;    geo_code                             name</span></a>
-<a class="sourceLine" id="cb236-9" data-line-number="9"><span class="co">#&gt; 1 E02002985 Bath and North East Somerset 001</span></a>
-<a class="sourceLine" id="cb236-10" data-line-number="10"><span class="co">#&gt; 2 E02002987 Bath and North East Somerset 003</span></a>
-<a class="sourceLine" id="cb236-11" data-line-number="11"><span class="co">#&gt;                         geometry</span></a>
-<a class="sourceLine" id="cb236-12" data-line-number="12"><span class="co">#&gt; 1 MULTIPOLYGON (((-2.51 51.4,...</span></a>
-<a class="sourceLine" id="cb236-13" data-line-number="13"><span class="co">#&gt; 2 MULTIPOLYGON (((-2.48 51.4,...</span></a></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1"><span class="kw">head</span>(bristol_zones, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb389-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 2 features and 2 fields</span></a>
+<a class="sourceLine" id="cb389-3" data-line-number="3"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
+<a class="sourceLine" id="cb389-4" data-line-number="4"><span class="co">#&gt; dimension:      XY</span></a>
+<a class="sourceLine" id="cb389-5" data-line-number="5"><span class="co">#&gt; bbox:           xmin: -2.53 ymin: 51.4 xmax: -2.46 ymax: 51.4</span></a>
+<a class="sourceLine" id="cb389-6" data-line-number="6"><span class="co">#&gt; epsg (SRID):    4326</span></a>
+<a class="sourceLine" id="cb389-7" data-line-number="7"><span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span></a>
+<a class="sourceLine" id="cb389-8" data-line-number="8"><span class="co">#&gt;    geo_code                             name</span></a>
+<a class="sourceLine" id="cb389-9" data-line-number="9"><span class="co">#&gt; 1 E02002985 Bath and North East Somerset 001</span></a>
+<a class="sourceLine" id="cb389-10" data-line-number="10"><span class="co">#&gt; 2 E02002987 Bath and North East Somerset 003</span></a>
+<a class="sourceLine" id="cb389-11" data-line-number="11"><span class="co">#&gt;                         geometry</span></a>
+<a class="sourceLine" id="cb389-12" data-line-number="12"><span class="co">#&gt; 1 MULTIPOLYGON (((-2.51 51.4,...</span></a>
+<a class="sourceLine" id="cb389-13" data-line-number="13"><span class="co">#&gt; 2 MULTIPOLYGON (((-2.48 51.4,...</span></a></code></pre></div>
 <p>To add travel data we will join a non geographic table on travel behavior to the zones, a common task described in section <a href="attr.html#vector-attribute-joining">3.2.3</a>.
 We will use travel derived from the UK’s 2011 census question on travel to work, data stored in <code>bristol_od</code>, which was provided by the <a href="https://www.ons.gov.uk/help/localstatistics">ons.gov.uk</a> data portal.
-<code>bristol_od</code> is an orgin-destination (OD) dataset representing travel to work between zones from the UK’s 2011 Census (see section <a href="transport.html#desire-lines">7.4</a>).
+<code>bristol_od</code> is an orgin-destination (OD) dataset representing travel to work between zones from the UK’s 2011 Census (see section <a href="transport.html#desire-lines">12.4</a>).
 The first column is the ID of the zone of origin and the second column is the zone of destination.
 <code>bristol_od</code> is provided at higher geographic resolution than <code>bristol_zones</code>, as can be seen from the number of rows in each:</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="kw">nrow</span>(bristol_od)</a>
-<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="co">#&gt; [1] 2910</span></a>
-<a class="sourceLine" id="cb237-3" data-line-number="3"><span class="kw">nrow</span>(bristol_zones)</a>
-<a class="sourceLine" id="cb237-4" data-line-number="4"><span class="co">#&gt; [1] 102</span></a></code></pre></div>
-<p>The results of the previous code chunk shows that there are more than 10 OD pairs for every zone, meaning we will need to aggregate the origin-destination data before it is joined with <code>bristol_zones</code>, as illustrated below (origin-destination data is described in section <a href="transport.html#desire-lines">7.4</a>):</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">zones_attr =<span class="st"> </span>bristol_od <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb238-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(o) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb238-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, sum) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb238-4" data-line-number="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">geo_code =</span> o)</a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="kw">nrow</span>(bristol_od)</a>
+<a class="sourceLine" id="cb390-2" data-line-number="2"><span class="co">#&gt; [1] 2910</span></a>
+<a class="sourceLine" id="cb390-3" data-line-number="3"><span class="kw">nrow</span>(bristol_zones)</a>
+<a class="sourceLine" id="cb390-4" data-line-number="4"><span class="co">#&gt; [1] 102</span></a></code></pre></div>
+<p>The results of the previous code chunk shows that there are more than 10 OD pairs for every zone, meaning we will need to aggregate the origin-destination data before it is joined with <code>bristol_zones</code>, as illustrated below (origin-destination data is described in section <a href="transport.html#desire-lines">12.4</a>):</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1">zones_attr =<span class="st"> </span>bristol_od <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb391-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(o) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb391-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, sum) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb391-4" data-line-number="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">geo_code =</span> o)</a></code></pre></div>
 <p>The preceding chunk performed three main steps:</p>
 <ul>
 <li>Grouped the data by zone of origin (contained in the column <code>o</code>).</li>
-<li>Aggregated the variables in the <code>bristol_od</code> dataset <em>if</em> they were numeric, to find the total number of people living in each zone by mode of transport.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></li>
+<li>Aggregated the variables in the <code>bristol_od</code> dataset <em>if</em> they were numeric, to find the total number of people living in each zone by mode of transport.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a></li>
 <li>Renamed the grouping variable <code>o</code> so it matches the ID column <code>geo_code</code> in the <code>bristol_zones</code> object.</li>
 </ul>
 <p>The resulting object <code>zones_attr</code> is a data frame with rows representing zones and an ID variable.
 We can verify that the IDs match those in the <code>zones</code> dataset using <code>%in%</code> operator as follows:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw">summary</span>(zones_attr<span class="op">$</span>geo_code <span class="op">%in%</span><span class="st"> </span>bristol_zones<span class="op">$</span>geo_code)</a>
-<a class="sourceLine" id="cb239-2" data-line-number="2"><span class="co">#&gt;    Mode    TRUE </span></a>
-<a class="sourceLine" id="cb239-3" data-line-number="3"><span class="co">#&gt; logical     102</span></a></code></pre></div>
-<p>The results show that all 102 zones are present in the new object and that <code>zone_attr</code> is in a form that can be joined onto the zones.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1"><span class="kw">summary</span>(zones_attr<span class="op">$</span>geo_code <span class="op">%in%</span><span class="st"> </span>bristol_zones<span class="op">$</span>geo_code)</a>
+<a class="sourceLine" id="cb392-2" data-line-number="2"><span class="co">#&gt;    Mode    TRUE </span></a>
+<a class="sourceLine" id="cb392-3" data-line-number="3"><span class="co">#&gt; logical     102</span></a></code></pre></div>
+<p>The results show that all 102 zones are present in the new object and that <code>zone_attr</code> is in a form that can be joined onto the zones.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a>
 This is done using the joining function <code>left_join()</code> (note that <code>inner_join()</code> would produce here the same result):</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">zones_joined =<span class="st"> </span><span class="kw">left_join</span>(bristol_zones, zones_attr)</a>
-<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;geo_code&quot;</span></a>
-<a class="sourceLine" id="cb240-3" data-line-number="3"><span class="kw">sum</span>(zones_joined<span class="op">$</span>all)</a>
-<a class="sourceLine" id="cb240-4" data-line-number="4"><span class="co">#&gt; [1] 238805</span></a>
-<a class="sourceLine" id="cb240-5" data-line-number="5"><span class="kw">names</span>(zones_joined)</a>
-<a class="sourceLine" id="cb240-6" data-line-number="6"><span class="co">#&gt; [1] &quot;geo_code&quot;   &quot;name&quot;       &quot;all&quot;        &quot;bicycle&quot;    &quot;foot&quot;      </span></a>
-<a class="sourceLine" id="cb240-7" data-line-number="7"><span class="co">#&gt; [6] &quot;car_driver&quot; &quot;train&quot;      &quot;geometry&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1">zones_joined =<span class="st"> </span><span class="kw">left_join</span>(bristol_zones, zones_attr)</a>
+<a class="sourceLine" id="cb393-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;geo_code&quot;</span></a>
+<a class="sourceLine" id="cb393-3" data-line-number="3"><span class="kw">sum</span>(zones_joined<span class="op">$</span>all)</a>
+<a class="sourceLine" id="cb393-4" data-line-number="4"><span class="co">#&gt; [1] 238805</span></a>
+<a class="sourceLine" id="cb393-5" data-line-number="5"><span class="kw">names</span>(zones_joined)</a>
+<a class="sourceLine" id="cb393-6" data-line-number="6"><span class="co">#&gt; [1] &quot;geo_code&quot;   &quot;name&quot;       &quot;all&quot;        &quot;bicycle&quot;    &quot;foot&quot;      </span></a>
+<a class="sourceLine" id="cb393-7" data-line-number="7"><span class="co">#&gt; [6] &quot;car_driver&quot; &quot;train&quot;      &quot;geometry&quot;</span></a></code></pre></div>
 <p>The result is <code>zones_joined</code>, which contains new columns representing the total number of trips originating in each zone in the study area (almost 1/4 of a million) and their mode of travel (by bicycle, foot, car and train).
-The geographic distribution of trip origins is illustrated in the left-hand map in Figure <a href="transport.html#fig:zones">7.2</a>.
+The geographic distribution of trip origins is illustrated in the left-hand map in Figure <a href="transport.html#fig:zones">12.2</a>.
 This shows that most zones have between 0 and 4,000 trips originating from them in the study area.
 More trips are made by people living near the center of Bristol and fewer on the outskirts.
 Why is this? Remember that we are only dealing with trips within the study region:
@@ -546,35 +561,35 @@ Trips outside the study region can be included in regional model by a special de
 The data in <code>bristol_od</code>, however, simply ignores such trips: it is an ‘intra-zonal’ model.</p>
 <p>In the same way that OD datasets can be aggregated to the zone of origin, they can also be aggregated to provide information about destination zones.
 People tend to gravitate towards central places.
-This explains why the spatial distribution represented in the right panel in Figure <a href="transport.html#fig:zones">7.2</a> is relatively uneven, with the most common destination zones concentrated in Bristol city center.
+This explains why the spatial distribution represented in the right panel in Figure <a href="transport.html#fig:zones">12.2</a> is relatively uneven, with the most common destination zones concentrated in Bristol city center.
 The result is <code>zones_od</code>, which contains a new column reporting the number of trip destinations by any mode, is created as follows:</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">zones_od =<span class="st"> </span>bristol_od <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(d) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb241-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, sum) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb241-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">geo_code =</span> d, <span class="dt">all_dest =</span> all) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb241-5" data-line-number="5"><span class="st">  </span><span class="kw">inner_join</span>(zones_joined, ., <span class="dt">by =</span> <span class="st">&quot;geo_code&quot;</span>)</a></code></pre></div>
-<p>A simplified version of Figure <a href="transport.html#fig:zones">7.2</a> is created with the code below (see <code>07-zones.R</code> in the <a href="https://github.com/Robinlovelace/geocompr/tree/master/code"><code>code</code></a> folder of the book’s GitHub repo to reproduce the figure and section <a href="adv-map.html#faceted-maps">9.2.6</a> for details on facetted maps with <strong>tmap</strong>):</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1"><span class="kw">qtm</span>(zones_od, <span class="kw">c</span>(<span class="st">&quot;all&quot;</span>, <span class="st">&quot;all_dest&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">panel.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Origin&quot;</span>, <span class="st">&quot;Destination&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1">zones_od =<span class="st"> </span>bristol_od <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb394-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(d) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb394-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, sum) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb394-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">geo_code =</span> d, <span class="dt">all_dest =</span> all) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb394-5" data-line-number="5"><span class="st">  </span><span class="kw">inner_join</span>(zones_joined, ., <span class="dt">by =</span> <span class="st">&quot;geo_code&quot;</span>)</a></code></pre></div>
+<p>A simplified version of Figure <a href="transport.html#fig:zones">12.2</a> is created with the code below (see <code>07-zones.R</code> in the <a href="https://github.com/Robinlovelace/geocompr/tree/master/code"><code>code</code></a> folder of the book’s GitHub repo to reproduce the figure and section <a href="adv-map.html#faceted-maps">8.2.6</a> for details on facetted maps with <strong>tmap</strong>):</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1"><span class="kw">qtm</span>(zones_od, <span class="kw">c</span>(<span class="st">&quot;all&quot;</span>, <span class="st">&quot;all_dest&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb395-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">panel.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Origin&quot;</span>, <span class="st">&quot;Destination&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:zones"></span>
 <img src="figures/zones-1.png" alt="Number of trips (commuters) living and working in the region. The left map shows zone of origin of commute trips; the right map shows zone of destination (generated by the script 07-zones.R)." width="576" />
 <p class="caption">
-Figure 7.2: Number of trips (commuters) living and working in the region. The left map shows zone of origin of commute trips; the right map shows zone of destination (generated by the script 07-zones.R).
+Figure 12.2: Number of trips (commuters) living and working in the region. The left map shows zone of origin of commute trips; the right map shows zone of destination (generated by the script 07-zones.R).
 </p>
 </div>
 </div>
 <div id="desire-lines" class="section level2">
-<h2><span class="header-section-number">7.4</span> Desire lines</h2>
+<h2><span class="header-section-number">12.4</span> Desire lines</h2>
 <p>Unlike zones, which represent trip origins and destinations, desire lines connect the centroid of the origin and the destination zone, and thereby represent where people <em>desire</em> to go between zones.
 They represent the quickest ‘bee line’ or ‘crow flies’ route between A and B that would be taken, if it were not for obstacles such as buildings and windy roads getting in the way (we will see how to convert desire lines into routes in the next section).</p>
 <p>We have already loaded data representing desire lines in the dataset <code>bristol_od</code>.
-This origin-destination (OD) data frame object represents the number of people traveling between the zone represented in <code>o</code> and <code>d</code>, as illustrated in Table <a href="transport.html#tab:od">7.1</a>.
+This origin-destination (OD) data frame object represents the number of people traveling between the zone represented in <code>o</code> and <code>d</code>, as illustrated in Table <a href="transport.html#tab:od">12.1</a>.
 To arrange the OD data by all trips and then filter-out only the top 5, type (please refer to Chapter <a href="attr.html#attr">3</a> for a detailed description of non-spatial attribute operations):</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">od_top5 =<span class="st"> </span>bristol_od <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(all)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>, <span class="dt">wt =</span> all)</a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1">od_top5 =<span class="st"> </span>bristol_od <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb396-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(all)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb396-3" data-line-number="3"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>, <span class="dt">wt =</span> all)</a></code></pre></div>
 <table>
-<caption><span id="tab:od">Table 7.1: </span>Sample of the origin-destination data stored in the data frame object <code>bristol_od</code>. These represent the top 5 most common desire lines between zones in the study area.</caption>
+<caption><span id="tab:od">Table 12.1: </span>Sample of the origin-destination data stored in the data frame object <code>bristol_od</code>. These represent the top 5 most common desire lines between zones in the study area.</caption>
 <thead>
 <tr class="header">
 <th align="left">o</th>
@@ -635,25 +650,25 @@ To arrange the OD data by all trips and then filter-out only the top 5, type (pl
 </tbody>
 </table>
 <p>The resulting table provides a snapshot of Bristolian travel patterns in terms of commuting (travel to work).
-It demonstrates that walking is the most popular mode of transport among the top 5 origin-destination pairs, that zone <code>E02003043</code> is a popular destination (Bristol city center, the destination of all the top 5 OD pairs), and that the <em>intrazonal</em> trips, from one part of zone <code>E02003043</code> to another (first row of table <a href="transport.html#tab:od">7.1</a>), constitute the most traveled OD pair in the dataset.
-But from a policy perspective <a href="transport.html#tab:od">7.1</a> is of limited use:
+It demonstrates that walking is the most popular mode of transport among the top 5 origin-destination pairs, that zone <code>E02003043</code> is a popular destination (Bristol city center, the destination of all the top 5 OD pairs), and that the <em>intrazonal</em> trips, from one part of zone <code>E02003043</code> to another (first row of table <a href="transport.html#tab:od">12.1</a>), constitute the most traveled OD pair in the dataset.
+But from a policy perspective <a href="transport.html#tab:od">12.1</a> is of limited use:
 aside from the fact that it contains only a tiny portion of the 2,910 OD pairs, it tells us little about <em>where</em> policy measures are needed.
 What is needed is a way to plot this origin-destination data on the map.</p>
 <p>The solution is to convert the non-geographic <code>bristol_od</code> dataset into geographical desire lines that can be plotted on a map.
-The geographic representation of the <em>interzonal</em> OD pairs (in which the destination is different from the origin) presented in Table <a href="transport.html#tab:od">7.1</a> are displayed as straight black lines in <a href="transport.html#fig:desire">7.3</a>.
+The geographic representation of the <em>interzonal</em> OD pairs (in which the destination is different from the origin) presented in Table <a href="transport.html#tab:od">12.1</a> are displayed as straight black lines in <a href="transport.html#fig:desire">12.3</a>.
 These are clearly more useful from a policy perspective.
-The conversion from <code>data.frame</code> to <code>sf</code> class is done by the <strong>stplanr</strong> function <code>od2line()</code>, which matches the IDs in the first two columns of the <code>bristol_od</code> object to the <code>zone_code</code> ID column in the geographic <code>zones_od</code> object.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">od_intra =<span class="st"> </span><span class="kw">filter</span>(bristol_od, o <span class="op">==</span><span class="st"> </span>d)</a>
-<a class="sourceLine" id="cb244-2" data-line-number="2">od_inter =<span class="st"> </span><span class="kw">filter</span>(bristol_od, o <span class="op">!=</span><span class="st"> </span>d)</a>
-<a class="sourceLine" id="cb244-3" data-line-number="3">desire_lines =<span class="st"> </span><span class="kw">od2line</span>(od_inter, zones_od)</a></code></pre></div>
+The conversion from <code>data.frame</code> to <code>sf</code> class is done by the <strong>stplanr</strong> function <code>od2line()</code>, which matches the IDs in the first two columns of the <code>bristol_od</code> object to the <code>zone_code</code> ID column in the geographic <code>zones_od</code> object.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a></p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1">od_intra =<span class="st"> </span><span class="kw">filter</span>(bristol_od, o <span class="op">==</span><span class="st"> </span>d)</a>
+<a class="sourceLine" id="cb397-2" data-line-number="2">od_inter =<span class="st"> </span><span class="kw">filter</span>(bristol_od, o <span class="op">!=</span><span class="st"> </span>d)</a>
+<a class="sourceLine" id="cb397-3" data-line-number="3">desire_lines =<span class="st"> </span><span class="kw">od2line</span>(od_inter, zones_od)</a></code></pre></div>
 <p>The first two lines of the preceding code chunk split the <code>bristol_od</code> dataset into two mutually exclusive objects, <code>od_intra</code> (which only contains OD pairs representing intrazone trips) and <code>od_inter</code> (which represents interzonal travel).
 The third line generates a geographic object <code>desire_lines</code> (of class <code>sf</code>) that allows a subsequent geographic visualization of interzone trips.
-An illustration of the results is presented in Figure <a href="transport.html#fig:desire">7.3</a>, a simplified version of which is created with the following command (see the code in <code>07-desire.R</code> to reproduce the figure exactly and Chapter <a href="adv-map.html#adv-map">9</a> for details on visualisation with <strong>tmap</strong>):</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">qtm</span>(desire_lines, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
+An illustration of the results is presented in Figure <a href="transport.html#fig:desire">12.3</a>, a simplified version of which is created with the following command (see the code in <code>07-desire.R</code> to reproduce the figure exactly and Chapter <a href="adv-map.html#adv-map">8</a> for details on visualisation with <strong>tmap</strong>):</p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="kw">qtm</span>(desire_lines, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:desire"></span>
 <img src="figures/desire-1.png" alt="Desire lines representing trip patterns in the Bristol Travel to Work Area. The four black lines represent the object the top 5 desire lines illustrated in Table 7.1." width="576" />
 <p class="caption">
-Figure 7.3: Desire lines representing trip patterns in the Bristol Travel to Work Area. The four black lines represent the object the top 5 desire lines illustrated in Table 7.1.
+Figure 12.3: Desire lines representing trip patterns in the Bristol Travel to Work Area. The four black lines represent the object the top 5 desire lines illustrated in Table 7.1.
 </p>
 </div>
 <p>The map shows that the city center dominates transport patterns in the region, suggesting policies should be prioritized there, although a number of peripheral sub-centers can also be seen.
@@ -661,13 +676,13 @@ Next it would be interesting to have a look at the distribution of interzonal mo
 <!-- These include Bradley Stoke to the North and Portishead to the West. --></p>
 </div>
 <div id="routes" class="section level2">
-<h2><span class="header-section-number">7.5</span> Routes</h2>
+<h2><span class="header-section-number">12.5</span> Routes</h2>
 <p>From a geographical perspective routes are desire lines that are no longer straight:
 the origin and destination points are the same, but the pathway to get from A to B is more complex.
 Desire lines contain only two vertices (their beginning and end points) but routes can contain hundreds of vertices if they cover a large distance or represent travel patterns on an intricate road network (routes on simple grid-based road networks require relatively few vertices).
 Routes are generated from desire lines — or more commonly origin-destination pairs — using routing services which either run locally or remotely.</p>
 <p><strong>Local routing</strong> can be advantageous in terms of speed of execution and control over the weighting profile for different modes of transport.
-Disadvantages include the difficulty of representing complex networks locally; temporal dynamics (e.g. due to traffic); and the need for specialized software such as ‘pgRouting’ and PostGIS (an issue that developers of packages <strong>stplanr</strong> and <strong>dodgr</strong> seek to resolve see section <a href="transport.html#route-networks">7.7</a>).</p>
+Disadvantages include the difficulty of representing complex networks locally; temporal dynamics (e.g. due to traffic); and the need for specialized software such as ‘pgRouting’ and PostGIS (an issue that developers of packages <strong>stplanr</strong> and <strong>dodgr</strong> seek to resolve see section <a href="transport.html#route-networks">12.7</a>).</p>
 <p><strong>Remote routing</strong> services, by contrast, use a web API to send queries about origins and destinations and return results generated on a powerful server running specialised software.
 This gives remote routing services various advantages, including that they usually:</p>
 <ul>
@@ -687,9 +702,9 @@ Based on this reasoning
 <!-- Todo: add references supporting this (RL) -->
 we will only route desire lines along which a high (300+) number of car trips take place that are up to 5 km in distance.
 This routing is done by the <strong>stplanr</strong> function <code>line2route()</code> which takes straight lines in <code>Spatial</code> or <code>sf</code> objects, and returns ‘bendy’ lines representing routes on the transport network in the same class as the input.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">desire_lines<span class="op">$</span>distance =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">st_length</span>(desire_lines))</a>
-<a class="sourceLine" id="cb246-2" data-line-number="2">desire_carshort =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(desire_lines, car_driver <span class="op">&gt;</span><span class="st"> </span><span class="dv">300</span> <span class="op">&amp;</span><span class="st"> </span>distance <span class="op">&lt;</span><span class="st"> </span><span class="dv">5000</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">route_carshort =<span class="st"> </span><span class="kw">line2route</span>(desire_carshort, <span class="dt">route_fun =</span> route_osrm)</a></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1">desire_lines<span class="op">$</span>distance =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">st_length</span>(desire_lines))</a>
+<a class="sourceLine" id="cb399-2" data-line-number="2">desire_carshort =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(desire_lines, car_driver <span class="op">&gt;</span><span class="st"> </span><span class="dv">300</span> <span class="op">&amp;</span><span class="st"> </span>distance <span class="op">&lt;</span><span class="st"> </span><span class="dv">5000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1">route_carshort =<span class="st"> </span><span class="kw">line2route</span>(desire_carshort, <span class="dt">route_fun =</span> route_osrm)</a></code></pre></div>
 <p><code>st_length()</code> determines the length of a linestring, and falls into the distance relations category (see also section <a href="spatial-operations.html#distance-relations">4.2.6</a>).
 Subsequently, we apply a simple attribute filter operation (see section <a href="attr.html#vector-attribute-subsetting">3.2.1</a>) before letting the OSRM service do the routing on a remote server.
 Note that the routing only works with a working internet connection.</p>
@@ -697,16 +712,16 @@ Note that the routing only works with a working internet connection.</p>
 The new route dataset contains <code>distance</code> (referring to route distance this time) and <code>duration</code> fields (in seconds) which could be useful.
 However, for the purposes of this chapter we are only interested in the geometry, from which route distance can be calculated.
 The following command makes use of the ability of simple features objects to contain multiple geographic columns:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">desire_carshort<span class="op">$</span>geom_car =<span class="st"> </span><span class="kw">st_geometry</span>(route_carshort)</a></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" data-line-number="1">desire_carshort<span class="op">$</span>geom_car =<span class="st"> </span><span class="kw">st_geometry</span>(route_carshort)</a></code></pre></div>
 <p>This allows plotting the desire lines along which many short car journeys take place alongside likely routes traveled by cars, with the width of the routes proportional to the number of car journeys that could potentially be replaced.
-The code below results in Figure <a href="transport.html#fig:routes">7.4</a>, demonstrating along which routes people are driving short distances<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(desire_carshort))</a>
-<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(desire_carshort), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb249-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(<span class="kw">st_centroid</span>(zones_od)), <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+The code below results in Figure <a href="transport.html#fig:routes">12.4</a>, demonstrating along which routes people are driving short distances<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>:</p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(desire_carshort))</a>
+<a class="sourceLine" id="cb402-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(desire_carshort), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb402-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(<span class="kw">st_centroid</span>(zones_od)), <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:routes"></span>
 <img src="figures/routes-1.png" alt="Routes along which many (300+) short (&lt;5km Euclidean distance) car journeys are made (red) overlaying desire lines representing the same trips (black) and zone centroids (dots)." width="576" />
 <p class="caption">
-Figure 7.4: Routes along which many (300+) short (&lt;5km Euclidean distance) car journeys are made (red) overlaying desire lines representing the same trips (black) and zone centroids (dots).
+Figure 12.4: Routes along which many (300+) short (&lt;5km Euclidean distance) car journeys are made (red) overlaying desire lines representing the same trips (black) and zone centroids (dots).
 </p>
 </div>
 <p>The results show that the short desire lines along which most people travel by car are geographically clustered.
@@ -714,13 +729,13 @@ Plotting the results on an interactive map, for example, with <code>mapview::map
 According to <a href="https://en.wikipedia.org/wiki/Bradley_Stoke">Wikipedia</a>, Bradley Stoke is “Europe’s largest new town built with private investment”, which may help understand its high level of car dependency due to limited public transport provision.
 The excessive number of short car journeys in this area can also be understood in terms of the car-orientated transport infrastructure surrounding this northern ‘edge city’ which includes “major transport nodes such as junctions on both the M4 and M5 motorways” <span class="citation">(Tallon <a href="#ref-tallon_bristol_2007">2007</a>)</span>.</p>
 <p>There are many benefits of converting travel desire lines into likely routes of travel from a policy perspective, primary among them the ability to understand what it is about the surrounding environment that makes people travel by a particular mode.
-We discuss future directions of research building on the routes in section <a href="transport.html#future-directions-of-travel">7.9</a>.
+We discuss future directions of research building on the routes in section <a href="transport.html#future-directions-of-travel">12.9</a>.
 For the purposes of this case study, suffice to say that the roads along which these short car journeys travel should be prioritized for investigation to understand how they can be made more conducive to sustainable transport modes.
 One option would be to add new public transport nodes to the network.
 Such nodes are described in the next section.</p>
 </div>
 <div id="nodes" class="section level2">
-<h2><span class="header-section-number">7.6</span> Nodes</h2>
+<h2><span class="header-section-number">12.6</span> Nodes</h2>
 <p>Nodes in geographic transport data are zero dimensional features (points) among the predominantly one dimensional features (lines) that comprise the network.
 There are two types of transport nodes:</p>
 <ol style="list-style-type: decimal">
@@ -731,7 +746,7 @@ There are two types of transport nodes:</p>
 The first type of node can be connected to the network with “centroid connectors”, new route segments joining nodes outside the network with one or more nearby nodes on the network <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.
 The location of these connectors should be chosen carefully because they can lead to over-estimates of traffic volumes in their immediate surroundings <span class="citation">(Jafari et al. <a href="#ref-jafari_investigation_2015">2015</a>)</span>.
 The second type of nodes are nodes on the graph, each of which is connected by one or more straight ‘edges’ that represent individual segments on the network.
-We will see how transport networks can be represented as mathematical graphs in section <a href="transport.html#route-networks">7.7</a>.</p>
+We will see how transport networks can be represented as mathematical graphs in section <a href="transport.html#route-networks">12.7</a>.</p>
 <p>Public transport stops are particularly important nodes that can be represented as either type of node: a bus stop that is part of a road, or a large rail station that is represented by its pedestrian entry point hundreds of meters from railway tracks.
 We will use railway stations to illustrate public transport nodes, in relation to the research question of increasing cycling in Bristol.
 These stations are provided by <strong>spDataLarge</strong> in <code>bristol_stations</code>.</p>
@@ -744,43 +759,43 @@ From an active travel perspective public transport ‘legs’ of longer journeys
 <li>The public transport leg, which typically goes from the station nearest a trip’s origin to the station nearest its destination.</li>
 <li>The destination leg, from the station of alighting to the destination.</li>
 </ul>
-<p>Building on the analysis conducted in section <a href="transport.html#desire-lines">7.4</a>, public transport nodes can be used to construct three-part desire lines for trips that can be taken by bus and (the mode used in this example) rail.
+<p>Building on the analysis conducted in section <a href="transport.html#desire-lines">12.4</a>, public transport nodes can be used to construct three-part desire lines for trips that can be taken by bus and (the mode used in this example) rail.
 The first stage is to identify the desire lines with most public transport travel, which in our case is easy because our previously created dataset <code>desire_lines</code> already contains a variable describing the number of trips by train (the public transport potential could also be estimated using public transport routing services such as <a href="http://www.opentripplanner.org/">OpenTripPlanner</a>).
 To make our approach easy to follow we will select just the top three desire lines in terms of rails use:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">desire_rail =<span class="st"> </span><span class="kw">top_n</span>(desire_lines, <span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">wt =</span> train)</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" data-line-number="1">desire_rail =<span class="st"> </span><span class="kw">top_n</span>(desire_lines, <span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">wt =</span> train)</a></code></pre></div>
 <p>The challenge now is to ‘break-up’ each of these lines into three pieces, representing travel via public transport nodes.
 This can be done by converting a desire line into a multiline object consisting of three line geometries representing origin, public transport and destination legs of the trip.
 This operation can be divided into three stages: matrix creation (of origins, destinations and the ‘via’ points representing rail stations), identification of nearest neighbors and conversion to multilines.
 These are undertaken by <code>line_via()</code>.
 This <strong>stplanr</strong> function takes input lines and points and returns a copy of the desire lines (see <a href="https://github.com/Robinlovelace/geocompr/blob/master/vignettes/07-line-via.Rmd"><code>07-line-via.Rmd</code></a>) in the book’s repo and <code>?line_via</code> for details on how this works).
 The output is the same as the input line, except it has new geometry columns representing the journey via public transport nodes, as demonstrated below:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">ncol</span>(desire_rail)</a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="co">#&gt; [1] 9</span></a>
-<a class="sourceLine" id="cb251-3" data-line-number="3">desire_rail =<span class="st"> </span><span class="kw">line_via</span>(desire_rail, bristol_stations)</a>
-<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="kw">ncol</span>(desire_rail)</a>
-<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="co">#&gt; [1] 12</span></a></code></pre></div>
-<p>As illustrated in Figure <a href="transport.html#fig:stations">7.5</a>, the initial <code>desire_rail</code> lines now have three additional geometry list-columns representing travel from home to the origin station, from there to the destination, and finally from the destination station to the destination.
-In this case the destination leg is very short (walking distance) but the origin legs may be sufficiently far to justify investment in cycling infrastructure to encourage people to cycle to the stations on the outward leg of peoples’ journey to work in the residential areas surrounding the three origin stations in Figure <a href="transport.html#fig:stations">7.5</a>.</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1"><span class="kw">ncol</span>(desire_rail)</a>
+<a class="sourceLine" id="cb404-2" data-line-number="2"><span class="co">#&gt; [1] 9</span></a>
+<a class="sourceLine" id="cb404-3" data-line-number="3">desire_rail =<span class="st"> </span><span class="kw">line_via</span>(desire_rail, bristol_stations)</a>
+<a class="sourceLine" id="cb404-4" data-line-number="4"><span class="kw">ncol</span>(desire_rail)</a>
+<a class="sourceLine" id="cb404-5" data-line-number="5"><span class="co">#&gt; [1] 12</span></a></code></pre></div>
+<p>As illustrated in Figure <a href="transport.html#fig:stations">12.5</a>, the initial <code>desire_rail</code> lines now have three additional geometry list-columns representing travel from home to the origin station, from there to the destination, and finally from the destination station to the destination.
+In this case the destination leg is very short (walking distance) but the origin legs may be sufficiently far to justify investment in cycling infrastructure to encourage people to cycle to the stations on the outward leg of peoples’ journey to work in the residential areas surrounding the three origin stations in Figure <a href="transport.html#fig:stations">12.5</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:stations"></span>
 <img src="figures/stations-1.png" alt="Station nodes (red dots) used as intermediary points that convert straight desire lines with high rail usage (black) into three legs: to the origin station (red) via public transport (grey) and to the destination (a very short blue line)." width="576" />
 <p class="caption">
-Figure 7.5: Station nodes (red dots) used as intermediary points that convert straight desire lines with high rail usage (black) into three legs: to the origin station (red) via public transport (grey) and to the destination (a very short blue line).
+Figure 12.5: Station nodes (red dots) used as intermediary points that convert straight desire lines with high rail usage (black) into three legs: to the origin station (red) via public transport (grey) and to the destination (a very short blue line).
 </p>
 </div>
 </div>
 <div id="route-networks" class="section level2">
-<h2><span class="header-section-number">7.7</span> Route networks</h2>
+<h2><span class="header-section-number">12.7</span> Route networks</h2>
 <p>The data used in this section was downloaded using <strong>osmdata</strong>.
 To avoid having to request the data from OSM repeatedly, we will use the <code>bristol_ways</code> object, which contains point and line data for the case study area (see <code>?bristol_ways</code>):</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">summary</span>(bristol_ways)</a>
-<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="co">#&gt;      highway        maxspeed         ref                geometry   </span></a>
-<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="co">#&gt;  cycleway:1262   30 mph : 834   A38    : 202   LINESTRING   :4619  </span></a>
-<a class="sourceLine" id="cb252-4" data-line-number="4"><span class="co">#&gt;  rail    : 813   20 mph : 456   M5     : 138   epsg:4326    :   0  </span></a>
-<a class="sourceLine" id="cb252-5" data-line-number="5"><span class="co">#&gt;  road    :2544   40 mph : 332   A432   : 131   +proj=long...:   0  </span></a>
-<a class="sourceLine" id="cb252-6" data-line-number="6"><span class="co">#&gt;                  70 mph : 323   A4018  : 120                       </span></a>
-<a class="sourceLine" id="cb252-7" data-line-number="7"><span class="co">#&gt;                  50 mph : 137   A420   : 114                       </span></a>
-<a class="sourceLine" id="cb252-8" data-line-number="8"><span class="co">#&gt;                  (Other): 470   (Other):1697                       </span></a>
-<a class="sourceLine" id="cb252-9" data-line-number="9"><span class="co">#&gt;                  NA&#39;s   :2067   NA&#39;s   :2217</span></a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" data-line-number="1"><span class="kw">summary</span>(bristol_ways)</a>
+<a class="sourceLine" id="cb405-2" data-line-number="2"><span class="co">#&gt;      highway        maxspeed         ref                geometry   </span></a>
+<a class="sourceLine" id="cb405-3" data-line-number="3"><span class="co">#&gt;  cycleway:1262   30 mph : 834   A38    : 202   LINESTRING   :4619  </span></a>
+<a class="sourceLine" id="cb405-4" data-line-number="4"><span class="co">#&gt;  rail    : 813   20 mph : 456   M5     : 138   epsg:4326    :   0  </span></a>
+<a class="sourceLine" id="cb405-5" data-line-number="5"><span class="co">#&gt;  road    :2544   40 mph : 332   A432   : 131   +proj=long...:   0  </span></a>
+<a class="sourceLine" id="cb405-6" data-line-number="6"><span class="co">#&gt;                  70 mph : 323   A4018  : 120                       </span></a>
+<a class="sourceLine" id="cb405-7" data-line-number="7"><span class="co">#&gt;                  50 mph : 137   A420   : 114                       </span></a>
+<a class="sourceLine" id="cb405-8" data-line-number="8"><span class="co">#&gt;                  (Other): 470   (Other):1697                       </span></a>
+<a class="sourceLine" id="cb405-9" data-line-number="9"><span class="co">#&gt;                  NA&#39;s   :2067   NA&#39;s   :2217</span></a></code></pre></div>
 <p>The above code chunk loaded a simple feature object representing around 3,000 segments on the transport network.
 This an easily manageable dataset size (transport datasets can be large but it’s best to start small).</p>
 <p>As mentioned, route networks can usefully be represented as mathematical graphs, with nodes on the network connected by edges.
@@ -788,14 +803,14 @@ A number of R packages have been developed for dealing with such graphs, notably
 One can manually convert a route network into an <code>igraph</code> object, but the geographic attributes will be lost.
 To overcome this issue <code>SpatialLinesNetwork()</code> was developed in the <strong>stplanr</strong> package to represent route networks simultaneously as graphs <em>and</em> a set of geographic lines.
 This function is demonstrated below using a subset of the <code>bristol_ways</code> object used in previous sections.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">ways_freeway =<span class="st"> </span>bristol_ways <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(maxspeed <span class="op">==</span><span class="st"> &quot;70 mph&quot;</span>) </a>
-<a class="sourceLine" id="cb253-2" data-line-number="2">ways_sln =<span class="st"> </span><span class="kw">SpatialLinesNetwork</span>(ways_freeway)</a>
-<a class="sourceLine" id="cb253-3" data-line-number="3"><span class="kw">slotNames</span>(ways_sln)</a>
-<a class="sourceLine" id="cb253-4" data-line-number="4"><span class="co">#&gt; [1] &quot;sl&quot;          &quot;g&quot;           &quot;nb&quot;          &quot;weightfield&quot;</span></a>
-<a class="sourceLine" id="cb253-5" data-line-number="5"><span class="kw">weightfield</span>(ways_sln)</a>
-<a class="sourceLine" id="cb253-6" data-line-number="6"><span class="co">#&gt; [1] &quot;length&quot;</span></a>
-<a class="sourceLine" id="cb253-7" data-line-number="7"><span class="kw">class</span>(ways_sln<span class="op">@</span>g)</a>
-<a class="sourceLine" id="cb253-8" data-line-number="8"><span class="co">#&gt; [1] &quot;igraph&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1">ways_freeway =<span class="st"> </span>bristol_ways <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(maxspeed <span class="op">==</span><span class="st"> &quot;70 mph&quot;</span>) </a>
+<a class="sourceLine" id="cb406-2" data-line-number="2">ways_sln =<span class="st"> </span><span class="kw">SpatialLinesNetwork</span>(ways_freeway)</a>
+<a class="sourceLine" id="cb406-3" data-line-number="3"><span class="kw">slotNames</span>(ways_sln)</a>
+<a class="sourceLine" id="cb406-4" data-line-number="4"><span class="co">#&gt; [1] &quot;sl&quot;          &quot;g&quot;           &quot;nb&quot;          &quot;weightfield&quot;</span></a>
+<a class="sourceLine" id="cb406-5" data-line-number="5"><span class="kw">weightfield</span>(ways_sln)</a>
+<a class="sourceLine" id="cb406-6" data-line-number="6"><span class="co">#&gt; [1] &quot;length&quot;</span></a>
+<a class="sourceLine" id="cb406-7" data-line-number="7"><span class="kw">class</span>(ways_sln<span class="op">@</span>g)</a>
+<a class="sourceLine" id="cb406-8" data-line-number="8"><span class="co">#&gt; [1] &quot;igraph&quot;</span></a></code></pre></div>
 <p>The output of the previous code chunk shows that <code>ways_sln</code> is a composite object with various ‘slots’.
 These include: the spatial component of the network (named <code>sl</code>), the graph component (<code>g</code>) and the ‘weightfield’, the edge variable used for shortest path calculation (by default segment distance).
 <code>ways_sln</code> is of class <code>sfNetwork</code>, defined by the S4 class system.
@@ -803,57 +818,57 @@ This means that each component can be accessed using the <code>@</code> operator
 In the example below the ‘edge betweeness’, meaning the number of shortest paths passing through each edge, is calculated (see <code>?igraph::betweenness</code> for further details).
 The results demonstrate that each graph edge represents a segment: the segments near the center of the road network have the greatest betweeness scores.</p>
 <!-- Todo (optional): make this section use potential cycle routes around Stokes Bradley not freeway data (RL) -->
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">g =<span class="st"> </span>ways_sln<span class="op">@</span>g</a>
-<a class="sourceLine" id="cb254-2" data-line-number="2">e =<span class="st"> </span>igraph<span class="op">::</span><span class="kw">edge_betweenness</span>(ways_sln<span class="op">@</span>g)</a>
-<a class="sourceLine" id="cb254-3" data-line-number="3"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">lwd =</span> e <span class="op">/</span><span class="st"> </span><span class="dv">500</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" data-line-number="1">g =<span class="st"> </span>ways_sln<span class="op">@</span>g</a>
+<a class="sourceLine" id="cb407-2" data-line-number="2">e =<span class="st"> </span>igraph<span class="op">::</span><span class="kw">edge_betweenness</span>(ways_sln<span class="op">@</span>g)</a>
+<a class="sourceLine" id="cb407-3" data-line-number="3"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">lwd =</span> e <span class="op">/</span><span class="st"> </span><span class="dv">500</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-23"></span>
 <img src="figures/unnamed-chunk-23-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text." width="576" />
 <p class="caption">
-Figure 7.6: Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the <strong>igraph</strong> package and described in the text.
+Figure 12.6: Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the <strong>igraph</strong> package and described in the text.
 </p>
 </div>
 <p>One can also find the shortest route between origins and destinations using this graph representation of the route network.
-This is can be done with <code>sum_network_routes()</code> from <strong>stplanr</strong>, which undertakes ‘local routing’ (see section <a href="transport.html#routes">7.5</a>).
+This is can be done with <code>sum_network_routes()</code> from <strong>stplanr</strong>, which undertakes ‘local routing’ (see section <a href="transport.html#routes">12.5</a>).
 The code below finds the shortest path between two nodes on the network —
 ‘shortest’ with reference to the <code>weightfield</code> slot of <code>ways_sln</code> (route distance by default
-— and returns a linestring (plot not shown):<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a></p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1">path =<span class="st"> </span><span class="kw">sum_network_routes</span>(ways_sln, <span class="dv">1</span>, <span class="dv">20</span>, <span class="st">&quot;length&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(path), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+— and returns a linestring (plot not shown):<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" data-line-number="1">path =<span class="st"> </span><span class="kw">sum_network_routes</span>(ways_sln, <span class="dv">1</span>, <span class="dv">20</span>, <span class="st">&quot;length&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(path), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb409-2" data-line-number="2"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="prioritizing-new-infrastructure" class="section level2">
-<h2><span class="header-section-number">7.8</span> Prioritizing new infrastructure</h2>
+<h2><span class="header-section-number">12.8</span> Prioritizing new infrastructure</h2>
 <p>This chapter’s final practical section demonstrates the policy-relevance of geocomputation for transport applications by identifying locations where new transport infrastructure may be needed.
-Clearly the types of analysis presented here would need to be extended and complimented by other methods to be used in real-world applications, as discussed in section <a href="transport.html#future-directions-of-travel">7.9</a>.
+Clearly the types of analysis presented here would need to be extended and complimented by other methods to be used in real-world applications, as discussed in section <a href="transport.html#future-directions-of-travel">12.9</a>.
 However each stage could be useful on its own, and feed-into wider analyses.
-To summarize, these were: identifying short but car-dependent commuting routes (generated from desire lines)in section <a href="transport.html#routes">7.5</a>; creating desire lines representing trips to rail stations in section <a href="transport.html#nodes">7.6</a>; and analysis of transport systems at the route network using graph theory in section <a href="transport.html#route-networks">7.7</a>.</p>
+To summarize, these were: identifying short but car-dependent commuting routes (generated from desire lines)in section <a href="transport.html#routes">12.5</a>; creating desire lines representing trips to rail stations in section <a href="transport.html#nodes">12.6</a>; and analysis of transport systems at the route network using graph theory in section <a href="transport.html#route-networks">12.7</a>.</p>
 <p>The final code chunk of this chapter combines these strands of analysis.
 It adds the car-dependent routes in <code>route_carshort</code> with a newly-created object, <code>route_rail</code> and creates a new column representing the amount of travel along the centroid-to-centroid desire lines they represent:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">route_rail =<span class="st"> </span>desire_rail <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="st">&quot;leg_orig&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="st">  </span><span class="kw">line2route</span>(<span class="dt">route_fun =</span> route_osrm) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb257-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="dv">4326</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1">route_cycleway =<span class="st"> </span><span class="kw">rbind</span>(route_rail, route_carshort)</a>
-<a class="sourceLine" id="cb258-2" data-line-number="2">route_cycleway<span class="op">$</span>all =<span class="st"> </span><span class="kw">c</span>(desire_rail<span class="op">$</span>all, desire_carshort<span class="op">$</span>all)</a></code></pre></div>
-<p>The results of the preceding code are visualized in Figure <a href="transport.html#fig:cycleways">7.7</a>, which shows routes with high levels of car dependency and highlights opportunities for cycling rail stations (the subsequent code chunk creates a simple version of the figure — see <code>code/07-cycleways.R</code> to reproduce the figure exactly).
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1">route_rail =<span class="st"> </span>desire_rail <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb410-2" data-line-number="2"><span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="st">&quot;leg_orig&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb410-3" data-line-number="3"><span class="st">  </span><span class="kw">line2route</span>(<span class="dt">route_fun =</span> route_osrm) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb410-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="dv">4326</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" data-line-number="1">route_cycleway =<span class="st"> </span><span class="kw">rbind</span>(route_rail, route_carshort)</a>
+<a class="sourceLine" id="cb411-2" data-line-number="2">route_cycleway<span class="op">$</span>all =<span class="st"> </span><span class="kw">c</span>(desire_rail<span class="op">$</span>all, desire_carshort<span class="op">$</span>all)</a></code></pre></div>
+<p>The results of the preceding code are visualized in Figure <a href="transport.html#fig:cycleways">12.7</a>, which shows routes with high levels of car dependency and highlights opportunities for cycling rail stations (the subsequent code chunk creates a simple version of the figure — see <code>code/07-cycleways.R</code> to reproduce the figure exactly).
 The method has some the limitations: in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode.
 However the results demonstrate routes along which cycle paths could be prioritized from car dependency and public transport perspectives.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw">qtm</span>(route_cycleway, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1"><span class="kw">qtm</span>(route_cycleway, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cycleways"></span>
 <img src="figures/cycleways-1.png" alt="Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips." width="576" />
 <p class="caption">
-Figure 7.7: Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.
+Figure 12.7: Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.
 </p>
 </div>
 <!-- Much more work is needed to create a realistic strategic cycle network but the analysis shows that R can be used to create a transparent and reproducible evidence base for transport applications. -->
 <p>The results may look more attractive in an interactive map, but what do they mean?
-The routes highlighted in Figure <a href="transport.html#fig:cycleways">7.7</a> suggest that transport systems are intimately linked to the wider economic and social context.
+The routes highlighted in Figure <a href="transport.html#fig:cycleways">12.7</a> suggest that transport systems are intimately linked to the wider economic and social context.
 The example of Stoke Bradley is a case in point:
 its location, lack of public transport services and active travel infrastructure help explain why it is so highly car-dependent.
 The wider point is that car dependency has a spatial distribution which has implications for sustainable transport policies <span class="citation">(Hickman, Ashiru, and Banister <a href="#ref-hickman_transitions_2011">2011</a>)</span>.</p>
 </div>
 <div id="future-directions-of-travel" class="section level2">
-<h2><span class="header-section-number">7.9</span> Future directions of travel</h2>
+<h2><span class="header-section-number">12.9</span> Future directions of travel</h2>
 <p>This chapter provides a taster of the possibilities of using geocomputation for transport research.
 It has explored some key geographic elements that make-up a city’s transport system using open data and reproducible code.
 The results could help plan where investment is needed.</p>
@@ -876,9 +891,9 @@ Similar tools could be used to encourage evidence-based transport policies relat
 <!-- R's 'ecological niche' in transport modelling software could be around the integration of detailed geographic and advanced statistical analysis methods with techniques already used in transport research. -->
 </div>
 <div id="ex-transport" class="section level2">
-<h2><span class="header-section-number">7.10</span> Exercises</h2>
+<h2><span class="header-section-number">12.10</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>What is the total distance of cycleways that would be constructed if all the routes presented in Figure <a href="transport.html#fig:cycleways">7.7</a> were to be constructed?
+<li>What is the total distance of cycleways that would be constructed if all the routes presented in Figure <a href="transport.html#fig:cycleways">12.7</a> were to be constructed?
 <ul>
 <li>Bonus: find two ways of arriving at the same answer.</li>
 </ul></li>
@@ -892,7 +907,7 @@ Similar tools could be used to encourage evidence-based transport policies relat
 <!-- Use cycle-specific routing services. -->
 <!-- Identify key walking routes. -->
 <!-- Include a higher proportion of trips in the analysis --></li>
-<li>Clearly the routes identified in Figure <a href="transport.html#fig:cycleways">7.7</a> only provide part of the picture. How would you extend the analysis to incorporate more trips that could potentially be cycled?</li>
+<li>Clearly the routes identified in Figure <a href="transport.html#fig:cycleways">12.7</a> only provide part of the picture. How would you extend the analysis to incorporate more trips that could potentially be cycled?</li>
 <li>Imagine that you want to extend the scenario by creating key <em>areas</em> (not routes) for investment in place-based cycling policies such as car-free zones, cycle parking points and reduced car parking strategy. How could raster data assist with this work?
 <ul>
 <li>Bonus: develop a raster layer that divides the Bristol region into 100 cells (10 by 10) and provide a metric related to transport policy, such as number of people trips that pass through each cell by walking or the average speed limit of roads (from the <code>bristol_ways</code> dataset).</li>
@@ -948,26 +963,26 @@ Similar tools could be used to encourage evidence-based transport policies relat
 </div>
 <div class="footnotes">
 <hr />
-<ol start="47">
-<li id="fn47"><p>
-<strong>osmdata</strong> and <strong>nabor</strong> must also be installed although these packages do not need to be attached.<a href="transport.html#fnref47" class="footnote-back">↩</a></p></li>
-<li id="fn48"><p>
-In cases where the first match does not provide the right name, the country or region should be specified, for example <code>Bristol Tennessee</code> for a Bristol located in America.<a href="transport.html#fnref48" class="footnote-back">↩</a></p></li>
-<li id="fn49"><p>
-the <code>_if</code> affix requires a <code>TRUE</code>/<code>FALSE</code> question to be asked of the variables, in this case ‘is it numeric?’ and only variables returning true are summarized.<a href="transport.html#fnref49" class="footnote-back">↩</a></p></li>
-<li id="fn50"><p>
+<ol start="73">
+<li id="fn73"><p>
+<strong>osmdata</strong> and <strong>nabor</strong> must also be installed although these packages do not need to be attached.<a href="transport.html#fnref73" class="footnote-back">↩</a></p></li>
+<li id="fn74"><p>
+In cases where the first match does not provide the right name, the country or region should be specified, for example <code>Bristol Tennessee</code> for a Bristol located in America.<a href="transport.html#fnref74" class="footnote-back">↩</a></p></li>
+<li id="fn75"><p>
+the <code>_if</code> affix requires a <code>TRUE</code>/<code>FALSE</code> question to be asked of the variables, in this case ‘is it numeric?’ and only variables returning true are summarized.<a href="transport.html#fnref75" class="footnote-back">↩</a></p></li>
+<li id="fn76"><p>
 It would also be important to check that IDs match in the opposite direction on real data.
-This could be done by reversing the order of the ID’s in the commend — <code>summary(bristol_zones$geo_code %in% zones_attr$geo_code)</code> — or by using <code>setdiff()</code> as follows: <code>setdiff(bristol_zones$geo_code, zones_attr$geo_code)</code>.<a href="transport.html#fnref50" class="footnote-back">↩</a></p></li>
-<li id="fn51"><p>
+This could be done by reversing the order of the ID’s in the commend — <code>summary(bristol_zones$geo_code %in% zones_attr$geo_code)</code> — or by using <code>setdiff()</code> as follows: <code>setdiff(bristol_zones$geo_code, zones_attr$geo_code)</code>.<a href="transport.html#fnref76" class="footnote-back">↩</a></p></li>
+<li id="fn77"><p>
 Note that the operation emits a warning because <code>od2line()</code> works by allocating the start and end points of each origin-destination pair to the <em>centroid</em> of its zone of origin and destination.
 <!-- This represents a straight line between the centroid of zone `E02003047` and the centroid of `E02003043` for the second origin-destination pair represented in Table \@ref(tab:od), for example. -->
-For real-world use one would use centroid values generated from projected data or, preferably, use <em>population-weighted</em> centroids <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.<a href="transport.html#fnref51" class="footnote-back">↩</a></p></li>
-<li id="fn52"><p>
+For real-world use one would use centroid values generated from projected data or, preferably, use <em>population-weighted</em> centroids <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.<a href="transport.html#fnref77" class="footnote-back">↩</a></p></li>
+<li id="fn78"><p>
 In this plot the origins of the red routes and black desire lines are not identical.
 This is because zone centroids rarely lie on the route network: instead the route originate from the transport network node nearest the centroid.
-Note also that routes are assumed to originate in the zone centroids, a simplifying assumption which is used in transport models to reduce the computational resources needed to calculate the shortest path between all combinations of possible origins and destinations <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.<a href="transport.html#fnref52" class="footnote-back">↩</a></p></li>
-<li id="fn53"><p>
-To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref53" class="footnote-back">↩</a></p></li>
+Note also that routes are assumed to originate in the zone centroids, a simplifying assumption which is used in transport models to reduce the computational resources needed to calculate the shortest path between all combinations of possible origins and destinations <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.<a href="transport.html#fnref78" class="footnote-back">↩</a></p></li>
+<li id="fn79"><p>
+To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref79" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -975,7 +990,7 @@ To select nodes by geographic location the <strong>stplanr</strong> function <co
           </div>
         </div>
       </div>
-<a href="read-write.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spatial-cv.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="location.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -1006,7 +1021,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Robinlovelace/geocompr/edit/master/07-transport.Rmd",
+"link": "https://github.com/Robinlovelace/geocompr/edit/master/12-transport.Rmd",
 "text": "Edit"
 },
 "download": null,
