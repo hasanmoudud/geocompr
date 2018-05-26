@@ -936,7 +936,7 @@ Figure 5.16: Illustration of raster cropping (center) and raster masking (right)
 The results depend on the type of selector used (points, lines or polygons) and arguments passed to the <code>raster::extract()</code> function, which we use to demonstrate raster extraction.
 The reverse of raster extraction — assigning raster cell values based on vector objects — is rasterization, described in section <a href="geometric-operations.html#rasterization">5.4.3</a>.</p>
 <p>The simplest example is extracting the value of a raster cell at specific <strong>points</strong>.
-For this purpose we will use <code>zion_points</code>, which contain a sample of 30 locations with the Zion National Park (Figure <a href="geometric-operations.html#fig:pointextr">5.17</a>).
+For this purpose we will use <code>zion_points</code>, which contain a sample of 30 locations within the Zion National Park (Figure <a href="geometric-operations.html#fig:pointextr">5.17</a>).
 <!-- They could represent places where soils properties were measured and we want to know what is the elevation of each point. -->
 The following command extracts elevation values from <code>srtm</code> and assigns the resulting vector to a new column (<code>elevation</code>) in the <code>zion_points</code> dataset:</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">zion_points<span class="op">$</span>elevation =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(srtm, <span class="kw">as</span>(zion_points, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
