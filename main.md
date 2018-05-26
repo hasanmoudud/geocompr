@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7e8c646457dac572
+preserve38efcafba72671e2
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve90b178d8b86f23f1
+preserve396b85601ec537b6
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4675,18 +4675,6 @@ data(ndvi)
 ch = st_combine(random_points) %>% 
   st_convex_hull()
 ```
-<!-- CRS CONVERSION -->
-<!-- 1. vector reprojection exercise (e.g. modification of proj4) -->
-1. Create a new object called `nz_wgs` by transforming `nz` object into the WGS84 CRS.
-    - Create an object of class `crs` for both and use this to query their CRSs.
-    - With reference to the bounding box of each object, what units does each CRS use?
-    - Remove the CRS from `nz_wgs` and plot the result: what is wrong with this map of New Zealand and why?
-
-1. Transform the `world` dataset to the transverse Mercator projection (`"+proj=tmerc"`) and plot the result.
-What has changed and why?
-Try to transform it back into WGS 84 and plot the new object.
-Why does the new object differ from the original one?
-
 1. Generate and plot simplified versions of the `nz` dataset.
 Experiment with different values of `keep` (ranging from 0.5 to 0.00005) for `ms_simplify()` and `dTolerance` (from 100 to 100,000) `st_simplify()` .
     - At what value does the form of the result start to break-down for each method, making New Zealand unrecognizable?
@@ -4701,14 +4689,6 @@ A world map with a south-up orientation could be created by a reflection (one of
 Write code to do so.
 Hint: you need to use a two-element vector for this transformation.
     - Bonus: create a upside down map of your country.
-
-1. Transform the continuous raster (`cat_raster`) into WGS 84 using the nearest neighbor interpolation method. 
-What has changed?
-How does it influence the results?
-
-1. Transform the categorical raster (`cat_raster`) into WGS 84 using the bilinear interpolation method.
-What has changed?
-How does it influence the results?
 
 1. Subset the point in `p` that is contained within `x` *and* `y` (see section \@ref(clipping) and Figure \@ref(fig:venn-clip)).
     - Using base subsetting operators.
@@ -5306,6 +5286,29 @@ Chapter 6 for this free online book is recommended reading --- see [rspatial.org
 <!-- note1: in most of the cases reproject vector, not raster-->
 <!-- note2: equal area projections are the best for raster calculations -->
 <!-- q: should we mentioned gdal_transform? -->
+
+## Exercises
+
+<!-- CRS CONVERSION -->
+<!-- 1. vector reprojection exercise (e.g. modification of proj4) -->
+1. Create a new object called `nz_wgs` by transforming `nz` object into the WGS84 CRS.
+    - Create an object of class `crs` for both and use this to query their CRSs.
+    - With reference to the bounding box of each object, what units does each CRS use?
+    - Remove the CRS from `nz_wgs` and plot the result: what is wrong with this map of New Zealand and why?
+
+1. Transform the `world` dataset to the transverse Mercator projection (`"+proj=tmerc"`) and plot the result.
+What has changed and why?
+Try to transform it back into WGS 84 and plot the new object.
+Why does the new object differ from the original one?
+
+1. Transform the continuous raster (`cat_raster`) into WGS 84 using the nearest neighbor interpolation method. 
+What has changed?
+How does it influence the results?
+
+1. Transform the categorical raster (`cat_raster`) into WGS 84 using the bilinear interpolation method.
+What has changed?
+How does it influence the results?
+
 
 <!--chapter:end:06-reproj.Rmd-->
 
@@ -6491,7 +6494,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec90e89828320bd50
+preserved54c3e338aadbc87
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6590,7 +6593,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve50d23816a6412a57
+preserve2de9932d42db4001
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9606,7 +9609,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve263f7eb70128c35b
+preserve42c8172a2748b640
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
