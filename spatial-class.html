@@ -619,7 +619,7 @@ Sorry for commenting on this again but just to clarify africa[0] selects zero co
 <h3><span class="header-section-number">2.1.4</span> Base plot arguments</h3>
 <p><strong>sf</strong> simplifies spatial data objects compared with <strong>sp</strong> and provides a near-direct interface to GDAL and GEOS C++ functions.
 In theory this should make <strong>sf</strong> faster than <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong>.
-This section introduces <strong>sf</strong> classes in preparation for subsequent chapters which deal with vector data (in particular Chapters <a href="spatial-operations.html#spatial-operations">4</a> and <a href="transform.html#transform">5</a>).</p>
+This section introduces <strong>sf</strong> classes in preparation for subsequent chapters which deal with vector data (in particular Chapters <a href="spatial-operations.html#spatial-operations">4</a> and <a href="transform.html#reproj-geo-data">5.2</a>).</p>
 <p>As a final exercise, we will see one way of how to do a spatial overlay in <strong>sf</strong>.
 First, we convert the countries of the world into centroids, and then subset those in Asia. Finally, the <code>summary</code> command tells us how many centroids (countries) are part of Asia (43) and how many are not (134).</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">world_centroids =<span class="st"> </span><span class="kw">st_centroid</span>(world)</a>
@@ -1294,7 +1294,7 @@ The main difference, compared to vector data, is that raster objects only accept
 Figure 2.10: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type
 </p>
 </div>
-<p>We will expand on CRSs and how to project from one CRS to another in much more detail in chapter <a href="transform.html#transform">5</a>.
+<p>We will expand on CRSs and how to project from one CRS to another in much more detail in chapter <a href="transform.html#reproj-geo-data">5.2</a>.
 <!-- comparing projections? == -->
 <!-- - st_as_sf(x, coords = c("x","y")) -->
 <!-- - st_bbox --></p>

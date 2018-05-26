@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2ab3329e0508551e
+preserve76fc74e9529f27c8
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -839,7 +839,7 @@ Sorry for commenting on this again but just to clarify africa[0] selects zero co
 
 **sf** simplifies spatial data objects compared with **sp** and provides a near-direct interface to GDAL and GEOS C++ functions.
 In theory this should make **sf** faster than **sp**/**rgdal**/**rgeos**.
-This section introduces **sf** classes in preparation for subsequent chapters which deal with vector data (in particular Chapters \@ref(spatial-operations) and \@ref(transform)).
+This section introduces **sf** classes in preparation for subsequent chapters which deal with vector data (in particular Chapters \@ref(spatial-operations) and \@ref(reproj-geo-data)).
 
 As a final exercise, we will see one way of how to do a spatial overlay in **sf**.
 First, we convert the countries of the world into centroids, and then subset those in Asia. Finally, the `summary` command tells us how many centroids (countries) are part of Asia (43) and how many are not (134).
@@ -1725,7 +1725,7 @@ projection(new_raster) = "+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0
 <p class="caption">(\#fig:raster-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type</p>
 </div>
 
-We will expand on CRSs and how to project from one CRS to another in much more detail in chapter \@ref(transform).
+We will expand on CRSs and how to project from one CRS to another in much more detail in chapter \@ref(reproj-geo-data).
 <!-- comparing projections? == -->
 <!-- - st_as_sf(x, coords = c("x","y")) -->
 <!-- - st_bbox -->
@@ -2740,7 +2740,7 @@ The most important spatial operation on raster data, however, is *map algebra*.
 Map algebra makes raster processing very elegant and fast (covered in sections \@ref(map-algebra) to \@ref(global-operations-and-distances)).
 Map algebra is also the prerequisite for distance calculations on rasters \@ref(global-operations-and-distances).
 
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">It is important to note that spatial operations that use two spatial objects rely on both objects having the same coordinate reference system, a topic that was introduced in \@ref(crs-intro) and which will be covered in more depth in Chapter \@ref(transform).</div>\EndKnitrBlock{rmdnote}
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">It is important to note that spatial operations that use two spatial objects rely on both objects having the same coordinate reference system, a topic that was introduced in \@ref(crs-intro) and which will be covered in more depth in Chapter \@ref(reproj-geo-data).</div>\EndKnitrBlock{rmdnote}
 
 ## Spatial operations on vector data {#spatial-vec}
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveaefa306c9fdd6fc2
+preservef3037ade23978379
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5311,7 +5311,6 @@ library(spData)
 library(spDataLarge)
 ```
 
-
 ## Introduction
 
 <!-- A vital type of geometry transformation is *reprojecting* from one coordinate reference system (CRS) to another. -->
@@ -6459,7 +6458,7 @@ This chapter focuses on dedicated map-making packages, especially **tmap**, for 
 There are a multitude of options but when learning a new skill (in this case map making), it makes sense to gain depth-of-knowledge in one package before branching out, a concept that also applies to the choice of programming language as we saw in Chapter \@ref(intro).
 It is worth developing advanced map making skills not only because it is a fun activity that can produce beautiful results. 
 Map making also has important practical applications.
-A carefully crafted map can help ensure that time spent in the analysis phases of geocomputational projects --- for example using methods covered in chapters \@ref(spatial-class) to \@ref(transform) --- are communicated effectively [@brewer_designing_2015]:
+A carefully crafted map can help ensure that time spent in the analysis phases of geocomputational projects --- for example using methods covered in chapters \@ref(spatial-class) to \@ref(reproj-geo-data) --- are communicated effectively [@brewer_designing_2015]:
 
 > Amateur-looking maps can undermine your audience’s ability to understand important information and weaken the presentation of a professional data investigation.
 
@@ -7042,7 +7041,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservecff88d46fe173949
+preserve68ac7dde671b95d6
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7141,7 +7140,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1905f1f43304b625
+preservee39fb2b20e71d8e4
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8190,7 +8189,7 @@ Building on this example, write a function only using base R functions that can 
 
 ## Prerequisites {-}
 
-This chapter assumes proficiency with spatial data, for example gained by studying the contents and working-through the exercises in chapters \@ref(spatial-class) to \@ref(transform).
+This chapter assumes proficiency with spatial data, for example gained by studying the contents and working-through the exercises in chapters \@ref(spatial-class) to \@ref(reproj-geo-data).
 A familiarity with generalized linear regression and machine learning is highly recommended [for example from @zuur_mixed_2009;@james_introduction_2013].
 
 The chapter uses the following packages:^[
@@ -9943,7 +9942,7 @@ A reverse geocoding approach can settle this problem.
 Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
 The **ggmap** package makes use of the one provided by Google.^[Note that Google allows each user to access its services on a free basis for a maximum of 2500 queries a day.]
-`ggmap::revgeocode()` only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter \@ref(transform)).
+`ggmap::revgeocode()` only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter \@ref(reproj-geo-data)).
 
 
 ```r
@@ -10157,7 +10156,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee20dc0df95a7b490
+preserveaa1bae807a6fdefa
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

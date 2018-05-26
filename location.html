@@ -774,7 +774,7 @@ A reverse geocoding approach can settle this problem.
 Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
 The <strong>ggmap</strong> package makes use of the one provided by Google.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
-<code>ggmap::revgeocode()</code> only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter <a href="transform.html#transform">5</a>).</p>
+<code>ggmap::revgeocode()</code> only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter <a href="transform.html#reproj-geo-data">5.2</a>).</p>
 <div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1">metros_wgs =<span class="st"> </span><span class="kw">st_transform</span>(metros, <span class="dv">4326</span>)</a>
 <a class="sourceLine" id="cb424-2" data-line-number="2">coords =<span class="st"> </span><span class="kw">st_centroid</span>(metros_wgs) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb424-3" data-line-number="3"><span class="st">  </span><span class="kw">st_coordinates</span>() <span class="op">%&gt;%</span></a>
