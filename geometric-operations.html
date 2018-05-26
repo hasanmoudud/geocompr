@@ -1126,8 +1126,8 @@ Figure 5.23: DEM hillshade of the southern flank of Mt. Mongón overlaid with co
 </p>
 </div>
 <p>The final type of vectorisation involves conversion of rasters to polygons.
-This can be done with <code>raster::rasterToPolygons()</code>, wich converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!)</p>
-<p>This is illustrated below by converting the <code>grain</code> object into polygons and subsequently dissolving borders between polygons with the same attribute values.
+This can be done with <code>raster::rasterToPolygons()</code>, wich converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!).</p>
+<p>This is illustrated below by converting the <code>grain</code> object into polygons and subsequently dissolving borders between polygons with the same attribute values (also see the <code>dissolve</code> argument in <code>rasterToPolygons()</code>).
 Attributes in this case are stored in a collumn called <code>layer</code> (see section <a href="geometric-operations.html#geometry-unions">5.2.6</a> and Figure <a href="geometric-operations.html#fig:raster-vectorization2">5.24</a>).
 (Note: a convenient alternative for converting rasters into polygons is <code>spex::polygonize()</code> which by default returns an <code>sf</code> object.)</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">grain_poly =<span class="st"> </span><span class="kw">rasterToPolygons</span>(grain) <span class="op">%&gt;%</span><span class="st"> </span></a>

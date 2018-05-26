@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecbb7926e6390b0f5
+preserveb2a9c802e121d9cb
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveae206a43949b49ee
+preserveb25d5dfbc57b69a2
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4644,9 +4644,9 @@ As illustrated in Figure \@ref(fig:contour) (which was created using the **tmap*
 </div>
 
 The final type of vectorisation involves conversion of rasters to polygons.
-This can be done with `raster::rasterToPolygons()`, wich converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!)
+This can be done with `raster::rasterToPolygons()`, wich converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!).
 
-This is illustrated below by converting the `grain` object into polygons and subsequently dissolving borders between polygons with the same attribute values.
+This is illustrated below by converting the `grain` object into polygons and subsequently dissolving borders between polygons with the same attribute values (also see the `dissolve` argument in `rasterToPolygons()`).
 Attributes in this case are stored in a collumn called `layer` (see section \@ref(geometry-unions) and Figure \@ref(fig:raster-vectorization2)).
 (Note: a convenient alternative for converting rasters into polygons is `spex::polygonize()` which by default returns an `sf` object.)
 
@@ -6497,7 +6497,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve220e6cb0c50862f2
+preserveb418004ddd9f5bd1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6596,7 +6596,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved400fddbfbbb4142
+preserve4b4a4cbe942113a6
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9612,7 +9612,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8bfc8aa1fe5c8f37
+preservea537a6828854a153
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
