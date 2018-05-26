@@ -948,7 +948,7 @@ In Chapter 13 we will learn how to access GIS functionality from within R.
 <h3><span class="header-section-number">4.3.5</span> Zonal operations</h3>
 <p><em>Zonal</em> operations are similar to focal operations.
 The difference is that zonal filters can take on any shape instead of just a predefined window.
-Our grain size raster is a good example (Figure <a href="attr.html#fig:cont-cate-rasters">3.2</a>) because the different grain sizes are spread in an irregular fashion throughout the raster.</p>
+Our grain size raster is a good example (Figure <a href="#fig:cont-cate-rasters"><strong>??</strong></a>) because the different grain sizes are spread in an irregular fashion throughout the raster.</p>
 <p>To find the mean elevation for each grain size class, we can use the <code>zonal()</code> command.
 This kind of operation is also known as <em>zonal statistics</em> in the GIS world.</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">z =<span class="st"> </span><span class="kw">zonal</span>(elev, grain, <span class="dt">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="op">%&gt;%</span></a>
