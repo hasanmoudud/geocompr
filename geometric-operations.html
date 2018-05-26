@@ -1151,6 +1151,13 @@ Figure 5.24: Illustration of vectorization of raster (left) into polygon (center
 </div>
 <div id="exercises-3" class="section level2">
 <h2><span class="header-section-number">5.5</span> Exercises</h2>
+<p>Some of the exercises will use a vector (<code>random_points</code>) and raster dataset (<code>ndvi</code>) from the <strong>RQGIS</strong> package.
+It also uses a polygonal ‘convex hull’ derived from the vector dataset (<code>ch</code>) to represent the area of interest:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
+<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="kw">data</span>(random_points)</a>
+<a class="sourceLine" id="cb205-3" data-line-number="3"><span class="kw">data</span>(ndvi)</a>
+<a class="sourceLine" id="cb205-4" data-line-number="4">ch =<span class="st"> </span><span class="kw">st_combine</span>(random_points) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb205-5" data-line-number="5"><span class="st">  </span><span class="kw">st_convex_hull</span>()</a></code></pre></div>
 <!-- CRS CONVERSION -->
 <!-- 1. vector reprojection exercise (e.g. modification of proj4) -->
 <ol style="list-style-type: decimal">
@@ -1200,13 +1207,6 @@ Hint: The <code>st_length</code> function computes the length of a <code>LINESTR
 </ul></li>
 </ol>
 <!-- advances exercise - rotate nz as a whole - union new zeleand and rotate it around its centroid by 180 degrees -->
-<p>The next two exercises will use a vector (<code>random_points</code>) and raster dataset (<code>ndvi</code>) from the <strong>RQGIS</strong> package.
-It also uses a polygonal ‘convex hull’ derived from the vector dataset (<code>ch</code>) to represent the area of interest:</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
-<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="kw">data</span>(random_points)</a>
-<a class="sourceLine" id="cb205-3" data-line-number="3"><span class="kw">data</span>(ndvi)</a>
-<a class="sourceLine" id="cb205-4" data-line-number="4">ch =<span class="st"> </span><span class="kw">st_combine</span>(random_points) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb205-5" data-line-number="5"><span class="st">  </span><span class="kw">st_convex_hull</span>()</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>Crop the <code>ndvi</code> raster using (1) the <code>random_points</code> dataset and (2) the <code>ch</code> dataset.
 Are there any difference in the output maps?

@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3b70dfab307dbc88
+preserve043d0d4268fc5775
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveeb36516ce35e6d5f
+preserve534b1bd8da3a2c6b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4665,6 +4665,16 @@ grain_poly2 = grain_poly %>%
 
 ## Exercises
 
+Some of the exercises will use a vector (`random_points`) and raster dataset (`ndvi`) from the **RQGIS** package.
+It also uses a polygonal 'convex hull' derived from the vector dataset (`ch`) to represent the area of interest:
+
+```r
+library(RQGIS)
+data(random_points)
+data(ndvi)
+ch = st_combine(random_points) %>% 
+  st_convex_hull()
+```
 <!-- CRS CONVERSION -->
 <!-- 1. vector reprojection exercise (e.g. modification of proj4) -->
 1. Create a new object called `nz_wgs` by transforming `nz` object into the WGS84 CRS.
@@ -4714,16 +4724,6 @@ Hint: The `st_length` function computes the length of a `LINESTRING` or `MULTILI
 
 
 <!-- advances exercise - rotate nz as a whole - union new zeleand and rotate it around its centroid by 180 degrees -->
-The next two exercises will use a vector (`random_points`) and raster dataset (`ndvi`) from the **RQGIS** package.
-It also uses a polygonal 'convex hull' derived from the vector dataset (`ch`) to represent the area of interest:
-
-```r
-library(RQGIS)
-data(random_points)
-data(ndvi)
-ch = st_combine(random_points) %>% 
-  st_convex_hull()
-```
 1. Crop the `ndvi` raster using (1) the `random_points` dataset and (2) the `ch` dataset.
 Are there any difference in the output maps?
 Next, mask `ndvi` using these two datasets.
@@ -6493,7 +6493,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2b821f77b711e0ae
+preserve582bb36a4c3766a7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6592,7 +6592,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved432b4669bc945a5
+preserve129f80af1bc33864
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9608,7 +9608,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb12cd5071672fbf7
+preserve46cfcad37bc39c85
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
