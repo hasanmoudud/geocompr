@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve66ef1bba2775de3a
+preserve074af1e25b0b5476
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1423,7 +1423,7 @@ inMemory(new_raster)
 `help(package = "raster", topic = "raster-package")` returns a full list of all available **raster** functions.
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">The **raster** package is not yet fully compatible with objects from the **sf** package.
-Thus, we suggest to convert **sf** objects to **Spatial^*^** class() when using a vector data inside a **raster** function, for example `crop(raster_obj, as(sf_object, "Spatial")`.</div>\EndKnitrBlock{rmdnote}
+Thus, we suggest to convert **sf** objects to Spatial^*^ class() when using a vector data inside a **raster** function, for example `crop(raster_obj, as(sf_object, "Spatial")`.</div>\EndKnitrBlock{rmdnote}
 
 ### Basic map making {#basic-map-raster}
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea2465bfad5ac66c6
+preserve9a12337d3078acdf
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -7041,7 +7041,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve21efead54d1e0c13
+preserve06e0eef6f8e055d2
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -7140,7 +7140,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveba48f19fffbb53d0
+preserve44036ccba6ef8785
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10156,7 +10156,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservecc63ce64b8a1cbd8
+preserve5de11ef10c7e94eb
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
