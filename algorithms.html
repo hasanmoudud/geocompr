@@ -491,7 +491,7 @@ We can verify it works not only on the triangle matrix <code>T1</code> as follow
 <a class="sourceLine" id="cb330-3" data-line-number="3">i =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="kw">length</span>(ind), <span class="dt">by =</span> <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb330-4" data-line-number="4">i_list =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(i, <span class="op">~</span><span class="kw">c</span>(.<span class="op">:</span>(.<span class="op">+</span><span class="dv">2</span>), .))</a>
 <a class="sourceLine" id="cb330-5" data-line-number="5">T_all =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(i_list, <span class="op">~</span>poly_mat[ind[.], ])</a></code></pre></div>
-<p><img src="figures/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
 <!-- Following this pattern, we can use iteration to create all triangles representing the polygon. -->
 <!-- We could use a `for()` loop or `lapply()` for this work but have chosen `map()` from the **purrr** package because it allows concise code: -->
 <!-- the `.` in the commands below refer to 'each element of the object `i`' (see `?purrr::map` for details): -->
