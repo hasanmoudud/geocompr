@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve898d339abc11aeff
+preserve777c547b62f31784
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve348deee89ea93549
+preserve190bd4665f4253b7
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6497,7 +6497,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservebf2b1604d0d13b6f
+preserve5be9f6cb353a701e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6596,7 +6596,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecc016441aba4b5a0
+preserve77768a7f5f392f9f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9199,7 +9199,7 @@ input_tidy = mutate_all(input, funs(ifelse(. %in% c(-1, -9), NA, .)))
 After the preprocessing, the data can be converted into a raster stack or brick (see sections \@ref(raster-classes) and \@ref(raster-subsetting)).
 `rasterFromXYZ()` makes this really easy.
 It requires an input data frame where the first two columns represent coordinates on a regular grid.
-All the remaining columns (here: `pop`, `women`, `mean_age`, `hh_size`) will serve as input for the raster brick layers (Figure \@ref(fig:census-stack); see also `code/08-location-jm.R`).
+All the remaining columns (here: `pop`, `women`, `mean_age`, `hh_size`) will serve as input for the raster brick layers (Figure \@ref(fig:census-stack); see also `code/13-location-jm.R`).
 
 
 ```r
@@ -9393,7 +9393,7 @@ st_centroid(metros) %>%
 <p class="caption">(\#fig:metro-areas)The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names.</p>
 </div>
 
-The resulting eight metropolitan areas suitable for bike shops (Fig. \@ref(fig:metro-areas); see also `code/08-location-jm.R` for creating the figure) are still missing a name.
+The resulting eight metropolitan areas suitable for bike shops (Fig. \@ref(fig:metro-areas); see also `code/13-location-jm.R` for creating the figure) are still missing a name.
 A reverse geocoding approach can settle this problem.
 Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
@@ -9609,10 +9609,10 @@ With clean data the final step, calculating a final score by summing up all rast
 result = sum(reclass)
 ```
 
-For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/08-location-jm.R`).
+For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve34cb9dcf8df205bb
+preserve027064095d9129bb
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

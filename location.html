@@ -594,7 +594,7 @@ household size<br />
 <p>After the preprocessing, the data can be converted into a raster stack or brick (see sections <a href="spatial-class.html#raster-classes">2.2.3</a> and <a href="attr.html#raster-subsetting">3.3.1</a>).
 <code>rasterFromXYZ()</code> makes this really easy.
 It requires an input data frame where the first two columns represent coordinates on a regular grid.
-All the remaining columns (here: <code>pop</code>, <code>women</code>, <code>mean_age</code>, <code>hh_size</code>) will serve as input for the raster brick layers (Figure <a href="location.html#fig:census-stack">13.1</a>; see also <code>code/08-location-jm.R</code>).</p>
+All the remaining columns (here: <code>pop</code>, <code>women</code>, <code>mean_age</code>, <code>hh_size</code>) will serve as input for the raster brick layers (Figure <a href="location.html#fig:census-stack">13.1</a>; see also <code>code/13-location-jm.R</code>).</p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1">input_ras =<span class="st"> </span><span class="kw">rasterFromXYZ</span>(input_tidy, <span class="dt">crs =</span> <span class="kw">st_crs</span>(<span class="dv">3035</span>)<span class="op">$</span>proj4string)</a>
 <a class="sourceLine" id="cb393-2" data-line-number="2"><span class="co"># print the output to the console</span></a>
 <a class="sourceLine" id="cb393-3" data-line-number="3">input_ras</a>
@@ -754,7 +754,7 @@ st_centroid(metros) %>%
 Figure 13.2: The aggregated population raster (resolution: 20 km) with the identified metropolitan areas (golden polygons) and the corresponding names.
 </p>
 </div>
-<p>The resulting eight metropolitan areas suitable for bike shops (Fig. <a href="location.html#fig:metro-areas">13.2</a>; see also <code>code/08-location-jm.R</code> for creating the figure) are still missing a name.
+<p>The resulting eight metropolitan areas suitable for bike shops (Fig. <a href="location.html#fig:metro-areas">13.2</a>; see also <code>code/13-location-jm.R</code> for creating the figure) are still missing a name.
 A reverse geocoding approach can settle this problem.
 Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
@@ -943,7 +943,7 @@ This is achieved with the complimentary functions <code>addLayer()</code> and <c
 With clean data the final step, calculating a final score by summing up all raster layers, can be accomplished in a single line.</p>
 <div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" data-line-number="1"><span class="co"># calculate the total score</span></a>
 <a class="sourceLine" id="cb411-2" data-line-number="2">result =<span class="st"> </span><span class="kw">sum</span>(reclass)</a></code></pre></div>
-<p>For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure <a href="location.html#fig:bikeshop-berlin">13.3</a>; see also <code>code/08-location-jm.R</code>).</p>
+<p>For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure <a href="location.html#fig:bikeshop-berlin">13.3</a>; see also <code>code/13-location-jm.R</code>).</p>
 <div class="figure" style="text-align: center"><span id="fig:bikeshop-berlin"></span>
 <div id="htmlwidget-ec897849c5c50a6f7846" style="width:576px;height:355.968px;" class="leaflet html-widget"></div>
 <script type="application/json" data-for="htmlwidget-ec897849c5c50a6f7846">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRasterImage","args":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAM0lEQVRYhe3SMQ0AMAwEsQcb/hTSuQSaVLIR3HAJAADfqfR0wm1dEC9VevcCq+MAAIBhB20vBvBK3JZrAAAAAElFTkSuQmCC",[[52.696600856383,13.0820026147986],[52.3210740877061,13.6981591380976]],0.8,null,null,null]},{"method":"addLegend","args":[{"colors":["darkgreen"],"labels":["potential locations"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"bottomright","type":"unknown","title":"Legend","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[52.3210740877061,52.696600856383],"lng":[13.0820026147986,13.6981591380976]}},"evals":[],"jsHooks":[]}</script>
