@@ -301,9 +301,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.7" data-path="adv-map.html"><a href="adv-map.html#exercises-6"><i class="fa fa-check"></i><b>8.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="gis.html"><a href="gis.html"><i class="fa fa-check"></i><b>9</b> Bridges to GIS software</a><ul>
-<li class="chapter" data-level="9.1" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>9.1</b> (R)QGIS</a></li>
-<li class="chapter" data-level="9.2" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.2</b> (R)SAGA</a></li>
-<li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.3</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="9.1" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.1</b> (R)SAGA</a></li>
+<li class="chapter" data-level="9.2" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.2</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>9.3</b> (R)QGIS</a></li>
 <li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.4</b> When to use what?</a></li>
 <li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
@@ -402,8 +402,7 @@ This section demonstrates how to access open access <em>geoportals</em> which co
 There is a wide range of geographic file formats, each of which has pros and cons.
 These are described in section <a href="read-write.html#file-formats">7.3</a>.
 The process of actually reading and writing such file formats efficiently is not covered until sections <a href="read-write.html#data-input">7.4</a> and <a href="read-write.html#data-output">7.5</a> respectively.
-The final section (<a href="read-write.html#visual-outputs">7.6</a>) demonstrates methods for saving visual outputs (maps), in preparation for a subsequent chapter dedicated to visualization.
-<!-- Todo: Add reference to vis chapter (RL) --></p>
+The final section (<a href="read-write.html#visual-outputs">7.6</a>) demonstrates methods for saving visual outputs (maps), in preparation for Chapter <a href="adv-map.html#adv-map">8</a> on visualization.</p>
 </div>
 <div id="retrieving-data" class="section level2">
 <h2><span class="header-section-number">7.2</span> Retrieving open data</h2>
@@ -501,8 +500,7 @@ The result is passed to a function for selecting which OSM elements we’re inte
 <a class="sourceLine" id="cb236-4" data-line-number="4"><span class="st">  </span><span class="kw">osmdata_sf</span>()</a></code></pre></div>
 <p>OpenStreetMap is a vast global database of crowd-sourced data and it is growing by the minute.
 Although the quality is not as spatially consistent as many official datasets, OSM data have many advantages: they are globally available free of charge and using crowd-source data can encourage ‘citizen science’ and contributions back to the digital commons.
-Further examples of <strong>osmdata</strong> in action are provided in Chapters <a href="transport.html#transport">12</a> and <a href="location.html#location">13</a>.
-<!-- Todo: Replace the above with "Chapters \@ref(location) and \@ref(gis)." when gis is online (RL) --></p>
+Further examples of <strong>osmdata</strong> in action are provided in Chapters <a href="transport.html#transport">12</a>, <a href="location.html#location">13</a> and <a href="gis.html#gis">9</a>.</p>
 <p>Finally, R packages might contain or just consist of spatial data, such as <strong>spData</strong> which provides example datasets used in this book.
 You can access such data with the <code>data()</code> function.
 For example, you can get a list of dataset in a package, <code>data(package = &quot;spData&quot;)</code>.
@@ -839,22 +837,21 @@ It could be either <code>AS_XY</code> for simple point datasets (it creates two 
 <div id="raster-data-2" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> Raster data</h3>
 <p>The <code>writeRaster()</code> function saves <code>Raster*</code> objects to files on disk.
-The function expects input regarding output datatype and file format, but also accepts GDAL options specific to a selected file format (see <code>?writeRaster</code> for more details).</p>
-<!-- datatypes -->
-<p>The <strong>raster</strong> package offers nine datatypes when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>
-The datatype determines the bit representation of the raster object written to disk (<a href="read-write.html#tab:datatypes">7.4</a>).
-Which datatype to use depends on the range of the values of your raster object.
-The more values a datatype can represent, the larger the file will get on disk.
+The function expects input regarding output data type and file format, but also accepts GDAL options specific to a selected file format (see <code>?writeRaster</code> for more details).</p>
+<p>The <strong>raster</strong> package offers nine data types when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>
+The data type determines the bit representation of the raster object written to disk (<a href="read-write.html#tab:datatypes">7.4</a>).
+Which data type to use depends on the range of the values of your raster object.
+The more values a data type can represent, the larger the file will get on disk.
 Commonly, one would use LOG1S for bitmap (binary) rasters.
 Unsigned integers (INT1U, INT2U, INT4U) are suitable for categorical data, while float numbers (FLT4S and FLTS8S) usually represent continuous data.
 <code>writeRaster()</code> uses FLT4S as the default.
 While this works in most cases, the size of the output file will be unnecessarly large if you save binary or categorical data.
-Therefore, we would recommend to use the datatype that needs the least storage space but is still able to represent all values (check the range of values with the <code>summary()</code> function).</p>
+Therefore, we would recommend to use the data type that needs the least storage space but is still able to represent all values (check the range of values with the <code>summary()</code> function).</p>
 <table>
-<caption><span id="tab:datatypes">Table 7.4: </span>Datatypes supported by the raster package.</caption>
+<caption><span id="tab:datatypes">Table 7.4: </span>Data types supported by the raster package.</caption>
 <thead>
 <tr class="header">
-<th align="left">Datatype</th>
+<th align="left">Data type</th>
 <th align="left">Minimum value</th>
 <th align="left">Maximum value</th>
 </tr>

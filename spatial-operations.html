@@ -301,9 +301,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.7" data-path="adv-map.html"><a href="adv-map.html#exercises-6"><i class="fa fa-check"></i><b>8.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="gis.html"><a href="gis.html"><i class="fa fa-check"></i><b>9</b> Bridges to GIS software</a><ul>
-<li class="chapter" data-level="9.1" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>9.1</b> (R)QGIS</a></li>
-<li class="chapter" data-level="9.2" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.2</b> (R)SAGA</a></li>
-<li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.3</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="9.1" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.1</b> (R)SAGA</a></li>
+<li class="chapter" data-level="9.2" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.2</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>9.3</b> (R)QGIS</a></li>
 <li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.4</b> When to use what?</a></li>
 <li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
@@ -950,8 +950,7 @@ The <code>terrain()</code> function lets you compute a few of these terrain char
 For example, the Zevenbergen and Thorne method to compute the slope is missing.
 Equally, many other terrain and GIS functions are <strong>not</strong> implemented in R such as curvatures, contributing areas, different wetness indexes, and many more.
 Fortunately, desktop GIS commonly provide these algorithms.
-In Chapter 13 we will learn how to access GIS functionality from within R.
-<!-- Reference 13-gis chapter --></p>
+In Chapter <a href="gis.html#gis">9</a> we will learn how to access GIS functionality from within R.</p>
 </div>
 <div id="zonal-operations" class="section level3">
 <h3><span class="header-section-number">4.3.5</span> Zonal operations</h3>
@@ -978,8 +977,7 @@ In the first case, one can calculate the distance from each cell to a specific t
 For example, one might want to compute the distance to the nearest coast (see also <code>raster::distance()</code>).
 We might also want to consider topography, that means, we are not only interested in the pure distance but would like also to avoid the crossing of mountain ranges when going to the coast.
 To do so, we can weight the distance with elevation so that each additional altitudinal meter ‘prolongs’ the euclidean distance.
-Visibility and viewshed computations also belong to the family of global operations<!--(in the exercises of Chapter ?? you will compute a viewshed raster)-->.
-<!-- reference 13-gis chapter--></p>
+Visibility and viewshed computations also belong to the family of global operations (in the exercises of Chapter <a href="gis.html#gis">9</a> you will compute a viewshed raster).</p>
 <p>Many map algebra operations have a counterpart in vector processing <span class="citation">(Liu and Mason <a href="#ref-liu_essential_2009">2009</a>)</span>.
 Computing a distance raster (zonal operation) while only considering a maximum distance (logical focal operation) is the equivalent to a vector buffer operation (section <a href="geometric-operations.html#clipping">5.2.5</a>).
 Reclassifying raster data (either local or zonal function depending on the input) is equivalent to dissolving vector data (section <a href="spatial-operations.html#spatial-joining">4.2.3</a>).

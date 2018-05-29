@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef5a2e4cc80ff2f88
+preserve11e7125073ae275e
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve35044d3fdeb938c2
+preservec3e519d03d468e3b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3465,8 +3465,7 @@ The `terrain()` function lets you compute a few of these terrain characteristics
 For example, the Zevenbergen and Thorne method to compute the slope is missing.
 Equally, many other terrain and GIS functions are **not** implemented in R such as curvatures, contributing areas, different wetness indexes, and many more.
 Fortunately, desktop GIS commonly provide these algorithms.
-In Chapter 13 we will learn how to access GIS functionality from within R.
-<!-- Reference 13-gis chapter -->
+In Chapter \@ref(gis) we will learn how to access GIS functionality from within R.
 
 ### Zonal operations
 
@@ -3499,8 +3498,7 @@ In the first case, one can calculate the distance from each cell to a specific t
 For example, one might want to compute the distance to the nearest coast (see also `raster::distance()`).
 We might also want to consider topography, that means, we are not only interested in the pure distance but would like also to avoid the crossing of mountain ranges when going to the coast.
 To do so, we can weight the distance with elevation so that each additional altitudinal meter 'prolongs' the euclidean distance.
-Visibility and viewshed computations also belong to the family of global operations<!--(in the exercises of Chapter ?? you will compute a viewshed raster)-->.
-<!-- reference 13-gis chapter-->
+Visibility and viewshed computations also belong to the family of global operations (in the exercises of Chapter \@ref(gis) you will compute a viewshed raster).
 
 Many map algebra operations have a counterpart in vector processing [@liu_essential_2009].
 Computing a distance raster (zonal operation) while only considering a maximum distance (logical focal operation) is the equivalent to a vector buffer operation (section \@ref(clipping)).
@@ -5355,8 +5353,7 @@ This section demonstrates how to access open access *geoportals* which collectiv
 There is a wide range of geographic file formats, each of which has pros and cons.
 These are described in section \@ref(file-formats).
 The process of actually reading and writing such file formats efficiently is not covered until sections \@ref(data-input) and \@ref(data-output) respectively.
-The final section (\@ref(visual-outputs)) demonstrates methods for saving visual outputs (maps), in preparation for a subsequent chapter dedicated to visualization.
-<!-- Todo: Add reference to vis chapter (RL) -->
+The final section (\@ref(visual-outputs)) demonstrates methods for saving visual outputs (maps), in preparation for Chapter \@ref(adv-map) on visualization.
 
 ## Retrieving open data {#retrieving-data}
 
@@ -5463,8 +5460,7 @@ parks = opq(bbox = "leeds uk") %>%
 
 OpenStreetMap is a vast global database of crowd-sourced data and it is growing by the minute.
 Although the quality is not as spatially consistent as many official datasets, OSM data have many advantages: they are globally available free of charge and using crowd-source data can encourage 'citizen science' and contributions back to the digital commons.
-Further examples of **osmdata** in action are provided in Chapters \@ref(transport) and  \@ref(location).
-<!-- Todo: Replace the above with "Chapters \@ref(location) and \@ref(gis)." when gis is online (RL) -->
+Further examples of **osmdata** in action are provided in Chapters \@ref(transport),  \@ref(location) and \@ref(gis).
 
 Finally, R packages might contain or just consist of spatial data, such as **spData** which provides example datasets used in this book.
 You can access such data with the `data()` function.
@@ -5766,33 +5762,32 @@ st_write(world_wkt, "world_wkt.csv", layer_options = "GEOMETRY=AS_WKT")
 ### Raster data
 
 The `writeRaster()` function saves `Raster*` objects to files on disk. 
-The function expects input regarding output datatype and file format, but also accepts GDAL options specific to a selected file format (see `?writeRaster` for more details).
+The function expects input regarding output data type and file format, but also accepts GDAL options specific to a selected file format (see `?writeRaster` for more details).
 
-<!-- datatypes -->
-The **raster** package offers nine datatypes when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.^[Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info-->]
-The datatype determines the bit representation of the raster object written to disk (\@ref(tab:datatypes)).
-Which datatype to use depends on the range of the values of your raster object.
-The more values a datatype can represent, the larger the file will get on disk.
+The **raster** package offers nine data types when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.^[Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info-->]
+The data type determines the bit representation of the raster object written to disk (\@ref(tab:datatypes)).
+Which data type to use depends on the range of the values of your raster object.
+The more values a data type can represent, the larger the file will get on disk.
 Commonly, one would use LOG1S for bitmap (binary) rasters.
 Unsigned integers (INT1U, INT2U, INT4U) are suitable for categorical data, while float numbers (FLT4S and FLTS8S) usually represent continuous data.
 `writeRaster()` uses FLT4S as the default.
 While this works in most cases, the size of the output file will be unnecessarly large if you save binary or categorical data.
-Therefore, we would recommend to use the datatype that needs the least storage space but is still able to represent all values (check the range of values with the `summary()` function).
+Therefore, we would recommend to use the data type that needs the least storage space but is still able to represent all values (check the range of values with the `summary()` function).
 
 
-Table: (\#tab:datatypes)Datatypes supported by the raster package.
+Table: (\#tab:datatypes)Data types supported by the raster package.
 
-Datatype   Minimum value    Maximum value 
----------  ---------------  --------------
-LOG1S      FALSE (0)        TRUE (1)      
-INT1S      -127             127           
-INT1U      0                255           
-INT2S      -32,767          32,767        
-INT2U      0                65,534        
-INT4S      -2,147,483,647   2,147,483,647 
-INT4U      0                4,294,967,296 
-FLT4S      -3.4e+38         3.4e+38       
-FLT8S      -1.7e+308        1.7e+308      
+Data type   Minimum value    Maximum value 
+----------  ---------------  --------------
+LOG1S       FALSE (0)        TRUE (1)      
+INT1S       -127             127           
+INT1U       0                255           
+INT2S       -32,767          32,767        
+INT2U       0                65,534        
+INT4S       -2,147,483,647   2,147,483,647 
+INT4U       0                4,294,967,296 
+FLT4S       -3.4e+38         3.4e+38       
+FLT8S       -1.7e+308        1.7e+308      
 
 The file extension determines the output file when saving a `Raster*` object to disk.
 For example, the `.tif` extension will create a GeoTIFF file:
@@ -6508,7 +6503,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve25669317a960bff2
+preserve2c61adcf1b6113de
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6607,7 +6602,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea461ca1974f3fcf2
+preservedf6d059625d2a549
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6966,8 +6961,6 @@ Note that there is also the new **mapedit** package but its intention is to allo
 - The built-in geodatabase management system often integrated in Desktop GIS (ArcGIS, GRASS GIS) and all related advantages such as object relational modeling, topology, fast (spatial) querying, etc.
 - Map production, in case you only want to create a beautiful map once. If you have to produce it over and over again, then maybe the CLI approach is better.
 - Zooming and dragging on WMS (though this is also possible with **mapview** and **leaflet**).
-<!-- any other points that we have missed so far? -->
-- ...
 
 This general overview already points out the differences between R's CLI and desktop GIS. 
 However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
@@ -6984,19 +6977,16 @@ This makes the breadth of R's geospatial capabilities astonishing to many who ar
 There are some domains where R can now outperform desktop GIS including spatial statistical modeling, online interactive visualization and the generation of animated or faceted maps.
 
 Instead of implementing existing GIS algorithms in R, it makes sense to avoid 'reinventing the wheel' by taking advantage of R's ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work).
-Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf**.
+Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf**  [@pebesma_simple_2018].
 However, there is already a wide range of algorithms that can be accessed via R's interfaces to dedicated GIS software.
 It makes sense to understand these before moving to develop your own optimized algorithms.
-For this reason this chapter focuses on 'bridges' to the mature GIS products [QGIS](http://qgis.org/) (via the package **RQGIS**), [SAGA](http://www.saga-gis.org/) (**RSAGA**) and [GRASS](https://grass.osgeo.org/) (**rgrass7**) from within R.
+For this reason this chapter focuses on 'bridges' to the mature GIS products [QGIS](http://qgis.org/) (via the package **RQGIS**), [SAGA](http://www.saga-gis.org/) (**RSAGA**) and [GRASS](https://grass.osgeo.org/) (**rgrass7**) from within R (\@ref(tab:gis-comp)).
 Obviously, we here focus on open-source software solutions, however, there is also a bridge to the commercial GIS leader [ArcGIS](https://www.arcgis.com) through the **RPyGeo** package.
 And the so-called [R-ArcGIS bridge](https://github.com/R-ArcGIS/r-bridge) allows to use R from within ArcGIS.
 As a final note, we would like to point out that aside from interfaces to desktop GIS there are also interfaces to geospatial libraries such as [GDAL](www.gdal.org) (**gdalUtils**, **rgdal**, **sf**) and [GEOS](https://trac.osgeo.org/geos/) (**rgeos**, **sf**). 
 By the end of the chapter you should have a working knowledge of the functionality such packages open up, and a more nuanced understanding of the  'CLI vs GUI' debate.
 As mentioned in chapter \@ref(intro), doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science.
 
-## (R)QGIS
-QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing:_2015]. 
-Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
 
 
 Table: (\#tab:gis-comp)Comparison between three open-source GIS. Hybrid refers to the support of vector and raster operations.
@@ -7010,6 +7000,309 @@ SAGA    2004            >600            hybrid
 __Note:__
 ^a^ Comparing downloads of different providers is rather difficult (see [http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world/](http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world/)), and here also useless since every Windows QGIS download automatically also downloads SAGA and GRASS.
 
+## (R)SAGA
+
+The System for Automated Geoscientific Analyses (SAGA; Table \@ref(tab:gis-comp)) provides the possibility to execute SAGA modules via the command line interface (saga_cmd.exe) (see also [https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/](https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/))
+In addition, there is a Python interface (SAGA Python API).
+**RSAGA** uses the former to run SAGA from within R.
+
+Though SAGA is a hybrid GIS, its main focus has been on raster processing, and here particularly on digital elevation models (soil properties, terrain attributes, climate parameters). 
+Hence, SAGA is especially good at the fast processing of large (high-resolution) rasters datasets [@conrad_system_2015]. 
+Therefore, we will introduce **RSAGA** with a raster use case from @muenchow_geomorphic_2012.
+Specifically, we would like to compute the SAGA wetness index from a digital elevation model.
+First of all, we need to make sure that **RSAGA** will find SAGA on the computer when called.
+For this, all **RSAGA** functions using SAGA in the background make use of `rsaga.env()`. 
+Usually, `rsaga.env()` will detect SAGA automatically by searching several likely directories (see its help for more information).
+
+
+```r
+library(RSAGA)
+saga = linkSAGA()
+rsaga.env()
+```
+
+However, it is possible to have 'hidden' SAGA in a location `rsaga.env()` does not search automatically. 
+`linkSAGA` searches your computer for a valid SAGA installation. 
+If it finds one, it adds the newest version to the PATH environment variable thereby making sure that `rsaga.env()` runs successfully.
+
+
+```r
+library(link2GI)
+saga = linkSAGA()
+rsaga.env()
+```
+
+Secondly, we need to write the digital elevation model to a SAGA-format. 
+Note that calling `data(landslides)` attaches two object to the global environment - `dem`, a digital elevation model in the form of a `list`, and `landslides`, a `data.frame` containing observations representing the presence or absence of a landslide:
+
+<!-- The following examples only work with SAGA < 2.3. We have informed the package maintainer to update SAGA -->
+
+
+```r
+data(landslides)
+write.sgrd(data = dem, file = file.path(tempdir(), "dem"), header = dem$header)
+```
+ 
+The organization of SAGA is modular.
+Libraries contain so-called modules, i.e., geoalgorithms.
+To find out which libraries are available, run:
+
+
+```r
+rsaga.get.libraries()
+```
+
+We choose the library `ta_hydrology` (`ta` is the abbreviation for terrain analysis).
+Subsequently, we can access the available modules of a specific library (here: `ta_hydrology`) as follows:
+
+
+```r
+rsaga.get.modules(libs = "ta_hydrology")
+```
+
+`rsaga.get.usage()` prints the function parameters of a specific geoalgorithm, e.g., the `SAGA Wetness Index`, to the console.
+
+
+```r
+rsaga.get.usage(lib = "ta_hydrology", module = "SAGA Wetness Index")
+```
+
+Finally, you can run SAGA from within R using **RSAGA**'s geoprocessing workhorse function `rsaga.geoprocessor()`. 
+The function expects a parameter-argument list in which you have specified all necessary parameters.
+
+
+```r
+params = list(DEM = file.path(tempdir(), "dem.sgrd"),
+              TWI = file.path(tempdir(), "twi.sdat"))
+rsaga.geoprocessor(lib = "ta_hydrology", module = "SAGA Wetness Index", 
+                   param = params)
+```
+
+To facilitate the access to the SAGA interface, **RSAGA** frequently provides user-friendly wrapper-functions with meaningful default values (see **RSAGA** documentation for examples, e.g., `?rsaga.wetness.index`).
+So the function call for calculating the 'SAGA Wetness Index' becomes as simple as:
+
+
+```r
+rsaga.wetness.index(in.dem = file.path(tempdir(), "dem"), 
+                    out.wetness.index = file.path(tempdir(), "twi"))
+```
+
+Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-twi)). 
+To load and plot the SAGA output file, we use the **raster** package. 
+
+<div class="figure" style="text-align: center">
+<img src="https://user-images.githubusercontent.com/1825120/39205055-8e68a3ce-47f1-11e8-8874-0142d7f591e2.png" alt="SAGA wetness index of Mount Mongón, Peru."  />
+<p class="caption">(\#fig:saga-twi)SAGA wetness index of Mount Mongón, Peru.</p>
+</div>
+
+
+```r
+library(raster)
+twi = raster::raster(file.path(tempdir(), "twi.sdat"))
+plot(twi, col = RColorBrewer::brewer.pal(n = 9, name = "Blues"))
+```
+
+
+
+You can find a much more extended version of the presented example in the RSAGA vignette `vignette("RSAGA-landslides")`.
+This example includes statistical geocomputing, i.e., it uses a GIS to derive terrain attributes as predictors for a non-linear Generalized Additive Model (GAM) to predict spatially landslide susceptibility [@muenchow_geomorphic_2012].
+The term statistical geocomputation emphasizes the strength of combining R's data science power with the geoprocessing power of a GIS which is at the very heart of building a bridge from R to GIS.
+
+## GRASS through **rgrass7**
+
+The U.S. Army - Construction Engineering Research Laboratory (USA-CERL) created the core of the Geographical Resources Analysis Support System (GRASS) [Table \@ref(tab:gis-comp); @neteler_open_2008] from 1982 to 1995. 
+Academia continued this work since 1997.
+Similar to SAGA, GRASS focused on raster processing in the beginning while only later, since GRASS 6.0, adding advanced vector functionality [@bivand_applied_2013].
+
+We will introduce **rgrass7** with one of the most interesting problems in GIScience - the traveling salesman problem. 
+Suppose a traveling salesman would like to visit 24 customers while covering the shortest distance possible.
+Additionally, the salesman would like to set out his journey at home, and come back to it after having finished all customer visits.
+There is a single best solution to this problem, however, to find it, is even for modern computers (mostly) impossible [@longley_geographic_2015].
+In our case, the number of possible solutions correspond to `(25 - 1)! / 2`, i.e., the factorial of 24 divided by 2 (since we do not differentiate between forward or backward direction).
+Even if one iteration can be done in a nanosecond this still corresponds to 9837145 years. 
+Luckily, there are clever, almost optimal solutions which run in a tiny fraction of this inconceivable amount of time.
+GRASS GIS provides one of these solutions (for more details see [v.net.salesman](https://grass.osgeo.org/grass74/manuals/v.net.salesman.html)). 
+In our use case, we would like to find the shortest path between the first 25 bicycle stations (instead of customers) on London's streets.
+
+
+```r
+library(spData)
+data(cycle_hire)
+points = cycle_hire[1:25, ]
+```
+
+Aside from the cycle hire points data, we will need the OpenStreetMap data of London.
+We download it with the help of the **osmdata** package (see also section \@ref(retrieving-data)).
+We constrain the download of the street network (in OSM language called "highway") to  the bounding box of the cycle hire data, and attach the corresponding data as an `sf`-object.
+`osmdata_sf` returns a list with several spatial objects (points, lines, polygons, etc.).
+Here, we will only keep the line objects.
+<!-- To learn more about how to use the **osmdata**-package, please refer to [https://ropensci.github.io/osmdata/](https://ropensci.github.io/osmdata/). -->
+
+
+```r
+library(sf)
+library(osmdata)
+b_box = sf::st_bbox(cycle_hire)
+streets = opq(b_box) %>%
+  add_osm_feature(key = "highway") %>%
+  osmdata_sf() %>%
+  `[[`("osm_lines")
+```
+
+<!-- put into spDataLarge as a convenience to the reader -->
+
+Now that we have the data, we can go on and initiate a GRASS session, i.e., we have to create a GRASS geodatabase.
+The GRASS geodatabase system is based on SQLite.
+Consequently, different users can easily work on the same project, possibly with different read/write permissions.
+However, one has to set up this geodatabase (also from within R), and users used to a GIS GUI popping up by one click might find this process a bit intimidating in the beginning.
+First of all, the GRASS database requires its own directory, and contains a location (see the [GRASS GIS Database](https://grass.osgeo.org/grass74/manuals/grass_database.html) help pages at [grass.osgeo.org](https://grass.osgeo.org/grass74/manuals/index.html) for further information).
+The location in turn simply contains the geodata for one project. 
+Within one location several mapsets can exist, and typically refer to different users. 
+PERMANENT is a mandatory mapset, and created automatically.
+It stores the projection, the spatial extent and the default resolution for raster data.
+In order to share spatial data with all users of a project, the database owner can add spatial data to the PERMANENT mapset.
+Please refer to @neteler_open_2008 and the [GRASS GIS quick start](https://grass.osgeo.org/grass75/manuals/helptext.html) for more information on the GRASS geodatabase system.
+
+You have to set up a location and a mapset if you want to use GRASS from within R.
+First of all, we need to find out if and where GRASS7 is installed on the computer.
+
+
+```r
+library(link2GI)
+link = findGRASS() 
+```
+
+`link` is a `data.frame` which contains in its rows the GRASS 7 installations on your computer. 
+Here, we will use a GRASS7 installation.
+If you have not installed GRASS7 on your computer, we recommend that you do so now.
+Assuming that we have found a working installation on your computer, we use the corresponding path in `initGRASS`. 
+Additionally, we specify where to store the geodatabase (gisDbase), name the location `london`, and use the PERMANENT mapset.
+
+
+```r
+library(rgrass7)
+# find a GRASS7 installation, and use the first one
+ind = grep("7", link$version)[1]
+# next line of code only necessary if we want to use GRASS as installed by 
+# OSGeo4W. Among others, this adds some paths to PATH, which are also needed
+# for running GRASS.
+link2GI::paramGRASSw(link[ind, ])
+grass_path = ifelse(!is.null(link$installation_type) && 
+                      link$installation_type[ind] == "osgeo4W",
+                    file.path(link$instDir[ind], "apps/grass", link$version[ind]),
+                    link$instDir)
+initGRASS(gisBase = grass_path,
+          # home parameter necessary under UNIX-based systems
+          home = tempdir(),
+          gisDbase = tempdir(), location = "london", 
+          mapset = "PERMANENT", override = TRUE)
+```
+
+Subsequently, we define the projection, the extent and the resolution.
+
+
+```r
+execGRASS("g.proj", flags = c("c", "quiet"), 
+          proj4 = sf::st_crs(streets)$proj4string)
+b_box = sf::st_bbox(streets) 
+execGRASS("g.region", flags = c("quiet"), 
+          n = as.character(b_box["ymax"]), s = as.character(b_box["ymin"]), 
+          e = as.character(b_box["xmax"]), w = as.character(b_box["xmin"]), 
+          res = "1")
+```
+
+Once you are familiar how to set up the GRASS environment, it becomes tedious to do so over and over again.
+Luckily, `linkGRASS7` of the **link2GI** packages lets you do it with one line of code.
+The only thing you need to provide is a spatial object which determines the projection and the extent of the geodatabase.
+First, `linkGRASS7` finds all GRASS installations on your computer.
+Since we have set `ver_select` to `TRUE`, we can interactively choose one of the found GRASS-installations.
+If there is just one installation, the `linkGRASS7` automatically chooses this one.
+Secondly, `linkGRASS7` establishes a connection to GRASS7.
+ 
+
+```r
+link2GI::linkGRASS7(streets, ver_select = TRUE)
+```
+
+Before we can use GRASS geoalgorithms, we need to add data to GRASS's spatial database.
+Luckily, the convenience function `writeVECT` does this for us.
+(Use `writeRast` in the case of raster data.)
+In our case we add the street and cycle hire point data while using only the first attribute column, and name them also `streets` and `points`. 
+Note that we are converting the **sf**-objects into objects of class `Spatial*`.
+In time, **rgrass7** will also work with **sf**-objects.
+
+<!-- in time we can also use sf- and raster-objects with rgrass7, Roger has already implemented this in the rgrass7 developer version -->
+
+
+```r
+writeVECT(as(streets[, 1], "Spatial"), vname = "streets")
+writeVECT(SDF = as(points[, 1], "Spatial"), vname = "points")
+```
+
+To perform our network analysis, we need a topological clean street network.
+GRASS's `v.clean` takes care of the removal of duplicates, small angles and dangles, among others. 
+Here, we break lines at each intersection to ensure that the subsequent routing algorithm can actually turn right or left at an intersection, and save the output in a GRASS object named `streets_clean`.
+Probably a few of our cycling station points do not exactly lie on a street segment.
+However, to find the shortest route between them, we need to connect them to the nearest streets segment.
+`v.net`'s connect-operator does exactly this. 
+We save its output in `streets_points_con`.
+
+
+```r
+execGRASS(cmd = "v.clean", input = "streets", output = "streets_clean",
+          tool = "break", flags = "overwrite")
+execGRASS(cmd = "v.net", input = "streets_clean", output = "streets_points_con", 
+          points = "points", operation = "connect", threshold = 0.001,
+          flags = c("overwrite", "c"))
+```
+
+The resulting clean dataset serves as input for the `v.net.salesman`-algorithm, which finally finds the shortest route between all cycle hire stations.
+`center_cats` requires a numeric range as input.
+This range represents the points for which a shortest route should be calculated. 
+Since we would like to calculate the route for all cycle stations, we set it to `1-25`.
+To access the GRASS help page of the traveling salesman algorithm, run `execGRASS("g.manual", entry = "v.net.salesman")`.
+
+
+```r
+execGRASS(cmd = "v.net.salesman", input = "streets_points_con",
+          output = "shortest_route", center_cats = paste0("1-", nrow(points)),
+          flags = c("overwrite"))
+```
+
+To visualize our result, we import the output layer into R, convert it into an sf-object , just keep the geometry and visualize it with the help of the **mapview** package (Figure \@ref(fig:grass-mapview)).
+
+<div class="figure" style="text-align: center">
+<img src="https://user-images.githubusercontent.com/1825120/39206067-544455c8-47f4-11e8-8725-e28299e01f52.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London."  />
+<p class="caption">(\#fig:grass-mapview)Shortest route between 25 cycle hire station on the OSM street network of London.</p>
+</div>
+
+
+```r
+library(mapview)
+route = readVECT("shortest_route") %>%
+  st_as_sf %>%
+  st_geometry
+mapview(route, map.types = "OpenStreetMap.BlackAndWhite", lwd = 7) +
+  mapview(points)
+```
+
+Further notes:
+
+- Please note that we have used GRASS's geodatabase (based on SQLite) which allows faster processing. 
+That means we have only exported spatial data in the beginning.
+Then we created new objects but only imported the final result back into R.
+To find out which datasets are currently available, run `execGRASS("g.list", type = "vector,raster", flags = "p")`.
+- Of course, we could have also accessed an already existing GRASS geodatabase from within R.
+Prior to importing data into R, you might want to perform some (spatial) subsetting.
+Use `v.select` and `v.extract` for vector data. 
+`db.select` lets you select subsets of the attribute table of a vector layer without returning the corresponding geometry.
+- You can start R also from within a running GRASS session [for more information please refer to @bivand_applied_2013 and this [wiki](https://grasswiki.osgeo.org/wiki/R_statistics/rgrass7)].
+- Refer to the excellent [GRASS online help](https://grass.osgeo.org/grass75/manuals/) or `execGRASS("g.manual", flags = "i")` for more information on each available GRASS geoalgorithm.
+- If you would like to use GRASS 6 from within R, use the R package **spgrass6**.
+
+## (R)QGIS
+QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing:_2015]. 
+Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
 First and foremost, this means that you have access to GDAL/OGR, GRASS and SAGA through QGIS but also to other third-party providers such as [TauDEM](http://hydrology.usu.edu/taudem/taudem5/index.html), [Orfeo Toolbox](https://www.orfeo-toolbox.org/) and [Lastools](https://rapidlasso.com/lastools/) (tools for LiDAR data) [@graser_processing:_2015]. 
 To run all these geoalgorithms (frequently more than 1000 depending on your set up) outside of the QGIS GUI, QGIS provides a Python API.
 **RQGIS** establishes a tunnel to this Python API through the **reticulate** package. 
@@ -7102,293 +7395,6 @@ Other notes:
 - If the output consists of multiple files and you have set `load_output` to `TRUE`, `run_qgis` will return a list with each element corresponding to one output file.
 
 To learn more about **RQGIS** please refer to @muenchow_rqgis:_2017. 
-
-## (R)SAGA
-
-Similar to QGIS, the System for Automated Geoscientific Analyses (SAGA; Table \@ref(tab:gis-comp)) provides the possibility to run SAGA modules from Python (SAGA Python API).
-In addition, there is also a command line interface (saga_cmd.exe) to execute SAGA modules (see also [https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/](https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/)).
-**RSAGA** uses the latter to run SAGA from within R.
-
-Though SAGA is a hybrid GIS, its main focus has been on raster processing, and here particularly on digital elevation models (soil properties, terrain attributes, climate parameters). 
-Hence, SAGA is especially good at the fast processing of large (high-resolution) rasters datasets [@conrad_system_2015]. 
-Therefore, we will introduce **RSAGA** with a raster use case from @muenchow_geomorphic_2012.
-Specifically, we would like to compute the SAGA wetness index from a digital elevation model.
-First of all, we need to make sure that **RSAGA** will find SAGA on the computer when called.
-For this, all **RSAGA** functions using SAGA in the background make use of `rsaga.env()`. 
-Usually, `rsaga.env()` will detect SAGA automatically by searching several likely directories (see its help for more information).
-However, it is possible to have 'hidden' SAGA in the OSGEO4W-installation, a location `rsaga.env()` does not search automatically. 
-`linkSAGA` searches your computer for a valid SAGA installation. 
-If it finds one, it adds the newest version to the PATH environment variable thereby making sure that `rsaga.env()` runs successfully.
-
-
-```r
-library(RSAGA)
-library(link2GI)
-saga = linkSAGA()
-rsaga.env()
-```
-
-Secondly, we need to write the digital elevation model to a SAGA-format. 
-Note that calling `data(landslides)` attaches two object to the global environment - `dem`, a digital elevation model in the form of a `list`, and `landslides`, a `data.frame` containing observations representing the presence or absence of a landslide:
-
-<!-- The following examples only work with SAGA < 2.3. We have informed the package maintainer to update SAGA -->
-
-
-```r
-data(landslides)
-write.sgrd(data = dem, file = file.path(tempdir(), "dem"), header = dem$header)
-```
- 
-The organization of SAGA is modular.
-Libraries contain so-called modules, i.e., geoalgorithms.
-To find out which libraries are available, run:
-
-
-```r
-rsaga.get.libraries()
-```
-
-We choose the library `ta_hydrology` (`ta` is the abbreviation for terrain analysis).
-Subsequently, we can access the available modules of a specific library (here: `ta_hydrology`) as follows:
-
-
-```r
-rsaga.get.modules(libs = "ta_hydrology")
-```
-
-Similarly to `RQGIS::get_usage()`, `rsaga.get.usage()` prints the function parameters of a specific geoalgorithm, e.g., the `SAGA Wetness Index`, to the console.
-
-
-```r
-rsaga.get.usage(lib = "ta_hydrology", module = "SAGA Wetness Index")
-```
-
-Finally, you can run SAGA from within R using **RSAGA**'s geoprocessing workhorse function `rsaga.geoprocessor()`. 
-The function expects a parameter-argument list in which you have specified all necessary parameters.
-
-
-```r
-params = list(DEM = file.path(tempdir(), "dem.sgrd"),
-              TWI = file.path(tempdir(), "twi.sdat"))
-rsaga.geoprocessor(lib = "ta_hydrology", module = "SAGA Wetness Index", 
-                   param = params)
-```
-
-To facilitate the access to the SAGA interface, **RSAGA** frequently provides user-friendly wrapper-functions with meaningful default values (see **RSAGA** documentation for examples, e.g., `?rsaga.wetness.index`).
-So the function call for calculating the 'SAGA Wetness Index' becomes as simple as:
-
-
-```r
-rsaga.wetness.index(in.dem = file.path(tempdir(), "dem"), 
-                    out.wetness.index = file.path(tempdir(), "twi"))
-```
-
-Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-twi)). 
-To load and plot the SAGA output file, we use the **raster** package. 
-
-<div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/39205055-8e68a3ce-47f1-11e8-8874-0142d7f591e2.png" alt="SAGA wetness index of Mount Mongón, Peru."  />
-<p class="caption">(\#fig:saga-twi)SAGA wetness index of Mount Mongón, Peru.</p>
-</div>
-
-
-```r
-library(raster)
-twi = raster::raster(file.path(tempdir(), "twi.sdat"))
-plot(twi, col = RColorBrewer::brewer.pal(n = 9, name = "Blues"))
-
-```
-
-
-You can find a much more extended version of the presented example in the RSAGA vignette `vignette("RSAGA-landslides")`.
-This example includes statistical geocomputing, i.e., it uses a GIS to derive terrain attributes as predictors for a non-linear Generalized Additive Model (GAM) to predict spatially landslide susceptibility [@muenchow_geomorphic_2012].
-The term statistical geocomputation emphasizes the strength of combining R's data science power with the geoprocessing power of a GIS which is at the very heart of building a bridge from R to GIS.
-
-## GRASS through **rgrass7**
-
-The U.S. Army - Construction Engineering Research Laboratory (USA-CERL) created the core of the Geographical Resources Analysis Support System (GRASS) [Table \@ref(tab:gis-comp); @neteler_open_2008] from 1982 to 1995. 
-Academia continued this work since 1997.
-Similar to SAGA, GRASS focused on raster processing in the beginning while only later, since GRASS 6.0, adding advanced vector functionality [@bivand_applied_2013].
-
-We will introduce **rgrass7** with one of the most interesting problems in GIScience - the traveling salesman problem. 
-Suppose a traveling salesman would like to visit 24 customers while covering the shortest distance possible.
-Additionally, the salesman would like to set out his journey at home, and come back to it after having finished all customer visits.
-There is a single best solution to this problem, however, to find it, is even for modern computers (mostly) impossible [@longley_geographic_2015].
-In our case, the number of possible solution correspond to `(25 - 1)! / 2` possible solutions, i.e., the factorial of 24 divided by 2 (since we do not differentiate between forward or backward direction).
-Even if one iteration can be done in a nanosecond this still corresponds to 9837145 years. 
-Luckily, there are clever, almost optimal solutions which run in a tiny fraction of this inconceivable amount of time.
-GRASS GIS provides one of these solutions (for more details see [v.net.salesman](https://grass.osgeo.org/grass74/manuals/v.net.salesman.html)). 
-In our use case, we would like to find the shortest path between the first 25 bicycle stations (instead of customers) on London's streets.
-
-
-```r
-library(spData)
-data(cycle_hire)
-points = cycle_hire[1:25, ]
-```
-
-Aside from the cycle hire points data, we will need the OpenStreetMap data of London.
-We download it with the help of the **osmdata** package (see also section \@ref(retrieving-data)).
-We constrain the download of the street network (in OSM language called "highway") to  the bounding box of the cycle hire data, and attach the corresponding data as an `sf`-object.
-`osmdata_sf` returns a list with several spatial objects (points, lines, polygons, etc.).
-Here, we will only keep the line objects.
-<!-- To learn more about how to use the **osmdata**-package, please refer to [https://ropensci.github.io/osmdata/](https://ropensci.github.io/osmdata/). -->
-
-
-```r
-library(sf)
-library(osmdata)
-b_box = sf::st_bbox(cycle_hire)
-streets = opq(b_box) %>%
-  add_osm_feature(key = "highway") %>%
-  osmdata_sf() %>%
-  `[[`("osm_lines")
-```
-
-Now that we have the data, we can go on and initiate a GRASS session, i.e., we have to create a GRASS geodatabase.
-The GRASS geodatabase system is based on SQLite.
-Consequently, different users can easily work on the same project, possibly with different read/write permissions.
-However, one has to set up this geodatabase (also from within R), and users used to a GIS GUI popping up by one click might find this process a bit intimidating in the beginning.
-First of all, the GRASS database requires its own directory, and contains a location (see the [GRASS GIS Database](https://grass.osgeo.org/grass74/manuals/grass_database.html) help pages at [grass.osgeo.org](https://grass.osgeo.org/grass74/manuals/index.html) for further information).
-The location in turn simply contains the geodata for one project. 
-Within one location several mapsets can exist, and typically refer to different users. 
-PERMANENT is a mandatory mapset, and created automatically.
-It stores the projection, the spatial extent and the default resolution for raster data.
-In order to share spatial data with all users of a project, the database owner can add spatial data to the PERMANENT mapset.
-Please refer to @neteler_open_2008 and the [GRASS GIS quick start](https://grass.osgeo.org/grass74/manuals/helptext.html) for more information on the GRASS geodatabase system.
-
-You have to set up a location and a mapset if you want to use GRASS from within R.
-First of all, we need to find out if and where GRASS7 is installed on the computer.
-
-
-```r
-library(link2GI)
-link = findGRASS() 
-```
-
-`link` is a `data.frame` which contains in its rows the GRASS 7 installations on your computer. 
-Here, we will use a GRASS7 installation.
-If you have not installed GRASS7 on your computer, we recommend that you do so now.
-Assuming that we have found a working installation on your computer, we use the corresponding path in `initGRASS`. 
-Additionally, we specify where to store the geodatabase (gisDbase), name the location `london`, and use the PERMANENT mapset.
-
-
-```r
-library(rgrass7)
-# find a GRASS7 installation, and use the first one
-ind = grep("7", link$version)[1]
-# next line of code only necessary if we want to use GRASS as installed by 
-# OSGeo4W. Among others, this adds some paths to PATH, which are also needed
-# for running GRASS.
-link2GI::paramGRASSw(link[ind, ])
-grass_path = ifelse(!is.null(link$installation_type) && 
-                      link$installation_type[ind] == "osgeo4W",
-                    file.path(link$instDir[ind], "apps/grass", link$version[ind]),
-                    link$instDir)
-initGRASS(gisBase = grass_path,
-          # home parameter necessary under UNIX-based systems
-          home = tempdir(),
-          gisDbase = tempdir(), location = "london", 
-          mapset = "PERMANENT", override = TRUE)
-```
-
-Subsequently, we define the projection, the extent and the resolution.
-
-
-```r
-execGRASS("g.proj", flags = c("c", "quiet"), 
-          proj4 = sf::st_crs(streets)$proj4string)
-b_box = sf::st_bbox(streets) 
-execGRASS("g.region", flags = c("quiet"), 
-          n = as.character(b_box["ymax"]), s = as.character(b_box["ymin"]), 
-          e = as.character(b_box["xmax"]), w = as.character(b_box["xmin"]), 
-          res = "1")
-```
-
-Once you are familiar how to set up the GRASS environment, it becomes tedious to do so over and over again.
-Luckily, `linkGRASS7` of the **link2GI** packages lets you do it with one line of code.
-The only thing you need to provide is a spatial object which determines the projection and the extent of the geodatabase.
-First, `linkGRASS7` finds all GRASS installations on your computer.
-Since we have set `ver_select` to `TRUE`, we can interactively choose one of the found GRASS-installations.
-If there is just one installation, the `linkGRASS7` automatically chooses this one.
-Secondly, `linkGRASS7` establishes a connection to GRASS7.
- 
-
-```r
-link2GI::linkGRASS7(streets, ver_select = TRUE)
-```
-
-Before we can use GRASS geoalgorithms, we need to add data to GRASS's spatial database.
-Luckily, the convenience function `writeVECT` does this for us.
-(Use `writeRast` in the case of raster data.)
-In our case we add the street and cycle hire point data while using only the first attribute column, and name them also `streets` and `points`. 
-
-<!-- in time we can also use sf- and raster-objects with rgrass7, Roger has already implemented this in the rgrass7 developer version -->
-
-
-```r
-writeVECT(as(streets[, 1], "Spatial"), vname = "streets")
-writeVECT(SDF = as(points[, 1], "Spatial"), vname = "points")
-```
-
-To perform our network analysis, we need a topological clean street network.
-GRASS's `v.clean` takes care of the removal of duplicates, small angles and dangles, among others. 
-Here, we break lines at each intersection to ensure that the subsequent routing algorithm can actually turn right or left at an intersection, and save the output in a GRASS object named `streets_clean`.
-Probably a few of our cycling station points do not exactly lie on a street segment.
-However, to find the shortest route between them, we need to connect them to the nearest streets segment.
-`v.net`'s connect-operator does exactly this. 
-We save its output in `streets_points_con`.
-
-
-```r
-execGRASS(cmd = "v.clean", input = "streets", output = "streets_clean",
-          tool = "break", flags = "overwrite")
-execGRASS(cmd = "v.net", input = "streets_clean", output = "streets_points_con", 
-          points = "points", operation = "connect", threshold = 0.001,
-          flags = c("overwrite", "c"))
-```
-
-The resulting clean dataset serves as input for the `v.net.salesman`-algorithm, which finally finds the shortest route between all cycle hire stations.
-`center_cats` requires a numeric range as input.
-This range represents the points for which a shortest route should be calculated. 
-Since we would like to calculate the route for all cycle stations, we set it to `1-25`.
-To access the GRASS help page of the traveling salesman algorithm, run `execGRASS("g.manual", entry = "v.net.salesman")`.
-
-
-```r
-execGRASS(cmd = "v.net.salesman", input = "streets_points_con",
-          output = "shortest_route", center_cats = paste0("1-", nrow(points)),
-          flags = c("overwrite"))
-```
-
-To visualize our result, we import the output layer into R, and visualize it with the help of the **mapview** package (Figure \@ref(fig:grass-mapview)).
-
-<div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/39206067-544455c8-47f4-11e8-8725-e28299e01f52.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London."  />
-<p class="caption">(\#fig:grass-mapview)Shortest route between 25 cycle hire station on the OSM street network of London.</p>
-</div>
-
-
-```r
-library(mapview)
-route = readVECT("shortest_route")
-mapview(route, map.types = "OpenStreetMap.BlackAndWhite", lwd = 9) +
-  mapview(points)
-```
-
-Further notes:
-
-- Please note that we have used GRASS's geodatabase (based on SQLite) which allows faster processing. 
-That means we have only exported spatial data in the beginning.
-Then we created new objects but only imported the final result back into R.
-To find out which datasets are currently available, run `execGRASS("g.list", type = "vector,raster", flags = "p")`.
-- Of course, we could have also accessed an already existing GRASS geodatabase from within R.
-Prior to importing data into R, you might want to perform some (spatial) subsetting.
-Use `v.select` and `v.extract` for vector data. 
-`db.select` lets you select subsets of the attribute table of a vector layer without returning the corresponding geometry.
-- You can start R also from within a running GRASS session [for more information please refer to @bivand_applied_2013 and this [wiki](https://grasswiki.osgeo.org/wiki/R_statistics/rgrass7)].
-- Refer to the excellent [GRASS online help](https://grass.osgeo.org/grass74/manuals/) or `execGRASS("g.manual", flags = "i")` for more information on each available GRASS geoalgorithm.
-- If you would like to use GRASS 6 from within R, use the R package **spgrass6**.
 
 ## When to use what?
 
@@ -9623,7 +9629,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee215fc7b7fb6a150
+preserve33ebeba2f977abd6
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

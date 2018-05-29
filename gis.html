@@ -301,9 +301,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.7" data-path="adv-map.html"><a href="adv-map.html#exercises-6"><i class="fa fa-check"></i><b>8.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="gis.html"><a href="gis.html"><i class="fa fa-check"></i><b>9</b> Bridges to GIS software</a><ul>
-<li class="chapter" data-level="9.1" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>9.1</b> (R)QGIS</a></li>
-<li class="chapter" data-level="9.2" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.2</b> (R)SAGA</a></li>
-<li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.3</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="9.1" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.1</b> (R)SAGA</a></li>
+<li class="chapter" data-level="9.2" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.2</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>9.3</b> (R)QGIS</a></li>
 <li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.4</b> When to use what?</a></li>
 <li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
@@ -420,9 +420,7 @@ Note that there is also the new <strong>mapedit</strong> package but its intenti
 <li>Stereoscopic mapping (e.g., LiDAR and structure from motion).</li>
 <li>The built-in geodatabase management system often integrated in Desktop GIS (ArcGIS, GRASS GIS) and all related advantages such as object relational modeling, topology, fast (spatial) querying, etc.</li>
 <li>Map production, in case you only want to create a beautiful map once. If you have to produce it over and over again, then maybe the CLI approach is better.</li>
-<li>Zooming and dragging on WMS (though this is also possible with <strong>mapview</strong> and <strong>leaflet</strong>).
-<!-- any other points that we have missed so far? --></li>
-<li>…</li>
+<li>Zooming and dragging on WMS (though this is also possible with <strong>mapview</strong> and <strong>leaflet</strong>).</li>
 </ul>
 <p>This general overview already points out the differences between R’s CLI and desktop GIS.
 However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
@@ -432,19 +430,15 @@ R was not originally intended to be a GIS.
 This makes the breadth of R’s geospatial capabilities astonishing to many who are unaware of its ability to replicate established GIS software for many operations on spatial data.
 There are some domains where R can now outperform desktop GIS including spatial statistical modeling, online interactive visualization and the generation of animated or faceted maps.</p>
 <p>Instead of implementing existing GIS algorithms in R, it makes sense to avoid ‘reinventing the wheel’ by taking advantage of R’s ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work).
-Using compiled code for new geoprocessing functionality (particularly with the help of the excellent <strong>Rcpp</strong> package) could form the basis of new R packages, building on the success of <strong>sf</strong>.
+Using compiled code for new geoprocessing functionality (particularly with the help of the excellent <strong>Rcpp</strong> package) could form the basis of new R packages, building on the success of <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a><a href="#ref-pebesma_simple_2018">b</a>)</span>.
 However, there is already a wide range of algorithms that can be accessed via R’s interfaces to dedicated GIS software.
 It makes sense to understand these before moving to develop your own optimized algorithms.
-For this reason this chapter focuses on ‘bridges’ to the mature GIS products <a href="http://qgis.org/">QGIS</a> (via the package <strong>RQGIS</strong>), <a href="http://www.saga-gis.org/">SAGA</a> (<strong>RSAGA</strong>) and <a href="https://grass.osgeo.org/">GRASS</a> (<strong>rgrass7</strong>) from within R.
+For this reason this chapter focuses on ‘bridges’ to the mature GIS products <a href="http://qgis.org/">QGIS</a> (via the package <strong>RQGIS</strong>), <a href="http://www.saga-gis.org/">SAGA</a> (<strong>RSAGA</strong>) and <a href="https://grass.osgeo.org/">GRASS</a> (<strong>rgrass7</strong>) from within R (<a href="gis.html#tab:gis-comp">9.1</a>).
 Obviously, we here focus on open-source software solutions, however, there is also a bridge to the commercial GIS leader <a href="https://www.arcgis.com">ArcGIS</a> through the <strong>RPyGeo</strong> package.
 And the so-called <a href="https://github.com/R-ArcGIS/r-bridge">R-ArcGIS bridge</a> allows to use R from within ArcGIS.
 As a final note, we would like to point out that aside from interfaces to desktop GIS there are also interfaces to geospatial libraries such as <a href="www.gdal.org">GDAL</a> (<strong>gdalUtils</strong>, <strong>rgdal</strong>, <strong>sf</strong>) and <a href="https://trac.osgeo.org/geos/">GEOS</a> (<strong>rgeos</strong>, <strong>sf</strong>).
 By the end of the chapter you should have a working knowledge of the functionality such packages open up, and a more nuanced understanding of the ‘CLI vs GUI’ debate.
 As mentioned in chapter <a href="intro.html#intro">1</a>, doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science.</p>
-<div id="rqgis" class="section level2">
-<h2><span class="header-section-number">9.1</span> (R)QGIS</h2>
-<p>QGIS is one of the most popular open-source GIS <span class="citation">(Table <a href="gis.html#tab:gis-comp">9.1</a>; Graser and Olaya <a href="#ref-graser_processing:_2015">2015</a>)</span>.
-Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.</p>
 <table>
 <caption><span id="tab:gis-comp">Table 9.1: </span>Comparison between three open-source GIS. Hybrid refers to the support of vector and raster operations.</caption>
 <thead>
@@ -478,106 +472,51 @@ Its main advantage lies in the fact that it provides a unified interface to seve
 </table>
 <p><strong>Note:</strong>
 <sup>a</sup> Comparing downloads of different providers is rather difficult (see <a href="http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world/" class="uri">http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world/</a>), and here also useless since every Windows QGIS download automatically also downloads SAGA and GRASS.</p>
-<p>First and foremost, this means that you have access to GDAL/OGR, GRASS and SAGA through QGIS but also to other third-party providers such as <a href="http://hydrology.usu.edu/taudem/taudem5/index.html">TauDEM</a>, <a href="https://www.orfeo-toolbox.org/">Orfeo Toolbox</a> and <a href="https://rapidlasso.com/lastools/">Lastools</a> (tools for LiDAR data) <span class="citation">(Graser and Olaya <a href="#ref-graser_processing:_2015">2015</a>)</span>.
-To run all these geoalgorithms (frequently more than 1000 depending on your set up) outside of the QGIS GUI, QGIS provides a Python API.
-<strong>RQGIS</strong> establishes a tunnel to this Python API through the <strong>reticulate</strong> package.
-Basically, functions <code>set_env</code> and <code>open_app</code> are doing this.
-Note that it is optional to run <code>set_env</code> and <code>open_app</code> since all functions depending on their output will run them automatically if needed.
-Before running <strong>RQGIS</strong> you have to make sure to have installed QGIS and all its (third-party) dependencies such as SAGA and GRASS.
-To help you with the installation process, please follow the steps as detailed in <code>vignette(&quot;install_guide&quot;, package = &quot;RQGIS&quot;)</code> for several platforms (Windows, Linux, MacOS).</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
-<a class="sourceLine" id="cb299-2" data-line-number="2"><span class="kw">set_env</span>()</a>
-<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">open_app</span>()</a></code></pre></div>
-<p>Leaving the <code>path</code>-argument of <code>set_env</code> unspecified will search the computer for a QGIS installation.
-Hence, it is faster to specify explicitly the path to your QGIS installation.
-Subsequently, <code>open_app</code> sets all paths necessary to run QGIS from within R, and finally creates a so-called QGIS custom application <a href="http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications" class="uri">http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications</a>.
-We are now ready for some QGIS geoprocessing from within R!
-First of all, we load some data from the <strong>spData</strong>-package, namely the boroughs of London (<code>lnd</code>) and cycle hire points in London (<code>cycle_hire</code>).</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="kw">library</span>(spData)</a></code></pre></div>
-<p>In chapter <a href="spatial-class.html#spatial-class">2</a>, we already learned how to do a spatial overlay using the <strong>sf</strong>-package.
-Of course, any GIS is also able to perform spatial overlays.
-Here, we would like to know how many cycle points we can find per borough.
-First of all, we need to come up with the name of the function in QGIS. <code>find_algorithms</code> lets you search all QGIS geoalgorithms with the help of regular expressions.
-Here, we assume that the short description of the function contains first the word “point” and secondly somewhere later also the word “poly”.
-If you have no clue at all what to look for you can leave the <code>search_term</code>-argument empty which will return a list of all available QGIS geoalgorithms.
-If you also want to have a short description for each geoalgorithm, set the <code>name_only</code>-parameter to FALSE.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="kw">find_algorithms</span>(<span class="st">&quot;points.*poly&quot;</span>, <span class="dt">name_only =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>Now that we know the name of the function (<code>qgis:countpointsinpolygon</code>), we wonder how we can use it.
-<code>get_usage</code> returns all function parameters and default values.
-<code>open_help</code> lets you access the corresponding online help.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">alg =<span class="st"> &quot;qgis:countpointsinpolygon&quot;</span></a>
-<a class="sourceLine" id="cb302-2" data-line-number="2"><span class="kw">get_usage</span>(alg)</a></code></pre></div>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">open_help</span>(alg)</a></code></pre></div>
-<p>Finally, we can let QGIS do the work.
-Note that the workhorse function <code>run_qgis</code> accepts R named arguments, i.e., you can specify the parameter names as returned by <code>get_usage</code> as you would do in any other regular R function.
-Note also that <code>run_qgis</code> accepts spatial objects residing in R’s global environment as input (here: <code>lnd</code> and <code>cycle_hire</code>).
-But of course, you could also specify paths to shapefiles stored on disk.
-<!-- only shapefiles or more general - spatial vectors? -->
-Setting the <code>load_output</code> to <code>TRUE</code> automatically loads the QGIS output into R.
-Since we only indicated the name of the output (“cycle.shp”), <code>run_qgis</code> saves the output to a temporary folder as returned by <code>tempdir()</code>, and loads it into R as an <strong>sf</strong>-object.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">bike_points =<span class="st"> </span><span class="kw">run_qgis</span>(alg, <span class="dt">POLYGONS =</span> lnd, <span class="dt">POINTS =</span> cycle_hire, </a>
-<a class="sourceLine" id="cb304-2" data-line-number="2">                       <span class="dt">FIELD =</span> <span class="st">&quot;no_bikes&quot;</span>, <span class="dt">OUTPUT =</span> <span class="st">&quot;cycle.shp&quot;</span>,</a>
-<a class="sourceLine" id="cb304-3" data-line-number="3">                       <span class="dt">load_output =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb304-4" data-line-number="4"><span class="kw">summary</span>(bike_points<span class="op">$</span>no_bikes)</a>
-<a class="sourceLine" id="cb304-5" data-line-number="5"><span class="kw">sum</span>(bike_points<span class="op">$</span>no_bikes <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a></code></pre></div>
-<p>In case you leave some parameters of a geoalgorithm unspecified, <code>run_qgis</code> will automatically use the default values as arguments if available.
-To find out about the default values, run <code>get_args_man</code>.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw">get_args_man</span>(alg)</a></code></pre></div>
-<p>In this case the output tells us, had we left the <code>FIELDS</code>-parameter unspecified, our output (attribute) field would have been named “NUMPOINTS” (instead of “no_bikes”).</p>
-<!--
-"grass7:v.vect.stats" would achieve the same but is unavailable in QGIS
--->
-<p>Other notes:</p>
-<ul>
-<li>Leaving the output parameter(s) unspecified, saves the resulting QGIS output to a temporary folder created by QGIS.
-<code>run_qgis</code> prints these paths to the console after successfully running the QGIS engine.</li>
-<li>If the output consists of multiple files and you have set <code>load_output</code> to <code>TRUE</code>, <code>run_qgis</code> will return a list with each element corresponding to one output file.</li>
-</ul>
-<p>To learn more about <strong>RQGIS</strong> please refer to <span class="citation">Muenchow, Schratz, and Brenning (<a href="#ref-muenchow_rqgis:_2017">2017</a>)</span>.</p>
-</div>
 <div id="rsaga" class="section level2">
-<h2><span class="header-section-number">9.2</span> (R)SAGA</h2>
-<p>Similar to QGIS, the System for Automated Geoscientific Analyses (SAGA; Table <a href="gis.html#tab:gis-comp">9.1</a>) provides the possibility to run SAGA modules from Python (SAGA Python API).
-In addition, there is also a command line interface (saga_cmd.exe) to execute SAGA modules (see also <a href="https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/">https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/</a>).
-<strong>RSAGA</strong> uses the latter to run SAGA from within R.</p>
+<h2><span class="header-section-number">9.1</span> (R)SAGA</h2>
+<p>The System for Automated Geoscientific Analyses (SAGA; Table <a href="gis.html#tab:gis-comp">9.1</a>) provides the possibility to execute SAGA modules via the command line interface (saga_cmd.exe) (see also <a href="https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/">https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/</a>)
+In addition, there is a Python interface (SAGA Python API).
+<strong>RSAGA</strong> uses the former to run SAGA from within R.</p>
 <p>Though SAGA is a hybrid GIS, its main focus has been on raster processing, and here particularly on digital elevation models (soil properties, terrain attributes, climate parameters).
 Hence, SAGA is especially good at the fast processing of large (high-resolution) rasters datasets <span class="citation">(Conrad et al. <a href="#ref-conrad_system_2015">2015</a>)</span>.
 Therefore, we will introduce <strong>RSAGA</strong> with a raster use case from <span class="citation">Muenchow, Brenning, and Richter (<a href="#ref-muenchow_geomorphic_2012">2012</a>)</span>.
 Specifically, we would like to compute the SAGA wetness index from a digital elevation model.
 First of all, we need to make sure that <strong>RSAGA</strong> will find SAGA on the computer when called.
 For this, all <strong>RSAGA</strong> functions using SAGA in the background make use of <code>rsaga.env()</code>.
-Usually, <code>rsaga.env()</code> will detect SAGA automatically by searching several likely directories (see its help for more information).
-However, it is possible to have ‘hidden’ SAGA in the OSGEO4W-installation, a location <code>rsaga.env()</code> does not search automatically.
+Usually, <code>rsaga.env()</code> will detect SAGA automatically by searching several likely directories (see its help for more information).</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="kw">library</span>(RSAGA)</a>
+<a class="sourceLine" id="cb299-2" data-line-number="2">saga =<span class="st"> </span><span class="kw">linkSAGA</span>()</a>
+<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">rsaga.env</span>()</a></code></pre></div>
+<p>However, it is possible to have ‘hidden’ SAGA in a location <code>rsaga.env()</code> does not search automatically.
 <code>linkSAGA</code> searches your computer for a valid SAGA installation.
 If it finds one, it adds the newest version to the PATH environment variable thereby making sure that <code>rsaga.env()</code> runs successfully.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="kw">library</span>(RSAGA)</a>
-<a class="sourceLine" id="cb306-2" data-line-number="2"><span class="kw">library</span>(link2GI)</a>
-<a class="sourceLine" id="cb306-3" data-line-number="3">saga =<span class="st"> </span><span class="kw">linkSAGA</span>()</a>
-<a class="sourceLine" id="cb306-4" data-line-number="4"><span class="kw">rsaga.env</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="kw">library</span>(link2GI)</a>
+<a class="sourceLine" id="cb300-2" data-line-number="2">saga =<span class="st"> </span><span class="kw">linkSAGA</span>()</a>
+<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="kw">rsaga.env</span>()</a></code></pre></div>
 <p>Secondly, we need to write the digital elevation model to a SAGA-format.
 Note that calling <code>data(landslides)</code> attaches two object to the global environment - <code>dem</code>, a digital elevation model in the form of a <code>list</code>, and <code>landslides</code>, a <code>data.frame</code> containing observations representing the presence or absence of a landslide:</p>
 <!-- The following examples only work with SAGA < 2.3. We have informed the package maintainer to update SAGA -->
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="kw">data</span>(landslides)</a>
-<a class="sourceLine" id="cb307-2" data-line-number="2"><span class="kw">write.sgrd</span>(<span class="dt">data =</span> dem, <span class="dt">file =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;dem&quot;</span>), <span class="dt">header =</span> dem<span class="op">$</span>header)</a></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="kw">data</span>(landslides)</a>
+<a class="sourceLine" id="cb301-2" data-line-number="2"><span class="kw">write.sgrd</span>(<span class="dt">data =</span> dem, <span class="dt">file =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;dem&quot;</span>), <span class="dt">header =</span> dem<span class="op">$</span>header)</a></code></pre></div>
 <p>The organization of SAGA is modular.
 Libraries contain so-called modules, i.e., geoalgorithms.
 To find out which libraries are available, run:</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">rsaga.get.libraries</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">rsaga.get.libraries</span>()</a></code></pre></div>
 <p>We choose the library <code>ta_hydrology</code> (<code>ta</code> is the abbreviation for terrain analysis).
 Subsequently, we can access the available modules of a specific library (here: <code>ta_hydrology</code>) as follows:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">rsaga.get.modules</span>(<span class="dt">libs =</span> <span class="st">&quot;ta_hydrology&quot;</span>)</a></code></pre></div>
-<p>Similarly to <code>RQGIS::get_usage()</code>, <code>rsaga.get.usage()</code> prints the function parameters of a specific geoalgorithm, e.g., the <code>SAGA Wetness Index</code>, to the console.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="kw">rsaga.get.usage</span>(<span class="dt">lib =</span> <span class="st">&quot;ta_hydrology&quot;</span>, <span class="dt">module =</span> <span class="st">&quot;SAGA Wetness Index&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">rsaga.get.modules</span>(<span class="dt">libs =</span> <span class="st">&quot;ta_hydrology&quot;</span>)</a></code></pre></div>
+<p><code>rsaga.get.usage()</code> prints the function parameters of a specific geoalgorithm, e.g., the <code>SAGA Wetness Index</code>, to the console.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="kw">rsaga.get.usage</span>(<span class="dt">lib =</span> <span class="st">&quot;ta_hydrology&quot;</span>, <span class="dt">module =</span> <span class="st">&quot;SAGA Wetness Index&quot;</span>)</a></code></pre></div>
 <p>Finally, you can run SAGA from within R using <strong>RSAGA</strong>’s geoprocessing workhorse function <code>rsaga.geoprocessor()</code>.
 The function expects a parameter-argument list in which you have specified all necessary parameters.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1">params =<span class="st"> </span><span class="kw">list</span>(<span class="dt">DEM =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;dem.sgrd&quot;</span>),</a>
-<a class="sourceLine" id="cb311-2" data-line-number="2">              <span class="dt">TWI =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi.sdat&quot;</span>))</a>
-<a class="sourceLine" id="cb311-3" data-line-number="3"><span class="kw">rsaga.geoprocessor</span>(<span class="dt">lib =</span> <span class="st">&quot;ta_hydrology&quot;</span>, <span class="dt">module =</span> <span class="st">&quot;SAGA Wetness Index&quot;</span>, </a>
-<a class="sourceLine" id="cb311-4" data-line-number="4">                   <span class="dt">param =</span> params)</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1">params =<span class="st"> </span><span class="kw">list</span>(<span class="dt">DEM =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;dem.sgrd&quot;</span>),</a>
+<a class="sourceLine" id="cb305-2" data-line-number="2">              <span class="dt">TWI =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi.sdat&quot;</span>))</a>
+<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="kw">rsaga.geoprocessor</span>(<span class="dt">lib =</span> <span class="st">&quot;ta_hydrology&quot;</span>, <span class="dt">module =</span> <span class="st">&quot;SAGA Wetness Index&quot;</span>, </a>
+<a class="sourceLine" id="cb305-4" data-line-number="4">                   <span class="dt">param =</span> params)</a></code></pre></div>
 <p>To facilitate the access to the SAGA interface, <strong>RSAGA</strong> frequently provides user-friendly wrapper-functions with meaningful default values (see <strong>RSAGA</strong> documentation for examples, e.g., <code>?rsaga.wetness.index</code>).
 So the function call for calculating the ‘SAGA Wetness Index’ becomes as simple as:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">rsaga.wetness.index</span>(<span class="dt">in.dem =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;dem&quot;</span>), </a>
-<a class="sourceLine" id="cb312-2" data-line-number="2">                    <span class="dt">out.wetness.index =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="kw">rsaga.wetness.index</span>(<span class="dt">in.dem =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;dem&quot;</span>), </a>
+<a class="sourceLine" id="cb306-2" data-line-number="2">                    <span class="dt">out.wetness.index =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi&quot;</span>))</a></code></pre></div>
 <p>Of course, we would like to inspect our result visually (Figure <a href="gis.html#fig:saga-twi">9.1</a>).
 To load and plot the SAGA output file, we use the <strong>raster</strong> package.</p>
 <div class="figure" style="text-align: center"><span id="fig:saga-twi"></span>
@@ -586,15 +525,15 @@ To load and plot the SAGA output file, we use the <strong>raster</strong> packag
 Figure 9.1: SAGA wetness index of Mount Mongón, Peru.
 </p>
 </div>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb313-2" data-line-number="2">twi =<span class="st"> </span>raster<span class="op">::</span><span class="kw">raster</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi.sdat&quot;</span>))</a>
-<a class="sourceLine" id="cb313-3" data-line-number="3"><span class="kw">plot</span>(twi, <span class="dt">col =</span> RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">9</span>, <span class="dt">name =</span> <span class="st">&quot;Blues&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb307-2" data-line-number="2">twi =<span class="st"> </span>raster<span class="op">::</span><span class="kw">raster</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi.sdat&quot;</span>))</a>
+<a class="sourceLine" id="cb307-3" data-line-number="3"><span class="kw">plot</span>(twi, <span class="dt">col =</span> RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">9</span>, <span class="dt">name =</span> <span class="st">&quot;Blues&quot;</span>))</a></code></pre></div>
 <p>You can find a much more extended version of the presented example in the RSAGA vignette <code>vignette(&quot;RSAGA-landslides&quot;)</code>.
 This example includes statistical geocomputing, i.e., it uses a GIS to derive terrain attributes as predictors for a non-linear Generalized Additive Model (GAM) to predict spatially landslide susceptibility <span class="citation">(Muenchow, Brenning, and Richter <a href="#ref-muenchow_geomorphic_2012">2012</a>)</span>.
 The term statistical geocomputation emphasizes the strength of combining R’s data science power with the geoprocessing power of a GIS which is at the very heart of building a bridge from R to GIS.</p>
 </div>
 <div id="grass-through-rgrass7" class="section level2">
-<h2><span class="header-section-number">9.3</span> GRASS through <strong>rgrass7</strong></h2>
+<h2><span class="header-section-number">9.2</span> GRASS through <strong>rgrass7</strong></h2>
 <p>The U.S. Army - Construction Engineering Research Laboratory (USA-CERL) created the core of the Geographical Resources Analysis Support System (GRASS) <span class="citation">(Table <a href="gis.html#tab:gis-comp">9.1</a>; Neteler and Mitasova <a href="#ref-neteler_open_2008">2008</a>)</span> from 1982 to 1995.
 Academia continued this work since 1997.
 Similar to SAGA, GRASS focused on raster processing in the beginning while only later, since GRASS 6.0, adding advanced vector functionality <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span>.</p>
@@ -602,27 +541,28 @@ Similar to SAGA, GRASS focused on raster processing in the beginning while only 
 Suppose a traveling salesman would like to visit 24 customers while covering the shortest distance possible.
 Additionally, the salesman would like to set out his journey at home, and come back to it after having finished all customer visits.
 There is a single best solution to this problem, however, to find it, is even for modern computers (mostly) impossible <span class="citation">(Longley et al. <a href="#ref-longley_geographic_2015">2015</a>)</span>.
-In our case, the number of possible solution correspond to <code>(25 - 1)! / 2</code> possible solutions, i.e., the factorial of 24 divided by 2 (since we do not differentiate between forward or backward direction).
+In our case, the number of possible solutions correspond to <code>(25 - 1)! / 2</code>, i.e., the factorial of 24 divided by 2 (since we do not differentiate between forward or backward direction).
 Even if one iteration can be done in a nanosecond this still corresponds to 9837145 years.
 Luckily, there are clever, almost optimal solutions which run in a tiny fraction of this inconceivable amount of time.
 GRASS GIS provides one of these solutions (for more details see <a href="https://grass.osgeo.org/grass74/manuals/v.net.salesman.html">v.net.salesman</a>).
 In our use case, we would like to find the shortest path between the first 25 bicycle stations (instead of customers) on London’s streets.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1"><span class="kw">library</span>(spData)</a>
-<a class="sourceLine" id="cb314-2" data-line-number="2"><span class="kw">data</span>(cycle_hire)</a>
-<a class="sourceLine" id="cb314-3" data-line-number="3">points =<span class="st"> </span>cycle_hire[<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">library</span>(spData)</a>
+<a class="sourceLine" id="cb308-2" data-line-number="2"><span class="kw">data</span>(cycle_hire)</a>
+<a class="sourceLine" id="cb308-3" data-line-number="3">points =<span class="st"> </span>cycle_hire[<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, ]</a></code></pre></div>
 <p>Aside from the cycle hire points data, we will need the OpenStreetMap data of London.
 We download it with the help of the <strong>osmdata</strong> package (see also section <a href="read-write.html#retrieving-data">7.2</a>).
 We constrain the download of the street network (in OSM language called “highway”) to the bounding box of the cycle hire data, and attach the corresponding data as an <code>sf</code>-object.
 <code>osmdata_sf</code> returns a list with several spatial objects (points, lines, polygons, etc.).
 Here, we will only keep the line objects.
 <!-- To learn more about how to use the **osmdata**-package, please refer to [https://ropensci.github.io/osmdata/](https://ropensci.github.io/osmdata/). --></p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb315-2" data-line-number="2"><span class="kw">library</span>(osmdata)</a>
-<a class="sourceLine" id="cb315-3" data-line-number="3">b_box =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_bbox</span>(cycle_hire)</a>
-<a class="sourceLine" id="cb315-4" data-line-number="4">streets =<span class="st"> </span><span class="kw">opq</span>(b_box) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb315-5" data-line-number="5"><span class="st">  </span><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">&quot;highway&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb315-6" data-line-number="6"><span class="st">  </span><span class="kw">osmdata_sf</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb315-7" data-line-number="7"><span class="st">  `</span><span class="dt">[[</span><span class="st">`</span>(<span class="st">&quot;osm_lines&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb309-2" data-line-number="2"><span class="kw">library</span>(osmdata)</a>
+<a class="sourceLine" id="cb309-3" data-line-number="3">b_box =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_bbox</span>(cycle_hire)</a>
+<a class="sourceLine" id="cb309-4" data-line-number="4">streets =<span class="st"> </span><span class="kw">opq</span>(b_box) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb309-5" data-line-number="5"><span class="st">  </span><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">&quot;highway&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb309-6" data-line-number="6"><span class="st">  </span><span class="kw">osmdata_sf</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb309-7" data-line-number="7"><span class="st">  `</span><span class="dt">[[</span><span class="st">`</span>(<span class="st">&quot;osm_lines&quot;</span>)</a></code></pre></div>
+<!-- put into spDataLarge as a convenience to the reader -->
 <p>Now that we have the data, we can go on and initiate a GRASS session, i.e., we have to create a GRASS geodatabase.
 The GRASS geodatabase system is based on SQLite.
 Consequently, different users can easily work on the same project, possibly with different read/write permissions.
@@ -633,40 +573,40 @@ Within one location several mapsets can exist, and typically refer to different 
 PERMANENT is a mandatory mapset, and created automatically.
 It stores the projection, the spatial extent and the default resolution for raster data.
 In order to share spatial data with all users of a project, the database owner can add spatial data to the PERMANENT mapset.
-Please refer to <span class="citation">Neteler and Mitasova (<a href="#ref-neteler_open_2008">2008</a>)</span> and the <a href="https://grass.osgeo.org/grass74/manuals/helptext.html">GRASS GIS quick start</a> for more information on the GRASS geodatabase system.</p>
+Please refer to <span class="citation">Neteler and Mitasova (<a href="#ref-neteler_open_2008">2008</a>)</span> and the <a href="https://grass.osgeo.org/grass75/manuals/helptext.html">GRASS GIS quick start</a> for more information on the GRASS geodatabase system.</p>
 <p>You have to set up a location and a mapset if you want to use GRASS from within R.
 First of all, we need to find out if and where GRASS7 is installed on the computer.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="kw">library</span>(link2GI)</a>
-<a class="sourceLine" id="cb316-2" data-line-number="2">link =<span class="st"> </span><span class="kw">findGRASS</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="kw">library</span>(link2GI)</a>
+<a class="sourceLine" id="cb310-2" data-line-number="2">link =<span class="st"> </span><span class="kw">findGRASS</span>() </a></code></pre></div>
 <p><code>link</code> is a <code>data.frame</code> which contains in its rows the GRASS 7 installations on your computer.
 Here, we will use a GRASS7 installation.
 If you have not installed GRASS7 on your computer, we recommend that you do so now.
 Assuming that we have found a working installation on your computer, we use the corresponding path in <code>initGRASS</code>.
 Additionally, we specify where to store the geodatabase (gisDbase), name the location <code>london</code>, and use the PERMANENT mapset.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="kw">library</span>(rgrass7)</a>
-<a class="sourceLine" id="cb317-2" data-line-number="2"><span class="co"># find a GRASS7 installation, and use the first one</span></a>
-<a class="sourceLine" id="cb317-3" data-line-number="3">ind =<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;7&quot;</span>, link<span class="op">$</span>version)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb317-4" data-line-number="4"><span class="co"># next line of code only necessary if we want to use GRASS as installed by </span></a>
-<a class="sourceLine" id="cb317-5" data-line-number="5"><span class="co"># OSGeo4W. Among others, this adds some paths to PATH, which are also needed</span></a>
-<a class="sourceLine" id="cb317-6" data-line-number="6"><span class="co"># for running GRASS.</span></a>
-<a class="sourceLine" id="cb317-7" data-line-number="7">link2GI<span class="op">::</span><span class="kw">paramGRASSw</span>(link[ind, ])</a>
-<a class="sourceLine" id="cb317-8" data-line-number="8">grass_path =<span class="st"> </span><span class="kw">ifelse</span>(<span class="op">!</span><span class="kw">is.null</span>(link<span class="op">$</span>installation_type) <span class="op">&amp;&amp;</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb317-9" data-line-number="9"><span class="st">                      </span>link<span class="op">$</span>installation_type[ind] <span class="op">==</span><span class="st"> &quot;osgeo4W&quot;</span>,</a>
-<a class="sourceLine" id="cb317-10" data-line-number="10">                    <span class="kw">file.path</span>(link<span class="op">$</span>instDir[ind], <span class="st">&quot;apps/grass&quot;</span>, link<span class="op">$</span>version[ind]),</a>
-<a class="sourceLine" id="cb317-11" data-line-number="11">                    link<span class="op">$</span>instDir)</a>
-<a class="sourceLine" id="cb317-12" data-line-number="12"><span class="kw">initGRASS</span>(<span class="dt">gisBase =</span> grass_path,</a>
-<a class="sourceLine" id="cb317-13" data-line-number="13">          <span class="co"># home parameter necessary under UNIX-based systems</span></a>
-<a class="sourceLine" id="cb317-14" data-line-number="14">          <span class="dt">home =</span> <span class="kw">tempdir</span>(),</a>
-<a class="sourceLine" id="cb317-15" data-line-number="15">          <span class="dt">gisDbase =</span> <span class="kw">tempdir</span>(), <span class="dt">location =</span> <span class="st">&quot;london&quot;</span>, </a>
-<a class="sourceLine" id="cb317-16" data-line-number="16">          <span class="dt">mapset =</span> <span class="st">&quot;PERMANENT&quot;</span>, <span class="dt">override =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="kw">library</span>(rgrass7)</a>
+<a class="sourceLine" id="cb311-2" data-line-number="2"><span class="co"># find a GRASS7 installation, and use the first one</span></a>
+<a class="sourceLine" id="cb311-3" data-line-number="3">ind =<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;7&quot;</span>, link<span class="op">$</span>version)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb311-4" data-line-number="4"><span class="co"># next line of code only necessary if we want to use GRASS as installed by </span></a>
+<a class="sourceLine" id="cb311-5" data-line-number="5"><span class="co"># OSGeo4W. Among others, this adds some paths to PATH, which are also needed</span></a>
+<a class="sourceLine" id="cb311-6" data-line-number="6"><span class="co"># for running GRASS.</span></a>
+<a class="sourceLine" id="cb311-7" data-line-number="7">link2GI<span class="op">::</span><span class="kw">paramGRASSw</span>(link[ind, ])</a>
+<a class="sourceLine" id="cb311-8" data-line-number="8">grass_path =<span class="st"> </span><span class="kw">ifelse</span>(<span class="op">!</span><span class="kw">is.null</span>(link<span class="op">$</span>installation_type) <span class="op">&amp;&amp;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb311-9" data-line-number="9"><span class="st">                      </span>link<span class="op">$</span>installation_type[ind] <span class="op">==</span><span class="st"> &quot;osgeo4W&quot;</span>,</a>
+<a class="sourceLine" id="cb311-10" data-line-number="10">                    <span class="kw">file.path</span>(link<span class="op">$</span>instDir[ind], <span class="st">&quot;apps/grass&quot;</span>, link<span class="op">$</span>version[ind]),</a>
+<a class="sourceLine" id="cb311-11" data-line-number="11">                    link<span class="op">$</span>instDir)</a>
+<a class="sourceLine" id="cb311-12" data-line-number="12"><span class="kw">initGRASS</span>(<span class="dt">gisBase =</span> grass_path,</a>
+<a class="sourceLine" id="cb311-13" data-line-number="13">          <span class="co"># home parameter necessary under UNIX-based systems</span></a>
+<a class="sourceLine" id="cb311-14" data-line-number="14">          <span class="dt">home =</span> <span class="kw">tempdir</span>(),</a>
+<a class="sourceLine" id="cb311-15" data-line-number="15">          <span class="dt">gisDbase =</span> <span class="kw">tempdir</span>(), <span class="dt">location =</span> <span class="st">&quot;london&quot;</span>, </a>
+<a class="sourceLine" id="cb311-16" data-line-number="16">          <span class="dt">mapset =</span> <span class="st">&quot;PERMANENT&quot;</span>, <span class="dt">override =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Subsequently, we define the projection, the extent and the resolution.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="kw">execGRASS</span>(<span class="st">&quot;g.proj&quot;</span>, <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;quiet&quot;</span>), </a>
-<a class="sourceLine" id="cb318-2" data-line-number="2">          <span class="dt">proj4 =</span> sf<span class="op">::</span><span class="kw">st_crs</span>(streets)<span class="op">$</span>proj4string)</a>
-<a class="sourceLine" id="cb318-3" data-line-number="3">b_box =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_bbox</span>(streets) </a>
-<a class="sourceLine" id="cb318-4" data-line-number="4"><span class="kw">execGRASS</span>(<span class="st">&quot;g.region&quot;</span>, <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;quiet&quot;</span>), </a>
-<a class="sourceLine" id="cb318-5" data-line-number="5">          <span class="dt">n =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;ymax&quot;</span>]), <span class="dt">s =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;ymin&quot;</span>]), </a>
-<a class="sourceLine" id="cb318-6" data-line-number="6">          <span class="dt">e =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;xmax&quot;</span>]), <span class="dt">w =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;xmin&quot;</span>]), </a>
-<a class="sourceLine" id="cb318-7" data-line-number="7">          <span class="dt">res =</span> <span class="st">&quot;1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">execGRASS</span>(<span class="st">&quot;g.proj&quot;</span>, <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;quiet&quot;</span>), </a>
+<a class="sourceLine" id="cb312-2" data-line-number="2">          <span class="dt">proj4 =</span> sf<span class="op">::</span><span class="kw">st_crs</span>(streets)<span class="op">$</span>proj4string)</a>
+<a class="sourceLine" id="cb312-3" data-line-number="3">b_box =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_bbox</span>(streets) </a>
+<a class="sourceLine" id="cb312-4" data-line-number="4"><span class="kw">execGRASS</span>(<span class="st">&quot;g.region&quot;</span>, <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;quiet&quot;</span>), </a>
+<a class="sourceLine" id="cb312-5" data-line-number="5">          <span class="dt">n =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;ymax&quot;</span>]), <span class="dt">s =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;ymin&quot;</span>]), </a>
+<a class="sourceLine" id="cb312-6" data-line-number="6">          <span class="dt">e =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;xmax&quot;</span>]), <span class="dt">w =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;xmin&quot;</span>]), </a>
+<a class="sourceLine" id="cb312-7" data-line-number="7">          <span class="dt">res =</span> <span class="st">&quot;1&quot;</span>)</a></code></pre></div>
 <p>Once you are familiar how to set up the GRASS environment, it becomes tedious to do so over and over again.
 Luckily, <code>linkGRASS7</code> of the <strong>link2GI</strong> packages lets you do it with one line of code.
 The only thing you need to provide is a spatial object which determines the projection and the extent of the geodatabase.
@@ -674,14 +614,16 @@ First, <code>linkGRASS7</code> finds all GRASS installations on your computer.
 Since we have set <code>ver_select</code> to <code>TRUE</code>, we can interactively choose one of the found GRASS-installations.
 If there is just one installation, the <code>linkGRASS7</code> automatically chooses this one.
 Secondly, <code>linkGRASS7</code> establishes a connection to GRASS7.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">link2GI<span class="op">::</span><span class="kw">linkGRASS7</span>(streets, <span class="dt">ver_select =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1">link2GI<span class="op">::</span><span class="kw">linkGRASS7</span>(streets, <span class="dt">ver_select =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Before we can use GRASS geoalgorithms, we need to add data to GRASS’s spatial database.
 Luckily, the convenience function <code>writeVECT</code> does this for us.
 (Use <code>writeRast</code> in the case of raster data.)
-In our case we add the street and cycle hire point data while using only the first attribute column, and name them also <code>streets</code> and <code>points</code>.</p>
+In our case we add the street and cycle hire point data while using only the first attribute column, and name them also <code>streets</code> and <code>points</code>.
+Note that we are converting the <strong>sf</strong>-objects into objects of class <code>Spatial*</code>.
+In time, <strong>rgrass7</strong> will also work with <strong>sf</strong>-objects.</p>
 <!-- in time we can also use sf- and raster-objects with rgrass7, Roger has already implemented this in the rgrass7 developer version -->
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="kw">writeVECT</span>(<span class="kw">as</span>(streets[, <span class="dv">1</span>], <span class="st">&quot;Spatial&quot;</span>), <span class="dt">vname =</span> <span class="st">&quot;streets&quot;</span>)</a>
-<a class="sourceLine" id="cb320-2" data-line-number="2"><span class="kw">writeVECT</span>(<span class="dt">SDF =</span> <span class="kw">as</span>(points[, <span class="dv">1</span>], <span class="st">&quot;Spatial&quot;</span>), <span class="dt">vname =</span> <span class="st">&quot;points&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1"><span class="kw">writeVECT</span>(<span class="kw">as</span>(streets[, <span class="dv">1</span>], <span class="st">&quot;Spatial&quot;</span>), <span class="dt">vname =</span> <span class="st">&quot;streets&quot;</span>)</a>
+<a class="sourceLine" id="cb314-2" data-line-number="2"><span class="kw">writeVECT</span>(<span class="dt">SDF =</span> <span class="kw">as</span>(points[, <span class="dv">1</span>], <span class="st">&quot;Spatial&quot;</span>), <span class="dt">vname =</span> <span class="st">&quot;points&quot;</span>)</a></code></pre></div>
 <p>To perform our network analysis, we need a topological clean street network.
 GRASS’s <code>v.clean</code> takes care of the removal of duplicates, small angles and dangles, among others.
 Here, we break lines at each intersection to ensure that the subsequent routing algorithm can actually turn right or left at an intersection, and save the output in a GRASS object named <code>streets_clean</code>.
@@ -689,30 +631,32 @@ Probably a few of our cycling station points do not exactly lie on a street segm
 However, to find the shortest route between them, we need to connect them to the nearest streets segment.
 <code>v.net</code>’s connect-operator does exactly this.
 We save its output in <code>streets_points_con</code>.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.clean&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;streets_clean&quot;</span>,</a>
-<a class="sourceLine" id="cb321-2" data-line-number="2">          <span class="dt">tool =</span> <span class="st">&quot;break&quot;</span>, <span class="dt">flags =</span> <span class="st">&quot;overwrite&quot;</span>)</a>
-<a class="sourceLine" id="cb321-3" data-line-number="3"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.net&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets_clean&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;streets_points_con&quot;</span>, </a>
-<a class="sourceLine" id="cb321-4" data-line-number="4">          <span class="dt">points =</span> <span class="st">&quot;points&quot;</span>, <span class="dt">operation =</span> <span class="st">&quot;connect&quot;</span>, <span class="dt">threshold =</span> <span class="fl">0.001</span>,</a>
-<a class="sourceLine" id="cb321-5" data-line-number="5">          <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>, <span class="st">&quot;c&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.clean&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;streets_clean&quot;</span>,</a>
+<a class="sourceLine" id="cb315-2" data-line-number="2">          <span class="dt">tool =</span> <span class="st">&quot;break&quot;</span>, <span class="dt">flags =</span> <span class="st">&quot;overwrite&quot;</span>)</a>
+<a class="sourceLine" id="cb315-3" data-line-number="3"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.net&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets_clean&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;streets_points_con&quot;</span>, </a>
+<a class="sourceLine" id="cb315-4" data-line-number="4">          <span class="dt">points =</span> <span class="st">&quot;points&quot;</span>, <span class="dt">operation =</span> <span class="st">&quot;connect&quot;</span>, <span class="dt">threshold =</span> <span class="fl">0.001</span>,</a>
+<a class="sourceLine" id="cb315-5" data-line-number="5">          <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>, <span class="st">&quot;c&quot;</span>))</a></code></pre></div>
 <p>The resulting clean dataset serves as input for the <code>v.net.salesman</code>-algorithm, which finally finds the shortest route between all cycle hire stations.
 <code>center_cats</code> requires a numeric range as input.
 This range represents the points for which a shortest route should be calculated.
 Since we would like to calculate the route for all cycle stations, we set it to <code>1-25</code>.
 To access the GRASS help page of the traveling salesman algorithm, run <code>execGRASS(&quot;g.manual&quot;, entry = &quot;v.net.salesman&quot;)</code>.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.net.salesman&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets_points_con&quot;</span>,</a>
-<a class="sourceLine" id="cb322-2" data-line-number="2">          <span class="dt">output =</span> <span class="st">&quot;shortest_route&quot;</span>, <span class="dt">center_cats =</span> <span class="kw">paste0</span>(<span class="st">&quot;1-&quot;</span>, <span class="kw">nrow</span>(points)),</a>
-<a class="sourceLine" id="cb322-3" data-line-number="3">          <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>))</a></code></pre></div>
-<p>To visualize our result, we import the output layer into R, and visualize it with the help of the <strong>mapview</strong> package (Figure <a href="gis.html#fig:grass-mapview">9.2</a>).</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.net.salesman&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets_points_con&quot;</span>,</a>
+<a class="sourceLine" id="cb316-2" data-line-number="2">          <span class="dt">output =</span> <span class="st">&quot;shortest_route&quot;</span>, <span class="dt">center_cats =</span> <span class="kw">paste0</span>(<span class="st">&quot;1-&quot;</span>, <span class="kw">nrow</span>(points)),</a>
+<a class="sourceLine" id="cb316-3" data-line-number="3">          <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>))</a></code></pre></div>
+<p>To visualize our result, we import the output layer into R, convert it into an sf-object , just keep the geometry and visualize it with the help of the <strong>mapview</strong> package (Figure <a href="gis.html#fig:grass-mapview">9.2</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:grass-mapview"></span>
 <img src="https://user-images.githubusercontent.com/1825120/39206067-544455c8-47f4-11e8-8725-e28299e01f52.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London."  />
 <p class="caption">
 Figure 9.2: Shortest route between 25 cycle hire station on the OSM street network of London.
 </p>
 </div>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1"><span class="kw">library</span>(mapview)</a>
-<a class="sourceLine" id="cb323-2" data-line-number="2">route =<span class="st"> </span><span class="kw">readVECT</span>(<span class="st">&quot;shortest_route&quot;</span>)</a>
-<a class="sourceLine" id="cb323-3" data-line-number="3"><span class="kw">mapview</span>(route, <span class="dt">map.types =</span> <span class="st">&quot;OpenStreetMap.BlackAndWhite&quot;</span>, <span class="dt">lwd =</span> <span class="dv">9</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb323-4" data-line-number="4"><span class="st">  </span><span class="kw">mapview</span>(points)</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="kw">library</span>(mapview)</a>
+<a class="sourceLine" id="cb317-2" data-line-number="2">route =<span class="st"> </span><span class="kw">readVECT</span>(<span class="st">&quot;shortest_route&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb317-3" data-line-number="3"><span class="st">  </span>st_as_sf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb317-4" data-line-number="4"><span class="st">  </span>st_geometry</a>
+<a class="sourceLine" id="cb317-5" data-line-number="5"><span class="kw">mapview</span>(route, <span class="dt">map.types =</span> <span class="st">&quot;OpenStreetMap.BlackAndWhite&quot;</span>, <span class="dt">lwd =</span> <span class="dv">7</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb317-6" data-line-number="6"><span class="st">  </span><span class="kw">mapview</span>(points)</a></code></pre></div>
 <p>Further notes:</p>
 <ul>
 <li>Please note that we have used GRASS’s geodatabase (based on SQLite) which allows faster processing.
@@ -724,9 +668,70 @@ Prior to importing data into R, you might want to perform some (spatial) subsett
 Use <code>v.select</code> and <code>v.extract</code> for vector data.
 <code>db.select</code> lets you select subsets of the attribute table of a vector layer without returning the corresponding geometry.</li>
 <li>You can start R also from within a running GRASS session <span class="citation">(for more information please refer to Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a> and this <a href="https://grasswiki.osgeo.org/wiki/R_statistics/rgrass7">wiki</a>)</span>.</li>
-<li>Refer to the excellent <a href="https://grass.osgeo.org/grass74/manuals/">GRASS online help</a> or <code>execGRASS(&quot;g.manual&quot;, flags = &quot;i&quot;)</code> for more information on each available GRASS geoalgorithm.</li>
+<li>Refer to the excellent <a href="https://grass.osgeo.org/grass75/manuals/">GRASS online help</a> or <code>execGRASS(&quot;g.manual&quot;, flags = &quot;i&quot;)</code> for more information on each available GRASS geoalgorithm.</li>
 <li>If you would like to use GRASS 6 from within R, use the R package <strong>spgrass6</strong>.</li>
 </ul>
+</div>
+<div id="rqgis" class="section level2">
+<h2><span class="header-section-number">9.3</span> (R)QGIS</h2>
+<p>QGIS is one of the most popular open-source GIS <span class="citation">(Table <a href="gis.html#tab:gis-comp">9.1</a>; Graser and Olaya <a href="#ref-graser_processing:_2015">2015</a>)</span>.
+Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
+First and foremost, this means that you have access to GDAL/OGR, GRASS and SAGA through QGIS but also to other third-party providers such as <a href="http://hydrology.usu.edu/taudem/taudem5/index.html">TauDEM</a>, <a href="https://www.orfeo-toolbox.org/">Orfeo Toolbox</a> and <a href="https://rapidlasso.com/lastools/">Lastools</a> (tools for LiDAR data) <span class="citation">(Graser and Olaya <a href="#ref-graser_processing:_2015">2015</a>)</span>.
+To run all these geoalgorithms (frequently more than 1000 depending on your set up) outside of the QGIS GUI, QGIS provides a Python API.
+<strong>RQGIS</strong> establishes a tunnel to this Python API through the <strong>reticulate</strong> package.
+Basically, functions <code>set_env</code> and <code>open_app</code> are doing this.
+Note that it is optional to run <code>set_env</code> and <code>open_app</code> since all functions depending on their output will run them automatically if needed.
+Before running <strong>RQGIS</strong> you have to make sure to have installed QGIS and all its (third-party) dependencies such as SAGA and GRASS.
+To help you with the installation process, please follow the steps as detailed in <code>vignette(&quot;install_guide&quot;, package = &quot;RQGIS&quot;)</code> for several platforms (Windows, Linux, MacOS).</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
+<a class="sourceLine" id="cb318-2" data-line-number="2"><span class="kw">set_env</span>()</a>
+<a class="sourceLine" id="cb318-3" data-line-number="3"><span class="kw">open_app</span>()</a></code></pre></div>
+<p>Leaving the <code>path</code>-argument of <code>set_env</code> unspecified will search the computer for a QGIS installation.
+Hence, it is faster to specify explicitly the path to your QGIS installation.
+Subsequently, <code>open_app</code> sets all paths necessary to run QGIS from within R, and finally creates a so-called QGIS custom application <a href="http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications" class="uri">http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications</a>.
+We are now ready for some QGIS geoprocessing from within R!
+First of all, we load some data from the <strong>spData</strong>-package, namely the boroughs of London (<code>lnd</code>) and cycle hire points in London (<code>cycle_hire</code>).</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="kw">library</span>(spData)</a></code></pre></div>
+<p>In chapter <a href="spatial-class.html#spatial-class">2</a>, we already learned how to do a spatial overlay using the <strong>sf</strong>-package.
+Of course, any GIS is also able to perform spatial overlays.
+Here, we would like to know how many cycle points we can find per borough.
+First of all, we need to come up with the name of the function in QGIS. <code>find_algorithms</code> lets you search all QGIS geoalgorithms with the help of regular expressions.
+Here, we assume that the short description of the function contains first the word “point” and secondly somewhere later also the word “poly”.
+If you have no clue at all what to look for you can leave the <code>search_term</code>-argument empty which will return a list of all available QGIS geoalgorithms.
+If you also want to have a short description for each geoalgorithm, set the <code>name_only</code>-parameter to FALSE.</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="kw">find_algorithms</span>(<span class="st">&quot;points.*poly&quot;</span>, <span class="dt">name_only =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Now that we know the name of the function (<code>qgis:countpointsinpolygon</code>), we wonder how we can use it.
+<code>get_usage</code> returns all function parameters and default values.
+<code>open_help</code> lets you access the corresponding online help.</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1">alg =<span class="st"> &quot;qgis:countpointsinpolygon&quot;</span></a>
+<a class="sourceLine" id="cb321-2" data-line-number="2"><span class="kw">get_usage</span>(alg)</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1"><span class="kw">open_help</span>(alg)</a></code></pre></div>
+<p>Finally, we can let QGIS do the work.
+Note that the workhorse function <code>run_qgis</code> accepts R named arguments, i.e., you can specify the parameter names as returned by <code>get_usage</code> as you would do in any other regular R function.
+Note also that <code>run_qgis</code> accepts spatial objects residing in R’s global environment as input (here: <code>lnd</code> and <code>cycle_hire</code>).
+But of course, you could also specify paths to shapefiles stored on disk.
+<!-- only shapefiles or more general - spatial vectors? -->
+Setting the <code>load_output</code> to <code>TRUE</code> automatically loads the QGIS output into R.
+Since we only indicated the name of the output (“cycle.shp”), <code>run_qgis</code> saves the output to a temporary folder as returned by <code>tempdir()</code>, and loads it into R as an <strong>sf</strong>-object.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1">bike_points =<span class="st"> </span><span class="kw">run_qgis</span>(alg, <span class="dt">POLYGONS =</span> lnd, <span class="dt">POINTS =</span> cycle_hire, </a>
+<a class="sourceLine" id="cb323-2" data-line-number="2">                       <span class="dt">FIELD =</span> <span class="st">&quot;no_bikes&quot;</span>, <span class="dt">OUTPUT =</span> <span class="st">&quot;cycle.shp&quot;</span>,</a>
+<a class="sourceLine" id="cb323-3" data-line-number="3">                       <span class="dt">load_output =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb323-4" data-line-number="4"><span class="kw">summary</span>(bike_points<span class="op">$</span>no_bikes)</a>
+<a class="sourceLine" id="cb323-5" data-line-number="5"><span class="kw">sum</span>(bike_points<span class="op">$</span>no_bikes <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a></code></pre></div>
+<p>In case you leave some parameters of a geoalgorithm unspecified, <code>run_qgis</code> will automatically use the default values as arguments if available.
+To find out about the default values, run <code>get_args_man</code>.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" data-line-number="1"><span class="kw">get_args_man</span>(alg)</a></code></pre></div>
+<p>In this case the output tells us, had we left the <code>FIELDS</code>-parameter unspecified, our output (attribute) field would have been named “NUMPOINTS” (instead of “no_bikes”).</p>
+<!--
+"grass7:v.vect.stats" would achieve the same but is unavailable in QGIS
+-->
+<p>Other notes:</p>
+<ul>
+<li>Leaving the output parameter(s) unspecified, saves the resulting QGIS output to a temporary folder created by QGIS.
+<code>run_qgis</code> prints these paths to the console after successfully running the QGIS engine.</li>
+<li>If the output consists of multiple files and you have set <code>load_output</code> to <code>TRUE</code>, <code>run_qgis</code> will return a list with each element corresponding to one output file.</li>
+</ul>
+<p>To learn more about <strong>RQGIS</strong> please refer to <span class="citation">Muenchow, Schratz, and Brenning (<a href="#ref-muenchow_rqgis:_2017">2017</a>)</span>.</p>
 </div>
 <div id="when-to-use-what" class="section level2">
 <h2><span class="header-section-number">9.4</span> When to use what?</h2>
@@ -778,11 +783,8 @@ Additionally, give <code>mapview</code> a try.</p></li>
 <div id="ref-chambers_extending_2016">
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
 </div>
-<div id="ref-graser_processing:_2015">
-<p>Graser, Anita, and Victor Olaya. 2015. “Processing: A Python Framework for the Seamless Integration of Geoprocessing Tools in QGIS.” <em>ISPRS International Journal of Geo-Information</em> 4 (4): 2219–45. <a href="https://doi.org/10.3390/ijgi4042219" class="uri">https://doi.org/10.3390/ijgi4042219</a>.</p>
-</div>
-<div id="ref-muenchow_rqgis:_2017">
-<p>Muenchow, Jannes, Patrick Schratz, and Alexander Brenning. 2017. “RQGIS: Integrating R with QGIS for Statistical Geocomputing.” <em>The R Journal</em> 9 (2): 409–28.</p>
+<div id="ref-pebesma_simple_2018">
+<p>Pebesma, Edzer. 2018b. “Simple Features for R: Standardized Support for Spatial Vector Data.” <em>The R Journal</em>. <a href="https://journal.r-project.org/archive/2018/RJ-2018-009/index.html" class="uri">https://journal.r-project.org/archive/2018/RJ-2018-009/index.html</a>.</p>
 </div>
 <div id="ref-conrad_system_2015">
 <p>Conrad, O., B. Bechtel, M. Bock, H. Dietrich, E. Fischer, L. Gerlitz, J. Wehberg, V. Wichmann, and J. Böhner. 2015. “System for Automated Geoscientific Analyses (SAGA) V. 2.1.4.” <em>Geosci. Model Dev.</em> 8 (7): 1991–2007. <a href="https://doi.org/10.5194/gmd-8-1991-2015" class="uri">https://doi.org/10.5194/gmd-8-1991-2015</a>.</p>
@@ -798,6 +800,12 @@ Additionally, give <code>mapview</code> a try.</p></li>
 </div>
 <div id="ref-longley_geographic_2015">
 <p>Longley, Paul, Michael Goodchild, David Maguire, and David Rhind. 2015. <em>Geographic Information Science &amp; Systems</em>. Fourth edition. Hoboken, NJ: Wiley.</p>
+</div>
+<div id="ref-graser_processing:_2015">
+<p>Graser, Anita, and Victor Olaya. 2015. “Processing: A Python Framework for the Seamless Integration of Geoprocessing Tools in QGIS.” <em>ISPRS International Journal of Geo-Information</em> 4 (4): 2219–45. <a href="https://doi.org/10.3390/ijgi4042219" class="uri">https://doi.org/10.3390/ijgi4042219</a>.</p>
+</div>
+<div id="ref-muenchow_rqgis:_2017">
+<p>Muenchow, Jannes, Patrick Schratz, and Alexander Brenning. 2017. “RQGIS: Integrating R with QGIS for Statistical Geocomputing.” <em>The R Journal</em> 9 (2): 409–28.</p>
 </div>
 <div id="ref-krug_clearing_2010">
 <p>Krug, Rainer M., Núria Roura-Pascual, and David M. Richardson. 2010. “Clearing of Invasive Alien Plants Under Different Budget Scenarios: Using a Simulation Model to Test Efficiency.” <em>Biological Invasions</em> 12 (12): 4099–4112. <a href="https://doi.org/10.1007/s10530-010-9827-3" class="uri">https://doi.org/10.1007/s10530-010-9827-3</a>.</p>
