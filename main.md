@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-28'
+date: '2018-05-29'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-28 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-29 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve777c547b62f31784
+preserve03b6937183568b39
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve190bd4665f4253b7
+preserve2612c98c1bfd49a9
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3210,19 +3210,29 @@ A number of algorithms have been developed for areal interpolation, including ar
 <p class="caption">(\#fig:areal-example)Illustration of congruent (left) and incongruent (right) areal units with respect to larger aggregating zones (translucent blue borders).</p>
 </div>
 
-The simplest useful method for spatial interpolation is *area weighted* spatial interpolation.
+The **spData** package contains a dataset named `incongruent` (colored polygons with black borders in the right panel of Figure \@ref(fig:areal-example)) and a dataset named aggregating_zones (the two polygons with the translucent blue border in the right panel of Figure \@ref(fig:areal-example)).
+Let us assume that the `value` column of `incongruent` refers to the total regional income in million Euros.
+How can we transfer the values of the underlying nine spatial polygons into the two polygons of `aggregating_zones`?
+The simplest useful method for this is *area weighted* spatial interpolation.
+In this case values from the `incongruent` object are allocated to the `aggregating_zones` in proportion to the area, i.e. the larger the spatial intersection  between input and output features, the larger the corresponding value. 
+For instance, if one intersection of `incongruent` and `aggregating_zones` is 1.5 km^^2^^ but the whole incongruent polygon in question has 2 km^^2^^ and a total income of 4 million Euros, then the target aggregating zone will obtain three quarters of the income, in this case 3 million Euros.
 This is implemented in `st_interpolate_aw()`, as demonstrated in the code chunk below.
-In this case values from the `incongruent` object are allocated to the `aggregating_zones` in proportion to the area:
 
 
 ```r
 agg_aw = st_interpolate_aw(incongruent[, "value"], aggregating_zones, extensive = TRUE)
 #> Warning in st_interpolate_aw(incongruent[, "value"], aggregating_zones, :
 #> st_interpolate_aw assumes attributes are constant over areas of x
+# show the aggregated result
+agg_aw$value
+#> [1] 19.6 25.7
 ```
 
-Instead of simply taking the mean average of each area within each aggregating feature, `st_interpolate_aw` applies a weight to each value in proportion to its area in each aggregating zone (use `extensive = FALSE` for 'spatially intensive' variables such as population density which should be averaged rather than summed).
-For instance, if one intersection of `incongruent` and `aggregating_zones` is 0.5 km^^2^^ but the whole incongruent polygon in question has 1 km^^2^^ and 100  inhabitants, then the target aggregating zone will obtain half of the population, in this case 50 inhabitants.
+In our case it is meaningful to sum up the values of the intersections falling into the aggregating zones since total income is a so-called spatially extensive variable.
+This would be different for spatially intensive variables as for example income per head.
+In this case it is more meaningful to apply an average function when doing the aggregation instead of a sum function.
+To do so, one would only have to set the `extensive` parameter to `FALSE`.
+
 <!-- - `aggregate.sf()` - aggregate an sf object, possibly union-ing geometries -->
 <!-- - disaggregation?? `st_cast()` - https://github.com/edzer/sfr/wiki/migrating -->
 <!-- - `group_by()` + `summarise()` - potential errors -->
@@ -6497,7 +6507,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5be9f6cb353a701e
+preserve92a84f45e2b252cf
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6596,7 +6606,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve77768a7f5f392f9f
+preserveedfe289f9812e22f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9612,7 +9622,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve027064095d9129bb
+preserve9564fbad2211b5d5
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

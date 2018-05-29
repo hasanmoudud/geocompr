@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-28">
+<meta name="date" content="2018-05-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -753,19 +753,28 @@ A number of algorithms have been developed for areal interpolation, including ar
 Figure 4.6: Illustration of congruent (left) and incongruent (right) areal units with respect to larger aggregating zones (translucent blue borders).
 </p>
 </div>
-<p>The simplest useful method for spatial interpolation is <em>area weighted</em> spatial interpolation.
-This is implemented in <code>st_interpolate_aw()</code>, as demonstrated in the code chunk below.
-In this case values from the <code>incongruent</code> object are allocated to the <code>aggregating_zones</code> in proportion to the area:</p>
+<p>The <strong>spData</strong> package contains a dataset named <code>incongruent</code> (colored polygons with black borders in the right panel of Figure <a href="spatial-operations.html#fig:areal-example">4.6</a>) and a dataset named aggregating_zones (the two polygons with the translucent blue border in the right panel of Figure <a href="spatial-operations.html#fig:areal-example">4.6</a>).
+Let us assume that the <code>value</code> column of <code>incongruent</code> refers to the total regional income in million Euros.
+How can we transfer the values of the underlying nine spatial polygons into the two polygons of <code>aggregating_zones</code>?
+The simplest useful method for this is <em>area weighted</em> spatial interpolation.
+In this case values from the <code>incongruent</code> object are allocated to the <code>aggregating_zones</code> in proportion to the area, i.e. the larger the spatial intersection between input and output features, the larger the corresponding value.
+For instance, if one intersection of <code>incongruent</code> and <code>aggregating_zones</code> is 1.5 km^<sup>2</sup>^ but the whole incongruent polygon in question has 2 km^<sup>2</sup>^ and a total income of 4 million Euros, then the target aggregating zone will obtain three quarters of the income, in this case 3 million Euros.
+This is implemented in <code>st_interpolate_aw()</code>, as demonstrated in the code chunk below.</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">agg_aw =<span class="st"> </span><span class="kw">st_interpolate_aw</span>(incongruent[, <span class="st">&quot;value&quot;</span>], aggregating_zones, <span class="dt">extensive =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb136-2" data-line-number="2"><span class="co">#&gt; Warning in st_interpolate_aw(incongruent[, &quot;value&quot;], aggregating_zones, :</span></a>
-<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="co">#&gt; st_interpolate_aw assumes attributes are constant over areas of x</span></a></code></pre></div>
-<p>Instead of simply taking the mean average of each area within each aggregating feature, <code>st_interpolate_aw</code> applies a weight to each value in proportion to its area in each aggregating zone (use <code>extensive = FALSE</code> for ‘spatially intensive’ variables such as population density which should be averaged rather than summed).
-For instance, if one intersection of <code>incongruent</code> and <code>aggregating_zones</code> is 0.5 km^<sup>2</sup>^ but the whole incongruent polygon in question has 1 km^<sup>2</sup>^ and 100 inhabitants, then the target aggregating zone will obtain half of the population, in this case 50 inhabitants.
+<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="co">#&gt; st_interpolate_aw assumes attributes are constant over areas of x</span></a>
+<a class="sourceLine" id="cb136-4" data-line-number="4"><span class="co"># show the aggregated result</span></a>
+<a class="sourceLine" id="cb136-5" data-line-number="5">agg_aw<span class="op">$</span>value</a>
+<a class="sourceLine" id="cb136-6" data-line-number="6"><span class="co">#&gt; [1] 19.6 25.7</span></a></code></pre></div>
+<p>In our case it is meaningful to sum up the values of the intersections falling into the aggregating zones since total income is a so-called spatially extensive variable.
+This would be different for spatially intensive variables as for example income per head.
+In this case it is more meaningful to apply an average function when doing the aggregation instead of a sum function.
+To do so, one would only have to set the <code>extensive</code> parameter to <code>FALSE</code>.</p>
 <!-- - `aggregate.sf()` - aggregate an sf object, possibly union-ing geometries -->
 <!-- - disaggregation?? `st_cast()` - https://github.com/edzer/sfr/wiki/migrating -->
 <!-- - `group_by()` + `summarise()` - potential errors -->
 <!-- - ? generalization **rmapsharper** - https://github.com/ateucher/rmapshaper -->
-<!-- `st_union` --></p>
+<!-- `st_union` -->
 </div>
 <div id="distance-relations" class="section level3">
 <h3><span class="header-section-number">4.2.6</span> Distance relations</h3>
