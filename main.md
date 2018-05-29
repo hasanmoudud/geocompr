@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve03b6937183568b39
+preservef5a2e4cc80ff2f88
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2612c98c1bfd49a9
+preserve35044d3fdeb938c2
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3356,8 +3356,9 @@ This is because raster datasets only implicitly store coordinates.
 To derive the coordinate of a specific cell, we have to calculate it using its matrix position and the raster resolution and origin.
 For the processing, however, the geographic position of a cell is barely relevant as long as we make sure that the cell position is still the same after the processing (one-to-one locational correspondence).
 Additionally, if two or more raster datasets share the same extent, projection and resolution, one could treat them as matrices for the processing.
-This is exactly what map algebra is doing.
-First, it checks the headers of the rasters on which to perform any algebraic operation, and only if they correspondent to each other, the processing goes on.
+This is exactly what map algebra is doing in R.
+First, the **raster** package checks the headers of the rasters on which to perform any algebraic operation, and only if they are correspondent to each other, the processing goes on.^[Map algebra operations are also possible with headerless rasters but in this case the user has to make sure that in fact there exists a one-to-one locational correspondence.
+For an example, how to import a headerless raster into R, see this [post](https://stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html).]
 And secondly, map algebra retains the so-called one-to-one locational correspondence.
 This is where it substantially differs from matrix algebra which changes positions when for example multiplying or dividing matrices.
 
@@ -3643,7 +3644,7 @@ Section \@ref(geo-ras) covers geometric transformations on raster objects.
 This involves changing the size and number of the underlying pixels, and assigning them new values.
 It teaches how to change the resolution (also called raster aggregation and disaggregation), the extent and the origin of a raster.
 These operations are especially useful if one would like to align raster datasets from diverse sources.
-Aligned raster objects share the same header information, allowing them to be processed using map algebra operations, described in section \@ref(map-algebra). 
+Aligned raster objects share a one-to-one correspondence between pixels, allowing them to be processed using map algebra operations, described in section \@ref(map-algebra). 
 
 Section \@ref(raster-vector) connects vector and raster objects. 
 It includes raster cropping and masking based on vector data location, raster values extraction using vector objects, and raster-vector conversions.
@@ -6507,7 +6508,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve92a84f45e2b252cf
+preserve25669317a960bff2
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6606,7 +6607,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveedfe289f9812e22f
+preservea461ca1974f3fcf2
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9622,7 +9623,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9564fbad2211b5d5
+preservee215fc7b7fb6a150
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
