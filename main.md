@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-29'
+date: '2018-05-30'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-29 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-30 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve11e7125073ae275e
+preserve5fc230cec51a2019
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservec3e519d03d468e3b
+preserve97987881c352dd5b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4404,7 +4404,7 @@ To demonstrate this, the code below creates `zion_transect`, a straight line goi
 ```r
 zion_transect = cbind(c(-113.2, -112.9), c(37.45, 37.2)) %>%
   st_linestring() %>% 
-  st_sfc() %>% 
+  st_sfc(crs = projection(srtm)) %>% 
   st_sf()
 ```
 
@@ -4415,11 +4415,13 @@ The method demonstrated below provides an 'elevation profile' of the route (the 
 
 
 ```r
-transect = raster::extract(srtm, as(zion_transect, "Spatial"), along = TRUE, cellnumbers = TRUE)
+transect = raster::extract(srtm, as(zion_transect, "Spatial"),
+                           along = TRUE, cellnumbers = TRUE)
 ```
 
 Note the use of `along = TRUE` and `cellnumbers = TRUE` arguments to return cell IDs *along* the path. 
 The result is a list containing a matrix of cell IDs in the first column and elevation values in the second.
+The number of list elements is equal to the number of lines or polygons from which we are extracting values.
 The subsequent code chunk first converts this tricky matrix-in-a-list object into a simple data frame, returns the coordinates associated with each extracted cell and finds the associated distances along the transect (see `?geosphere::distm()` for details):
 
 
@@ -6503,7 +6505,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2c61adcf1b6113de
+preservede9e57984987935d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6602,7 +6604,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedf6d059625d2a549
+preserve6e4f6f08961c31dd
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9629,7 +9631,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve33ebeba2f977abd6
+preserveeeaa2f02ca7de78d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
