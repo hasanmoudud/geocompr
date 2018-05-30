@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefbd7935bbd649b64
+preserved07fc87163225643
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb587b85aba82c4ce
+preserveffc9587eb0c4b553
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6506,7 +6506,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve99213748bb5ce3b1
+preserveaf642cf314e7ca81
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6605,7 +6605,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve296de998cf16041e
+preservecde7433c962dfb06
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6747,7 +6747,7 @@ g1
 </div>
 
 An advantage of **ggplot2** is that it has a strong user-community and many add-on packages.
-Good additional resources can be found in the open source [ggplot2-book](https://github.com/hadley/ggplot2-book) and in the descriptions of the multitude of '**gg**packages' such as **ggrepel** and **tidygraph**.
+Good additional resources can be found in the open source [ggplot2 book](https://github.com/hadley/ggplot2-book) [@wickham_ggplot2_2016] and in the descriptions of the multitude of '**gg**packages' such as **ggrepel** and **tidygraph**.
 
 Another benefit of maps based on **ggplot2** is that they can easily be given a level of interactivity when printed using the function `ggplotly()` from the **plotly** package.
 Try `plotly::ggplotly(g1)` for example, and compare the result with other **plotly** mapping functions described at [blog.cpsievert.me](https://blog.cpsievert.me/2018/03/30/visualizing-geo-spatial-data-with-sf-and-plotly/).
@@ -9632,7 +9632,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8b38355ea3b50869
+preserve572e663645844fa5
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
