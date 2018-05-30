@@ -1031,7 +1031,8 @@ Furthermore, the process of rasterization can help simplify datasets because the
 <p>The <strong>raster</strong> package contains the function <code>rasterize()</code> for doing this work.
 Its first two arguments are <code>x</code>, vector object to be rasterized and <code>y</code>, a ‘template raster’ object defining the extent, resolution and CRS of the output.
 The geographic resolution of the input raster has a major impact on the results: if it is too low (cell size is too large) the result may miss the full geographic variability of the vector data; if it is too high computational times may be excessive.
-There are no simple rules to follow when deciding an appropriate geographic resolution, which is heavily dependent on the intended use of the results.</p>
+There are no simple rules to follow when deciding an appropriate geographic resolution, which is heavily dependent on the intended use of the results.
+Often the target resolution is imposed on the user, for example when the output of rasterization needs to be aligned to the existing raster.</p>
 <p>To demonstrate rasterization in action, we will use a template raster that has the same extent and CRS as the input vector data <code>cycle_hire_osm_projected</code> (a dataset on cycle hire points in London illustrated in Figure <a href="geometric-operations.html#fig:vector-rasterization1">5.20</a>:A) and spatial resolution of 1000 meters:</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">cycle_hire_osm_projected =<span class="st"> </span><span class="kw">st_transform</span>(cycle_hire_osm, <span class="dv">27700</span>)</a>
 <a class="sourceLine" id="cb195-2" data-line-number="2">raster_template =<span class="st"> </span><span class="kw">raster</span>(<span class="kw">extent</span>(cycle_hire_osm_projected), <span class="dt">resolution =</span> <span class="dv">1000</span>,</a>
