@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecdd5fc72a927fa82
+preserve0587b5382edefeb0
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3071,7 +3071,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve55a55bb4c1b25031
+preserve3547bbf413027744
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6493,7 +6493,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveef2add83c75e1ed7
+preservec9558e83a842b35a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6592,7 +6592,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2ad8eabc8990de77
+preserved45818adb0a9ec3c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7111,9 +7111,10 @@ union = run_qgis(alg, INPUT = incongruent, INPUT2 = aggregating_zones,
 #> [1] "C:/Users/pi37pat/AppData/Local/Temp/RtmpcJlnUx/union.shp"
 ```
 
-Note that the QGIS union operation is an intersecting union, and not equivalent to `st_union(incongruent, aggregating_zones)`.
-The output contains empty geometries and multipart polygons.
-Empty geometries can be deleted.
+Note that the QGIS union operation merges the two input layers into one layer by using the intersection and the symmetrical difference of the two input layers (which by the way is also the default when doing a union operation in GRASS and SAGA).
+This is **not** the same as `st_union(incongruent, aggregating_zones)` (see Exercises)!
+The QGIS output contains empty geometries and multipart polygons.
+Empty geometries might lead to problems in subsequent geoprocessing tasks which is why they will be deleted.
 `st_dimension()` returns `NA` if a geometry is empty, and can therefore be used as a filter. 
 
 
@@ -7128,10 +7129,8 @@ This is necessary for the deletion of sliver polygons later on.
 
 ```r
 # multipart polygons to single polygons
-single = lapply(1:nrow(union), function(i) {
-  st_cast(union[i, ], "POLYGON")
-  })
-single = do.call(rbind, single)
+single = st_cast(union, "MULTIPOLYGON") %>%
+  st_cast("POLYGON")
 ```
 
 One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m^^2. 
@@ -9749,7 +9748,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve035590188fa68703
+preserved517b073941b7d15
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

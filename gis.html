@@ -555,19 +555,18 @@ Setting the <code>load_output</code> to <code>TRUE</code> automatically loads th
 <a class="sourceLine" id="cb303-3" data-line-number="3">                 <span class="dt">load_output =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb303-4" data-line-number="4"><span class="co">#&gt; $`OUTPUT`</span></a>
 <a class="sourceLine" id="cb303-5" data-line-number="5"><span class="co">#&gt; [1] &quot;C:/Users/pi37pat/AppData/Local/Temp/RtmpcJlnUx/union.shp&quot;</span></a></code></pre></div>
-<p>Note that the QGIS union operation is an intersecting union, and not equivalent to <code>st_union(incongruent, aggregating_zones)</code>.
-The output contains empty geometries and multipart polygons.
-Empty geometries can be deleted.
+<p>Note that the QGIS union operation merges the two input layers into one layer by using the intersection and the symmetrical difference of the two input layers (which by the way is also the default when doing a union operation in GRASS and SAGA).
+This is <strong>not</strong> the same as <code>st_union(incongruent, aggregating_zones)</code> (see Exercises)!
+The QGIS output contains empty geometries and multipart polygons.
+Empty geometries might lead to problems in subsequent geoprocessing tasks which is why they will be deleted.
 <code>st_dimension()</code> returns <code>NA</code> if a geometry is empty, and can therefore be used as a filter.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="co"># getting rid of empty geometries</span></a>
 <a class="sourceLine" id="cb304-2" data-line-number="2">union =<span class="st"> </span>union[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">st_dimension</span>(union)), ]</a></code></pre></div>
 <p>Secondly, we convert multipart polygons into single part polygons (also known as explode geometries or casting).
 This is necessary for the deletion of sliver polygons later on.</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="co"># multipart polygons to single polygons</span></a>
-<a class="sourceLine" id="cb305-2" data-line-number="2">single =<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(union), <span class="cf">function</span>(i) {</a>
-<a class="sourceLine" id="cb305-3" data-line-number="3">  <span class="kw">st_cast</span>(union[i, ], <span class="st">&quot;POLYGON&quot;</span>)</a>
-<a class="sourceLine" id="cb305-4" data-line-number="4">  })</a>
-<a class="sourceLine" id="cb305-5" data-line-number="5">single =<span class="st"> </span><span class="kw">do.call</span>(rbind, single)</a></code></pre></div>
+<a class="sourceLine" id="cb305-2" data-line-number="2">single =<span class="st"> </span><span class="kw">st_cast</span>(union, <span class="st">&quot;MULTIPOLYGON&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="st">  </span><span class="kw">st_cast</span>(<span class="st">&quot;POLYGON&quot;</span>)</a></code></pre></div>
 <p>One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m^^2.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">single<span class="op">$</span>area =<span class="st"> </span><span class="kw">st_area</span>(single)</a>
 <a class="sourceLine" id="cb306-2" data-line-number="2"><span class="co"># find polygons which are smaller than 25000 m^2</span></a>
