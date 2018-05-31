@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebbb40165c551f29f
+preservecaa3be12b542dba8
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve6fad7b4e970f04ef
+preserve704e50d2eb4ed8d2
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6073,7 +6073,9 @@ Of course, these default values and other aesthetics can be overridden.
 The purpose this section is to show how.
 
 There are two main types of map aesthetics: those that change with the data and those that are constant.
-Unlike **ggplot2** which uses the helper function `aes()` to represent the former, **tmap** layer functions accept aesthetic arguments that are either constant values *or* variable fields.
+Unlike **ggplot2**, which uses the helper function `aes()` to represent variable aesthetics, **tmap** accepts aesthetic arguments that are either variable fields (based on column names) or constant values.^[
+If there is a clash between a fixed value and a column name the column name takes precedence. This can be verified by running the next code chunk after running `nz$red = 1:nrow(nz)`.
+]
 The most commonly used aesthetics for fill and border layers include color, transparency, line width and line type, set with `col`, `alpha`, `lwd`, and `lty` arguments respectively.
 The impact of setting these with fixed values is illustrated in Figure \@ref(fig:tmstatic).
 
@@ -6093,6 +6095,9 @@ tmap_arrange(ma1, ma2, ma3, ma4, ma5, ma6)
 <img src="figures/tmstatic-1.png" alt="The impact of changing commonly used fill and border aesthetics to fixed values." width="576" />
 <p class="caption">(\#fig:tmstatic)The impact of changing commonly used fill and border aesthetics to fixed values.</p>
 </div>
+
+
+
 
 Like base R plots, arguments defining aesthetics can also receive values that vary.
 Unlike the base R code below (which generates the left panel in Figure \@ref(fig:tmcol)), **tmap** aesthetic arguments will not accept a numeric vector:
@@ -6512,7 +6517,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea31b2884079a635f
+preservea465c5b46a9986c9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6611,7 +6616,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4ebca6a7e4f222ea
+preserve5c98e1ffa0663706
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9638,7 +9643,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve2621b4835f9dbcc8
+preserve1ce4d3635dc36fc3
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
