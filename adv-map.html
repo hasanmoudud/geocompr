@@ -965,16 +965,19 @@ In <strong>shiny</strong> apps these are often split into <code>ui.R</code> (sho
 
 <p>Before considering large apps it is worth seeing a minimal example, named ‘lifeApp’, in action.<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a>
 The code below defines and launches — with the command <code>shinyApp()</code> — a lifeApp, which provides an interactive slider allowing users to make countries appear with progressively lower levels of life expectancy (see Figure <a href="adv-map.html#fig:lifeApp">8.23</a>):</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1">ui =<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb290-2" data-line-number="2">  <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;life&quot;</span>, <span class="st">&quot;Life expectancy&quot;</span>, <span class="dv">49</span>, <span class="dv">84</span>, <span class="dt">value =</span> <span class="dv">80</span>),</a>
-<a class="sourceLine" id="cb290-3" data-line-number="3">      <span class="kw">leafletOutput</span>(<span class="dt">outputId =</span> <span class="st">&quot;map&quot;</span>)</a>
-<a class="sourceLine" id="cb290-4" data-line-number="4">  )</a>
-<a class="sourceLine" id="cb290-5" data-line-number="5">server =<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb290-6" data-line-number="6">  output<span class="op">$</span>map =<span class="st"> </span><span class="kw">renderLeaflet</span>({</a>
-<a class="sourceLine" id="cb290-7" data-line-number="7">    <span class="kw">leaflet</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">addProviderTiles</span>(<span class="st">&quot;OpenStreetMap.BlackAndWhite&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb290-8" data-line-number="8"><span class="st">      </span><span class="kw">addPolygons</span>(<span class="dt">data =</span> world[world<span class="op">$</span>lifeExp <span class="op">&lt;</span><span class="st"> </span>input<span class="op">$</span>life, ])})</a>
-<a class="sourceLine" id="cb290-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb290-10" data-line-number="10"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="kw">library</span>(shiny)    <span class="co"># for shiny apps</span></a>
+<a class="sourceLine" id="cb290-2" data-line-number="2"><span class="kw">library</span>(leaflet)  <span class="co"># renderLeaflet function</span></a>
+<a class="sourceLine" id="cb290-3" data-line-number="3"><span class="kw">library</span>(spData)   <span class="co"># loads the world dataset </span></a>
+<a class="sourceLine" id="cb290-4" data-line-number="4">ui =<span class="st"> </span><span class="kw">fluidPage</span>(</a>
+<a class="sourceLine" id="cb290-5" data-line-number="5">  <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;life&quot;</span>, <span class="st">&quot;Life expectancy&quot;</span>, <span class="dv">49</span>, <span class="dv">84</span>, <span class="dt">value =</span> <span class="dv">80</span>),</a>
+<a class="sourceLine" id="cb290-6" data-line-number="6">      <span class="kw">leafletOutput</span>(<span class="dt">outputId =</span> <span class="st">&quot;map&quot;</span>)</a>
+<a class="sourceLine" id="cb290-7" data-line-number="7">  )</a>
+<a class="sourceLine" id="cb290-8" data-line-number="8">server =<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
+<a class="sourceLine" id="cb290-9" data-line-number="9">  output<span class="op">$</span>map =<span class="st"> </span><span class="kw">renderLeaflet</span>({</a>
+<a class="sourceLine" id="cb290-10" data-line-number="10">    <span class="kw">leaflet</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">addProviderTiles</span>(<span class="st">&quot;OpenStreetMap.BlackAndWhite&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-11" data-line-number="11"><span class="st">      </span><span class="kw">addPolygons</span>(<span class="dt">data =</span> world[world<span class="op">$</span>lifeExp <span class="op">&lt;</span><span class="st"> </span>input<span class="op">$</span>life, ])})</a>
+<a class="sourceLine" id="cb290-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb290-13" data-line-number="13"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:lifeApp"></span>
 <img src="https://user-images.githubusercontent.com/1825120/39690606-8f9400c8-51d2-11e8-84d7-f4a66a477d2a.png" alt="Screenshot showing minimal example of a web mapping application created with **shiny**."  />
 <p class="caption">
