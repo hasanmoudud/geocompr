@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecaa3be12b542dba8
+preserve1bf767ea1188a831
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -623,6 +623,12 @@ There is more to CRSs, as described in sections \@ref(crs-intro) and \@ref(repro
 <p class="caption">(\#fig:vectorplots)Illustration of vector (point) data in which location of London (the red X) is represented with reference to an origin (the blue circle). The left plot represents a geographic CRS with an origin at 0° longitude and latitude. The right plot represents a projected CRS with an origin located in the sea west of the South West Peninsula.</p>
 </div>
 
+**sf** is a package providing a class system for geographic vector data.
+Not only does it supercede **sp** it also provides a consistent command-line interface to GEOS and GDAL, superceding **rgeos** and **rgdal** (described in section \@ref(the-history-of-r-spatial)).
+<!-- Really? not necessary so removed (RL) -->
+<!-- In theory this should make **sf** faster than **sp**/**rgdal**/**rgeos**. -->
+This section introduces **sf** classes in preparation for subsequent chapters (Chapters \@ref(geometric-operations) and \@ref(read-write) cover the GEOS and GDAL interface respectively).
+
 
 <!-- Commented out: not really necessary here - keeping as could be useful elsewhere: -->
 <!-- In mathematical notation these points are typically represented as numbers separated by commas and enclosed by a pair of brackets:  -->
@@ -782,7 +788,10 @@ world_sf = st_as_sf(world_sp, "sf")
 
 ### Basic map making {#basic-map}
 
-You can quickly create basic maps in **sf** with the base `plot()` function. By default, **sf** creates a multi-panel plot (like **sp**'s `spplot()`), one sub-plot for each variable (see left-hand image in Figure \@ref(fig:sfplot)). 
+Basic maps are created in **sf** with `plot()`.
+By default this creates a multi-panel plot (like **sp**'s `spplot()`), one sub-plot for each variable of the object, as illustrated in the left-hand panel in Figure \@ref(fig:sfplot).
+A legend or 'key' with a continuous color is produced if the object to be plotted has a single variable (see the right-hand panel).
+Colors can also be set with `col = `, although this will not create a continuous palette or a legend. 
 
 
 ```r
@@ -795,10 +804,11 @@ plot(world["pop"])
 <p class="caption">(\#fig:sfplot)Plotting with sf, with multiple variables (left) and a single variable (right).</p>
 </div>
 
-As with **sp**, you can add further layers to your maps using the `add = TRUE`-argument of the `plot()` function .^[In
-fact, when you `plot()` an **sf** object, R is calling `sf:::plot.sf()` behind the scenes.
-`plot()` is a generic method that behaves differently depending on the class of object being plotted.]
-To illustrate this, and prepare for content covered in chapters \@ref(attr) and \@ref(spatial-operations) on attribute and spatial data operations, we will subset and combine countries in the `world` object, which creates a single object representing Asia:
+Plots are added as layers to existing images by setting `add = TRUE`.^[
+`plot()`ing of **sf** objects uses `sf:::plot.sf()` behind the scenes.
+`plot()` is a generic method that behaves differently depending on the class of object being plotted.
+]
+To demonstrate this, and to provide a taster of content covered in chapters \@ref(attr) and \@ref(spatial-operations) on attribute and spatial data operations, the subsequent code chunk combines countries in Asia:
 
 
 ```r
@@ -807,7 +817,8 @@ asia = st_union(asia)
 ```
 
 We can now plot the Asian continent over a map of the world.
-Note that this only works when the initial plot has only one facet and when `reset` (which resets plot settings) is set to `FALSE`:
+Note that the first plot must only have one facet for `add = TRUE` to work.
+If the first plot has a key, `reset = FALSE` must be used:
 
 
 ```r
@@ -820,10 +831,9 @@ plot(asia, add = TRUE, col = "red")
 <p class="caption">(\#fig:asia)A plot of Asia added as a layer on top of countries worldwide.</p>
 </div>
 
-This can be very useful for quickly checking the geographic correspondence between two or more layers: 
+Adding layers in this way can be used to verify the geographic correspondence between layers: 
 the `plot()` function is fast to execute and requires few lines of code, but does not create interactive maps with a wide range of options.
-For more advanced map making we recommend using a dedicated visualization package such as **tmap**, **ggplot2**, **mapview**, or **leaflet**.
-<!-- TODO: cross reference advanced mapping chapter -->
+For more advanced map making we recommend using dedicated visualization packages such as **tmap** (see Chapter \@ref(adv-map)).
 
 <!-- 
 - plot() function 
@@ -837,35 +847,10 @@ Sorry for commenting on this again but just to clarify africa[0] selects zero co
 
 ### Base plot arguments {#base-args}
 
-**sf** simplifies spatial data objects compared with **sp** and provides a near-direct interface to GDAL and GEOS C++ functions.
-In theory this should make **sf** faster than **sp**/**rgdal**/**rgeos**.
-This section introduces **sf** classes in preparation for subsequent chapters which deal with vector data (in particular Chapters \@ref(spatial-operations) and \@ref(reproj-geo-data)).
-
-As a final exercise, we will see one way of how to do a spatial overlay in **sf**.
-First, we convert the countries of the world into centroids, and then subset those in Asia. Finally, the `summary` command tells us how many centroids (countries) are part of Asia (43) and how many are not (134).
-
-
-```r
-world_centroids = st_centroid(world)
-sel_asia = st_intersects(world_centroids, asia, sparse = FALSE)
-#> although coordinates are longitude/latitude, st_intersects assumes that they are planar
-```
-
-
-```r
-summary(sel_asia)
-#>      V1         
-#>  Mode :logical  
-#>  FALSE:134      
-#>  TRUE :43
-```
-
-Note: `st_intersects()` uses [GEOS](https://trac.osgeo.org/geos/) in the background for the spatial overlay operation (see also Chapter \@ref(spatial-operations)).
-
-Since **sf**'s `plot()` function builds on base plotting methods, you may also use its many optional arguments (see `?graphics::plot` and `?par`).
-This provides many options, but may not be the most concise way to generate maps for publication (see Chapter \@ref(adv-map)).
+Since **sf**'s `plot()` function builds on base plotting methods, it has many optional arguments (see `?graphics::plot` and `?par`).
+This may not be the most concise way to generate maps for publication, as we will see in Chapter \@ref(adv-map), but it is worth learning some base plotting arguments for future reference.
 A simple illustration of the flexibility of `plot()` is provided in Figure \@ref(fig:contpop), which adds circles representing population size to a map of the world.
-A basic version of the map can be created with the following commands (see exercises in section \@ref(ex2) and the script [`02-contplot`](https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R) in the GitHub repo for further details):
+A basic version of the map can be created with the following commands (see exercises in section \@ref(ex2) [`02-contplot.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R) in the book's GitHub repo for details):
 
 
 ```r
@@ -878,15 +863,6 @@ plot(st_geometry(world_centroids), add = TRUE, cex = cex)
 <img src="figures/contpop-1.png" alt="Country continents (represented by fill color) and 2015 populations (represented by points, with point area proportional to population) worldwide." width="576" />
 <p class="caption">(\#fig:contpop)Country continents (represented by fill color) and 2015 populations (represented by points, with point area proportional to population) worldwide.</p>
 </div>
-
-<!-- More appropriate for subsequent chapters. -->
-<!-- This shows that there are 43 countries in Asia -->
-<!-- We can check if they are the same countries as follows: -->
-
-<!-- ```{r} -->
-<!-- africa_centroids2 = world_centroids[sel_africa, ] -->
-<!-- identical(africa_centroids, africa_centroids2) -->
-<!-- ``` -->
 
 ### Simple feature classes {#sf-classes}
 
@@ -3095,7 +3071,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve704e50d2eb4ed8d2
+preservea27d70d27acb0934
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6517,7 +6493,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea465c5b46a9986c9
+preservef64a42556c34b1fc
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6616,7 +6592,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5c98e1ffa0663706
+preservef201f8ffaba59470
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9643,7 +9619,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve1ce4d3635dc36fc3
+preservee2574e3a99a7d21b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
