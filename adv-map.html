@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-05-30">
+<meta name="date" content="2018-05-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -440,27 +440,33 @@ It accepts a wider range of spatial classes (including <code>raster</code> objec
 This section teaches how to make static maps with <strong>tmap</strong>, emphasizing the important aesthetic and layout options.</p>
 <div id="tmap-basics" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> tmap basics</h3>
-<p><strong>tmap</strong> generates maps with sensible defaults for a wide range of spatial objects with <code>tm_shape()</code> (which accepts raster and vector objects), followed by one or more layer elements such as <code>tm_fill()</code> and <code>tm_dots()</code>.
-These functions are used singularly and in combination in the code chunk below, which generates the maps presented in Figure <a href="adv-map.html#fig:tmshape">8.1</a>:</p>
+<p><strong>tmap</strong> creates maps with sensible defaults for a wide range of spatial objects.
+The basic building block is <code>tm_shape()</code> (which accepts raster and vector objects), followed by one or more layer elements such as <code>tm_fill()</code> and <code>tm_dots()</code>.
+This layering is demonstrated in the chunk below, which generates the maps presented in Figure <a href="adv-map.html#fig:tmshape">8.1</a>:</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="co"># Add fill layer to nz shape</span></a>
-<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>() </a>
-<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="co"># Add border layer to nz shape</span></a>
-<a class="sourceLine" id="cb259-4" data-line-number="4"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() </a>
-<a class="sourceLine" id="cb259-5" data-line-number="5"><span class="co"># Add fill and border layers to nz shape</span></a>
-<a class="sourceLine" id="cb259-6" data-line-number="6"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() </a></code></pre></div>
+<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="kw">tm_shape</span>(nz) <span class="op">+</span></a>
+<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="st">  </span><span class="kw">tm_fill</span>() </a>
+<a class="sourceLine" id="cb259-4" data-line-number="4"><span class="co"># Add border layer to nz shape</span></a>
+<a class="sourceLine" id="cb259-5" data-line-number="5"><span class="kw">tm_shape</span>(nz) <span class="op">+</span></a>
+<a class="sourceLine" id="cb259-6" data-line-number="6"><span class="st">  </span><span class="kw">tm_borders</span>() </a>
+<a class="sourceLine" id="cb259-7" data-line-number="7"><span class="co"># Add fill and border layers to nz shape</span></a>
+<a class="sourceLine" id="cb259-8" data-line-number="8"><span class="kw">tm_shape</span>(nz) <span class="op">+</span></a>
+<a class="sourceLine" id="cb259-9" data-line-number="9"><span class="st">  </span><span class="kw">tm_fill</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb259-10" data-line-number="10"><span class="st">  </span><span class="kw">tm_borders</span>() </a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:tmshape"></span>
 <img src="figures/tmshape-1.png" alt="New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions." width="576" />
 <p class="caption">
 Figure 8.1: New Zealand’s shape plotted with fill (left), border (middle) and fill <em>and</em> border (right) layers added using <strong>tmap</strong> functions.
 </p>
 </div>
-<p>The object passed to <code>tm_shape()</code> in this case is <code>nz</code>, which represents the regions of New Zealand.
+<p>The object passed to <code>tm_shape()</code> in this case is <code>nz</code>, an <code>sf</code> object representing the regions of New Zealand (see section <a href="spatial-class.html#intro-sf">2.1.1</a> for more on <code>sf</code> objects).
 Layers are added to represent <code>nz</code> visually, with <code>tm_fill()</code> and <code>tm_borders()</code> creating shaded areas (left panel) and border outlines (middle panel) in Figure <a href="adv-map.html#fig:tmshape">8.1</a>, respectively.</p>
 <p>This is an intuitive approach to map making:
 the common task of <em>adding</em> new layers is undertaken by the addition operator <code>+</code>, followed by <code>tm_*()</code>.
-The asterisk (*) refers to a wide range of layer types which have self-explanatory names including <code>fill</code>, <code>borders</code> (demonstrated above), <code>bubbles</code>, <code>text</code> and <code>raster</code> (see `<code>?</code>tmap-element``` for a list of available elements).
-This ‘layering’ is illustrated in the right panel of Figure <a href="adv-map.html#fig:tmshape">8.1</a>, which shows the result of adding a border <em>on top of</em> the fill layer.
-The order in which layers are added is the order in which they are rendered.</p>
+The asterisk (*) refers to a wide range of layer types which have self-explanatory names including <code>fill</code>, <code>borders</code> (demonstrated above), <code>bubbles</code>, <code>text</code> and <code>raster</code>
+(see the help page <a href="https://www.rdocumentation.org/packages/tmap/versions/2.0/topics/tmap-element"><code>tmap-element</code></a> for a full list).
+This layering is illustrated in the right panel of Figure <a href="adv-map.html#fig:tmshape">8.1</a>, the result of adding a border <em>on top of</em> the fill layer:
+note the <code>tm_borders()</code> call <em>after</em> <code>tm_fill() +</code> in the previous code chunk.</p>
 
 <div class="rmdnote">
 <code>qtm()</code> is a handy function for <strong>q</strong>uickly creating <strong>t</strong>map <strong>m</strong>aps (hence the snappy name).

@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-05-30'
+date: '2018-05-31'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-05-30 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-05-31 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve341c04a568d875de
+preservebbb40165c551f29f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3095,7 +3095,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9960628b5734ee32
+preserve6fad7b4e970f04ef
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5963,17 +5963,22 @@ This section teaches how to make static maps with **tmap**, emphasizing the impo
 
 ### tmap basics
 
-**tmap** generates maps with sensible defaults for a wide range of spatial objects with `tm_shape()` (which accepts raster and vector objects), followed by one or more layer elements such as `tm_fill()` and `tm_dots()`.
-These functions are used singularly and in combination in the code chunk below, which generates the maps presented in Figure \@ref(fig:tmshape):
+**tmap** creates maps with sensible defaults for a wide range of spatial objects.
+The basic building block is `tm_shape()` (which accepts raster and vector objects), followed by one or more layer elements such as `tm_fill()` and `tm_dots()`.
+This layering is demonstrated in the chunk below, which generates the maps presented in Figure \@ref(fig:tmshape):
 
 
 ```r
 # Add fill layer to nz shape
-tm_shape(nz) + tm_fill() 
+tm_shape(nz) +
+  tm_fill() 
 # Add border layer to nz shape
-tm_shape(nz) + tm_borders() 
+tm_shape(nz) +
+  tm_borders() 
 # Add fill and border layers to nz shape
-tm_shape(nz) + tm_fill() + tm_borders() 
+tm_shape(nz) +
+  tm_fill() +
+  tm_borders() 
 ```
 
 <div class="figure" style="text-align: center">
@@ -5981,14 +5986,15 @@ tm_shape(nz) + tm_fill() + tm_borders()
 <p class="caption">(\#fig:tmshape)New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions.</p>
 </div>
 
-The object passed to `tm_shape()` in this case is `nz`, which represents the regions of New Zealand.
+The object passed to `tm_shape()` in this case is `nz`, an `sf` object representing the regions of New Zealand (see section \@ref(intro-sf) for more on `sf` objects).
 Layers are added to represent `nz` visually, with `tm_fill()` and `tm_borders()` creating shaded areas (left panel) and border outlines (middle panel) in Figure \@ref(fig:tmshape), respectively.
 
 This is an intuitive approach to map making:
 the common task of *adding* new layers is undertaken by the addition operator `+`, followed by `tm_*()`.
-The asterisk (\*) refers to a wide range of layer types which have self-explanatory names including `fill`, `borders` (demonstrated above), `bubbles`, `text` and `raster`  (see ``?`tmap-element``` for a list of available elements).
-This 'layering' is illustrated in the right panel of Figure \@ref(fig:tmshape), which shows the result of adding a border *on top of* the fill layer.
-The order in which layers are added is the order in which they are rendered.
+The asterisk (\*) refers to a wide range of layer types which have self-explanatory names including `fill`, `borders` (demonstrated above), `bubbles`, `text` and `raster`
+(see the help page [`tmap-element`](https://www.rdocumentation.org/packages/tmap/versions/2.0/topics/tmap-element) for a full list).
+This layering is illustrated in the right panel of Figure \@ref(fig:tmshape), the result of adding a border *on top of* the fill layer:
+note the `tm_borders()` call *after* `tm_fill() +` in the previous code chunk.
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">`qtm()` is a handy function for **q**uickly creating **t**map **m**aps (hence the snappy name).
 It is concise and provides a good default visualization in many cases:
@@ -6506,7 +6512,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea87d832da4dd29a9
+preservea31b2884079a635f
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6605,7 +6611,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6565881671ec3bdf
+preserve4ebca6a7e4f222ea
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9632,7 +9638,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve3e4c7c5842038e06
+preserve2621b4835f9dbcc8
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
