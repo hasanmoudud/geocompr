@@ -654,23 +654,23 @@ A point is simply a coordinate in 2D, 3D or 4D space (see <code>vignette(&quot;s
 <ul>
 <li><code>POINT (5 2)</code></li>
 </ul>
-<p><img src="figures/point-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="figures/point-1.png" width="30%" style="display: block; margin: auto;" /></p>
 <p>A linestring is a sequence of points with a straight line connecting the points, for example:</p>
 <ul>
 <li><code>LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)</code></li>
 </ul>
-<p><img src="figures/linestring-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="figures/linestring-1.png" width="30%" style="display: block; margin: auto;" /></p>
 <p>A polygon is a sequence of points that form a closed, non-intersecting ring.
 Closed means that the first and the last point of a polygon have the same coordinates.
 By definition, a polygon has one exterior boundary (outer ring) and can have zero or more interior boundaries (inner rings), also known as holes.</p>
 <ul>
 <li>Polygon without a hole - <code>POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))</code></li>
 </ul>
-<p><img src="figures/polygon-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="figures/polygon-1.png" width="30%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Polygon with one hole - <code>POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))</code></li>
 </ul>
-<p><img src="figures/polygon_hole-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="figures/polygon_hole-1.png" width="30%" style="display: block; margin: auto;" /></p>
 <p>So far we have created geometries with only one geometric entity per feature.
 However, <strong>sf</strong> also allows multiple geometries to exist within a single feature (hence the term ‘geometry collection’) using “multi” version of each geometry type:</p>
 <ul>
@@ -683,7 +683,7 @@ However, <strong>sf</strong> also allows multiple geometries to exist within a s
 <ul>
 <li>Geometry collection - <code>GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)))</code></li>
 </ul>
-<p><img src="figures/geom_collection-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="figures/geom_collection-1.png" width="30%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sfg" class="section level4">
 <h4><span class="header-section-number">2.1.5.2</span> Simple feature geometry (sfg) objects</h4>
