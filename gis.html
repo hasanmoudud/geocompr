@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-03">
+<meta name="date" content="2018-06-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -447,15 +447,15 @@ R was not originally intended to be a GIS.
 This makes the breadth of R’s geospatial capabilities astonishing to many who are unaware of its ability to replicate established GIS software for many operations on spatial data.
 There are some domains where R can now outperform desktop GIS including spatial statistical modeling, online interactive visualization and the generation of animated or faceted maps.</p>
 <p>Instead of implementing existing GIS algorithms in R, it makes sense to avoid ‘reinventing the wheel’ by taking advantage of R’s ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work).
-Using compiled code for new geoprocessing functionality (particularly with the help of the excellent <strong>Rcpp</strong> package) could form the basis of new R packages, building on the success of <strong>sf</strong> <span class="citation">(<span class="citeproc-not-found" data-reference-id="pebesma_simple_2018"><strong>???</strong></span>)</span>.
+Using compiled code for new geoprocessing functionality (particularly with the help of the excellent <strong>Rcpp</strong> package) could form the basis of new R packages, building on the success of <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a><a href="#ref-pebesma_simple_2018">b</a>)</span>.
 However, there is already a wide range of algorithms that can be accessed via R’s interfaces to dedicated GIS software.
 It makes sense to understand these before moving to develop your own optimized algorithms.
-For this reason this chapter focuses on ‘bridges’ to the mature GIS products <a href="http://qgis.org/">QGIS</a> (via the package <strong>RQGIS</strong>), <a href="http://www.saga-gis.org/">SAGA</a> (<strong>RSAGA</strong>) and <a href="https://grass.osgeo.org/">GRASS</a> (<strong>rgrass7</strong>) from within R (<a href="gis.html#tab:gis-comp">9.1</a>).
+For this reason this chapter focuses on ‘bridges’ to the mature GIS products <a href="http://qgis.org/">QGIS</a> (via the package <strong>RQGIS</strong>), <a href="http://www.saga-gis.org/">SAGA</a> (<strong>RSAGA</strong>) and <a href="https://grass.osgeo.org/">GRASS</a> (<strong>rgrass7</strong>) from within R (Table <a href="gis.html#tab:gis-comp">9.1</a>).
 Obviously, we here focus on open-source software solutions, however, there is also a bridge to the commercial GIS leader <a href="https://www.arcgis.com">ArcGIS</a> through the <strong>RPyGeo</strong> package.
 And the so-called <a href="https://github.com/R-ArcGIS/r-bridge">R-ArcGIS bridge</a> allows to use R from within ArcGIS.
 As a final note, we would like to point out that aside from interfaces to desktop GIS there are also interfaces to geospatial libraries such as <a href="www.gdal.org">GDAL</a> (<strong>gdalUtils</strong>, <strong>rgdal</strong>, <strong>sf</strong>) and <a href="https://trac.osgeo.org/geos/">GEOS</a> (<strong>rgeos</strong>, <strong>sf</strong>).
 By the end of the chapter you should have a working knowledge of the functionality such packages open up, and a more nuanced understanding of the ‘CLI vs GUI’ debate.
-As mentioned in chapter <a href="intro.html#intro">1</a>, doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science.</p>
+As mentioned in Chapter <a href="intro.html#intro">1</a>, doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science.</p>
 <table>
 <caption><span id="tab:gis-comp">Table 9.1: </span>Comparison between three open-source GIS. Hybrid refers to the support of vector and raster operations.</caption>
 <thead>
@@ -497,8 +497,8 @@ Its main advantage lies in the fact that it provides a unified interface to seve
 This means that you have access to GDAL/OGR, GRASS and SAGA through QGIS <span class="citation">(Graser and Olaya <a href="#ref-graser_processing:_2015">2015</a>)</span>.
 To run all these geoalgorithms (frequently more than 1000 depending on your set up) outside of the QGIS GUI, QGIS provides a Python API.
 <strong>RQGIS</strong> establishes a tunnel to this Python API through the <strong>reticulate</strong> package.
-Basically, functions <code>set_env</code> and <code>open_app</code> are doing this.
-Note that it is optional to run <code>set_env</code> and <code>open_app</code> since all functions depending on their output will run them automatically if needed.
+Basically, functions <code>set_env()</code> and <code>open_app()</code> are doing this.
+Note that it is optional to run <code>set_env()</code> and <code>open_app()</code> since all functions depending on their output will run them automatically if needed.
 Before running <strong>RQGIS</strong> you have to make sure to have installed QGIS and all its (third-party) dependencies such as SAGA and GRASS.
 To help you with the installation process, please follow the steps as detailed in <code>vignette(&quot;install_guide&quot;, package = &quot;RQGIS&quot;)</code> for several platforms (Windows, Linux, MacOS).
 Please install the long-term release of QGIS, i.e. 2.18, since <strong>RQGIS</strong> so far does not support QGIS 3.</p>
@@ -515,9 +515,9 @@ Please install the long-term release of QGIS, i.e. 2.18, since <strong>RQGIS</s
 <a class="sourceLine" id="cb299-11" data-line-number="11"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb299-12" data-line-number="12"><span class="co">#&gt; $python_plugins</span></a>
 <a class="sourceLine" id="cb299-13" data-line-number="13"><span class="co">#&gt; [1] &quot;C:/OSGeo4W64/apps/qgis-ltr/python/plugins&quot;</span></a></code></pre></div>
-<p>Leaving the <code>path</code>-argument of <code>set_env</code> unspecified will search the computer for a QGIS installation.
+<p>Leaving the <code>path</code>-argument of <code>set_env()</code> unspecified will search the computer for a QGIS installation.
 Hence, it is faster to specify explicitly the path to your QGIS installation.
-Subsequently, <code>open_app</code> sets all paths necessary to run QGIS from within R, and finally creates a so-called QGIS custom application <a href="http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications" class="uri">http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications</a>.</p>
+Subsequently, <code>open_app</code> sets all paths necessary to run QGIS from within R, and finally creates a so-called QGIS custom application (see <a href="http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications" class="uri">http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications</a>).</p>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="kw">open_app</span>()</a></code></pre></div>
 <p>We are now ready for some QGIS geoprocessing from within R!</p>
 <p>Unioning polygons often produces so-called sliver polygons.
@@ -529,15 +529,15 @@ Both polygon datasets are available in the <strong>spData</strong> package, and 
 <a class="sourceLine" id="cb301-3" data-line-number="3">incongruent =<span class="st"> </span><span class="kw">st_transform</span>(incongruent, <span class="dv">4326</span>)</a>
 <a class="sourceLine" id="cb301-4" data-line-number="4">aggregating_zones =<span class="st"> </span><span class="kw">st_transform</span>(aggregating_zones, <span class="dv">4326</span>)</a></code></pre></div>
 <p>First, we will need a QGIS geoalgorithm that unions polygons.
-<code>find_algorithms</code> searches all QGIS geoalgorithms with the help of regular expressions.
+<code>find_algorithms()</code> searches all QGIS geoalgorithms with the help of regular expressions.
 Assuming that the short description of the function contains the word “union”, we can run:</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">find_algorithms</span>(<span class="st">&quot;union&quot;</span>, <span class="dt">name_only =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb302-2" data-line-number="2"><span class="co">#&gt; [1] &quot;qgis:union&quot;        &quot;saga:fuzzyunionor&quot; &quot;saga:union&quot;   </span></a></code></pre></div>
 <p>If you also want to have a short description for each geoalgorithm, set the <code>name_only</code>-parameter to <code>FALSE</code>.
 If one has no clue at all what the name of a geoalgorithm might be, one can leave the <code>search_term</code>-argument empty which will return a list of all available QGIS geoalgorithms.</p>
 <p>The next step is to find out how <code>qgis:union</code> can be used.
-<code>open_help</code> opens the online help of the geoalgorithm in question.
-<code>get_usage</code> returns all function parameters and default values.</p>
+<code>open_help()</code> opens the online help of the geoalgorithm in question.
+<code>get_usage()</code> returns all function parameters and default values.</p>
 <div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1">alg =<span class="st"> &quot;qgis:union&quot;</span></a>
 <a class="sourceLine" id="cb303-2" data-line-number="2"><span class="kw">open_help</span>(alg)</a>
 <a class="sourceLine" id="cb303-3" data-line-number="3"><span class="kw">get_usage</span>(alg)</a>
@@ -546,8 +546,8 @@ If one has no clue at all what the name of a geoalgorithm might be, one can leav
 <a class="sourceLine" id="cb303-6" data-line-number="6"><span class="co">#&gt;  INPUT2 &lt;ParameterVector&gt;</span></a>
 <a class="sourceLine" id="cb303-7" data-line-number="7"><span class="co">#&gt;  OUTPUT &lt;OutputVector&gt;</span></a></code></pre></div>
 <p>Finally, we can let QGIS do the work.
-Note that the workhorse function <code>run_qgis</code> accepts R named arguments, i.e., you can specify the parameter names as returned by <code>get_usage</code> as you would do in any other regular R function.
-Note also that <code>run_qgis</code> accepts spatial objects residing in R’s global environment as input (here: <code>aggregating_zones</code> and <code>incongruent</code>).
+Note that the workhorse function <code>run_qgis()</code> accepts R named arguments, i.e., you can specify the parameter names as returned by <code>get_usage()</code> in <code>run_qgis()</code> as you would do in any other regular R function.
+Note also that <code>run_qgis()</code> accepts spatial objects residing in R’s global environment as input (here: <code>aggregating_zones</code> and <code>incongruent</code>).
 But of course, you could also specify paths to spatial vector files stored on disk.
 Setting the <code>load_output</code> to <code>TRUE</code> automatically loads the QGIS output as an <strong>sf</strong>-object into R.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">union =<span class="st"> </span><span class="kw">run_qgis</span>(alg, <span class="dt">INPUT =</span> incongruent, <span class="dt">INPUT2 =</span> aggregating_zones, </a>
@@ -567,12 +567,12 @@ This is necessary for the deletion of sliver polygons later on.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="co"># multipart polygons to single polygons</span></a>
 <a class="sourceLine" id="cb306-2" data-line-number="2">single =<span class="st"> </span><span class="kw">st_cast</span>(union, <span class="st">&quot;MULTIPOLYGON&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb306-3" data-line-number="3"><span class="st">  </span><span class="kw">st_cast</span>(<span class="st">&quot;POLYGON&quot;</span>)</a></code></pre></div>
-<p>One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m^^2.</p>
+<p>One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m<sup>2</sup>.</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">single<span class="op">$</span>area =<span class="st"> </span><span class="kw">st_area</span>(single)</a>
 <a class="sourceLine" id="cb307-2" data-line-number="2"><span class="co"># find polygons which are smaller than 25000 m^2</span></a>
 <a class="sourceLine" id="cb307-3" data-line-number="3">x =<span class="st"> </span><span class="dv">25000</span></a>
 <a class="sourceLine" id="cb307-4" data-line-number="4"><span class="kw">units</span>(x) =<span class="st"> &quot;m^2&quot;</span></a>
-<a class="sourceLine" id="cb307-5" data-line-number="5">sub =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(mp, area <span class="op">&lt;</span><span class="st"> </span>x)</a>
+<a class="sourceLine" id="cb307-5" data-line-number="5">sub =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(single, area <span class="op">&lt;</span><span class="st"> </span>x)</a>
 <a class="sourceLine" id="cb307-6" data-line-number="6"><span class="kw">plot</span>(single<span class="op">$</span>geometry, <span class="dt">col =</span> <span class="ot">NA</span>)</a>
 <a class="sourceLine" id="cb307-7" data-line-number="7"><span class="kw">plot</span>(sub<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</a></code></pre></div>
 <p>The next step is to find a function that makes the slivers disappear.
@@ -605,9 +605,9 @@ Assuming the function or its short description contains the word “sliver”, w
 <a class="sourceLine" id="cb309-23" data-line-number="23"><span class="co">#&gt;  1 - Smallest Area</span></a>
 <a class="sourceLine" id="cb309-24" data-line-number="24"><span class="co">#&gt;  2 - Largest common boundary</span></a></code></pre></div>
 <p>Conveniently, the user has not to specify each single parameter.
-In case a parameter is left unspecified, <code>run_qgis</code> will automatically use the corresponding default value as argument if available.
+In case a parameter is left unspecified, <code>run_qgis()</code> will automatically use the corresponding default value as argument if available.
 To find out about the default values, run <code>get_args_man()</code>.</p>
-<p>To finally get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m^^2 should be joined to that neighboring polygon with the largest area.</p>
+<p>To finally get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m<sup>2</sup> should be joined to that neighboring polygon with the largest area.</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1">clean =<span class="st"> </span><span class="kw">run_qgis</span>(<span class="st">&quot;qgis:eliminatesliverpolygons&quot;</span>,</a>
 <a class="sourceLine" id="cb310-2" data-line-number="2">                 <span class="dt">INPUT =</span> single,</a>
 <a class="sourceLine" id="cb310-3" data-line-number="3">                 <span class="dt">ATTRIBUTE =</span> <span class="st">&quot;area&quot;</span>,</a>
@@ -641,7 +641,8 @@ Usually, <code>rsaga.env()</code> will detect SAGA automatically by searching se
 <a class="sourceLine" id="cb311-2" data-line-number="2"><span class="kw">rsaga.env</span>()</a></code></pre></div>
 <p>However, it is possible to have ‘hidden’ SAGA in a location <code>rsaga.env()</code> does not search automatically.
 <code>linkSAGA</code> searches your computer for a valid SAGA installation.
-If it finds one, it adds the newest version to the PATH environment variable thereby making sure that <code>rsaga.env()</code> runs successfully.</p>
+If it finds one, it adds the newest version to the PATH environment variable thereby making sure that <code>rsaga.env()</code> runs successfully.
+It is only necessary to run the next code chunk if <code>rsaga.env()</code> was unsuccessful (see previous code chunk).</p>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">library</span>(link2GI)</a>
 <a class="sourceLine" id="cb312-2" data-line-number="2">saga =<span class="st"> </span><span class="kw">linkSAGA</span>()</a>
 <a class="sourceLine" id="cb312-3" data-line-number="3"><span class="kw">rsaga.env</span>()</a></code></pre></div>
@@ -764,16 +765,16 @@ Additionally, we specify where to store the geodatabase (gisDbase), name the loc
 <a class="sourceLine" id="cb324-6" data-line-number="6">          <span class="dt">e =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;xmax&quot;</span>]), <span class="dt">w =</span> <span class="kw">as.character</span>(b_box[<span class="st">&quot;xmin&quot;</span>]), </a>
 <a class="sourceLine" id="cb324-7" data-line-number="7">          <span class="dt">res =</span> <span class="st">&quot;1&quot;</span>)</a></code></pre></div>
 <p>Once you are familiar how to set up the GRASS environment, it becomes tedious to do so over and over again.
-Luckily, <code>linkGRASS7</code> of the <strong>link2GI</strong> packages lets you do it with one line of code.
+Luckily, <code>linkGRASS7()</code> of the <strong>link2GI</strong> packages lets you do it with one line of code.
 The only thing you need to provide is a spatial object which determines the projection and the extent of the geodatabase.
-First, <code>linkGRASS7</code> finds all GRASS installations on your computer.
+First, <code>linkGRASS7()</code> finds all GRASS installations on your computer.
 Since we have set <code>ver_select</code> to <code>TRUE</code>, we can interactively choose one of the found GRASS-installations.
-If there is just one installation, the <code>linkGRASS7</code> automatically chooses this one.
-Secondly, <code>linkGRASS7</code> establishes a connection to GRASS7.</p>
+If there is just one installation, the <code>linkGRASS7()</code> automatically chooses this one.
+Secondly, <code>linkGRASS7()</code> establishes a connection to GRASS7.</p>
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1">link2GI<span class="op">::</span><span class="kw">linkGRASS7</span>(london_streets, <span class="dt">ver_select =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Before we can use GRASS geoalgorithms, we need to add data to GRASS’s spatial database.
-Luckily, the convenience function <code>writeVECT</code> does this for us.
-(Use <code>writeRast</code> in the case of raster data.)
+Luckily, the convenience function <code>writeVECT()</code> does this for us.
+(Use <code>writeRast()</code> in the case of raster data.)
 In our case we add the street and cycle hire point data while using only the first attribute column, and name them also <code>london_streets</code> and <code>points</code>.
 Note that we are converting the <strong>sf</strong>-objects into objects of class <code>Spatial*</code>.
 In time, <strong>rgrass7</strong> will also work with <strong>sf</strong>-objects.</p>
@@ -877,6 +878,9 @@ Additionally, give <code>mapview</code> a try.</p></li>
 </div>
 <div id="ref-chambers_extending_2016">
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
+</div>
+<div id="ref-pebesma_simple_2018">
+<p>Pebesma, Edzer. 2018b. “Simple Features for R: Standardized Support for Spatial Vector Data.” <em>The R Journal</em>. <a href="https://journal.r-project.org/archive/2018/RJ-2018-009/index.html" class="uri">https://journal.r-project.org/archive/2018/RJ-2018-009/index.html</a>.</p>
 </div>
 <div id="ref-graser_processing:_2015">
 <p>Graser, Anita, and Victor Olaya. 2015. “Processing: A Python Framework for the Seamless Integration of Geoprocessing Tools in QGIS.” <em>ISPRS International Journal of Geo-Information</em> 4 (4): 2219–45. <a href="https://doi.org/10.3390/ijgi4042219" class="uri">https://doi.org/10.3390/ijgi4042219</a>.</p>

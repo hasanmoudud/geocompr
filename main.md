@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-03'
+date: '2018-06-04'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-03 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-04 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved737c28a8188dd45
+preserve86ed16bbf2fc9f95
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3071,7 +3071,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve32efa7ca445a7f32
+preserve193abe6ca7a609cb
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6498,7 +6498,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve4237c752b65bfa8d
+preserveeaa6b060cb953ba1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6597,7 +6597,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee74db330b2e689b3
+preserve7ef46dc240e53e9b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6995,15 +6995,15 @@ This makes the breadth of R's geospatial capabilities astonishing to many who ar
 There are some domains where R can now outperform desktop GIS including spatial statistical modeling, online interactive visualization and the generation of animated or faceted maps.
 
 Instead of implementing existing GIS algorithms in R, it makes sense to avoid 'reinventing the wheel' by taking advantage of R's ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work).
-Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf**  [@pebesma_simple_2018].
+Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf** [@pebesma_simple_2018].
 However, there is already a wide range of algorithms that can be accessed via R's interfaces to dedicated GIS software.
 It makes sense to understand these before moving to develop your own optimized algorithms.
-For this reason this chapter focuses on 'bridges' to the mature GIS products [QGIS](http://qgis.org/) (via the package **RQGIS**), [SAGA](http://www.saga-gis.org/) (**RSAGA**) and [GRASS](https://grass.osgeo.org/) (**rgrass7**) from within R (\@ref(tab:gis-comp)).
+For this reason this chapter focuses on 'bridges' to the mature GIS products [QGIS](http://qgis.org/) (via the package **RQGIS**), [SAGA](http://www.saga-gis.org/) (**RSAGA**) and [GRASS](https://grass.osgeo.org/) (**rgrass7**) from within R (Table \@ref(tab:gis-comp)).
 Obviously, we here focus on open-source software solutions, however, there is also a bridge to the commercial GIS leader [ArcGIS](https://www.arcgis.com) through the **RPyGeo** package.
 And the so-called [R-ArcGIS bridge](https://github.com/R-ArcGIS/r-bridge) allows to use R from within ArcGIS.
 As a final note, we would like to point out that aside from interfaces to desktop GIS there are also interfaces to geospatial libraries such as [GDAL](www.gdal.org) (**gdalUtils**, **rgdal**, **sf**) and [GEOS](https://trac.osgeo.org/geos/) (**rgeos**, **sf**). 
 By the end of the chapter you should have a working knowledge of the functionality such packages open up, and a more nuanced understanding of the  'CLI vs GUI' debate.
-As mentioned in chapter \@ref(intro), doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science.
+As mentioned in Chapter \@ref(intro), doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science.
 
 
 
@@ -7024,8 +7024,8 @@ Its main advantage lies in the fact that it provides a unified interface to seve
 This means that you have access to GDAL/OGR, GRASS and SAGA through QGIS [@graser_processing:_2015]. 
 To run all these geoalgorithms (frequently more than 1000 depending on your set up) outside of the QGIS GUI, QGIS provides a Python API.
 **RQGIS** establishes a tunnel to this Python API through the **reticulate** package. 
-Basically, functions `set_env` and `open_app` are doing this. 
-Note that it is optional to run `set_env` and `open_app` since all functions depending on their output will run them automatically if needed.
+Basically, functions `set_env()` and `open_app()` are doing this. 
+Note that it is optional to run `set_env()` and `open_app()` since all functions depending on their output will run them automatically if needed.
 Before running **RQGIS** you have to make sure to have installed QGIS and all its (third-party) dependencies such as SAGA and GRASS.
 To help you with the installation process, please follow the steps as detailed in `vignette("install_guide", package = "RQGIS")` for several platforms (Windows, Linux, MacOS).
 Please install the long-term release of QGIS, i.e. 2.18, since **RQGIS** so far does not support QGIS 3.
@@ -7047,9 +7047,9 @@ set_env()
 #> [1] "C:/OSGeo4W64/apps/qgis-ltr/python/plugins"
 ```
 
-Leaving the `path`-argument of `set_env` unspecified will search the computer for a QGIS installation.
+Leaving the `path`-argument of `set_env()` unspecified will search the computer for a QGIS installation.
 Hence, it is faster to specify explicitly the path to your QGIS installation.
-Subsequently, `open_app` sets all paths necessary to run QGIS from within R, and finally creates a so-called QGIS custom application [http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications](http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications).
+Subsequently, `open_app` sets all paths necessary to run QGIS from within R, and finally creates a so-called QGIS custom application (see [http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications](http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications)).
 
 
 ```r
@@ -7072,7 +7072,7 @@ aggregating_zones = st_transform(aggregating_zones, 4326)
 ```
 
 First, we will need a QGIS geoalgorithm that unions polygons.
-`find_algorithms` searches all QGIS geoalgorithms with the help of regular expressions.
+`find_algorithms()` searches all QGIS geoalgorithms with the help of regular expressions.
 Assuming that the short description of the function contains the word "union", we can run:
 
 
@@ -7086,8 +7086,8 @@ If you also want to have a short description for each geoalgorithm, set the `nam
 If one has no clue at all what the name of a geoalgorithm might be, one can leave the `search_term`-argument empty which will return a list of all available QGIS geoalgorithms.
 
 The next step is to find out how `qgis:union` can be used.
-`open_help` opens the online help of the geoalgorithm in question.
-`get_usage` returns all function parameters and default values. 
+`open_help()` opens the online help of the geoalgorithm in question.
+`get_usage()` returns all function parameters and default values. 
 
 
 
@@ -7102,8 +7102,8 @@ get_usage(alg)
 ```
 
 Finally, we can let QGIS do the work.
-Note that the workhorse function `run_qgis` accepts R named arguments, i.e., you can specify the parameter names as returned by `get_usage` as you would do in any other regular R function.
-Note also that `run_qgis` accepts spatial objects residing in R's global environment as input (here: `aggregating_zones` and `incongruent`). 
+Note that the workhorse function `run_qgis()` accepts R named arguments, i.e., you can specify the parameter names as returned by `get_usage()` in `run_qgis()` as you would do in any other regular R function.
+Note also that `run_qgis()` accepts spatial objects residing in R's global environment as input (here: `aggregating_zones` and `incongruent`). 
 But of course, you could also specify paths to spatial vector files stored on disk.
 Setting the `load_output` to `TRUE` automatically loads the QGIS output as an **sf**-object into R.
 
@@ -7138,7 +7138,7 @@ single = st_cast(union, "MULTIPOLYGON") %>%
   st_cast("POLYGON")
 ```
 
-One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m^^2. 
+One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m^2^. 
 
 
 ```r
@@ -7146,7 +7146,7 @@ single$area = st_area(single)
 # find polygons which are smaller than 25000 m^2
 x = 25000
 units(x) = "m^2"
-sub = dplyr::filter(mp, area < x)
+sub = dplyr::filter(single, area < x)
 plot(single$geometry, col = NA)
 plot(sub$geometry, add = TRUE, col = "blue", border = "blue", lwd = 1.5)
 ```
@@ -7191,10 +7191,10 @@ get_usage(alg)
 ```
 
 Conveniently, the user has not to specify each single parameter.
-In case a parameter is left unspecified, `run_qgis` will automatically use the corresponding default value as argument if available.
+In case a parameter is left unspecified, `run_qgis()` will automatically use the corresponding default value as argument if available.
 To find out about the default values, run `get_args_man()`.  
 
-To finally get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m^^2 should be joined to that neighboring polygon with the largest area.
+To finally get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m^2^ should be joined to that neighboring polygon with the largest area.
 
 
 ```r
@@ -7241,6 +7241,7 @@ rsaga.env()
 However, it is possible to have 'hidden' SAGA in a location `rsaga.env()` does not search automatically. 
 `linkSAGA` searches your computer for a valid SAGA installation. 
 If it finds one, it adds the newest version to the PATH environment variable thereby making sure that `rsaga.env()` runs successfully.
+It is only necessary to run the next code chunk if `rsaga.env()` was unsuccessful (see previous code chunk).
 
 
 ```r
@@ -7432,12 +7433,12 @@ execGRASS("g.region", flags = c("quiet"),
 ```
 
 Once you are familiar how to set up the GRASS environment, it becomes tedious to do so over and over again.
-Luckily, `linkGRASS7` of the **link2GI** packages lets you do it with one line of code.
+Luckily, `linkGRASS7()` of the **link2GI** packages lets you do it with one line of code.
 The only thing you need to provide is a spatial object which determines the projection and the extent of the geodatabase.
-First, `linkGRASS7` finds all GRASS installations on your computer.
+First, `linkGRASS7()` finds all GRASS installations on your computer.
 Since we have set `ver_select` to `TRUE`, we can interactively choose one of the found GRASS-installations.
-If there is just one installation, the `linkGRASS7` automatically chooses this one.
-Secondly, `linkGRASS7` establishes a connection to GRASS7.
+If there is just one installation, the `linkGRASS7()` automatically chooses this one.
+Secondly, `linkGRASS7()` establishes a connection to GRASS7.
  
 
 ```r
@@ -7445,8 +7446,8 @@ link2GI::linkGRASS7(london_streets, ver_select = TRUE)
 ```
 
 Before we can use GRASS geoalgorithms, we need to add data to GRASS's spatial database.
-Luckily, the convenience function `writeVECT` does this for us.
-(Use `writeRast` in the case of raster data.)
+Luckily, the convenience function `writeVECT()` does this for us.
+(Use `writeRast()` in the case of raster data.)
 In our case we add the street and cycle hire point data while using only the first attribute column, and name them also `london_streets` and `points`. 
 Note that we are converting the **sf**-objects into objects of class `Spatial*`.
 In time, **rgrass7** will also work with **sf**-objects.
@@ -9753,7 +9754,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservec16174631a4e1219
+preserve27622afaf583c1a9
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
