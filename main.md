@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-04'
+date: '2018-06-05'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-04 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-05 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve05a93319c8e8db6a
+preserve9a1acf404b2e48a4
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3071,7 +3071,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2507cb6191925f17
+preservebd919c85a915a6e3
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5886,6 +5886,11 @@ library(spDataLarge)
 library(tmap)    # for static and interactive maps
 library(leaflet) # for interactive maps
 library(mapview) # for interactive maps
+#> 
+#> Attaching package: 'mapview'
+#> The following object is masked from 'package:leaflet':
+#> 
+#>     addMapPane
 library(shiny)   # for web applications
 ```
 
@@ -6498,7 +6503,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveb8136224cd86489c
+preservec409487fa3ea2885
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6597,7 +6602,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3da3db16a3335ca1
+preserve74b20fa1fc05dedc
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6916,11 +6921,12 @@ Next, compare it with the maps of a hexagonal and regular grid created using the
 ```r
 library(sf)
 library(raster)
-library(tidyverse)
+library(dplyr)
 library(spData)
 library(RQGIS)
 library(RSAGA)
 library(rgrass7)
+library(tmap)
 ```
 
 ## Introduction
@@ -7138,7 +7144,7 @@ single = st_cast(union, "MULTIPOLYGON") %>%
   st_cast("POLYGON")
 ```
 
-One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m^2^. 
+One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m^2^ (see left panel of Figure \@ref(fig:sliver-fig)). 
 
 
 ```r
@@ -7147,8 +7153,11 @@ single$area = st_area(single)
 x = 25000
 units(x) = "m^2"
 sub = dplyr::filter(single, area < x)
-plot(single$geometry, col = NA)
-plot(sub$geometry, add = TRUE, col = "blue", border = "blue", lwd = 1.5)
+tm_shape(single) + 
+  tm_borders() + 
+  tm_shape(sub) + 
+  tm_fill(col = "blue") + 
+  tm_borders(col = "blue", lwd = 1.5)
 ```
 
 The next step is to find a function that makes the slivers disappear.
@@ -7194,7 +7203,7 @@ Conveniently, the user has not to specify each single parameter.
 In case a parameter is left unspecified, `run_qgis()` will automatically use the corresponding default value as argument if available.
 To find out about the default values, run `get_args_man()`.  
 
-To finally get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m^2^ should be joined to that neighboring polygon with the largest area.
+To finally get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m^2^ should be joined to that neighboring polygon with the largest area (see right panel of Figure \@ref(fig:sliver-fig)).
 
 
 ```r
@@ -7208,6 +7217,11 @@ clean = run_qgis("qgis:eliminatesliverpolygons",
 #> $`OUTPUT`
 #> [1] "C:/Users/pi37pat/AppData/Local/Temp/RtmpcJlnUx/clean.shp"
 ```
+
+<div class="figure" style="text-align: center">
+<img src="figures/09-sliver.png" alt="Sliver polygons (left panel). Cleaned polygons (right panel)."  />
+<p class="caption">(\#fig:sliver-fig)Sliver polygons (left panel). Cleaned polygons (right panel).</p>
+</div>
 
 Other notes:
 
@@ -9754,7 +9768,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef7e9917b560dc1e5
+preserve9e7448d0dadeba1d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

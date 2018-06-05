@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-04">
+<meta name="date" content="2018-06-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -54,9 +54,9 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.0/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.0/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
 <link href="libs/leaflet-minimap-3.3.1/Control.MiniMap.min.css" rel="stylesheet" />
 <script src="libs/leaflet-minimap-3.3.1/Control.MiniMap.min.js"></script>
 <script src="libs/leaflet-minimap-3.3.1/Minimap-binding.js"></script>
@@ -388,11 +388,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
 <a class="sourceLine" id="cb298-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb298-3" data-line-number="3"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb298-3" data-line-number="3"><span class="kw">library</span>(dplyr)</a>
 <a class="sourceLine" id="cb298-4" data-line-number="4"><span class="kw">library</span>(spData)</a>
 <a class="sourceLine" id="cb298-5" data-line-number="5"><span class="kw">library</span>(RQGIS)</a>
 <a class="sourceLine" id="cb298-6" data-line-number="6"><span class="kw">library</span>(RSAGA)</a>
-<a class="sourceLine" id="cb298-7" data-line-number="7"><span class="kw">library</span>(rgrass7)</a></code></pre></div>
+<a class="sourceLine" id="cb298-7" data-line-number="7"><span class="kw">library</span>(rgrass7)</a>
+<a class="sourceLine" id="cb298-8" data-line-number="8"><span class="kw">library</span>(tmap)</a></code></pre></div>
 </div>
 <div id="introduction-6" class="section level2">
 <h2><span class="header-section-number">9.1</span> Introduction</h2>
@@ -567,14 +568,17 @@ This is necessary for the deletion of sliver polygons later on.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="co"># multipart polygons to single polygons</span></a>
 <a class="sourceLine" id="cb306-2" data-line-number="2">single =<span class="st"> </span><span class="kw">st_cast</span>(union, <span class="st">&quot;MULTIPOLYGON&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb306-3" data-line-number="3"><span class="st">  </span><span class="kw">st_cast</span>(<span class="st">&quot;POLYGON&quot;</span>)</a></code></pre></div>
-<p>One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m<sup>2</sup>.</p>
+<p>One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m<sup>2</sup> (see left panel of Figure <a href="gis.html#fig:sliver-fig">9.1</a>).</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">single<span class="op">$</span>area =<span class="st"> </span><span class="kw">st_area</span>(single)</a>
 <a class="sourceLine" id="cb307-2" data-line-number="2"><span class="co"># find polygons which are smaller than 25000 m^2</span></a>
 <a class="sourceLine" id="cb307-3" data-line-number="3">x =<span class="st"> </span><span class="dv">25000</span></a>
 <a class="sourceLine" id="cb307-4" data-line-number="4"><span class="kw">units</span>(x) =<span class="st"> &quot;m^2&quot;</span></a>
 <a class="sourceLine" id="cb307-5" data-line-number="5">sub =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(single, area <span class="op">&lt;</span><span class="st"> </span>x)</a>
-<a class="sourceLine" id="cb307-6" data-line-number="6"><span class="kw">plot</span>(single<span class="op">$</span>geometry, <span class="dt">col =</span> <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb307-7" data-line-number="7"><span class="kw">plot</span>(sub<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb307-6" data-line-number="6"><span class="kw">tm_shape</span>(single) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb307-7" data-line-number="7"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb307-8" data-line-number="8"><span class="st">  </span><span class="kw">tm_shape</span>(sub) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb307-9" data-line-number="9"><span class="st">  </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb307-10" data-line-number="10"><span class="st">  </span><span class="kw">tm_borders</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</a></code></pre></div>
 <p>The next step is to find a function that makes the slivers disappear.
 Assuming the function or its short description contains the word “sliver”, we can run:</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">find_algorithms</span>(<span class="st">&quot;sliver&quot;</span>, <span class="dt">name_only =</span> <span class="ot">TRUE</span>)</a>
@@ -607,7 +611,7 @@ Assuming the function or its short description contains the word “sliver”, w
 <p>Conveniently, the user has not to specify each single parameter.
 In case a parameter is left unspecified, <code>run_qgis()</code> will automatically use the corresponding default value as argument if available.
 To find out about the default values, run <code>get_args_man()</code>.</p>
-<p>To finally get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m<sup>2</sup> should be joined to that neighboring polygon with the largest area.</p>
+<p>To finally get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m<sup>2</sup> should be joined to that neighboring polygon with the largest area (see right panel of Figure <a href="gis.html#fig:sliver-fig">9.1</a>).</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1">clean =<span class="st"> </span><span class="kw">run_qgis</span>(<span class="st">&quot;qgis:eliminatesliverpolygons&quot;</span>,</a>
 <a class="sourceLine" id="cb310-2" data-line-number="2">                 <span class="dt">INPUT =</span> single,</a>
 <a class="sourceLine" id="cb310-3" data-line-number="3">                 <span class="dt">ATTRIBUTE =</span> <span class="st">&quot;area&quot;</span>,</a>
@@ -617,6 +621,12 @@ To find out about the default values, run <code>get_args_man()</code>.</p>
 <a class="sourceLine" id="cb310-7" data-line-number="7">                 <span class="dt">load_output =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb310-8" data-line-number="8"><span class="co">#&gt; $`OUTPUT`</span></a>
 <a class="sourceLine" id="cb310-9" data-line-number="9"><span class="co">#&gt; [1] &quot;C:/Users/pi37pat/AppData/Local/Temp/RtmpcJlnUx/clean.shp&quot;</span></a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:sliver-fig"></span>
+<img src="figures/09-sliver.png" alt="Sliver polygons (left panel). Cleaned polygons (right panel)."  />
+<p class="caption">
+Figure 9.1: Sliver polygons (left panel). Cleaned polygons (right panel).
+</p>
+</div>
 <p>Other notes:</p>
 <ul>
 <li>Leaving the output parameter(s) unspecified, saves the resulting QGIS output to a temporary folder created by QGIS.
@@ -670,12 +680,12 @@ The function expects a parameter-argument list in which you have specified all n
 So the function call for calculating the ‘SAGA Wetness Index’ becomes as simple as:</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="kw">rsaga.wetness.index</span>(<span class="dt">in.dem =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;dem&quot;</span>), </a>
 <a class="sourceLine" id="cb318-2" data-line-number="2">                    <span class="dt">out.wetness.index =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi&quot;</span>))</a></code></pre></div>
-<p>Of course, we would like to inspect our result visually (Figure <a href="gis.html#fig:saga-twi">9.1</a>).
+<p>Of course, we would like to inspect our result visually (Figure <a href="gis.html#fig:saga-twi">9.2</a>).
 To load and plot the SAGA output file, we use the <strong>raster</strong> package.</p>
 <div class="figure" style="text-align: center"><span id="fig:saga-twi"></span>
 <img src="https://user-images.githubusercontent.com/1825120/39205055-8e68a3ce-47f1-11e8-8874-0142d7f591e2.png" alt="SAGA wetness index of Mount Mongón, Peru."  />
 <p class="caption">
-Figure 9.1: SAGA wetness index of Mount Mongón, Peru.
+Figure 9.2: SAGA wetness index of Mount Mongón, Peru.
 </p>
 </div>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
@@ -801,11 +811,11 @@ To access the GRASS help page of the traveling salesman algorithm, run <code>exe
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.net.salesman&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets_points_con&quot;</span>,</a>
 <a class="sourceLine" id="cb328-2" data-line-number="2">          <span class="dt">output =</span> <span class="st">&quot;shortest_route&quot;</span>, <span class="dt">center_cats =</span> <span class="kw">paste0</span>(<span class="st">&quot;1-&quot;</span>, <span class="kw">nrow</span>(points)),</a>
 <a class="sourceLine" id="cb328-3" data-line-number="3">          <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>))</a></code></pre></div>
-<p>To visualize our result, we import the output layer into R, convert it into an sf-object , just keep the geometry and visualize it with the help of the <strong>mapview</strong> package (Figure <a href="gis.html#fig:grass-mapview">9.2</a>).</p>
+<p>To visualize our result, we import the output layer into R, convert it into an sf-object , just keep the geometry and visualize it with the help of the <strong>mapview</strong> package (Figure <a href="gis.html#fig:grass-mapview">9.3</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:grass-mapview"></span>
 <img src="https://user-images.githubusercontent.com/1825120/39206067-544455c8-47f4-11e8-8725-e28299e01f52.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London."  />
 <p class="caption">
-Figure 9.2: Shortest route between 25 cycle hire station on the OSM street network of London.
+Figure 9.3: Shortest route between 25 cycle hire station on the OSM street network of London.
 </p>
 </div>
 <div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1"><span class="kw">library</span>(mapview)</a>
