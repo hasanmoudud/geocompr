@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-05'
+date: '2018-06-07'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-05 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-07 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9a1acf404b2e48a4
+preserveb019146c27cb927f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2520,10 +2520,7 @@ factorValues(grain, grain[c(1, 11, 35)])
 #> 3  clay     wet
 ```
 
-<div class="figure" style="text-align: center">
-<img src="figures/cont-raster-1.png" alt="Raster datasets with numeric (left) and categorical values (right)." width="672" />
-<p class="caption">(\#fig:cont-raster)Raster datasets with numeric (left) and categorical values (right).</p>
-</div>
+
 
 ### Raster subsetting
 
@@ -3071,7 +3068,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebd919c85a915a6e3
+preservebfe6efc203304a61
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5962,10 +5959,7 @@ tm_shape(nz) +
   tm_borders() 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="figures/tmshape-1.png" alt="New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions." width="576" />
-<p class="caption">(\#fig:tmshape)New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions.</p>
-</div>
+
 
 The object passed to `tm_shape()` in this case is `nz`, an `sf` object representing the regions of New Zealand (see section \@ref(intro-sf) for more on `sf` objects).
 Layers are added to represent `nz` visually, with `tm_fill()` and `tm_borders()` creating shaded areas (left panel) and border outlines (middle panel) in Figure \@ref(fig:tmshape), respectively.
@@ -6154,11 +6148,6 @@ Six of the most useful break styles are illustrated in Figure \@ref(fig:break-st
 #> tmap options successfully reset
 ```
 
-<div class="figure" style="text-align: center">
-<img src="figures/break-styles-1.png" alt="Illustration of different binning methods set using the style argument in tmap." width="576" />
-<p class="caption">(\#fig:break-styles)Illustration of different binning methods set using the style argument in tmap.</p>
-</div>
-
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">Although `style` is an argument of **tmap** functions it in facts originates as an argument in `classInt::classIntervals()` --- see the help page of this function for details.</div>\EndKnitrBlock{rmdnote}
 
 Palettes define the color ranges associated with the bins and  determined by the `breaks`, `n`, and `style` arguments described above.
@@ -6231,10 +6220,7 @@ map_nz + tm_layout(bg.color = "lightblue")
 map_nz + tm_layout(frame = FALSE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="figures/layout1-1.png" alt="Layout options specified by (from left to right) title, scale, bg.color and frame arguments." width="576" />
-<p class="caption">(\#fig:layout1)Layout options specified by (from left to right) title, scale, bg.color and frame arguments.</p>
-</div>
+
 
 The other arguments in `tm_layout()` provide control over many more aspects of the map in relation to the canvas on which it is placed.
 Some useful layout settings are listed below (see Figure \@ref(fig:layout2) for illustrations of a selection of these):
@@ -6246,17 +6232,11 @@ Some useful layout settings are listed below (see Figure \@ref(fig:layout2) for 
 - Default colors of aesthetic layers (`aes.color`), map attributes such as the frame (`attr.color`).
 - Color settings controlling `sepia.intensity` (how yellowy the map looks) and `saturation` (a color-greyscale).
 
-<div class="figure" style="text-align: center">
-<img src="figures/layout2-1.png" alt="Illustration of selected layout options." width="576" />
-<p class="caption">(\#fig:layout2)Illustration of selected layout options.</p>
-</div>
+
 
 The impact of changing the color settings listed above is illustrated in Figure \@ref(fig:layout3) (see `?tm_layout` for a full list).
 
-<div class="figure" style="text-align: center">
-<img src="figures/layout3-1.png" alt="Illustration of selected color-related layout options." width="576" />
-<p class="caption">(\#fig:layout3)Illustration of selected color-related layout options.</p>
-</div>
+
 
 <!-- Maybe reverse order and progress from the high- to the low-level control. Overall, this section reads a bit like a vignette. Is this the intention. -->
 Beyond the low-level control over layouts and colors, **tmap** also offers high-level styles, using the `tm_style()` function (representing the second meaning of 'style' in the package).
@@ -6270,10 +6250,7 @@ map_nza + tm_style("cobalt")
 map_nza + tm_style("col_blind")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="figures/tmstyles-1.png" alt="Selected tmap styles: bw, classic, cobalt and col_blind (from left to right)." width="576" />
-<p class="caption">(\#fig:tmstyles)Selected tmap styles: bw, classic, cobalt and col_blind (from left to right).</p>
-</div>
+
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">A preview of predefined styles can be generated by executing `tmap_style_catalogue()`.
 This creates a folder called `tmap_style_previews` containing nine images.
@@ -6503,7 +6480,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec409487fa3ea2885
+preserve89e6d844beb1ff99
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6602,7 +6579,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve74b20fa1fc05dedc
+preserve5196b2be389aedbf
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9768,7 +9745,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9e7448d0dadeba1d
+preserve5b39204f825d89fa
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
