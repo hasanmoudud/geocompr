@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb019146c27cb927f
+preserve4d5c5bd7cd7db0e6
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3068,7 +3068,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebfe6efc203304a61
+preserve503d689f2e2b0961
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6480,7 +6480,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve89e6d844beb1ff99
+preservedaaf1b4f5fdf3ec8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6579,7 +6579,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5196b2be389aedbf
+preserve9b6c27c454af6b0a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7558,9 +7558,8 @@ Additionally, give `mapview` a try.
 
 ## Prerequisites {-}
 
-In the introduction we promised to teach not only how to use existing tools for Geocomputation in R, but also develop new ones:
-"in the form of shareable R scripts and functions".
-This chapter aims to deliver on that promise.
+In chapter \@ref(intro) we promised to teach not only how to use existing tools for Geocomputation in R, but also develop new ones, "in the form of shareable R scripts and functions".
+While reproducibility is central to the book, this chapter focusses on reproducibility and tool creation.
 
 We will consider example R scripts for geographic data and how to make them more reproducible in section \@ref(scripts).
 Algorithms (or 'geoalgorithms' for geographic processes) are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
@@ -7619,6 +7618,7 @@ Algorithms are often first envisioned in flow charts and psuedocode showing the 
 Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section \@ref(functions)).
 
 Geoalgorithms (also referred to as *GIS Algorithms*, in a book of the same name) are a special case of algorithm that take geographic data as input and, generally, return geographic results [@xiao_gis_2016].
+They are part of the wider field for *Computational Geometry* [@berg_computational_2008].
 A simple example is an algorithm that finds the centroid of an object.
 This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes.
 The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we'll touch on later).
@@ -9745,7 +9745,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve5b39204f825d89fa
+preservef7233dd607af4a3d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
