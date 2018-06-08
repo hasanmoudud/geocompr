@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb0d7ed2dbac83cb9
+preservec83510eae3774967
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3040,10 +3040,10 @@ random_joined = st_join(random_points, world["name_long"])
 By default, `st_join()` performs a left join (see section \@ref(vector-attribute-joining)), but it can also do inner joins by setting the argument `left = FALSE`.
 Like spatial subsetting, the default topological operator used by `st_join()` is `st_intersects()`.
 This can be changed with the `join` argument (see `?st_join` for details).
-In the example above, we have added features of a point layer to a polygon layer but there might be multiple point matches per polygon. 
-Had we chosen to select the four (instead of three) most populous cities in the world, two of them would have belonged to China (Shanghai and Beijing, give it a try yourself).
-In such a case `st_join()` simply adds a new row.
-In our example we would have ended up with two polygons representing China.
+In the example above, we have added features of a polygon layer to a point layer.
+In other cases, we might want to join point attributes to a polygon layer.
+There might be occassions where more than one point falls inside one polygon. 
+In such a case `st_join()` duplicates the polygon feature, i.e. adds a new row to the polygon layer, for each multiple match.
 
 ### Non-overlapping joins
 
@@ -3068,7 +3068,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve0f0155588850034d
+preserve98005ebd4d01360e
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6480,7 +6480,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5503cb6d402d8bdc
+preserve7352a1c7f1f3e763
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6579,7 +6579,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4e2a84255860726b
+preserve65bca2225b8b118e
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9745,7 +9745,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserved4ec851752fc05e3
+preserve20c17de80878463a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

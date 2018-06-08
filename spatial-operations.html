@@ -655,10 +655,10 @@ Figure 4.3: Illustration of a spatial join: the names of the source world object
 <p>By default, <code>st_join()</code> performs a left join (see section <a href="attr.html#vector-attribute-joining">3.2.3</a>), but it can also do inner joins by setting the argument <code>left = FALSE</code>.
 Like spatial subsetting, the default topological operator used by <code>st_join()</code> is <code>st_intersects()</code>.
 This can be changed with the <code>join</code> argument (see <code>?st_join</code> for details).
-In the example above, we have added features of a point layer to a polygon layer but there might be multiple point matches per polygon.
-Had we chosen to select the four (instead of three) most populous cities in the world, two of them would have belonged to China (Shanghai and Beijing, give it a try yourself).
-In such a case <code>st_join()</code> simply adds a new row.
-In our example we would have ended up with two polygons representing China.</p>
+In the example above, we have added features of a polygon layer to a point layer.
+In other cases, we might want to join point attributes to a polygon layer.
+There might be occassions where more than one point falls inside one polygon.
+In such a case <code>st_join()</code> duplicates the polygon feature, i.e. adds a new row to the polygon layer, for each multiple match.</p>
 </div>
 <div id="non-overlapping-joins" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> Non-overlapping joins</h3>
