@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-07">
+<meta name="date" content="2018-06-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -443,8 +443,8 @@ A simple example is an algorithm that finds the centroid of an object.
 This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes.
 The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we’ll touch on later).
 In this case we’ll create a polygon with 10 vertices, following an example from <em>GIS Algorithms</em> (see <a href="https://github.com/gisalgs/geom">github.com/gisalgs</a> for Python source code):</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">poly_csv =<span class="st"> &quot;0,5,10,15,20,25,30,40,45,50,0</span></a>
-<a class="sourceLine" id="cb330-2" data-line-number="2"><span class="st">            10,0,10,0,10,0,20,20,0,50,10&quot;</span></a>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">poly_csv =<span class="st"> &quot;0,5,10,15,50,0</span></a>
+<a class="sourceLine" id="cb330-2" data-line-number="2"><span class="st">            10,0,10,0,50,10&quot;</span></a>
 <a class="sourceLine" id="cb330-3" data-line-number="3">poly_df =<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">text =</span> poly_csv, <span class="dt">header =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb330-4" data-line-number="4">poly_mat =<span class="st"> </span><span class="kw">t</span>(poly_df)</a></code></pre></div>
 <p>As with many computational (or other) problems, it makes sense to break the problem into smaller chunks.
@@ -517,7 +517,7 @@ Figure 10.2: Illustration of centroid calculation.
 <a class="sourceLine" id="cb339-3" data-line-number="3">T_sf =<span class="st"> </span><span class="kw">list</span>(poly_mat) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb339-4" data-line-number="4"><span class="st">  </span><span class="kw">st_polygon</span>()</a>
 <a class="sourceLine" id="cb339-5" data-line-number="5"><span class="kw">st_area</span>(T_sf)</a>
-<a class="sourceLine" id="cb339-6" data-line-number="6"><span class="co">#&gt; [1] 950</span></a></code></pre></div>
+<a class="sourceLine" id="cb339-6" data-line-number="6"><span class="co">#&gt; [1] 550</span></a></code></pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">10.3</span> Functions</h2>

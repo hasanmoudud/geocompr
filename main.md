@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-07'
+date: '2018-06-08'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-07 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-08 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4d5c5bd7cd7db0e6
+preserveb0d7ed2dbac83cb9
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3068,7 +3068,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve503d689f2e2b0961
+preserve0f0155588850034d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6480,7 +6480,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservedaaf1b4f5fdf3ec8
+preserve5503cb6d402d8bdc
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6579,7 +6579,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9b6c27c454af6b0a
+preserve4e2a84255860726b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7196,8 +7196,8 @@ clean = run_qgis("qgis:eliminatesliverpolygons",
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/09-sliver.png" alt="Sliver polygons (left panel). Cleaned polygons (right panel)."  />
-<p class="caption">(\#fig:sliver-fig)Sliver polygons (left panel). Cleaned polygons (right panel).</p>
+<img src="figures/09-sliver.png" alt="Sliver polygons colored in blue (left panel). Cleaned polygons (right panel)."  />
+<p class="caption">(\#fig:sliver-fig)Sliver polygons colored in blue (left panel). Cleaned polygons (right panel).</p>
 </div>
 
 Other notes:
@@ -7628,8 +7628,8 @@ In this case we'll create a polygon with 10 vertices, following an example from 
 
 
 ```r
-poly_csv = "0,5,10,15,20,25,30,40,45,50,0
-            10,0,10,0,10,0,20,20,0,50,10"
+poly_csv = "0,5,10,15,50,0
+            10,0,10,0,50,10"
 poly_df = read.csv(text = poly_csv, header = FALSE)
 poly_mat = t(poly_df)
 ```
@@ -7757,7 +7757,7 @@ library(sf)
 T_sf = list(poly_mat) %>% 
   st_polygon()
 st_area(T_sf)
-#> [1] 950
+#> [1] 550
 ```
 
 ## Functions
@@ -9745,7 +9745,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef7233dd607af4a3d
+preserved4ec851752fc05e3
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
