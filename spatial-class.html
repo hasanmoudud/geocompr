@@ -488,7 +488,7 @@ Figure 2.2: The subset of the Simple Features class hierarchy supported by sf.
 <p><strong>sf</strong> can represent all common vector geometry types (raster data classes are not supported by <strong>sf</strong>): points, lines, polygons and their respective ‘multi’ versions (which group together features of the same type into a single feature).
 <strong>sf</strong> also supports geometry collections, which can contain multiple geometry types in a single object.
 Given the breadth of geographic data forms, it may come as a surprise that a class system to support all of them is provided in a single package, which can be installed from CRAN:<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>
-<strong>sf</strong> incorporates the functionality of the three main packages of the <strong>sp</strong> paradigm (<strong>sp</strong> <span class="citation">(E. Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span> for the class system, <strong>rgdal</strong> <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> for reading and writing data, <strong>rgeos</strong> <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2017</a>)</span> for spatial operations undertaken by GEOS) in a single, cohesive whole.
+<strong>sf</strong> incorporates the functionality of the three main packages of the <strong>sp</strong> paradigm (<strong>sp</strong> <span class="citation">(E. Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span> for the class system, <strong>rgdal</strong> <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> for reading and writing data, <strong>rgeos</strong> <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span> for spatial operations undertaken by GEOS) in a single, cohesive whole.
 This is well-documented in <strong>sf</strong>’s <a href="http://cran.rstudio.com/package=sf">vignettes</a>.</p>
 <p>As the first vignette explains, simple feature objects in R are stored in a data frame, with geographic data occupying a special column, a ‘list-column’. This column is usually named ‘geom’ or ‘geometry’.
 We will use the <code>world</code> dataset provided by the <strong>spData</strong>, loaded at the beginning of this chapter (see <a href="https://nowosad.github.io/spData/">nowosad.github.io/spData</a> for a list datasets loaded by the package).
@@ -1372,7 +1372,7 @@ Assign random values between 0 and 10 to the new raster and plot it.
 <p>Bivand, Roger, Tim Keitt, and Barry Rowlingson. 2018. <em>Rgdal: Bindings for the ’Geospatial’ Data Abstraction Library</em>. <a href="https://CRAN.R-project.org/package=rgdal" class="uri">https://CRAN.R-project.org/package=rgdal</a>.</p>
 </div>
 <div id="ref-R-rgeos">
-<p>Bivand, Roger, and Colin Rundel. 2017. <em>Rgeos: Interface to Geometry Engine - Open Source (’Geos’)</em>. <a href="https://CRAN.R-project.org/package=rgeos" class="uri">https://CRAN.R-project.org/package=rgeos</a>.</p>
+<p>Bivand, Roger, and Colin Rundel. 2018. <em>Rgeos: Interface to Geometry Engine - Open Source (’Geos’)</em>. <a href="https://CRAN.R-project.org/package=rgeos" class="uri">https://CRAN.R-project.org/package=rgeos</a>.</p>
 </div>
 <div id="ref-maling_coordinate_1992">
 <p>Maling, D. H. 1992. <em>Coordinate Systems and Map Projections</em>. 2nd ed. Oxford ; New York: Pergamon Press.</p>
