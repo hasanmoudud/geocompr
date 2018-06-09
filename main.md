@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4a82601d84e36286
+preserve5f4513c31d22161e
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3068,7 +3068,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve8b4b1efba713c25a
+preserved8e5f1b652729a21
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6475,7 +6475,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1a712add3c7d4da6
+preserve9561e57c6ba2f814
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6574,7 +6574,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0b6ef794fae58399
+preservea513fc9d930fe89b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8741,8 +8741,7 @@ This is done using the joining function `left_join()` (note that `inner_join()` 
 
 
 ```r
-zones_joined = left_join(bristol_zones, zones_attr)
-#> Joining, by = "geo_code"
+zones_joined = left_join(bristol_zones, zones_attr, by = "geo_code")
 sum(zones_joined$all)
 #> [1] 238805
 names(zones_joined)
@@ -9758,7 +9757,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve586ffeca0387695b
+preserve568bf2dc859e8060
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

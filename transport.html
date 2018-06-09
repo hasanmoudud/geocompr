@@ -531,13 +531,12 @@ We can verify that the IDs match those in the <code>zones</code> dataset using <
 <a class="sourceLine" id="cb375-3" data-line-number="3"><span class="co">#&gt; logical     102</span></a></code></pre></div>
 <p>The results show that all 102 zones are present in the new object and that <code>zone_attr</code> is in a form that can be joined onto the zones.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a>
 This is done using the joining function <code>left_join()</code> (note that <code>inner_join()</code> would produce here the same result):</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1">zones_joined =<span class="st"> </span><span class="kw">left_join</span>(bristol_zones, zones_attr)</a>
-<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;geo_code&quot;</span></a>
-<a class="sourceLine" id="cb376-3" data-line-number="3"><span class="kw">sum</span>(zones_joined<span class="op">$</span>all)</a>
-<a class="sourceLine" id="cb376-4" data-line-number="4"><span class="co">#&gt; [1] 238805</span></a>
-<a class="sourceLine" id="cb376-5" data-line-number="5"><span class="kw">names</span>(zones_joined)</a>
-<a class="sourceLine" id="cb376-6" data-line-number="6"><span class="co">#&gt; [1] &quot;geo_code&quot;   &quot;name&quot;       &quot;all&quot;        &quot;bicycle&quot;    &quot;foot&quot;      </span></a>
-<a class="sourceLine" id="cb376-7" data-line-number="7"><span class="co">#&gt; [6] &quot;car_driver&quot; &quot;train&quot;      &quot;geometry&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1">zones_joined =<span class="st"> </span><span class="kw">left_join</span>(bristol_zones, zones_attr, <span class="dt">by =</span> <span class="st">&quot;geo_code&quot;</span>)</a>
+<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="kw">sum</span>(zones_joined<span class="op">$</span>all)</a>
+<a class="sourceLine" id="cb376-3" data-line-number="3"><span class="co">#&gt; [1] 238805</span></a>
+<a class="sourceLine" id="cb376-4" data-line-number="4"><span class="kw">names</span>(zones_joined)</a>
+<a class="sourceLine" id="cb376-5" data-line-number="5"><span class="co">#&gt; [1] &quot;geo_code&quot;   &quot;name&quot;       &quot;all&quot;        &quot;bicycle&quot;    &quot;foot&quot;      </span></a>
+<a class="sourceLine" id="cb376-6" data-line-number="6"><span class="co">#&gt; [6] &quot;car_driver&quot; &quot;train&quot;      &quot;geometry&quot;</span></a></code></pre></div>
 <p>The result is <code>zones_joined</code>, which contains new columns representing the total number of trips originating in each zone in the study area (almost 1/4 of a million) and their mode of travel (by bicycle, foot, car and train).
 The geographic distribution of trip origins is illustrated in the left-hand map in Figure <a href="transport.html#fig:zones">12.2</a>.
 This shows that most zones have between 0 and 4,000 trips originating from them in the study area.
