@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee722e73dbf3d806c
+preserve9f1aabc9a37f5a81
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2460,7 +2460,7 @@ In contrast to the vector data model underlying simple features (which represent
 This section shows how raster objects work, by creating them *from scratch*, building on section \@ref(an-introduction-to-raster).
 Because of their unique structure, subsetting and other operations on raster datasets work in a different way, as demonstrated in section \@ref(raster-subsetting).
 
-The following code recreates the raster dataset used in section \@ref(raster-classes), the result of which is illustrated in Figure \@ref(fig:cont-cate-rasters).
+The following code recreates the raster dataset used in section \@ref(raster-classes), the result of which is illustrated in Figure \@ref(fig:cont-raster).
 This demonstrates how the `raster()` function works to create an example raster named `elev` (representing elevations).
 
 
@@ -2473,7 +2473,7 @@ elev = raster(nrow = 6, ncol = 6, res = 0.5,
 The result is a raster object with 6 rows and 6 columns (specified by the `nrow` and `ncol` arguments), and a minimum and maximum spatial extent in x and y direction (`xmn`, `xmx`, `ymn`, `ymax`).
 The `vals` argument sets the values that each cell contains: numeric data ranging from 1 to 36 in this case.
 Raster objects can also contain categorical values of class `logical` or `factor` variables in R.
-The following code creates a raster representing grain sizes (Figure \@ref(fig:cont-cate-rasters)):
+The following code creates a raster representing grain sizes (Figure \@ref(fig:cont-raster)):
 
 
 ```r
@@ -3071,7 +3071,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservedcb1ac9b6cc001ad
+preserve84c48c34179a2cee
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6478,7 +6478,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve0d6a91d7191ef423
+preserve562ffec9971f375a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6577,7 +6577,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve620830d33da082fc
+preserve717dfaf9f3f61b84
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9760,7 +9760,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8a8b7b30ca5cf712
+preserve8171a3f7f9f326a2
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
