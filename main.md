@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6f7ff76d5ee4862e
+preserve7a1b43ab0c6910da
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2520,7 +2520,10 @@ factorValues(grain, grain[c(1, 11, 35)])
 #> 3  clay     wet
 ```
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/cont-raster-1.png" alt="Raster datasets with numeric (left) and categorical values (right)." width="672" />
+<p class="caption">(\#fig:cont-raster)Raster datasets with numeric (left) and categorical values (right).</p>
+</div>
 
 ### Raster subsetting
 
@@ -3068,7 +3071,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve3197dc463c948b93
+preservea3f132c860da1980
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6475,7 +6478,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec39bd9257a930b67
+preserve31fee829fb883359
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6574,7 +6577,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec9b9e36cdeeebbf4
+preserved918ba73ff1e47ef
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9757,7 +9760,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef57e931487401a76
+preservee250ebf4a03d1271
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
