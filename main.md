@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve24bc5162d1493796
+preserve067f59b695c3c975
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3068,7 +3068,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve874740dc2d2ececd
+preservebc86114a7e3d492a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6480,7 +6480,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservebc5cd1f5585d7a41
+preservedd9243385ead8ed6
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6579,7 +6579,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7aa93cc0cda27774
+preserved418aab6aa638bb1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7562,32 +7562,28 @@ In chapter \@ref(intro) we promised to teach not only how to use existing tools 
 While reproducibility is central to the book, this chapter focusses on reproducibility and tool creation.
 
 We will consider example R scripts for geographic data and how to make them more reproducible in section \@ref(scripts).
-Algorithms (or 'geoalgorithms' for geographic processes) are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
-To ease sharing and reproducibility algorithms can be placed into R function, which can then be distributed either in script files or as R packages, the building blocks of reproducible code.
+Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
+To ease sharing and reproducibility algorithms can be placed into functions, which can then be distributed either in script files or as R packages, the building blocks of reproducible code.
 That is the topic of section \@ref(functions).
 
-It should be noted at the outset that none of these topics are specific to geographic data.
-Although geoalgorithms do have a specific meaning originating in GIS software, most of the concepts apply in other domains.
-For that reason instead of going into detail, our approach in this chapter is to provide illustrative examples and direct the reader to established resources, to avoid reinventing the wheel.
-
-The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are)
+<!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
+<!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
 <!-- , with dozens of lines of non-reproducible psuedo-code and equations -->
-nor entirely focussed on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages).
-Instead the focus is on understanding, using reproducible code and clear explanation.
-The methods demonstrated in *GIS Algorithms* (including finding the centroid of a polygon, an example used in this chapter) are readily available in GIS software.
+<!-- nor entirely focussed on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). -->
+<!-- The focus of this chapter is on understanding, using reproducible code and clear explanation. -->
+The algorithms developed (including finding the centroid of a polygon, an example used in this chapter) are readily available in GIS software.
 However, the aim is "not to duplicate what is available out there, but to show how things out there work" [@xiao_gis_2016].
 This chapter takes a similar approach and is therefore the most low-level and potentially advanced (in terms of the code, not application) so far.
 
 ## Scripts
 
 If packages are the building blocks of reproducible code, scripts are the glue that holds them together.
-There are no strict rules on what can and cannot go into script files.
-and nothing to prevent you from saving broken, non-reproducible code
+There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.
 There are, however, some rules of thumb and conventions worth following when writing R scipts, outlined below:
 
-- Write the script in order. Just like the script of a play, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
-- Make the script reproducible. Scripts will be of more use to you and others if they are self-contained and can be run by other people. This involves stating dependencies (loading required packages at the outset, like the 'Prerequisites' section), reading-in data from persistent sources (e.g. from a reliable website or API) and mentioning any code that must be run before running the script (e.g. with a comment `# run script0.R before this`).
-- Comment the script sufficiently for others (and your future self) to understand it but not so much that the comments themselves become hard to maintain. At a minimum a good script file should contain information on the purpose of the script (see Figure \@ref(fig:codecheck)) and division into chunks, perhaps by appending `----` to section headings, which allows 'folding' of R scripts in RStudio.
+- Write the script in order: just like the script of a play, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
+- Make the script reproducible: scripts will be of more use to you and others if they are self-contained and can be run by other people. This involves stating dependencies (loading required packages at the outset, like the 'Prerequisites' section), reading-in data from persistent sources (e.g. from a reliable website or API) and mentioning any code that must be run before running the script (e.g. with a comment `# run script0.R before this`).
+- Comment the script sufficiently for others (and your future self) to understand it but not so much that the comments themselves become hard to maintain: at a minimum a good script file should contain information on the purpose of the script (see Figure \@ref(fig:codecheck)) and division into chunks, perhaps by appending `----` to section headings, which allows 'folding' of R scripts in RStudio.
 
 Although there is no way to enforce reproducibility in R scripts, there are tools that can help.
 By default RStudio 'code-checks' R scripts and underlines faulty code with a red way line, as illustrated below:
@@ -7604,38 +7600,38 @@ See [reprex.tidyverse.org/](http://reprex.tidyverse.org/) for details.</div>\End
 
 ## Geographic algorithms
 
-Algorithms can be understood as the computing equivalent of a cooking recipe.
-An algorithm is a series of steps which, when taken on appropriate ingredients, results in an output that is more useful (or tasty) than the raw ingredients.
-Before considering 'geoalgorithms', it is worth taking a brief detour to understand how algorithms relate to scripts and functions which are covered next.
+Algorithms can be understood as the computing equivalent of a cooking recipe:
+a series of instructions which, when taken on appropriate ingredients, results in an output that is more useful (or tasty) than the raw ingredients.
+Before considering 'geoalgorithms', it is worth taking a brief detour around the history of the algorithms, to understand how they relate to scripts and functions which are covered next.
 
 The word algorithm comes from Baghdad when, in the 9^th^ Century AD, an early maths book was published called *Hisab al-jabr w’al-muqabala*.
 The book was translated into Latin and became so popular that the author Muḥammad ibn Mūsā [al-Khwārizmī](https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi) "was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm" [@bellos_alex_2011].^[
 The book's title was also influential, forming the basis of the word *algebra*.
 ]
 
-In the the computing age algorithm refers to a series of steps that take clearly defined input to produce an output.
-Algorithms are often first envisioned in flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R.
+In the computing age algorithm refers to a series of steps that take a clearly defined input to produce an output.
+Algorithms often start as in flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R.
 Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section \@ref(functions)).
 
-Geoalgorithms (also referred to as *GIS Algorithms*, in a book of the same name) are a special case of algorithm that take geographic data as input and, generally, return geographic results [@xiao_gis_2016].
-They are part of the wider field for *Computational Geometry* [@berg_computational_2008].
+Geoalgorithms are a special case: they take geographic data in and, generally, return geographic results.
+Also referred to as *GIS algorithms* and *geometric algorithms*, an entire academic field --- *Computational Geometry*, a branch of computer science --- is dedicated to their study and development [@berg_computational_2008].
 A simple example is an algorithm that finds the centroid of an object.
 This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes.
 The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we'll touch on later).
-In this case we'll create a polygon with 10 vertices, following an example from *GIS Algorithms* (see [github.com/gisalgs](https://github.com/gisalgs/geom) for Python source code):
+In this case we'll create a polygon with 5 vertices in base R, building on an example from *GIS Algorithms* [@xiao_gis_2016 see [github.com/gisalgs](https://github.com/gisalgs/geom) for Python code]:
 
 
 
 
 ```r
-poly_csv = "0,5,10,15,50,0
-            10,0,10,0,50,10"
-poly_df = read.csv(text = poly_csv, header = FALSE)
-poly_mat = t(poly_df)
+x_coords = c(10, 2, 0, 0, 20, 10)
+y_coords = c(0, 2, 10, 15, 20, 0)
+poly_mat = cbind(x_coords, y_coords)
 ```
 
 As with many computational (or other) problems, it makes sense to break the problem into smaller chunks.
-With this in mind, the following commands create a new triangle (`T1`), the first that can be split-out from the polygon and finds its centroid based on the [formula](https://math.stackexchange.com/questions/1702595/proof-for-centroid-formula-for-a-polygon)
+All polygons can be broken-down into a finite number of triangles, which have simple rules defining their centroid and area.
+With this in mind, the following commands create a new triangle (`T1`), that can be split-out from the polygon represented by `poly_mat`, and finds its centroid based on the [formula](https://math.stackexchange.com/questions/1702595/proof-for-centroid-formula-for-a-polygon)
 $1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangles vertices:
 
 
@@ -7645,12 +7641,15 @@ T1 = rbind(O, poly_mat[2:3, ], O) # create 'triangle matrix'
 C1 = (T1[1, ] + T1[2, ] + T1[3, ]) / 3 # find centroid
 ```
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/unnamed-chunk-4-1.png" alt="Illustration of polygon centroid calculation problem." width="576" />
+<p class="caption">(\#fig:unnamed-chunk-4)Illustration of polygon centroid calculation problem.</p>
+</div>
 
 If we calculate the centroids of all such polygons the solution should be the average x and y values of all centroids.
 There is one problem though: some triangles are more important (larger) than others.
 Therefore to find the geographic centroid we need to take the *weighted mean* of all sub-triangles, with weigths proportional to area. 
-This is still straightforward computationally, with the formula to calculate the area of a triangle being:
+The formula to calculate the area of a triangle is:
 
 $$
 \frac{Ax ( B y − C y ) + B x ( C y − A y ) + C x ( A y − B y )}
@@ -7665,8 +7664,7 @@ A translation of this formula into R code that works with the data in the matrix
 T1[1, 1] * (T1[2, 2] - T1[3, 2]) +
   T1[2, 1] * (T1[3, 2] - T1[1, 2]) +
   T1[3, 1] * (T1[1, 2] - T1[2, 2]) / 2
-#>  O 
-#> 50
+#> [1] -60
 ```
 
 This code chunk works and outputs the correct result.^[
@@ -7678,9 +7676,11 @@ To make the code more generalizable, let's convert the code into a function (som
 
 ```r
 t_area = function(x) {
-  x[1, 1] * (x[2, 2] - x[3, 2]) +
-  x[2, 1] * (x[3, 2] - x[1, 2]) +
-  x[3, 1] * (x[1, 2] - x[2, 2]) / 2
+  (
+    x[1, 1] * (x[2, 2] - x[3, 2]) +
+    x[2, 1] * (x[3, 2] - x[1, 2]) +
+    x[3, 1] * (x[1, 2] - x[2, 2])
+  ) / 2
 }
 ```
 
@@ -7690,8 +7690,7 @@ We can verify it works not only on the triangle matrix `T1` as follows:
 
 ```r
 t_area(T1)
-#>  O 
-#> 50
+#> [1] -30
 ```
 
 Likewise we can create a function that find's the triangle's centroid:
@@ -7702,47 +7701,67 @@ t_centroid = function(x) {
   (x[1, ] + x[2, ] + x[3, ]) / 3
 }
 t_centroid(T1)
-#> [1] 5.00 6.67
+#> x_coords y_coords 
+#>        4        4
 ```
 
-With these functions created and tested on the first triangle of the polygon, we can we can apply the solution to many triangles, which will be created with the **decido** package:
+<!-- Commented-out because it makes more sense to do it in base R. Introduce decido later (Robin) -->
+<!-- With these functions created and tested on the first triangle of the polygon, we can we can apply the solution to many triangles, which will be created with the **decido** package: -->
+
+
+
+The next stage is to create the second triangle and calculate its area and centroid.
+This is done in the code chunk below, which binds the 3^rd^ and 4^th coordinates onto the 1^st^, and uses the same functions we created above to calculate its area and width:
 
 
 ```r
-ind = decido::earcut(poly_mat)
-decido::plot_ears(poly_mat, idx = ind)
-i = seq(1, length(ind), by = 3)
-i_list = purrr::map(i, ~c(.:(.+2), .))
-T_all = purrr::map(i_list, ~poly_mat[ind[.], ])
+T2 = rbind(O, poly_mat[3:4, ], O)
+A2 = t_area(T2)
+C2 = t_centroid(T2)
 ```
 
-<img src="figures/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" />
-
-
-
-
-<!-- Following this pattern, we can use iteration to create all triangles representing the polygon. -->
-<!-- We could use a `for()` loop or `lapply()` for this work but have chosen `map()` from the **purrr** package because it allows concise code: -->
-<!-- the `.` in the commands below refer to 'each element of the object `i`' (see `?purrr::map` for details): -->
-
-
+From this point it is not a big leap to see how to create the 3^rd^ and final triangle that constitutes the polygon represented by `poly_mat` (see exercises below).
+However, an aim of algorithms is often to *generalise* and *automate* the solution.
+In the name of automation (and to avoid creating individual triangles manually!) we use *iteration* to create all triangles representing the polygon in a single line.
+We could use a `for()` loop or `lapply()` for this work but have chosen `map()` from the **purrr** package because it allows concise code:
+the `.` in the commands below refer to 'each element of the object `i`' (see `?purrr::map` for details):
 
 
 ```r
-# Aim: show how to create more triangles - commented out in favor of decido solution
-A = purrr::map_dbl(T_all, ~t_area(.))
-C = t(sapply(T_all, t_centroid))
+# Aim: create all triangles representing a polygon
+i = 2:(nrow(poly_mat) - 2)
+Ti = purrr::map(i, ~rbind(O, poly_mat[.:(. + 1), ], O))
+A = purrr::map_dbl(Ti, ~t_area(.))
+C = t(sapply(Ti, t_centroid))
 ```
+
+We are now in a position to calculate the total area and geographic centroid of the polygon as follows:
 
 
 ```r
-plot(poly_mat)
-lines(poly_mat)
-lines(T1, col = "blue", lwd = 2)
-text(x = C1[1], y = C1[2], "C1", col = "blue")
-lines(T_all[[2]], col = "red", lwd = 2)
-text(x = C[2, 1], y = C[2, 2], "C2", col = "red")
+sum(A)
+#> [1] -230
+weighted.mean(C[, 1], A)
+#> [1] 8.49
+weighted.mean(C[, 2], A)
+#> [1] 10.3
 ```
+
+Is this right?
+We can verify the answer by converting `poly_mat` into a simple feature collection as follows:
+
+
+```r
+library(sf)
+#> Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0
+poly_sfc = st_polygon(list(poly_mat))
+st_area(poly_sfc)
+#> [1] 230
+st_centroid(poly_sfc)
+#> POINT (8.49 10.3)
+```
+
+
 
 <div class="figure" style="text-align: center">
 <img src="figures/polycent-1.png" alt="Illustration of centroid calculation." width="576" />
@@ -7753,11 +7772,10 @@ text(x = C[2, 1], y = C[2, 2], "C2", col = "red")
 
 ```r
 library(sf)
-#> Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0
 T_sf = list(poly_mat) %>% 
   st_polygon()
 st_area(T_sf)
-#> [1] 550
+#> [1] 230
 ```
 
 ## Functions
@@ -9745,7 +9763,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve23620692dbce8a7b
+preserve84ec9e4994e87472
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
