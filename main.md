@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve14bd9d1e73040e41
+preserve4a82601d84e36286
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3068,7 +3068,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve56d0684699f62964
+preserve8b4b1efba713c25a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5908,7 +5908,7 @@ However, maps have historically been out of reach for everyday people.
 
 Modern computing has the potential to change this.
 Map making skills can also help meet research and public engagement objectives.
-From a research perspective clear maps are often be the best way to present the results of geocomputational research.
+From a research perspective clear maps are often the best way to present the results of geocomputational research.
 From policy and 'citizen science' perspectives, attractive and engaging maps can help change peoples' minds, based on the evidence.
 Map making is therefore a critical part of geocomputation and its emphasis not only on describing, but also *changing* the world (see Chapter \@ref(intro)).
 
@@ -5925,7 +5925,7 @@ The generic `plot()` function is often the fastest way to create static maps fro
 Sometimes the simplicity and speed of this approach is sufficient, especially during the development phase of a project:
 when using R interactively to understand a geographic dataset, you will likely be the only person who sees them.
 The base R approach is also extensible, with `plot()` offering dozens of arguments and the **grid** providing functions for low-level control of graphical outputs, --- see *R Graphics* [@murrell_r_2016], especially  Chapter [14](https://www.stat.auckland.ac.nz/~paul/RG2e/chapter14.html).
-The focus of this section, however, is making static with **tmap**.
+The focus of this section, however, is making static maps with **tmap**.
 
 Why **tmap**?
 It is a powerful and flexible map-making package with sensible defaults.
@@ -6040,7 +6040,7 @@ Aesthetic settings, however, are controlled by arguments to layer functions.
 The plots in the previous section demonstrate **tmap**'s default aesthetic settings.
 Grey shades are used for `tm_fill()` and  `tm_bubbles()` layers and a continuous black line is used to represent lines created with `tm_lines()`.
 Of course, these default values and other aesthetics can be overridden.
-The purpose this section is to show how.
+The purpose of this section is to show how.
 
 There are two main types of map aesthetics: those that change with the data and those that are constant.
 Unlike **ggplot2**, which uses the helper function `aes()` to represent variable aesthetics, **tmap** accepts aesthetic arguments that are either variable fields (based on column names) or constant values.^[
@@ -6093,7 +6093,7 @@ tm_shape(nz) + tm_fill(col = "Land_area")
 </div>
 
 An important argument in functions defining aesthetic layers such as `tm_fill()` is `title`, which sets the title of the associated legend.
-The following code chunk demonstrates this functionality by providing a more attractive name than the variable name `Land_area` (note the use of `expression()` for to create superscript text):
+The following code chunk demonstrates this functionality by providing a more attractive name than the variable name `Land_area` (note the use of `expression()` to create superscript text):
 
 
 ```r
@@ -6143,7 +6143,7 @@ Six of the most useful break styles are illustrated in Figure \@ref(fig:break-st
 #> tmap options successfully reset
 ```
 
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">Although `style` is an argument of **tmap** functions it in facts originates as an argument in `classInt::classIntervals()` --- see the help page of this function for details.</div>\EndKnitrBlock{rmdnote}
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">Although `style` is an argument of **tmap** functions it in fact originates as an argument in `classInt::classIntervals()` --- see the help page of this function for details.</div>\EndKnitrBlock{rmdnote}
 
 Palettes define the color ranges associated with the bins and  determined by the `breaks`, `n`, and `style` arguments described above.
 The default color palette is specified in `tm_layout()` (see section \@ref(layouts) to learn more), however, it could be quickly changed using the `palette` argument.
@@ -6475,7 +6475,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve441be14c6b4eb570
+preserve1a712add3c7d4da6
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6574,7 +6574,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb819a7008cd8d30e
+preserve0b6ef794fae58399
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9758,7 +9758,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve1129075b137c7224
+preserve586ffeca0387695b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
