@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1aeea3a9cd8f0586
+preserve8386bcba248a0414
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3071,7 +3071,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve56316446d9a2e174
+preserve21f52e2e2fd41327
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4356,7 +4356,6 @@ For this purpose we will use `zion_points`, which contain a sample of 30 locatio
 <!-- They could represent places where soils properties were measured and we want to know what is the elevation of each point. -->
 The following command extracts elevation values from `srtm` and assigns the resulting vector to a new column (`elevation`) in the `zion_points` dataset: 
 
-
 ```r
 zion_points$elevation = raster::extract(srtm, as(zion_points, "Spatial"))
 ```
@@ -4416,7 +4415,6 @@ The resulting `transect_df` can be used to create elevation profiles, as illustr
 The final type of geographic vector object for raster extraction is **polygons**.
 Like lines and buffers, polygons tend to return many raster values per polygon.
 This is demonstrated in the command below, which results in a data frame with column names  `ID` (the row number of the polygon) and `srtm` (associated elevation values):
-
 
 
 
@@ -6478,7 +6476,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve07e777d539070bcc
+preserve01d518c1fd56ebc8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6577,7 +6575,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve800370a7805f94bf
+preserve2b7875a346727843
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9760,7 +9758,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve25051b399ab04c66
+preserveaae2bdf9f2024de1
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
