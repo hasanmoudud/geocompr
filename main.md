@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve950177c027293d95
+preserve1da6b96b7101aa1b
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve66d61ff42b816888
+preserve10194c027c47ed0f
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3176,10 +3176,10 @@ It helps to transfer data from one set of areal units to another.
 A number of algorithms have been developed for areal interpolation, including area weighted and pycnophylactic interpolation methods [@tobler_smooth_1979].
 
 <!-- somehow the incongruent borders are hardly to discern in the right figure, maybe increasing the figure size could help -->
-
-```
-#> tmap mode set to plotting
-```
+<div class="figure" style="text-align: center">
+<img src="figures/areal-example-1.png" alt="Illustration of congruent (left) and incongruent (right) areal units with respect to larger aggregating zones (translucent blue borders)." width="100%" />
+<p class="caption">(\#fig:areal-example)Illustration of congruent (left) and incongruent (right) areal units with respect to larger aggregating zones (translucent blue borders).</p>
+</div>
 
 The **spData** package contains a dataset named `incongruent` (colored polygons with black borders in the right panel of Figure \@ref(fig:areal-example)) and a dataset named aggregating_zones (the two polygons with the translucent blue border in the right panel of Figure \@ref(fig:areal-example)).
 Let us assume that the `value` column of `incongruent` refers to the total regional income in million Euros.
@@ -6471,7 +6471,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5d8138e571c1a720
+preservecc3e7c416a4bb0a7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6570,7 +6570,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9aca6eea9f34ab7d
+preserve624d03b44692d43f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9753,7 +9753,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9b301805d02b1488
+preserve7e7e2362f20075bd
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

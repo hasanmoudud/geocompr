@@ -440,16 +440,16 @@ A simple example is an algorithm that finds the centroid of an object.
 This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes.
 The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we’ll touch on later).
 In this case we’ll create a polygon with 5 vertices in base R, building on an example from <em>GIS Algorithms</em> <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a> see <a href="https://github.com/gisalgs/geom">github.com/gisalgs</a> for Python code)</span>:</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1">x_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb331-2" data-line-number="2">y_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb331-3" data-line-number="3">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(x_coords, y_coords)</a></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">x_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb330-2" data-line-number="2">y_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb330-3" data-line-number="3">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(x_coords, y_coords)</a></code></pre></div>
 <p>As with many computational (or other) problems, it makes sense to break the problem into smaller chunks.
 All polygons can be broken-down into a finite number of triangles, which have simple rules defining their centroid and area.
 With this in mind, the following commands create a new triangle (<code>T1</code>), that can be split-out from the polygon represented by <code>poly_mat</code>, and finds its centroid based on the <a href="https://math.stackexchange.com/questions/1702595/proof-for-centroid-formula-for-a-polygon">formula</a>
 <span class="math inline">\(1/3(a + b + c)\)</span> where <span class="math inline">\(a\)</span> to <span class="math inline">\(c\)</span> are coordinates representing the triangles vertices:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">O =<span class="st"> </span>poly_mat[<span class="dv">1</span>, ] <span class="co"># create a point representing the origin</span></a>
-<a class="sourceLine" id="cb332-2" data-line-number="2">T1 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ], O) <span class="co"># create &#39;triangle matrix&#39;</span></a>
-<a class="sourceLine" id="cb332-3" data-line-number="3">C1 =<span class="st"> </span>(T1[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span> <span class="co"># find centroid</span></a></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1">O =<span class="st"> </span>poly_mat[<span class="dv">1</span>, ] <span class="co"># create a point representing the origin</span></a>
+<a class="sourceLine" id="cb331-2" data-line-number="2">T1 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ], O) <span class="co"># create &#39;triangle matrix&#39;</span></a>
+<a class="sourceLine" id="cb331-3" data-line-number="3">C1 =<span class="st"> </span>(T1[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span> <span class="co"># find centroid</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
 <img src="figures/unnamed-chunk-4-1.png" alt="Illustration of polygon centroid calculation problem." width="576" />
 <p class="caption">
@@ -466,75 +466,75 @@ The formula to calculate the area of a triangle is:</p>
 \]</span></p>
 <p>Where <span class="math inline">\(A\)</span> to <span class="math inline">\(C\)</span> are the triangle’s three points and <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> refer to the x and y dimensions.
 A translation of this formula into R code that works with the data in the matrix representation of a triangle <code>T1</code> is:</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">T1[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb333-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb333-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb333-4" data-line-number="4"><span class="co">#&gt; [1] -60</span></a></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">T1[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb332-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb332-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb332-4" data-line-number="4"><span class="co">#&gt; [1] -60</span></a></code></pre></div>
 <p>This code chunk works and outputs the correct result.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>
 The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same ‘triangle matrix’ format.
 To make the code more generalizable, let’s convert the code into a function (something described in <a href="algorithms.html#functions">10.3</a>):</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1">t_area =<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb334-2" data-line-number="2">  (</a>
-<a class="sourceLine" id="cb334-3" data-line-number="3">    x[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb334-4" data-line-number="4"><span class="st">    </span>x[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb334-5" data-line-number="5"><span class="st">    </span>x[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">2</span>, <span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb334-6" data-line-number="6">  ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb334-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">t_area =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb333-2" data-line-number="2">  (</a>
+<a class="sourceLine" id="cb333-3" data-line-number="3">    x[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb333-4" data-line-number="4"><span class="st">    </span>x[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb333-5" data-line-number="5"><span class="st">    </span>x[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">2</span>, <span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb333-6" data-line-number="6">  ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb333-7" data-line-number="7">}</a></code></pre></div>
 <p>The function <code>t_area</code> generalizes the solution by taking any object <code>x</code>, assumed to have the same dimensions as the triangle represented in <code>T1</code>.
 We can verify it works not only on the triangle matrix <code>T1</code> as follows:</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1"><span class="kw">t_area</span>(T1)</a>
-<a class="sourceLine" id="cb335-2" data-line-number="2"><span class="co">#&gt; [1] -30</span></a></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1"><span class="kw">t_area</span>(T1)</a>
+<a class="sourceLine" id="cb334-2" data-line-number="2"><span class="co">#&gt; [1] -30</span></a></code></pre></div>
 <p>Likewise we can create a function that find’s the triangle’s centroid:</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">t_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb336-2" data-line-number="2">  (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb336-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb336-4" data-line-number="4"><span class="kw">t_centroid</span>(T1)</a>
-<a class="sourceLine" id="cb336-5" data-line-number="5"><span class="co">#&gt; x_coords y_coords </span></a>
-<a class="sourceLine" id="cb336-6" data-line-number="6"><span class="co">#&gt;        4        4</span></a></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">t_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb335-2" data-line-number="2">  (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb335-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb335-4" data-line-number="4"><span class="kw">t_centroid</span>(T1)</a>
+<a class="sourceLine" id="cb335-5" data-line-number="5"><span class="co">#&gt; x_coords y_coords </span></a>
+<a class="sourceLine" id="cb335-6" data-line-number="6"><span class="co">#&gt;        4        4</span></a></code></pre></div>
 <!-- Commented-out because it makes more sense to do it in base R. Introduce decido later (Robin) -->
 <!-- With these functions created and tested on the first triangle of the polygon, we can we can apply the solution to many triangles, which will be created with the **decido** package: -->
 <p>The next stage is to create the second triangle and calculate its area and centroid.
 This is done in the code chunk below, which binds the 3<sup>rd</sup> and 4^th coordinates onto the 1<sup>st</sup>, and uses the same functions we created above to calculate its area and width:</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1">T2 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, ], O)</a>
-<a class="sourceLine" id="cb337-2" data-line-number="2">A2 =<span class="st"> </span><span class="kw">t_area</span>(T2)</a>
-<a class="sourceLine" id="cb337-3" data-line-number="3">C2 =<span class="st"> </span><span class="kw">t_centroid</span>(T2)</a></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">T2 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, ], O)</a>
+<a class="sourceLine" id="cb336-2" data-line-number="2">A2 =<span class="st"> </span><span class="kw">t_area</span>(T2)</a>
+<a class="sourceLine" id="cb336-3" data-line-number="3">C2 =<span class="st"> </span><span class="kw">t_centroid</span>(T2)</a></code></pre></div>
 <p>From this point it is not a big leap to see how to create the 3<sup>rd</sup> and final triangle that constitutes the polygon represented by <code>poly_mat</code> (see exercises below).
 However, an aim of algorithms is often to <em>generalise</em> and <em>automate</em> the solution.
 In the name of automation (and to avoid creating individual triangles manually!) we use <em>iteration</em> to create all triangles representing the polygon in a single line.
 We could use a <code>for()</code> loop or <code>lapply()</code> for this work but have chosen <code>map()</code> from the <strong>purrr</strong> package because it allows concise code:
 the <code>.</code> in the commands below refer to ‘each element of the object <code>i</code>’ (see <code>?purrr::map</code> for details):</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1"><span class="co"># Aim: create all triangles representing a polygon</span></a>
-<a class="sourceLine" id="cb338-2" data-line-number="2">i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(poly_mat) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb338-3" data-line-number="3">Ti =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(i, <span class="op">~</span><span class="kw">rbind</span>(O, poly_mat[.<span class="op">:</span>(. <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O))</a>
-<a class="sourceLine" id="cb338-4" data-line-number="4">A =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_dbl</span>(Ti, <span class="op">~</span><span class="kw">t_area</span>(.))</a>
-<a class="sourceLine" id="cb338-5" data-line-number="5">C =<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(Ti, t_centroid))</a></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1"><span class="co"># Aim: create all triangles representing a polygon</span></a>
+<a class="sourceLine" id="cb337-2" data-line-number="2">i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(poly_mat) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb337-3" data-line-number="3">Ti =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(i, <span class="op">~</span><span class="kw">rbind</span>(O, poly_mat[.<span class="op">:</span>(. <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O))</a>
+<a class="sourceLine" id="cb337-4" data-line-number="4">A =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_dbl</span>(Ti, <span class="op">~</span><span class="kw">t_area</span>(.))</a>
+<a class="sourceLine" id="cb337-5" data-line-number="5">C =<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(Ti, t_centroid))</a></code></pre></div>
 <p>We are now in a position to calculate the total area and geographic centroid of the polygon as follows:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">sum</span>(A)</a>
-<a class="sourceLine" id="cb339-2" data-line-number="2"><span class="co">#&gt; [1] -230</span></a>
-<a class="sourceLine" id="cb339-3" data-line-number="3"><span class="kw">weighted.mean</span>(C[, <span class="dv">1</span>], A)</a>
-<a class="sourceLine" id="cb339-4" data-line-number="4"><span class="co">#&gt; [1] 8.49</span></a>
-<a class="sourceLine" id="cb339-5" data-line-number="5"><span class="kw">weighted.mean</span>(C[, <span class="dv">2</span>], A)</a>
-<a class="sourceLine" id="cb339-6" data-line-number="6"><span class="co">#&gt; [1] 10.3</span></a></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1"><span class="kw">sum</span>(A)</a>
+<a class="sourceLine" id="cb338-2" data-line-number="2"><span class="co">#&gt; [1] -230</span></a>
+<a class="sourceLine" id="cb338-3" data-line-number="3"><span class="kw">weighted.mean</span>(C[, <span class="dv">1</span>], A)</a>
+<a class="sourceLine" id="cb338-4" data-line-number="4"><span class="co">#&gt; [1] 8.49</span></a>
+<a class="sourceLine" id="cb338-5" data-line-number="5"><span class="kw">weighted.mean</span>(C[, <span class="dv">2</span>], A)</a>
+<a class="sourceLine" id="cb338-6" data-line-number="6"><span class="co">#&gt; [1] 10.3</span></a></code></pre></div>
 <p>Is this right?
 We can verify the answer by converting <code>poly_mat</code> into a simple feature collection as follows:</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb340-2" data-line-number="2"><span class="co">#&gt; Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0</span></a>
-<a class="sourceLine" id="cb340-3" data-line-number="3">poly_sfc =<span class="st"> </span><span class="kw">st_polygon</span>(<span class="kw">list</span>(poly_mat))</a>
-<a class="sourceLine" id="cb340-4" data-line-number="4"><span class="kw">st_area</span>(poly_sfc)</a>
-<a class="sourceLine" id="cb340-5" data-line-number="5"><span class="co">#&gt; [1] 230</span></a>
-<a class="sourceLine" id="cb340-6" data-line-number="6"><span class="kw">st_centroid</span>(poly_sfc)</a>
-<a class="sourceLine" id="cb340-7" data-line-number="7"><span class="co">#&gt; POINT (8.49 10.3)</span></a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb339-2" data-line-number="2"><span class="co">#&gt; Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0</span></a>
+<a class="sourceLine" id="cb339-3" data-line-number="3">poly_sfc =<span class="st"> </span><span class="kw">st_polygon</span>(<span class="kw">list</span>(poly_mat))</a>
+<a class="sourceLine" id="cb339-4" data-line-number="4"><span class="kw">st_area</span>(poly_sfc)</a>
+<a class="sourceLine" id="cb339-5" data-line-number="5"><span class="co">#&gt; [1] 230</span></a>
+<a class="sourceLine" id="cb339-6" data-line-number="6"><span class="kw">st_centroid</span>(poly_sfc)</a>
+<a class="sourceLine" id="cb339-7" data-line-number="7"><span class="co">#&gt; POINT (8.49 10.3)</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:polycent"></span>
 <img src="figures/polycent-1.png" alt="Illustration of centroid calculation." width="576" />
 <p class="caption">
 Figure 10.3: Illustration of centroid calculation.
 </p>
 </div>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb341-2" data-line-number="2">T_sf =<span class="st"> </span><span class="kw">list</span>(poly_mat) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb341-3" data-line-number="3"><span class="st">  </span><span class="kw">st_polygon</span>()</a>
-<a class="sourceLine" id="cb341-4" data-line-number="4"><span class="kw">st_area</span>(T_sf)</a>
-<a class="sourceLine" id="cb341-5" data-line-number="5"><span class="co">#&gt; [1] 230</span></a></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb340-2" data-line-number="2">T_sf =<span class="st"> </span><span class="kw">list</span>(poly_mat) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb340-3" data-line-number="3"><span class="st">  </span><span class="kw">st_polygon</span>()</a>
+<a class="sourceLine" id="cb340-4" data-line-number="4"><span class="kw">st_area</span>(T_sf)</a>
+<a class="sourceLine" id="cb340-5" data-line-number="5"><span class="co">#&gt; [1] 230</span></a></code></pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">10.3</span> Functions</h2>
