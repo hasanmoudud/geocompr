@@ -760,7 +760,7 @@ Let us assume that the <code>value</code> column of <code>incongruent</code> ref
 How can we transfer the values of the underlying nine spatial polygons into the two polygons of <code>aggregating_zones</code>?
 The simplest useful method for this is <em>area weighted</em> spatial interpolation.
 In this case values from the <code>incongruent</code> object are allocated to the <code>aggregating_zones</code> in proportion to the area, i.e. the larger the spatial intersection between input and output features, the larger the corresponding value.
-For instance, if one intersection of <code>incongruent</code> and <code>aggregating_zones</code> is 1.5 km^<sup>2</sup>^ but the whole incongruent polygon in question has 2 km^<sup>2</sup>^ and a total income of 4 million Euros, then the target aggregating zone will obtain three quarters of the income, in this case 3 million Euros.
+For instance, if one intersection of <code>incongruent</code> and <code>aggregating_zones</code> is 1.5 km<sup>2</sup> but the whole incongruent polygon in question has 2 km<sup>2</sup> and a total income of 4 million Euros, then the target aggregating zone will obtain three quarters of the income, in this case 3 million Euros.
 This is implemented in <code>st_interpolate_aw()</code>, as demonstrated in the code chunk below.</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">agg_aw =<span class="st"> </span><span class="kw">st_interpolate_aw</span>(incongruent[, <span class="st">&quot;value&quot;</span>], aggregating_zones, <span class="dt">extensive =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb134-2" data-line-number="2"><span class="co">#&gt; Warning in st_interpolate_aw(incongruent[, &quot;value&quot;], aggregating_zones, :</span></a>
@@ -958,7 +958,7 @@ In Chapter <a href="gis.html#gis">9</a> we will learn how to access GIS function
 <h3><span class="header-section-number">4.3.5</span> Zonal operations</h3>
 <p><em>Zonal</em> operations are similar to focal operations.
 The difference is that zonal filters can take on any shape instead of just a predefined window.
-Our grain size raster is a good example (Figure <a href="#fig:cont-cate-rasters"><strong>??</strong></a>) because the different grain sizes are spread in an irregular fashion throughout the raster.</p>
+Our grain size raster is a good example (Figure <a href="attr.html#fig:cont-raster">3.2</a>) because the different grain sizes are spread in an irregular fashion throughout the raster.</p>
 <p>To find the mean elevation for each grain size class, we can use the <code>zonal()</code> command.
 This kind of operation is also known as <em>zonal statistics</em> in the GIS world.</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">z =<span class="st"> </span><span class="kw">zonal</span>(elev, grain, <span class="dt">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="op">%&gt;%</span></a>

@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1da6b96b7101aa1b
+preserve676a2600e5cf8c09
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve10194c027c47ed0f
+preserve6f2fc6e15f0a9e04
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3186,7 +3186,7 @@ Let us assume that the `value` column of `incongruent` refers to the total regio
 How can we transfer the values of the underlying nine spatial polygons into the two polygons of `aggregating_zones`?
 The simplest useful method for this is *area weighted* spatial interpolation.
 In this case values from the `incongruent` object are allocated to the `aggregating_zones` in proportion to the area, i.e. the larger the spatial intersection  between input and output features, the larger the corresponding value. 
-For instance, if one intersection of `incongruent` and `aggregating_zones` is 1.5 km^^2^^ but the whole incongruent polygon in question has 2 km^^2^^ and a total income of 4 million Euros, then the target aggregating zone will obtain three quarters of the income, in this case 3 million Euros.
+For instance, if one intersection of `incongruent` and `aggregating_zones` is 1.5 km^2^ but the whole incongruent polygon in question has 2 km^2^ and a total income of 4 million Euros, then the target aggregating zone will obtain three quarters of the income, in this case 3 million Euros.
 This is implemented in `st_interpolate_aw()`, as demonstrated in the code chunk below.
 
 
@@ -3442,7 +3442,7 @@ In Chapter \@ref(gis) we will learn how to access GIS functionality from within 
 
 *Zonal* operations are similar to focal operations.
 The difference is that zonal filters can take on any shape instead of just a predefined window.
-Our grain size raster is a good example (Figure \@ref(fig:cont-cate-rasters)) because the different grain sizes are spread in an irregular fashion throughout the raster.
+Our grain size raster is a good example (Figure \@ref(fig:cont-raster)) because the different grain sizes are spread in an irregular fashion throughout the raster.
 
 To find the mean elevation for each grain size class, we can use the `zonal()` command.
 This kind of operation is also known as *zonal statistics* in the GIS world. 
@@ -6471,7 +6471,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservecc3e7c416a4bb0a7
+preservee508982c516cd1f9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6570,7 +6570,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve624d03b44692d43f
+preservee9ebe5bcc1e49b6f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9753,7 +9753,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve7e7e2362f20075bd
+preserve4e1f90810005cbcb
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
