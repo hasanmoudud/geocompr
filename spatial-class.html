@@ -1289,7 +1289,7 @@ This information, stored as an attribute (which interested readers can discover 
 Reporting units prevents confusion.
 To take the Nigeria example, if the units remained unspecified, one could incorrectly assume that the units were in km<sup>2</sup>.
 To translate the huge number into a more digestible size, it is tempting to divide the results by a million (the number of square meters in a square kilometer):</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">st_area</span>(nigeria) <span class="op">/</span><span class="st"> </span><span class="fl">1e6</span></a>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">st_area</span>(nigeria) <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span></a>
 <a class="sourceLine" id="cb55-2" data-line-number="2"><span class="co">#&gt; 905062 m^2</span></a></code></pre></div>
 <p>However, the result is incorrectly given again as square meters.
 The solution is to set the correct units with the <strong>units</strong> package:</p>
