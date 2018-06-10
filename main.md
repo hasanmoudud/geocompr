@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve83696bae2be47775
+preserve333a2617e9959df3
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3071,7 +3071,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved133f4057d69aa4b
+preserve05a2a34edc023423
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4529,7 +4529,10 @@ ch_raster3 = rasterize(cycle_hire_osm_projected, raster_template,
                        field = "capacity", fun = sum)
 ```
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/vector-rasterization1-1.png" alt="Examples of point's rasterization." width="576" />
+<p class="caption">(\#fig:vector-rasterization1)Examples of point's rasterization.</p>
+</div>
 
 Another dataset based on California's polygons and borders (created below) illustrates raterization of lines.
 After casting the polygon objects into a multilinestring, a template raster is created, with a resolution of a 0.5 degree:
@@ -4571,7 +4574,10 @@ california_raster2 = rasterize(as(california, "Spatial"), raster_template2)
 
 <!-- It is also possible to use the `field` or `fun` arguments for lines and polygons rasterizations. -->
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/vector-rasterization2-1.png" alt="Examples of line and polygon rasterizations." width="576" />
+<p class="caption">(\#fig:vector-rasterization2)Examples of line and polygon rasterizations.</p>
+</div>
 
 As with `raster::extract()`,  `raster::rasterize()` works well for most cases but is not performance optimized. 
 Fortunately, there are several alternatives, including the `fasterize::fasterize()` and `gdalUtils::gdal_rasterize()`. 
@@ -4596,7 +4602,10 @@ elev_point = rasterToPoints(elev, spatial = TRUE) %>%
   st_as_sf()
 ```
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/raster-vectorization1-1.png" alt="Raster and point representation of `elev`." width="576" />
+<p class="caption">(\#fig:raster-vectorization1)Raster and point representation of `elev`.</p>
+</div>
 
 Another common type of spatial vectorization is the creation of contour lines representing lines of continuous height or temperatures (isotherms) for example.
 We will use a real-world digital elevation model (DEM) because the artificial raster `elev` produces parallel lines (task: verify this and explain why this happens).
@@ -6467,7 +6476,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve64624611f97ac3d3
+preservecccbc42d159dbca9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6566,7 +6575,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved1ce27f93755e0a9
+preserve29051d8d541e9be3
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9749,7 +9758,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve1d284b795f810a4b
+preserve8d72c08e72f6f589
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
