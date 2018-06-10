@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef402881695373f9c
+preserve89474f11797bf4e1
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -406,7 +406,7 @@ These can still be useful today, provided you know where to look.
 
 R's spatial capabilities originated in early spatial packages in the S language [@bivand_implementing_2000].
 The 1990s saw the development of numerous S scripts and a handful of packages for spatial statistics.
-R packages arose from these and by 2000 there were R packages for various spatial methods "point pattern analysis, geostatistics, exploratory spatial data analysis and spatial econometrics", according to an [article](http://www.geocomputation.org/2000/GC009/Gc009.htm) presented at GeoComputation2000  [@bivand_open_2000]
+R packages arose from these and by 2000 there were R packages for various spatial methods "point pattern analysis, geostatistics, exploratory spatial data analysis and spatial econometrics", according to an [article](http://www.geocomputation.org/2000/GC009/Gc009.htm) presented at GeoComputation 2000 [@bivand_open_2000]
 Some of these, notably **spatial**, **sgeostat** and **splancs** are still available on CRAN [@rowlingson_splancs:_1993; @rowlingson_splancs:_2017;@venables_modern_2002; @majure_sgeostat_2016].
 
 A subsequent article in R News (the predecessor of [The R Journal](https://journal.r-project.org/)) contained an overview of spatial statistical software in R at the time, much of which was based on previous code written for S/S-PLUS [@ripley_spatial_2001].
@@ -669,7 +669,7 @@ All 68 types can be represented with the **sf** package, although (at the time o
 Given the breadth of geographic data forms, it may come as a surprise that a class system to support all of them is provided in a single package, which can be installed from CRAN:^[The
 development version, which may contain new features, can be installed with `devtools::install_github("r-spatial/sf").`
 ]
-**sf** incorporates the functionality of the three main packages of the **sp** paradigm (**sp** [@R-sp] for the class system, **rgdal** [@R-rgdal] for reading and writing data, **rgeos** [@R-rgeos] for spatial operations undertaken by GEOS) in a single, cohesive whole.
+**sf** incorporates the functionality of the three main packages of the **sp** paradigm, **sp** [@R-sp] for the class system, **rgdal** [@R-rgdal] for reading and writing data, **rgeos** [@R-rgeos] for spatial operations undertaken by GEOS, in a single, cohesive whole.
 This is well-documented in **sf**'s [vignettes](http://cran.rstudio.com/package=sf).
 
 
@@ -981,7 +981,6 @@ By contrast, use matrices in the case of multipoint (`st_multipoint()`) and line
 multipoint_matrix = rbind(c(5, 2), c(1, 3), c(3, 4), c(3, 2))
 st_multipoint(multipoint_matrix)
 #> MULTIPOINT (5 2, 1 3, 3 4, 3 2)
-
 ## LINESTRING
 linestring_matrix = rbind(c(1, 5), c(4, 4), c(4, 1), c(2, 2), c(3, 2))
 st_linestring(linestring_matrix)
@@ -1233,17 +1232,14 @@ Simple features are created using the `st_sf()` function:
 # sfg objects
 london_point = st_point(c(0.1, 51.5))
 ruan_point = st_point(c(-9, 53))
-
 # sfc object
 our_geometry = st_sfc(london_point, ruan_point, crs = 4326)
-
 # data.frame object
 our_attributes = data.frame(name = c("London", "Ruan"),
                             temperature = c(25, 13),
                             date = c(as.Date("2017-06-21"), as.Date("2017-06-22")),
                             category = c("city", "village"),
                             automatic = c(FALSE, TRUE))
-
 # sf object
 sf_points = st_sf(our_attributes, geometry = our_geometry)
 ```
@@ -1496,7 +1492,7 @@ Usually, you provide it with a filename to a multilayer raster file but might al
 
 
 ```r
-multilayer_raster_filepath = system.file("raster/landsat.tif", package="spDataLarge")
+multilayer_raster_filepath = system.file("raster/landsat.tif", package = "spDataLarge")
 r_brick = brick(multilayer_raster_filepath)
 r_brick
 #> class       : RasterBrick 
@@ -3071,7 +3067,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef86d3965fd41cee8
+preservefe8ff5471c58d498
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6476,7 +6472,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2bd72deaa81cf9dc
+preserve58d5e641b62c03e0
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6575,7 +6571,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve775cfbffc386ea40
+preserve36b2d7989f8ab1af
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9758,7 +9754,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve13021047e1443f78
+preserve8fe99f5b282ce811
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
