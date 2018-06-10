@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve89474f11797bf4e1
+preserve2ce239cba58809fe
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1291,7 +1291,7 @@ However, in contrast to vector data, the cell of one raster layer can only hold 
 The value might be numeric or categorical (Figure  \@ref(fig:raster-intro-plot):C).
 
 <div class="figure" style="text-align: center">
-<img src="figures/02_raster_intro_plot.png" alt="Raster data: A - cell IDs; B - cell values; C - a colored raster map." width="1125" />
+<img src="figures/raster-intro-plot-1.png" alt="Raster data: A - cell IDs; B - cell values; C - a colored raster map." width="576" />
 <p class="caption">(\#fig:raster-intro-plot)Raster data: A - cell IDs; B - cell values; C - a colored raster map.</p>
 </div>
 
@@ -1352,10 +1352,10 @@ You can also summarize and plot raster cell values in a non-spatial fashion usin
 summary(new_raster)
 #> Warning in .local(object, ...): summary is an estimate based on a sample of 1e+05 cells (47.06% of all cells)
 #>         srtm
-#> Min.    1024
+#> Min.    1034
 #> 1st Qu. 1535
-#> Median  1836
-#> 3rd Qu. 2111
+#> Median  1839
+#> 3rd Qu. 2115
 #> Max.    2892
 #> NA's       0
 ```
@@ -3067,7 +3067,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservefe8ff5471c58d498
+preserve30c2c787f555e0ae
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6472,7 +6472,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve58d5e641b62c03e0
+preservef0eebcac8df59495
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6571,7 +6571,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve36b2d7989f8ab1af
+preserve0225d1ee44b514c7
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9754,7 +9754,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8fe99f5b282ce811
+preserve803d6ff417ed5e33
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
