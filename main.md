@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve210aee4fe9902278
+preserve68ad94f0a57106c5
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve53ed19abab1de366
+preserveea1310245d296279
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5950,7 +5950,10 @@ tm_shape(nz) +
   tm_borders() 
 ```
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/tmshape-1.png" alt="New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions." width="576" />
+<p class="caption">(\#fig:tmshape)New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions.</p>
+</div>
 
 The object passed to `tm_shape()` in this case is `nz`, an `sf` object representing the regions of New Zealand (see section \@ref(intro-sf) for more on `sf` objects).
 Layers are added to represent `nz` visually, with `tm_fill()` and `tm_borders()` creating shaded areas (left panel) and border outlines (middle panel) in Figure \@ref(fig:tmshape), respectively.
@@ -6134,10 +6137,10 @@ Six of the most useful break styles are illustrated in Figure \@ref(fig:break-st
 - `style = cont` (and `order`) present a large number of colors over continuous color field, and are particularly suited for continuous rasters (`order` can help visualize skewed distributions)
 - `style = cat` was designed to represent categorical values and assures that each category receives a unique color
 
-
-```
-#> tmap options successfully reset
-```
+<div class="figure" style="text-align: center">
+<img src="figures/break-styles-1.png" alt="Illustration of different binning methods set using the style argument in tmap." width="576" />
+<p class="caption">(\#fig:break-styles)Illustration of different binning methods set using the style argument in tmap.</p>
+</div>
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">Although `style` is an argument of **tmap** functions it in fact originates as an argument in `classInt::classIntervals()` --- see the help page of this function for details.</div>\EndKnitrBlock{rmdnote}
 
@@ -6211,7 +6214,10 @@ map_nz + tm_layout(bg.color = "lightblue")
 map_nz + tm_layout(frame = FALSE)
 ```
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/layout1-1.png" alt="Layout options specified by (from left to right) title, scale, bg.color and frame arguments." width="576" />
+<p class="caption">(\#fig:layout1)Layout options specified by (from left to right) title, scale, bg.color and frame arguments.</p>
+</div>
 
 The other arguments in `tm_layout()` provide control over many more aspects of the map in relation to the canvas on which it is placed.
 Some useful layout settings are listed below (see Figure \@ref(fig:layout2) for illustrations of a selection of these):
@@ -6223,11 +6229,17 @@ Some useful layout settings are listed below (see Figure \@ref(fig:layout2) for 
 - Default colors of aesthetic layers (`aes.color`), map attributes such as the frame (`attr.color`).
 - Color settings controlling `sepia.intensity` (how yellowy the map looks) and `saturation` (a color-greyscale).
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/layout2-1.png" alt="Illustration of selected layout options." width="576" />
+<p class="caption">(\#fig:layout2)Illustration of selected layout options.</p>
+</div>
 
 The impact of changing the color settings listed above is illustrated in Figure \@ref(fig:layout3) (see `?tm_layout` for a full list).
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/layout3-1.png" alt="Illustration of selected color-related layout options." width="576" />
+<p class="caption">(\#fig:layout3)Illustration of selected color-related layout options.</p>
+</div>
 
 <!-- Maybe reverse order and progress from the high- to the low-level control. Overall, this section reads a bit like a vignette. Is this the intention. -->
 Beyond the low-level control over layouts and colors, **tmap** also offers high-level styles, using the `tm_style()` function (representing the second meaning of 'style' in the package).
@@ -6241,7 +6253,10 @@ map_nza + tm_style("cobalt")
 map_nza + tm_style("col_blind")
 ```
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/tmstyles-1.png" alt="Selected tmap styles: bw, classic, cobalt and col_blind (from left to right)." width="576" />
+<p class="caption">(\#fig:tmstyles)Selected tmap styles: bw, classic, cobalt and col_blind (from left to right).</p>
+</div>
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">A preview of predefined styles can be generated by executing `tmap_style_catalogue()`.
 This creates a folder called `tmap_style_previews` containing nine images.
@@ -6267,7 +6282,8 @@ This use case of faceted plot is illustrated in Figure \@ref(fig:urban-facet).
 urb_1970_2030 = urban_agglomerations %>% 
   filter(year %in% c(1970, 1990, 2010, 2030))
 tm_shape(world) + tm_polygons() + 
-  tm_shape(urb_1970_2030) + tm_dots(size = "population_millions") +
+  tm_shape(urb_1970_2030) + tm_symbols(col = "black", border.col = "white",
+                                       size = "population_millions") +
   tm_facets(by = "year", nrow = 2, free.coords = FALSE)
 ```
 
@@ -6436,7 +6452,6 @@ Code to reproduce this map can be found in the script `09-usboundaries.R`.
 
 
 
-
 <div class="figure" style="text-align: center">
 <img src="https://user-images.githubusercontent.com/1825120/38543030-5794b6f0-3c9b-11e8-9da9-10ec1f3ea726.gif" alt="Animated map showing population growth and state formation and boundary changes in the United States, 1790-2010."  />
 <p class="caption">(\#fig:animus)Animated map showing population growth and state formation and boundary changes in the United States, 1790-2010.</p>
@@ -6471,7 +6486,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5a354f858ee6affc
+preserve5c878e7308709506
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6495,7 +6510,6 @@ facets = c("coffee_production_2016", "coffee_production_2017")
 tm_shape(world_coffee) + tm_polygons(facets) + 
   tm_facets(nrow = 1, sync = TRUE)
 ```
-
 
 <div class="figure" style="text-align: center">
 <img src="https://user-images.githubusercontent.com/1825120/39561412-4dbba7ba-4e9d-11e8-885c-7973b351006b.png" alt="Faceted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action."  />
@@ -6570,7 +6584,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve934d31460a4feb8f
+preserve8f150c257d71de07
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9753,7 +9767,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservebcc93aa1c706bb99
+preserve83b6e07ad33e3881
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
