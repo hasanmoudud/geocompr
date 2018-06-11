@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve89aae175a0d44c82
+preserve5b1dc40ece0a2ff0
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef931c036ae8bb848
+preserve59685149ac0102b4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6486,7 +6486,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve0fa5bbe531b6fab1
+preserved80f8df401cfb1c9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6584,7 +6584,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve263776289cc52185
+preserved9cf00d8e5264b05
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7221,7 +7221,7 @@ In addition, there is a Python interface (SAGA Python API).
 **RSAGA** uses the former to run SAGA from within R.
 
 Though SAGA is a hybrid GIS, its main focus has been on raster processing, and here particularly on digital elevation models (soil properties, terrain attributes, climate parameters). 
-Hence, SAGA is especially good at the fast processing of large (high-resolution) rasters datasets [@conrad_system_2015]. 
+Hence, SAGA is especially good at the fast processing of large (high-resolution) raster datasets [@conrad_system_2015]. 
 Therefore, we will introduce **RSAGA** with a raster use case from @muenchow_geomorphic_2012.
 Specifically, we would like to compute the SAGA wetness index from a digital elevation model.
 First of all, we need to make sure that **RSAGA** will find SAGA on the computer when called.
@@ -9767,7 +9767,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve2dee258057170859
+preserveb989b85655359455
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
