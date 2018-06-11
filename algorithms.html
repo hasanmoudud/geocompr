@@ -494,7 +494,7 @@ We can verify it works on the triangle matrix <code>T1</code> as follows:</p>
 <!-- Commented-out because it makes more sense to do it in base R. Introduce decido later (Robin) -->
 <!-- With these functions created and tested on the first triangle of the polygon, we can we can apply the solution to many triangles, which will be created with the **decido** package: -->
 <p>The next stage is to create the second triangle and calculate its area and centroid.
-This is done in the code chunk below, which binds the 3<sup>rd</sup> and 4^th coordinates onto the 1<sup>st</sup>, and uses the same functions we created above to calculate its area and width:</p>
+This is done in the code chunk below, which binds the 3<sup>rd</sup> and 4<sup>th</sup> coordinates onto the 1<sup>st</sup>, and uses the same functions we created above to calculate its area and width:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">T2 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, ], O)</a>
 <a class="sourceLine" id="cb335-2" data-line-number="2">A2 =<span class="st"> </span><span class="kw">t_area</span>(T2)</a>
 <a class="sourceLine" id="cb335-3" data-line-number="3">C2 =<span class="st"> </span><span class="kw">t_centroid</span>(T2)</a></code></pre></div>
