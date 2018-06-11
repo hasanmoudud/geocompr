@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-10'
+date: '2018-06-11'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-10 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-11 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve68ad94f0a57106c5
+preserve820524db755767a4
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveea1310245d296279
+preserve320649c55842acc2
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6486,7 +6486,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5c878e7308709506
+preserve20cfd13d3149cbd9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6584,7 +6584,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8f150c257d71de07
+preserve5f8de8e658345ade
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7629,8 +7629,8 @@ In this case we'll create a polygon with 5 vertices in base R, building on an ex
 
 
 ```r
-x_coords = c(10, 2, 0, 0, 20, 10)
-y_coords = c(0, 2, 10, 15, 20, 0)
+x_coords = c(10, 0, 0, 2, 20, 10)
+y_coords = c(0, 0, 10, 12, 15, 0)
 poly_mat = cbind(x_coords, y_coords)
 ```
 
@@ -7662,26 +7662,26 @@ $$
 $$
 
 Where $A$ to $C$ are the triangle's three points and $x$ and $y$ refer to the x and y dimensions.
-A translation of this formula into R code that works with the data in the matrix representation of a triangle `T1` is:
+A translation of this formula into R code that works with the data in the matrix representation of a triangle `T1` is as follows (the function `abs()` ensures a positive result):
 
 
 ```r
-T1[1, 1] * (T1[2, 2] - T1[3, 2]) +
+abs(T1[1, 1] * (T1[2, 2] - T1[3, 2]) +
   T1[2, 1] * (T1[3, 2] - T1[1, 2]) +
-  T1[3, 1] * (T1[1, 2] - T1[2, 2]) / 2
-#> [1] -60
+  T1[3, 1] * (T1[1, 2] - T1[2, 2]) ) / 2
+#> [1] 50
 ```
 
 This code chunk works and outputs the correct result.^[
 as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height --- $A = B * H / 2$ --- ($10 * 10 / 2$ in this case, as can be seen in Figure \@ref(fig:polycent)).
 ]
 The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same 'triangle matrix' format.
-To make the code more generalizable, let's convert the code into a function (something described in \@ref(functions)):
+To make the code more generalizable, let's convert the code into a function (something described in \@ref(functions)) that works with any matrix represenations of a triangle that we'll call `x`:
 
 
 ```r
 t_area = function(x) {
-  (
+  abs(
     x[1, 1] * (x[2, 2] - x[3, 2]) +
     x[2, 1] * (x[3, 2] - x[1, 2]) +
     x[3, 1] * (x[1, 2] - x[2, 2])
@@ -7690,12 +7690,12 @@ t_area = function(x) {
 ```
 
 The function `t_area` generalizes the solution by taking any object `x`, assumed to have the same dimensions as the triangle represented in `T1`.
-We can verify it works not only on the triangle matrix `T1` as follows:
+We can verify it works on the triangle matrix `T1` as follows:
 
 
 ```r
 t_area(T1)
-#> [1] -30
+#> [1] 50
 ```
 
 Likewise we can create a function that find's the triangle's centroid:
@@ -7707,7 +7707,7 @@ t_centroid = function(x) {
 }
 t_centroid(T1)
 #> x_coords y_coords 
-#>        4        4
+#>     3.33     3.33
 ```
 
 <!-- Commented-out because it makes more sense to do it in base R. Introduce decido later (Robin) -->
@@ -7745,11 +7745,11 @@ We are now in a position to calculate the total area and geographic centroid of 
 
 ```r
 sum(A)
-#> [1] -230
+#> [1] 190
 weighted.mean(C[, 1], A)
-#> [1] 8.49
+#> [1] 8.04
 weighted.mean(C[, 2], A)
-#> [1] 10.3
+#> [1] 7.33
 ```
 
 Is this right?
@@ -7761,9 +7761,9 @@ library(sf)
 #> Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0
 poly_sfc = st_polygon(list(poly_mat))
 st_area(poly_sfc)
-#> [1] 230
+#> [1] 190
 st_centroid(poly_sfc)
-#> POINT (8.49 10.3)
+#> POINT (8.04 7.33)
 ```
 
 
@@ -7780,7 +7780,7 @@ library(sf)
 T_sf = list(poly_mat) %>% 
   st_polygon()
 st_area(T_sf)
-#> [1] 230
+#> [1] 190
 ```
 
 ## Functions
@@ -9767,7 +9767,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve83b6e07ad33e3881
+preserve6ce7208f2fda0026
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
