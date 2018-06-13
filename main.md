@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8c6bda131f350477
+preservea08e903d0dde996f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb4de9aed6c0b12b9
+preserveca97520c591b2ae3
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5328,21 +5328,21 @@ The final section (\@ref(visual-outputs)) demonstrates methods for saving visual
 
 ## Retrieving open data {#retrieving-data}
 
-Nowadays, a vast amount of spatial data is available on the internet.
-Best of all, much of it is freely available.
-You just have to know where to look.
-While we cannot provide a comprehensive guide to all available geodata, we point to a few of the most important sources.
-Various 'geoportals' (web services providing geographic data such as the geospatial datasets in [Data.gov](https://catalog.data.gov/dataset?metadata_type=geospatial)) are a good place to start, providing a wide range of geographic data.
-Geoportals are a very useful data source but often only contain data for a specific locations (see the [Wikipedia page on geoportals](https://en.wikipedia.org/wiki/Geoportal) for a list of geoportals covering many areas of the world).
+A vast and ever-increasing amount of spatial data is available on the internet, much of which is free to access and use (with appropriate credit given to its providers).
+In some ways there is now *too much* data in the sense that there are often multiple places to access the same dataset, some of which may be poor quality.
+In this context it vital know where to look.
+Instead of attempting to provide a comprehensive guide to this data deluge this section some of the most important sources.
+Various 'geoportals' (web services providing geospatial datasets such as [Data.gov](https://catalog.data.gov/dataset?metadata_type=geospatial)) are a good place to start, providing a wide range of data but often only for specific locations (as illustrated in the updated [Wikipedia page](https://en.wikipedia.org/wiki/Geoportal) on the topic).
 
-To overcome this limitation some global geoportals have been developed.
-The [GEOSS portal](http://www.geoportal.org/), for example, provides global remote sensing data.
-Additional geoportals with global coverage and an emphasis on raster data include the [EarthExplorer](https://earthexplorer.usgs.gov/) and the [Copernicus Open Access Hub](https://scihub.copernicus.eu/).
-A wealth of European data is available from the [INSPIRE geoportal](http://inspire-geoportal.ec.europa.eu/).
+Some global geoportals overcome this issue.
+The [GEOSS portal](http://www.geoportal.org/) and the [Copernicus Open Access Hub](https://scihub.copernicus.eu/), for example, contain many raster datasets with global coverage.
+A wealth of vector datasets can be accessed from the National Space Agency (NASA) [SEDAC](http://sedac.ciesin.columbia.edu/) portal and the European Union's [INSPIRE geoportal](http://inspire-geoportal.ec.europa.eu/), with global and regional coverage.
 
-Typically, geoportals provide an interface that lets you query interactively the existing data (spatial and temporal extent, and product).
-However, in this book we encourage you to create reproducible workflows.
-In many cases data downloads can be scripted via download calls to static URLs or APIs (see the [Sentinel API](https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/APIHubDescription) for example), saving time and enabling others to repeat and update the unglamorous data download process. 
+Such geoportals provide a browser-based graphical interface allowing datasets to be queried interactively based on characteristics such spatial and temporal extent.
+Such interfaces 
+However, it is preferable to script data downloads from a reprodibility perspective.
+Data can be downloaded from the command line using static URLs or APIs calls (see the [Sentinel API](https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/APIHubDescription) for example).
+This approach can also save time. 
 
 Traditionally, files have been stored on servers.
 <!-- that's probably not the best example - replace it with something better -->
@@ -6486,7 +6486,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveb3febaf0f632e8bc
+preserve4b9048d78f3765c1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6584,7 +6584,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef31372ca14c49e97
+preserve564dd2684a7209ab
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9750,7 +9750,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve34fbeb39cb8ac005
+preserve44d0508df9c94182
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
