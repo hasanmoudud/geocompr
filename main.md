@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7c023b5cc5f28eb1
+preserve700b34c77b26f8d1
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservedfc4286d1d18fd16
+preserve0e7d0cb455a227c4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6486,7 +6486,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservef4df49b2d2882ecf
+preservebb041eecc0337fd4
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6584,7 +6584,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedf4011162916b651
+preservefa619fa60e85a5a6
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7007,6 +7007,7 @@ __Note:__
 ^a^ Comparing downloads of different providers is rather difficult (see [http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world/](http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world/)), and here also useless since every Windows QGIS download automatically also downloads SAGA and GRASS.
 
 ## (R)QGIS
+
 QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing:_2015]. 
 Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
 This means that you have access to GDAL/OGR, GRASS and SAGA through QGIS [@graser_processing:_2015]. 
@@ -7015,22 +7016,19 @@ To run all these geoalgorithms (frequently more than 1000 depending on your set 
 Basically, functions `set_env()` and `open_app()` are doing this. 
 Note that it is optional to run `set_env()` and `open_app()` since all functions depending on their output will run them automatically if needed.
 Before running **RQGIS** you have to make sure to have installed QGIS and all its (third-party) dependencies such as SAGA and GRASS.
-To help you with the installation process, please follow the steps as detailed in `vignette("install_guide", package = "RQGIS")` for several platforms (Windows, Linux, MacOS).
+To install **RQGIS** a number of dependencies are required, as described in the [`install_guide`](https://cran.r-project.org/web/packages/RQGIS/vignettes/install_guide.html) vignette, which covers installation on Windows, Linux and Mac.
 Please install the long-term release of QGIS, i.e. 2.18, since **RQGIS** so far does not support QGIS 3.
 
 
 ```r
-# for the moment, please use the RQGIS developer version
-# devtools::install_github("jannes-m/RQGIS")
+devtools::install_github("jannes-m/RQGIS") # use dev version (for now)
 library(RQGIS)
 set_env()
 
 #> $`root`
 #> [1] "C:/OSGeo4W64"
-#> 
 #> $qgis_prefix_path
 #> [1] "C:/OSGeo4W64/apps/qgis-ltr"
-#> 
 #> $python_plugins
 #> [1] "C:/OSGeo4W64/apps/qgis-ltr/python/plugins"
 ```
@@ -7053,9 +7051,7 @@ Both polygon datasets are available in the **spData** package, and for both we w
 
 
 ```r
-data("incongruent", package = "spData")
-data("aggregating_zones", package = "spData")
-incongruent = st_transform(incongruent, 4326)
+incongruent = st_transform(incongruent, 4326) # requires spData and sf
 aggregating_zones = st_transform(aggregating_zones, 4326)
 ```
 
@@ -7112,11 +7108,11 @@ Empty geometries might lead to problems in subsequent geoprocessing tasks which 
 
 
 ```r
-# getting rid of empty geometries
+# remove empty geometries
 union = union[!is.na(st_dimension(union)), ]
 ```
 
-Secondly, we convert multipart polygons into single part polygons (also known as explode geometries or casting).
+Next we convert multipart polygons into single part polygons (also known as explode geometries or casting).
 This is necessary for the deletion of sliver polygons later on.
 
 
@@ -7165,20 +7161,7 @@ get_usage(alg)
 #>	COMPARISONVALUE <ParameterString>
 #>	MODE <ParameterSelection>
 #>	OUTPUT <OutputVector>
-
-#>COMPARISON(Comparison)
-#>	0 - ==
-#>	1 - !=
-#>	2 - >
-#>	3 - >=
-#>	4 - <
-#>	5 - <=
-#>	6 - begins with
-#>	7 - contains
-#>MODE(Merge selection with the neighbouring polygon with the)
-#>	0 - Largest area
-#>	1 - Smallest Area
-#>	2 - Largest common boundary
+#>	...
 ```
 
 Conveniently, the user has not to specify each single parameter.
@@ -9767,7 +9750,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve3bc879ef9336a8d7
+preserve4c9ef6db0227d54f
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
