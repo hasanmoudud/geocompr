@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea29ec2e0d1d58b35
+preserve733638ce7e8254f9
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -892,29 +892,29 @@ WKT, on the other hand, is a human-readable text markup description of simple fe
 Both formats are exchangeable, and if we present one, we will naturally choose the WKT representation.
 
 The basis for each geometry type is the point. 
-A point is simply a coordinate in 2D, 3D or 4D space (see `vignette("sf1")` for more information) such as:
+A point is simply a coordinate in 2D, 3D or 4D space (see `vignette("sf1")` for more information) such as (see left panel in Figure \@ref(fig:sfcs)):
 
 - `POINT (5 2)`
 
-<img src="figures/point-1.png" width="30%" style="display: block; margin: auto;" />
-
-A linestring is a sequence of points with a straight line connecting the points, for example:
+A linestring is a sequence of points with a straight line connecting the points, for example (see middle panel in Figure \@ref(fig:sfcs)):
 
 - `LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)`
 
-<img src="figures/linestring-1.png" width="30%" style="display: block; margin: auto;" />
-
 A polygon is a sequence of points that form a closed, non-intersecting ring.
-Closed means that the first and the last point of a polygon have the same coordinates. 
+Closed means that the first and the last point of a polygon have the same coordinates (see right panel in Figure \@ref(fig:sfcs)).^[
 By definition, a polygon has one exterior boundary (outer ring) and can have zero or more interior boundaries (inner rings), also known as holes.
+A polygon with a hole would be, for example, `POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))`
+]
 
 - Polygon without a hole - `POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))`
 
-<img src="figures/polygon-1.png" width="30%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="figures/sfcs-1.png" alt="Illustration of point, linestring and polygon geometries." width="576" />
+<p class="caption">(\#fig:sfcs)Illustration of point, linestring and polygon geometries.</p>
+</div>
 
-- Polygon with one hole - `POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))`
 
-<img src="figures/polygon_hole-1.png" width="30%" style="display: block; margin: auto;" />
+
 
 So far we have created geometries with only one geometric entity per feature.
 However, **sf** also allows multiple geometries to exist within a single feature (hence the term 'geometry collection') using "multi" version of each geometry type:
@@ -923,13 +923,16 @@ However, **sf** also allows multiple geometries to exist within a single feature
 - Multistring - `MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 2, 2 4))`
 - Multipolygon - `MULTIPOLYGON (((1 5, 2 2, 4 1, 4 4, 1 5), (0 2, 1 2, 1 3, 0 3, 0 2)))`
 
-<img src="figures/multis-1.png" width="576" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="figures/multis-1.png" alt="Illustration of multipoint, mutlilinestring and multipolygon geometries." width="576" />
+<p class="caption">(\#fig:multis)Illustration of multipoint, mutlilinestring and multipolygon geometries.</p>
+</div>
 
 Finally, a geometry collection might contain any combination of geometry types:
 
 - Geometry collection - `GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)))`
 
-<img src="figures/geom_collection-1.png" width="30%" style="display: block; margin: auto;" />
+
 
 #### Simple feature geometry (sfg) objects {#sfg}
 
@@ -3066,7 +3069,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4cbede02e7bd95e0
+preservec4163022374c8cd9
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6474,7 +6477,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea2a1fe92c962986c
+preserve5cb27b943677e586
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6572,7 +6575,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec4ccb89195c24f01
+preservef81f2df6159fc3eb
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9718,7 +9721,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve1298839e7a873caf
+preserve371af10e5479e6a2
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

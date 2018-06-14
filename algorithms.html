@@ -431,7 +431,7 @@ See <a href="http://reprex.tidyverse.org/">reprex.tidyverse.org/</a> for details
 a series of instructions which, when taken on appropriate ingredients, results in an output that is more useful (or tasty) than the raw ingredients.
 Before considering ‘geoalgorithms’, it is worth taking a brief detour around the history of the algorithms, to understand how they relate to scripts and functions which are covered next.</p>
 <p>The word algorithm comes from Baghdad when, in the 9<sup>th</sup> Century AD, an early maths book was published called <em>Hisab al-jabr w’al-muqabala</em>.
-The book was translated into Latin and became so popular that the author Muḥammad ibn Mūsā <a href="https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi">al-Khwārizmī</a> “was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm” <span class="citation">(Bellos <a href="#ref-bellos_alex_2011">2011</a>)</span>.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a></p>
+The book was translated into Latin and became so popular that the author Muḥammad ibn Mūsā <a href="https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi">al-Khwārizmī</a> “was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm” <span class="citation">(Bellos <a href="#ref-bellos_alex_2011">2011</a>)</span>.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a></p>
 <p>In the computing age algorithm refers to a series of steps that take a clearly defined input to produce an output.
 Algorithms often start as in flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R.
 Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section <a href="algorithms.html#functions">10.3</a>).</p>
@@ -471,7 +471,7 @@ A translation of this formula into R code that works with the data in the matrix
 <a class="sourceLine" id="cb331-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
 <a class="sourceLine" id="cb331-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb331-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
-<p>This code chunk works and outputs the correct result.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>
+<p>This code chunk works and outputs the correct result.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a>
 The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same ‘triangle matrix’ format.
 To make the code more generalizable, let’s convert the code into a function (something described in <a href="algorithms.html#functions">10.3</a>) that works with any matrix represenations of a triangle that we’ll call <code>x</code>:</p>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">t_area =<span class="st"> </span><span class="cf">function</span>(x) {</a>
@@ -567,11 +567,11 @@ Building on this example, write a function only using base R functions that can 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="57">
-<li id="fn57"><p>
-The book’s title was also influential, forming the basis of the word <em>algebra</em>.<a href="algorithms.html#fnref57" class="footnote-back">↩</a></p></li>
+<ol start="58">
 <li id="fn58"><p>
-as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height — <span class="math inline">\(A = B * H / 2\)</span> — (<span class="math inline">\(10 * 10 / 2\)</span> in this case, as can be seen in Figure <a href="algorithms.html#fig:polycent">10.3</a>).<a href="algorithms.html#fnref58" class="footnote-back">↩</a></p></li>
+The book’s title was also influential, forming the basis of the word <em>algebra</em>.<a href="algorithms.html#fnref58" class="footnote-back">↩</a></p></li>
+<li id="fn59"><p>
+as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height — <span class="math inline">\(A = B * H / 2\)</span> — (<span class="math inline">\(10 * 10 / 2\)</span> in this case, as can be seen in Figure <a href="algorithms.html#fig:polycent">10.3</a>).<a href="algorithms.html#fnref59" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
