@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-13'
+date: '2018-06-14'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-13 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-14 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved19e2351083b8cb9
+preserveb876dbd1daf7e4bd
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve04a9452b9ac3e8b7
+preserve2c3fb23f87960f96
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5338,26 +5338,19 @@ Some global geoportals overcome this issue.
 The [GEOSS portal](http://www.geoportal.org/) and the [Copernicus Open Access Hub](https://scihub.copernicus.eu/), for example, contain many raster datasets with global coverage.
 A wealth of vector datasets can be accessed from the National Space Agency (NASA) [SEDAC](http://sedac.ciesin.columbia.edu/) portal and the European Union's [INSPIRE geoportal](http://inspire-geoportal.ec.europa.eu/), with global and regional coverage.
 
-Such geoportals provide a browser-based graphical interface allowing datasets to be queried interactively based on characteristics such spatial and temporal extent.
-Such interfaces 
-However, it is preferable to script data downloads from a reprodibility perspective.
-Data can be downloaded from the command line using static URLs or APIs calls (see the [Sentinel API](https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/APIHubDescription) for example).
-This approach can also save time. 
-
-Traditionally, files have been stored on servers.
-<!-- that's probably not the best example - replace it with something better -->
-<!-- btw naturalearth website has some problems today - the link will probably change in the future -->
-You can easily download such files with the `download.file()` command.
-For example, to download National Park Service units in the United States, run:
+Most geoportals provide a graphical interface allowing datasets to be queried based on characteristics such spatial and temporal extent, the United States Geological Services' [EarthExplorer](https://earthexplorer.usgs.gov/) being a prime example.
+*Exploring* datasets interactively on a browser is an effective way of understanding available layers.
+*Downloading* data is best done with code, however, from reprodibility and efficiency perspectives.
+Downloads can be initiated from the command line using a variety of techniques, primarily via URLs and APIs (see the [Sentinel API](https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/APIHubDescription) for example).
+Files hosted on static URLs can be downloaded with `download.file()`, as illustrated in the code chunk below which accesses US National Parks data from [catalog.data.gov/dataset/national-parks](https://catalog.data.gov/dataset/national-parks):
 
 
 ```r
-url = file.path("http://www.naturalearthdata.com/http//www.naturalearthdata.com",
-                "download/10m/cultural/ne_10m_parks_and_protected_lands.zip")
-download.file(url = url,
-              destfile = "USA_parks.zip")
-unzip(zipfile = "USA_parks.zip")
-usa_parks = st_read("ne_10m_parks_and_protected_lands_area.shp")
+download.file(url = "http://nrdata.nps.gov/programs/lands/nps_boundary.zip",
+              destfile = "nps_boundary.zip")
+unzip(zipfile = "nps_boundary.zip")
+f = "temp/Current_Shapes/Data_Store/06-06-12_Posting/nps_boundary.shp"
+usa_parks = st_read(dsn = f)
 ```
 
 Specific R packages providing an interface to spatial libraries or geoportals are even more user-friendly (Table \@ref(tab:datapackages)).
@@ -6486,7 +6479,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve19fd361bbc5d11d6
+preserve52249555d9db631f
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6584,7 +6577,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6b7166f6f966c609
+preserve18fada5bdcc2f62f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9750,7 +9743,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve034ba2835ceeb549
+preserve2f41550936407686
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

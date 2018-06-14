@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-13">
+<meta name="date" content="2018-06-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -416,22 +416,16 @@ Various ‘geoportals’ (web services providing geospatial datasets such as <a 
 <p>Some global geoportals overcome this issue.
 The <a href="http://www.geoportal.org/">GEOSS portal</a> and the <a href="https://scihub.copernicus.eu/">Copernicus Open Access Hub</a>, for example, contain many raster datasets with global coverage.
 A wealth of vector datasets can be accessed from the National Space Agency (NASA) <a href="http://sedac.ciesin.columbia.edu/">SEDAC</a> portal and the European Union’s <a href="http://inspire-geoportal.ec.europa.eu/">INSPIRE geoportal</a>, with global and regional coverage.</p>
-<p>Such geoportals provide a browser-based graphical interface allowing datasets to be queried interactively based on characteristics such spatial and temporal extent.
-Such interfaces
-However, it is preferable to script data downloads from a reprodibility perspective.
-Data can be downloaded from the command line using static URLs or APIs calls (see the <a href="https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/APIHubDescription">Sentinel API</a> for example).
-This approach can also save time.</p>
-<p>Traditionally, files have been stored on servers.
-<!-- that's probably not the best example - replace it with something better -->
-<!-- btw naturalearth website has some problems today - the link will probably change in the future -->
-You can easily download such files with the <code>download.file()</code> command.
-For example, to download National Park Service units in the United States, run:</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1">url =<span class="st"> </span><span class="kw">file.path</span>(<span class="st">&quot;http://www.naturalearthdata.com/http//www.naturalearthdata.com&quot;</span>,</a>
-<a class="sourceLine" id="cb230-2" data-line-number="2">                <span class="st">&quot;download/10m/cultural/ne_10m_parks_and_protected_lands.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb230-3" data-line-number="3"><span class="kw">download.file</span>(<span class="dt">url =</span> url,</a>
-<a class="sourceLine" id="cb230-4" data-line-number="4">              <span class="dt">destfile =</span> <span class="st">&quot;USA_parks.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb230-5" data-line-number="5"><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;USA_parks.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb230-6" data-line-number="6">usa_parks =<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;ne_10m_parks_and_protected_lands_area.shp&quot;</span>)</a></code></pre></div>
+<p>Most geoportals provide a graphical interface allowing datasets to be queried based on characteristics such spatial and temporal extent, the United States Geological Services’ <a href="https://earthexplorer.usgs.gov/">EarthExplorer</a> being a prime example.
+<em>Exploring</em> datasets interactively on a browser is an effective way of understanding available layers.
+<em>Downloading</em> data is best done with code, however, from reprodibility and efficiency perspectives.
+Downloads can be initiated from the command line using a variety of techniques, primarily via URLs and APIs (see the <a href="https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/APIHubDescription">Sentinel API</a> for example).
+Files hosted on static URLs can be downloaded with <code>download.file()</code>, as illustrated in the code chunk below which accesses US National Parks data from <a href="https://catalog.data.gov/dataset/national-parks">catalog.data.gov/dataset/national-parks</a>:</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;http://nrdata.nps.gov/programs/lands/nps_boundary.zip&quot;</span>,</a>
+<a class="sourceLine" id="cb230-2" data-line-number="2">              <span class="dt">destfile =</span> <span class="st">&quot;nps_boundary.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb230-3" data-line-number="3"><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;nps_boundary.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb230-4" data-line-number="4">f =<span class="st"> &quot;temp/Current_Shapes/Data_Store/06-06-12_Posting/nps_boundary.shp&quot;</span></a>
+<a class="sourceLine" id="cb230-5" data-line-number="5">usa_parks =<span class="st"> </span><span class="kw">st_read</span>(<span class="dt">dsn =</span> f)</a></code></pre></div>
 <p>Specific R packages providing an interface to spatial libraries or geoportals are even more user-friendly (Table <a href="read-write.html#tab:datapackages">7.1</a>).</p>
 <!-- add sentinel2 package as soon as it is published on CRAN https://github.com/IVFL-BOKU/sentinel2-->
 <table>
