@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservede42f49efe40d840
+preserved484d8145ffe8aaf
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve1f9214247e875656
+preserve34fee7720f0692b0
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5320,7 +5320,7 @@ Hence the title of this chapter.
 
 Geographic data I/O is almost always part of a wider process.
 It depends on knowing which datasets are *available*, where they can be *found* and how to *retrieve* them, topics covered in section \@ref(retrieving-data).
-This section demonstrates how to access open access *geoportals* which collectively contain many terrabytes of data.
+This section demonstrates how to access open access *geoportals* which collectively contain many terabytes of data.
 There is a wide range of geographic file formats, each of which has pros and cons.
 These are described in section \@ref(file-formats).
 The process of actually reading and writing such file formats efficiently is not covered until sections \@ref(data-input) and \@ref(data-output) respectively.
@@ -5340,7 +5340,7 @@ A wealth of vector datasets can be accessed from the National Space Agency (NASA
 
 Most geoportals provide a graphical interface allowing datasets to be queried based on characteristics such spatial and temporal extent, the United States Geological Services' [EarthExplorer](https://earthexplorer.usgs.gov/) being a prime example.
 *Exploring* datasets interactively on a browser is an effective way of understanding available layers.
-*Downloading* data is best done with code, however, from reprodibility and efficiency perspectives.
+*Downloading* data is best done with code, however, from reproducibility and efficiency perspectives.
 Downloads can be initiated from the command line using a variety of techniques, primarily via URLs and APIs (see the [Sentinel API](https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/APIHubDescription) for example).
 Files hosted on static URLs can be downloaded with `download.file()`, as illustrated in the code chunk below which accesses US National Parks data from [catalog.data.gov/dataset/national-parks](https://catalog.data.gov/dataset/national-parks):
 
@@ -5428,32 +5428,30 @@ Although the quality is not as spatially consistent as many official datasets, O
 Further examples of **osmdata** in action are provided in Chapters \@ref(transport),  \@ref(location) and \@ref(gis).
 
 Sometimes, packages come with inbuilt datasets.
-These can be accessed in four ways: with `data()`, `pkg::dataset` or, using `system.file()` or, if the package uses 'lazy loading' (as **spData** does), by attaching the package.
-The following code chunk illustrates these options by loading the `world` dataset in three different ways:^[
+These can be accessed in four ways: by attaching the package (if the package uses 'lazy loading' as **spData** does), with `data(dataset)`, by referring to the dataset with `pkg::dataset` or with `system.file()` to access raw data files.
+The following code chunk illustrates the latter two options using the `world` (already loaded by attaching its parent package with `library(spData)`):^[
 For more information on data import with R packages see sections [5.5](https://csgillespie.github.io/efficientR/input-output.html#download) and [5.6](https://csgillespie.github.io/efficientR/input-output.html#accessing-data-stored-in-packages) of @gillespie_efficient_2016.
 ]
 
 
 ```r
-data(world)
-spData::world
-world_raw_filepath = system.file("shapes/world.gpkg", package = "spData")
-world_raw = st_read(world_raw_filepath)
+world2 = spData::world
+world3 = st_read(system.file("shapes/world.gpkg", package = "spData"))
 ```
 
 ## File formats
 
 Spatial datasets are usually stored as files or in spatial databases.
 File formats can either store vector or raster data, while spatial databases such as [PostGIS](https://trac.osgeo.org/postgis/wiki/WKTRaster) can store both.
-Today file formats may seem bewildering but there has been much consolidation and standardisation since the beginnings of GIS software in the 1960s when the first widely distributed program ([SYMAP](https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/)) for spatial analysis was created at Harvard University [@coppock_history_1991].
+Today file formats may seem bewildering but there has been much consolidation and standardization since the beginnings of GIS software in the 1960s when the first widely distributed program ([SYMAP](https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/)) for spatial analysis was created at Harvard University [@coppock_history_1991].
 
-GDAL,^[[GDAL](http://www.gdal.org/) should be prounounced "goo-dal", with the double o making a reference to object-orientation.] the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between file formats since its release in 2000.
+GDAL,^[[GDAL](http://www.gdal.org/) should be pronounced "goo-dal", with the double o making a reference to object-orientation.] the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between file formats since its release in 2000.
 GDAL provides a unified and high-performance interface for reading and writing of many raster and vector data formats.
 Many open and proprietary GIS programs, including GRASS, ArcGIS and QGIS, use GDAL behind their GUIs for doing the legwork of ingesting and spitting-out geographic data in appropriate formats.
 <!-- GDAL (it's great - you can read, convert, and very often (though not always) write) -->
 <!-- GDAL info "it is possible to have smaller number of supported formats than there are on the GDAL webpage; you may need to recompile..." -->
 
-An important development ensuring greater standardisation and open-sourcing of file formats was the founding of the Open Geospatial Consortium (OGC) in 1994.^[See [opengeospatial.org](http://www.opengeospatial.org).]
+An important development ensuring greater standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium (OGC) in 1994.^[See [opengeospatial.org](http://www.opengeospatial.org).]
 The OGC coordinates the development of open standards for geospatial content including file formats such as KML and GeoPackage.
 As described in Chapter \@ref(spatial-class) the OGC publishes the simple feature data model, which underlies the vector data classes provided by **sf** and used in this book. 
 Open file formats of the kind endorsed by the OGC have several advantages over proprietary formats: the standards are published, ensuring transparency and enabling innovation to improve the file formats.
@@ -5728,7 +5726,7 @@ The more values a data type can represent, the larger the file will get on disk.
 Commonly, one would use LOG1S for bitmap (binary) rasters.
 Unsigned integers (INT1U, INT2U, INT4U) are suitable for categorical data, while float numbers (FLT4S and FLTS8S) usually represent continuous data.
 `writeRaster()` uses FLT4S as the default.
-While this works in most cases, the size of the output file will be unnecessarly large if you save binary or categorical data.
+While this works in most cases, the size of the output file will be unnecessarily large if you save binary or categorical data.
 Therefore, we would recommend to use the data type that needs the least storage space but is still able to represent all values (check the range of values with the `summary()` function).
 
 
@@ -5790,7 +5788,7 @@ dev.off()
 Other available graphic devices include `pdf()`, `bmp()`, `jpeg()`, `png()`, and `tiff()`. 
 You can specify several properties of the output plot, including width, height and resolution.
 
-Additionally, several graphic packages provide thier own functions to save a graphical output.
+Additionally, several graphic packages provide their own functions to save a graphical output.
 For example, the **tmap** package has the `tmap_save()` function.
 You can save a `tmap` object to different graphic formats by specifying the object name and a file path to a new graphic file.
 
@@ -6471,7 +6469,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve3bb56d7bc8cd96ff
+preservee64adb7cfd7ef5d2
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6569,7 +6567,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve11f80a09a97ebbb5
+preserve46a06146eed988fd
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9735,7 +9733,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve93e016e44d6bbd80
+preserve2731ad742feb457c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

@@ -400,7 +400,7 @@ These two processes go hand-in-hand and are referred to as I/O — short for inp
 Hence the title of this chapter.</p>
 <p>Geographic data I/O is almost always part of a wider process.
 It depends on knowing which datasets are <em>available</em>, where they can be <em>found</em> and how to <em>retrieve</em> them, topics covered in section <a href="read-write.html#retrieving-data">7.2</a>.
-This section demonstrates how to access open access <em>geoportals</em> which collectively contain many terrabytes of data.
+This section demonstrates how to access open access <em>geoportals</em> which collectively contain many terabytes of data.
 There is a wide range of geographic file formats, each of which has pros and cons.
 These are described in section <a href="read-write.html#file-formats">7.3</a>.
 The process of actually reading and writing such file formats efficiently is not covered until sections <a href="read-write.html#data-input">7.4</a> and <a href="read-write.html#data-output">7.5</a> respectively.
@@ -418,7 +418,7 @@ The <a href="http://www.geoportal.org/">GEOSS portal</a> and the <a href="https:
 A wealth of vector datasets can be accessed from the National Space Agency (NASA) <a href="http://sedac.ciesin.columbia.edu/">SEDAC</a> portal and the European Union’s <a href="http://inspire-geoportal.ec.europa.eu/">INSPIRE geoportal</a>, with global and regional coverage.</p>
 <p>Most geoportals provide a graphical interface allowing datasets to be queried based on characteristics such spatial and temporal extent, the United States Geological Services’ <a href="https://earthexplorer.usgs.gov/">EarthExplorer</a> being a prime example.
 <em>Exploring</em> datasets interactively on a browser is an effective way of understanding available layers.
-<em>Downloading</em> data is best done with code, however, from reprodibility and efficiency perspectives.
+<em>Downloading</em> data is best done with code, however, from reproducibility and efficiency perspectives.
 Downloads can be initiated from the command line using a variety of techniques, primarily via URLs and APIs (see the <a href="https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/APIHubDescription">Sentinel API</a> for example).
 Files hosted on static URLs can be downloaded with <code>download.file()</code>, as illustrated in the code chunk below which accesses US National Parks data from <a href="https://catalog.data.gov/dataset/national-parks">catalog.data.gov/dataset/national-parks</a>:</p>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;http://nrdata.nps.gov/programs/lands/nps_boundary.zip&quot;</span>,</a>
@@ -502,24 +502,22 @@ The result is passed to a function for selecting which OSM elements we’re inte
 Although the quality is not as spatially consistent as many official datasets, OSM data have many advantages: they are globally available free of charge and using crowd-source data can encourage ‘citizen science’ and contributions back to the digital commons.
 Further examples of <strong>osmdata</strong> in action are provided in Chapters <a href="transport.html#transport">12</a>, <a href="location.html#location">13</a> and <a href="gis.html#gis">9</a>.</p>
 <p>Sometimes, packages come with inbuilt datasets.
-These can be accessed in four ways: with <code>data()</code>, <code>pkg::dataset</code> or, using <code>system.file()</code> or, if the package uses ‘lazy loading’ (as <strong>spData</strong> does), by attaching the package.
-The following code chunk illustrates these options by loading the <code>world</code> dataset in three different ways:<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">data</span>(world)</a>
-<a class="sourceLine" id="cb235-2" data-line-number="2">spData<span class="op">::</span>world</a>
-<a class="sourceLine" id="cb235-3" data-line-number="3">world_raw_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;shapes/world.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>)</a>
-<a class="sourceLine" id="cb235-4" data-line-number="4">world_raw =<span class="st"> </span><span class="kw">st_read</span>(world_raw_filepath)</a></code></pre></div>
+These can be accessed in four ways: by attaching the package (if the package uses ‘lazy loading’ as <strong>spData</strong> does), with <code>data(dataset)</code>, by referring to the dataset with <code>pkg::dataset</code> or with <code>system.file()</code> to access raw data files.
+The following code chunk illustrates the latter two options using the <code>world</code> (already loaded by attaching its parent package with <code>library(spData)</code>):<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">world2 =<span class="st"> </span>spData<span class="op">::</span>world</a>
+<a class="sourceLine" id="cb235-2" data-line-number="2">world3 =<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">system.file</span>(<span class="st">&quot;shapes/world.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>))</a></code></pre></div>
 </div>
 <div id="file-formats" class="section level2">
 <h2><span class="header-section-number">7.3</span> File formats</h2>
 <p>Spatial datasets are usually stored as files or in spatial databases.
 File formats can either store vector or raster data, while spatial databases such as <a href="https://trac.osgeo.org/postgis/wiki/WKTRaster">PostGIS</a> can store both.
-Today file formats may seem bewildering but there has been much consolidation and standardisation since the beginnings of GIS software in the 1960s when the first widely distributed program (<a href="https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/">SYMAP</a>) for spatial analysis was created at Harvard University <span class="citation">(Coppock and Rhind <a href="#ref-coppock_history_1991">1991</a>)</span>.</p>
+Today file formats may seem bewildering but there has been much consolidation and standardization since the beginnings of GIS software in the 1960s when the first widely distributed program (<a href="https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/">SYMAP</a>) for spatial analysis was created at Harvard University <span class="citation">(Coppock and Rhind <a href="#ref-coppock_history_1991">1991</a>)</span>.</p>
 <p>GDAL,<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a> the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between file formats since its release in 2000.
 GDAL provides a unified and high-performance interface for reading and writing of many raster and vector data formats.
 Many open and proprietary GIS programs, including GRASS, ArcGIS and QGIS, use GDAL behind their GUIs for doing the legwork of ingesting and spitting-out geographic data in appropriate formats.
 <!-- GDAL (it's great - you can read, convert, and very often (though not always) write) -->
 <!-- GDAL info "it is possible to have smaller number of supported formats than there are on the GDAL webpage; you may need to recompile..." --></p>
-<p>An important development ensuring greater standardisation and open-sourcing of file formats was the founding of the Open Geospatial Consortium (OGC) in 1994.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
+<p>An important development ensuring greater standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium (OGC) in 1994.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
 The OGC coordinates the development of open standards for geospatial content including file formats such as KML and GeoPackage.
 As described in Chapter <a href="spatial-class.html#spatial-class">2</a> the OGC publishes the simple feature data model, which underlies the vector data classes provided by <strong>sf</strong> and used in this book.
 Open file formats of the kind endorsed by the OGC have several advantages over proprietary formats: the standards are published, ensuring transparency and enabling innovation to improve the file formats.</p>
@@ -836,7 +834,7 @@ The more values a data type can represent, the larger the file will get on disk.
 Commonly, one would use LOG1S for bitmap (binary) rasters.
 Unsigned integers (INT1U, INT2U, INT4U) are suitable for categorical data, while float numbers (FLT4S and FLTS8S) usually represent continuous data.
 <code>writeRaster()</code> uses FLT4S as the default.
-While this works in most cases, the size of the output file will be unnecessarly large if you save binary or categorical data.
+While this works in most cases, the size of the output file will be unnecessarily large if you save binary or categorical data.
 Therefore, we would recommend to use the data type that needs the least storage space but is still able to represent all values (check the range of values with the <code>summary()</code> function).</p>
 <table>
 <caption><span id="tab:datatypes">Table 7.4: </span>Data types supported by the raster package.</caption>
@@ -923,7 +921,7 @@ The most general method to save a static plot is to open a graphic device, creat
 <a class="sourceLine" id="cb252-3" data-line-number="3"><span class="kw">dev.off</span>()</a></code></pre></div>
 <p>Other available graphic devices include <code>pdf()</code>, <code>bmp()</code>, <code>jpeg()</code>, <code>png()</code>, and <code>tiff()</code>.
 You can specify several properties of the output plot, including width, height and resolution.</p>
-<p>Additionally, several graphic packages provide thier own functions to save a graphical output.
+<p>Additionally, several graphic packages provide their own functions to save a graphical output.
 For example, the <strong>tmap</strong> package has the <code>tmap_save()</code> function.
 You can save a <code>tmap</code> object to different graphic formats by specifying the object name and a file path to a new graphic file.</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="kw">library</span>(tmap)</a>
@@ -981,7 +979,7 @@ Export this map to a file called <code>cycle_hire.html</code>.</p></li>
 <ol start="41">
 <li id="fn41"><p>
 For more information on data import with R packages see sections <a href="https://csgillespie.github.io/efficientR/input-output.html#download">5.5</a> and <a href="https://csgillespie.github.io/efficientR/input-output.html#accessing-data-stored-in-packages">5.6</a> of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.<a href="read-write.html#fnref41" class="footnote-back">↩</a></p></li>
-<li id="fn42"><p><a href="http://www.gdal.org/">GDAL</a> should be prounounced “goo-dal”, with the double o making a reference to object-orientation.<a href="read-write.html#fnref42" class="footnote-back">↩</a></p></li>
+<li id="fn42"><p><a href="http://www.gdal.org/">GDAL</a> should be pronounced “goo-dal”, with the double o making a reference to object-orientation.<a href="read-write.html#fnref42" class="footnote-back">↩</a></p></li>
 <li id="fn43"><p>See <a href="http://www.opengeospatial.org">opengeospatial.org</a>.<a href="read-write.html#fnref43" class="footnote-back">↩</a></p></li>
 <li id="fn44"><p>See <a href="http://adv-r.had.co.nz/Environments.html" class="uri">http://adv-r.had.co.nz/Environments.html</a> for more information on the environment<a href="read-write.html#fnref44" class="footnote-back">↩</a></p></li>
 <li id="fn45"><p>A list of supported vector formats and theirs options can be found at <a href="http://www.gdal.org/ogr_formats.html" class="uri">http://www.gdal.org/ogr_formats.html</a>.<a href="read-write.html#fnref45" class="footnote-back">↩</a></p></li>
