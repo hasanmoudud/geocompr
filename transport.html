@@ -491,20 +491,9 @@ Another issue with small zones is related to anonymity rules. To make it impossi
 </div>
 <p>The 102 zones used in this chapter are stored in <code>bristol_zones</code>, as illustrated in Figure <a href="transport.html#fig:zones">12.2</a>.
 Note the zones get smaller in densly populated areas: each houses a similar number of people.
-<code>bristol_zones</code> contains no attribute data on transport, however, shown in the first two rows of the dataset:</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1"><span class="kw">head</span>(bristol_zones, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb371-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 2 features and 2 fields</span></a>
-<a class="sourceLine" id="cb371-3" data-line-number="3"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
-<a class="sourceLine" id="cb371-4" data-line-number="4"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb371-5" data-line-number="5"><span class="co">#&gt; bbox:           xmin: -2.53 ymin: 51.4 xmax: -2.46 ymax: 51.4</span></a>
-<a class="sourceLine" id="cb371-6" data-line-number="6"><span class="co">#&gt; epsg (SRID):    4326</span></a>
-<a class="sourceLine" id="cb371-7" data-line-number="7"><span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span></a>
-<a class="sourceLine" id="cb371-8" data-line-number="8"><span class="co">#&gt;    geo_code                             name</span></a>
-<a class="sourceLine" id="cb371-9" data-line-number="9"><span class="co">#&gt; 1 E02002985 Bath and North East Somerset 001</span></a>
-<a class="sourceLine" id="cb371-10" data-line-number="10"><span class="co">#&gt; 2 E02002987 Bath and North East Somerset 003</span></a>
-<a class="sourceLine" id="cb371-11" data-line-number="11"><span class="co">#&gt;                         geometry</span></a>
-<a class="sourceLine" id="cb371-12" data-line-number="12"><span class="co">#&gt; 1 MULTIPOLYGON (((-2.51 51.4,...</span></a>
-<a class="sourceLine" id="cb371-13" data-line-number="13"><span class="co">#&gt; 2 MULTIPOLYGON (((-2.48 51.4,...</span></a></code></pre></div>
+<code>bristol_zones</code> contains no attribute data on transport, however, only the name and code of each zone:</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1"><span class="kw">names</span>(bristol_zones)</a>
+<a class="sourceLine" id="cb371-2" data-line-number="2"><span class="co">#&gt; [1] &quot;geo_code&quot; &quot;name&quot;     &quot;geometry&quot;</span></a></code></pre></div>
 <p>To add travel data we will join a non geographic table on travel behavior to the zones, a common task described in section <a href="attr.html#vector-attribute-joining">3.2.3</a>.
 We will use travel derived from the UK’s 2011 census question on travel to work, data stored in <code>bristol_od</code>, which was provided by the <a href="https://www.ons.gov.uk/help/localstatistics">ons.gov.uk</a> data portal.
 <code>bristol_od</code> is an orgin-destination (OD) dataset representing travel to work between zones from the UK’s 2011 Census (see section <a href="transport.html#desire-lines">12.4</a>).
@@ -700,20 +689,15 @@ The new route dataset contains <code>distance</code> (referring to route distanc
 However, for the purposes of this chapter we are only interested in the geometry, from which route distance can be calculated.
 The following command makes use of the ability of simple features objects to contain multiple geographic columns:</p>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1">desire_carshort<span class="op">$</span>geom_car =<span class="st"> </span><span class="kw">st_geometry</span>(route_carshort)</a></code></pre></div>
-<p>This allows plotting the desire lines along which many short car journeys take place alongside likely routes traveled by cars, with the width of the routes proportional to the number of car journeys that could potentially be replaced.
-The code below results in Figure <a href="transport.html#fig:routes">12.4</a>, demonstrating along which routes people are driving short distances<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a>:</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(desire_carshort))</a>
-<a class="sourceLine" id="cb384-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(desire_carshort), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb384-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(<span class="kw">st_centroid</span>(zones_od)), <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:routes"></span>
-<img src="figures/routes-1.png" alt="Routes along which many (300+) short (&lt;5km Euclidean distance) car journeys are made (red) overlaying desire lines representing the same trips (black) and zone centroids (dots)." width="576" />
-<p class="caption">
-Figure 12.4: Routes along which many (300+) short (&lt;5km Euclidean distance) car journeys are made (red) overlaying desire lines representing the same trips (black) and zone centroids (dots).
-</p>
-</div>
-<p>The results show that the short desire lines along which most people travel by car are geographically clustered.
-Plotting the results on an interactive map, for example, with <code>mapview::mapview(desire_carshort)</code>, reveals that these car trips take place in and around Bradley Stoke.
-According to <a href="https://en.wikipedia.org/wiki/Bradley_Stoke">Wikipedia</a>, Bradley Stoke is “Europe’s largest new town built with private investment”, which may help understand its high level of car dependency due to limited public transport provision.
+<p>This allows plotting the desire lines along which many short car journeys take place alongside likely routes traveled by cars by referring to each geometry column separately (<code>desire_carshort$geometry</code> and <code>desire_carshort$geom_car</code> in this case).
+Making the width of the routes proportional to the number of car journeys that could potentially be replaced provides an effective way to prioritize interventions on the road network <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.</p>
+<!-- The code below results in Figure \@ref(fig:routes), demonstrating along which routes people are driving short distances^[ -->
+<!-- In this plot the origins of the red routes and black desire lines are not identical. -->
+<!-- This is because zone centroids rarely lie on the route network: instead the route originate from the transport network node nearest the centroid. -->
+<!-- Note also that routes are assumed to originate in the zone centroids, a simplifying assumption which is used in transport models to reduce the computational resources needed to calculate the shortest path between all combinations of possible origins and destinations [@hollander_transport_2016]. -->
+<!-- ]: -->
+<p>Plotting the results on an interactive map, with <code>mapview::mapview(desire_carshort)</code> for example, shows that many short car trips take place in and around Bradley Stoke.
+This should come as no surprise: according to its <a href="https://en.wikipedia.org/wiki/Bradley_Stoke">Wikipedia</a>, entry Bradley Stoke is “Europe’s largest new town built with private investment”, suggesting limited public transport provision.
 The excessive number of short car journeys in this area can also be understood in terms of the car-orientated transport infrastructure surrounding this northern ‘edge city’ which includes “major transport nodes such as junctions on both the M4 and M5 motorways” <span class="citation">(Tallon <a href="#ref-tallon_bristol_2007">2007</a>)</span>.</p>
 <p>There are many benefits of converting travel desire lines into likely routes of travel from a policy perspective, primary among them the ability to understand what it is about the surrounding environment that makes people travel by a particular mode.
 We discuss future directions of research building on the routes in section <a href="transport.html#future-directions-of-travel">12.9</a>.
@@ -749,24 +733,24 @@ From an active travel perspective public transport ‘legs’ of longer journeys
 <p>Building on the analysis conducted in section <a href="transport.html#desire-lines">12.4</a>, public transport nodes can be used to construct three-part desire lines for trips that can be taken by bus and (the mode used in this example) rail.
 The first stage is to identify the desire lines with most public transport travel, which in our case is easy because our previously created dataset <code>desire_lines</code> already contains a variable describing the number of trips by train (the public transport potential could also be estimated using public transport routing services such as <a href="http://www.opentripplanner.org/">OpenTripPlanner</a>).
 To make our approach easy to follow we will select just the top three desire lines in terms of rails use:</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1">desire_rail =<span class="st"> </span><span class="kw">top_n</span>(desire_lines, <span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">wt =</span> train)</a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1">desire_rail =<span class="st"> </span><span class="kw">top_n</span>(desire_lines, <span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">wt =</span> train)</a></code></pre></div>
 <p>The challenge now is to ‘break-up’ each of these lines into three pieces, representing travel via public transport nodes.
 This can be done by converting a desire line into a multiline object consisting of three line geometries representing origin, public transport and destination legs of the trip.
 This operation can be divided into three stages: matrix creation (of origins, destinations and the ‘via’ points representing rail stations), identification of nearest neighbors and conversion to multilines.
 These are undertaken by <code>line_via()</code>.
 This <strong>stplanr</strong> function takes input lines and points and returns a copy of the desire lines (see <a href="https://github.com/Robinlovelace/geocompr/blob/master/vignettes/12-line-via.Rmd"><code>12-line-via.Rmd</code></a>) in the book’s repo and <code>?line_via</code> for details on how this works).
 The output is the same as the input line, except it has new geometry columns representing the journey via public transport nodes, as demonstrated below:</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="kw">ncol</span>(desire_rail)</a>
-<a class="sourceLine" id="cb386-2" data-line-number="2"><span class="co">#&gt; [1] 9</span></a>
-<a class="sourceLine" id="cb386-3" data-line-number="3">desire_rail =<span class="st"> </span><span class="kw">line_via</span>(desire_rail, bristol_stations)</a>
-<a class="sourceLine" id="cb386-4" data-line-number="4"><span class="kw">ncol</span>(desire_rail)</a>
-<a class="sourceLine" id="cb386-5" data-line-number="5"><span class="co">#&gt; [1] 12</span></a></code></pre></div>
-<p>As illustrated in Figure <a href="transport.html#fig:stations">12.5</a>, the initial <code>desire_rail</code> lines now have three additional geometry list-columns representing travel from home to the origin station, from there to the destination, and finally from the destination station to the destination.
-In this case the destination leg is very short (walking distance) but the origin legs may be sufficiently far to justify investment in cycling infrastructure to encourage people to cycle to the stations on the outward leg of peoples’ journey to work in the residential areas surrounding the three origin stations in Figure <a href="transport.html#fig:stations">12.5</a>.</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1"><span class="kw">ncol</span>(desire_rail)</a>
+<a class="sourceLine" id="cb385-2" data-line-number="2"><span class="co">#&gt; [1] 9</span></a>
+<a class="sourceLine" id="cb385-3" data-line-number="3">desire_rail =<span class="st"> </span><span class="kw">line_via</span>(desire_rail, bristol_stations)</a>
+<a class="sourceLine" id="cb385-4" data-line-number="4"><span class="kw">ncol</span>(desire_rail)</a>
+<a class="sourceLine" id="cb385-5" data-line-number="5"><span class="co">#&gt; [1] 12</span></a></code></pre></div>
+<p>As illustrated in Figure <a href="transport.html#fig:stations">12.4</a>, the initial <code>desire_rail</code> lines now have three additional geometry list-columns representing travel from home to the origin station, from there to the destination, and finally from the destination station to the destination.
+In this case the destination leg is very short (walking distance) but the origin legs may be sufficiently far to justify investment in cycling infrastructure to encourage people to cycle to the stations on the outward leg of peoples’ journey to work in the residential areas surrounding the three origin stations in Figure <a href="transport.html#fig:stations">12.4</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:stations"></span>
 <img src="figures/stations-1.png" alt="Station nodes (red dots) used as intermediary points that convert straight desire lines with high rail usage (black) into three legs: to the origin station (red) via public transport (grey) and to the destination (a very short blue line)." width="576" />
 <p class="caption">
-Figure 12.5: Station nodes (red dots) used as intermediary points that convert straight desire lines with high rail usage (black) into three legs: to the origin station (red) via public transport (grey) and to the destination (a very short blue line).
+Figure 12.4: Station nodes (red dots) used as intermediary points that convert straight desire lines with high rail usage (black) into three legs: to the origin station (red) via public transport (grey) and to the destination (a very short blue line).
 </p>
 </div>
 </div>
@@ -774,15 +758,15 @@ Figure 12.5: Station nodes (red dots) used as intermediary points that convert s
 <h2><span class="header-section-number">12.7</span> Route networks</h2>
 <p>The data used in this section was downloaded using <strong>osmdata</strong>.
 To avoid having to request the data from OSM repeatedly, we will use the <code>bristol_ways</code> object, which contains point and line data for the case study area (see <code>?bristol_ways</code>):</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1"><span class="kw">summary</span>(bristol_ways)</a>
-<a class="sourceLine" id="cb387-2" data-line-number="2"><span class="co">#&gt;      highway        maxspeed         ref                geometry   </span></a>
-<a class="sourceLine" id="cb387-3" data-line-number="3"><span class="co">#&gt;  cycleway:1262   30 mph : 834   A38    : 202   LINESTRING   :4619  </span></a>
-<a class="sourceLine" id="cb387-4" data-line-number="4"><span class="co">#&gt;  rail    : 813   20 mph : 456   M5     : 138   epsg:4326    :   0  </span></a>
-<a class="sourceLine" id="cb387-5" data-line-number="5"><span class="co">#&gt;  road    :2544   40 mph : 332   A432   : 131   +proj=long...:   0  </span></a>
-<a class="sourceLine" id="cb387-6" data-line-number="6"><span class="co">#&gt;                  70 mph : 323   A4018  : 120                       </span></a>
-<a class="sourceLine" id="cb387-7" data-line-number="7"><span class="co">#&gt;                  50 mph : 137   A420   : 114                       </span></a>
-<a class="sourceLine" id="cb387-8" data-line-number="8"><span class="co">#&gt;                  (Other): 470   (Other):1697                       </span></a>
-<a class="sourceLine" id="cb387-9" data-line-number="9"><span class="co">#&gt;                  NA&#39;s   :2067   NA&#39;s   :2217</span></a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="kw">summary</span>(bristol_ways)</a>
+<a class="sourceLine" id="cb386-2" data-line-number="2"><span class="co">#&gt;      highway        maxspeed         ref                geometry   </span></a>
+<a class="sourceLine" id="cb386-3" data-line-number="3"><span class="co">#&gt;  cycleway:1262   30 mph : 834   A38    : 202   LINESTRING   :4619  </span></a>
+<a class="sourceLine" id="cb386-4" data-line-number="4"><span class="co">#&gt;  rail    : 813   20 mph : 456   M5     : 138   epsg:4326    :   0  </span></a>
+<a class="sourceLine" id="cb386-5" data-line-number="5"><span class="co">#&gt;  road    :2544   40 mph : 332   A432   : 131   +proj=long...:   0  </span></a>
+<a class="sourceLine" id="cb386-6" data-line-number="6"><span class="co">#&gt;                  70 mph : 323   A4018  : 120                       </span></a>
+<a class="sourceLine" id="cb386-7" data-line-number="7"><span class="co">#&gt;                  50 mph : 137   A420   : 114                       </span></a>
+<a class="sourceLine" id="cb386-8" data-line-number="8"><span class="co">#&gt;                  (Other): 470   (Other):1697                       </span></a>
+<a class="sourceLine" id="cb386-9" data-line-number="9"><span class="co">#&gt;                  NA&#39;s   :2067   NA&#39;s   :2217</span></a></code></pre></div>
 <p>The above code chunk loaded a simple feature object representing around 3,000 segments on the transport network.
 This an easily manageable dataset size (transport datasets can be large but it’s best to start small).</p>
 <p>As mentioned, route networks can usefully be represented as mathematical graphs, with nodes on the network connected by edges.
@@ -790,14 +774,14 @@ A number of R packages have been developed for dealing with such graphs, notably
 One can manually convert a route network into an <code>igraph</code> object, but the geographic attributes will be lost.
 To overcome this issue <code>SpatialLinesNetwork()</code> was developed in the <strong>stplanr</strong> package to represent route networks simultaneously as graphs <em>and</em> a set of geographic lines.
 This function is demonstrated below using a subset of the <code>bristol_ways</code> object used in previous sections.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1">ways_freeway =<span class="st"> </span>bristol_ways <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(maxspeed <span class="op">==</span><span class="st"> &quot;70 mph&quot;</span>) </a>
-<a class="sourceLine" id="cb388-2" data-line-number="2">ways_sln =<span class="st"> </span><span class="kw">SpatialLinesNetwork</span>(ways_freeway)</a>
-<a class="sourceLine" id="cb388-3" data-line-number="3"><span class="kw">slotNames</span>(ways_sln)</a>
-<a class="sourceLine" id="cb388-4" data-line-number="4"><span class="co">#&gt; [1] &quot;sl&quot;          &quot;g&quot;           &quot;nb&quot;          &quot;weightfield&quot;</span></a>
-<a class="sourceLine" id="cb388-5" data-line-number="5"><span class="kw">weightfield</span>(ways_sln)</a>
-<a class="sourceLine" id="cb388-6" data-line-number="6"><span class="co">#&gt; [1] &quot;length&quot;</span></a>
-<a class="sourceLine" id="cb388-7" data-line-number="7"><span class="kw">class</span>(ways_sln<span class="op">@</span>g)</a>
-<a class="sourceLine" id="cb388-8" data-line-number="8"><span class="co">#&gt; [1] &quot;igraph&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1">ways_freeway =<span class="st"> </span>bristol_ways <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(maxspeed <span class="op">==</span><span class="st"> &quot;70 mph&quot;</span>) </a>
+<a class="sourceLine" id="cb387-2" data-line-number="2">ways_sln =<span class="st"> </span><span class="kw">SpatialLinesNetwork</span>(ways_freeway)</a>
+<a class="sourceLine" id="cb387-3" data-line-number="3"><span class="kw">slotNames</span>(ways_sln)</a>
+<a class="sourceLine" id="cb387-4" data-line-number="4"><span class="co">#&gt; [1] &quot;sl&quot;          &quot;g&quot;           &quot;nb&quot;          &quot;weightfield&quot;</span></a>
+<a class="sourceLine" id="cb387-5" data-line-number="5"><span class="kw">weightfield</span>(ways_sln)</a>
+<a class="sourceLine" id="cb387-6" data-line-number="6"><span class="co">#&gt; [1] &quot;length&quot;</span></a>
+<a class="sourceLine" id="cb387-7" data-line-number="7"><span class="kw">class</span>(ways_sln<span class="op">@</span>g)</a>
+<a class="sourceLine" id="cb387-8" data-line-number="8"><span class="co">#&gt; [1] &quot;igraph&quot;</span></a></code></pre></div>
 <p>The output of the previous code chunk shows that <code>ways_sln</code> is a composite object with various ‘slots’.
 These include: the spatial component of the network (named <code>sl</code>), the graph component (<code>g</code>) and the ‘weightfield’, the edge variable used for shortest path calculation (by default segment distance).
 <code>ways_sln</code> is of class <code>sfNetwork</code>, defined by the S4 class system.
@@ -805,23 +789,23 @@ This means that each component can be accessed using the <code>@</code> operator
 In the example below the ‘edge betweeness’, meaning the number of shortest paths passing through each edge, is calculated (see <code>?igraph::betweenness</code> for further details).
 The results demonstrate that each graph edge represents a segment: the segments near the center of the road network have the greatest betweeness scores.</p>
 <!-- Todo (optional): make this section use potential cycle routes around Stokes Bradley not freeway data (RL) -->
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1">g =<span class="st"> </span>ways_sln<span class="op">@</span>g</a>
-<a class="sourceLine" id="cb389-2" data-line-number="2">e =<span class="st"> </span>igraph<span class="op">::</span><span class="kw">edge_betweenness</span>(ways_sln<span class="op">@</span>g)</a>
-<a class="sourceLine" id="cb389-3" data-line-number="3"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">lwd =</span> e <span class="op">/</span><span class="st"> </span><span class="dv">500</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1">g =<span class="st"> </span>ways_sln<span class="op">@</span>g</a>
+<a class="sourceLine" id="cb388-2" data-line-number="2">e =<span class="st"> </span>igraph<span class="op">::</span><span class="kw">edge_betweenness</span>(ways_sln<span class="op">@</span>g)</a>
+<a class="sourceLine" id="cb388-3" data-line-number="3"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">lwd =</span> e <span class="op">/</span><span class="st"> </span><span class="dv">500</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-23"></span>
 <img src="figures/unnamed-chunk-23-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the **igraph** package and described in the text." width="576" />
 <p class="caption">
-Figure 12.6: Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the <strong>igraph</strong> package and described in the text.
+Figure 12.5: Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the <strong>igraph</strong> package and described in the text.
 </p>
 </div>
 <p>One can also find the shortest route between origins and destinations using this graph representation of the route network.
 This is can be done with <code>sum_network_routes()</code> from <strong>stplanr</strong>, which undertakes ‘local routing’ (see section <a href="transport.html#routes">12.5</a>).
 The code below finds the shortest path between two nodes on the network —
 ‘shortest’ with reference to the <code>weightfield</code> slot of <code>ways_sln</code> (route distance by default
-— and returns a linestring (plot not shown):<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a></p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1">path =<span class="st"> </span><span class="kw">sum_network_routes</span>(ways_sln, <span class="dv">1</span>, <span class="dv">20</span>, <span class="st">&quot;length&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(path), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb391-2" data-line-number="2"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+— and returns a linestring (plot not shown):<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a></p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1">path =<span class="st"> </span><span class="kw">sum_network_routes</span>(ways_sln, <span class="dv">1</span>, <span class="dv">20</span>, <span class="st">&quot;length&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(path), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb390-2" data-line-number="2"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="prioritizing-new-infrastructure" class="section level2">
 <h2><span class="header-section-number">12.8</span> Prioritizing new infrastructure</h2>
@@ -831,25 +815,25 @@ However each stage could be useful on its own, and feed-into wider analyses.
 To summarize, these were: identifying short but car-dependent commuting routes (generated from desire lines)in section <a href="transport.html#routes">12.5</a>; creating desire lines representing trips to rail stations in section <a href="transport.html#nodes">12.6</a>; and analysis of transport systems at the route network using graph theory in section <a href="transport.html#route-networks">12.7</a>.</p>
 <p>The final code chunk of this chapter combines these strands of analysis.
 It adds the car-dependent routes in <code>route_carshort</code> with a newly-created object, <code>route_rail</code> and creates a new column representing the amount of travel along the centroid-to-centroid desire lines they represent:</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1">route_rail =<span class="st"> </span>desire_rail <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb392-2" data-line-number="2"><span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="st">&quot;leg_orig&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb392-3" data-line-number="3"><span class="st">  </span><span class="kw">line2route</span>(<span class="dt">route_fun =</span> route_osrm) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb392-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="dv">4326</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1">route_cycleway =<span class="st"> </span><span class="kw">rbind</span>(route_rail, route_carshort)</a>
-<a class="sourceLine" id="cb393-2" data-line-number="2">route_cycleway<span class="op">$</span>all =<span class="st"> </span><span class="kw">c</span>(desire_rail<span class="op">$</span>all, desire_carshort<span class="op">$</span>all)</a></code></pre></div>
-<p>The results of the preceding code are visualized in Figure <a href="transport.html#fig:cycleways">12.7</a>, which shows routes with high levels of car dependency and highlights opportunities for cycling rail stations (the subsequent code chunk creates a simple version of the figure — see <code>code/12-cycleways.R</code> to reproduce the figure exactly).
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1">route_rail =<span class="st"> </span>desire_rail <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb391-2" data-line-number="2"><span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="st">&quot;leg_orig&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb391-3" data-line-number="3"><span class="st">  </span><span class="kw">line2route</span>(<span class="dt">route_fun =</span> route_osrm) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb391-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="dv">4326</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1">route_cycleway =<span class="st"> </span><span class="kw">rbind</span>(route_rail, route_carshort)</a>
+<a class="sourceLine" id="cb392-2" data-line-number="2">route_cycleway<span class="op">$</span>all =<span class="st"> </span><span class="kw">c</span>(desire_rail<span class="op">$</span>all, desire_carshort<span class="op">$</span>all)</a></code></pre></div>
+<p>The results of the preceding code are visualized in Figure <a href="transport.html#fig:cycleways">12.6</a>, which shows routes with high levels of car dependency and highlights opportunities for cycling rail stations (the subsequent code chunk creates a simple version of the figure — see <code>code/12-cycleways.R</code> to reproduce the figure exactly).
 The method has some the limitations: in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode.
 However the results demonstrate routes along which cycle paths could be prioritized from car dependency and public transport perspectives.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1"><span class="kw">qtm</span>(route_cycleway, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1"><span class="kw">qtm</span>(route_cycleway, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cycleways"></span>
 <img src="figures/cycleways-1.png" alt="Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips." width="576" />
 <p class="caption">
-Figure 12.7: Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.
+Figure 12.6: Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.
 </p>
 </div>
 <!-- Much more work is needed to create a realistic strategic cycle network but the analysis shows that R can be used to create a transparent and reproducible evidence base for transport applications. -->
 <p>The results may look more attractive in an interactive map, but what do they mean?
-The routes highlighted in Figure <a href="transport.html#fig:cycleways">12.7</a> suggest that transport systems are intimately linked to the wider economic and social context.
+The routes highlighted in Figure <a href="transport.html#fig:cycleways">12.6</a> suggest that transport systems are intimately linked to the wider economic and social context.
 The example of Stoke Bradley is a case in point:
 its location, lack of public transport services and active travel infrastructure help explain why it is so highly car-dependent.
 The wider point is that car dependency has a spatial distribution which has implications for sustainable transport policies <span class="citation">(Hickman, Ashiru, and Banister <a href="#ref-hickman_transitions_2011">2011</a>)</span>.</p>
@@ -880,7 +864,7 @@ Similar tools could be used to encourage evidence-based transport policies relat
 <div id="ex-transport" class="section level2">
 <h2><span class="header-section-number">12.10</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>What is the total distance of cycleways that would be constructed if all the routes presented in Figure <a href="transport.html#fig:cycleways">12.7</a> were to be constructed?
+<li>What is the total distance of cycleways that would be constructed if all the routes presented in Figure <a href="transport.html#fig:cycleways">12.6</a> were to be constructed?
 <ul>
 <li>Bonus: find two ways of arriving at the same answer.</li>
 </ul></li>
@@ -894,7 +878,7 @@ Similar tools could be used to encourage evidence-based transport policies relat
 <!-- Use cycle-specific routing services. -->
 <!-- Identify key walking routes. -->
 <!-- Include a higher proportion of trips in the analysis --></li>
-<li>Clearly the routes identified in Figure <a href="transport.html#fig:cycleways">12.7</a> only provide part of the picture. How would you extend the analysis to incorporate more trips that could potentially be cycled?</li>
+<li>Clearly the routes identified in Figure <a href="transport.html#fig:cycleways">12.6</a> only provide part of the picture. How would you extend the analysis to incorporate more trips that could potentially be cycled?</li>
 <li>Imagine that you want to extend the scenario by creating key <em>areas</em> (not routes) for investment in place-based cycling policies such as car-free zones, cycle parking points and reduced car parking strategy. How could raster data assist with this work?
 <ul>
 <li>Bonus: develop a raster layer that divides the Bristol region into 100 cells (10 by 10) and provide a metric related to transport policy, such as number of people trips that pass through each cell by walking or the average speed limit of roads (from the <code>bristol_ways</code> dataset).</li>
@@ -935,6 +919,9 @@ Similar tools could be used to encourage evidence-based transport policies relat
 <div id="ref-moreno-monroy_public_2017">
 <p>Moreno-Monroy, Ana I., Robin Lovelace, and Frederico R. Ramos. 2017. “Public Transport and School Location Impacts on Educational Inequalities: Insights from São Paulo.” <em>Journal of Transport Geography</em>, September. <a href="https://doi.org/10.1016/j.jtrangeo.2017.08.012" class="uri">https://doi.org/10.1016/j.jtrangeo.2017.08.012</a>.</p>
 </div>
+<div id="ref-lovelace_propensity_2017">
+<p>Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali Abbas, and James Woodcock. 2017. “The Propensity to Cycle Tool: An Open Source Online System for Sustainable Transport Planning.” <em>Journal of Transport and Land Use</em> 10 (1). <a href="https://doi.org/10.5198/jtlu.2016.862" class="uri">https://doi.org/10.5198/jtlu.2016.862</a>.</p>
+</div>
 <div id="ref-tallon_bristol_2007">
 <p>Tallon, Andrew R. 2007. “Bristol.” <em>Cities</em> 24 (1): 74–88. <a href="https://doi.org/10.1016/j.cities.2006.10.004" class="uri">https://doi.org/10.1016/j.cities.2006.10.004</a>.</p>
 </div>
@@ -943,9 +930,6 @@ Similar tools could be used to encourage evidence-based transport policies relat
 </div>
 <div id="ref-hickman_transitions_2011">
 <p>Hickman, Robin, Olu Ashiru, and David Banister. 2011. “Transitions to Low Carbon Transport Futures: Strategic Conversations from London and Delhi.” <em>Journal of Transport Geography</em> 19 (6): 1553–62.</p>
-</div>
-<div id="ref-lovelace_propensity_2017">
-<p>Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali Abbas, and James Woodcock. 2017. “The Propensity to Cycle Tool: An Open Source Online System for Sustainable Transport Planning.” <em>Journal of Transport and Land Use</em> 10 (1). <a href="https://doi.org/10.5198/jtlu.2016.862" class="uri">https://doi.org/10.5198/jtlu.2016.862</a>.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -965,11 +949,7 @@ Note that the operation emits a warning because <code>od2line()</code> works by 
 <!-- This represents a straight line between the centroid of zone `E02003047` and the centroid of `E02003043` for the second origin-destination pair represented in Table \@ref(tab:od), for example. -->
 For real-world use one would use centroid values generated from projected data or, preferably, use <em>population-weighted</em> centroids <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.<a href="transport.html#fnref70" class="footnote-back">↩</a></p></li>
 <li id="fn71"><p>
-In this plot the origins of the red routes and black desire lines are not identical.
-This is because zone centroids rarely lie on the route network: instead the route originate from the transport network node nearest the centroid.
-Note also that routes are assumed to originate in the zone centroids, a simplifying assumption which is used in transport models to reduce the computational resources needed to calculate the shortest path between all combinations of possible origins and destinations <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.<a href="transport.html#fnref71" class="footnote-back">↩</a></p></li>
-<li id="fn72"><p>
-To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref72" class="footnote-back">↩</a></p></li>
+To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref71" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
