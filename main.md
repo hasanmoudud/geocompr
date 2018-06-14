@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb876dbd1daf7e4bd
+preservede42f49efe40d840
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3066,7 +3066,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2c3fb23f87960f96
+preserve1f9214247e875656
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5427,27 +5427,19 @@ OpenStreetMap is a vast global database of crowd-sourced data and it is growing 
 Although the quality is not as spatially consistent as many official datasets, OSM data have many advantages: they are globally available free of charge and using crowd-source data can encourage 'citizen science' and contributions back to the digital commons.
 Further examples of **osmdata** in action are provided in Chapters \@ref(transport),  \@ref(location) and \@ref(gis).
 
-Finally, R packages might contain or just consist of spatial data, such as **spData** which provides example datasets used in this book.
-You can access such data with the `data()` function.
-For example, you can get a list of dataset in a package, `data(package = "spData")`.
-To attach the dataset to the global environment specify the name of a dataset (`data("cycle_hire", package = "spData")`).
-Sometimes, packages come also with the original files.^[Data loaded with `data()` often is a R dataset (`.Rdata` ord `.rda`).]
-To load such a file from the package, you need to specify the package name and the relative path to the dataset, for example:
+Sometimes, packages come with inbuilt datasets.
+These can be accessed in four ways: with `data()`, `pkg::dataset` or, using `system.file()` or, if the package uses 'lazy loading' (as **spData** does), by attaching the package.
+The following code chunk illustrates these options by loading the `world` dataset in three different ways:^[
+For more information on data import with R packages see sections [5.5](https://csgillespie.github.io/efficientR/input-output.html#download) and [5.6](https://csgillespie.github.io/efficientR/input-output.html#accessing-data-stored-in-packages) of @gillespie_efficient_2016.
+]
 
 
 ```r
+data(world)
+spData::world
 world_raw_filepath = system.file("shapes/world.gpkg", package = "spData")
 world_raw = st_read(world_raw_filepath)
-#> Reading layer `wrld.gpkg' from data source `/home/travis/R/Library/spData/shapes/world.gpkg' using driver `GPKG'
-#> Simple feature collection with 177 features and 10 fields
-#> geometry type:  MULTIPOLYGON
-#> dimension:      XY
-#> bbox:           xmin: -180 ymin: -90 xmax: 180 ymax: 83.6
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
 ```
-
-Find more information on getting data using R packages in [section 5.5](https://csgillespie.github.io/efficientR/input-output.html#download) and [section 5.6](https://csgillespie.github.io/efficientR/input-output.html#accessing-data-stored-in-packages) of @gillespie_efficient_2016.
 
 ## File formats
 
@@ -6479,7 +6471,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve52249555d9db631f
+preserve3bb56d7bc8cd96ff
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6577,7 +6569,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve18fada5bdcc2f62f
+preserve11f80a09a97ebbb5
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9743,7 +9735,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve2f41550936407686
+preserve93e016e44d6bbd80
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

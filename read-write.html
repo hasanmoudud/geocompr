@@ -501,22 +501,13 @@ The result is passed to a function for selecting which OSM elements we’re inte
 <p>OpenStreetMap is a vast global database of crowd-sourced data and it is growing by the minute.
 Although the quality is not as spatially consistent as many official datasets, OSM data have many advantages: they are globally available free of charge and using crowd-source data can encourage ‘citizen science’ and contributions back to the digital commons.
 Further examples of <strong>osmdata</strong> in action are provided in Chapters <a href="transport.html#transport">12</a>, <a href="location.html#location">13</a> and <a href="gis.html#gis">9</a>.</p>
-<p>Finally, R packages might contain or just consist of spatial data, such as <strong>spData</strong> which provides example datasets used in this book.
-You can access such data with the <code>data()</code> function.
-For example, you can get a list of dataset in a package, <code>data(package = &quot;spData&quot;)</code>.
-To attach the dataset to the global environment specify the name of a dataset (<code>data(&quot;cycle_hire&quot;, package = &quot;spData&quot;)</code>).
-Sometimes, packages come also with the original files.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>
-To load such a file from the package, you need to specify the package name and the relative path to the dataset, for example:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">world_raw_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;shapes/world.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>)</a>
-<a class="sourceLine" id="cb235-2" data-line-number="2">world_raw =<span class="st"> </span><span class="kw">st_read</span>(world_raw_filepath)</a>
-<a class="sourceLine" id="cb235-3" data-line-number="3"><span class="co">#&gt; Reading layer `wrld.gpkg&#39; from data source `/home/travis/R/Library/spData/shapes/world.gpkg&#39; using driver `GPKG&#39;</span></a>
-<a class="sourceLine" id="cb235-4" data-line-number="4"><span class="co">#&gt; Simple feature collection with 177 features and 10 fields</span></a>
-<a class="sourceLine" id="cb235-5" data-line-number="5"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
-<a class="sourceLine" id="cb235-6" data-line-number="6"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb235-7" data-line-number="7"><span class="co">#&gt; bbox:           xmin: -180 ymin: -90 xmax: 180 ymax: 83.6</span></a>
-<a class="sourceLine" id="cb235-8" data-line-number="8"><span class="co">#&gt; epsg (SRID):    4326</span></a>
-<a class="sourceLine" id="cb235-9" data-line-number="9"><span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span></a></code></pre></div>
-<p>Find more information on getting data using R packages in <a href="https://csgillespie.github.io/efficientR/input-output.html#download">section 5.5</a> and <a href="https://csgillespie.github.io/efficientR/input-output.html#accessing-data-stored-in-packages">section 5.6</a> of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.</p>
+<p>Sometimes, packages come with inbuilt datasets.
+These can be accessed in four ways: with <code>data()</code>, <code>pkg::dataset</code> or, using <code>system.file()</code> or, if the package uses ‘lazy loading’ (as <strong>spData</strong> does), by attaching the package.
+The following code chunk illustrates these options by loading the <code>world</code> dataset in three different ways:<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">data</span>(world)</a>
+<a class="sourceLine" id="cb235-2" data-line-number="2">spData<span class="op">::</span>world</a>
+<a class="sourceLine" id="cb235-3" data-line-number="3">world_raw_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;shapes/world.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>)</a>
+<a class="sourceLine" id="cb235-4" data-line-number="4">world_raw =<span class="st"> </span><span class="kw">st_read</span>(world_raw_filepath)</a></code></pre></div>
 </div>
 <div id="file-formats" class="section level2">
 <h2><span class="header-section-number">7.3</span> File formats</h2>
@@ -988,7 +979,8 @@ Export this map to a file called <code>cycle_hire.html</code>.</p></li>
 <div class="footnotes">
 <hr />
 <ol start="41">
-<li id="fn41"><p>Data loaded with <code>data()</code> often is a R dataset (<code>.Rdata</code> ord <code>.rda</code>).<a href="read-write.html#fnref41" class="footnote-back">↩</a></p></li>
+<li id="fn41"><p>
+For more information on data import with R packages see sections <a href="https://csgillespie.github.io/efficientR/input-output.html#download">5.5</a> and <a href="https://csgillespie.github.io/efficientR/input-output.html#accessing-data-stored-in-packages">5.6</a> of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.<a href="read-write.html#fnref41" class="footnote-back">↩</a></p></li>
 <li id="fn42"><p><a href="http://www.gdal.org/">GDAL</a> should be prounounced “goo-dal”, with the double o making a reference to object-orientation.<a href="read-write.html#fnref42" class="footnote-back">↩</a></p></li>
 <li id="fn43"><p>See <a href="http://www.opengeospatial.org">opengeospatial.org</a>.<a href="read-write.html#fnref43" class="footnote-back">↩</a></p></li>
 <li id="fn44"><p>See <a href="http://adv-r.had.co.nz/Environments.html" class="uri">http://adv-r.had.co.nz/Environments.html</a> for more information on the environment<a href="read-write.html#fnref44" class="footnote-back">↩</a></p></li>
