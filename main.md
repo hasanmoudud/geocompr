@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-14'
+date: '2018-06-15'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-14 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-15 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -290,7 +290,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve733638ce7e8254f9
+preservedc52945380f1c462
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -422,14 +422,14 @@ The corresponding and nowadays obsolete S3 class called "Map" stored this list a
 The work on the "Map" class representation was nevertheless important since it directly fed into **sp** prior to its publication on CRAN.
 
 In 2003, @hornik_approaches_2003 published an extended review of spatial packages. 
-Around this time the development of R's spatial capabilities increasingly supported interfaces to external libraries, especially to GDAL and PROJ.4.
+Around this time the development of R's spatial capabilities increasingly supported interfaces to external libraries, especially to GDAL and PROJ.
 These interfaces facilitated geographic data I/O (meaning input output and covered in chapter \@ref(read-write)) and CRS transformations, respectively.
 @hornik_approaches_2003 proposed a spatial data class system, including support for points, lines, polygons and grids based on GDAL's support for a wide range of spatial data formats.
 All these ideas contributed to the packages **rgdal** and **sp**, which became the foundational packages for spatial data analysis with R [@bivand_applied_2013].
 
 **rgdal** provided GDAL bindings for R which greatly extended R's spatial capabilities in terms of access to previously unavailable spatial data formats.
 Initially, Tim Keitt released it in 2003 with support for raster drivers.
-But soon, **rgdal** also enabled storing information about coordinate reference system (building on top of the PROJ.4 library), allowed map projections, datum transformations and OGR vector reading. 
+But soon, **rgdal** also enabled storing information about coordinate reference system (building on top of the PROJ library), allowed map projections, datum transformations and OGR vector reading. 
 Many of these additional capabilities were thanks to Barry Rowlingson who folded them into the **rgdal** codebase in March 2006.^[A presentation at the 2003 DSC conference in Vienna gives the background as he saw it then [@rowlingson_rasp:_2003]; see also his announcement of the **Rmap** package on [R-help](https://stat.ethz.ch/pipermail/r-help/2003-January/028413.html) in early 2003.]
 
 **sp**, released in 2005, overcame R's inability to distinguish spatial and non-spatial objects [@pebesma_classes_2005].
@@ -1617,7 +1617,7 @@ It is typically used in mapping polar regions.
 <!-- https://en.wikipedia.org/wiki/List_of_map_projections -->
 <!-- plus maybe table (few examples) -->
 <!-- add good reference to projections -->
-`st_proj_info(type = "proj")` gives a list of the available projections supported by the PROJ.4 library.
+`st_proj_info(type = "proj")` gives a list of the available projections supported by the PROJ library.
 
 <!-- maybe a new section - how to pick the best projection? -->
 <!-- https://source.opennews.org/articles/choosing-right-map-projection/ -->
@@ -1631,7 +1631,7 @@ The code also refers to only one, well-defined coordinate reference system.
 On the other hand, a `proj4string` definition allows you more flexibility when it comes to specifying different parameters such as the projection type, the datum and the ellipsoid.^[Complete list of the `proj4string` parameters can be found at http://proj4.org/parameters.html#parameter-list.] 
 This way you can specify many different projections, and modify existing ones.
 This also makes the `proj4string` approach more complicated.
-<!-- ^[In the background, `sf` and `raster` use the [PROJ.4](http://proj4.org/) software, which enables transformations between different projections]. -->
+<!-- ^[In the background, `sf` and `raster` use the [PROJ](http://proj4.org/) software, which enables transformations between different projections]. -->
 `epsg` points to exactly one particular CRS.
 
 Spatial R packages support a wide range of CRSs and they use the long-established [proj4](http://proj4.org/) library.
@@ -3069,7 +3069,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservec4163022374c8cd9
+preservea9624011bcd10cf5
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5093,13 +5093,13 @@ world_wintri = lwgeom::st_transform_proj(world, crs = "+proj=wintri")
 </div>
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">The two main functions for transformation of simple features coordinates are `sf::st_transform()` and `sf::sf_project()`. 
-The `st_transform` function uses the GDAL interface to PROJ.4, while `sf_project()` (which works with two-column numeric matrices, representing points) and `lwgeom::st_transform_proj()` use the PROJ.4 API directly.
+The `st_transform` function uses the GDAL interface to PROJ, while `sf_project()` (which works with two-column numeric matrices, representing points) and `lwgeom::st_transform_proj()` use the PROJ API directly.
 The first one is appropriate for most situations, and provides a set of the most often used parameters and well defined transformations.
-The second one allows for greater customization of a projection, which includes cases when some of the PROJ.4 parameters (e.g., `+over`) or projection (`+proj=wintri`) is not available in `st_transform()`.</div>\EndKnitrBlock{rmdnote}
+The second one allows for greater customization of a projection, which includes cases when some of the PROJ parameters (e.g., `+over`) or projection (`+proj=wintri`) is not available in `st_transform()`.</div>\EndKnitrBlock{rmdnote}
 
 
 
-Moreover, PROJ.4 parameters can be modified in most CRS definitions.
+Moreover, PROJ parameters can be modified in most CRS definitions.
 The below code transforms the coordinates to the Lambert azimuthal equal-area projection centered on longitude and latitude of `0` (Figure \@ref(fig:laeaproj1)).
 
 
@@ -5114,7 +5114,7 @@ world_laea1 = st_transform(world, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_
 <p class="caption">(\#fig:laeaproj1)Lambert azimuthal equal-area projection of the world centered on longitude and latitude of 0.</p>
 </div>
 
-We can change the PROJ.4 parameters, for example the center of the projection using the `+lon_0` and `+lat_0` parameters. 
+We can change the PROJ parameters, for example the center of the projection using the `+lon_0` and `+lat_0` parameters. 
 The code below gives the map centered on New York City (Figure \@ref(fig:laeaproj2)).
 
 
@@ -5129,7 +5129,7 @@ world_laea2 = st_transform(world, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-74 +la
 <p class="caption">(\#fig:laeaproj2)Lambert azimuthal equal-area projection of the world centered on New York City.</p>
 </div>
 
-More information on CRS modifications can be found in the [Using PROJ.4](http://proj4.org/usage/index.html) documentation.
+More information on CRS modifications can be found in the [Using PROJ](http://proj4.org/usage/index.html) documentation.
 
 <!-- https://github.com/r-spatial/lwgeom/issues/6 -->
 <!-- ```{r} -->
@@ -5156,7 +5156,7 @@ However, `projectRaster()` only accepts the lengthy `proj4string` definitions of
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">It is possible to use a EPSG code in a `proj4string` definition with `"+init=epsg:MY_NUMBER"`.
 For example, one can use the `"+init=epsg:4326"` definition to set CRS to WGS84 (EPSG code of 4326).
-The PROJ.4 library automatically adds the rest of parameters and converts it into `"+init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"`,</div>\EndKnitrBlock{rmdnote}
+The PROJ library automatically adds the rest of parameters and converts it into `"+init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"`,</div>\EndKnitrBlock{rmdnote}
 
 Let's take a look at two examples of raster transformation - using categorical and continuous data.
 Land cover data are usually represented by categorical maps.
@@ -6477,7 +6477,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5cb27b943677e586
+preserve56c8476429a1e7f7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6575,7 +6575,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef81f2df6159fc3eb
+preserveda7eb8dd83dfb73c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9721,7 +9721,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve371af10e5479e6a2
+preserve9a396e2c3e4ee351
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
