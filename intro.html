@@ -591,7 +591,7 @@ This has led to a demand for ‘tidy spatial data’ which has been partly met b
 An obvious feature of the <strong>tidyverse</strong> is the tendency for packages to work in harmony.
 Although an equivalent <strong>geoverse</strong> is presently missing, there is an on-going discussion of harmonizing R’s many spatial packages<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> and a growing number of actively developed packages which are designed to work in harmony with <strong>sf</strong> (Table <a href="intro.html#tab:revdep">1.2</a>).</p>
 <table>
-<caption><span id="tab:revdep">Table 1.2: </span>The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-06-08 there are 78 packages which import sf.</caption>
+<caption><span id="tab:revdep">Table 1.2: </span>The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-06-14 there are 80 packages which import sf.</caption>
 <thead>
 <tr class="header">
 <th align="left">package</th>
@@ -601,23 +601,23 @@ Although an equivalent <strong>geoverse</strong> is presently missing, there is 
 <tbody>
 <tr class="odd">
 <td align="left">plotly</td>
-<td align="right">1854</td>
+<td align="right">1888</td>
 </tr>
 <tr class="even">
 <td align="left">raster</td>
-<td align="right">1624</td>
+<td align="right">1725</td>
 </tr>
 <tr class="odd">
 <td align="left">spData</td>
-<td align="right">1408</td>
+<td align="right">1429</td>
 </tr>
 <tr class="even">
 <td align="left">leaflet</td>
-<td align="right">938</td>
+<td align="right">976</td>
 </tr>
 <tr class="odd">
 <td align="left">spdep</td>
-<td align="right">896</td>
+<td align="right">892</td>
 </tr>
 </tbody>
 </table>
@@ -667,7 +667,7 @@ Now more than 450 packages rely on <strong>sp</strong>, making it an important p
 <p>Prominent R packages using <strong>sp</strong> include: <strong>gstat</strong>, for spatial and spatio-temporal geostatistics; <strong>geosphere</strong>, for spherical trigonometry; and <strong>adehabitat</strong> used for the analysis of habitat selection by animals <span class="citation">(E. Pebesma and Graeler <a href="#ref-R-gstat">2018</a>; Calenge <a href="#ref-calenge_package_2006">2006</a>; Hijmans <a href="#ref-hijmans_geosphere:_2016">2016</a>)</span>.</p>
 <p>While <strong>rgdal</strong> and <strong>sp</strong> solved many spatial issues, R was still lacking geometry calculation abilities.
 Therefore, Colin Rundel started to develop a package that interfaces GEOS, an open-source geometry library, during a Google Summer of Coding project in 2010.
-The resulting <strong>rgeos</strong> package <span class="citation">(first released in 2010; Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span> brought geometry calculations to R by allowing functions and operators from the GEOS library to manipulate <strong>sp</strong> objects.
+The resulting <strong>rgeos</strong> package <span class="citation">(first released in 2010; Bivand and Rundel <a href="#ref-R-rgeos">2017</a>)</span> brought geometry calculations to R by allowing functions and operators from the GEOS library to manipulate <strong>sp</strong> objects.
 Another limitation of <strong>sp</strong> was its limited support of raster data.
 The <strong>raster</strong>-package <span class="citation">(first released in 2010; Hijmans <a href="#ref-R-raster">2017</a>)</span> overcame this by providing <code>Raster*</code> classes and functions for creating, reading and writing raster data.
 A key feature of <strong>raster</strong> is its ability to work with datasets that are too large to fit into the main memory (RAM), thereby overcoming one of R’s major limitations when working on large raster data.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
@@ -755,7 +755,7 @@ Naturally, this is the reason why we will describe <strong>sf</strong> in detail
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
 </div>
 <div id="ref-R-leaflet">
-<p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2018. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="https://CRAN.R-project.org/package=leaflet" class="uri">https://CRAN.R-project.org/package=leaflet</a>.</p>
+<p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2018. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="http://rstudio.github.io/leaflet/" class="uri">http://rstudio.github.io/leaflet/</a>.</p>
 </div>
 <div id="ref-brzustowicz_data_2017">
 <p>Brzustowicz, Michael R. 2017. <em>Data Science with Java: [Practical Methods for Scientists and Engineers]</em>. First edition. Beijing Boston Farnham: OReilly.</p>
@@ -818,7 +818,7 @@ Naturally, this is the reason why we will describe <strong>sf</strong> in detail
 <p>Hijmans, Robert J. 2016. <em>Geosphere: Spherical Trigonometry</em>.</p>
 </div>
 <div id="ref-R-rgeos">
-<p>Bivand, Roger, and Colin Rundel. 2018. <em>Rgeos: Interface to Geometry Engine - Open Source (’Geos’)</em>. <a href="https://CRAN.R-project.org/package=rgeos" class="uri">https://CRAN.R-project.org/package=rgeos</a>.</p>
+<p>Bivand, Roger, and Colin Rundel. 2017. <em>Rgeos: Interface to Geometry Engine - Open Source (’Geos’)</em>. <a href="https://CRAN.R-project.org/package=rgeos" class="uri">https://CRAN.R-project.org/package=rgeos</a>.</p>
 </div>
 <div id="ref-R-raster">
 <p>Hijmans, Robert J. 2017. <em>Raster: Geographic Data Analysis and Modeling</em>. <a href="https://CRAN.R-project.org/package=raster" class="uri">https://CRAN.R-project.org/package=raster</a>.</p>
@@ -854,7 +854,7 @@ Naturally, this is the reason why we will describe <strong>sf</strong> in detail
 <p>Appelhans, Tim, Florian Detsch, Christoph Reudenbach, and Stefan Woellauer. 2018. <em>Mapview: Interactive Viewing of Spatial Data in R</em>. <a href="https://CRAN.R-project.org/package=mapview" class="uri">https://CRAN.R-project.org/package=mapview</a>.</p>
 </div>
 <div id="ref-R-sf">
-<p>Pebesma, Edzer. 2018a. <em>Sf: Simple Features for R</em>. <a href="https://CRAN.R-project.org/package=sf" class="uri">https://CRAN.R-project.org/package=sf</a>.</p>
+<p>Pebesma, Edzer. 2018a. <em>Sf: Simple Features for R</em>. <a href="https://github.com/r-spatial/sf/" class="uri">https://github.com/r-spatial/sf/</a>.</p>
 </div>
 </div>
 <div class="footnotes">
