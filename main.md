@@ -270,8 +270,10 @@ New integrated development environments (IDEs) such as RStudio have made R more 
 At its core R is an object-oriented, [functional programming language](http://adv-r.had.co.nz/Functional-programming.html) [@wickham_advanced_2014], and was specifically designed as an interactive interface to other software [@chambers_extending_2016]. 
 The latter also includes many 'bridges' to a treasure trove of GIS software, 'geolibraries' and functions (see Chapter \@ref(gis)).
 It is thus ideal for quickly creating 'geo-tools', without needing to master lower level languages (compared to R) such as C, FORTRAN or Java (see section \@ref(software-for-geocomputation)). 
-This can feel like breaking free from the metaphorical 'glass ceiling' imposed by GUI-based proprietary geographic information systems (see Table \@ref(tab:gdsl) for a definition of GUI) without having to setup a complex IDE environment needed for some languages.
-What is more, advanced users might even extend R with the power of other languages (e.g., C++ through **Rcpp** or Python through **reticulate**; see also section \@ref(software-for-geocomputation)).
+This can feel like breaking free from the metaphorical 'glass ceiling' imposed by GUI-based or proprietary geographic information systems (see Table \@ref(tab:gdsl) for a definition of GUI).
+Furthermore R facilitates access to other languages:
+the packages **Rcpp** and **reticulate** enable access to C++ and Python code, for example.
+This means R can be used as a 'bridge' to a wide range of geospatial programs (see section \@ref(software-for-geocomputation)).
 
 An example showing R's flexibility and evolving geographic capabilities is **leaflet** [@R-leaflet].
 We'll see in Chapter \@ref(adv-map) how this interactive mapping package has been extended: there are now many ways to generate interactive geographic data visualizations from the R command line.
@@ -292,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea2abfac14dc491e2
+preserve8c7be2e89750487a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3077,7 +3079,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4fe642cbd17599b2
+preservebcb32423a197a344
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6517,7 +6519,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve79802aa303547a0d
+preserve21bc398ff301ab0f
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6615,7 +6617,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0a1a007efc73a50e
+preserveeef9150423617f23
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9777,7 +9779,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef1a95abc0b03b0f6
+preserve9e4e4e7389513664
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
