@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebf73b6a80c621cf7
+preserveeb456c05e59b2220
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -345,11 +345,10 @@ However, there are major advantages of R over Python for geocomputation which ex
 R has unparalleled support for statistics, including spatial statistics, with hundreds of packages (unmatched by Python) supporting thousands of statistical methods.
 
 The major advantage of Python is that it is a *general-purpose* programming language.
-It is well-suited to many applications, including desktop software, computer games, websites and data science.
-R, by contrast, was originally developed for statistics.^[R
-has been extended in various directions, notably in  **shiny**, a package for developing interactive we applications in R.]
-This also explains Python's larger user base compared with R's.
-Python is often the only shared language between different (geocomputation) communities, explaining why it has become the 'glue' that holds many GIS programs together.
+It is used in many domains, including desktop software, computer games, websites and data science.
+R, by contrast, was originally developed for statistics.
+It has been extended in many directions including, for example, web application development (see \@ref(adv-map)), but is still primarily used for statistics and data science, explaining its smaller (but rapidly growing) user base.
+Python is often the only shared language between different (geocomputation) communities and can be seen as the 'glue' that holds many GIS programs together.
 Many geoalgorithms, including those in QGIS and ArcMap, can be accessed from the Python command line, making it well-suited as a starter language for command-line GIS.^[
 Python modules providing access to geoalgorithms include `grass.script` for GRASS,
 <!-- (https://grasswiki.osgeo.org/wiki/GRASS_and_Python), -->
@@ -3084,7 +3083,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb73067548a5b0e48
+preserve304df0087153354d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6524,7 +6523,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve629a48b07cca3670
+preserveb0a56fbd82323561
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6622,7 +6621,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee70b7b48567ad277
+preservef687f90a3f31f0df
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9784,7 +9783,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9673ac1fdc9b3cfc
+preserved3366c3c5b5f5dbb
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
