@@ -527,6 +527,10 @@ The use of R code, therefore, enables teaching geocomputation with reference to 
 Awareness of other languages for geocomputation will help decide when a different tool may be more appropriate for a specific task, and place R in the wider geospatial ecosystem.
 Various R interfaces or ‘bridges’ to dedicated GIS software have been created (see Chapter <a href="gis.html#gis">9</a>) so it’s worth knowing what is out there even from an R spatial perspective: there may already be an existing (or in-development) bridge enabling functions implemented in other languages to be run from the R command line.
 This section briefly introduces the languages <a href="https://isocpp.org/">C++</a>, <a href="https://www.oracle.com/java/index.html">Java</a> and <a href="https://www.python.org/">Python</a> for geocomputation, in preparation for Chapter <a href="gis.html#gis">9</a>.</p>
+<p>An feature of R (and Python) is that it is an interpreted language.
+This is advantageous because it enables interactive programming in a Read–Eval–Print Loop (REPL):
+code entered into the console is immediately executed and the result is printed, rather than waiting for the intermediate stage of compilation.
+On the other hand compiled languages such as C++, Java and Rust tend to run faster (after they have been compiled, which takes computer and programmer time).</p>
 <p>C++ provides the basis for many GIS packages such as <a href="www.qgis.org">QGIS</a>, <a href="https://grass.osgeo.org/">GRASS</a> and <a href="www.saga-gis.org">SAGA</a> so is a sensible starting point.
 <!-- even [ArcGIS](https://www.arcgis.com/)) relies in great parts on it. -->
 Well-written C++ is very fast, making it a good choice for performance-critical applications such as the processing of large spatial data but is harder to learn than Python or R.
