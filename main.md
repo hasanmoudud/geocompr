@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebc58f7fbc728362f
+preservebf73b6a80c621cf7
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -309,7 +309,7 @@ Awareness of other languages for geocomputation will help decide when a differen
 Various R interfaces or 'bridges' to dedicated GIS software have been created (see Chapter \@ref(gis)) so it's worth knowing what is out there even from an R spatial perspective: there may already be an existing (or in-development) bridge enabling functions implemented in other languages to be run from the R command line.
 This section briefly introduces the languages [C++](https://isocpp.org/), [Java](https://www.oracle.com/java/index.html) and [Python](https://www.python.org/) for geocomputation, in preparation for Chapter \@ref(gis).
 
-An feature of R (and Python) is that it is an interpreted language.
+An important feature of R (and Python) is that it is an interpreted language.
 This is advantageous because it enables interactive programming in a Read–Eval–Print Loop (REPL):
 code entered into the console is immediately executed and the result is printed, rather than waiting for the intermediate stage of compilation.
 On the other hand compiled languages such as C++, Java and Rust tend to run faster (after they have been compiled, which takes computer and programmer time).
@@ -3084,7 +3084,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebf22b8188f3d5064
+preserveb73067548a5b0e48
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6524,7 +6524,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec04f87b114aaed24
+preserve629a48b07cca3670
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6622,7 +6622,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1af04a792f1e2011
+preservee70b7b48567ad277
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9784,7 +9784,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservea72e5a3f54cf8dc7
+preserve9673ac1fdc9b3cfc
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
