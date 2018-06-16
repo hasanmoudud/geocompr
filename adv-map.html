@@ -525,7 +525,7 @@ Grey shades are used for <code>tm_fill()</code> and <code>tm_bubbles()</code> la
 Of course, these default values and other aesthetics can be overridden.
 The purpose of this section is to show how.</p>
 <p>There are two main types of map aesthetics: those that change with the data and those that are constant.
-Unlike <strong>ggplot2</strong>, which uses the helper function <code>aes()</code> to represent variable aesthetics, <strong>tmap</strong> accepts aesthetic arguments that are either variable fields (based on column names) or constant values.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
+Unlike <strong>ggplot2</strong>, which uses the helper function <code>aes()</code> to represent variable aesthetics, <strong>tmap</strong> accepts aesthetic arguments that are either variable fields (based on column names) or constant values.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>
 The most commonly used aesthetics for fill and border layers include color, transparency, line width and line type, set with <code>col</code>, <code>alpha</code>, <code>lwd</code>, and <code>lty</code> arguments respectively.
 The impact of setting these with fixed values is illustrated in Figure <a href="adv-map.html#fig:tmstatic">8.3</a>.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">ma1 =<span class="st"> </span><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
@@ -613,7 +613,7 @@ You can add a <code>-</code> as prefix to reverse the palette order.</p>
 <p>There are three main groups of color palettes - categorical, sequential and diverging (Figure <a href="adv-map.html#fig:colpal">8.7</a>), and each of them serves a different purpose.
 Categorical palettes consist of easily distinguishable colors and are most appropriate for categorical data without any particular order such as state names or land cover classes.
 Colors should be intuitive: rivers should be blue, for example, and pastures green.
-Avoid too many categories: maps with large legends and many colors can be uninterpretable.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
+Avoid too many categories: maps with large legends and many colors can be uninterpretable.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
 <p>The second group is sequential palettes.
 These follow a gradient, for example from light to dark colors (light colors tend to represent lower values), and are appropriate for continuous (numeric) variables.
 Sequential palettes can be single (<code>Blues</code> go from light to dark blue for example) or multi-color/hue (<code>YlOrBr</code> is gradient from light yellow to brown via orange, for example), as demonstrated in the code chunk below — output not shown, run the code yourself to see the results!</p>
@@ -637,7 +637,7 @@ It should be clear which values are lower and which are higher, and colors shoul
 This property is not preserved in the rainbow color palette, therefore we suggest avoiding it in spatial data visualization <span class="citation">(Borland and Taylor II <a href="#ref-borland_rainbow_2007">2007</a>)</span>.
 Instead <a href="https://cran.r-project.org/web/packages/viridis/">the viridis color palettes</a> can be used.
 Secondly, changes in colors should be accessible to the largest number of people.
-Therefore, it is important to use colorblind friendly palettes as often as possible.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
+Therefore, it is important to use colorblind friendly palettes as often as possible.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a></p>
 </div>
 <div id="layouts" class="section level3">
 <h3><span class="header-section-number">8.2.5</span> Layouts</h3>
@@ -852,7 +852,7 @@ Figure 8.17: Animated map showing population growth and state formation and boun
 <h2><span class="header-section-number">8.4</span> Interactive maps</h2>
 <p>Static and animated maps can breathe life into geographic datasets.
 Interactive maps can take reader participation to a whole new level, providing results with a life of their own that can be explored in myriad ways.
-Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
+Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a></p>
 <p>The most important type of interactivity, however, is the display of geographic data on an interactive or ‘slippy’ web maps.
 The release of the <strong>leaflet</strong> package in 2015 revolutionized interactive web map creation from within R and a number of packages have built on these foundations adding new features (e.g. <strong>leaflet.extras</strong>) and making the creation of web maps as simple as creating static maps (e.g. <strong>mapview</strong> and <strong>tmap</strong>).
 This section illustrates each approach in the opposite order.
@@ -967,7 +967,7 @@ In <strong>shiny</strong> apps these are often split into <code>ui.R</code> (sho
 <code>shiny-server</code> also serves apps defined by a single <code>app.R</code> file in an ‘app folder’.
 </div>
 
-<p>Before considering large apps it is worth seeing a minimal example, named ‘lifeApp’, in action.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>
+<p>Before considering large apps it is worth seeing a minimal example, named ‘lifeApp’, in action.<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>
 The code below defines and launches — with the command <code>shinyApp()</code> — a lifeApp, which provides an interactive slider allowing users to make countries appear with progressively lower levels of life expectancy (see Figure <a href="adv-map.html#fig:lifeApp">8.23</a>):</p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="kw">library</span>(shiny)    <span class="co"># for shiny apps</span></a>
 <a class="sourceLine" id="cb290-2" data-line-number="2"><span class="kw">library</span>(leaflet)  <span class="co"># renderLeaflet function</span></a>
@@ -1069,7 +1069,7 @@ Good additional resources can be found in the open source <a href="https://githu
 <p>Another benefit of maps based on <strong>ggplot2</strong> is that they can easily be given a level of interactivity when printed using the function <code>ggplotly()</code> from the <strong>plotly</strong> package.
 Try <code>plotly::ggplotly(g1)</code> for example, and compare the result with other <strong>plotly</strong> mapping functions described at <a href="https://blog.cpsievert.me/2018/03/30/visualizing-geo-spatial-data-with-sf-and-plotly/">blog.cpsievert.me</a>.</p>
 <p>At the same time, <strong>ggplot2</strong> has a few drawbacks.
-The <code>geom_sf()</code> function is not always able to create a desired legend to use from the spatial data.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
+The <code>geom_sf()</code> function is not always able to create a desired legend to use from the spatial <a href="https://github.com/tidyverse/ggplot2/issues/2037">data</a>.
 Raster objects are also not natively supported in <strong>ggplot2</strong> and need to be converted into a data frame before plotting.</p>
 <p>We have covered mapping with <strong>sf</strong>, <strong>raster</strong> and <strong>ggplot2</strong> packages first because these packages are highly flexible, allowing for the creation of a wide range of static maps.
 <!-- Many other static mapping packages are more specific. -->
@@ -1280,16 +1280,17 @@ Next, compare it with the maps of a hexagonal and regular grid created using the
 </div>
 <div class="footnotes">
 <hr />
-<ol start="43">
-<li id="fn43"><p>
-If there is a clash between a fixed value and a column name the column name takes precedence. This can be verified by running the next code chunk after running <code>nz$red = 1:nrow(nz)</code>.<a href="adv-map.html#fnref43" class="footnote-back">↩</a></p></li>
-<li id="fn44"><p>The <code>col = &quot;MAP_COLORS&quot;</code> argument can be used in maps with a large number of individual polygons (for example a map of individual countries). It creates unique colors for adjacent polygons.<a href="adv-map.html#fnref44" class="footnote-back">↩</a></p></li>
-<li id="fn45"><p>See the “Color blindness simulator” options in <code>tmaptools::palette_explorer()</code>.<a href="adv-map.html#fnref45" class="footnote-back">↩</a></p></li>
-<li id="fn46"><p>
-A good example of such a dynamically linked visualization is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on <a href="https://twitter.com/kyle_e_walker/status/985948444966768641">Twitter</a> and (for the source code) as a GitHub <a href="https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a">Gist</a>.<a href="adv-map.html#fnref46" class="footnote-back">↩</a></p></li>
-<li id="fn47"><p>
-The word ‘app’ in this context refers to ‘web application’ and should not be confused with smartphone apps, the more common meaning of the word.<a href="adv-map.html#fnref47" class="footnote-back">↩</a></p></li>
-<li id="fn48"><p>See <a href="https://github.com/tidyverse/ggplot2/issues/2037" class="uri">https://github.com/tidyverse/ggplot2/issues/2037</a>.<a href="adv-map.html#fnref48" class="footnote-back">↩</a></p></li>
+<ol start="35">
+<li id="fn35"><p>
+If there is a clash between a fixed value and a column name the column name takes precedence. This can be verified by running the next code chunk after running <code>nz$red = 1:nrow(nz)</code>.<a href="adv-map.html#fnref35" class="footnote-back">↩</a></p></li>
+<li id="fn36"><p>
+<code>col = &quot;MAP_COLORS&quot;</code> can be used in maps with a large number of individual polygons (for example a map of individual countries) to create unique colors for adjacent polygons.<a href="adv-map.html#fnref36" class="footnote-back">↩</a></p></li>
+<li id="fn37"><p>See the “Color blindness simulator” options in <code>tmaptools::palette_explorer()</code>.<a href="adv-map.html#fnref37" class="footnote-back">↩</a></p></li>
+<li id="fn38"><p>
+A good example of such a dynamically linked visualization is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker which can be found online.
+<!-- A good example of such a dynamically linked visualization is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on [Twitter](https://twitter.com/kyle_e_walker/status/985948444966768641) and (for the source code) as a GitHub [Gist](https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a). --><a href="adv-map.html#fnref38" class="footnote-back">↩</a></p></li>
+<li id="fn39"><p>
+The word ‘app’ in this context refers to ‘web application’ and should not be confused with smartphone apps, the more common meaning of the word.<a href="adv-map.html#fnref39" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

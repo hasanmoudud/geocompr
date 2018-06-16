@@ -455,7 +455,7 @@ This means the ‘topology’ is lost, resulting in overlapping and ‘holy’ a
 By default it uses the Visvalingam algorithm, which overcomes some limitations of the Douglas-Peucker algorithm <span class="citation">(Visvalingam and Whyatt <a href="#ref-visvalingam_line_1993">1993</a>)</span>.
 <!-- https://bost.ocks.org/mike/simplify/ -->
 The following code chunk uses this function to simplify <code>us_states2163</code>.
-The result has only 1% of the vertices of the input (set using the argument <code>keep</code>) but its number of objects remains intact because we set <code>keep_shapes = TRUE</code><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>:</p>
+The result has only 1% of the vertices of the input (set using the argument <code>keep</code>) but its number of objects remains intact because we set <code>keep_shapes = TRUE</code>:<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a></p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="co"># proportion of points to retain (0-1; default 0.05)</span></a>
 <a class="sourceLine" id="cb151-2" data-line-number="2">us_states2163<span class="op">$</span>AREA =<span class="st"> </span><span class="kw">as.numeric</span>(us_states2163<span class="op">$</span>AREA)    </a>
 <a class="sourceLine" id="cb151-3" data-line-number="3">us_states_simp2 =<span class="st"> </span>rmapshaper<span class="op">::</span><span class="kw">ms_simplify</span>(us_states2163, <span class="dt">keep =</span> <span class="fl">0.01</span>,</a>
@@ -482,7 +482,7 @@ They can be calculated with the <strong>sf</strong> function <code>st_centroid()
 <p>Sometimes the geographic centroid falls outside the boundaries of their parent objects (think of a dohnut).
 In such cases <em>point on surface</em> operations can be used to guarantee the point will be in the parent object (e.g. for labelling irregular multipolygon objects such as island states), as illustrated by the red points in Figure <a href="geometric-operations.html#fig:centr">5.3</a>.
 Notice that these red points always lie on their parent objects.
-They were created with <code>st_point_on_surface()</code> as follows:<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
+They were created with <code>st_point_on_surface()</code> as follows:<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">nz_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(nz)</a>
 <a class="sourceLine" id="cb153-2" data-line-number="2">seine_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(seine)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:centr"></span>
@@ -821,7 +821,7 @@ The newly added rows and column receive the default value of the <code>value</co
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">origin</span>(elev_<span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb178-2" data-line-number="2"><span class="co">#&gt; [1] 0 0</span></a></code></pre></div>
 <p>If two rasters have different origins, their cells do not overlap completely which would make map algebra impossible.
-To change the origin , use <code>origin()</code>.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>
+To change the origin , use <code>origin()</code>.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>
 Looking at figure <a href="geometric-operations.html#fig:origin-example">5.13</a> reveals the effect of changing the origin.</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="co"># change the origin</span></a>
 <a class="sourceLine" id="cb179-2" data-line-number="2"><span class="kw">origin</span>(elev_<span class="dv">4</span>) =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>)</a>
@@ -839,7 +839,7 @@ Figure 5.13: Plotting rasters with the same values but different origins.
 <div id="aggregation-and-disaggregation" class="section level3">
 <h3><span class="header-section-number">5.3.3</span> Aggregation and disaggregation</h3>
 <p>Raster datasets can also differ with regard to their resolution.
-To match resolutions, one can either decrease (<code>aggregate()</code>) or increase (<code>disaggregate()</code>) the resolution of one raster.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>
+To match resolutions, one can either decrease (<code>aggregate()</code>) or increase (<code>disaggregate()</code>) the resolution of one raster.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>
 As an example, we here change the spatial resolution of <code>dem</code> (found in the <strong>RQGIS</strong> package) by a factor of 5 (Fig. <a href="geometric-operations.html#fig:aggregate-example">5.14</a>).
 Additionally, the output cell value should correspond to the mean of the input cells (note that one could use other functions as well, such as <code>median()</code>, <code>sum()</code> etc.):</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;dem&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;RQGIS&quot;</span>)</a>
@@ -1092,7 +1092,7 @@ Figure 5.21: Examples of line and polygon rasterizations.
 <p>As with <code>raster::extract()</code>, <code>raster::rasterize()</code> works well for most cases but is not performance optimized.
 Fortunately, there are several alternatives, including the <code>fasterize::fasterize()</code> and <code>gdalUtils::gdal_rasterize()</code>.
 The former is much (100 times+) faster than <code>rasterize()</code> but is currently limited to polygon rasterization.
-The latter is part of GDAL and therefore requires a vector file (instead of an <code>sf</code> object) and rasterization parameters (instead of a <code>Raster*</code> template object) as inputs.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
+The latter is part of GDAL and therefore requires a vector file (instead of an <code>sf</code> object) and rasterization parameters (instead of a <code>Raster*</code> template object) as inputs.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a></p>
 </div>
 <div id="spatial-vectorization" class="section level3">
 <h3><span class="header-section-number">5.4.4</span> Spatial vectorization</h3>
@@ -1234,14 +1234,19 @@ Using these objects:
 </div>
 <div class="footnotes">
 <hr />
-<ol start="21">
-<li id="fn21"><p>Simplification of multipolygon objects could remove small internal polygons, even if the <code>keep_shapes</code> argument is set to TRUE. To prevent this, you need to set <code>explode = TRUE</code>. This option converts all mutlipolygons into separate polygons before its simplification.<a href="geometric-operations.html#fnref21" class="footnote-back">↩</a></p></li>
+<ol start="20">
+<li id="fn20"><p>
+Simplification of multipolygon objects cane remove small internal polygons, even if the <code>keep_shapes</code> argument is set to TRUE. To prevent this, you need to set <code>explode = TRUE</code>. This option converts all mutlipolygons into separate polygons before its simplification.<a href="geometric-operations.html#fnref20" class="footnote-back">↩</a></p></li>
+<li id="fn21"><p>
+A description of how <code>st_point_on_surface()</code> works is provided at gis.stackexchange.com/q/76498.<a href="geometric-operations.html#fnref21" class="footnote-back">↩</a></p></li>
 <li id="fn22"><p>
-A description of how <code>st_point_on_surface()</code> works is provided at <a href="https://gis.stackexchange.com/a/76563/20955">gis.stackexchange.com/q/76498</a>.<a href="geometric-operations.html#fnref22" class="footnote-back">↩</a></p></li>
-<li id="fn23"><p>If the origins of two raster datasets are just marginally apart, it sometimes is sufficient to simply increase the <code>tolerance</code> argument of <code>raster::rasterOptions()</code>.<a href="geometric-operations.html#fnref23" class="footnote-back">↩</a></p></li>
-<li id="fn24"><p>It is important to note that we here are solely referring to the spatial resolution but that in remote sensing the spectral (spectral bands), temporal (observations through time of the same area) and radiometric (color depth) resolution are equally important.
-Check out the <code>stackApply()</code> example in the documentation for getting an idea how to do temporal raster aggregation.<a href="geometric-operations.html#fnref24" class="footnote-back">↩</a></p></li>
-<li id="fn25"><p>See more at <a href="http://www.gdal.org/gdal_rasterize.html" class="uri">http://www.gdal.org/gdal_rasterize.html</a>.<a href="geometric-operations.html#fnref25" class="footnote-back">↩</a></p></li>
+If the origins of two raster datasets are just marginally apart, it sometimes is sufficient to simply increase the <code>tolerance</code> argument of <code>raster::rasterOptions()</code>.<a href="geometric-operations.html#fnref22" class="footnote-back">↩</a></p></li>
+<li id="fn23"><p>
+Here we refer to spatial resolution.
+In remote sensing the spectral (spectral bands), temporal (observations through time of the same area) and radiometric (color depth) resolution are also important.
+Check out the <code>stackApply()</code> example in the documentation for getting an idea how to do temporal raster aggregation.<a href="geometric-operations.html#fnref23" class="footnote-back">↩</a></p></li>
+<li id="fn24"><p>
+See more at gdal.org/gdal_rasterize.html.<a href="geometric-operations.html#fnref24" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

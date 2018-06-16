@@ -292,7 +292,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4f1a31474207a502
+preserve249247e283be2ac0
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -513,28 +513,24 @@ As of 2018 map making in R is a hot topic with dedicated packages such as **tmap
 ## Prerequisites {-}
 
 This is the first practical chapter of the book, and therefore it comes with some software requirements.
-We assume that you have an up-to-date version of R installed and that you are comfortable using software with a command-line interface such as the integrated development environment (IDE) RStudio.[^1]
+We assume that you have an up-to-date version of R installed and that you are comfortable using software with a command-line interface such as the integrated development environment (IDE) RStudio.
 
-[^1]: 
+If you are new to R, we recommend reading Chapter 2 of the free online book *Efficient R Programming* @gillespie_efficient_2016, particularly sections 2.3 and 2.5, for details on R installation and [set-up](https://csgillespie.github.io/efficientR/set-up.html).
+It is also worth learning the basics of the language, using resources such as @gillespie_efficient_2016, @grolemund_r_2016 or interactive guides such as [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r) before proceeding.
+We recommend organizing your work as you learn with RStudio projects and clearly named script files (such as `chapter-02.R` for example) containing code you have typed (not copy-pasted!) as you learn.
 
-    If you need to install R, we recommend reading [section 2.3](https://csgillespie.github.io/efficientR/set-up.html#r-version) and [section 2.5](https://csgillespie.github.io/efficientR/set-up.html#rstudio) of the freely available book *Efficient R Programming* @gillespie_efficient_2016.
-    Packages can be kept up-to-date with `update.packages()`.
-
-    If you are not a regular R user, we recommend that you familiarize yourself with the language before proceeding with this chapter.
-    You can do so using resources such as @gillespie_efficient_2016, @grolemund_r_2016 as well as online interactive guides such as [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r).
-
-    We recommend organizing your work as you learn, for example with the help of an RStudio '[project](https://csgillespie.github.io/efficientR/set-up.html#project-management)' called `geocomp-learning`.
-    Creating new script for each chapter or section of interest will help consolidate and extend the skills learned.
-    The code you type to help learn the content of this chapter could be placed in a file called `chapter-02.R`, for example.
-    Everyone learns in a different way; structure your work so it makes sense to you; and avoid copy-pasting to get used to typing code.
+<!-- '[project](https://csgillespie.github.io/efficientR/set-up.html#project-management)' called `geocomp-learning`. -->
+<!--     Creating new script for each chapter or section of interest will help consolidate and extend the skills learned. -->
+<!--     The code you type to help learn the content of this chapter could be placed in a file called `chapter-02.R`, for example. -->
+<!--     Everyone learns in a different way; structure your work so it makes sense to you; and avoid copy-pasting to get used to typing code. -->
 
 <!-- Another option is to use the RStudio project provided in the root directory of the [`geocompr`](https://github.com/Robinlovelace/geocompr) GitHub repository. -->
 <!-- This will make it easier to run this book's worked examples on your computer. -->
 
 After you've checked you R installation and brushed-up on your R skills where appropriate, the next step is to install and load the packages used in this chapter.
 Packages are installed with the `install.packages()` function which can be used to get the prerequisites on your computer:^[
-Note that the final package is not on R's main package hosting repository, CRAN, meaning that the `repos` and `type` arguments must be set for it to install.
-In case the installation fails, for example if you do not have rights to install non CRAN packages on your organisation's computers, the data in **spDataLarge** can be loaded by running the script [`spData.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/spData.R) from the `code` folder in the book's GitHub repo at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr).
+Note that **spDataLarge** is not on CRAN, meaning that the `repos` and `type` arguments must be set for it to install.
+<!-- In case the installation fails, for example if you do not have rights to install non CRAN packages on your organisation's computers, the data in **spDataLarge** can be loaded by running the script [`spData.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/spData.R) from the `code` folder in the book's GitHub repo at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr). -->
 ]
 
 
@@ -612,7 +608,8 @@ This can be verified visually: slightly more than 5 'boxes' --- square areas bou
 The location of BNG's origin, in the sea beyond South West Peninsular, ensures that most locations in the UK have positive Easting and Northing values.^[
 The origin we are referring to, depicted in blue in Figure \@ref(fig:vectorplots), is in fact the 'false' origin.
 The 'true' origin, the location at which distortions are at a minimum, is located at 2° W and 49° N.
-This was selected by the [Ordnance Survey](https://www.ordnancesurvey.co.uk/support/the-national-grid.html) to be roughly in the center of the British landmass longitudinally.
+This was selected by the Ordnance Survey to be roughly in the center of the British landmass longitudinally.
+<!-- This was selected by the [Ordnance Survey](https://www.ordnancesurvey.co.uk/support/the-national-grid.html) to be roughly in the center of the British landmass longitudinally. -->
 ]
 There is more to CRSs, as described in sections \@ref(crs-intro) and \@ref(reproj-geo-data) but, for the purposes of this section, it is sufficient to know that coordinates consist of two numbers representing distance from an origin, usually in $x$ then $y$ dimensions.
 
@@ -1283,7 +1280,11 @@ Simple features are, in essence, data frames with a spatial extension.
 
 ## Raster data
 
-The geographic raster data model usually consists of a raster header^[Depending on the file format the header is part of the actual image data file, e.g., GeoTiff, or stored in an extra header or world file, e.g., ASCII grid formats. There is also the headerless (flat) binary raster format which should fascilitate the import into various software programs. To convert these files into other raster formats requiring a header information, the user is often forced to provide the header information manually, see e.g. https://lta.cr.usgs.gov/glcc/technote.] and a matrix (with rows and columns) representing equally spaced cells (often also called pixels; Figure \@ref(fig:raster-intro-plot):A).
+The geographic raster data model usually consists of a raster header
+and a matrix (with rows and columns) representing equally spaced cells (often also called pixels; Figure \@ref(fig:raster-intro-plot):A).^[
+Depending on the file format the header is part of the actual image data file, e.g., GeoTiff, or stored in an extra header or world file, e.g., ASCII grid formats. There is also the headerless (flat) binary raster format which should fascilitate the import into various software programs.
+<!-- To convert these files into other raster formats requiring a header information, the user is often forced to provide the header information manually, see e.g. https://lta.cr.usgs.gov/glcc/technote. -->
+]
 The raster header defines the coordinate reference system, the extent and the origin.
 The origin (or starting point) is frequently the coordinate of the lower-left corner of the matrix (the **raster** package, however, uses the upper left corner, by default (Figure  \@ref(fig:raster-intro-plot):B)).
 The header defines the extent via the number of columns, the number of rows and the cell size resolution.
@@ -1577,7 +1578,8 @@ Spherical models assume that the Earth is a perfect sphere of a given radius.
 Spherical models have the advantage of simplicity but are rarely used because they are inaccurate: the Earth is not a sphere!
 Ellipsoidal models are defined by two parameters: the equatorial radius and the polar radius.
 These are suitable because the Earth is compressed: the equatorial radius is around 11.5 km longer than the polar radius [@maling_coordinate_1992].^[
-The degree of compression is often referred to as [*flattening*](https://en.wikipedia.org/wiki/Flattening), defined in terms of the equitorial radius ($a$) and polar radius ($b$) as follows: $f = (a - b) / a$. The terms *ellipticity* and *compression* can also be used [@maling_coordinate_1992].
+The degree of compression is often referred to as *flattening*, defined in terms of the equitorial radius ($a$) and polar radius ($b$) as follows: $f = (a - b) / a$. The terms *ellipticity* and *compression* can also be used [@maling_coordinate_1992].
+<!-- The degree of compression is often referred to as [*flattening*](https://en.wikipedia.org/wiki/Flattening), defined in terms of the equitorial radius ($a$) and polar radius ($b$) as follows: $f = (a - b) / a$. The terms *ellipticity* and *compression* can also be used [@maling_coordinate_1992]. -->
 Because $f$ is a rather small value, digital ellipsoid models use the 'inverse flattening' ($rf = 1/f$) to define the Earth's compression.
 Values of $a$ and $rf$ used in a variety of ellipsoidal models can be seen be executing `st_proj_info(type = "ellps")`.
 ]
@@ -1628,7 +1630,9 @@ Two main ways to describe CRS in R are an `epsg` code or a `proj4string` definit
 Both of these approaches have advantages and disadvantages. 
 An `epsg` code is usually shorter, and therefore easier to remember. 
 The code also refers to only one, well-defined coordinate reference system. 
-On the other hand, a `proj4string` definition allows you more flexibility when it comes to specifying different parameters such as the projection type, the datum and the ellipsoid.^[Complete list of the `proj4string` parameters can be found at http://proj4.org/parameters.html#parameter-list.] 
+On the other hand, a `proj4string` definition allows you more flexibility when it comes to specifying different parameters such as the projection type, the datum and the ellipsoid.^[
+A complete list of the `proj4string` parameters can be found at proj4.org.
+] 
 This way you can specify many different projections, and modify existing ones.
 This also makes the `proj4string` approach more complicated.
 <!-- ^[In the background, `sf` and `raster` use the [PROJ](http://proj4.org/) software, which enables transformations between different projections]. -->
@@ -1924,7 +1928,9 @@ For most cases, however, there is no harm in keeping the geometry column because
 This means that proficiency with attribute data in `sf` objects equates to proficiency with data frames in R.
 For many applications, the tidyverse package **dplyr** offers the most effective and intuitive approach of working with data frames, hence the focus on this approach in this section.^[
 Unlike objects of class `Spatial*` of the **sp** package, `sf` objects are also compatible with the **tidyverse** packages **dplyr** and **ggplot2**.
-The former provides fast and powerful functions for data manipulation (see [Section 6.7](https://csgillespie.github.io/efficientR/data-carpentry.html#data-processing-with-data.table) of @gillespie_efficient_2016), and the latter provides powerful plotting capabilities.
+The former provides fast and powerful functions for data manipulation 
+<!-- (see [Section 6.7](https://csgillespie.github.io/efficientR/data-carpentry.html#data-processing-with-data.table) of @gillespie_efficient_2016),  -->
+and the latter provides powerful plotting capabilities.
 ]
 
 ### Vector attribute subsetting
@@ -2361,8 +2367,8 @@ Fortunately non-spatial data frames with a geometry list column (like `coffee_wo
 
 The contents of this section should equip you with know-how to deal with the majority of spatial data use cases.
 For more advanced coverage of joins, beyond that in @grolemund_r_2016, we recommend checking-out the capabilities of **data.table**, a high-performance data processing package that is compatible with `sf` objects, and other on-line materials.^[
-The use of **data.table** for geocomputation is not well-documented but a taster of what is possible is provided in a blog post entitled *Using data.table and Rcpp to scale geo-spatial analysis with sf* by Tim Applehans hosted at [r-spatial.org](http://r-spatial.org/r/2017/11/13/perp-performance.html).
-A more in-depth explanation of joining is provided in `join.Rmd`, a reproducible document in the `vignettes/` folder hosted at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr/tree/master/vignettes).
+The use of **data.table** for geocomputation is not well-documented but a taster of what is possible is provided in a blog post entitled *Using data.table and Rcpp to scale geo-spatial analysis with sf* by Tim Applehans hosted at r-spatial.org.
+A more in-depth explanation of joining is provided in `join.Rmd`, a reproducible document in the `vignettes/` folder hosted at github.com/Robinlovelace/geocompr.
 ]
 Another type of join is a spatial join, covered in the next chapter (section \@ref(spatial-joining)).
 
@@ -2443,7 +2449,9 @@ It is important to note that attribute data operations preserve the geometry of 
 As mentioned at the outset of the chapter, it can be useful to remove the geometry.
 To do this, you have to explicitly remove it because `sf` explicitly makes the geometry column sticky.
 This behavior ensures that data frame operations do not accidentally remove the geometry column.
-Hence, an approach such as `select(world, -geom)` will be unsuccessful and you should instead use `st_set_geometry()`.^[Note that `st_geometry(world_st) = NULL` also works to remove the geometry from `world` but overwrites the original object.]
+Hence, an approach such as `select(world, -geom)` will be unsuccessful and you should instead use `st_set_geometry()`.^[
+`st_geometry(world_st) = NULL` also works to remove the geometry from `world` but overwrites the original object.
+]
 
 
 ```r
@@ -3069,7 +3077,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve92fbb8a59ad3ce81
+preserve1ae5cbeb6df11c38
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3147,7 +3155,9 @@ This is illustrated using the base `aggregate()` function below:
 nz_avheight = aggregate(x = nz_height, nz, FUN = mean)
 ```
 
-The result of the previous command is an `sf` object with the same geometry as the (spatial) aggregating object (`nz`).^[This can be verified with `identical(st_geometry(nz), st_geometry(nz_avheight))`.]
+The result of the previous command is an `sf` object with the same geometry as the (spatial) aggregating object (`nz`).^[
+This can be verified with `identical(st_geometry(nz), st_geometry(nz_avheight))`.
+]
 The result of the previous operation is illustrated in Figure \@ref(fig:spatial-aggregation).
 The same result can also be generated using the 'tidy' functions `group_by()` and `summarize()` (used in combination with `st_join()`):
 
@@ -3331,8 +3341,10 @@ To derive the coordinate of a specific cell, we have to calculate it using its m
 For the processing, however, the geographic position of a cell is barely relevant as long as we make sure that the cell position is still the same after the processing (one-to-one locational correspondence).
 Additionally, if two or more raster datasets share the same extent, projection and resolution, one could treat them as matrices for the processing.
 This is exactly what map algebra is doing in R.
-First, the **raster** package checks the headers of the rasters on which to perform any algebraic operation, and only if they are correspondent to each other, the processing goes on.^[Map algebra operations are also possible with headerless rasters but in this case the user has to make sure that in fact there exists a one-to-one locational correspondence.
-For an example, how to import a headerless raster into R, see this [post](https://stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html).]
+First, the **raster** package checks the headers of the rasters on which to perform any algebraic operation, and only if they are correspondent to each other, the processing goes on.^[
+Map algebra operations are also possible with headerless rasters but in this case the user has to make sure that in fact there exists a one-to-one locational correspondence.
+An example showing how to import a headerless raster into R is provided in a post at stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html.
+]
 And secondly, map algebra retains the so-called one-to-one locational correspondence.
 This is where it substantially differs from matrix algebra which changes positions when for example multiplying or dividing matrices.
 
@@ -3683,7 +3695,9 @@ This means the 'topology' is lost, resulting in overlapping and 'holy' areal uni
 By default it uses the Visvalingam algorithm, which overcomes some limitations of the Douglas-Peucker algorithm [@visvalingam_line_1993].
 <!-- https://bost.ocks.org/mike/simplify/ -->
 The following code chunk uses this function to simplify `us_states2163`.
-The result has only 1% of the vertices of the input (set using the argument `keep`) but its number of objects remains intact because we set `keep_shapes = TRUE`^[Simplification of multipolygon objects could remove small internal polygons, even if the `keep_shapes` argument is set to TRUE. To prevent this, you need to set `explode = TRUE`. This option converts all mutlipolygons into separate polygons before its simplification.]:
+The result has only 1% of the vertices of the input (set using the argument `keep`) but its number of objects remains intact because we set `keep_shapes = TRUE`:^[
+Simplification of multipolygon objects cane remove small internal polygons, even if the `keep_shapes` argument is set to TRUE. To prevent this, you need to set `explode = TRUE`. This option converts all mutlipolygons into separate polygons before its simplification.
+]
 
 
 ```r
@@ -3721,7 +3735,7 @@ Sometimes the geographic centroid falls outside the boundaries of their parent o
 In such cases *point on surface* operations can be used to guarantee the point will be in the parent object (e.g. for labelling irregular multipolygon objects such as island states), as illustrated by the red points in Figure \@ref(fig:centr).
 Notice that these red points always lie on their parent objects.
 They were created with `st_point_on_surface()` as follows:^[
-A description of how `st_point_on_surface()` works is provided at [gis.stackexchange.com/q/76498](https://gis.stackexchange.com/a/76563/20955).
+A description of how `st_point_on_surface()` works is provided at gis.stackexchange.com/q/76498.
 ]
 
 
@@ -4197,7 +4211,9 @@ origin(elev_4)
 ```
 
 If two rasters have different origins, their cells do not overlap completely which would make map algebra impossible.
-To change the origin , use `origin()`.^[If the origins of two raster datasets are just marginally apart, it sometimes is sufficient to simply increase the `tolerance` argument  of `raster::rasterOptions()`.]
+To change the origin , use `origin()`.^[
+If the origins of two raster datasets are just marginally apart, it sometimes is sufficient to simply increase the `tolerance` argument  of `raster::rasterOptions()`.
+]
 Looking at figure \@ref(fig:origin-example) reveals the effect of changing the origin.
 
 
@@ -4219,8 +4235,11 @@ Note that changing the resolution frequently (next section) also changes the ori
 ### Aggregation and disaggregation
 
 Raster datasets can also differ with regard to their resolution. 
-To match resolutions, one can either decrease  (`aggregate()`) or increase (`disaggregate()`) the resolution of one raster.^[It is important to note that we here are solely referring to the spatial resolution but that in remote sensing the spectral (spectral bands), temporal (observations through time of the same area) and radiometric (color depth) resolution are equally important.
-Check out the `stackApply()` example in the documentation for getting an idea how to do temporal raster aggregation.]
+To match resolutions, one can either decrease  (`aggregate()`) or increase (`disaggregate()`) the resolution of one raster.^[
+Here we refer to spatial resolution.
+In remote sensing the spectral (spectral bands), temporal (observations through time of the same area) and radiometric (color depth) resolution are also important.
+Check out the `stackApply()` example in the documentation for getting an idea how to do temporal raster aggregation.
+]
 As an example, we here change the spatial resolution of `dem` (found in the **RQGIS** package) by a factor of 5 (Fig. \@ref(fig:aggregate-example)).
 Additionally, the output cell value should correspond to the mean of the input cells (note that one could use other functions as well, such as `median()`, `sum()` etc.):
 
@@ -4580,7 +4599,9 @@ california_raster2 = rasterize(as(california, "Spatial"), raster_template2)
 As with `raster::extract()`,  `raster::rasterize()` works well for most cases but is not performance optimized. 
 Fortunately, there are several alternatives, including the `fasterize::fasterize()` and `gdalUtils::gdal_rasterize()`. 
 The former is much (100 times+) faster than `rasterize()` but is currently limited to polygon rasterization.
-The latter is part of GDAL and therefore requires a vector file (instead of an `sf` object) and rasterization parameters (instead of a `Raster*` template object) as inputs.^[See more at http://www.gdal.org/gdal_rasterize.html.]
+The latter is part of GDAL and therefore requires a vector file (instead of an `sf` object) and rasterization parameters (instead of a `Raster*` template object) as inputs.^[
+See more at gdal.org/gdal_rasterize.html.
+]
 
 ### Spatial vectorization
 
@@ -4812,8 +4833,10 @@ st_crs(london_proj)
 ```
 
 Notable components of this CRS description include the EPSG code (`EPSG: 27700`), the projection ([transverse Mercator](https://en.wikipedia.org/wiki/Transverse_Mercator_projection), `+proj=tmerc`), the origin (`+lat_0=49 +lon_0=-2`) and units (`+units=m`).^[
-For a short description of the most relevant projection parameters and related concepts, see the fourth lecture by Jochen Albrecht: [geography.hunter.cuny.edu/~jochen/GTECH361/lectures/](http://www.geography.hunter.cuny.edu/~jochen/GTECH361/lectures/lecture04/concepts/Map%20coordinate%20systems/Projection%20parameters.htm) as well as [http://proj4.org/parameters.html](http://proj4.org/parameters.html). 
-Another great resource on projection definitions is [http://spatialreference.org/](http://spatialreference.org/).
+For a short description of the most relevant projection parameters and related concepts, see the fourth lecture by Jochen Albrecht hosted at
+geography.hunter.cuny.edu/~jochen/GTECH361/lectures/ and information at proj4.org/parameters.html.
+<!-- [geography.hunter.cuny.edu/~jochen/GTECH361/lectures/](http://www.geography.hunter.cuny.edu/~jochen/GTECH361/lectures/lecture04/concepts/Map%20coordinate%20systems/Projection%20parameters.htm) as well as [http://proj4.org/parameters.html](http://proj4.org/parameters.html). -->
+Other great resources on projections are spatialreference.org and progonos.com/furuti/MapProj.
 ]
 The fact that the units of the CRS are meters (rather than degrees) tells us that this is a projected CRS: `st_is_longlat(london_proj)` now returns `FALSE` and geometry operations on `london_proj` will work without a warning, meaning buffers can be produced from it using proper units of distance.
 <!-- 
@@ -4877,7 +4900,8 @@ It may come as a surprise that `london` and `london2` are just over 2 km apart!^
 The difference in location between the two points is not due to imperfections in the transforming operation (which is in fact very accurate) but the low precision of the manually-created coordinates that created `london` and `london_proj`.
 Also surprising may be that the result is provided in a matrix with units of meters.
 This is because `st_distance()` can provide distances between many features and because the CRS has units of meters.
-Use `as.numeric()` to coerce the result into a regular number.]
+Use `as.numeric()` to coerce the result into a regular number.
+]
 
 
 ```r
@@ -4925,9 +4949,7 @@ All UTM projections have the same datum (WGS84) and their EPSG codes run sequent
 
 
 
-To show how the system works let's create a function, `lonlat2UTM()` to calculate the EPSG code associated with any point on the planet as follows:^[
-Credit: Josh O'Brien's post on [stackoverflow](https://stackoverflow.com/a/9188972) inspired this function.
-] 
+To show how the system works let's create a function, `lonlat2UTM()` to calculate the EPSG code associated with any point on the planet as [follows](https://stackoverflow.com/a/9188972/): 
 
 <!-- Idea: create full function with message and flexibility in later chapter (RL) -->
 <!-- I think this code needs a short description (JM)-->
@@ -5060,7 +5082,9 @@ However in some cases it is desirable to create a new CRS, using a custom `proj4
 This system allows a very wide range of projections to be created, as we'll see in some of the custom map projections in this section.
 <!-- as we mentioned in section \@ref(crs-in-r). -->
 
-A long and growing list of projections has been developed and many of these these can be set with the `+proj=` element of `proj4string`s.^[See the Wikipedia page '[List of map projections](https://en.wikipedia.org/wiki/List_of_map_projections)' for 70+ projections, and illustrations.]
+A long and growing list of projections has been developed and many of these these can be set with the `+proj=` element of `proj4string`s.^[
+The Wikipedia page 'List of map projections' has 70+ projections and illustrations.
+]
 When mapping the world while preserving areal relationships, the Mollweide projection is a good choice [@jenny_guide_2017] (Figure \@ref(fig:mollproj)).
 To use this projection, we need to specify it using the `proj4string` element, `"+proj=moll"`, in the `st_transform` function:
 
@@ -5077,7 +5101,9 @@ world_mollweide = st_transform(world, crs = "+proj=moll")
 </div>
 
 On the other hand, when mapping the world, it is often desirable to have as little distortion as possible for all spatial properties (area, direction, distance).
-One of the most popular projections to achieve this is the Winkel tripel projection (Figure \@ref(fig:wintriproj)).^[This projection is used, among others, by the National Geographic Society.]
+One of the most popular projections to achieve this is the Winkel tripel projection (Figure \@ref(fig:wintriproj)).^[
+This projection is used, among others, by the National Geographic Society.
+]
 `st_transform_proj()` from the **lwgeom** package allows for coordinate transformations to a wide range of CRSs, including the Winkel tripel projection: 
 
 
@@ -5171,7 +5197,7 @@ crs(cat_raster)
 #> +no_defs
 ```
 
-In this region, 14 land cover classes were distinguished^[Full list of NLCD2011 land cover classes can be found at https://www.mrlc.gov/nlcd11_leg.php]:
+In this region, 14 land cover classes were distinguished (a full list of NLCD2011 land cover classes can be found at [mrlc.gov](https://www.mrlc.gov/nlcd11_leg.php):
 
 
 ```r
@@ -5438,7 +5464,7 @@ Further examples of **osmdata** in action are provided in Chapters \@ref(transpo
 Sometimes, packages come with inbuilt datasets.
 These can be accessed in four ways: by attaching the package (if the package uses 'lazy loading' as **spData** does), with `data(dataset)`, by referring to the dataset with `pkg::dataset` or with `system.file()` to access raw data files.
 The following code chunk illustrates the latter two options using the `world` (already loaded by attaching its parent package with `library(spData)`):^[
-For more information on data import with R packages see sections [5.5](https://csgillespie.github.io/efficientR/input-output.html#download) and [5.6](https://csgillespie.github.io/efficientR/input-output.html#accessing-data-stored-in-packages) of @gillespie_efficient_2016.
+For more information on data import with R packages see sections 5.5 and 5.6 of @gillespie_efficient_2016.
 ]
 
 
@@ -5453,13 +5479,13 @@ Spatial datasets are usually stored as files or in spatial databases.
 File formats can either store vector or raster data, while spatial databases such as [PostGIS](https://trac.osgeo.org/postgis/wiki/WKTRaster) can store both.
 Today file formats may seem bewildering but there has been much consolidation and standardization since the beginnings of GIS software in the 1960s when the first widely distributed program ([SYMAP](https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/)) for spatial analysis was created at Harvard University [@coppock_history_1991].
 
-GDAL,^[[GDAL](http://www.gdal.org/) should be pronounced "goo-dal", with the double o making a reference to object-orientation.] the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between file formats since its release in 2000.
+GDAL (which should be pronounced "goo-dal", with the double o making a reference to object-orientation), the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between file formats since its release in 2000.
 GDAL provides a unified and high-performance interface for reading and writing of many raster and vector data formats.
 Many open and proprietary GIS programs, including GRASS, ArcGIS and QGIS, use GDAL behind their GUIs for doing the legwork of ingesting and spitting-out geographic data in appropriate formats.
 <!-- GDAL (it's great - you can read, convert, and very often (though not always) write) -->
 <!-- GDAL info "it is possible to have smaller number of supported formats than there are on the GDAL webpage; you may need to recompile..." -->
 
-An important development ensuring greater standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium (OGC) in 1994.^[See [opengeospatial.org](http://www.opengeospatial.org).]
+An important development ensuring greater standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium ([OGC](http://www.opengeospatial.org)) in 1994.
 The OGC coordinates the development of open standards for geospatial content including file formats such as KML and GeoPackage.
 As described in Chapter \@ref(spatial-class) the OGC publishes the simple feature data model, which underlies the vector data classes provided by **sf** and used in this book. 
 Open file formats of the kind endorsed by the OGC have several advantages over proprietary formats: the standards are published, ensuring transparency and enabling innovation to improve the file formats.
@@ -5498,7 +5524,7 @@ GeoPackage          .gpkg                  Lightweight database container based 
 Executing commands such as `sf::st_read()` (the main function we use for loading vector data) or `raster::raster()` (the main function used for loading raster data) silently sets off a chain of events that reads data from files.
 <!-- transition is unclear, not sure what you would like to say -->
 Moreover, there are many R packages containing a wide range of spatial data or providing simple access to different data sources.
-All of them load the data into R or, more precisely, assign objects to your workspace, stored in RAM accessible from the `.GlobalEnv`^[See http://adv-r.had.co.nz/Environments.html for more information on the environment] of your current R session.
+All of them load the data into R or, more precisely, assign objects to your workspace, stored in RAM accessible from the [`.GlobalEnv`](http://adv-r.had.co.nz/Environments.html) of the R session.
 
 ### Vector data
 
@@ -5549,7 +5575,9 @@ For some drivers, `dsn` could be provided as a folder name, access credentials f
 Some vector driver formats can store multiple data layers.
 By default, `st_read` automatically reads the first layer of the file specified in `dsn`, however, using the `layer` argument you can specify any other layer.
 
-Naturally, some options are specific to certain drivers.^[A list of supported vector formats and theirs options can be found at http://www.gdal.org/ogr_formats.html.]
+Naturally, some options are specific to certain drivers.^[
+A list of supported vector formats and options can be found at gdal.org/ogr_formats.html.
+]
 For example, think of coordinates stored in a spreadsheet format (`.csv`).
 To read in such files as spatial objects, we naturally have to specify the names of the columns (`X` and `Y` in our example below) representing the coordinates.
 We can do this with the help of the `options` parameter.
@@ -5727,7 +5755,9 @@ st_write(world_wkt, "world_wkt.csv", layer_options = "GEOMETRY=AS_WKT")
 The `writeRaster()` function saves `Raster*` objects to files on disk. 
 The function expects input regarding output data type and file format, but also accepts GDAL options specific to a selected file format (see `?writeRaster` for more details).
 
-The **raster** package offers nine data types when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.^[Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info-->]
+The **raster** package offers nine data types when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.^[
+Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info-->
+]
 The data type determines the bit representation of the raster object written to disk (\@ref(tab:datatypes)).
 Which data type to use depends on the range of the values of your raster object.
 The more values a data type can represent, the larger the file will get on disk.
@@ -5764,8 +5794,10 @@ writeRaster(x = single_layer,
 
 The `raster` file format (native to the `raster` package) is used when a file extension is invalid or missing. 
 Some raster file formats come with additional options.
-You can use them with the `options` parameter.^[Full list of supported raster formats with theirs options can be found at http://www.gdal.org/formats_list.html.]
-For example, GeoTIFF allows you to compress the output raster with the `COMPRESS` option^[Find out about GeoTIFF options under http://www.gdal.org/frmt_gtiff.html.]:
+You can use them with the `options` [parameter](http://www.gdal.org/formats_list.html).
+GeoTIFF files, for example, can be compressed using `COMPRESS`:
+<!-- GeoTIFF files, for example, can be compressed using the `COMPRESS` option^[Find out about GeoTIFF options under http://www.gdal.org/frmt_gtiff.html.]: -->
+
 
 
 ```r
@@ -6143,7 +6175,9 @@ You can add a `-` as prefix to reverse the palette order.
 There are three main groups of color palettes - categorical, sequential and diverging (Figure \@ref(fig:colpal)), and each of them serves a different purpose.
 Categorical palettes consist of easily distinguishable colors and are most appropriate for categorical data without any particular order such as state names or land cover classes.
 Colors should be intuitive: rivers should be blue, for example, and pastures green.
-Avoid too many categories: maps with large legends and many colors can be uninterpretable.^[The `col = "MAP_COLORS"` argument can be used in maps with a large number of individual polygons (for example a map of individual countries). It creates unique colors for adjacent polygons.] 
+Avoid too many categories: maps with large legends and many colors can be uninterpretable.^[
+`col = "MAP_COLORS"` can be used in maps with a large number of individual polygons (for example a map of individual countries) to create unique colors for adjacent polygons.
+] 
 
 The second group is sequential palettes.
 These follow a gradient, for example from light to dark colors (light colors tend to represent lower values), and are appropriate for continuous (numeric) variables.
@@ -6453,7 +6487,8 @@ Code to reproduce this map can be found in the script `09-usboundaries.R`.
 Static and animated maps can breathe life into geographic datasets.
 Interactive maps can take reader participation to a whole new level, providing results with a life of their own that can be explored in myriad ways.
 Interactivity can take many forms, including the appearance of popup messages when users click or mouse-over geographic features and maps dynamically linked to non-geographic plots.^[
-A good example of such a dynamically linked visualization is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on [Twitter](https://twitter.com/kyle_e_walker/status/985948444966768641) and (for the source code) as a GitHub [Gist](https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a).
+A good example of such a dynamically linked visualization is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker which can be found online.
+<!-- A good example of such a dynamically linked visualization is a map of Nigeria linked to a bar chart of fertility rates by Kyle Walker, published on [Twitter](https://twitter.com/kyle_e_walker/status/985948444966768641) and (for the source code) as a GitHub [Gist](https://gist.github.com/walkerke/5fe9a198a30270e2fcb8120a7fc8242a). -->
 ]
 
 The most important type of interactivity, however, is the display of geographic data on an interactive or 'slippy' web maps.
@@ -6477,7 +6512,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5ebfc31271df8f53
+preservec2edf412c8ec3e5c
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6575,7 +6610,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb00c368c4a3d82d2
+preserve7c9173f9435511fa
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6731,7 +6766,7 @@ Try `plotly::ggplotly(g1)` for example, and compare the result with other **plot
 
 
 At the same time, **ggplot2** has a few drawbacks.
-The `geom_sf()` function is not always able to create a desired legend to use from the spatial data ^[See https://github.com/tidyverse/ggplot2/issues/2037.].
+The `geom_sf()` function is not always able to create a desired legend to use from the spatial [data](https://github.com/tidyverse/ggplot2/issues/2037).
 Raster objects are also not natively supported in **ggplot2** and need to be converted into a data frame before plotting.
 
 We have covered mapping with **sf**, **raster** and **ggplot2** packages first because these packages are highly flexible, allowing for the creation of a wide range of static maps.
@@ -6908,16 +6943,17 @@ An important feature of R is that users must use the command-line interface (CLI
 you type commands and hit `Enter` to execute them interactively.
 The most popular open-source GIS software packages, by contrast, feature a prominent graphical user interface (GUI):
 you *can* interact with QGIS, SAGA and gvSIG by typing into (dockable) command-lines, but most users interact with such programs by 'pointing and clicking their way through life' as Gary Sherman puts it below [@sherman_desktop_2008]:^[
+<!-- Should the commented-out mega-footnote go in a vignette? (todo, RL) -->
 <!-- yes, we should shorten the footnote or put it somewhere into the text. I just rewrote it to make clearer what was meant. At least this was what I gathered. -->
-The mature GRASS GIS software package and PostGIS are quite popular in academia and industry, and could be seen as products which buck this trend as they are built around the command-line. 
-In [2008](http://gama.fsv.cvut.cz/~landa/publications/2008/gis-ostrava-08/paper/landa-grass-gui-wxpython.pdf) GRASS developers added a sophisticated GUI, shifting the emphasis slightly away from its CLI.
-However, GRASS lacks a sophisticated and feature-rich IDE such as RStudio that supports 'CLI newbies'. 
-On the other hand, PostGIS is the spatial extension of the popular PostgreSQL open source database, and therefore not really a dedicated GIS. 
-This is also highlighted by the fact that PostGIS lacks any geovisualization capabilities and its description of 'legacy GIS' on its [website](http://workshops.boundlessgeo.com/postgis-intro/introduction.html).
-Similar to GRASS, PostgreSQGL provides a (partial) GUI called [pgAdmin](https://www.pgadmin.org/) to facilitate the editing and administration of the database. 
-To make it clear, though PostGIS provides spatial functions, its main purpose is the handling of spatial objects in a relational database management system.
-Therefore, frequently users store their spatial data in PostGIS, and interact with it through a dedicated GIS software such as QGIS. Of course, you can also use R to access data from PostGIS (**sf**, **rgdal**, **rpostgis**).
-In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.   
+GRASS GIS and PostGIS are popular in academia and industry and can be seen as products which buck this trend as they are built around the command-line.
+<!-- In [2008](http://gama.fsv.cvut.cz/~landa/publications/2008/gis-ostrava-08/paper/landa-grass-gui-wxpython.pdf) GRASS developers added a sophisticated GUI, shifting the emphasis slightly away from its CLI. -->
+<!-- However, GRASS lacks a sophisticated and feature-rich IDE such as RStudio that supports 'CLI newbies'.  -->
+<!-- On the other hand, PostGIS is the spatial extension of the popular PostgreSQL open source database, and therefore not really a dedicated GIS.  -->
+<!-- This is also highlighted by the fact that PostGIS lacks any geovisualization capabilities and its description of 'legacy GIS' on its [website](http://workshops.boundlessgeo.com/postgis-intro/introduction.html). -->
+<!-- Similar to GRASS, PostgreSQGL provides a (partial) GUI called [pgAdmin](https://www.pgadmin.org/) to facilitate the editing and administration of the database.  -->
+<!-- To make it clear, though PostGIS provides spatial functions, its main purpose is the handling of spatial objects in a relational database management system. -->
+<!-- Therefore, frequently users store their spatial data in PostGIS, and interact with it through a dedicated GIS software such as QGIS. Of course, you can also use R to access data from PostGIS (**sf**, **rgdal**, **rpostgis**). -->
+<!-- In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.    -->
 ]
 
 > With the advent of 'modern' GIS software, most people want to point and
@@ -6962,10 +6998,10 @@ Note that there is also the new **mapedit** package but its intention is to allo
 This general overview already points out the differences between R's CLI and desktop GIS. 
 However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
 The good news is that 'GIS bridges' enable the access to these with the comfort of the R command line.^[
-The term 'bridge' was probably first used in the R-spatial world for the coupling of R with GRASS [@neteler_open_2008].
-Roger Bivand elaborates on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school.
-The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file
-`geostat_talk16.zip`.
+An early use of the term 'bridge' referred the coupling of R with GRASS [@neteler_open_2008].
+Roger Bivand elaborated on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school (see spatial.nhh.no/misc).
+<!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
+<!-- `geostat_talk16.zip`. -->
 ]
 
 The R language was originally designed as an interface to and extension of other languages, especially C and FORTRAN, to enable access to statistical algorithms in a user-friendly and intuitive read-evaluate-print loop (REPL) [@chambers_extending_2016].
@@ -7796,7 +7832,9 @@ Required data will be attached in due course.
 ## Introduction {#intro-cv}
 
 Statistical learning is concerned with the use of statistical and computational models for identifying patterns in data and predicting from these patterns.
-Due to its origins, statistical learning is one of R's great strengths (see section \@ref(software-for-geocomputation)).^[Moreover, applying statistical techniques to geographic data has been an active topic of research for many decades, within the overlapping fields of Geostatistics and Spatial Statistics [@diggle_modelbased_2007; @gelfand_handbook_2010] and the vibrant sub-field of point pattern analysis [@baddeley_spatial_2015].]
+Due to its origins, statistical learning is one of R's great strengths (see section \@ref(software-for-geocomputation)).^[
+Moreover, applying statistical techniques to geographic data has been an active topic of research for many decades, within the overlapping fields of Geostatistics and Spatial Statistics [@diggle_modelbased_2007; @gelfand_handbook_2010] and the vibrant sub-field of point pattern analysis [@baddeley_spatial_2015].
+]
 
 Statistical learning combines and blends methods from both statistics and machine learning that learn from data.
 Roughly, one can distinguish statistical learning into supervised and unsupervised techniques, both of which are used throughout a vast range of disciplines including economics, physics, medicine, biology, ecology and geography [@james_introduction_2013].
@@ -8062,7 +8100,10 @@ There are dozens of packages for statistical learning, as described for example 
 Getting acquainted with each of these packages, including how to undertake cross-validation and hyperparameter tuning, can be a time-consuming process.
 Comparing model results from different packages can be even more laborious.
 The **mlr** package was developed to address these issues.
-It acts as a 'meta-package', providing a unified interface to the most popular statistical learning techniques including classification, regression, survival analysis and clustering [@bischl_mlr:_2016].^[As pointed out in the beginning we will solely focus on supervised learning techniques in this chapter.]
+It acts as a 'meta-package', providing a unified interface to popular supervised statistical learning techniques including classification, regression, survival analysis and clustering [@bischl_mlr:_2016]
+<!-- .^[ -->
+<!-- We will solely focus on supervised learning techniques in this chapter. -->
+<!-- ] -->
 The standardized **mlr** interface is based on eight 'building blocks'.
 As illustrated in Figure \@ref(fig:building-blocks), these have a clear order.
 
@@ -8236,7 +8277,10 @@ In applied machine learning we will borrow, reuse and steal algorithms from many
 In section \@ref(glm) a GLM was used to predict landslide susceptibility.
 This section introduces support vector machines (SVM) for the same purpose.
 In short, SVMs search for the best possible 'hyperplanes' to separate classes (in a classification case) and estimate 'kernels' with specific hyperparameters to allow for non-linear boundaries between classes [@james_introduction_2013].
-Hyperparameters should not be confused with coefficients of parametric models, which are sometimes also referred to as parameters.^[For a more detailed description of the difference between coefficients and hyperparameters, have a look at this [machine mastery blog](https://machinelearningmastery.com/difference-between-a-parameter-and-a-hyperparameter/).]
+Hyperparameters should not be confused with coefficients of parametric models, which are sometimes also referred to as parameters.^[
+For a detailed description of the difference between coefficients and hyperparameters, see the 'machine mastery' blog post on the subject.
+<!-- For a more detailed description of the difference between coefficients and hyperparameters, see the [machine mastery blog](https://machinelearningmastery.com/difference-between-a-parameter-and-a-hyperparameter/). -->
+]
 Coefficients can be estimated from the data while hyperparameters are set before the learning begins.
 Optimal hyperparameters are usually determined within a defined range with the help of cross-validation methods.
 This is called hyperparameter tuning.
@@ -8355,7 +8399,9 @@ To inspect the failed models once the processing is completed, we dump them:
 configureMlr(on.learner.error = "warn", on.error.dump = TRUE)
 ```
 
-To start the parallelization, we set the `mode` to `multicore` which will use `mclapply()` in the background on a single machine in the case of a Unix-based operating system^[See `?parallelStart` for further modes and the **parallelMap** [github page](https://github.com/berndbischl/parallelMap) for more information on the unified interface to popular parallelization back-ends.]
+To start the parallelization, we set the `mode` to `multicore` which will use `mclapply()` in the background on a single machine in the case of a Unix-based operating system^[
+See `?parallelStart` for further modes and github.com/berndbischl/parallelMap for more on the unified interface to popular parallelization back-ends.
+]
 Equivalenty, `parallelStartSocket()` enables parallelization under Windows. 
 `level` defines the level at which to enable parallelization, with `mlr.tuneParams` determining that the hyperparameter tuning level should be parallelized (see lower left part of Figure \@ref(fig:inner-outer), `?parallelGetRegisteredLevels`, and the **mlr** [parallelization tutorial](https://mlr-org.github.io/mlr-tutorial/release/html/parallelization/index.html#parallelization-levels) for details).
 We will use half of the available cores (set with the `cpus` parameter), a setting that allows possible other users to work on the same high performance computing cluster in case one is used (which was the case when we ran the code).
@@ -9191,7 +9237,7 @@ This chapter demonstrates how geocomputation can answer such questions based on 
 
 Imagine you are starting a chain of bike shops in Germany.
 The stores should be placed in urban areas with as many potential customers as possible.
-Additionally, a survey^[This is a hypothetical survey, i.e. it never took place.] suggests that single young males (aged 20 to 40) are most likely to buy your products: this is the *target audience*.
+Additionally, a hypothetical survey (invented for this chapter not for commercial use!) suggests that single young males (aged 20 to 40) are most likely to buy your products: this is the *target audience*.
 You are in the lucky position to have sufficient capital to open a number of shops.
 But where should they be placed?
 Consulting companies (employing geomarketing analysts) would happily charge high rates to answer such questions.
@@ -9340,7 +9386,9 @@ The next stage is to reclassify the values of the rasters stored in `input_ras` 
 In the case of the population data we convert the classes into a numeric data type using class means. 
 Raster cells are assumed to have a population of 127 if they have a value of 1 (cells in 'class 1' contain between 3 and 250 inhabitants) and 375 if they have a value of 2 (containing 250 to 500 inhabitants), and so on (see Table \@ref(tab:census-desc)).
 A cell value of 8000 inhabitants was chosen for 'class 6' because these cells contain more than 8000 people.
-Of course, these are approximations of the true population, not precise values.^[The potential error introduced during this reclassification stage will be explored in the exercises.]
+Of course, these are approximations of the true population, not precise values.^[
+The potential error introduced during this reclassification stage will be explored in the exercises.
+]
 However, the level of detail is sufficient to delineate metropolitan areas (see next section).
 
 In contrast to the `pop` variable, representing absolute estimates of the total population, the remaining variables were re-classified as weights corresponding with weights used in the survey.
@@ -9506,7 +9554,9 @@ The resulting eight metropolitan areas suitable for bike shops (Fig. \@ref(fig:m
 A reverse geocoding approach can settle this problem.
 Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
-The **ggmap** package makes use of the one provided by Google.^[Note that Google allows each user to access its services on a free basis for a maximum of 2500 queries a day.]
+The **ggmap** package makes use of the one provided by Google.^[
+Google allows each user to access its services on a free basis for a maximum of 2500 queries a day.
+]
 `ggmap::revgeocode()` only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter \@ref(reproj-geo-data)).
 
 
@@ -9523,7 +9573,9 @@ coords = st_centroid(metros_wgs) %>%
 ```
 
 Additionally, `ggmap::revgeocode()` only accepts one coordinate at a time, which is why we iterate over each coordinate of `coords` via a loop (`map_dfr()`).
-`map_dfr()` does exactly the same as `lapply()` except for returning a `data.frame` instead of a `list`.^[To learn more about `lapply()` please refer to @wickham_advanced_2014 and @grolemund_r_2016; for the split-apply-combine strategy for data analysis, we refer the reader to @wickham_split-apply-combine_2011.]
+`map_dfr()` does exactly the same as `lapply()` except for returning a `data.frame` instead of a `list`.^[
+For more on `lapply()` see @grolemund_r_2016 and @wickham_split-apply-combine_2011.
+]
 Sometimes, Google's reverse geocoding API is unable to find an address returning `NA`.
 Usually, trying the same coordinate again returns an address at the second or third attempt (see `while()-loop`).
 However, if ten attempts have already failed, this is a good indication that the requested information is indeed unavailable.
@@ -9721,7 +9773,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8032412060cd325a
+preservee64688b21c549741
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

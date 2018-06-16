@@ -508,7 +508,7 @@ Although the quality is not as spatially consistent as many official datasets, O
 Further examples of <strong>osmdata</strong> in action are provided in Chapters <a href="transport.html#transport">12</a>, <a href="location.html#location">13</a> and <a href="gis.html#gis">9</a>.</p>
 <p>Sometimes, packages come with inbuilt datasets.
 These can be accessed in four ways: by attaching the package (if the package uses ‘lazy loading’ as <strong>spData</strong> does), with <code>data(dataset)</code>, by referring to the dataset with <code>pkg::dataset</code> or with <code>system.file()</code> to access raw data files.
-The following code chunk illustrates the latter two options using the <code>world</code> (already loaded by attaching its parent package with <code>library(spData)</code>):<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
+The following code chunk illustrates the latter two options using the <code>world</code> (already loaded by attaching its parent package with <code>library(spData)</code>):<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a></p>
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">world2 =<span class="st"> </span>spData<span class="op">::</span>world</a>
 <a class="sourceLine" id="cb235-2" data-line-number="2">world3 =<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">system.file</span>(<span class="st">&quot;shapes/world.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>))</a></code></pre></div>
 </div>
@@ -517,12 +517,12 @@ The following code chunk illustrates the latter two options using the <code>worl
 <p>Spatial datasets are usually stored as files or in spatial databases.
 File formats can either store vector or raster data, while spatial databases such as <a href="https://trac.osgeo.org/postgis/wiki/WKTRaster">PostGIS</a> can store both.
 Today file formats may seem bewildering but there has been much consolidation and standardization since the beginnings of GIS software in the 1960s when the first widely distributed program (<a href="https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/">SYMAP</a>) for spatial analysis was created at Harvard University <span class="citation">(Coppock and Rhind <a href="#ref-coppock_history_1991">1991</a>)</span>.</p>
-<p>GDAL,<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a> the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between file formats since its release in 2000.
+<p>GDAL (which should be pronounced “goo-dal”, with the double o making a reference to object-orientation), the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between file formats since its release in 2000.
 GDAL provides a unified and high-performance interface for reading and writing of many raster and vector data formats.
 Many open and proprietary GIS programs, including GRASS, ArcGIS and QGIS, use GDAL behind their GUIs for doing the legwork of ingesting and spitting-out geographic data in appropriate formats.
 <!-- GDAL (it's great - you can read, convert, and very often (though not always) write) -->
 <!-- GDAL info "it is possible to have smaller number of supported formats than there are on the GDAL webpage; you may need to recompile..." --></p>
-<p>An important development ensuring greater standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium (OGC) in 1994.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>
+<p>An important development ensuring greater standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium (<a href="http://www.opengeospatial.org">OGC</a>) in 1994.
 The OGC coordinates the development of open standards for geospatial content including file formats such as KML and GeoPackage.
 As described in Chapter <a href="spatial-class.html#spatial-class">2</a> the OGC publishes the simple feature data model, which underlies the vector data classes provided by <strong>sf</strong> and used in this book.
 Open file formats of the kind endorsed by the OGC have several advantages over proprietary formats: the standards are published, ensuring transparency and enabling innovation to improve the file formats.</p>
@@ -627,7 +627,7 @@ Table <a href="read-write.html#tab:formats">7.2</a> presents some basic informat
 <p>Executing commands such as <code>sf::st_read()</code> (the main function we use for loading vector data) or <code>raster::raster()</code> (the main function used for loading raster data) silently sets off a chain of events that reads data from files.
 <!-- transition is unclear, not sure what you would like to say -->
 Moreover, there are many R packages containing a wide range of spatial data or providing simple access to different data sources.
-All of them load the data into R or, more precisely, assign objects to your workspace, stored in RAM accessible from the <code>.GlobalEnv</code><a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a> of your current R session.</p>
+All of them load the data into R or, more precisely, assign objects to your workspace, stored in RAM accessible from the <a href="http://adv-r.had.co.nz/Environments.html"><code>.GlobalEnv</code></a> of the R session.</p>
 <div id="vector-data-1" class="section level3">
 <h3><span class="header-section-number">7.5.1</span> Vector data</h3>
 <p>Spatial vector data comes in a wide variety of file formats, most of which can be read-in via the <strong>sf</strong> function <code>st_read()</code>.
@@ -715,7 +715,7 @@ In most cases, as with the ESRI Shapefile (<code>.shp</code>) or the <code>GeoPa
 <p>For some drivers, <code>dsn</code> could be provided as a folder name, access credentials for a database, or a GeoJSON string representation (see the examples of the <code>st_read()</code> help page for more details).</p>
 <p>Some vector driver formats can store multiple data layers.
 By default, <code>st_read</code> automatically reads the first layer of the file specified in <code>dsn</code>, however, using the <code>layer</code> argument you can specify any other layer.</p>
-<p>Naturally, some options are specific to certain drivers.<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>
+<p>Naturally, some options are specific to certain drivers.<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>
 For example, think of coordinates stored in a spreadsheet format (<code>.csv</code>).
 To read in such files as spatial objects, we naturally have to specify the names of the columns (<code>X</code> and <code>Y</code> in our example below) representing the coordinates.
 We can do this with the help of the <code>options</code> parameter.
@@ -832,7 +832,7 @@ It could be either <code>AS_XY</code> for simple point datasets (it creates two 
 <h3><span class="header-section-number">7.6.2</span> Raster data</h3>
 <p>The <code>writeRaster()</code> function saves <code>Raster*</code> objects to files on disk.
 The function expects input regarding output data type and file format, but also accepts GDAL options specific to a selected file format (see <code>?writeRaster</code> for more details).</p>
-<p>The <strong>raster</strong> package offers nine data types when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a>
+<p>The <strong>raster</strong> package offers nine data types when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>
 The data type determines the bit representation of the raster object written to disk (<a href="read-write.html#tab:datatypes">7.4</a>).
 Which data type to use depends on the range of the values of your raster object.
 The more values a data type can represent, the larger the file will get on disk.
@@ -905,8 +905,9 @@ For example, the <code>.tif</code> extension will create a GeoTIFF file:</p>
 <a class="sourceLine" id="cb250-3" data-line-number="3">            <span class="dt">datatype =</span> <span class="st">&quot;INT2U&quot;</span>)</a></code></pre></div>
 <p>The <code>raster</code> file format (native to the <code>raster</code> package) is used when a file extension is invalid or missing.
 Some raster file formats come with additional options.
-You can use them with the <code>options</code> parameter.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>
-For example, GeoTIFF allows you to compress the output raster with the <code>COMPRESS</code> option<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>:</p>
+You can use them with the <code>options</code> <a href="http://www.gdal.org/formats_list.html">parameter</a>.
+GeoTIFF files, for example, can be compressed using <code>COMPRESS</code>:
+<!-- GeoTIFF files, for example, can be compressed using the `COMPRESS` option^[Find out about GeoTIFF options under http://www.gdal.org/frmt_gtiff.html.]: --></p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">writeRaster</span>(<span class="dt">x =</span> single_layer,</a>
 <a class="sourceLine" id="cb251-2" data-line-number="2">            <span class="dt">filename =</span> <span class="st">&quot;my_raster.tif&quot;</span>,</a>
 <a class="sourceLine" id="cb251-3" data-line-number="3">            <span class="dt">datatype =</span> <span class="st">&quot;INT2U&quot;</span>,</a>
@@ -981,16 +982,13 @@ Export this map to a file called <code>cycle_hire.html</code>.</p></li>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="35">
-<li id="fn35"><p>
-For more information on data import with R packages see sections <a href="https://csgillespie.github.io/efficientR/input-output.html#download">5.5</a> and <a href="https://csgillespie.github.io/efficientR/input-output.html#accessing-data-stored-in-packages">5.6</a> of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.<a href="read-write.html#fnref35" class="footnote-back">↩</a></p></li>
-<li id="fn36"><p><a href="http://www.gdal.org/">GDAL</a> should be pronounced “goo-dal”, with the double o making a reference to object-orientation.<a href="read-write.html#fnref36" class="footnote-back">↩</a></p></li>
-<li id="fn37"><p>See <a href="http://www.opengeospatial.org">opengeospatial.org</a>.<a href="read-write.html#fnref37" class="footnote-back">↩</a></p></li>
-<li id="fn38"><p>See <a href="http://adv-r.had.co.nz/Environments.html" class="uri">http://adv-r.had.co.nz/Environments.html</a> for more information on the environment<a href="read-write.html#fnref38" class="footnote-back">↩</a></p></li>
-<li id="fn39"><p>A list of supported vector formats and theirs options can be found at <a href="http://www.gdal.org/ogr_formats.html" class="uri">http://www.gdal.org/ogr_formats.html</a>.<a href="read-write.html#fnref39" class="footnote-back">↩</a></p></li>
-<li id="fn40"><p>Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info--><a href="read-write.html#fnref40" class="footnote-back">↩</a></p></li>
-<li id="fn41"><p>Full list of supported raster formats with theirs options can be found at <a href="http://www.gdal.org/formats_list.html" class="uri">http://www.gdal.org/formats_list.html</a>.<a href="read-write.html#fnref41" class="footnote-back">↩</a></p></li>
-<li id="fn42"><p>Find out about GeoTIFF options under <a href="http://www.gdal.org/frmt_gtiff.html" class="uri">http://www.gdal.org/frmt_gtiff.html</a>.<a href="read-write.html#fnref42" class="footnote-back">↩</a></p></li>
+<ol start="32">
+<li id="fn32"><p>
+For more information on data import with R packages see sections 5.5 and 5.6 of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.<a href="read-write.html#fnref32" class="footnote-back">↩</a></p></li>
+<li id="fn33"><p>
+A list of supported vector formats and options can be found at gdal.org/ogr_formats.html.<a href="read-write.html#fnref33" class="footnote-back">↩</a></p></li>
+<li id="fn34"><p>
+Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info--><a href="read-write.html#fnref34" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
