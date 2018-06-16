@@ -771,7 +771,7 @@ Importantly, this map needs to clearly indicate the location of the main map, fo
 A viewport from the <strong>grid</strong> package can be used by stating a center location (<code>x</code> and <code>y</code>) and a size (<code>width</code> and <code>height</code>) of the inset map.</p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="kw">library</span>(grid)</a>
 <a class="sourceLine" id="cb276-2" data-line-number="2">nz_height_map</a>
-<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="kw">print</span>(nz_map, <span class="dt">vp =</span> grid<span class="op">::</span><span class="kw">viewport</span>(<span class="fl">0.8</span>, <span class="fl">0.27</span>, <span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">height =</span> <span class="fl">0.5</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="kw">print</span>(nz_map, <span class="dt">vp =</span> <span class="kw">viewport</span>(<span class="fl">0.8</span>, <span class="fl">0.27</span>, <span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">height =</span> <span class="fl">0.5</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:insetmap1"></span>
 <img src="figures/insetmap1-1.png" alt="Inset map providing a context - location of the central part of the Southern Alps in New Zealand." width="576" />
 <p class="caption">
