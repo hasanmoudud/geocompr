@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-15">
+<meta name="date" content="2018-06-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -410,7 +410,7 @@ Unfortunately R does not always know the CRS of an object, as shown below using 
 <a class="sourceLine" id="cb205-3" data-line-number="3"><span class="kw">st_is_longlat</span>(london)</a>
 <a class="sourceLine" id="cb205-4" data-line-number="4"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
 <p>This shows that unless a CRS is manually specifified or is loaded from a source that has CRS metadata, the CRS is <code>NA</code>.
-A CRS can be added to <code>sf</code> objects with <code>st_set_crs()</code> as follows:<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a></p>
+A CRS can be added to <code>sf</code> objects with <code>st_set_crs()</code> as follows:<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a></p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">london_geo =<span class="st"> </span><span class="kw">st_set_crs</span>(london, <span class="dv">4326</span>)</a>
 <a class="sourceLine" id="cb206-2" data-line-number="2"><span class="kw">st_is_longlat</span>(london_geo)</a>
 <a class="sourceLine" id="cb206-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
@@ -448,7 +448,7 @@ We can verify that the CRS has changed using <code>st_crs()</code> as follows (s
 <a class="sourceLine" id="cb209-2" data-line-number="2"><span class="co">#&gt; Coordinate Reference System:</span></a>
 <a class="sourceLine" id="cb209-3" data-line-number="3"><span class="co">#&gt;   EPSG: 27700 </span></a>
 <a class="sourceLine" id="cb209-4" data-line-number="4"><span class="co">#&gt;   proj4string: &quot;+proj=tmerc +lat_0=49 +lon_0=-2 ... +units=m +no_defs&quot;</span></a></code></pre></div>
-<p>Notable components of this CRS description include the EPSG code (<code>EPSG: 27700</code>), the projection (<a href="https://en.wikipedia.org/wiki/Transverse_Mercator_projection">transverse Mercator</a>, <code>+proj=tmerc</code>), the origin (<code>+lat_0=49 +lon_0=-2</code>) and units (<code>+units=m</code>).<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>
+<p>Notable components of this CRS description include the EPSG code (<code>EPSG: 27700</code>), the projection (<a href="https://en.wikipedia.org/wiki/Transverse_Mercator_projection">transverse Mercator</a>, <code>+proj=tmerc</code>), the origin (<code>+lat_0=49 +lon_0=-2</code>) and units (<code>+units=m</code>).<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a>
 The fact that the units of the CRS are meters (rather than degrees) tells us that this is a projected CRS: <code>st_is_longlat(london_proj)</code> now returns <code>FALSE</code> and geometry operations on <code>london_proj</code> will work without a warning, meaning buffers can be produced from it using proper units of distance.
 <!-- 
 1 degree distance (great circle distance) at the equator:
@@ -491,7 +491,7 @@ But which CRS to use?
 The answer is usually ‘to the projected CRS’, which in this case is the British National Grid (BNG, EPSG:27700):</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">london2 =<span class="st"> </span><span class="kw">st_transform</span>(london_geo, <span class="dv">27700</span>)</a></code></pre></div>
 <p>Now that a transformed version of <code>london</code> has been created, using the <strong>sf</strong> function <code>st_transform()</code>, the distance between the two representations of London can be found.
-It may come as a surprise that <code>london</code> and <code>london2</code> are just over 2 km apart!<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
+It may come as a surprise that <code>london</code> and <code>london2</code> are just over 2 km apart!<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a></p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="kw">st_distance</span>(london2, london_proj)</a>
 <a class="sourceLine" id="cb213-2" data-line-number="2"><span class="co">#&gt; Units: m</span></a>
 <a class="sourceLine" id="cb213-3" data-line-number="3"><span class="co">#&gt;      [,1]</span></a>
@@ -514,7 +514,7 @@ All CRSs are either equal area, equi-distant, conformal (with shapes remaining u
 Custom CRSs with local parameters can be created for a region of interest and multiple CRSs can be used in projects when no single CRS suits all tasks.
 ‘Geodesic calculations’ can provide a fall-back if no CRSs are appropriate (see <a href="https://proj4.org/geodesic.html">proj4.org/geodesic.html</a>).
 For any projected CRS the results may not be accurate when used on geometries covering hundreds of kilometers.</p>
-<p>When deciding a custom CRS we recommend the following:<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
+<p>When deciding a custom CRS we recommend the following:<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a></p>
 <ul>
 <li>A Lambert azimuthal equal-area (<a href="https://en.wikipedia.org/wiki/Lambert_azimuthal_equal-area_projection">LAEA</a>) projection for a custom local projection (set <code>lon_0</code> and <code>lat_0</code> to the center of the study area), which is an equal-area projection at all locations but distorts shapes beyond thousands of kilometres.</li>
 <li>Azimuthal equidistant (<a href="https://en.wikipedia.org/wiki/Azimuthal_equidistant_projection">AEQD</a>) projections for a specifically accurate straight-line distance between a point and the centre point of the local projection.</li>
@@ -526,7 +526,7 @@ The transverse Mercator projection used by UTM CRSs is conformal but distorts ar
 Documentation from the GIS software Manifold therefore suggests restricting the longitudinal extent of projects using UTM zones to 6 degrees from the central meridian (source: <a href="http://www.manifold.net/doc/mfd9/universal_transverse_mercator_projection.htm">manifold.net</a>).</p>
 <p>Almost everywhere on Earth has a UTM code, such as “60H” which refers to northern New Zealand where R was invented.
 All UTM projections have the same datum (WGS84) and their EPSG codes run sequentially from 32601 to 32660 (for northern hemisphere locations) and 32701 to 32760 (southern hemisphere locations).</p>
-<p>To show how the system works let’s create a function, <code>lonlat2UTM()</code> to calculate the EPSG code associated with any point on the planet as follows:<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a></p>
+<p>To show how the system works let’s create a function, <code>lonlat2UTM()</code> to calculate the EPSG code associated with any point on the planet as follows:<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a></p>
 <!-- Idea: create full function with message and flexibility in later chapter (RL) -->
 <!-- I think this code needs a short description (JM)-->
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">lonlat2UTM =<span class="st"> </span><span class="cf">function</span>(lonlat) {</a>
@@ -618,7 +618,7 @@ To access and modify it explicitly, use the <code>st_crs</code> function, for ex
 However in some cases it is desirable to create a new CRS, using a custom <code>proj4string</code>.
 This system allows a very wide range of projections to be created, as we’ll see in some of the custom map projections in this section.
 <!-- as we mentioned in section \@ref(crs-in-r). --></p>
-<p>A long and growing list of projections has been developed and many of these these can be set with the <code>+proj=</code> element of <code>proj4string</code>s.<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>
+<p>A long and growing list of projections has been developed and many of these these can be set with the <code>+proj=</code> element of <code>proj4string</code>s.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>
 When mapping the world while preserving areal relationships, the Mollweide projection is a good choice <span class="citation">(Jenny et al. <a href="#ref-jenny_guide_2017">2017</a>)</span> (Figure <a href="reproj-geo-data.html#fig:mollproj">6.2</a>).
 To use this projection, we need to specify it using the <code>proj4string</code> element, <code>&quot;+proj=moll&quot;</code>, in the <code>st_transform</code> function:</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">world_mollweide =<span class="st"> </span><span class="kw">st_transform</span>(world, <span class="dt">crs =</span> <span class="st">&quot;+proj=moll&quot;</span>)</a></code></pre></div>
@@ -631,7 +631,7 @@ Figure 6.2: Mollweide projection of the world.
 </p>
 </div>
 <p>On the other hand, when mapping the world, it is often desirable to have as little distortion as possible for all spatial properties (area, direction, distance).
-One of the most popular projections to achieve this is the Winkel tripel projection (Figure <a href="reproj-geo-data.html#fig:wintriproj">6.3</a>).<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>
+One of the most popular projections to achieve this is the Winkel tripel projection (Figure <a href="reproj-geo-data.html#fig:wintriproj">6.3</a>).<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a>
 <code>st_transform_proj()</code> from the <strong>lwgeom</strong> package allows for coordinate transformations to a wide range of CRSs, including the Winkel tripel projection:</p>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">world_wintri =<span class="st"> </span>lwgeom<span class="op">::</span><span class="kw">st_transform_proj</span>(world, <span class="dt">crs =</span> <span class="st">&quot;+proj=wintri&quot;</span>)</a></code></pre></div>
 <!-- plot(world_wintri$geom) -->
@@ -709,7 +709,7 @@ The <code>nlcd2011.tif</code> file provides information for a small area in Utah
 <a class="sourceLine" id="cb224-3" data-line-number="3"><span class="co">#&gt; CRS arguments:</span></a>
 <a class="sourceLine" id="cb224-4" data-line-number="4"><span class="co">#&gt;  +proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m</span></a>
 <a class="sourceLine" id="cb224-5" data-line-number="5"><span class="co">#&gt; +no_defs</span></a></code></pre></div>
-<p>In this region, 14 land cover classes were distinguished<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a>:</p>
+<p>In this region, 14 land cover classes were distinguished<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>:</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="kw">unique</span>(cat_raster)</a>
 <a class="sourceLine" id="cb225-2" data-line-number="2"><span class="co">#&gt;  [1] 11 21 22 23 31 41 42 43 52 71 81 82 90 95</span></a></code></pre></div>
 <p>When reprojecting categorical raster, we need to ensure that our new estimated values would still have values of our original classes.
@@ -780,7 +780,7 @@ First, we need to obtain the proj4 definition of the existing projected CRS appr
 <a class="sourceLine" id="cb228-4" data-line-number="4"><span class="co">#&gt; CRS arguments:</span></a>
 <a class="sourceLine" id="cb228-5" data-line-number="5"><span class="co">#&gt;  +proj=laea +lat_0=37.32 +lon_0=-113.04 +ellps=WGS84</span></a></code></pre></div>
 <p>Raster reprojection on numeric variables also leads to small changes values and spatial properties, such as the number of cells, resolution, and extent.
-These changes are demonstrated in Table <a href="reproj-geo-data.html#tab:rastercrs">6.2</a><a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>:</p>
+These changes are demonstrated in Table <a href="reproj-geo-data.html#tab:rastercrs">6.2</a><a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>:</p>
 <table>
 <caption><span id="tab:rastercrs">Table 6.2: </span>Key attributes original (‘con_raster’) and projected (‘con_raster’) continuous raster datasets.</caption>
 <thead>
@@ -868,29 +868,29 @@ How does it influence the results?</p></li>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="33">
-<li id="fn33"><p>
+<ol start="30">
+<li id="fn30"><p>
 The CRS can also be added when creating <code>sf</code> objects with the <code>crs</code> argument (e.g. <code>st_sf(geometry = st_sfc(st_point(c(-0.1, 51.5))), crs = 4326)</code>).
-The same argument can also be used to set the CRS when creating raster datasets (e.g. <code>raster(crs = &quot;+proj=longlat&quot;)</code>).<a href="reproj-geo-data.html#fnref33" class="footnote-back">↩</a></p></li>
-<li id="fn34"><p>
+The same argument can also be used to set the CRS when creating raster datasets (e.g. <code>raster(crs = &quot;+proj=longlat&quot;)</code>).<a href="reproj-geo-data.html#fnref30" class="footnote-back">↩</a></p></li>
+<li id="fn31"><p>
 For a short description of the most relevant projection parameters and related concepts, see the fourth lecture by Jochen Albrecht: <a href="http://www.geography.hunter.cuny.edu/~jochen/GTECH361/lectures/lecture04/concepts/Map%20coordinate%20systems/Projection%20parameters.htm">geography.hunter.cuny.edu/~jochen/GTECH361/lectures/</a> as well as <a href="http://proj4.org/parameters.html" class="uri">http://proj4.org/parameters.html</a>.
-Another great resource on projection definitions is <a href="http://spatialreference.org/" class="uri">http://spatialreference.org/</a>.<a href="reproj-geo-data.html#fnref34" class="footnote-back">↩</a></p></li>
-<li id="fn35"><p>
+Another great resource on projection definitions is <a href="http://spatialreference.org/" class="uri">http://spatialreference.org/</a>.<a href="reproj-geo-data.html#fnref31" class="footnote-back">↩</a></p></li>
+<li id="fn32"><p>
 The difference in location between the two points is not due to imperfections in the transforming operation (which is in fact very accurate) but the low precision of the manually-created coordinates that created <code>london</code> and <code>london_proj</code>.
 Also surprising may be that the result is provided in a matrix with units of meters.
 This is because <code>st_distance()</code> can provide distances between many features and because the CRS has units of meters.
-Use <code>as.numeric()</code> to coerce the result into a regular number.<a href="reproj-geo-data.html#fnref35" class="footnote-back">↩</a></p></li>
-<li id="fn36"><p>
-Many thanks to an anonymous reviewer whose comments formed the basis of this advice.<a href="reproj-geo-data.html#fnref36" class="footnote-back">↩</a></p></li>
-<li id="fn37"><p>
-Credit: Josh O’Brien’s post on <a href="https://stackoverflow.com/a/9188972">stackoverflow</a> inspired this function.<a href="reproj-geo-data.html#fnref37" class="footnote-back">↩</a></p></li>
-<li id="fn38"><p>See the Wikipedia page ‘<a href="https://en.wikipedia.org/wiki/List_of_map_projections">List of map projections</a>’ for 70+ projections, and illustrations.<a href="reproj-geo-data.html#fnref38" class="footnote-back">↩</a></p></li>
-<li id="fn39"><p>This projection is used, among others, by the National Geographic Society.<a href="reproj-geo-data.html#fnref39" class="footnote-back">↩</a></p></li>
-<li id="fn40"><p>Full list of NLCD2011 land cover classes can be found at <a href="https://www.mrlc.gov/nlcd11_leg.php" class="uri">https://www.mrlc.gov/nlcd11_leg.php</a><a href="reproj-geo-data.html#fnref40" class="footnote-back">↩</a></p></li>
-<li id="fn41"><p>
+Use <code>as.numeric()</code> to coerce the result into a regular number.<a href="reproj-geo-data.html#fnref32" class="footnote-back">↩</a></p></li>
+<li id="fn33"><p>
+Many thanks to an anonymous reviewer whose comments formed the basis of this advice.<a href="reproj-geo-data.html#fnref33" class="footnote-back">↩</a></p></li>
+<li id="fn34"><p>
+Credit: Josh O’Brien’s post on <a href="https://stackoverflow.com/a/9188972">stackoverflow</a> inspired this function.<a href="reproj-geo-data.html#fnref34" class="footnote-back">↩</a></p></li>
+<li id="fn35"><p>See the Wikipedia page ‘<a href="https://en.wikipedia.org/wiki/List_of_map_projections">List of map projections</a>’ for 70+ projections, and illustrations.<a href="reproj-geo-data.html#fnref35" class="footnote-back">↩</a></p></li>
+<li id="fn36"><p>This projection is used, among others, by the National Geographic Society.<a href="reproj-geo-data.html#fnref36" class="footnote-back">↩</a></p></li>
+<li id="fn37"><p>Full list of NLCD2011 land cover classes can be found at <a href="https://www.mrlc.gov/nlcd11_leg.php" class="uri">https://www.mrlc.gov/nlcd11_leg.php</a><a href="reproj-geo-data.html#fnref37" class="footnote-back">↩</a></p></li>
+<li id="fn38"><p>
 Another minor change, that is not represented in Table <a href="reproj-geo-data.html#tab:rastercrs">6.2</a>, is that the class of the values in the new projected raster dataset is <code>numeric</code>.
 This is because the <code>bilinear</code> method works with continuous data and the results are rarely coerced into whole integer values.
-This can have implications for file sizes when raster datasets are saved.<a href="reproj-geo-data.html#fnref41" class="footnote-back">↩</a></p></li>
+This can have implications for file sizes when raster datasets are saved.<a href="reproj-geo-data.html#fnref38" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

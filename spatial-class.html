@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-15">
+<meta name="date" content="2018-06-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -385,11 +385,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prerequisites" class="section level2 unnumbered">
 <h2>Prerequisites</h2>
 <p>This is the first practical chapter of the book, and therefore it comes with some software requirements.
-We assume that you have an up-to-date version of R installed and that you are comfortable using software with a command-line interface such as the integrated development environment (IDE) RStudio.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+We assume that you have an up-to-date version of R installed and that you are comfortable using software with a command-line interface such as the integrated development environment (IDE) RStudio.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 <!-- Another option is to use the RStudio project provided in the root directory of the [`geocompr`](https://github.com/Robinlovelace/geocompr) GitHub repository. -->
 <!-- This will make it easier to run this book's worked examples on your computer. -->
 <p>After you’ve checked you R installation and brushed-up on your R skills where appropriate, the next step is to install and load the packages used in this chapter.
-Packages are installed with the <code>install.packages()</code> function which can be used to get the prerequisites on your computer:<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+Packages are installed with the <code>install.packages()</code> function which can be used to get the prerequisites on your computer:<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</a></code></pre></div>
 
 <div class="rmdnote">
@@ -446,7 +446,7 @@ This means that its location is -0.1 degrees east and 51.5 degrees north of the 
 The origin in this case is at 0 degrees longitude (the Prime Meridian) and 0 degree latitude (the Equator) in a geographic (‘lon/lat’) CRS (Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, left panel).
 The same point could also be approximated in a projected CRS with ‘Easting/Northing’ values of <code>c(530000, 180000)</code> in the British National Grid (<a href="https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid">BNG</a>), meaning that London is located 530 km <em>East</em> and 180 km <em>North</em> of the <span class="math inline">\(origin\)</span> of the CRS.
 This can be verified visually: slightly more than 5 ‘boxes’ — square areas bounded by the gray grid lines 100 km in width — separate the point representing London from the origin (Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, right panel).</p>
-<p>The location of BNG’s origin, in the sea beyond South West Peninsular, ensures that most locations in the UK have positive Easting and Northing values.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>
+<p>The location of BNG’s origin, in the sea beyond South West Peninsular, ensures that most locations in the UK have positive Easting and Northing values.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>
 There is more to CRSs, as described in sections <a href="spatial-class.html#crs-intro">2.3</a> and <a href="reproj-geo-data.html#reproj-geo-data">6</a> but, for the purposes of this section, it is sufficient to know that coordinates consist of two numbers representing distance from an origin, usually in <span class="math inline">\(x\)</span> then <span class="math inline">\(y\)</span> dimensions.</p>
 <div class="figure" style="text-align: center"><span id="fig:vectorplots"></span>
 <img src="figures/vector_lonlat.png" alt="Illustration of vector (point) data in which location of London (the red X) is represented with reference to an origin (the blue circle). The left plot represents a geographic CRS with an origin at 0° longitude and latitude. The right plot represents a projected CRS with an origin located in the sea west of the South West Peninsula." width="49%" /><img src="figures/vector_projected.png" alt="Illustration of vector (point) data in which location of London (the red X) is represented with reference to an origin (the blue circle). The left plot represents a geographic CRS with an origin at 0° longitude and latitude. The right plot represents a projected CRS with an origin located in the sea west of the South West Peninsula." width="49%" />
@@ -479,7 +479,7 @@ This section introduces <strong>sf</strong> classes in preparation for subsequen
 <p>Simple features is an open standard developed and endorsed by the Open Geospatial Consortium (<a href="http://portal.opengeospatial.org/files/?artifact_id=25355">OGC</a>) to represent a wide range of geographic information.
 It is a hierarchical data model that simplifies geographic data by condensing a complex range of geographic forms into a single geometry class.
 Only 7 out of 17 possible types of simple feature are currently used in the vast majority of GIS operations (Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>).
-The R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a><a href="#ref-pebesma_simple_2018">b</a>)</span> fully supports all of these (including plotting methods etc.).<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
+The R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a><a href="#ref-pebesma_simple_2018">b</a>)</span> fully supports all of these (including plotting methods etc.).<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:sf-ogc"></span>
 <img src="figures/sf-classes.png" alt="The subset of the Simple Features class hierarchy supported by sf." width="100%" />
 <p class="caption">
@@ -488,7 +488,7 @@ Figure 2.2: The subset of the Simple Features class hierarchy supported by sf.
 </div>
 <p><strong>sf</strong> can represent all common vector geometry types (raster data classes are not supported by <strong>sf</strong>): points, lines, polygons and their respective ‘multi’ versions (which group together features of the same type into a single feature).
 <strong>sf</strong> also supports geometry collections, which can contain multiple geometry types in a single object.
-Given the breadth of geographic data forms, it may come as a surprise that a class system to support all of them is provided in a single package, which can be installed from CRAN:<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>
+Given the breadth of geographic data forms, it may come as a surprise that a class system to support all of them is provided in a single package, which can be installed from CRAN:<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>
 <strong>sf</strong> incorporates the functionality of the three main packages of the <strong>sp</strong> paradigm, <strong>sp</strong> <span class="citation">(E. Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span> for the class system, <strong>rgdal</strong> <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> for reading and writing data, <strong>rgeos</strong> <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2017</a>)</span> for spatial operations undertaken by GEOS, in a single, cohesive whole.
 This is well-documented in <strong>sf</strong>’s <a href="http://cran.rstudio.com/package=sf">vignettes</a>.</p>
 <p>As the first vignette explains, simple feature objects in R are stored in a data frame, with geographic data occupying a special column, a ‘list-column’. This column is usually named ‘geom’ or ‘geometry’.
@@ -586,7 +586,7 @@ Colors can also be set with <code>col =</code>, although this will not create a 
 Figure 2.4: Plotting with sf, with multiple variables (left) and a single variable (right).
 </p>
 </div>
-<p>Plots are added as layers to existing images by setting <code>add = TRUE</code>.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>
+<p>Plots are added as layers to existing images by setting <code>add = TRUE</code>.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>
 To demonstrate this, and to provide a taster of content covered in chapters <a href="attr.html#attr">3</a> and <a href="spatial-operations.html#spatial-operations">4</a> on attribute and spatial data operations, the subsequent code chunk combines countries in Asia:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">asia =<span class="st"> </span>world[world<span class="op">$</span>continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>, ]</a>
 <a class="sourceLine" id="cb15-2" data-line-number="2">asia =<span class="st"> </span><span class="kw">st_union</span>(asia)</a></code></pre></div>
@@ -660,7 +660,7 @@ A point is simply a coordinate in 2D, 3D or 4D space (see <code>vignette(&quot;s
 <li><code>LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)</code></li>
 </ul>
 <p>A polygon is a sequence of points that form a closed, non-intersecting ring.
-Closed means that the first and the last point of a polygon have the same coordinates (see right panel in Figure <a href="spatial-class.html#fig:sfcs">2.7</a>).<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+Closed means that the first and the last point of a polygon have the same coordinates (see right panel in Figure <a href="spatial-class.html#fig:sfcs">2.7</a>).<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
 <ul>
 <li>Polygon without a hole - <code>POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))</code></li>
 </ul>
@@ -944,7 +944,7 @@ Simple features are, in essence, data frames with a spatial extension.</p>
 </div>
 <div id="raster-data" class="section level2">
 <h2><span class="header-section-number">2.2</span> Raster data</h2>
-<p>The geographic raster data model usually consists of a raster header<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> and a matrix (with rows and columns) representing equally spaced cells (often also called pixels; Figure <a href="spatial-class.html#fig:raster-intro-plot">2.9</a>:A).
+<p>The geographic raster data model usually consists of a raster header<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> and a matrix (with rows and columns) representing equally spaced cells (often also called pixels; Figure <a href="spatial-class.html#fig:raster-intro-plot">2.9</a>:A).
 The raster header defines the coordinate reference system, the extent and the origin.
 The origin (or starting point) is frequently the coordinate of the lower-left corner of the matrix (the <strong>raster</strong> package, however, uses the upper left corner, by default (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.9</a>:B)).
 The header defines the extent via the number of columns, the number of rows and the cell size resolution.
@@ -1181,7 +1181,7 @@ This has important consequences, as demonstrated in section <a href="reproj-geo-
 Spherical models assume that the Earth is a perfect sphere of a given radius.
 Spherical models have the advantage of simplicity but are rarely used because they are inaccurate: the Earth is not a sphere!
 Ellipsoidal models are defined by two parameters: the equatorial radius and the polar radius.
-These are suitable because the Earth is compressed: the equatorial radius is around 11.5 km longer than the polar radius <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
+These are suitable because the Earth is compressed: the equatorial radius is around 11.5 km longer than the polar radius <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
 <p>Ellipsoids are part of a wider component of CRSs: the <em>datum</em>.
 This contains information on what ellipsoid to use (with the <code>ellps</code> parameter in the proj4 CRS library) and the precise relationship between the Cartesian coordinates and location on the Earth’s surface.
 These additional details are stored in the <code>towgs84</code> argument of <a href="http://proj4.org/parameters.html#towgs84-datum-transformation-to-wgs84">proj4</a> notation (see <a href="http://proj4.org/parameters.html">proj4.org/parameters.html</a> for details).
@@ -1225,7 +1225,7 @@ It is typically used in mapping polar regions.
 Both of these approaches have advantages and disadvantages.
 An <code>epsg</code> code is usually shorter, and therefore easier to remember.
 The code also refers to only one, well-defined coordinate reference system.
-On the other hand, a <code>proj4string</code> definition allows you more flexibility when it comes to specifying different parameters such as the projection type, the datum and the ellipsoid.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>
+On the other hand, a <code>proj4string</code> definition allows you more flexibility when it comes to specifying different parameters such as the projection type, the datum and the ellipsoid.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>
 This way you can specify many different projections, and modify existing ones.
 This also makes the <code>proj4string</code> approach more complicated.
 <!-- ^[In the background, `sf` and `raster` use the [PROJ](http://proj4.org/) software, which enables transformations between different projections]. -->
@@ -1382,39 +1382,39 @@ Assign random values between 0 and 10 to the new raster and plot it.
 </div>
 <div class="footnotes">
 <hr />
-<ol start="13">
-<li id="fn13"><p>If you need to install R, we recommend reading <a href="https://csgillespie.github.io/efficientR/set-up.html#r-version">section 2.3</a> and <a href="https://csgillespie.github.io/efficientR/set-up.html#rstudio">section 2.5</a> of the freely available book <em>Efficient R Programming</em> <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.
+<ol start="10">
+<li id="fn10"><p>If you need to install R, we recommend reading <a href="https://csgillespie.github.io/efficientR/set-up.html#r-version">section 2.3</a> and <a href="https://csgillespie.github.io/efficientR/set-up.html#rstudio">section 2.5</a> of the freely available book <em>Efficient R Programming</em> <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.
 Packages can be kept up-to-date with <code>update.packages()</code>.</p>
 <p>If you are not a regular R user, we recommend that you familiarize yourself with the language before proceeding with this chapter.
 You can do so using resources such as <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>, <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span> as well as online interactive guides such as <a href="https://www.datacamp.com/courses/free-introduction-to-r">DataCamp</a>.</p>
 <p>We recommend organizing your work as you learn, for example with the help of an RStudio ‘<a href="https://csgillespie.github.io/efficientR/set-up.html#project-management">project</a>’ called <code>geocomp-learning</code>.
 Creating new script for each chapter or section of interest will help consolidate and extend the skills learned.
 The code you type to help learn the content of this chapter could be placed in a file called <code>chapter-02.R</code>, for example.
-Everyone learns in a different way; structure your work so it makes sense to you; and avoid copy-pasting to get used to typing code.<a href="spatial-class.html#fnref13" class="footnote-back">↩</a></p></li>
-<li id="fn14"><p>
+Everyone learns in a different way; structure your work so it makes sense to you; and avoid copy-pasting to get used to typing code.<a href="spatial-class.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>
 Note that the final package is not on R’s main package hosting repository, CRAN, meaning that the <code>repos</code> and <code>type</code> arguments must be set for it to install.
-In case the installation fails, for example if you do not have rights to install non CRAN packages on your organisation’s computers, the data in <strong>spDataLarge</strong> can be loaded by running the script <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/spData.R"><code>spData.R</code></a> from the <code>code</code> folder in the book’s GitHub repo at <a href="https://github.com/Robinlovelace/geocompr">github.com/Robinlovelace/geocompr</a>.<a href="spatial-class.html#fnref14" class="footnote-back">↩</a></p></li>
-<li id="fn15"><p>
+In case the installation fails, for example if you do not have rights to install non CRAN packages on your organisation’s computers, the data in <strong>spDataLarge</strong> can be loaded by running the script <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/spData.R"><code>spData.R</code></a> from the <code>code</code> folder in the book’s GitHub repo at <a href="https://github.com/Robinlovelace/geocompr">github.com/Robinlovelace/geocompr</a>.<a href="spatial-class.html#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>
 The origin we are referring to, depicted in blue in Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, is in fact the ‘false’ origin.
 The ‘true’ origin, the location at which distortions are at a minimum, is located at 2° W and 49° N.
-This was selected by the <a href="https://www.ordnancesurvey.co.uk/support/the-national-grid.html">Ordnance Survey</a> to be roughly in the center of the British landmass longitudinally.<a href="spatial-class.html#fnref15" class="footnote-back">↩</a></p></li>
-<li id="fn16"><p>
+This was selected by the <a href="https://www.ordnancesurvey.co.uk/support/the-national-grid.html">Ordnance Survey</a> to be roughly in the center of the British landmass longitudinally.<a href="spatial-class.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>
 The full OGC standard includes rather exotic geometry types including ‘surface’ and ‘curve’ geometry types, which currently have limited application in real world applications.
-All 68 types can be represented with the <strong>sf</strong> package, although (at the time of writing) all methods, such as plotting, are only supported for the 7 types described in this chapter.<a href="spatial-class.html#fnref16" class="footnote-back">↩</a></p></li>
-<li id="fn17"><p>The
-development version, which may contain new features, can be installed with <code>devtools::install_github(&quot;r-spatial/sf&quot;).</code><a href="spatial-class.html#fnref17" class="footnote-back">↩</a></p></li>
-<li id="fn18"><p>
+All 68 types can be represented with the <strong>sf</strong> package, although (at the time of writing) all methods, such as plotting, are only supported for the 7 types described in this chapter.<a href="spatial-class.html#fnref13" class="footnote-back">↩</a></p></li>
+<li id="fn14"><p>The
+development version, which may contain new features, can be installed with <code>devtools::install_github(&quot;r-spatial/sf&quot;).</code><a href="spatial-class.html#fnref14" class="footnote-back">↩</a></p></li>
+<li id="fn15"><p>
 <code>plot()</code>ing of <strong>sf</strong> objects uses <code>sf:::plot.sf()</code> behind the scenes.
-<code>plot()</code> is a generic method that behaves differently depending on the class of object being plotted.<a href="spatial-class.html#fnref18" class="footnote-back">↩</a></p></li>
-<li id="fn19"><p>
+<code>plot()</code> is a generic method that behaves differently depending on the class of object being plotted.<a href="spatial-class.html#fnref15" class="footnote-back">↩</a></p></li>
+<li id="fn16"><p>
 By definition, a polygon has one exterior boundary (outer ring) and can have zero or more interior boundaries (inner rings), also known as holes.
-A polygon with a hole would be, for example, <code>POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))</code><a href="spatial-class.html#fnref19" class="footnote-back">↩</a></p></li>
-<li id="fn20"><p>Depending on the file format the header is part of the actual image data file, e.g., GeoTiff, or stored in an extra header or world file, e.g., ASCII grid formats. There is also the headerless (flat) binary raster format which should fascilitate the import into various software programs. To convert these files into other raster formats requiring a header information, the user is often forced to provide the header information manually, see e.g. <a href="https://lta.cr.usgs.gov/glcc/technote" class="uri">https://lta.cr.usgs.gov/glcc/technote</a>.<a href="spatial-class.html#fnref20" class="footnote-back">↩</a></p></li>
-<li id="fn21"><p>
+A polygon with a hole would be, for example, <code>POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))</code><a href="spatial-class.html#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn17"><p>Depending on the file format the header is part of the actual image data file, e.g., GeoTiff, or stored in an extra header or world file, e.g., ASCII grid formats. There is also the headerless (flat) binary raster format which should fascilitate the import into various software programs. To convert these files into other raster formats requiring a header information, the user is often forced to provide the header information manually, see e.g. <a href="https://lta.cr.usgs.gov/glcc/technote" class="uri">https://lta.cr.usgs.gov/glcc/technote</a>.<a href="spatial-class.html#fnref17" class="footnote-back">↩</a></p></li>
+<li id="fn18"><p>
 The degree of compression is often referred to as <a href="https://en.wikipedia.org/wiki/Flattening"><em>flattening</em></a>, defined in terms of the equitorial radius (<span class="math inline">\(a\)</span>) and polar radius (<span class="math inline">\(b\)</span>) as follows: <span class="math inline">\(f = (a - b) / a\)</span>. The terms <em>ellipticity</em> and <em>compression</em> can also be used <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>.
 Because <span class="math inline">\(f\)</span> is a rather small value, digital ellipsoid models use the ‘inverse flattening’ (<span class="math inline">\(rf = 1/f\)</span>) to define the Earth’s compression.
-Values of <span class="math inline">\(a\)</span> and <span class="math inline">\(rf\)</span> used in a variety of ellipsoidal models can be seen be executing <code>st_proj_info(type = &quot;ellps&quot;)</code>.<a href="spatial-class.html#fnref21" class="footnote-back">↩</a></p></li>
-<li id="fn22"><p>Complete list of the <code>proj4string</code> parameters can be found at <a href="http://proj4.org/parameters.html#parameter-list" class="uri">http://proj4.org/parameters.html#parameter-list</a>.<a href="spatial-class.html#fnref22" class="footnote-back">↩</a></p></li>
+Values of <span class="math inline">\(a\)</span> and <span class="math inline">\(rf\)</span> used in a variety of ellipsoidal models can be seen be executing <code>st_proj_info(type = &quot;ellps&quot;)</code>.<a href="spatial-class.html#fnref18" class="footnote-back">↩</a></p></li>
+<li id="fn19"><p>Complete list of the <code>proj4string</code> parameters can be found at <a href="http://proj4.org/parameters.html#parameter-list" class="uri">http://proj4.org/parameters.html#parameter-list</a>.<a href="spatial-class.html#fnref19" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

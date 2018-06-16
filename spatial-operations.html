@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-15">
+<meta name="date" content="2018-06-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -725,7 +725,7 @@ This section demonstrates how the same functions work using spatial grouping var
 This is a good example of spatial aggregation: it is the geometry of the source (<code>y</code> or <code>nz</code> in this case) that defines how values in the target object (<code>x</code> or <code>nz_height</code>) are grouped.
 This is illustrated using the base <code>aggregate()</code> function below:</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">nz_avheight =<span class="st"> </span><span class="kw">aggregate</span>(<span class="dt">x =</span> nz_height, nz, <span class="dt">FUN =</span> mean)</a></code></pre></div>
-<p>The result of the previous command is an <code>sf</code> object with the same geometry as the (spatial) aggregating object (<code>nz</code>).<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>
+<p>The result of the previous command is an <code>sf</code> object with the same geometry as the (spatial) aggregating object (<code>nz</code>).<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>
 The result of the previous operation is illustrated in Figure <a href="spatial-operations.html#fig:spatial-aggregation">4.5</a>.
 The same result can also be generated using the ‘tidy’ functions <code>group_by()</code> and <code>summarize()</code> (used in combination with <code>st_join()</code>):</p>
 <div class="figure" style="text-align: center"><span id="fig:spatial-aggregation"></span>
@@ -868,7 +868,7 @@ To derive the coordinate of a specific cell, we have to calculate it using its m
 For the processing, however, the geographic position of a cell is barely relevant as long as we make sure that the cell position is still the same after the processing (one-to-one locational correspondence).
 Additionally, if two or more raster datasets share the same extent, projection and resolution, one could treat them as matrices for the processing.
 This is exactly what map algebra is doing in R.
-First, the <strong>raster</strong> package checks the headers of the rasters on which to perform any algebraic operation, and only if they are correspondent to each other, the processing goes on.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>
+First, the <strong>raster</strong> package checks the headers of the rasters on which to perform any algebraic operation, and only if they are correspondent to each other, the processing goes on.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>
 And secondly, map algebra retains the so-called one-to-one locational correspondence.
 This is where it substantially differs from matrix algebra which changes positions when for example multiplying or dividing matrices.</p>
 <p>Map algebra (or cartographic modeling) divides raster operations into four subclasses <span class="citation">(Tomlin <a href="#ref-tomlin_geographic_1990">1990</a>)</span>, with each of them either working on one or several grids simultaneously:</p>
@@ -1101,10 +1101,10 @@ A more advanced approach might instead weight by flow direction, i.e. favor the
 </div>
 <div class="footnotes">
 <hr />
-<ol start="26">
-<li id="fn26"><p>This can be verified with <code>identical(st_geometry(nz), st_geometry(nz_avheight))</code>.<a href="spatial-operations.html#fnref26" class="footnote-back">↩</a></p></li>
-<li id="fn27"><p>Map algebra operations are also possible with headerless rasters but in this case the user has to make sure that in fact there exists a one-to-one locational correspondence.
-For an example, how to import a headerless raster into R, see this <a href="https://stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html">post</a>.<a href="spatial-operations.html#fnref27" class="footnote-back">↩</a></p></li>
+<ol start="23">
+<li id="fn23"><p>This can be verified with <code>identical(st_geometry(nz), st_geometry(nz_avheight))</code>.<a href="spatial-operations.html#fnref23" class="footnote-back">↩</a></p></li>
+<li id="fn24"><p>Map algebra operations are also possible with headerless rasters but in this case the user has to make sure that in fact there exists a one-to-one locational correspondence.
+For an example, how to import a headerless raster into R, see this <a href="https://stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html">post</a>.<a href="spatial-operations.html#fnref24" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
