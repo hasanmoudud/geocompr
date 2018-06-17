@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4271246a04503dde
+preservea120372c88a75e09
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3083,7 +3083,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservefb94e83ba548d6f9
+preservecd1ba10cfe850427
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6524,7 +6524,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve21cca022d1ef77f1
+preserve98cad31f13206e87
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6622,7 +6622,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0d45fb9e3ad3c0cf
+preserve24858ce1d8096eef
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7584,8 +7584,9 @@ Additionally, give `mapview` a try.
 
 ## Prerequisites {-}
 
-In chapter \@ref(intro) we promised to teach not only how to use existing tools for Geocomputation in R, but also develop new ones, "in the form of shareable R scripts and functions".
-While reproducibility is central to the book, this chapter focusses on reproducibility and tool creation.
+Chapter \@ref(intro) states that geocomputation is not only about using existing tools, but developing new ones, "in the form of shareable R scripts and functions".
+The aim of this chapter is to teach how to develop reproducible scripts, functions and algorithms, key components in the process of tool creation.
+The chapter assumes you have an understanding of the geographic data classes introduced in Chapter \@ref(spatial-class), and have already imported the datasets needed for your work, for example from sources outlined in Chapter \@ref(read-write).
 
 We will consider example R scripts for geographic data and how to make them more reproducible in section \@ref(scripts).
 Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
@@ -9784,7 +9785,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb40ad429a22d63e5
+preservec3dc4ea74fd6105d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
