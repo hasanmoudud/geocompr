@@ -315,8 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="algorithms.html"><a href="algorithms.html#scripts"><i class="fa fa-check"></i><b>10.1</b> Scripts</a></li>
 <li class="chapter" data-level="10.2" data-path="algorithms.html"><a href="algorithms.html#geographic-algorithms"><i class="fa fa-check"></i><b>10.2</b> Geographic algorithms</a></li>
 <li class="chapter" data-level="10.3" data-path="algorithms.html"><a href="algorithms.html#functions"><i class="fa fa-check"></i><b>10.3</b> Functions</a></li>
-<li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>10.4</b> Case study</a></li>
-<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#exercises-8"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#exercises-8"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>11</b> Statistical learning for geographic data</a><ul>
 <li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
@@ -348,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>13</b> Geomarketing</a><ul>
 <li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-11"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="13.1" data-path="location.html"><a href="location.html#introduction-8"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
-<li class="chapter" data-level="13.2" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>13.2</b> Case study: bike shops in Germany</a></li>
+<li class="chapter" data-level="13.2" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>13.2</b> Case study: bike shops in Germany</a></li>
 <li class="chapter" data-level="13.3" data-path="location.html"><a href="location.html#tidy-the-input-data"><i class="fa fa-check"></i><b>13.3</b> Tidy the input data</a></li>
 <li class="chapter" data-level="13.4" data-path="location.html"><a href="location.html#create-census-rasters"><i class="fa fa-check"></i><b>13.4</b> Create census rasters</a></li>
 <li class="chapter" data-level="13.5" data-path="location.html"><a href="location.html#define-metropolitan-areas"><i class="fa fa-check"></i><b>13.5</b> Define metropolitan areas</a></li>
@@ -473,7 +472,7 @@ A translation of this formula into R code that works with the data in the matrix
 <a class="sourceLine" id="cb332-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb332-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
 <p>This code chunk works and outputs the correct result.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>
-The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same ‘triangle matrix’ format.
+The problem with the previous code chunk is that it is very and difficult to re-run on another object with the same ‘triangle matrix’ format.
 To make the code more generalizable, let’s convert the code into a function (something described in <a href="algorithms.html#functions">10.3</a>) that works with any matrix represenations of a triangle that we’ll call <code>x</code>:</p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">t_area =<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb333-2" data-line-number="2">  <span class="kw">abs</span>(</a>
@@ -513,10 +512,8 @@ the <code>.</code> in the commands below refer to ‘each element of the object 
 <p>We are now in a position to calculate the total area and geographic centroid of the polygon as follows:</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1"><span class="kw">sum</span>(A)</a>
 <a class="sourceLine" id="cb338-2" data-line-number="2"><span class="co">#&gt; [1] 190</span></a>
-<a class="sourceLine" id="cb338-3" data-line-number="3"><span class="kw">weighted.mean</span>(C[, <span class="dv">1</span>], A)</a>
-<a class="sourceLine" id="cb338-4" data-line-number="4"><span class="co">#&gt; [1] 8.04</span></a>
-<a class="sourceLine" id="cb338-5" data-line-number="5"><span class="kw">weighted.mean</span>(C[, <span class="dv">2</span>], A)</a>
-<a class="sourceLine" id="cb338-6" data-line-number="6"><span class="co">#&gt; [1] 7.33</span></a></code></pre></div>
+<a class="sourceLine" id="cb338-3" data-line-number="3"><span class="kw">c</span>(<span class="kw">weighted.mean</span>(C[, <span class="dv">1</span>], A), <span class="kw">weighted.mean</span>(C[, <span class="dv">2</span>], A))</a>
+<a class="sourceLine" id="cb338-4" data-line-number="4"><span class="co">#&gt; [1] 8.04 7.33</span></a></code></pre></div>
 <p>Is this right?
 We can verify the answer by converting <code>poly_mat</code> into a simple feature collection as follows:</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
@@ -532,20 +529,71 @@ We can verify the answer by converting <code>poly_mat</code> into a simple featu
 Figure 10.3: Illustration of centroid calculation.
 </p>
 </div>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb340-2" data-line-number="2">T_sf =<span class="st"> </span><span class="kw">list</span>(poly_mat) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb340-3" data-line-number="3"><span class="st">  </span><span class="kw">st_polygon</span>()</a>
-<a class="sourceLine" id="cb340-4" data-line-number="4"><span class="kw">st_area</span>(T_sf)</a>
-<a class="sourceLine" id="cb340-5" data-line-number="5"><span class="co">#&gt; [1] 190</span></a></code></pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">10.3</span> Functions</h2>
-</div>
-<div id="case-study" class="section level2">
-<h2><span class="header-section-number">10.4</span> Case study</h2>
+<p>Like algorithms functions take an input and return an output.
+The difference is that functions are ‘packaged’ so that are R objects in their own right.
+We have already seen the advantages of using functions in the previous section:
+the function <code>t_area()</code> <em>contains</em> the steps needed find the area of any ‘triangle matrix’ and can be called with a single line, whereas the full underlying code requires many lines of code.
+Functions are thus a mechanism for <em>generalizing</em> code.
+We can use the function to find the area of a triangle with a base 3 units wide and a height of 1, for example, as follows:</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">t_new =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb340-2" data-line-number="2"><span class="kw">t_area</span>(t_new)</a>
+<a class="sourceLine" id="cb340-3" data-line-number="3"><span class="co">#&gt; [1] 1.5</span></a></code></pre></div>
+<p>A useful feature of functions is that they are modular.
+Providing you know what the output will be, one function can be used as the building block of another.
+This is exactly what we will do in this section.
+Building on the content of the previous section, in which it was shown how the area of a polygon can be found by following a series of steps in order, this section will <em>create a function</em> to calculate the area of any polygon (with caveats that will become clear).
+This function, that we’ll call <code>poly_centroid()</code> will mimick the behaviour of <code>st_centroid()</code> from the <strong>sf</strong> package, with a few additions to show how arguments work.</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1">poly_centroid =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">output =</span> <span class="st">&quot;matrix&quot;</span>) {</a>
+<a class="sourceLine" id="cb341-2" data-line-number="2">  i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb341-3" data-line-number="3">  Ti =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(i, <span class="op">~</span><span class="kw">rbind</span>(O, x[.<span class="op">:</span>(. <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O))</a>
+<a class="sourceLine" id="cb341-4" data-line-number="4">  A =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_dbl</span>(Ti, <span class="op">~</span><span class="kw">t_area</span>(.))</a>
+<a class="sourceLine" id="cb341-5" data-line-number="5">  C =<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(Ti, t_centroid))</a>
+<a class="sourceLine" id="cb341-6" data-line-number="6">  centroid_coords =<span class="st"> </span><span class="kw">c</span>(<span class="kw">weighted.mean</span>(C[, <span class="dv">1</span>], A), <span class="kw">weighted.mean</span>(C[, <span class="dv">2</span>], A))</a>
+<a class="sourceLine" id="cb341-7" data-line-number="7">  <span class="cf">if</span>(output <span class="op">==</span><span class="st"> &quot;matrix&quot;</span>) {</a>
+<a class="sourceLine" id="cb341-8" data-line-number="8">    <span class="kw">return</span>(centroid_coords)</a>
+<a class="sourceLine" id="cb341-9" data-line-number="9">  } <span class="cf">else</span> <span class="cf">if</span>(output <span class="op">==</span><span class="st"> &quot;area&quot;</span>)</a>
+<a class="sourceLine" id="cb341-10" data-line-number="10">    <span class="kw">return</span>(<span class="kw">sum</span>(A))</a>
+<a class="sourceLine" id="cb341-11" data-line-number="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" data-line-number="1"><span class="kw">poly_centroid</span>(poly_mat)</a>
+<a class="sourceLine" id="cb342-2" data-line-number="2"><span class="co">#&gt; [1] 8.04 7.33</span></a>
+<a class="sourceLine" id="cb342-3" data-line-number="3"><span class="kw">poly_centroid</span>(poly_mat, <span class="dt">output =</span> <span class="st">&quot;area&quot;</span>)</a>
+<a class="sourceLine" id="cb342-4" data-line-number="4"><span class="co">#&gt; [1] 190</span></a></code></pre></div>
+<p>Low-level function such as <code>poly_centroid()</code> can be built-on to provide different types of output.
+If a common need is to return the result as an object of class <code>sf</code>, for example, this can be done by creating a ‘wrapper’ function that modifies the output of <code>poly_centroid()</code> before returning the result:</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">poly_centroid_sf =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb343-2" data-line-number="2">  centroid_coords =<span class="st"> </span><span class="kw">poly_centroid</span>(x)</a>
+<a class="sourceLine" id="cb343-3" data-line-number="3">  centroid_sf =<span class="st"> </span><span class="kw">st_point</span>(centroid_coords)</a>
+<a class="sourceLine" id="cb343-4" data-line-number="4">  centroid_sf</a>
+<a class="sourceLine" id="cb343-5" data-line-number="5">}</a></code></pre></div>
+<p>We can verify that the output is the same as the output from <code>st_centroid()</code> as follows:</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1"><span class="kw">identical</span>(<span class="kw">poly_centroid_sf</span>(poly_mat), <span class="kw">st_centroid</span>(poly_sfc))</a>
+<a class="sourceLine" id="cb344-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<p>An important concept to consider when developing your own function is <em>type stability</em>.
+Functions are type stable if they always return objects of the same class and, generally, this means returning objects of the same type as the input object.
+To illustrate this concept in practice we will create a type stable version <code>poly_centroid()</code> that always takes a matrix with 2 columns as an input and always returns a matrix with 2 columns representing x and y coordinates:</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1">poly_centroid_type_stable =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb345-2" data-line-number="2">  <span class="kw">stopifnot</span>(<span class="kw">is.matrix</span>(x) <span class="op">&amp;</span><span class="st"> </span><span class="kw">ncol</span>(x) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb345-3" data-line-number="3">  centroid_coords =<span class="st"> </span><span class="kw">poly_centroid</span>(x)</a>
+<a class="sourceLine" id="cb345-4" data-line-number="4">  <span class="kw">return</span>(<span class="kw">matrix</span>(centroid_coords, <span class="dt">ncol =</span> <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb345-5" data-line-number="5">}</a></code></pre></div>
+<p>The first line of the function is an example of ‘defensive programming’:
+it checks the input is in the right format (a matrix with 2 columns) before proceeding.
+Such checks can ensure that the code is robust and does not silently fail.
+We can verify it works with <code>matrix(centroid_coords, ncol = 2)</code>.
+To see the input data type check working we can try running the function on a matrix with 3 columns:</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1">poly_mat3 =<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(poly_mat), poly_mat)</a>
+<a class="sourceLine" id="cb346-2" data-line-number="2"><span class="kw">poly_centroid</span>(poly_mat3)</a>
+<a class="sourceLine" id="cb346-3" data-line-number="3"><span class="co">#&gt; [1] 6.26 6.58</span></a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="kw">poly_centroid_type_stable</span>(poly_mat3)</a>
+<a class="sourceLine" id="cb347-2" data-line-number="2"><span class="co">#&gt; Error in poly_centroid_type_stable(poly_mat3) : </span></a>
+<a class="sourceLine" id="cb347-3" data-line-number="3"><span class="co">#&gt;   is.matrix(x) &amp; ncol(x) == 2 is not TRUE </span></a></code></pre></div>
+<!-- ## Case study -->
 </div>
 <div id="exercises-8" class="section level2">
-<h2><span class="header-section-number">10.5</span> Exercises</h2>
+<h2><span class="header-section-number">10.4</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li>In section <a href="algorithms.html#geographic-algorithms">10.2</a> we created a function that finds the geographic centroid of a shape, which is implemented in the <strong>sf</strong> function <code>st_centroid()</code>.
 Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.</li>

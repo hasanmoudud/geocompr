@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea120372c88a75e09
+preserved1e6fcf5ca346d17
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3083,7 +3083,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservecd1ba10cfe850427
+preserve7df4354d73c63650
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6524,7 +6524,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve98cad31f13206e87
+preserveb44ed932f527d440
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6622,7 +6622,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve24858ce1d8096eef
+preserveae289b4693180915
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7697,7 +7697,7 @@ abs(T1[1, 1] * (T1[2, 2] - T1[3, 2]) +
 This code chunk works and outputs the correct result.^[
 as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height --- $A = B * H / 2$ --- ($10 * 10 / 2$ in this case, as can be seen in Figure \@ref(fig:polycent)).
 ]
-The problem with the previous code chunk is that it is very verbose and difficult to re-run on another object with the same 'triangle matrix' format.
+The problem with the previous code chunk is that it is very and difficult to re-run on another object with the same 'triangle matrix' format.
 To make the code more generalizable, let's convert the code into a function (something described in \@ref(functions)) that works with any matrix represenations of a triangle that we'll call `x`:
 
 
@@ -7768,10 +7768,8 @@ We are now in a position to calculate the total area and geographic centroid of 
 ```r
 sum(A)
 #> [1] 190
-weighted.mean(C[, 1], A)
-#> [1] 8.04
-weighted.mean(C[, 2], A)
-#> [1] 7.33
+c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
+#> [1] 8.04 7.33
 ```
 
 Is this right?
@@ -7795,19 +7793,106 @@ st_centroid(poly_sfc)
 <p class="caption">(\#fig:polycent)Illustration of centroid calculation.</p>
 </div>
 
+## Functions
+
+Like algorithms functions take an input and return an output.
+The difference is that functions are 'packaged' so that are R objects in their own right.
+We have already seen the advantages of using functions in the previous section:
+the function `t_area()` *contains* the steps needed find the area of any 'triangle matrix' and can be called with a single line, whereas the full underlying code requires many lines of code.
+Functions are thus a mechanism for *generalizing* code.
+We can use the function to find the area of a triangle with a base 3 units wide and a height of 1, for example, as follows:
 
 
 ```r
-library(sf)
-T_sf = list(poly_mat) %>% 
-  st_polygon()
-st_area(T_sf)
+t_new = matrix(c(0, 3, 3, 0, 0, 0, 1, 0), ncol = 2)
+t_area(t_new)
+#> [1] 1.5
+```
+
+A useful feature of functions is that they are modular.
+Providing you know what the output will be, one function can be used as the building block of another.
+This is exactly what we will do in this section.
+Building on the content of the previous section, in which it was shown how the area of a polygon can be found by following a series of steps in order, this section will *create a function* to calculate the area of any polygon (with caveats that will become clear).
+This function, that we'll call `poly_centroid()` will mimick the behaviour of `st_centroid()` from the **sf** package, with a few additions to show how arguments work.
+
+
+```r
+poly_centroid = function(x, output = "matrix") {
+  i = 2:(nrow(x) - 2)
+  Ti = purrr::map(i, ~rbind(O, x[.:(. + 1), ], O))
+  A = purrr::map_dbl(Ti, ~t_area(.))
+  C = t(sapply(Ti, t_centroid))
+  centroid_coords = c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
+  if(output == "matrix") {
+    return(centroid_coords)
+  } else if(output == "area")
+    return(sum(A))
+}
+```
+
+
+```r
+poly_centroid(poly_mat)
+#> [1] 8.04 7.33
+poly_centroid(poly_mat, output = "area")
 #> [1] 190
 ```
 
-## Functions
+Low-level function such as `poly_centroid()` can be built-on to provide different types of output.
+If a common need is to return the result as an object of class `sf`, for example, this can be done by creating a 'wrapper' function that modifies the output of `poly_centroid()` before returning the result:
 
-## Case study
+
+```r
+poly_centroid_sf = function(x) {
+  centroid_coords = poly_centroid(x)
+  centroid_sf = st_point(centroid_coords)
+  centroid_sf
+}
+```
+
+We can verify that the output is the same as the output from `st_centroid()` as follows:
+
+
+```r
+identical(poly_centroid_sf(poly_mat), st_centroid(poly_sfc))
+#> [1] TRUE
+```
+
+An important concept to consider when developing your own function is *type stability*.
+Functions are type stable if they always return objects of the same class and, generally, this means returning objects of the same type as the input object.
+To illustrate this concept in practice we will create a type stable version `poly_centroid()` that always takes a matrix with 2 columns as an input and always returns a matrix with 2 columns representing x and y coordinates:
+
+
+```r
+poly_centroid_type_stable = function(x) {
+  stopifnot(is.matrix(x) & ncol(x) == 2)
+  centroid_coords = poly_centroid(x)
+  return(matrix(centroid_coords, ncol = 2))
+}
+```
+
+The first line of the function is an example of 'defensive programming':
+it checks the input is in the right format (a matrix with 2 columns) before proceeding.
+Such checks can ensure that the code is robust and does not silently fail.
+We can verify it works with `matrix(centroid_coords, ncol = 2)`.
+To see the input data type check working we can try running the function on a matrix with 3 columns:
+
+
+```r
+poly_mat3 = cbind(1:nrow(poly_mat), poly_mat)
+poly_centroid(poly_mat3)
+#> [1] 6.26 6.58
+```
+
+
+```r
+poly_centroid_type_stable(poly_mat3)
+#> Error in poly_centroid_type_stable(poly_mat3) : 
+#>   is.matrix(x) & ncol(x) == 2 is not TRUE 
+```
+
+
+<!-- ## Case study -->
 
 ## Exercises
 
@@ -7815,6 +7900,7 @@ st_area(T_sf)
 Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
 
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
+
 
 <!--chapter:end:10-algorithms.Rmd-->
 
@@ -9785,7 +9871,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservec3dc4ea74fd6105d
+preserveb89d09879295ad64
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
