@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-16">
+<meta name="date" content="2018-06-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -443,8 +443,9 @@ It accepts a wider range of spatial classes (including <code>raster</code> objec
 This section teaches how to make static maps with <strong>tmap</strong>, emphasizing the important aesthetic and layout options.</p>
 <div id="tmap-basics" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> tmap basics</h3>
-<p><strong>tmap</strong> creates maps with sensible defaults for a wide range of spatial objects.
-The basic building block is <code>tm_shape()</code> (which accepts raster and vector objects), followed by one or more layer elements such as <code>tm_fill()</code> and <code>tm_dots()</code>.
+<p>Like <strong>ggplot2</strong>, <strong>tmap</strong> is based on the idea of a ‘grammar of graphics’ <span class="citation">(Wilkinson and Wills <a href="#ref-wilkinson_grammar_2005">2005</a>)</span>.
+This involves a separation between the input data and the aesthetics (how data are visualised): each input dataset can be ‘mapped’ in a range of different ways including location on the map (defined by data’s <code>geometry</code>), color, and other visual variables.
+The basic building block is <code>tm_shape()</code> (which defines input data, raster and vector objects), followed by one or more layer elements such as <code>tm_fill()</code> and <code>tm_dots()</code>.
 This layering is demonstrated in the chunk below, which generates the maps presented in Figure <a href="adv-map.html#fig:tmshape">8.1</a>:</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="co"># Add fill layer to nz shape</span></a>
 <a class="sourceLine" id="cb258-2" data-line-number="2"><span class="kw">tm_shape</span>(nz) <span class="op">+</span></a>
@@ -1267,6 +1268,9 @@ Next, compare it with the maps of a hexagonal and regular grid created using the
 </div>
 <div id="ref-tennekes_tmap_2018">
 <p>Tennekes, Martijn. 2018. “Tmap: Thematic Maps in R.” <em>Journal of Statistical Software, Articles</em> 84 (6): 1–39. <a href="https://doi.org/10.18637/jss.v084.i06" class="uri">https://doi.org/10.18637/jss.v084.i06</a>.</p>
+</div>
+<div id="ref-wilkinson_grammar_2005">
+<p>Wilkinson, Leland, and Graham Wills. 2005. <em>The Grammar of Graphics</em>. Springer Science+ Business Media.</p>
 </div>
 <div id="ref-borland_rainbow_2007">
 <p>Borland, David, and Russell M Taylor II. 2007. “Rainbow Color Map (Still) Considered Harmful.” <em>IEEE Computer Graphics and Applications</em> 27 (2). IEEE.</p>
