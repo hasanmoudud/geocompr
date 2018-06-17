@@ -199,7 +199,7 @@ Before going into the details of the software, however, it is worth taking a ste
 ## What is geocomputation?
 
 Geocomputation is a relatively young field with a ~30 year history, dating back to the first conference on the subject in 1996.^[The conference took place at the University of Leeds, where one of the authors (Robin) is currently based and where the 21^st^ GeoComputation was hosted in 2017 (see
-[geocomputation.org](http://www.geocomputation.org/)).]
+http://www.geocomputation.org/).]
 <!-- todo: which chapters? -->
 What distinguishes geocomputation from the older quantitative geography, is its emphasis on "creative and experimental" GIS applications [@longley_geocomputation:_1998].
 Additionally, it is also about developing new, research-driven methods [@openshaw_geocomputation_2000]:
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved1e6fcf5ca346d17
+preserve1b28b565e20303c6
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -367,7 +367,7 @@ Like R Python also supports spatial data analysis and manipulation with packages
 <!-- 1. this book focus -> sf + raster/stars + leaflet/mapview (the recent state of spatial R); the history of R spatial is way longer -->
 
 There are many ways to handle spatial data in R, with dozens of packages in the area.^[An overview of R's spatial ecosystem can be found in the CRAN Task View on the Analysis of Spatial Data
-(see cran.r-project.org/web/views/Spatial.html).
+(see https://cran.r-project.org/web/views/Spatial.html).
 ]
 In this book we endeavor to teach the state-of-the-art in the field whilst ensuring that the methods are future-proof.
 Like many areas of software development, R's spatial ecosystem is rapidly evolving.
@@ -1637,7 +1637,7 @@ Both of these approaches have advantages and disadvantages.
 An `epsg` code is usually shorter, and therefore easier to remember. 
 The code also refers to only one, well-defined coordinate reference system. 
 On the other hand, a `proj4string` definition allows you more flexibility when it comes to specifying different parameters such as the projection type, the datum and the ellipsoid.^[
-A complete list of the `proj4string` parameters can be found at proj4.org.
+A complete list of the `proj4string` parameters can be found at https://proj4.org/.
 ] 
 This way you can specify many different projections, and modify existing ones.
 This also makes the `proj4string` approach more complicated.
@@ -3083,7 +3083,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7df4354d73c63650
+preservef203f89d0e41b1d6
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3349,7 +3349,7 @@ Additionally, if two or more raster datasets share the same extent, projection a
 This is exactly what map algebra is doing in R.
 First, the **raster** package checks the headers of the rasters on which to perform any algebraic operation, and only if they are correspondent to each other, the processing goes on.^[
 Map algebra operations are also possible with headerless rasters but in this case the user has to make sure that in fact there exists a one-to-one locational correspondence.
-An example showing how to import a headerless raster into R is provided in a post at stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html.
+An example showing how to import a headerless raster into R is provided in a post at https://stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html.
 ]
 And secondly, map algebra retains the so-called one-to-one locational correspondence.
 This is where it substantially differs from matrix algebra which changes positions when for example multiplying or dividing matrices.
@@ -3741,7 +3741,7 @@ Sometimes the geographic centroid falls outside the boundaries of their parent o
 In such cases *point on surface* operations can be used to guarantee the point will be in the parent object (e.g. for labelling irregular multipolygon objects such as island states), as illustrated by the red points in Figure \@ref(fig:centr).
 Notice that these red points always lie on their parent objects.
 They were created with `st_point_on_surface()` as follows:^[
-A description of how `st_point_on_surface()` works is provided at gis.stackexchange.com/q/76498.
+A description of how `st_point_on_surface()` works is provided at https://gis.stackexchange.com/q/76498.
 ]
 
 
@@ -4611,7 +4611,7 @@ As with `raster::extract()`,  `raster::rasterize()` works well for most cases bu
 Fortunately, there are several alternatives, including the `fasterize::fasterize()` and `gdalUtils::gdal_rasterize()`. 
 The former is much (100 times+) faster than `rasterize()` but is currently limited to polygon rasterization.
 The latter is part of GDAL and therefore requires a vector file (instead of an `sf` object) and rasterization parameters (instead of a `Raster*` template object) as inputs.^[
-See more at gdal.org/gdal_rasterize.html.
+See more at http://gdal.org/gdal_rasterize.html.
 ]
 
 ### Spatial vectorization
@@ -4845,7 +4845,7 @@ st_crs(london_proj)
 
 Notable components of this CRS description include the EPSG code (`EPSG: 27700`), the projection ([transverse Mercator](https://en.wikipedia.org/wiki/Transverse_Mercator_projection), `+proj=tmerc`), the origin (`+lat_0=49 +lon_0=-2`) and units (`+units=m`).^[
 For a short description of the most relevant projection parameters and related concepts, see the fourth lecture by Jochen Albrecht hosted at
-geography.hunter.cuny.edu/~jochen/GTECH361/lectures/ and information at proj4.org/parameters.html.
+http://www.geography.hunter.cuny.edu/~jochen/GTECH361/lectures/ and information at https://proj4.org/parameters.html.
 <!-- [geography.hunter.cuny.edu/~jochen/GTECH361/lectures/](http://www.geography.hunter.cuny.edu/~jochen/GTECH361/lectures/lecture04/concepts/Map%20coordinate%20systems/Projection%20parameters.htm) as well as [http://proj4.org/parameters.html](http://proj4.org/parameters.html). -->
 Other great resources on projections are spatialreference.org and progonos.com/furuti/MapProj.
 ]
@@ -5587,7 +5587,7 @@ Some vector driver formats can store multiple data layers.
 By default, `st_read` automatically reads the first layer of the file specified in `dsn`, however, using the `layer` argument you can specify any other layer.
 
 Naturally, some options are specific to certain drivers.^[
-A list of supported vector formats and options can be found at gdal.org/ogr_formats.html.
+A list of supported vector formats and options can be found at http://gdal.org/ogr_formats.html.
 ]
 For example, think of coordinates stored in a spreadsheet format (`.csv`).
 To read in such files as spatial objects, we naturally have to specify the names of the columns (`X` and `Y` in our example below) representing the coordinates.
@@ -6524,7 +6524,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveb44ed932f527d440
+preserve117f2c95bd2ef029
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6622,7 +6622,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveae289b4693180915
+preservebf68b1f463a5d42a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7011,7 +7011,7 @@ This general overview already points out the differences between R's CLI and des
 However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
 The good news is that 'GIS bridges' enable the access to these with the comfort of the R command line.^[
 An early use of the term 'bridge' referred the coupling of R with GRASS [@neteler_open_2008].
-Roger Bivand elaborated on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school (see spatial.nhh.no/misc).
+Roger Bivand elaborated on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school (see http://spatial.nhh.no/misc/).
 <!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
 <!-- `geostat_talk16.zip`. -->
 ]
@@ -7606,7 +7606,7 @@ This chapter takes a similar approach and is therefore the most low-level and po
 
 If packages are the building blocks of reproducible code, scripts are the glue that holds them together.
 There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.
-There are, however, some rules of thumb and conventions worth following when writing R scipts, outlined below:
+There are, however, some rules of thumb and conventions worth following when writing R scripts, outlined below:
 
 - Write the script in order: just like the script of a play, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
 - Make the script reproducible: scripts will be of more use to you and others if they are self-contained and can be run by other people. This involves stating dependencies (loading required packages at the outset, like the 'Prerequisites' section), reading-in data from persistent sources (e.g. from a reliable website or API) and mentioning any code that must be run before running the script (e.g. with a comment `# run script0.R before this`).
@@ -7777,12 +7777,10 @@ We can verify the answer by converting `poly_mat` into a simple feature collecti
 
 
 ```r
-library(sf)
-#> Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0
-poly_sfc = st_polygon(list(poly_mat))
-st_area(poly_sfc)
+poly_sfc = sf::st_polygon(list(poly_mat))
+sf::st_area(poly_sfc)
 #> [1] 190
-st_centroid(poly_sfc)
+sf::st_centroid(poly_sfc)
 #> POINT (8.04 7.33)
 ```
 
@@ -7813,7 +7811,7 @@ A useful feature of functions is that they are modular.
 Providing you know what the output will be, one function can be used as the building block of another.
 This is exactly what we will do in this section.
 Building on the content of the previous section, in which it was shown how the area of a polygon can be found by following a series of steps in order, this section will *create a function* to calculate the area of any polygon (with caveats that will become clear).
-This function, that we'll call `poly_centroid()` will mimick the behaviour of `st_centroid()` from the **sf** package, with a few additions to show how arguments work.
+This function, that we'll call `poly_centroid()` will mimick the behaviour of `sf::st_centroid()` from the **sf** package, with a few additions to show how arguments work.
 
 
 ```r
@@ -7839,22 +7837,22 @@ poly_centroid(poly_mat, output = "area")
 ```
 
 Low-level function such as `poly_centroid()` can be built-on to provide different types of output.
-If a common need is to return the result as an object of class `sf`, for example, this can be done by creating a 'wrapper' function that modifies the output of `poly_centroid()` before returning the result:
+If a common need is to return the result as an object of class `sfg`, for example, this can be done by creating a 'wrapper' function that modifies the output of `poly_centroid()` before returning the result:
 
 
 ```r
-poly_centroid_sf = function(x) {
+poly_centroid_sfg = function(x) {
   centroid_coords = poly_centroid(x)
-  centroid_sf = st_point(centroid_coords)
-  centroid_sf
+  centroid_sfg = sf::st_point(centroid_coords)
+  centroid_sfg
 }
 ```
 
-We can verify that the output is the same as the output from `st_centroid()` as follows:
+We can verify that the output is the same as the output from `sf::st_centroid()` as follows:
 
 
 ```r
-identical(poly_centroid_sf(poly_mat), st_centroid(poly_sfc))
+identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
 #> [1] TRUE
 ```
 
@@ -7892,14 +7890,18 @@ poly_centroid_type_stable(poly_mat3)
 ```
 
 
-<!-- ## Case study -->
+## Case study
 
 ## Exercises
 
-1. In section \@ref(geographic-algorithms) we created a function that finds the geographic centroid of a shape, which is implemented in the **sf** function `st_centroid()`.
+1. In section \@ref(geographic-algorithms) we created a function that finds the geographic centroid of a shape, which is implemented in the **sf** function `sf::st_centroid()`.
 Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
-
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
+1. In section \@ref(functions) we created a different versions of the `poly_centroid()` function that generated outputs of class `sfg` (`poly_centroid_sfg()`) and type-stable `matrix` outputs (`poly_centroid_type_stable()`). Further extend the function by creating a version (e.g. called `poly_centroid_sf()`) that is type stable (only accepts inputs of class `sf`) *and* returns `sf` objects (hint: you may need to convert the object `x` into a matrix with the command `sf::st_coordinates(x)`.
+    - Verify it works by running `poly_centroid_sf(sf::st_sf(sf::st_sfc(poly_sfc)))`
+    - What error message do you get when you try to run `poly_centroid_sf(poly_mat)`?
+    
+
 
 
 <!--chapter:end:10-algorithms.Rmd-->
@@ -9871,7 +9873,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb89d09879295ad64
+preservee072d70c28c8cd69
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

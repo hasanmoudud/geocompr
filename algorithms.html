@@ -315,7 +315,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="algorithms.html"><a href="algorithms.html#scripts"><i class="fa fa-check"></i><b>10.1</b> Scripts</a></li>
 <li class="chapter" data-level="10.2" data-path="algorithms.html"><a href="algorithms.html#geographic-algorithms"><i class="fa fa-check"></i><b>10.2</b> Geographic algorithms</a></li>
 <li class="chapter" data-level="10.3" data-path="algorithms.html"><a href="algorithms.html#functions"><i class="fa fa-check"></i><b>10.3</b> Functions</a></li>
-<li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#exercises-8"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>10.4</b> Case study</a></li>
+<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#exercises-8"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>11</b> Statistical learning for geographic data</a><ul>
 <li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
@@ -347,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>13</b> Geomarketing</a><ul>
 <li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-11"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="13.1" data-path="location.html"><a href="location.html#introduction-8"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
-<li class="chapter" data-level="13.2" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>13.2</b> Case study: bike shops in Germany</a></li>
+<li class="chapter" data-level="13.2" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>13.2</b> Case study: bike shops in Germany</a></li>
 <li class="chapter" data-level="13.3" data-path="location.html"><a href="location.html#tidy-the-input-data"><i class="fa fa-check"></i><b>13.3</b> Tidy the input data</a></li>
 <li class="chapter" data-level="13.4" data-path="location.html"><a href="location.html#create-census-rasters"><i class="fa fa-check"></i><b>13.4</b> Create census rasters</a></li>
 <li class="chapter" data-level="13.5" data-path="location.html"><a href="location.html#define-metropolitan-areas"><i class="fa fa-check"></i><b>13.5</b> Define metropolitan areas</a></li>
@@ -403,7 +404,7 @@ This chapter takes a similar approach and is therefore the most low-level and po
 <h2><span class="header-section-number">10.1</span> Scripts</h2>
 <p>If packages are the building blocks of reproducible code, scripts are the glue that holds them together.
 There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.
-There are, however, some rules of thumb and conventions worth following when writing R scipts, outlined below:</p>
+There are, however, some rules of thumb and conventions worth following when writing R scripts, outlined below:</p>
 <ul>
 <li>Write the script in order: just like the script of a play, scripts should have a clear order such as ‘setup’, ‘data processing’ and ‘save results’ (roughly equivalent to ‘beginning’, ‘middle’ and ‘end’ in a film).</li>
 <li>Make the script reproducible: scripts will be of more use to you and others if they are self-contained and can be run by other people. This involves stating dependencies (loading required packages at the outset, like the ‘Prerequisites’ section), reading-in data from persistent sources (e.g. from a reliable website or API) and mentioning any code that must be run before running the script (e.g. with a comment <code># run script0.R before this</code>).</li>
@@ -516,13 +517,11 @@ the <code>.</code> in the commands below refer to ‘each element of the object 
 <a class="sourceLine" id="cb338-4" data-line-number="4"><span class="co">#&gt; [1] 8.04 7.33</span></a></code></pre></div>
 <p>Is this right?
 We can verify the answer by converting <code>poly_mat</code> into a simple feature collection as follows:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb339-2" data-line-number="2"><span class="co">#&gt; Linking to GEOS 3.5.0, GDAL 2.2.2, proj.4 4.8.0</span></a>
-<a class="sourceLine" id="cb339-3" data-line-number="3">poly_sfc =<span class="st"> </span><span class="kw">st_polygon</span>(<span class="kw">list</span>(poly_mat))</a>
-<a class="sourceLine" id="cb339-4" data-line-number="4"><span class="kw">st_area</span>(poly_sfc)</a>
-<a class="sourceLine" id="cb339-5" data-line-number="5"><span class="co">#&gt; [1] 190</span></a>
-<a class="sourceLine" id="cb339-6" data-line-number="6"><span class="kw">st_centroid</span>(poly_sfc)</a>
-<a class="sourceLine" id="cb339-7" data-line-number="7"><span class="co">#&gt; POINT (8.04 7.33)</span></a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">poly_sfc =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_polygon</span>(<span class="kw">list</span>(poly_mat))</a>
+<a class="sourceLine" id="cb339-2" data-line-number="2">sf<span class="op">::</span><span class="kw">st_area</span>(poly_sfc)</a>
+<a class="sourceLine" id="cb339-3" data-line-number="3"><span class="co">#&gt; [1] 190</span></a>
+<a class="sourceLine" id="cb339-4" data-line-number="4">sf<span class="op">::</span><span class="kw">st_centroid</span>(poly_sfc)</a>
+<a class="sourceLine" id="cb339-5" data-line-number="5"><span class="co">#&gt; POINT (8.04 7.33)</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:polycent"></span>
 <img src="figures/polycent-1.png" alt="Illustration of centroid calculation." width="576" />
 <p class="caption">
@@ -545,7 +544,7 @@ We can use the function to find the area of a triangle with a base 3 units wide 
 Providing you know what the output will be, one function can be used as the building block of another.
 This is exactly what we will do in this section.
 Building on the content of the previous section, in which it was shown how the area of a polygon can be found by following a series of steps in order, this section will <em>create a function</em> to calculate the area of any polygon (with caveats that will become clear).
-This function, that we’ll call <code>poly_centroid()</code> will mimick the behaviour of <code>st_centroid()</code> from the <strong>sf</strong> package, with a few additions to show how arguments work.</p>
+This function, that we’ll call <code>poly_centroid()</code> will mimick the behaviour of <code>sf::st_centroid()</code> from the <strong>sf</strong> package, with a few additions to show how arguments work.</p>
 <div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1">poly_centroid =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">output =</span> <span class="st">&quot;matrix&quot;</span>) {</a>
 <a class="sourceLine" id="cb341-2" data-line-number="2">  i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb341-3" data-line-number="3">  Ti =<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(i, <span class="op">~</span><span class="kw">rbind</span>(O, x[.<span class="op">:</span>(. <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O))</a>
@@ -562,14 +561,14 @@ This function, that we’ll call <code>poly_centroid()</code> will mimick the be
 <a class="sourceLine" id="cb342-3" data-line-number="3"><span class="kw">poly_centroid</span>(poly_mat, <span class="dt">output =</span> <span class="st">&quot;area&quot;</span>)</a>
 <a class="sourceLine" id="cb342-4" data-line-number="4"><span class="co">#&gt; [1] 190</span></a></code></pre></div>
 <p>Low-level function such as <code>poly_centroid()</code> can be built-on to provide different types of output.
-If a common need is to return the result as an object of class <code>sf</code>, for example, this can be done by creating a ‘wrapper’ function that modifies the output of <code>poly_centroid()</code> before returning the result:</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">poly_centroid_sf =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+If a common need is to return the result as an object of class <code>sfg</code>, for example, this can be done by creating a ‘wrapper’ function that modifies the output of <code>poly_centroid()</code> before returning the result:</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">poly_centroid_sfg =<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb343-2" data-line-number="2">  centroid_coords =<span class="st"> </span><span class="kw">poly_centroid</span>(x)</a>
-<a class="sourceLine" id="cb343-3" data-line-number="3">  centroid_sf =<span class="st"> </span><span class="kw">st_point</span>(centroid_coords)</a>
-<a class="sourceLine" id="cb343-4" data-line-number="4">  centroid_sf</a>
+<a class="sourceLine" id="cb343-3" data-line-number="3">  centroid_sfg =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_point</span>(centroid_coords)</a>
+<a class="sourceLine" id="cb343-4" data-line-number="4">  centroid_sfg</a>
 <a class="sourceLine" id="cb343-5" data-line-number="5">}</a></code></pre></div>
-<p>We can verify that the output is the same as the output from <code>st_centroid()</code> as follows:</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1"><span class="kw">identical</span>(<span class="kw">poly_centroid_sf</span>(poly_mat), <span class="kw">st_centroid</span>(poly_sfc))</a>
+<p>We can verify that the output is the same as the output from <code>sf::st_centroid()</code> as follows:</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1"><span class="kw">identical</span>(<span class="kw">poly_centroid_sfg</span>(poly_mat), sf<span class="op">::</span><span class="kw">st_centroid</span>(poly_sfc))</a>
 <a class="sourceLine" id="cb344-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <p>An important concept to consider when developing your own function is <em>type stability</em>.
 Functions are type stable if they always return objects of the same class and, generally, this means returning objects of the same type as the input object.
@@ -590,15 +589,22 @@ To see the input data type check working we can try running the function on a ma
 <div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="kw">poly_centroid_type_stable</span>(poly_mat3)</a>
 <a class="sourceLine" id="cb347-2" data-line-number="2"><span class="co">#&gt; Error in poly_centroid_type_stable(poly_mat3) : </span></a>
 <a class="sourceLine" id="cb347-3" data-line-number="3"><span class="co">#&gt;   is.matrix(x) &amp; ncol(x) == 2 is not TRUE </span></a></code></pre></div>
-<!-- ## Case study -->
+</div>
+<div id="case-study" class="section level2">
+<h2><span class="header-section-number">10.4</span> Case study</h2>
 </div>
 <div id="exercises-8" class="section level2">
-<h2><span class="header-section-number">10.4</span> Exercises</h2>
+<h2><span class="header-section-number">10.5</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>In section <a href="algorithms.html#geographic-algorithms">10.2</a> we created a function that finds the geographic centroid of a shape, which is implemented in the <strong>sf</strong> function <code>st_centroid()</code>.
-Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.</li>
+<li>In section <a href="algorithms.html#geographic-algorithms">10.2</a> we created a function that finds the geographic centroid of a shape, which is implemented in the <strong>sf</strong> function <code>sf::st_centroid()</code>.
+Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
+<!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. --></li>
+<li>In section <a href="algorithms.html#functions">10.3</a> we created a different versions of the <code>poly_centroid()</code> function that generated outputs of class <code>sfg</code> (<code>poly_centroid_sfg()</code>) and type-stable <code>matrix</code> outputs (<code>poly_centroid_type_stable()</code>). Further extend the function by creating a version (e.g. called <code>poly_centroid_sf()</code>) that is type stable (only accepts inputs of class <code>sf</code>) <em>and</em> returns <code>sf</code> objects (hint: you may need to convert the object <code>x</code> into a matrix with the command <code>sf::st_coordinates(x)</code>.
+<ul>
+<li>Verify it works by running <code>poly_centroid_sf(sf::st_sf(sf::st_sfc(poly_sfc)))</code></li>
+<li>What error message do you get when you try to run <code>poly_centroid_sf(poly_mat)</code>?</li>
+</ul></li>
 </ol>
-<!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
 
 </div>
 </div>
