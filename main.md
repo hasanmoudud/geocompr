@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-17'
+date: '2018-06-18'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-17 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-18 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -168,9 +168,9 @@ By demonstrating how various spatial operations can be linked, in reproducible '
 Learning how to use the wealth of geospatial tools available from the R command line can be exciting but creating *new ones* can be truly liberating, by removing constraints on your creativity imposed by software.
 By the end of the book you should be able to create new tools for geocomputation in the form of shareable R scripts and functions.
 
-Over the last few decades free and open source software for geospatial data ('FOSS4G') has progressed at an astonishing rate (see [foss4g.org](http://foss4g.org/)).
-Thanks to FOSS4G and the wider open source movement geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download high performance spatial libraries on their computer.
-Open source Geographic Information Systems (GIS) such as QGIS (see [qgis.org](http://qgis.org/en/site/)) have greatly reduced the 'barrier to entry'.
+Over the last few decades free and open source software for geospatial data (FOSS4G) has progressed at an astonishing rate.
+Thanks to organisations such as [FOSS4G](http://foss4g.org/) and the wider open source movement geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download high performance spatial libraries on their computer.
+Open source Geographic Information Systems (GIS) such as [QGIS](http://qgis.org/en/site/) have greatly reduced the 'barrier to entry'.
 Furthermore many GIS programs provide a command-line interface, either from the system command line (the Unix terminal on Linux and Mac or Windows Powershell) via application programming interfaces (APIs) (see Chapter \@ref(gis)) and console windows (such as the [Python Console](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html) in QGIS) to supplement the main graphical user interface (GUI).
 Still, many GIS programs and teaching materials focus on the GUI, which can have the unintended consequence of discouraging reproducibility (see Table \@ref(tab:gdsl)).
 Motivated by the importance of reproducibility for scientific research and other advantages of typing commands rather than pointing and clicking, this book focuses on R's Command Line Interface (CLI) for GIS operations.
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1b28b565e20303c6
+preserve03b8434cea953dba
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3083,7 +3083,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef203f89d0e41b1d6
+preserve21a9f463ccff34b1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6524,7 +6524,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve117f2c95bd2ef029
+preserve0b6fa64c14f77f9e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6622,7 +6622,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebf68b1f463a5d42a
+preservefd0abfd1de3b5e27
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9873,7 +9873,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee072d70c28c8cd69
+preserve428a69df824934b1
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
