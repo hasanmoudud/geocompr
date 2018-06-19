@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0a4ac4d4af12d0e8
+preserve218f9b63d616c635
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveef1088fa98b94511
+preserve782580999f71e0cb
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveec547151c8eebb0e
+preserve9dd68715bb76fd0a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveec11249414a02cdc
+preserveb19c3101afab9946
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7014,12 +7014,11 @@ Note that there is also the new **mapedit** package but its intention is to allo
 
 This general overview already points out the differences between R's CLI and desktop GIS. 
 However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
-The good news is that 'GIS bridges' enable the access to these with the comfort of the R command line.^[
+The good news is that 'GIS bridges' enable the access to these with the comfort of the R command line.
 An early use of the term 'bridge' referred the coupling of R with GRASS [@neteler_open_2008].
 Roger Bivand elaborated on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school (see http://spatial.nhh.no/misc/).
 <!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
 <!-- `geostat_talk16.zip`. -->
-]
 
 The R language was originally designed as an interface to and extension of other languages, especially C and FORTRAN, to enable access to statistical algorithms in a user-friendly and intuitive read-evaluate-print loop (REPL) [@chambers_extending_2016].
 R was not originally intended to be a GIS.
@@ -7552,7 +7551,7 @@ Use `v.select` and `v.extract` for vector data.
 
 ## When to use what?
 
-To recommend a single R-GIS interface is hard since the usage depends on personal preferences, the tasks at hand and your familiarity with different GIS.
+To recommend a single R-GIS interface is hard since the usage depends on personal preferences, the tasks at hand and your familiarity with different GIS software packages.
 The latter means if you have already preferred the GUI of a certain GIS, you are quite likely to use the corresponding interface.
 That being said, **RQGIS** is an appropriate choice for most use cases.
 Its main advantages are:
@@ -7571,8 +7570,20 @@ Therefore, to use the complete set of SAGA and GRASS functions, stick with **RSA
 When doing so, make advantage of **RSAGA**'s numerous user-friendly functions.
 Note also, that **RSAGA** offers native R functions for geocomputation such as `multi.local.function`, `pick.from.grid` and many more.
 **RSAGA** supports much more SAGA versions than (R)QGIS.
-Finally, if you need topological correct data and/or geodatabase-management functionality, we recommend the usage of GRASS. 
+Finally, if you need topological correct data and/or geodatabase-management functionality such as multi-user access, we recommend the usage of GRASS. 
 In addition, if you would like to run simulations with the help of a geodatabase [@krug_clearing_2010], use **rgrass7** directly since **RQGIS** always starts a new GRASS session for each call.
+
+<!-- brain storming
+Advantages:
+SAGA: raster processing and especially terrain analysis, improvable documentation
+GRASS: excellent documentation, topology (network analysis) and topological rules. Uses SQLite in the background so would be the natural choice when one need spatial database capabilities (simulations, multi-user access, permissions, etc.)
+
+## A short note on further APIs, spatial libraries and spatial databases
+- GEOS, GDAL, rgdal, rgeos, sf, gdalUtils
+- spatial databases, rpostgis [@bucklin_rpostgis_2018], `sf::st_read_db()`
+- other CLI/GIS interfaces (Orfeo, TauDem) + show exemplarily how to use GDAL via the command line
+- Reviewer comment: There’s no direct mention of SQL here, very familiar to Oracle, Manifold GIS, PostGIS, GDAL-OGR, Spatialite and now QGIS users, and pervasive in modern SQL Server (which includes R- Revolutions!) and other applications. It’s probably way too much to include a spatial SQL treatment in geomcompr but I think it should be mentioned, it’s very strong complement to CLI and programming in general for spatial and external applications can be easily invoked via SQL which means there’s a lot of promise for future coupling/bridges as well as DIY-potential with so much flexibility.
+-->
 
 ## Exercises
 
@@ -9890,7 +9901,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb1970b4fded56342
+preserve03925eddb55c9ba0
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
