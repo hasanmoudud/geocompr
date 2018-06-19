@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0c450f039813d439
+preserve524e610c4e8d9e38
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservee0704736aefc62a8
+preserve892247410487a1f5
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec3ab97308ed46dad
+preserve611264a024c706d5
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0a10e897a39c5ba1
+preservee172012fb1b58bd0
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7067,7 +7067,7 @@ Please install the long-term release of QGIS, i.e. 2.18, since **RQGIS** so far 
 ```r
 devtools::install_github("jannes-m/RQGIS") # use dev version (for now)
 library(RQGIS)
-set_env()
+set_env(dev = FALSE)
 
 #> $`root`
 #> [1] "C:/OSGeo4W64"
@@ -7162,8 +7162,7 @@ This is necessary for the deletion of sliver polygons later on.
 
 ```r
 # multipart polygons to single polygons
-single = st_cast(union, "MULTIPOLYGON") %>%
-  st_cast("POLYGON")
+single = st_cast(union, "POLYGON")
 ```
 
 One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m^2^ (see left panel of Figure \@ref(fig:sliver-fig)). 
@@ -7569,13 +7568,18 @@ In addition, if you would like to run simulations with the help of a geodatabase
 
 ## Exercises
 
-1. Create two overlapping polygons (`poly_1` and `poly_2`) with the help of the **sf**-package (see chapter \@ref(spatial-class)). 
-Calculate the intersection using:
+1. Create two overlapping polygons (`poly_1` and `poly_2`) with the help of the **sf**-package (see Chapter \@ref(spatial-class)). 
+
+1. Union `poly_1` and `poly_2` using `st_union()` and `qgis:union`.
+What is the difference between the two union operations? 
+How can we use the **sf** package to obtain the same result as QGIS?
+
+1. Calculate the intersection of `poly_1` and `poly_2` using:
 
     - **RQGIS**, **RSAGA** and **rgrass7**
     - **sf**
 
-2. Run `data(dem, package = "RQGIS")` and `data(random_points, package = "RQGIS")`.
+1. Attach `data(dem, package = "RQGIS")` and `data(random_points, package = "RQGIS")`.
 Select randomly a point from `random_points` and find all `dem` pixels that can be seen from this point (hint: viewshed).
 Visualize your result.
 For example, plot a hillshade, and on top of it the digital elevation model, your viewshed output and the point.
@@ -9878,7 +9882,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve7141415701ff32c0
+preserve02e5ed810bb91c33
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

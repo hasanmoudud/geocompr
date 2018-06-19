@@ -506,7 +506,7 @@ To install <strong>RQGIS</strong> a number of dependencies are required, as desc
 Please install the long-term release of QGIS, i.e. 2.18, since <strong>RQGIS</strong> so far does not support QGIS 3.</p>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;jannes-m/RQGIS&quot;</span>) <span class="co"># use dev version (for now)</span></a>
 <a class="sourceLine" id="cb299-2" data-line-number="2"><span class="kw">library</span>(RQGIS)</a>
-<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">set_env</span>()</a>
+<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">set_env</span>(<span class="dt">dev =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb299-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb299-5" data-line-number="5"><span class="co">#&gt; $`root`</span></a>
 <a class="sourceLine" id="cb299-6" data-line-number="6"><span class="co">#&gt; [1] &quot;C:/OSGeo4W64&quot;</span></a>
@@ -562,8 +562,7 @@ Empty geometries might lead to problems in subsequent geoprocessing tasks which 
 <p>Next we convert multipart polygons into single part polygons (also known as explode geometries or casting).
 This is necessary for the deletion of sliver polygons later on.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="co"># multipart polygons to single polygons</span></a>
-<a class="sourceLine" id="cb306-2" data-line-number="2">single =<span class="st"> </span><span class="kw">st_cast</span>(union, <span class="st">&quot;MULTIPOLYGON&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb306-3" data-line-number="3"><span class="st">  </span><span class="kw">st_cast</span>(<span class="st">&quot;POLYGON&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb306-2" data-line-number="2">single =<span class="st"> </span><span class="kw">st_cast</span>(union, <span class="st">&quot;POLYGON&quot;</span>)</a></code></pre></div>
 <p>One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m<sup>2</sup> (see left panel of Figure <a href="gis.html#fig:sliver-fig">9.1</a>).</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">single<span class="op">$</span>area =<span class="st"> </span><span class="kw">st_area</span>(single)</a>
 <a class="sourceLine" id="cb307-2" data-line-number="2"><span class="co"># find polygons which are smaller than 25000 m^2</span></a>
@@ -849,13 +848,16 @@ In addition, if you would like to run simulations with the help of a geodatabase
 <div id="exercises-7" class="section level2">
 <h2><span class="header-section-number">9.6</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li><p>Create two overlapping polygons (<code>poly_1</code> and <code>poly_2</code>) with the help of the <strong>sf</strong>-package (see chapter <a href="spatial-class.html#spatial-class">2</a>).
-Calculate the intersection using:</p>
+<li><p>Create two overlapping polygons (<code>poly_1</code> and <code>poly_2</code>) with the help of the <strong>sf</strong>-package (see Chapter <a href="spatial-class.html#spatial-class">2</a>).</p></li>
+<li><p>Union <code>poly_1</code> and <code>poly_2</code> using <code>st_union()</code> and <code>qgis:union</code>.
+What is the difference between the two union operations?
+How can we use the <strong>sf</strong> package to obtain the same result as QGIS?</p></li>
+<li><p>Calculate the intersection of <code>poly_1</code> and <code>poly_2</code> using:</p>
 <ul>
 <li><strong>RQGIS</strong>, <strong>RSAGA</strong> and <strong>rgrass7</strong></li>
 <li><strong>sf</strong></li>
 </ul></li>
-<li><p>Run <code>data(dem, package = &quot;RQGIS&quot;)</code> and <code>data(random_points, package = &quot;RQGIS&quot;)</code>.
+<li><p>Attach <code>data(dem, package = &quot;RQGIS&quot;)</code> and <code>data(random_points, package = &quot;RQGIS&quot;)</code>.
 Select randomly a point from <code>random_points</code> and find all <code>dem</code> pixels that can be seen from this point (hint: viewshed).
 Visualize your result.
 For example, plot a hillshade, and on top of it the digital elevation model, your viewshed output and the point.
