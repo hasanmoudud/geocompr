@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve840efd733062aa18
+preserveae340c0c8650e031
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservecf8ed36f457483b4
+preserve287dabd15a2d1268
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserved30a092d618d1ddf
+preserve6c8f287c5974da19
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveac19ec8383c2f3c1
+preserve59b61c271929f186
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7332,7 +7332,7 @@ Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-t
 To load and plot the SAGA output file, we use the **raster** package. 
 
 <div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/39205055-8e68a3ce-47f1-11e8-8874-0142d7f591e2.png" alt="SAGA wetness index of Mount Mongón, Peru."  />
+<img src="figures/09_twi.png" alt="SAGA wetness index of Mount Mongón, Peru." width="531" />
 <p class="caption">(\#fig:saga-twi)SAGA wetness index of Mount Mongón, Peru.</p>
 </div>
 
@@ -7340,6 +7340,7 @@ To load and plot the SAGA output file, we use the **raster** package.
 ```r
 library(raster)
 twi = raster::raster(file.path(tempdir(), "twi.sdat"))
+# shown is a version using tmap
 plot(twi, col = RColorBrewer::brewer.pal(n = 9, name = "Blues"))
 ```
 
@@ -9888,7 +9889,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve911e6dec0c10c96c
+preserve033664fc3434ca96
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

@@ -667,14 +667,15 @@ So the function call for calculating the ‘SAGA Wetness Index’ becomes as sim
 <p>Of course, we would like to inspect our result visually (Figure <a href="gis.html#fig:saga-twi">9.2</a>).
 To load and plot the SAGA output file, we use the <strong>raster</strong> package.</p>
 <div class="figure" style="text-align: center"><span id="fig:saga-twi"></span>
-<img src="https://user-images.githubusercontent.com/1825120/39205055-8e68a3ce-47f1-11e8-8874-0142d7f591e2.png" alt="SAGA wetness index of Mount Mongón, Peru."  />
+<img src="figures/09_twi.png" alt="SAGA wetness index of Mount Mongón, Peru." width="531" />
 <p class="caption">
 Figure 9.2: SAGA wetness index of Mount Mongón, Peru.
 </p>
 </div>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
 <a class="sourceLine" id="cb319-2" data-line-number="2">twi =<span class="st"> </span>raster<span class="op">::</span><span class="kw">raster</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;twi.sdat&quot;</span>))</a>
-<a class="sourceLine" id="cb319-3" data-line-number="3"><span class="kw">plot</span>(twi, <span class="dt">col =</span> RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">9</span>, <span class="dt">name =</span> <span class="st">&quot;Blues&quot;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb319-3" data-line-number="3"><span class="co"># shown is a version using tmap</span></a>
+<a class="sourceLine" id="cb319-4" data-line-number="4"><span class="kw">plot</span>(twi, <span class="dt">col =</span> RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">9</span>, <span class="dt">name =</span> <span class="st">&quot;Blues&quot;</span>))</a></code></pre></div>
 <p>You can find a much more extended version of the presented example in the RSAGA vignette <code>vignette(&quot;RSAGA-landslides&quot;)</code>.
 This example includes statistical geocomputing, i.e., it uses a GIS to derive terrain attributes as predictors for a non-linear Generalized Additive Model (GAM) to predict spatially landslide susceptibility <span class="citation">(Muenchow, Brenning, and Richter <a href="#ref-muenchow_geomorphic_2012">2012</a>)</span>.
 The term statistical geocomputation emphasizes the strength of combining R’s data science power with the geoprocessing power of a GIS which is at the very heart of building a bridge from R to GIS.</p>
