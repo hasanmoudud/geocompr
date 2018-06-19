@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveae340c0c8650e031
+preservef367d3b5bd177c1d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve287dabd15a2d1268
+preserve91adde7b1f5a5ba9
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve6c8f287c5974da19
+preserve037ba9f4f7aeabef
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve59b61c271929f186
+preservebd1ab28df2db1781
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7114,6 +7114,7 @@ find_algorithms("union", name_only = TRUE)
 
 If you also want to have a short description for each geoalgorithm, set the `name_only`-parameter to `FALSE`.
 If one has no clue at all what the name of a geoalgorithm might be, one can leave the `search_term`-argument empty which will return a list of all available QGIS geoalgorithms.
+One can find the algorithms also in the [QGIS online documentation](https://docs.qgis.org/2.18/en/docs/user_manual/processing_algs/index.html).
 
 The next step is to find out how `qgis:union` can be used.
 `open_help()` opens the online help of the geoalgorithm in question.
@@ -7564,8 +7565,8 @@ For instance, SAGA uses `.sdat` grid files and GRASS uses its own database forma
 - Its convenience functions to support the access of the online help, R named arguments and automatic default value retrieval.
 Please note that **rgrass7** inspired the latter two features.
 
-However, there are use cases when you certainly should use one of the other R-GIS bridges.
-QGIS only provides access to a subset of GRASS and SAGA functionality.
+By all means, there are use cases when you certainly should use one of the other R-GIS bridges.
+Though QGIS is the only GIS providing a unified interface to several GIS software packages, it only provides access to a subset of the corresponding third-party geoalgorithms (for more information please refer to @muenchow_rqis:_2017).
 Therefore, to use the complete set of SAGA and GRASS functions, stick with **RSAGA** and **rgrass7**. 
 When doing so, make advantage of **RSAGA**'s numerous user-friendly functions.
 Note also, that **RSAGA** offers native R functions for geocomputation such as `multi.local.function`, `pick.from.grid` and many more.
@@ -8228,7 +8229,7 @@ As illustrated in Figure \@ref(fig:building-blocks), these have a clear order.
 <p class="caption">(\#fig:building-blocks)Basic building blocks of the **mlr** package. Source: [openml.github.io](http://openml.github.io/articles/slides/useR2017_tutorial/slides_tutorial_files/ml_abstraction-crop.png). Permission to reuse this figure was kindly granted.</p>
 </div>
 
-The **mlr** modelling process consists of three main stages.
+The **mlr** modeling process consists of three main stages.
 First, a **task** specifies the data (including response and predictor variables) and the model type (such as regression or classification).
 Second, a **learner** defines the specific learning algorithm that is applied to the created task.
 Third, the **resampling** approach assesses the predictive performance of the model, i.e. its ability to generalize to new data (see also section \@ref(intro-cv)).
@@ -9889,7 +9890,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve033664fc3434ca96
+preserve59a1fa6d4a7cbc62
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

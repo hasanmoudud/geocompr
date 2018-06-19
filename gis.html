@@ -533,7 +533,8 @@ Assuming that the short description of the function contains the word “union�
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">find_algorithms</span>(<span class="st">&quot;union&quot;</span>, <span class="dt">name_only =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb302-2" data-line-number="2"><span class="co">#&gt; [1] &quot;qgis:union&quot;        &quot;saga:fuzzyunionor&quot; &quot;saga:union&quot;   </span></a></code></pre></div>
 <p>If you also want to have a short description for each geoalgorithm, set the <code>name_only</code>-parameter to <code>FALSE</code>.
-If one has no clue at all what the name of a geoalgorithm might be, one can leave the <code>search_term</code>-argument empty which will return a list of all available QGIS geoalgorithms.</p>
+If one has no clue at all what the name of a geoalgorithm might be, one can leave the <code>search_term</code>-argument empty which will return a list of all available QGIS geoalgorithms.
+One can find the algorithms also in the <a href="https://docs.qgis.org/2.18/en/docs/user_manual/processing_algs/index.html">QGIS online documentation</a>.</p>
 <p>The next step is to find out how <code>qgis:union</code> can be used.
 <code>open_help()</code> opens the online help of the geoalgorithm in question.
 <code>get_usage()</code> returns all function parameters and default values.</p>
@@ -840,8 +841,8 @@ For instance, SAGA uses <code>.sdat</code> grid files and GRASS uses its own dat
 <li>Its convenience functions to support the access of the online help, R named arguments and automatic default value retrieval.
 Please note that <strong>rgrass7</strong> inspired the latter two features.</li>
 </ul>
-<p>However, there are use cases when you certainly should use one of the other R-GIS bridges.
-QGIS only provides access to a subset of GRASS and SAGA functionality.
+<p>By all means, there are use cases when you certainly should use one of the other R-GIS bridges.
+Though QGIS is the only GIS providing a unified interface to several GIS software packages, it only provides access to a subset of the corresponding third-party geoalgorithms (for more information please refer to <span class="citation">(<span class="citeproc-not-found" data-reference-id="muenchow_rqis:_2017"><strong>???</strong></span>)</span>).
 Therefore, to use the complete set of SAGA and GRASS functions, stick with <strong>RSAGA</strong> and <strong>rgrass7</strong>.
 When doing so, make advantage of <strong>RSAGA</strong>’s numerous user-friendly functions.
 Note also, that <strong>RSAGA</strong> offers native R functions for geocomputation such as <code>multi.local.function</code>, <code>pick.from.grid</code> and many more.
