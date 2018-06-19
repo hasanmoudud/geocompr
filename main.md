@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve524e610c4e8d9e38
+preserve840efd733062aa18
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve892247410487a1f5
+preservecf8ed36f457483b4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve611264a024c706d5
+preserved30a092d618d1ddf
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee172012fb1b58bd0
+preserveac19ec8383c2f3c1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7095,7 +7095,9 @@ Both polygon datasets are available in the **spData** package, and for both we w
 
 
 ```r
-incongruent = st_transform(incongruent, 4326) # requires spData and sf
+data("incongruent", package = "spData")
+data("aggregating_zones", package = "spData")
+incongruent = st_transform(incongruent, 4326)
 aggregating_zones = st_transform(aggregating_zones, 4326)
 ```
 
@@ -7227,7 +7229,7 @@ clean = run_qgis("qgis:eliminatesliverpolygons",
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/09-sliver.png" alt="Sliver polygons colored in blue (left panel). Cleaned polygons (right panel)." width="708" />
+<img src="figures/09_sliver.png" alt="Sliver polygons colored in blue (left panel). Cleaned polygons (right panel)." width="708" />
 <p class="caption">(\#fig:sliver-fig)Sliver polygons colored in blue (left panel). Cleaned polygons (right panel).</p>
 </div>
 
@@ -7241,7 +7243,7 @@ To learn more about **RQGIS** please refer to @muenchow_rqgis:_2017.
 
 ## (R)SAGA
 
-The System for Automated Geoscientific Analyses (SAGA; Table \@ref(tab:gis-comp)) provides the possibility to execute SAGA modules via the command line interface (saga_cmd.exe) (see also [https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/](https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/))
+The System for Automated Geoscientific Analyses (SAGA; Table \@ref(tab:gis-comp)) provides the possibility to execute SAGA modules via the command line interface (saga_cmd.exe under Windows and just saga_cmd under Linux) (see also [https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/(https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/))
 In addition, there is a Python interface (SAGA Python API).
 **RSAGA** uses the former to run SAGA from within R.
 
@@ -7354,19 +7356,18 @@ Academia continued this work since 1997.
 Similar to SAGA, GRASS focused on raster processing in the beginning while only later, since GRASS 6.0, adding advanced vector functionality [@bivand_applied_2013].
 
 We will introduce **rgrass7** with one of the most interesting problems in GIScience - the traveling salesman problem. 
-Suppose a traveling salesman would like to visit 24 customers while covering the shortest distance possible.
-Additionally, the salesman would like to set out his journey at home, and come back to it after having finished all customer visits.
+Suppose a traveling salesman would like to visit 24 customers. 
+Additionally, he would like to start and finish his journey at home which makes a total of 25 locations while covering the shortest distance possible.
 There is a single best solution to this problem, however, to find it, is even for modern computers (mostly) impossible [@longley_geographic_2015].
 In our case, the number of possible solutions correspond to `(25 - 1)! / 2`, i.e., the factorial of 24 divided by 2 (since we do not differentiate between forward or backward direction).
 Even if one iteration can be done in a nanosecond this still corresponds to 9837145 years. 
 Luckily, there are clever, almost optimal solutions which run in a tiny fraction of this inconceivable amount of time.
-GRASS GIS provides one of these solutions (for more details see [v.net.salesman](https://grass.osgeo.org/grass74/manuals/v.net.salesman.html)). 
-In our use case, we would like to find the shortest path between the first 25 bicycle stations (instead of customers) on London's streets.
+GRASS GIS provides one of these solutions (for more details see [v.net.salesman](https://grass.osgeo.org/grass75/manuals/v.net.salesman.html)). 
+In our use case, we would like to find the shortest path between the first 25 bicycle stations (instead of customers) on London's streets (and we simply assume that the first bike station corresponds to the home of our traveling salesman).
 
 
 ```r
-library(spData)
-data(cycle_hire)
+data("cycle_hire", package = "spData")
 points = cycle_hire[1:25, ]
 ```
 
@@ -7392,6 +7393,10 @@ london_streets = opq(b_box) %>%
   `[[`("osm_lines")
 london_streets = dplyr::select(london_streets, 1)
 ```
+
+As a convenience to the reader, one can attach `london_streets` to the global environment using `data("london_streets", package = "spDataLarge")`. 
+
+
 
 Now that we have the data, we can go on and initiate a GRASS session, i.e., we have to create a GRASS geodatabase.
 The GRASS geodatabase system is based on SQLite.
@@ -7429,10 +7434,11 @@ ind = grep("7", link$version)[1]
 # OSGeo4W. Among others, this adds some paths to PATH, which are also needed
 # for running GRASS.
 link2GI::paramGRASSw(link[ind, ])
-grass_path = ifelse(!is.null(link$installation_type) && 
-                      link$installation_type[ind] == "osgeo4W",
-                    file.path(link$instDir[ind], "apps/grass", link$version[ind]),
-                    link$instDir)
+grass_path = 
+  ifelse(test = !is.null(link$installation_type) && 
+           link$installation_type[ind] == "osgeo4W",
+         yes = file.path(link$instDir[ind], "apps/grass", link$version[ind]),
+         no = link$instDir)
 initGRASS(gisBase = grass_path,
           # home parameter necessary under UNIX-based systems
           home = tempdir(),
@@ -7477,7 +7483,7 @@ In time, **rgrass7** will also work with **sf**-objects.
 
 
 ```r
-writeVECT(as(london_streets, "Spatial"), vname = "london_streets")
+writeVECT(SDF = as(london_streets, "Spatial"), vname = "london_streets")
 writeVECT(SDF = as(points[, 1], "Spatial"), vname = "points")
 ```
 
@@ -7514,7 +7520,7 @@ execGRASS(cmd = "v.net.salesman", input = "streets_points_con",
 To visualize our result, we import the output layer into R, convert it into an sf-object , just keep the geometry and visualize it with the help of the **mapview** package (Figure \@ref(fig:grass-mapview)).
 
 <div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/39206067-544455c8-47f4-11e8-8725-e28299e01f52.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London."  />
+<img src="figures/09_shortest_route.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London." width="496" />
 <p class="caption">(\#fig:grass-mapview)Shortest route between 25 cycle hire station on the OSM street network of London.</p>
 </div>
 
@@ -7556,13 +7562,13 @@ For instance, SAGA uses `.sdat` grid files and GRASS uses its own database forma
 - **RQGIS** can also handle spatial objects residing in R as input for geoalgorithms, and loads QGIS output automatically back into R if desired.
 - Its convenience functions to support the access of the online help, R named arguments and automatic default value retrieval.
 Please note that **rgrass7** inspired the latter two features.
-- Currently (but this might change), **RQGIS** supports newer SAGA (2.3.1) versions than **RSAGA** (2.2.3).
 
 However, there are use cases when you certainly should use one of the other R-GIS bridges.
 QGIS only provides access to a subset of GRASS and SAGA functionality.
 Therefore, to use the complete set of SAGA and GRASS functions, stick with **RSAGA** and **rgrass7**. 
 When doing so, make advantage of **RSAGA**'s numerous user-friendly functions.
 Note also, that **RSAGA** offers native R functions for geocomputation such as `multi.local.function`, `pick.from.grid` and many more.
+**RSAGA** supports much more SAGA versions than (R)QGIS.
 Finally, if you need topological correct data and/or geodatabase-management functionality, we recommend the usage of GRASS. 
 In addition, if you would like to run simulations with the help of a geodatabase [@krug_clearing_2010], use **rgrass7** directly since **RQGIS** always starts a new GRASS session for each call.
 
@@ -9882,7 +9888,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve02e5ed810bb91c33
+preserve911e6dec0c10c96c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
