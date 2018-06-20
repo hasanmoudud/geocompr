@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-19">
+<meta name="date" content="2018-06-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -601,7 +601,7 @@ This has led to a demand for ‘tidy spatial data’ which has been partly met b
 An obvious feature of the <strong>tidyverse</strong> is the tendency for packages to work in harmony.
 There is no equivalent <strong>geoverse</strong> but there are attempts at harmonization between packages hosted on in the <a href="https://github.com/r-spatial/discuss/issues/11">r-spatial</a> organisation and a growing number of packages use <strong>sf</strong> (Table <a href="intro.html#tab:revdep">1.2</a>).</p>
 <table>
-<caption><span id="tab:revdep">Table 1.2: </span>The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-06-14 there are 80 packages which import sf.</caption>
+<caption><span id="tab:revdep">Table 1.2: </span>The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-06-19 there are 81 packages which import sf.</caption>
 <thead>
 <tr class="header">
 <th align="left">package</th>
@@ -611,23 +611,23 @@ There is no equivalent <strong>geoverse</strong> but there are attempts at harmo
 <tbody>
 <tr class="odd">
 <td align="left">plotly</td>
-<td align="right">1888</td>
+<td align="right">1914</td>
 </tr>
 <tr class="even">
 <td align="left">raster</td>
-<td align="right">1725</td>
+<td align="right">1728</td>
 </tr>
 <tr class="odd">
 <td align="left">spData</td>
-<td align="right">1429</td>
+<td align="right">1480</td>
 </tr>
 <tr class="even">
 <td align="left">leaflet</td>
-<td align="right">976</td>
+<td align="right">983</td>
 </tr>
 <tr class="odd">
 <td align="left">spdep</td>
-<td align="right">892</td>
+<td align="right">881</td>
 </tr>
 </tbody>
 </table>
@@ -679,7 +679,7 @@ As of 2018 almost 500 packages rely on <strong>sp</strong>, making it an importa
 <!-- https://github.com/edzer/sfr/issues/387#issuecomment-308949140 -->
 Prominent R packages using <strong>sp</strong> include: <strong>gstat</strong>, for spatial and spatio-temporal geostatistics; <strong>geosphere</strong>, for spherical trigonometry; and <strong>adehabitat</strong> used for the analysis of habitat selection by animals <span class="citation">(E. Pebesma and Graeler <a href="#ref-R-gstat">2018</a>; Calenge <a href="#ref-calenge_package_2006">2006</a>; Hijmans <a href="#ref-hijmans_geosphere:_2016">2016</a>)</span>.</p>
 <p>While <strong>rgdal</strong> and <strong>sp</strong> solved many spatial issues, R was still lacked the ability to do geometric operations (see chapter <a href="geometric-operations.html#geometric-operations">5</a>).
-Colin Rundel addressed this issue by developing <strong>rgeos</strong>, an R interface to the open-source geometry library (GEOS) during a Google Summer of Coding project in 2010 <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2017</a>)</span>.
+Colin Rundel addressed this issue by developing <strong>rgeos</strong>, an R interface to the open-source geometry library (GEOS) during a Google Summer of Coding project in 2010 <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span>.
 <strong>rgeos</strong> enabled GEOS to manipulate <strong>sp</strong> objects, with functions such as <code>gIntersection()</code>.</p>
 <p>Another limitation of <strong>sp</strong> — its limited support for raster data — was overcome by <strong>raster</strong>, first released in 2010 <span class="citation">(Hijmans <a href="#ref-R-raster">2017</a>)</span>.
 Its class system and functions support a range raster operations as outlined in section <a href="spatial-class.html#raster-data">2.2</a>.
@@ -765,7 +765,7 @@ As of 2018 map making in R is a hot topic with dedicated packages such as <stron
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
 </div>
 <div id="ref-R-leaflet">
-<p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2018. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="http://rstudio.github.io/leaflet/" class="uri">http://rstudio.github.io/leaflet/</a>.</p>
+<p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2018. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="https://CRAN.R-project.org/package=leaflet" class="uri">https://CRAN.R-project.org/package=leaflet</a>.</p>
 </div>
 <div id="ref-brzustowicz_data_2017">
 <p>Brzustowicz, Michael R. 2017. <em>Data Science with Java: [Practical Methods for Scientists and Engineers]</em>. First edition. Beijing Boston Farnham: OReilly.</p>
@@ -831,7 +831,7 @@ As of 2018 map making in R is a hot topic with dedicated packages such as <stron
 <p>Hijmans, Robert J. 2016. <em>Geosphere: Spherical Trigonometry</em>.</p>
 </div>
 <div id="ref-R-rgeos">
-<p>Bivand, Roger, and Colin Rundel. 2017. <em>Rgeos: Interface to Geometry Engine - Open Source (’Geos’)</em>. <a href="https://CRAN.R-project.org/package=rgeos" class="uri">https://CRAN.R-project.org/package=rgeos</a>.</p>
+<p>Bivand, Roger, and Colin Rundel. 2018. <em>Rgeos: Interface to Geometry Engine - Open Source (’Geos’)</em>. <a href="https://CRAN.R-project.org/package=rgeos" class="uri">https://CRAN.R-project.org/package=rgeos</a>.</p>
 </div>
 <div id="ref-R-raster">
 <p>Hijmans, Robert J. 2017. <em>Raster: Geographic Data Analysis and Modeling</em>. <a href="https://CRAN.R-project.org/package=raster" class="uri">https://CRAN.R-project.org/package=raster</a>.</p>
