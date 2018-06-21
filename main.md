@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-20'
+date: '2018-06-21'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-20 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-21 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve222bcd90c122df74
+preservef1856430163a394a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9a97b64658ab91fc
+preserve2b35fca06fa72e68
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5cf80840c89234e2
+preservefd76bee7ca2f6d55
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef4fe9d7c4f2a8d1f
+preserve7a4fb2082ff44336
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6828,7 +6828,7 @@ A cartogram is a map in which the geometry is proportionately distorted to repre
 Creation of this type of map is possible in R with **cartogram**, which allows for creating continuous and non-contigous area cartograms.
 It is not a mapping package per se, but it allows for construction of distorted spatial objects that could be plotted using any generic mapping package.
 
-The `cartogram()` function creates continuous area cartograms.
+The `cartogram_cont()` function creates continuous area cartograms.
 It accepts an `sf` object and name of the variable (column) as inputs.
 Additionally, it is possible to modify the `intermax` argument - maximum number of iterations for the cartogram transformation.
 For example, we could represent median income in New Zeleand's regions as a continuous cartogram (the right-hand panel of Figure \@ref(fig:cartomap1)) as follows:
@@ -6836,29 +6836,30 @@ For example, we could represent median income in New Zeleand's regions as a cont
 
 ```r
 library(cartogram)
-nz_carto = cartogram(nz, "Median_income", itermax = 5)
+nz_carto = cartogram_cont(nz, "Median_income", itermax = 5)
 tm_shape(nz_carto) + tm_polygons("Median_income")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/cartomap1-1.png" alt="Comparison of regular map (left) and continuous area cartogram (right)." width="576" />
-<p class="caption">(\#fig:cartomap1)Comparison of regular map (left) and continuous area cartogram (right).</p>
+<img src="figures/cartomap1-1.png" alt="Comparison of standard map (left) and continuous area cartogram (right)." width="576" />
+<p class="caption">(\#fig:cartomap1)Comparison of standard map (left) and continuous area cartogram (right).</p>
 </div>
 
-**cartogram** also offers creation of non-contiguous area cartograms with the `nc_cartogram()` function.
-These cartograms are created by scaling down each region based on the provided weighting variable.
-The code chunk below demonstrates creation of a non-contiguous area cartogram of US states' population (the bottom panel of Figure \@ref(fig:cartomap2)):
+**cartogram** also offers creation of non-contiguous area cartograms using  `cartogram_ncont()` and Dorling cartograms using `cartogram_dorling()`.
+Non-contiguous area cartograms are created by scaling down each region based on the provided weighting variable.
+Dorling cartograms consist of circles with their area proportional to the weighting variable.
+The code chunk below demonstrates creation of non-contiguous area and Dorling cartograms of US states' population (Figure \@ref(fig:cartomap2)):
 
 
 ```r
 us_states2163 = st_transform(us_states, 2163)
-us_states2163_nzcarto = nc_cartogram(us_states2163, "total_pop_15")
-tm_shape(us_states2163_nzcarto) + tm_polygons("total_pop_15")
+us_states2163_ncont = cartogram_ncont(us_states2163, "total_pop_15")
+us_states2163_dorling = cartogram_dorling(us_states2163, "total_pop_15")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/cartomap2-1.png" alt="Comparison of regular map (top) and non-continuous area cartogram (bottom)." width="576" />
-<p class="caption">(\#fig:cartomap2)Comparison of regular map (top) and non-continuous area cartogram (bottom).</p>
+<img src="figures/cartomap2-1.png" alt="Comparison of non-continuous area cartogram (top) and Dorling cartogram (bottom)." width="576" />
+<p class="caption">(\#fig:cartomap2)Comparison of non-continuous area cartogram (top) and Dorling cartogram (bottom).</p>
 </div>
 
 ## Exercises
@@ -9901,7 +9902,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve430ef814101b9c4b
+preserveb81d857129c30c50
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

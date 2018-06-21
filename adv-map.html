@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-20">
+<meta name="date" content="2018-06-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1155,29 +1155,30 @@ Therefore, we suggest to read the <a href="https://github.com/rCarto/linemap">li
 <p>A cartogram is a map in which the geometry is proportionately distorted to represent a mapping variable.
 Creation of this type of map is possible in R with <strong>cartogram</strong>, which allows for creating continuous and non-contigous area cartograms.
 It is not a mapping package per se, but it allows for construction of distorted spatial objects that could be plotted using any generic mapping package.</p>
-<p>The <code>cartogram()</code> function creates continuous area cartograms.
+<p>The <code>cartogram_cont()</code> function creates continuous area cartograms.
 It accepts an <code>sf</code> object and name of the variable (column) as inputs.
 Additionally, it is possible to modify the <code>intermax</code> argument - maximum number of iterations for the cartogram transformation.
 For example, we could represent median income in New Zeleand’s regions as a continuous cartogram (the right-hand panel of Figure <a href="adv-map.html#fig:cartomap1">8.27</a>) as follows:</p>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="kw">library</span>(cartogram)</a>
-<a class="sourceLine" id="cb294-2" data-line-number="2">nz_carto =<span class="st"> </span><span class="kw">cartogram</span>(nz, <span class="st">&quot;Median_income&quot;</span>, <span class="dt">itermax =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb294-2" data-line-number="2">nz_carto =<span class="st"> </span><span class="kw">cartogram_cont</span>(nz, <span class="st">&quot;Median_income&quot;</span>, <span class="dt">itermax =</span> <span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb294-3" data-line-number="3"><span class="kw">tm_shape</span>(nz_carto) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;Median_income&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cartomap1"></span>
-<img src="figures/cartomap1-1.png" alt="Comparison of regular map (left) and continuous area cartogram (right)." width="576" />
+<img src="figures/cartomap1-1.png" alt="Comparison of standard map (left) and continuous area cartogram (right)." width="576" />
 <p class="caption">
-Figure 8.27: Comparison of regular map (left) and continuous area cartogram (right).
+Figure 8.27: Comparison of standard map (left) and continuous area cartogram (right).
 </p>
 </div>
-<p><strong>cartogram</strong> also offers creation of non-contiguous area cartograms with the <code>nc_cartogram()</code> function.
-These cartograms are created by scaling down each region based on the provided weighting variable.
-The code chunk below demonstrates creation of a non-contiguous area cartogram of US states’ population (the bottom panel of Figure <a href="adv-map.html#fig:cartomap2">8.28</a>):</p>
+<p><strong>cartogram</strong> also offers creation of non-contiguous area cartograms using <code>cartogram_ncont()</code> and Dorling cartograms using <code>cartogram_dorling()</code>.
+Non-contiguous area cartograms are created by scaling down each region based on the provided weighting variable.
+Dorling cartograms consist of circles with their area proportional to the weighting variable.
+The code chunk below demonstrates creation of non-contiguous area and Dorling cartograms of US states’ population (Figure <a href="adv-map.html#fig:cartomap2">8.28</a>):</p>
 <div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">us_states2163 =<span class="st"> </span><span class="kw">st_transform</span>(us_states, <span class="dv">2163</span>)</a>
-<a class="sourceLine" id="cb295-2" data-line-number="2">us_states2163_nzcarto =<span class="st"> </span><span class="kw">nc_cartogram</span>(us_states2163, <span class="st">&quot;total_pop_15&quot;</span>)</a>
-<a class="sourceLine" id="cb295-3" data-line-number="3"><span class="kw">tm_shape</span>(us_states2163_nzcarto) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;total_pop_15&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb295-2" data-line-number="2">us_states2163_ncont =<span class="st"> </span><span class="kw">cartogram_ncont</span>(us_states2163, <span class="st">&quot;total_pop_15&quot;</span>)</a>
+<a class="sourceLine" id="cb295-3" data-line-number="3">us_states2163_dorling =<span class="st"> </span><span class="kw">cartogram_dorling</span>(us_states2163, <span class="st">&quot;total_pop_15&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cartomap2"></span>
-<img src="figures/cartomap2-1.png" alt="Comparison of regular map (top) and non-continuous area cartogram (bottom)." width="576" />
+<img src="figures/cartomap2-1.png" alt="Comparison of non-continuous area cartogram (top) and Dorling cartogram (bottom)." width="576" />
 <p class="caption">
-Figure 8.28: Comparison of regular map (top) and non-continuous area cartogram (bottom).
+Figure 8.28: Comparison of non-continuous area cartogram (top) and Dorling cartogram (bottom).
 </p>
 </div>
 </div>
