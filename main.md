@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1752bd1d8dbfc9c1
+preserve922dd2e45fee5f39
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve5b1edc1052a30a3c
+preserve25e5c76a3b661e9f
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve960072ebf51b67a1
+preserve85e6c79be055bcc4
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve04df4fe5add353ea
+preserve7e90fa471b507c96
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7636,9 +7636,9 @@ The example also reflects a secondary aim of the chapter: "not to duplicate what
 ## Scripts
 
 If functions distributed in packages are the building blocks of R code, scripts are the glue that holds them together in order to create reproducible workflows.
-To programming novices scripts may sound intimidating but, they are simply plain text files, typically saved with an extension representing the language they contain.
+To programming novices scripts may sound intimidating but they are simply plain text files, typically saved with an extension representing the language they contain.
 R scripts are generally saved with a `.R` extension and named to reflect what they do.
-A simple example is the script `10-hello.R` stored in the `code` folder of the book's repository, which contains the following two lines of code:
+An example is `10-hello.R`, a script file stored in the `code` folder of the book's repository, which contains the following two lines of code:
 
 
 ```r
@@ -7658,9 +7658,9 @@ source("code/10-hello.R")
 There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.^[
 Lines of code that do not contain valid R should be commented to prevent errors, as with line 1 of the `10-hello.R` script.
 ]
-There are, however, some rules of thumb and conventions worth following when writing R scripts, outlined below:
+There are, however, some conventions worth following:
 
-- Write the script in order: just like the script of a play, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
+- Write the script in order: just like the script of a film, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
 - Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure \@ref(fig:codecheck)) and (for long scripts) divide it into sections (e.g. with `Ctl+Shift+R` in RStudio which creates comments ending in `----` that can be 'folded' in the editor).
 - Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.^[
 Prior steps can be referred to with a comment or with an if statement such as `if(!exists("x")) source("x.R")` (which would run the script file `x.R` if the object `x` is missing).
@@ -7679,22 +7679,27 @@ By default RStudio 'code-checks' R scripts and underlines faulty code with a red
 Its main function `reprex()` tests of lines of R code to check if they are reproduible, and provides markdown output to facilitate communication on sites such as GitHub.
 See [reprex.tidyverse.org/](http://reprex.tidyverse.org/) for details.</div>\EndKnitrBlock{rmdnote}
 
+The contents of this section apply to any type of R script.
+A particular consideration with scripts for geocomputation is that they tend to have external dependencies, such as the QGIS dependency to run code in Chapter \@ref(gis).
+Such dependencies should be mentioned as comments in the script or elsewhere in the project of which it is a part.
+
 ## Geographic algorithms
 
-Algorithms can be understood as the computing equivalent of a cooking recipe:
-a series of instructions which, when taken on appropriate ingredients, results in an output that is more useful (or tasty) than the raw ingredients.
-Before considering 'geoalgorithms', it is worth taking a brief detour around the history of the algorithms, to understand how they relate to scripts and functions which are covered next.
+Algorithms are the computing equivalent of a cooking recipe.
+Thy are instructions which, when undertaken on appropriate ingredients, result in useful (or tasty, to continue the metaphor).
+Before diving into the detail a brief history will show how they relate to the more recent concepts of scripts (covered in the previous section) and functions (covered next).
 
-The word algorithm comes from Baghdad when, in the 9^th^ Century AD, an early maths book was published called *Hisab al-jabr w’al-muqabala*.
-The book was translated into Latin and became so popular that the author Muḥammad ibn Mūsā [al-Khwārizmī](https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi) "was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm" [@bellos_alex_2011].^[
-The book's title was also influential, forming the basis of the word *algebra*.
-]
+The word algorithm originated in 9^th^ Century Baghdad with the publication of *Hisab al-jabr w’al-muqabala*, an early maths textbook.
+The book was translated into Latin and became so popular that the author's last name [al-Khwārizmī](https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi) "was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm" [@bellos_alex_2011].
+<!-- ^[ -->
+<!-- The book's title was also influential, forming the basis of the word *algebra*. -->
+<!-- ] -->
 
 In the computing age algorithm refers to a series of steps that take a clearly defined input to produce an output.
-Algorithms often start as in flow charts and psuedocode showing the aim of the process before being implemented in a formal language such as R.
+Algorithms often start as flow charts or psuedocode showing the aim of the process before being implemented in code.
 Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section \@ref(functions)).
 
-Geoalgorithms are a special case: they take geographic data in and, generally, return geographic results.
+Geoalgorithms are a type of algorithm that take geographic data in and, generally, return geographic results.
 Also referred to as *GIS algorithms* and *geometric algorithms*, an entire academic field --- *Computational Geometry*, a branch of computer science --- is dedicated to their study and development [@berg_computational_2008].
 A simple example is an algorithm that finds the centroid of an object.
 This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes.
@@ -7838,8 +7843,6 @@ sf::st_centroid(poly_sfc)
 #> POINT (8.04 7.33)
 ```
 
-
-
 <div class="figure" style="text-align: center">
 <img src="figures/polycent-1.png" alt="Illustration of centroid calculation." width="576" />
 <p class="caption">(\#fig:polycent)Illustration of centroid calculation.</p>
@@ -7848,7 +7851,7 @@ sf::st_centroid(poly_sfc)
 ## Functions
 
 Like algorithms functions take an input and return an output.
-The difference is that functions are 'packaged' so that are R objects in their own right.
+The difference is that functions are 'first class' objects in their own right.
 We have already seen the advantages of using functions in the previous section:
 the function `t_area()` *contains* the steps needed find the area of any 'triangle matrix' and can be called with a single line, whereas the full underlying code requires many lines of code.
 Functions are thus a mechanism for *generalizing* code.
@@ -9934,7 +9937,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef0d1b964e0e20577
+preserve1b742e21d2b8b6e9
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
