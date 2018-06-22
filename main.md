@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-21'
+date: '2018-06-22'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-21 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-22 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecf3e7615427be71d
+preserve278e0c6262182374
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve84830f4f24cc0a28
+preserve94214c245de11a71
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5ec404c193eb746c
+preserveb85f5090e3ea55b2
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveabb209768ff0efe5
+preserve967a648f8f82140d
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7614,8 +7614,9 @@ Additionally, give `mapview` a try.
 ## Prerequisites {-}
 
 Chapter \@ref(intro) states that geocomputation is not only about using existing tools, but developing new ones, "in the form of shareable R scripts and functions".
-The aim of this chapter is to teach how to develop reproducible scripts, functions and algorithms, key components in the process of tool creation.
-The chapter assumes you have an understanding of the geographic data classes introduced in Chapter \@ref(spatial-class), and have already imported the datasets needed for your work, for example from sources outlined in Chapter \@ref(read-write).
+The aim of this chapter is to teach how to create these things.
+After reading it and completing the exercises at the end, you should be able to use methods for geocomputation to create reproducible workflows and --- for confident readers --- develop new tools.
+The chapter assumes you have an understanding of the geographic data classes introduced in Chapter \@ref(spatial-class), and have already imported the datasets needed for your work (see Chapter \@ref(read-write)).
 
 We will consider example R scripts for geographic data and how to make them more reproducible in section \@ref(scripts).
 Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
@@ -9902,7 +9903,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservebb630a9ca1de8010
+preserve376dce154ca04265
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
