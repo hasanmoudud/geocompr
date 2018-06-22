@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7241a318cbcec8f8
+preserve1752bd1d8dbfc9c1
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservee479a90bd0b76995
+preserve5b1edc1052a30a3c
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveed88fe4e4ca8762c
+preserve960072ebf51b67a1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved108094c91022ef2
+preserve04df4fe5add353ea
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7948,6 +7948,13 @@ poly_centroid_type_stable(poly_mat3)
 
 ## Exercises
 
+1. Check-out the script `10-earthquakes.R` in the `code` folder of the book's GitHub [repo](https://github.com/Robinlovelace/geocompr/blob/master/code/10-earthquakes.R).
+    - Try to reproduce the results: how many significant earthquakes were there last month?
+    - Modify the script so that it provides a map with all earthquakes that happened in the past hour.
+<!-- change line 10 to: -->
+<!-- u = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson" -->
+    - How could the documentation be improved?
+  <!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` -->
 1. In section \@ref(geographic-algorithms) we created a function that finds the geographic centroid of a shape, which is implemented in the **sf** function `sf::st_centroid()`.
 Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
@@ -9927,7 +9934,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve6414bec202599e18
+preservef0d1b964e0e20577
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
