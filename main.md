@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6bf9a874075346dd
+preserved69b0aa4556529f5
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved3896d8ffdbce8e8
+preserve06c347ba9dfbd51f
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveb4242a5c519ac461
+preserved4d927d38f06dc61
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2c864db6735a688f
+preservebc197995563b291a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7836,24 +7836,16 @@ c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
 ```
 
 Is this right?
-We can verify the answer by converting `poly_mat` into a simple feature collection as follows:
 
-
-```r
-poly_sfc = sf::st_polygon(list(poly_mat))
-sf::st_area(poly_sfc)
-#> [1] 190
-sf::st_centroid(poly_sfc)
-#> POINT (8.04 7.33)
-```
-
-The area and centroid calculated by `st_area()` and `st_centroid()` respectively are clearly the same.
 We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph).
-We have seen that low-level geographic operations *can* be developed from first principles with base R, although compiled languages such as C++ may be more appropriate if you have the skills and ifperformance is an aim (see section \@ref(software-for-geocomputation)).
+We have seen that low-level geographic operations *can* be developed from first principles with base R, although compiled languages such as C++ may be more appropriate if you have the skills and performance is critical (see section \@ref(software-for-geocomputation)).
 
-It is hoped that the chapter conveys the message that algorithm development is hard:
-imagine if you had to develop such algorithms to replace more advanced functions such as `st_join()`.
-And it should be noted that the algorithm we have developed works only for a very specific type of polygon: convex hulls.
+Algorithm development is hard, especially if it involves learning a new language.
+The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies `sf::st_centroid()`) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.^[
+The CGAL function `CGAL::centroid()` is in fact composed of 7 sub-functions as described at https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
+The source code underlying GEOS function `Centroid::getCentroid()` can be found at https://github.com/libgeos/geos/search?q=getCentroid.
+]
+It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).
 
 ## Functions
 
@@ -7916,6 +7908,7 @@ We can verify that the output is the same as the output from `sf::st_centroid()`
 
 
 ```r
+poly_sfc = sf::st_polygon(list(poly_mat))
 identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
 #> [1] TRUE
 ```
@@ -7956,7 +7949,7 @@ poly_centroid_type_stable(poly_mat3)
 
 ## Case study
 
-## Exercises
+## Exercises {#ex-algorithms}
 
 1. Check-out the script `10-earthquakes.R` in the `code` folder of the book's GitHub [repo](https://github.com/Robinlovelace/geocompr/blob/master/code/10-earthquakes.R).
     - Try to reproduce the results: how many significant earthquakes were there last month?
@@ -7965,8 +7958,14 @@ poly_centroid_type_stable(poly_mat3)
 <!-- u = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson" -->
     - How could the documentation be improved?
   <!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` -->
-1. In section \@ref(geographic-algorithms) we created a function that finds the geographic centroid of a shape, which is implemented in the **sf** function `sf::st_centroid()`.
-Building on this example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
+1. In section \@ref(geographic-algorithms) we calculated that the area and geographic centroid of the polygon represented by `poly_mat` was 190 and 8, 7.3, respectively.
+    - Are the results correct? Verify them by converting `poly_mat` into an `sfc` object (named `poly_sfc`) with `st_polygon()` (hint: this function takes objects of class `list()`) and then using `st_area()` and `st_centroid()`.
+<!-- We can verify the answer by converting `poly_mat` into a simple feature collection as follows, which shows the calculations match: -->
+
+     - It was stated that the algorithm we created only works for *convex hulls*. Define convex hulls (see Chapter \@ref(geometric-operations)) and test the algorithm on a polygon that is *not* a convex hull.
+     - Bonus 1: Think about why the method only works for convex hulls and note changes that would need to be made to the algorithm for other types of shape to be calculated.
+<!-- The algorithm would need to be able to have negative as well as positive area values. -->
+     - Bonus 2: Building on the example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
 1. In section \@ref(functions) we created a different versions of the `poly_centroid()` function that generated outputs of class `sfg` (`poly_centroid_sfg()`) and type-stable `matrix` outputs (`poly_centroid_type_stable()`). Further extend the function by creating a version (e.g. called `poly_centroid_sf()`) that is type stable (only accepts inputs of class `sf`) *and* returns `sf` objects (hint: you may need to convert the object `x` into a matrix with the command `sf::st_coordinates(x)`.
     - Verify it works by running `poly_centroid_sf(sf::st_sf(sf::st_sfc(poly_sfc)))`
@@ -9944,7 +9943,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveca0bc50c10c38349
+preserve142b8f3ef11a05a2
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
