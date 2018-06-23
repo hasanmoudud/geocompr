@@ -312,11 +312,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="algorithms.html"><a href="algorithms.html"><i class="fa fa-check"></i><b>10</b> Algorithms and functions</a><ul>
 <li class="chapter" data-level="" data-path="algorithms.html"><a href="algorithms.html#prerequisites-8"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="10.1" data-path="algorithms.html"><a href="algorithms.html#scripts"><i class="fa fa-check"></i><b>10.1</b> Scripts</a></li>
-<li class="chapter" data-level="10.2" data-path="algorithms.html"><a href="algorithms.html#geographic-algorithms"><i class="fa fa-check"></i><b>10.2</b> Geographic algorithms</a></li>
-<li class="chapter" data-level="10.3" data-path="algorithms.html"><a href="algorithms.html#functions"><i class="fa fa-check"></i><b>10.3</b> Functions</a></li>
-<li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>10.4</b> Case study</a></li>
-<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#ex-algorithms"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
+<li class="chapter" data-level="10.1" data-path="algorithms.html"><a href="algorithms.html#intro-algorithms"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="algorithms.html"><a href="algorithms.html#scripts"><i class="fa fa-check"></i><b>10.2</b> Scripts</a></li>
+<li class="chapter" data-level="10.3" data-path="algorithms.html"><a href="algorithms.html#geographic-algorithms"><i class="fa fa-check"></i><b>10.3</b> Geographic algorithms</a></li>
+<li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#functions"><i class="fa fa-check"></i><b>10.4</b> Functions</a></li>
+<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>10.5</b> Case study</a></li>
+<li class="chapter" data-level="10.6" data-path="algorithms.html"><a href="algorithms.html#ex-algorithms"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>11</b> Statistical learning for geographic data</a><ul>
 <li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
@@ -384,13 +385,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">10</span> Algorithms and functions</h1>
 <div id="prerequisites-8" class="section level2 unnumbered">
 <h2>Prerequisites</h2>
+<p>This chapter primarily uses base R. The <strong>sf</strong> package must also be installed.</p>
+</div>
+<div id="intro-algorithms" class="section level2">
+<h2><span class="header-section-number">10.1</span> Introduction</h2>
 <p>Chapter <a href="intro.html#intro">1</a> states that geocomputation is not only about using existing tools, but developing new ones, “in the form of shareable R scripts and functions”.
 The aim of this chapter is to teach how to create these things.
 After reading it and completing the exercises at the end, you should be able to use methods for geocomputation to create reproducible workflows and — for confident readers — develop new tools.
 The chapter assumes you have an understanding of the geographic data classes introduced in Chapter <a href="spatial-class.html#spatial-class">2</a>, and have already imported the datasets needed for your work (see Chapter <a href="read-write.html#read-write">7</a>).</p>
-<p>We will consider example R scripts for geographic data and how to make them more reproducible in section <a href="algorithms.html#scripts">10.1</a>.
-Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section <a href="algorithms.html#geographic-algorithms">10.2</a>.
-To ease sharing and reproducibility algorithms can be placed into functions, the building blocks of generalizable code, the topic of section <a href="algorithms.html#functions">10.3</a>.</p>
+<p>We will consider example R scripts for geographic data and how to make them more reproducible in section <a href="algorithms.html#scripts">10.2</a>.
+Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section <a href="algorithms.html#geographic-algorithms">10.3</a>.
+To ease sharing and reproducibility algorithms can be placed into functions, the building blocks of generalizable code, the topic of section <a href="algorithms.html#functions">10.4</a>.</p>
 <!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
 <!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
 <!-- , with dozens of lines of non-reproducible psuedo-code and equations -->
@@ -403,7 +408,7 @@ The example also reflects a secondary aim of the chapter: “not to duplicate wh
 <!-- This chapter takes a similar approach and is therefore the most low-level and potentially advanced (in terms of the code, not application) so far. --></p>
 </div>
 <div id="scripts" class="section level2">
-<h2><span class="header-section-number">10.1</span> Scripts</h2>
+<h2><span class="header-section-number">10.2</span> Scripts</h2>
 <p>If functions distributed in packages are the building blocks of R code, scripts are the glue that holds them together in order to create reproducible workflows.
 To programming novices scripts may sound intimidating but they are simply plain text files, typically saved with an extension representing the language they contain.
 R scripts are generally saved with a <code>.R</code> extension and named to reflect what they do.
@@ -441,7 +446,7 @@ A particular consideration with scripts for geocomputation is that they tend to 
 Such dependencies should be mentioned as comments in the script or elsewhere in the project of which it is a part.</p>
 </div>
 <div id="geographic-algorithms" class="section level2">
-<h2><span class="header-section-number">10.2</span> Geographic algorithms</h2>
+<h2><span class="header-section-number">10.3</span> Geographic algorithms</h2>
 <p>Algorithms are the computing equivalent of a cooking recipe.
 Thy are instructions which, when undertaken on appropriate ingredients, result in useful (or tasty, to continue the metaphor).
 Before diving into the detail a brief history will show how they relate to the more recent concepts of scripts (covered in the previous section) and functions (covered next).</p>
@@ -452,7 +457,7 @@ The book was translated into Latin and became so popular that the author’s las
 <!-- ] --></p>
 <p>In the computing age algorithm refers to a series of steps that take a clearly defined input to produce an output.
 Algorithms often start as flow charts or psuedocode showing the aim of the process before being implemented in code.
-Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section <a href="algorithms.html#functions">10.3</a>).</p>
+Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section <a href="algorithms.html#functions">10.4</a>).</p>
 <p>Geoalgorithms are a type of algorithm that take geographic data in and, generally, return geographic results.
 Also referred to as <em>GIS algorithms</em> and <em>geometric algorithms</em>, an entire academic field — <em>Computational Geometry</em>, a branch of computer science — is dedicated to their study and development <span class="citation">(Berg et al. <a href="#ref-berg_computational_2008">2008</a>)</span>.
 A simple example is an algorithm that finds the centroid of an object.
@@ -491,7 +496,7 @@ A translation of this formula into R code that works with the data in the matrix
 <a class="sourceLine" id="cb334-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
 <p>This code chunk works and outputs the correct result.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>
 The problem with the previous code chunk is that it is very and difficult to re-run on another object with the same ‘triangle matrix’ format.
-To make the code more generalizable, let’s convert the code into a function (something described in <a href="algorithms.html#functions">10.3</a>) that works with any matrix represenations of a triangle that we’ll call <code>x</code>:</p>
+To make the code more generalizable, let’s convert the code into a function (something described in <a href="algorithms.html#functions">10.4</a>) that works with any matrix represenations of a triangle that we’ll call <code>x</code>:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">t_area =<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb335-2" data-line-number="2">  <span class="kw">abs</span>(</a>
 <a class="sourceLine" id="cb335-3" data-line-number="3">    x[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
@@ -545,7 +550,7 @@ The experience should, if nothing else, lead to a greater appreciation of low-le
 It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).</p>
 </div>
 <div id="functions" class="section level2">
-<h2><span class="header-section-number">10.3</span> Functions</h2>
+<h2><span class="header-section-number">10.4</span> Functions</h2>
 <p>Like algorithms functions take an input and return an output.
 The difference is that functions are ‘first class’ objects in their own right.
 We have already seen the advantages of using functions in the previous section:
@@ -607,10 +612,10 @@ To see the input data type check working we can try running the function on a ma
 <a class="sourceLine" id="cb348-3" data-line-number="3"><span class="co">#&gt;   is.matrix(x) &amp; ncol(x) == 2 is not TRUE </span></a></code></pre></div>
 </div>
 <div id="case-study" class="section level2">
-<h2><span class="header-section-number">10.4</span> Case study</h2>
+<h2><span class="header-section-number">10.5</span> Case study</h2>
 </div>
 <div id="ex-algorithms" class="section level2">
-<h2><span class="header-section-number">10.5</span> Exercises</h2>
+<h2><span class="header-section-number">10.6</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li>Check-out the script <code>10-earthquakes.R</code> in the <code>code</code> folder of the book’s GitHub <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/10-earthquakes.R">repo</a>.
 <ul>
@@ -621,7 +626,7 @@ To see the input data type check working we can try running the function on a ma
 <li>How could the documentation be improved?
 <!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` --></li>
 </ul></li>
-<li>In section <a href="algorithms.html#geographic-algorithms">10.2</a> we calculated that the area and geographic centroid of the polygon represented by <code>poly_mat</code> was 190 and 8, 7.3, respectively.
+<li>In section <a href="algorithms.html#geographic-algorithms">10.3</a> we calculated that the area and geographic centroid of the polygon represented by <code>poly_mat</code> was 190 and 8, 7.3, respectively.
 <ul>
 <li><p>Are the results correct? Verify them by converting <code>poly_mat</code> into an <code>sfc</code> object (named <code>poly_sfc</code>) with <code>st_polygon()</code> (hint: this function takes objects of class <code>list()</code>) and then using <code>st_area()</code> and <code>st_centroid()</code>.
 <!-- We can verify the answer by converting `poly_mat` into a simple feature collection as follows, which shows the calculations match: --></p></li>
@@ -631,7 +636,7 @@ To see the input data type check working we can try running the function on a ma
 <li>Bonus 2: Building on the example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. --></li>
 </ul></li>
-<li>In section <a href="algorithms.html#functions">10.3</a> we created a different versions of the <code>poly_centroid()</code> function that generated outputs of class <code>sfg</code> (<code>poly_centroid_sfg()</code>) and type-stable <code>matrix</code> outputs (<code>poly_centroid_type_stable()</code>). Further extend the function by creating a version (e.g. called <code>poly_centroid_sf()</code>) that is type stable (only accepts inputs of class <code>sf</code>) <em>and</em> returns <code>sf</code> objects (hint: you may need to convert the object <code>x</code> into a matrix with the command <code>sf::st_coordinates(x)</code>.
+<li>In section <a href="algorithms.html#functions">10.4</a> we created a different versions of the <code>poly_centroid()</code> function that generated outputs of class <code>sfg</code> (<code>poly_centroid_sfg()</code>) and type-stable <code>matrix</code> outputs (<code>poly_centroid_type_stable()</code>). Further extend the function by creating a version (e.g. called <code>poly_centroid_sf()</code>) that is type stable (only accepts inputs of class <code>sf</code>) <em>and</em> returns <code>sf</code> objects (hint: you may need to convert the object <code>x</code> into a matrix with the command <code>sf::st_coordinates(x)</code>.
 <ul>
 <li>Verify it works by running <code>poly_centroid_sf(sf::st_sf(sf::st_sfc(poly_sfc)))</code></li>
 <li>What error message do you get when you try to run <code>poly_centroid_sf(poly_mat)</code>?</li>

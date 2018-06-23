@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved69b0aa4556529f5
+preservef82a69fd4c9b9906
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve06c347ba9dfbd51f
+preserve421808f8868c3b2c
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserved4d927d38f06dc61
+preservebcbcb031269b5bc6
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebc197995563b291a
+preservec8d1978655dba504
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7612,6 +7612,10 @@ Additionally, give `mapview` a try.
 # Algorithms and functions {#algorithms}
 
 ## Prerequisites {-}
+
+This chapter primarily uses base R. The **sf** package must also be installed.
+
+## Introduction {#intro-algorithms}
 
 Chapter \@ref(intro) states that geocomputation is not only about using existing tools, but developing new ones, "in the form of shareable R scripts and functions".
 The aim of this chapter is to teach how to create these things.
@@ -9943,7 +9947,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve142b8f3ef11a05a2
+preserve969f531177cbf137
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
