@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveda2c752ca61ff345
+preserve25cdaff101b9a0bf
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve3d1c451ce9ad9062
+preserve24cbf6683467fb90
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve304b180fa5434d8e
+preserve126e95349911618d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefc117efbc9772e77
+preservecb605ed5623a3f77
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7959,13 +7959,15 @@ poly_centroid_type_stable(poly_mat3)
     - How could the documentation be improved?
   <!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` -->
 1. In section \@ref(geographic-algorithms) we calculated that the area and geographic centroid of the polygon represented by `poly_mat` was 185 and 8.2, 7.2, respectively.
+    - Reproduce the results on your own computer with reference to the script `10-centroid-alg.R`, an implementation of this algorithm (bonus: type out the commands - try to avoid copy-pasting).
+    <!-- Todo: add link to that script file (RL) -->
     - Are the results correct? Verify them by converting `poly_mat` into an `sfc` object (named `poly_sfc`) with `st_polygon()` (hint: this function takes objects of class `list()`) and then using `st_area()` and `st_centroid()`.
 <!-- We can verify the answer by converting `poly_mat` into a simple feature collection as follows, which shows the calculations match: -->
 
-     - It was stated that the algorithm we created only works for *convex hulls*. Define convex hulls (see Chapter \@ref(geometric-operations)) and test the algorithm on a polygon that is *not* a convex hull.
+1. It was stated that the algorithm we created only works for *convex hulls*. Define convex hulls (see Chapter \@ref(geometric-operations)) and test the algorithm on a polygon that is *not* a convex hull.
      - Bonus 1: Think about why the method only works for convex hulls and note changes that would need to be made to the algorithm for other types of shape to be calculated.
 <!-- The algorithm would need to be able to have negative as well as positive area values. -->
-     - Bonus 2: Building on the example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
+     - Bonus 2: Building on the contents of `10-centroid-alg.R`, write an algorithm only using base R functions that can find the total length of linestrings represented in matrix form.
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
 1. In section \@ref(functions) we created a different versions of the `poly_centroid()` function that generated outputs of class `sfg` (`poly_centroid_sfg()`) and type-stable `matrix` outputs (`poly_centroid_type_stable()`). Further extend the function by creating a version (e.g. called `poly_centroid_sf()`) that is type stable (only accepts inputs of class `sf`) *and* returns `sf` objects (hint: you may need to convert the object `x` into a matrix with the command `sf::st_coordinates(x)`.
     - Verify it works by running `poly_centroid_sf(sf::st_sf(sf::st_sfc(poly_sfc)))`
@@ -9943,7 +9945,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve0e6c59880901f948
+preservead2337db05396ffa
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

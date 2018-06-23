@@ -632,12 +632,16 @@ To see the input data type check working we can try running the function on a ma
 </ul></li>
 <li>In section <a href="algorithms.html#geographic-algorithms">10.3</a> we calculated that the area and geographic centroid of the polygon represented by <code>poly_mat</code> was 185 and 8.2, 7.2, respectively.
 <ul>
-<li><p>Are the results correct? Verify them by converting <code>poly_mat</code> into an <code>sfc</code> object (named <code>poly_sfc</code>) with <code>st_polygon()</code> (hint: this function takes objects of class <code>list()</code>) and then using <code>st_area()</code> and <code>st_centroid()</code>.
-<!-- We can verify the answer by converting `poly_mat` into a simple feature collection as follows, which shows the calculations match: --></p></li>
-<li>It was stated that the algorithm we created only works for <em>convex hulls</em>. Define convex hulls (see Chapter <a href="geometric-operations.html#geometric-operations">5</a>) and test the algorithm on a polygon that is <em>not</em> a convex hull.</li>
+<li>Reproduce the results on your own computer with reference to the script <code>10-centroid-alg.R</code>, an implementation of this algorithm (bonus: type out the commands - try to avoid copy-pasting).
+<!-- Todo: add link to that script file (RL) --></li>
+<li>Are the results correct? Verify them by converting <code>poly_mat</code> into an <code>sfc</code> object (named <code>poly_sfc</code>) with <code>st_polygon()</code> (hint: this function takes objects of class <code>list()</code>) and then using <code>st_area()</code> and <code>st_centroid()</code>.
+<!-- We can verify the answer by converting `poly_mat` into a simple feature collection as follows, which shows the calculations match: --></li>
+</ul></li>
+<li>It was stated that the algorithm we created only works for <em>convex hulls</em>. Define convex hulls (see Chapter <a href="geometric-operations.html#geometric-operations">5</a>) and test the algorithm on a polygon that is <em>not</em> a convex hull.
+<ul>
 <li>Bonus 1: Think about why the method only works for convex hulls and note changes that would need to be made to the algorithm for other types of shape to be calculated.
 <!-- The algorithm would need to be able to have negative as well as positive area values. --></li>
-<li>Bonus 2: Building on the example, write a function only using base R functions that can find the total length of linestrings represented in matrix form.
+<li>Bonus 2: Building on the contents of <code>10-centroid-alg.R</code>, write an algorithm only using base R functions that can find the total length of linestrings represented in matrix form.
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. --></li>
 </ul></li>
 <li>In section <a href="algorithms.html#functions">10.4</a> we created a different versions of the <code>poly_centroid()</code> function that generated outputs of class <code>sfg</code> (<code>poly_centroid_sfg()</code>) and type-stable <code>matrix</code> outputs (<code>poly_centroid_type_stable()</code>). Further extend the function by creating a version (e.g. called <code>poly_centroid_sf()</code>) that is type stable (only accepts inputs of class <code>sf</code>) <em>and</em> returns <code>sf</code> objects (hint: you may need to convert the object <code>x</code> into a matrix with the command <code>sf::st_coordinates(x)</code>.
