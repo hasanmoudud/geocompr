@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef82a69fd4c9b9906
+preserveda2c752ca61ff345
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve421808f8868c3b2c
+preserve3d1c451ce9ad9062
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservebcbcb031269b5bc6
+preserve304b180fa5434d8e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec8d1978655dba504
+preservefc117efbc9772e77
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7689,8 +7689,8 @@ Such dependencies should be mentioned as comments in the script or elsewhere in 
 
 ## Geographic algorithms
 
-Algorithms are the computing equivalent of a cooking recipe.
-Thy are instructions which, when undertaken on appropriate ingredients, result in useful (or tasty, to continue the metaphor).
+Algorithms are, roughly speaking, the computing equivalent of a cooking recipe.
+They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs, to continue the metaphor.
 Before diving into the detail a brief history will show how they relate to the more recent concepts of scripts (covered in the previous section) and functions (covered next).
 
 The word algorithm originated in 9^th^ Century Baghdad with the publication of *Hisab al-jabr w’al-muqabala*, an early maths textbook.
@@ -7706,22 +7706,28 @@ Because the same algorithm will be used many times on the different inputs it ra
 Geoalgorithms are a type of algorithm that take geographic data in and, generally, return geographic results.
 Also referred to as *GIS algorithms* and *geometric algorithms*, an entire academic field --- *Computational Geometry*, a branch of computer science --- is dedicated to their study and development [@berg_computational_2008].
 A simple example is an algorithm that finds the centroid of an object.
-This may sound like a simple task but in fact it involves some work, even for the simple case of single polygons containing no holes.
-The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same, something we'll touch on later).
-In this case we'll create a polygon with 5 vertices in base R, building on an example from *GIS Algorithms* [@xiao_gis_2016 see [github.com/gisalgs](https://github.com/gisalgs/geom) for Python code]:
+As with many problems, it helps to break the overall task into chunks at the outset (these could be presented as a schematic diagram or pseudocode):
+
+1. Divide the polygon into contiguous triangles
+2. Find the centroid of each triangle
+3. Find the area of each triangle
+4. Find the area-weighted mean of triangle centroids
+
+These steps may sound straightforward, but require some work, even for the simple case of convex polygons containing no holes that we will use.
+The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same).
+In this case we'll create a polygon with 5 vertices in base R, building on an example from *GIS Algorithms* [@xiao_gis_2016 see [github.com/gisalgs](https://github.com/gisalgs/geom) for Python code], as illustrated in Figure \@ref(fig:polymat):
 
 
 
 
 ```r
-x_coords = c(10, 0, 0, 2, 20, 10)
-y_coords = c(0, 0, 10, 12, 15, 0)
+x_coords = c(10, 0, 0, 12, 20, 10)
+y_coords = c(0, 0, 10, 14, 15, 0)
 poly_mat = cbind(x_coords, y_coords)
 ```
 
-As with many computational (or other) problems, it makes sense to break the problem into smaller chunks.
-All polygons can be broken-down into a finite number of triangles, which have simple rules defining their centroid and area.
-With this in mind, the following commands create a new triangle (`T1`), that can be split-out from the polygon represented by `poly_mat`, and finds its centroid based on the [formula](https://math.stackexchange.com/questions/1702595/proof-for-centroid-formula-for-a-polygon)
+Now we have an example dataset we are ready to undertake step 1 outlined above.
+The code below shows how this can be done by creating of a single triangle (`T1`), that demonstrates the method; it also demonstrates step 2 by calculating its centroid based on the [formula](https://math.stackexchange.com/q/1702595/)
 $1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangles vertices:
 
 
@@ -7732,13 +7738,11 @@ C1 = (T1[1, ] + T1[2, ] + T1[3, ]) / 3 # find centroid
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/unnamed-chunk-5-1.png" alt="Illustration of polygon centroid calculation problem." width="576" />
-<p class="caption">(\#fig:unnamed-chunk-5)Illustration of polygon centroid calculation problem.</p>
+<img src="figures/polymat-1.png" alt="Illustration of polygon centroid calculation problem." width="576" />
+<p class="caption">(\#fig:polymat)Illustration of polygon centroid calculation problem.</p>
 </div>
 
-If we calculate the centroids of all such polygons the solution should be the average x and y values of all centroids.
-There is one problem though: some triangles are more important (larger) than others.
-Therefore to find the geographic centroid we need to take the *weighted mean* of all sub-triangles, with weigths proportional to area. 
+Step 3 is to find the area of each triangle, so a *weighted mean* accounting for the disproportionate impact of large triangles is accounted for. 
 The formula to calculate the area of a triangle is:
 
 $$
@@ -7748,6 +7752,7 @@ $$
 
 Where $A$ to $C$ are the triangle's three points and $x$ and $y$ refer to the x and y dimensions.
 A translation of this formula into R code that works with the data in the matrix representation of a triangle `T1` is as follows (the function `abs()` ensures a positive result):
+<!-- Note: we could replace this code chunk with the function definition if space is an issue (RL) -->
 
 
 ```r
@@ -7760,8 +7765,63 @@ abs(T1[1, 1] * (T1[2, 2] - T1[3, 2]) +
 This code chunk works and outputs the correct result.^[
 as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height --- $A = B * H / 2$ --- ($10 * 10 / 2$ in this case, as can be seen in Figure \@ref(fig:polycent)).
 ]
-The problem with the previous code chunk is that it is very and difficult to re-run on another object with the same 'triangle matrix' format.
-To make the code more generalizable, let's convert the code into a function (something described in \@ref(functions)) that works with any matrix represenations of a triangle that we'll call `x`:
+The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
+To make the code more generalizable, we will see how it can be converted into a function in \@ref(functions).
+
+Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
+This requires *iteration* to create all triangles representing the polygon, illustrated in Figure \@ref(fig:polycent).
+We use `lapply()` for this work because it is concise and is part of base R, but could have chosen `map()` from the **purrr** package or a `for()` loop (see Chapter \@ref(location)):
+
+
+```r
+i = 2:(nrow(poly_mat) - 2)
+Ti = lapply(i, function(x) {
+  rbind(O, poly_mat[x:(x + 1), ], O)
+})
+A = sapply(Ti, function(x) {
+  abs(x[1, 1] * (x[2, 2] - x[3, 2]) +
+        x[2, 1] * (x[3, 2] - x[1, 2]) +
+        x[3, 1] * (x[1, 2] - x[2, 2]) ) / 2
+  })
+C = t(sapply(Ti,  function(x) (x[1, ] + x[2, ] + x[3, ]) / 3))
+```
+
+<div class="figure" style="text-align: center">
+<img src="figures/polycent-1.png" alt="Illustration of iterative centroid algorithm with triangles. The 'x' represents the area-weighted centroid in iterations 2 and 3." width="576" />
+<p class="caption">(\#fig:polycent)Illustration of iterative centroid algorithm with triangles. The 'x' represents the area-weighted centroid in iterations 2 and 3.</p>
+</div>
+
+We are now in a position to complete step 4 to calculate the total area with `sum(A)` and the centroid coordinates of the polygon with `weighted.mean(C[, 1], A)` and `weighted.mean(C[, 2], A)`.
+To demonstrate how algorithms can be shared we have combined the components demonstrated in this section into the script `10-centroid-alg.R` in the `code` folder of the book's repo.
+Running the script with the `poly_mat` object loaded yields the following result (see exercises below to verify these results with reference to `st_centroid()`):
+
+
+```r
+source("code/10-centroid-alg.R")
+#> [1] "The area is: 185"
+#> [1] "The coordinates are: 8.23, 7.23"
+```
+
+<!-- We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph). -->
+The example above shows that low-level geographic operations *can* be developed from first principles with base R.
+It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel.
+Even in cases where a new algorithm is needed, compiled languages such as C++ may be more appropriate than base R for performant solutions (see section \@ref(software-for-geocomputation)).
+
+Algorithm development is hard, especially if it involves learning a new language.
+The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies `sf::st_centroid()`) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.^[
+The CGAL function `CGAL::centroid()` is in fact composed of 7 sub-functions as described at https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
+The source code underlying GEOS function `Centroid::getCentroid()` can be found at https://github.com/libgeos/geos/search?q=getCentroid.
+]
+It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).
+
+## Functions
+
+Like algorithms functions take an input and return an output.
+The difference is that functions are 'first class' objects in their own right.
+We have already seen the advantages of using functions in the previous section:
+the function `t_area()`, created in the code chunk below, *contains* the steps needed find the area of any 'triangle matrix' and can be called with a single line, whereas in the previous section it required 3 lines.
+Functions are thus a mechanism for *generalizing* code.
+<!-- We can use the function to find the area of a triangle with a base 3 units wide and a height of 1, for example, as follows: -->
 
 
 ```r
@@ -7783,7 +7843,7 @@ t_area(T1)
 #> [1] 50
 ```
 
-Likewise we can create a function that find's the triangle's centroid:
+Likewise we can create a function that finds the triangle's centroid:
 
 
 ```r
@@ -7795,70 +7855,6 @@ t_centroid(T1)
 #>     3.33     3.33
 ```
 
-<!-- Commented-out because it makes more sense to do it in base R. Introduce decido later (Robin) -->
-<!-- With these functions created and tested on the first triangle of the polygon, we can we can apply the solution to many triangles, which will be created with the **decido** package: -->
-
-
-
-The next stage is to create the second triangle and calculate its area and centroid.
-This is done in the code chunk below, which binds the 3^rd^ and 4^th^ coordinates onto the 1^st^, and uses the same functions we created above to calculate its area and width:
-
-
-```r
-T2 = rbind(O, poly_mat[3:4, ], O)
-A2 = t_area(T2)
-C2 = t_centroid(T2)
-```
-
-From this point it is not a big leap to see how to create the 3^rd^ and final triangle that constitutes the polygon represented by `poly_mat` (see exercises below).
-However, an aim of algorithms is often to *generalise* and *automate* the solution.
-In the name of automation (and to avoid creating individual triangles manually!) we use *iteration* to create all triangles representing the polygon in a single line, as illustrated in Figure \@ref(polycent).
-We could use a `for()` loop or `lapply()` for this work but have chosen `map()` from the **purrr** package because it allows concise code:
-the `.` in the commands below refer to 'each element of the object `i`' (see `?purrr::map` for details):
-
-
-```r
-i = 2:(nrow(poly_mat) - 2)
-Ti = purrr::map(i, ~rbind(O, poly_mat[.:(. + 1), ], O))
-A = purrr::map_dbl(Ti, ~t_area(.))
-C = t(sapply(Ti, t_centroid))
-```
-
-<div class="figure" style="text-align: center">
-<img src="figures/polycent-1.png" alt="Illustration of iterative centroid algorithm with triangles. The 'x' represents the area-weighted centroid in iterations 2 and 3." width="576" />
-<p class="caption">(\#fig:polycent)Illustration of iterative centroid algorithm with triangles. The 'x' represents the area-weighted centroid in iterations 2 and 3.</p>
-</div>
-
-We are now in a position to calculate the total area and geographic centroid of the polygon as follows:
-
-
-```r
-sum(A)
-#> [1] 190
-c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
-#> [1] 8.04 7.33
-```
-
-Is this right?
-
-We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph).
-We have seen that low-level geographic operations *can* be developed from first principles with base R, although compiled languages such as C++ may be more appropriate if you have the skills and performance is critical (see section \@ref(software-for-geocomputation)).
-
-Algorithm development is hard, especially if it involves learning a new language.
-The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies `sf::st_centroid()`) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.^[
-The CGAL function `CGAL::centroid()` is in fact composed of 7 sub-functions as described at https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
-The source code underlying GEOS function `Centroid::getCentroid()` can be found at https://github.com/libgeos/geos/search?q=getCentroid.
-]
-It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).
-
-## Functions
-
-Like algorithms functions take an input and return an output.
-The difference is that functions are 'first class' objects in their own right.
-We have already seen the advantages of using functions in the previous section:
-the function `t_area()` *contains* the steps needed find the area of any 'triangle matrix' and can be called with a single line, whereas the full underlying code requires many lines of code.
-Functions are thus a mechanism for *generalizing* code.
-We can use the function to find the area of a triangle with a base 3 units wide and a height of 1, for example, as follows:
 
 
 ```r
@@ -7891,9 +7887,9 @@ poly_centroid = function(x, output = "matrix") {
 
 ```r
 poly_centroid(poly_mat)
-#> [1] 8.04 7.33
+#> [1] 8.23 7.23
 poly_centroid(poly_mat, output = "area")
-#> [1] 190
+#> [1] 185
 ```
 
 Low-level function such as `poly_centroid()` can be built-on to provide different types of output.
@@ -7940,7 +7936,7 @@ To see the input data type check working we can try running the function on a ma
 ```r
 poly_mat3 = cbind(1:nrow(poly_mat), poly_mat)
 poly_centroid(poly_mat3)
-#> [1] 6.26 6.58
+#> [1] 5.94 6.78
 ```
 
 
@@ -7962,7 +7958,7 @@ poly_centroid_type_stable(poly_mat3)
 <!-- u = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson" -->
     - How could the documentation be improved?
   <!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` -->
-1. In section \@ref(geographic-algorithms) we calculated that the area and geographic centroid of the polygon represented by `poly_mat` was 190 and 8, 7.3, respectively.
+1. In section \@ref(geographic-algorithms) we calculated that the area and geographic centroid of the polygon represented by `poly_mat` was 185 and 8.2, 7.2, respectively.
     - Are the results correct? Verify them by converting `poly_mat` into an `sfc` object (named `poly_sfc`) with `st_polygon()` (hint: this function takes objects of class `list()`) and then using `st_area()` and `st_centroid()`.
 <!-- We can verify the answer by converting `poly_mat` into a simple feature collection as follows, which shows the calculations match: -->
 
@@ -9947,7 +9943,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve969f531177cbf137
+preserve0e6c59880901f948
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
