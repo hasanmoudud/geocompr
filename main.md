@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-22'
+date: '2018-06-23'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-22 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-23 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve06cebabb7dee4be0
+preserve6bf9a874075346dd
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebf027af9f8bcf347
+preserved3896d8ffdbce8e8
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve53abe93f5091eff1
+preserveb4242a5c519ac461
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec3975bba07fcd1f3
+preserve2c864db6735a688f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7808,18 +7808,22 @@ C2 = t_centroid(T2)
 
 From this point it is not a big leap to see how to create the 3^rd^ and final triangle that constitutes the polygon represented by `poly_mat` (see exercises below).
 However, an aim of algorithms is often to *generalise* and *automate* the solution.
-In the name of automation (and to avoid creating individual triangles manually!) we use *iteration* to create all triangles representing the polygon in a single line.
+In the name of automation (and to avoid creating individual triangles manually!) we use *iteration* to create all triangles representing the polygon in a single line, as illustrated in Figure \@ref(polycent).
 We could use a `for()` loop or `lapply()` for this work but have chosen `map()` from the **purrr** package because it allows concise code:
 the `.` in the commands below refer to 'each element of the object `i`' (see `?purrr::map` for details):
 
 
 ```r
-# Aim: create all triangles representing a polygon
 i = 2:(nrow(poly_mat) - 2)
 Ti = purrr::map(i, ~rbind(O, poly_mat[.:(. + 1), ], O))
 A = purrr::map_dbl(Ti, ~t_area(.))
 C = t(sapply(Ti, t_centroid))
 ```
+
+<div class="figure" style="text-align: center">
+<img src="figures/polycent-1.png" alt="Illustration of iterative centroid algorithm with triangles. The 'x' represents the area-weighted centroid in iterations 2 and 3." width="576" />
+<p class="caption">(\#fig:polycent)Illustration of iterative centroid algorithm with triangles. The 'x' represents the area-weighted centroid in iterations 2 and 3.</p>
+</div>
 
 We are now in a position to calculate the total area and geographic centroid of the polygon as follows:
 
@@ -7843,10 +7847,13 @@ sf::st_centroid(poly_sfc)
 #> POINT (8.04 7.33)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="figures/polycent-1.png" alt="Illustration of centroid calculation." width="576" />
-<p class="caption">(\#fig:polycent)Illustration of centroid calculation.</p>
-</div>
+The area and centroid calculated by `st_area()` and `st_centroid()` respectively are clearly the same.
+We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph).
+We have seen that low-level geographic operations *can* be developed from first principles with base R, although compiled languages such as C++ may be more appropriate if you have the skills and ifperformance is an aim (see section \@ref(software-for-geocomputation)).
+
+It is hoped that the chapter conveys the message that algorithm development is hard:
+imagine if you had to develop such algorithms to replace more advanced functions such as `st_join()`.
+And it should be noted that the algorithm we have developed works only for a very specific type of polygon: convex hulls.
 
 ## Functions
 
@@ -9937,7 +9944,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve7f3ecefef11f9c89
+preserveca0bc50c10c38349
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
