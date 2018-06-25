@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb4d27782a5e8fa97
+preservea1c8a3273af46228
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve38237f8b51b5ee7f
+preservefe384307c6847225
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve8a8d16ef269f23ae
+preserve533b3689f2bddd90
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5b6988ae72dc1c99
+preserve26371a650821f43e
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7588,6 +7588,7 @@ This includes interfaces to spatial libraries, spatial databases and web mapping
 This collection is by no means compreshensive, and in this section we will only have a short glance at a few selected examples.
 Hopefully, this will give you an impression of all the spatial power that is available on your fingertips.
 
+### GDAL as an example for a spatial library
 
 
 ```r
@@ -7632,12 +7633,15 @@ Still, it shows how we can use GDAL via the command-line from within R, and noth
 
 GDAL also supports SQL queries.
 But like R, GDAL is not a (spatial) database management system.
-However, one can easily access, modify and create data stored in databases from within R.
+However, one can easily access, modify and create data stored in databases from within R (see next subsection).
+
+### PostGIS as an example for spatial databases
+
 The most important open-source spatial database is probably PostGIS, which is the spatial extension of PostgreSQL [@obe_postgis_2015].^[SQlite and its spatial extension Spatialite is certainly also important but implicitly we have already presented this approach since GRASS is using SQlite in the background.]
-PostGIS is a relational spatial database management system.
-Spatial databases allow to store spatial and non-spatial data in a structured way and to relate tables (entities) to each other via  as opposed to loose collections of data somewhere stored on disk.
-It is quite useful if your data becomes big which tends to be the case quite quickly with geographic data.
-Of course, PostGIS supports multi-user access and topology.
+PostGIS is a relational spatial database management system supporting multi-user access and topology.
+Spatial databases allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other via unique identifiers (primary and foreign keys) and space (think for instance of a spatial join). 
+Databases are especially useful if your data becomes big which tends to be the case quite quickly with geographic data.
+
 From within R, you can easily query the data you need for a specific analysis. 
 Hence, it is not necessary to attach several gigabyte of geographic data to R's global environment which most likely would crash your session.
 Instead you query the data you need.
@@ -7645,6 +7649,79 @@ As a simple example we here spatially query data we have collected and used for 
 <!-- add Muenchow reference -->
 This should only give you an idea how to work with R and PostGIS in tandem.
 The subsequent code requires a working internet connection.
+
+
+```r
+library("RPostgreSQL")
+#> Loading required package: DBI
+library("sf")
+library("mapview")
+conn = dbConnect(drv = PostgreSQL(), dbname = "rtafdf_zljbqm",
+                 host = "db.qgiscloud.com",
+                 port = "5432", user = "rtafdf_zljbqm", 
+                 password = "d3290ead")
+# what tables are available
+dbListTables(conn)
+#> [1] "spatial_ref_sys" "topology"        "layer"           "restaurants"    
+#> [5] "highways"
+# find out about fields
+dbListFields(conn, "highways")
+#> [1] "qc_id"        "wkb_geometry" "gid"          "feature"     
+#> [5] "name"         "state"
+# rests = rpostgis::pgGetGeom(conn, "restaurants", geom = "wkb_geometry")
+# rests = st_read(conn, query = "select * from restaurants",
+#                 geom_column = "wkb_geometry")
+# routs = st_read(conn, query = "select * from highways", 
+#                 geom_column = "wkb_geometry")
+
+# query US Route 1 in Maryland
+query = paste(
+  "SELECT *",
+  "FROM highways",
+  "WHERE name = 'US Route 1' AND state = 'MD';")
+us_route = st_read(conn, query = query, 
+                   geom = "wkb_geometry")
+plot(st_geometry(us_route))
+mapview(us_route)
+```
+
+preserveff42737f58c175a2
+
+```r
+# Next, overlay the 20-mile corridor:
+query = paste(
+  "SELECT ST_Union(ST_Buffer(wkb_geometry, 1609 * 20))::geometry",
+  "FROM highways",
+  "WHERE name = 'US Route 1' AND state = 'MD';")
+buf = st_read(conn, query = query)
+plot(buf$st_union, col = "lightyellow")
+plot(st_geometry(us_route), add = TRUE)
+
+# Finally, position the Hardee’s in the buffer zone routes.
+query = paste(
+  "SELECT r.wkb_geometry",
+  "FROM restaurants r",
+  "WHERE EXISTS (",
+  "SELECT gid",
+  "FROM highways",
+  "WHERE",
+  "ST_DWithin(r.wkb_geometry, wkb_geometry, 1609 * 20) AND",
+  "name = 'US Route 1' AND",
+  "state = 'MD' AND",
+  "r.franchise = 'HDE');"
+)
+
+hardees = st_read(conn, query = query)
+RPostgreSQL::postgresqlCloseConnection(conn)
+#> [1] TRUE
+
+# plot it
+plot(buf$st_union, col = "lightyellow")
+plot(st_geometry(us_route), add = TRUE)
+plot(st_geometry(hardees), add = TRUE)
+```
+
+<img src="figures/unnamed-chunk-36-1.png" width="576" style="display: block; margin: auto;" /><img src="figures/unnamed-chunk-36-2.png" width="576" style="display: block; margin: auto;" /><img src="figures/unnamed-chunk-36-3.png" width="576" style="display: block; margin: auto;" />
 
 <!--
 
@@ -7655,7 +7732,6 @@ The subsequent code requires a working internet connection.
 # 2. make main_qual_gis a spatial point dataframe using lon/lat cols
 # 3. query all points that have at least one neighbor within 50 km using st_read
 library("RPostgreSQL")
-#> Loading required package: DBI
 drv = dbDriver("PostgreSQL")
 con = dbConnect(drv, dbname = "mzsrnrwj",
                 # change con to elephantsql database
@@ -10041,7 +10117,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveafae775a9f34bba8
+preserveb9a0fb2e3758d850
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
