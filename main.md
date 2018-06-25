@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea1c8a3273af46228
+preserve7665bef1d9a8d0cf
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservefe384307c6847225
+preserve1922a23cbf79273d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve533b3689f2bddd90
+preserve61e46322ccfab6b9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve26371a650821f43e
+preserve1b39cc7f56117a92
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7653,7 +7653,6 @@ The subsequent code requires a working internet connection.
 
 ```r
 library("RPostgreSQL")
-#> Loading required package: DBI
 library("sf")
 library("mapview")
 conn = dbConnect(drv = PostgreSQL(), dbname = "rtafdf_zljbqm",
@@ -7662,12 +7661,8 @@ conn = dbConnect(drv = PostgreSQL(), dbname = "rtafdf_zljbqm",
                  password = "d3290ead")
 # what tables are available
 dbListTables(conn)
-#> [1] "spatial_ref_sys" "topology"        "layer"           "restaurants"    
-#> [5] "highways"
 # find out about fields
 dbListFields(conn, "highways")
-#> [1] "qc_id"        "wkb_geometry" "gid"          "feature"     
-#> [5] "name"         "state"
 # rests = rpostgis::pgGetGeom(conn, "restaurants", geom = "wkb_geometry")
 # rests = st_read(conn, query = "select * from restaurants",
 #                 geom_column = "wkb_geometry")
@@ -7683,11 +7678,6 @@ us_route = st_read(conn, query = query,
                    geom = "wkb_geometry")
 plot(st_geometry(us_route))
 mapview(us_route)
-```
-
-preserveff42737f58c175a2
-
-```r
 # Next, overlay the 20-mile corridor:
 query = paste(
   "SELECT ST_Union(ST_Buffer(wkb_geometry, 1609 * 20))::geometry",
@@ -7712,16 +7702,16 @@ query = paste(
 )
 
 hardees = st_read(conn, query = query)
+# close the connection
 RPostgreSQL::postgresqlCloseConnection(conn)
-#> [1] TRUE
 
-# plot it
+# plot the results of the queries
 plot(buf$st_union, col = "lightyellow")
 plot(st_geometry(us_route), add = TRUE)
 plot(st_geometry(hardees), add = TRUE)
 ```
 
-<img src="figures/unnamed-chunk-36-1.png" width="576" style="display: block; margin: auto;" /><img src="figures/unnamed-chunk-36-2.png" width="576" style="display: block; margin: auto;" /><img src="figures/unnamed-chunk-36-3.png" width="576" style="display: block; margin: auto;" />
+
 
 <!--
 
@@ -7732,6 +7722,7 @@ plot(st_geometry(hardees), add = TRUE)
 # 2. make main_qual_gis a spatial point dataframe using lon/lat cols
 # 3. query all points that have at least one neighbor within 50 km using st_read
 library("RPostgreSQL")
+#> Loading required package: DBI
 drv = dbDriver("PostgreSQL")
 con = dbConnect(drv, dbname = "mzsrnrwj",
                 # change con to elephantsql database
@@ -7751,6 +7742,8 @@ dbListTables(con)
 
 Unlike PostGIS, **sf** only supports spatial vector data. 
 To query and manipulate raster data stored in a PostGIS database, use the **rpostgis** package [@bucklin_rpostgis_2018]. 
+
+
 
 <!--
 - GEOS, GDAL, rgdal, rgeos, sf, gdalUtils
@@ -10117,7 +10110,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb9a0fb2e3758d850
+preserve3e355cf589a75f46
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
