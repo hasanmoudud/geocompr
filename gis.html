@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-23">
+<meta name="date" content="2018-06-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -308,7 +308,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.3</b> (R)SAGA</a></li>
 <li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.4</b> GRASS through <strong>rgrass7</strong></a></li>
 <li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.5</b> When to use what?</a></li>
-<li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#a-short-note-on-further-spatial-apis"><i class="fa fa-check"></i><b>9.6</b> A short note on further spatial APIs</a></li>
+<li class="chapter" data-level="9.7" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="algorithms.html"><a href="algorithms.html"><i class="fa fa-check"></i><b>10</b> Algorithms and functions</a><ul>
 <li class="chapter" data-level="" data-path="algorithms.html"><a href="algorithms.html#prerequisites-8"><i class="fa fa-check"></i>Prerequisites</a></li>
@@ -858,16 +859,102 @@ In addition, if you would like to run simulations with the help of a geodatabase
 Advantages:
 SAGA: raster processing and especially terrain analysis, improvable documentation
 GRASS: excellent documentation, topology (network analysis) and topological rules. Uses SQLite in the background so would be the natural choice when one need spatial database capabilities (simulations, multi-user access, permissions, etc.)
+-->
+<p>Please note that there are a number of further GIS software packages that have a scripting interface but for which there is no dedicated R package that accesses these: gvSig, OpenJump, Orfeo Toolbox and TauDEM.</p>
+</div>
+<div id="a-short-note-on-further-spatial-apis" class="section level2">
+<h2><span class="header-section-number">9.6</span> A short note on further spatial APIs</h2>
+<p>There are of course numerous interfaces to other spatial software packages aside from the interfaces to Desktop GIS software presented in detail in this chapter.
+This includes interfaces to spatial libraries, spatial databases and web mapping services (see also Chapter <a href="adv-map.html#adv-map">8</a>).
+This collection is by no means compreshensive, and in this section we will only have a short glance at a few selected examples.
+Hopefully, this will give you an impression of all the spatial power that is available on your fingertips.</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">link2GI<span class="op">::</span><span class="kw">linkGDAL</span>()</a>
+<a class="sourceLine" id="cb330-2" data-line-number="2">cmd =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;ogrinfo -ro -so -al&quot;</span>, </a>
+<a class="sourceLine" id="cb330-3" data-line-number="3">            <span class="kw">system.file</span>(<span class="st">&quot;shape/nc.shp&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sf&quot;</span>))</a>
+<a class="sourceLine" id="cb330-4" data-line-number="4"><span class="kw">system</span>(cmd)</a>
+<a class="sourceLine" id="cb330-5" data-line-number="5"><span class="co">#&gt;INFO: Open of `C:/Users/pi37pat/Documents/R/win-library/3.5/sf/shape/nc.shp&#39;</span></a>
+<a class="sourceLine" id="cb330-6" data-line-number="6"><span class="co">#&gt;    using driver `ESRI Shapefile&#39; successful.</span></a>
+<a class="sourceLine" id="cb330-7" data-line-number="7"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb330-8" data-line-number="8"><span class="co">#&gt;Layer name: nc</span></a>
+<a class="sourceLine" id="cb330-9" data-line-number="9"><span class="co">#&gt;Metadata:</span></a>
+<a class="sourceLine" id="cb330-10" data-line-number="10"><span class="co">#&gt; DBF_DATE_LAST_UPDATE=2016-10-26</span></a>
+<a class="sourceLine" id="cb330-11" data-line-number="11"><span class="co">#&gt;Geometry: Polygon</span></a>
+<a class="sourceLine" id="cb330-12" data-line-number="12"><span class="co">#&gt;Feature Count: 100</span></a>
+<a class="sourceLine" id="cb330-13" data-line-number="13"><span class="co">#&gt;Extent: (-84.323853, 33.881992) - (-75.456978, 36.589649)</span></a>
+<a class="sourceLine" id="cb330-14" data-line-number="14"><span class="co">#&gt;Layer SRS WKT:</span></a>
+<a class="sourceLine" id="cb330-15" data-line-number="15"><span class="co">#&gt;GEOGCS[&quot;GCS_North_American_1927&quot;,</span></a>
+<a class="sourceLine" id="cb330-16" data-line-number="16"><span class="co">#&gt;    DATUM[&quot;North_American_Datum_1927&quot;,</span></a>
+<a class="sourceLine" id="cb330-17" data-line-number="17"><span class="co">#&gt;        SPHEROID[&quot;Clarke_1866&quot;,6378206.4,294.9786982]],</span></a>
+<a class="sourceLine" id="cb330-18" data-line-number="18"><span class="co">#&gt;    PRIMEM[&quot;Greenwich&quot;,0],</span></a>
+<a class="sourceLine" id="cb330-19" data-line-number="19"><span class="co">#&gt;    UNIT[&quot;Degree&quot;,0.017453292519943295],</span></a>
+<a class="sourceLine" id="cb330-20" data-line-number="20"><span class="co">#&gt;    AUTHORITY[&quot;EPSG&quot;,&quot;4267&quot;]]</span></a>
+<a class="sourceLine" id="cb330-21" data-line-number="21"><span class="co">#&gt;AREA: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-22" data-line-number="22"><span class="co">#&gt;PERIMETER: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-23" data-line-number="23"><span class="co">#&gt;CNTY_: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-24" data-line-number="24"><span class="co">#&gt;CNTY_ID: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-25" data-line-number="25"><span class="co">#&gt;NAME: String (80.0)</span></a>
+<a class="sourceLine" id="cb330-26" data-line-number="26"><span class="co">#&gt;FIPS: String (80.0)</span></a>
+<a class="sourceLine" id="cb330-27" data-line-number="27"><span class="co">#&gt;FIPSNO: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-28" data-line-number="28"><span class="co">#&gt;CRESS_ID: Integer (9.0)</span></a>
+<a class="sourceLine" id="cb330-29" data-line-number="29"><span class="co">#&gt;BIR74: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-30" data-line-number="30"><span class="co">#&gt;SID74: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-31" data-line-number="31"><span class="co">#&gt;NWBIR74: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-32" data-line-number="32"><span class="co">#&gt;BIR79: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-33" data-line-number="33"><span class="co">#&gt;SID79: Real (24.15)</span></a>
+<a class="sourceLine" id="cb330-34" data-line-number="34"><span class="co">#&gt;NWBIR79: Real (24.15)</span></a></code></pre></div>
+<p>This is of course a very simple example.
+Still, it shows how we can use GDAL via the command-line from within R, and nothing stops you from using much more advanced GDAL utilities.</p>
+<p>GDAL also supports SQL queries.
+But like R, GDAL is not a (spatial) database management system.
+However, one can easily access, modify and create data stored in databases from within R.
+The most important open-source spatial database is probably PostGIS, which is the spatial extension of PostgreSQL <span class="citation">(<span class="citeproc-not-found" data-reference-id="obe_postgis_2015"><strong>???</strong></span>)</span>.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a>
+PostGIS is a relational spatial database management system.
+Spatial databases allow to store spatial and non-spatial data in a structured way and to relate tables (entities) to each other via as opposed to loose collections of data somewhere stored on disk.
+It is quite useful if your data becomes big which tends to be the case quite quickly with geographic data.
+Of course, PostGIS supports multi-user access and topology.
+From within R, you can easily query the data you need for a specific analysis.
+Hence, it is not necessary to attach several gigabyte of geographic data to R’s global environment which most likely would crash your session.
+Instead you query the data you need.
+As a simple example we here spatially query data we have collected and used for a review on qualitative GIS.
+<!-- add Muenchow reference -->
+This should only give you an idea how to work with R and PostGIS in tandem.
+The subsequent code requires a working internet connection.</p>
+<!--
 
-## A short note on further APIs, spatial libraries and spatial databases
+```r
+# what to do (talk to Eric):
+# 0. find out how many users are there and what their permissions are
+# 1. add PostGIS extension
+# 2. make main_qual_gis a spatial point dataframe using lon/lat cols
+# 3. query all points that have at least one neighbor within 50 km using st_read
+library("RPostgreSQL")
+#> Loading required package: DBI
+drv = dbDriver("PostgreSQL")
+con = dbConnect(drv, dbname = "mzsrnrwj",
+                # change con to elephantsql database
+                host = "horton.elephantsql.com", port = 5432,
+                user = "mzsrnrwj",
+                password = "Nv8xD1m4lY2bYKsH4Zxw9y4dE86jFcx5")
+# what tables are available
+dbListTables(con)
+#>  [1] "abstract"            "caqdas"              "countries"          
+#>  [4] "geodatabase"         "geovisual"           "gis_application"    
+#>  [7] "gis_software"        "main_qual_gis"       "qual_analyse"       
+#> [10] "qual_data"           "qual_gis_transfer"   "tbl_online_adresses"
+#> [13] "wos"                 "~TMPCLP17901"        "~TMPCLP60511"
+```
+-->
+<!-- add Obe PostGIS in action reference -->
+<p>Unlike PostGIS, <strong>sf</strong> only supports spatial vector data.
+To query and manipulate raster data stored in a PostGIS database, use the <strong>rpostgis</strong> package <span class="citation">(Bucklin and Basille <a href="#ref-bucklin_rpostgis_2018">2018</a>)</span>.</p>
+<!--
 - GEOS, GDAL, rgdal, rgeos, sf, gdalUtils
-- spatial databases, rpostgis [@bucklin_rpostgis_2018], `sf::st_read_db()`
 - other CLI/GIS interfaces (Orfeo, TauDem) + show exemplarily how to use GDAL via the command line
 - Reviewer comment: There’s no direct mention of SQL here, very familiar to Oracle, Manifold GIS, PostGIS, GDAL-OGR, Spatialite and now QGIS users, and pervasive in modern SQL Server (which includes R- Revolutions!) and other applications. It’s probably way too much to include a spatial SQL treatment in geomcompr but I think it should be mentioned, it’s very strong complement to CLI and programming in general for spatial and external applications can be easily invoked via SQL which means there’s a lot of promise for future coupling/bridges as well as DIY-potential with so much flexibility.
 -->
 </div>
 <div id="exercises-7" class="section level2">
-<h2><span class="header-section-number">9.6</span> Exercises</h2>
+<h2><span class="header-section-number">9.7</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li><p>Create two overlapping polygons (<code>poly_1</code> and <code>poly_2</code>) with the help of the <strong>sf</strong>-package (see Chapter <a href="spatial-class.html#spatial-class">2</a>).</p></li>
 <li><p>Union <code>poly_1</code> and <code>poly_2</code> using <code>st_union()</code> and <code>qgis:union</code>.
@@ -922,6 +1009,9 @@ Additionally, give <code>mapview</code> a try.</p></li>
 <div id="ref-krug_clearing_2010">
 <p>Krug, Rainer M., Núria Roura-Pascual, and David M. Richardson. 2010. “Clearing of Invasive Alien Plants Under Different Budget Scenarios: Using a Simulation Model to Test Efficiency.” <em>Biological Invasions</em> 12 (12): 4099–4112. <a href="https://doi.org/10.1007/s10530-010-9827-3" class="uri">https://doi.org/10.1007/s10530-010-9827-3</a>.</p>
 </div>
+<div id="ref-bucklin_rpostgis_2018">
+<p>Bucklin, David, and Mathieu Basille. 2018. “Rpostgis: Linking R with a PostGIS Spatial Database.” <em>The R Journal</em>. <a href="https://journal.r-project.org/archive/2018/RJ-2018-025/index.html" class="uri">https://journal.r-project.org/archive/2018/RJ-2018-025/index.html</a>.</p>
+</div>
 </div>
 <div class="footnotes">
 <hr />
@@ -938,6 +1028,7 @@ GRASS GIS and PostGIS are popular in academia and industry and can be seen as pr
 <!-- To make it clear, though PostGIS provides spatial functions, its main purpose is the handling of spatial objects in a relational database management system. -->
 <!-- Therefore, frequently users store their spatial data in PostGIS, and interact with it through a dedicated GIS software such as QGIS. Of course, you can also use R to access data from PostGIS (**sf**, **rgdal**, **rpostgis**). -->
 <!-- In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.    --><a href="gis.html#fnref39" class="footnote-back">↩</a></p></li>
+<li id="fn40"><p>SQlite and its spatial extension Spatialite is certainly also important but implicitly we have already presented this approach since GRASS is using SQlite in the background.<a href="gis.html#fnref40" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

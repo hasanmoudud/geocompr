@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-23'
+date: '2018-06-25'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-23 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-25 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve25cdaff101b9a0bf
+preserveb4d27782a5e8fa97
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve24cbf6683467fb90
+preserve38237f8b51b5ee7f
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve126e95349911618d
+preserve8a8d16ef269f23ae
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecb605ed5623a3f77
+preserve5b6988ae72dc1c99
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7578,10 +7578,106 @@ In addition, if you would like to run simulations with the help of a geodatabase
 Advantages:
 SAGA: raster processing and especially terrain analysis, improvable documentation
 GRASS: excellent documentation, topology (network analysis) and topological rules. Uses SQLite in the background so would be the natural choice when one need spatial database capabilities (simulations, multi-user access, permissions, etc.)
+-->
 
-## A short note on further APIs, spatial libraries and spatial databases
+Please note that there are a number of further GIS software packages that have a scripting interface but for which there is no dedicated R package that accesses these: gvSig, OpenJump, Orfeo Toolbox and TauDEM.
+
+## A short note on further spatial APIs
+There are of course numerous interfaces to other spatial software packages aside from the interfaces to Desktop GIS software presented in detail in this chapter.
+This includes interfaces to spatial libraries, spatial databases and web mapping services (see also Chapter \@ref(adv-map)).
+This collection is by no means compreshensive, and in this section we will only have a short glance at a few selected examples.
+Hopefully, this will give you an impression of all the spatial power that is available on your fingertips.
+
+
+
+```r
+link2GI::linkGDAL()
+cmd = paste("ogrinfo -ro -so -al", 
+            system.file("shape/nc.shp", package = "sf"))
+system(cmd)
+#>INFO: Open of `C:/Users/pi37pat/Documents/R/win-library/3.5/sf/shape/nc.shp'
+#>    using driver `ESRI Shapefile' successful.
+#>
+#>Layer name: nc
+#>Metadata:
+#> DBF_DATE_LAST_UPDATE=2016-10-26
+#>Geometry: Polygon
+#>Feature Count: 100
+#>Extent: (-84.323853, 33.881992) - (-75.456978, 36.589649)
+#>Layer SRS WKT:
+#>GEOGCS["GCS_North_American_1927",
+#>    DATUM["North_American_Datum_1927",
+#>        SPHEROID["Clarke_1866",6378206.4,294.9786982]],
+#>    PRIMEM["Greenwich",0],
+#>    UNIT["Degree",0.017453292519943295],
+#>    AUTHORITY["EPSG","4267"]]
+#>AREA: Real (24.15)
+#>PERIMETER: Real (24.15)
+#>CNTY_: Real (24.15)
+#>CNTY_ID: Real (24.15)
+#>NAME: String (80.0)
+#>FIPS: String (80.0)
+#>FIPSNO: Real (24.15)
+#>CRESS_ID: Integer (9.0)
+#>BIR74: Real (24.15)
+#>SID74: Real (24.15)
+#>NWBIR74: Real (24.15)
+#>BIR79: Real (24.15)
+#>SID79: Real (24.15)
+#>NWBIR79: Real (24.15)
+```
+
+This is of course a very simple example.
+Still, it shows how we can use GDAL via the command-line from within R, and nothing stops you from using much more advanced GDAL utilities.
+
+GDAL also supports SQL queries.
+But like R, GDAL is not a (spatial) database management system.
+However, one can easily access, modify and create data stored in databases from within R.
+The most important open-source spatial database is probably PostGIS, which is the spatial extension of PostgreSQL [@obe_postgis_2015].^[SQlite and its spatial extension Spatialite is certainly also important but implicitly we have already presented this approach since GRASS is using SQlite in the background.]
+PostGIS is a relational spatial database management system.
+Spatial databases allow to store spatial and non-spatial data in a structured way and to relate tables (entities) to each other via  as opposed to loose collections of data somewhere stored on disk.
+It is quite useful if your data becomes big which tends to be the case quite quickly with geographic data.
+Of course, PostGIS supports multi-user access and topology.
+From within R, you can easily query the data you need for a specific analysis. 
+Hence, it is not necessary to attach several gigabyte of geographic data to R's global environment which most likely would crash your session.
+Instead you query the data you need.
+As a simple example we here spatially query data we have collected and used for a review on qualitative GIS.
+<!-- add Muenchow reference -->
+This should only give you an idea how to work with R and PostGIS in tandem.
+The subsequent code requires a working internet connection.
+
+<!--
+
+```r
+# what to do (talk to Eric):
+# 0. find out how many users are there and what their permissions are
+# 1. add PostGIS extension
+# 2. make main_qual_gis a spatial point dataframe using lon/lat cols
+# 3. query all points that have at least one neighbor within 50 km using st_read
+library("RPostgreSQL")
+#> Loading required package: DBI
+drv = dbDriver("PostgreSQL")
+con = dbConnect(drv, dbname = "mzsrnrwj",
+                # change con to elephantsql database
+                host = "horton.elephantsql.com", port = 5432,
+                user = "mzsrnrwj",
+                password = "Nv8xD1m4lY2bYKsH4Zxw9y4dE86jFcx5")
+# what tables are available
+dbListTables(con)
+#>  [1] "abstract"            "caqdas"              "countries"          
+#>  [4] "geodatabase"         "geovisual"           "gis_application"    
+#>  [7] "gis_software"        "main_qual_gis"       "qual_analyse"       
+#> [10] "qual_data"           "qual_gis_transfer"   "tbl_online_adresses"
+#> [13] "wos"                 "~TMPCLP17901"        "~TMPCLP60511"
+```
+-->
+<!-- add Obe PostGIS in action reference -->
+
+Unlike PostGIS, **sf** only supports spatial vector data. 
+To query and manipulate raster data stored in a PostGIS database, use the **rpostgis** package [@bucklin_rpostgis_2018]. 
+
+<!--
 - GEOS, GDAL, rgdal, rgeos, sf, gdalUtils
-- spatial databases, rpostgis [@bucklin_rpostgis_2018], `sf::st_read_db()`
 - other CLI/GIS interfaces (Orfeo, TauDem) + show exemplarily how to use GDAL via the command line
 - Reviewer comment: There’s no direct mention of SQL here, very familiar to Oracle, Manifold GIS, PostGIS, GDAL-OGR, Spatialite and now QGIS users, and pervasive in modern SQL Server (which includes R- Revolutions!) and other applications. It’s probably way too much to include a spatial SQL treatment in geomcompr but I think it should be mentioned, it’s very strong complement to CLI and programming in general for spatial and external applications can be easily invoked via SQL which means there’s a lot of promise for future coupling/bridges as well as DIY-potential with so much flexibility.
 -->
@@ -9945,7 +10041,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservead2337db05396ffa
+preserveafae775a9f34bba8
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
