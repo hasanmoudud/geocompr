@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-25'
+date: '2018-06-26'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-25 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-26 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7665bef1d9a8d0cf
+preserve94daca07664574fb
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve1922a23cbf79273d
+preservee877d9587fe51afb
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve61e46322ccfab6b9
+preserve2accabeb9d83c2f8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1b39cc7f56117a92
+preserve33332f8baa2011f0
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9978,19 +9978,19 @@ metro_names =
 
 ## Points of interest
 
-The **osmdata** package provides a fantastic and easy-to-use interface to download OSM data (see also section \@ref(retrieving-data)).
-Instead of downloading all shops for the whole of Germany, we restrict the download to the defined metropolitan areas. 
-This relieves the OSM server resources, reduces download time and above all only gives back the shop locations we are interested in.
-The `map()` loop, the `lapply()` equivalent of **purrr**, runs through all eight metropolitan names which subsequently define the bounding box in the `opq()` function (see section \@ref(retrieving-data)).
-Alternatively, we could have provided the bounding box in the form of coordinates ourselves.
-Next, we indicate that we would only like to download `shop` features (see this [page](http://wiki.openstreetmap.org/wiki/Map_Features) for a full list of OpenStreetMap map features).
-`osmdata_sf()` returns a list with several spatial objects (points, lines, polygons, etc.).
-Here, we will only keep the point objects.
+The **osmdata** package provides easy-to-use access to OSM data (see also section \@ref(retrieving-data)).
+Instead of downloading shops for the whole of Germany, we restrict the query to the defined metropolitan areas, reducing computational load and providing shop locations only in areas of interest.
+The subsequent code chunk does this using a number of functions including:
+
+- `map()` (the **tidyverse** equivalent of `lapply()`), which iterates through all eight metropolitan names which subsequently define the bounding box in the OSM query function `opq()` (see section \@ref(retrieving-data)).
+<!-- Alternatively, we could have provided the bounding box in the form of coordinates ourselves. -->
+- `add_osm_feature()` to specify OSM elements with a key value of `shop` (see [wiki.openstreetmap.org](http://wiki.openstreetmap.org/wiki/Map_Features) for a list of common key:value pairs).
+- `osmdata_sf()`, which converts the the OSM data into spatial objects (of class `sf`).
+- `while()`, which tries repeatedly (three times in this case) to download the data if it fails first time.^[
 As with Google's reverse geocode API, the OSM-download will sometimes fail at the first attempt.
-The `while` loop increases the number of download trials to three. 
-If then still no features can be downloaded, it is likely that either there are none available or that another error has occurred before (e.g. due to erroneous output from `opq()`).
-Before running the next code chunk, keep in mind that this will download almost 2GB of data. 
-As a convenience to the reader, we have put the further processed output into the **spDataLarge** package (`data("shops", package = "spDataLarge")`; see also further below).
+]
+Before running this code: please consider it will download almost 2GB of data.
+To save time and resources we have output into **spDataLarge** and should already be available in your environment as an object called `shops`.
 
 
 ```r
@@ -10034,7 +10034,7 @@ Finally, we `rbind` all shops into one large `sf` object.
 # select only specific columns
 shops = map(shops, dplyr::select, osm_id, shop)
 # putting all list elements into a single dataframe
-shops = do.call(shops, rbind)
+shops = do.call(rbind, shops)
 ```
 
 It would have been easier to simply use `map_dfr()`. 
@@ -10110,7 +10110,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve3e355cf589a75f46
+preserve2e2b8afbeeeba367
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
