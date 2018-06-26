@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee0c5268fc15f30e4
+preserve6edc269573813d3a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve109061cafa0dc8e0
+preserve7d2c6be9935ae67a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5261bd764a2d051d
+preserveb06fecba07b057af
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6cf3f935b7795d04
+preserve9e2c3be14f582485
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7696,8 +7696,8 @@ query = paste(
 us_route = st_read(conn, query = query, geom = "wkb_geometry")
 ```
 
-This results in an sf-object named `us_route` of type `sfc_MULTILINESTRING`.
-The next step is to add a 20-mile buffer around the selected highway (Figure @\ref(fig:postgis)).
+This results in an **sf**-object named `us_route` of type `sfc_MULTILINESTRING`.
+The next step is to add a 20-mile buffer around the selected highway (Figure \@ref(fig:postgis)).
 
 
 ```r
@@ -7709,7 +7709,7 @@ buf = st_read(conn, query = query)
 ```
 
 Note that this was a spatial query using functions you should be already familiar with from the **sf**-package.
-The last query will find all Hardee restaurants (`HDE`) within the buffer zone (Figure @\ref(fig:postgis)).
+The last query will find all Hardee restaurants (`HDE`) within the buffer zone (Figure \@ref(fig:postgis)).
 
 
 ```r
@@ -10117,7 +10117,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve545dadd23fb8c85f
+preservee97901a6f8a9c700
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

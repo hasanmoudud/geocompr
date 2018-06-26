@@ -951,15 +951,15 @@ Additionally, <code>st_read()</code> needs to know which column represents the g
 <a class="sourceLine" id="cb334-3" data-line-number="3">  <span class="st">&quot;FROM highways&quot;</span>,</a>
 <a class="sourceLine" id="cb334-4" data-line-number="4">  <span class="st">&quot;WHERE name = &#39;US Route 1&#39; AND state = &#39;MD&#39;;&quot;</span>)</a>
 <a class="sourceLine" id="cb334-5" data-line-number="5">us_route =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query, <span class="dt">geom =</span> <span class="st">&quot;wkb_geometry&quot;</span>)</a></code></pre></div>
-<p>This results in an sf-object named <code>us_route</code> of type <code>sfc_MULTILINESTRING</code>.
-The next step is to add a 20-mile buffer around the selected highway (Figure @(fig:postgis)).</p>
+<p>This results in an <strong>sf</strong>-object named <code>us_route</code> of type <code>sfc_MULTILINESTRING</code>.
+The next step is to add a 20-mile buffer around the selected highway (Figure <a href="gis.html#fig:postgis">9.4</a>).</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">query =<span class="st"> </span><span class="kw">paste</span>(</a>
 <a class="sourceLine" id="cb335-2" data-line-number="2">  <span class="st">&quot;SELECT ST_Union(ST_Buffer(wkb_geometry, 1609 * 20))::geometry&quot;</span>,</a>
 <a class="sourceLine" id="cb335-3" data-line-number="3">  <span class="st">&quot;FROM highways&quot;</span>,</a>
 <a class="sourceLine" id="cb335-4" data-line-number="4">  <span class="st">&quot;WHERE name = &#39;US Route 1&#39; AND state = &#39;MD&#39;;&quot;</span>)</a>
 <a class="sourceLine" id="cb335-5" data-line-number="5">buf =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query)</a></code></pre></div>
 <p>Note that this was a spatial query using functions you should be already familiar with from the <strong>sf</strong>-package.
-The last query will find all Hardee restaurants (<code>HDE</code>) within the buffer zone (Figure @(fig:postgis)).</p>
+The last query will find all Hardee restaurants (<code>HDE</code>) within the buffer zone (Figure <a href="gis.html#fig:postgis">9.4</a>).</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">query =<span class="st"> </span><span class="kw">paste</span>(</a>
 <a class="sourceLine" id="cb336-2" data-line-number="2">  <span class="st">&quot;SELECT r.wkb_geometry&quot;</span>,</a>
 <a class="sourceLine" id="cb336-3" data-line-number="3">  <span class="st">&quot;FROM restaurants r&quot;</span>,</a>
