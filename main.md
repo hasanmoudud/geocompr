@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve94daca07664574fb
+preserve48e0d2e38ed43e13
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservee877d9587fe51afb
+preserve73350fcde1712f8b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2accabeb9d83c2f8
+preservefe5307ae33afd2a1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve33332f8baa2011f0
+preserve800e3a944fe55d96
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9748,7 +9748,7 @@ rcl = list(rcl_pop, rcl_women, rcl_age, rcl_hh)
 
 Note that we have made sure that the order of the reclassification matrices in the list is the same as for the elements of `input_ras`.
 For instance, the first element corresponds in both cases to the population.
-The `for`-loop runs in parallel through each of the elements and applies the reclassification to the corresponding raster layer.
+Subsequently, the `for`-loop applies the reclassification matrix to the corresponding raster layer.
 Finally, the code chunk below makes sure that the `reclass` layers have the same name as the layers of `input_ras`.
 
 
@@ -10110,7 +10110,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve2e2b8afbeeeba367
+preserve09f1119d54d219f3
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

@@ -650,7 +650,7 @@ Similarly, the classes containing the youngest people and highest proportion of 
 <a class="sourceLine" id="cb409-9" data-line-number="9">rcl =<span class="st"> </span><span class="kw">list</span>(rcl_pop, rcl_women, rcl_age, rcl_hh)</a></code></pre></div>
 <p>Note that we have made sure that the order of the reclassification matrices in the list is the same as for the elements of <code>input_ras</code>.
 For instance, the first element corresponds in both cases to the population.
-The <code>for</code>-loop runs in parallel through each of the elements and applies the reclassification to the corresponding raster layer.
+Subsequently, the <code>for</code>-loop applies the reclassification matrix to the corresponding raster layer.
 Finally, the code chunk below makes sure that the <code>reclass</code> layers have the same name as the layers of <code>input_ras</code>.</p>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1">reclass =<span class="st"> </span>input_ras</a>
 <a class="sourceLine" id="cb410-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>raster<span class="op">::</span><span class="kw">nlayers</span>(reclass)) {</a>
