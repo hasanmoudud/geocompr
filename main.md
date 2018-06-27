@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-26'
+date: '2018-06-27'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-26 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-27 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6edc269573813d3a
+preserve64c2b7f33a1e6906
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7d2c6be9935ae67a
+preservec71af41a2c436b30
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveb06fecba07b057af
+preserve84f984dd93ac4ffc
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9e2c3be14f582485
+preservee47c490923897adb
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7640,19 +7640,22 @@ GDAL also supports SQL queries.
 But like R, GDAL is not a (spatial) database management system.
 However, one can easily access, modify and create data stored in databases from within R (see next subsection).
 
-### PostGIS as a spatial database example
+### PostgreSQL/PostGIS as an example for a spatial database
 
-The most important open-source spatial database is probably PostGIS, which is the spatial extension of PostgreSQL [@obe_postgis_2015].^[SQlLite and its spatial extension SpatiaLite are certainly also important but implicitly we have already presented this approach since GRASS is using SQLite in the background.]
-PostGIS is a relational spatial database management system supporting multi-user access and topology.
+The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS [@obe_postgis_2015].^[SQlLite and its spatial extension SpatiaLite are certainly also important but implicitly we have already presented this approach since GRASS is using SQLite in the background.]
+PostgreSQL/PostGIS is a relational spatial database management system supporting multi-user access and topology.
 Spatial databases allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other via unique identifiers (primary and foreign keys) and space (think for instance of a spatial join). 
 Databases are especially useful if your data becomes big which tends to be the case quite quickly with geographic data.
 
 From within R, you can easily query the data you need for a specific analysis. 
 Hence, it is not necessary to attach several gigabyte of geographic data to R's global environment which most likely would crash your session.
 Instead you query the data you need.
-To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from "1.4 Hello real word" of 'PostGIS in action' [@obe_postgis_2015].
+To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from "1.4 Hello real word" of the book **PostGIS in action** [@obe_postgis_2015].
 
-The subsequent code requires a working internet connection since we are accessing a PostgreSQL database with a PostGIS extension which is living in the [QGIScloud](https://qgiscloud.com/).
+The subsequent code requires a working internet connection since we are accessing a PostgreSQL database with a PostGIS extension which is living in the [QGIS Cloud](https://qgiscloud.com/).^[QGIS Cloud lets you store geographic data and maps in the cloud. 
+In the background it uses QGIS Server and PostgreSQL/PostGIS.
+This way, the reader can follow the PostGIS example without the need to have PostgreSQL/PostGIS installed on a local machine.
+We are thankful to the QGIS Cloud team for hosting our PostGIS example.]
 
 
 ```r
@@ -7739,16 +7742,16 @@ RPostgreSQL::postgresqlCloseConnection(conn)
 
 
 <div class="figure" style="text-align: center">
-<img src="figures/postgis-1.png" alt="Visualization of the output of three spatial queries." width="576" />
-<p class="caption">(\#fig:postgis)Visualization of the output of three spatial queries.</p>
+<img src="figures/postgis-1.png" alt="Visualization of the output of three spatial queries: highway (black line), 20-mile buffer (light yellow) and three restaurants (lightblue points) within the buffer." width="576" />
+<p class="caption">(\#fig:postgis)Visualization of the output of three spatial queries: highway (black line), 20-mile buffer (light yellow) and three restaurants (lightblue points) within the buffer.</p>
 </div>
 
 Unlike PostGIS, **sf** only supports spatial vector data. 
 To query and manipulate raster data stored in a PostGIS database, use the **rpostgis** package [@bucklin_rpostgis_2018]. 
 
-Of course, this subsection was only a very brief introduction to PostgreSQL and PostGIS.
+Of course, this subsection was only a very brief introduction to PostgreSQL/PostGIS.
 Please refer to @obe_postgis_2015 for a much more detailed description of the here presented SQL queries and a much more comprehensive introduction to PostGIS and PostgreSQL in general.
-In fact, we believe that it is very good practice to store geographic data in a spatial database while only attaching those subsets to R's global environment which are needed for further statistical analysis.
+In fact, we advocate to store geographic data in a spatial database while only attaching those subsets to R's global environment which are needed for further statistical analysis.
 PostgreSQL/PostGIS is a formidable choice as an open source spatial database.
 But the same is true for SQLite/SpatiaLite and GRASS (which uses SQLite in the background).
 
@@ -10117,7 +10120,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee97901a6f8a9c700
+preserve42f5a215a4b6be43
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
