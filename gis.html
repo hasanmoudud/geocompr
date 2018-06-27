@@ -873,7 +873,6 @@ This collection is by no means compreshensive, and in this section we will only 
 Hopefully, this will give you an impression of all the spatial power that is available on your fingertips.</p>
 <div id="gdal-as-an-example-for-a-spatial-library" class="section level3">
 <h3><span class="header-section-number">9.6.1</span> GDAL as an example for a spatial library</h3>
-<p>Attaching <strong>sf</strong> automatically links to GDAL, GEOS and proj.4</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">link2GI<span class="op">::</span><span class="kw">linkGDAL</span>()</a>
 <a class="sourceLine" id="cb330-2" data-line-number="2">cmd =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;ogrinfo -ro -so -al&quot;</span>, </a>
 <a class="sourceLine" id="cb330-3" data-line-number="3">            <span class="kw">system.file</span>(<span class="st">&quot;shape/nc.shp&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sf&quot;</span>))</a>
@@ -910,9 +909,9 @@ Hopefully, this will give you an impression of all the spatial power that is ava
 <a class="sourceLine" id="cb330-34" data-line-number="34"><span class="co">#&gt;NWBIR79: Real (24.15)</span></a></code></pre></div>
 <p>This is of course a very simple example.
 Still, it shows how we can use GDAL via the command-line from within R, and nothing stops you from using much more advanced GDAL/OGR utilities.
-In fact, <strong>sf</strong> links among others to GDAL.
-Instead of using the command-line interface, <strong>sf</strong></p>
-<p>(c)lean Rcpp interface to external dependencies GDAL/GEOS/Proj.4</p>
+Note that <strong>sf</strong> automatically brings most of the power of GDAL, GEOS and proj.4 to R.
+Instead of using the command-line interface to access the functionality of these external dependencies, <strong>sf</strong> uses an <strong>Rcpp</strong> interface.
+This is an even better approach since it circumvents the command-line and allows a direct access to GDAL/GEOS/Proj.4 all of which are written in either C++ or C.</p>
 <p>GDAL also supports SQL queries.
 But like R, GDAL is not a (spatial) database management system.
 However, one can easily access, modify and create data stored in databases from within R (see next subsection).</p>
@@ -939,7 +938,7 @@ To give you an idea how to work with R and PostGIS in tandem, we present SQL que
 <a class="sourceLine" id="cb332-3" data-line-number="3"><span class="co">#&gt;[5] &quot;highways&quot; </span></a></code></pre></div>
 <p>We are only interested in the <code>restaurants</code> and the <code>highways</code> tables.
 The former represents the locations of fast-food restaurants in the US and the latter are principal US highways.
-To find out about available attributes, we can run:</p>
+To find out about attributes available in a table, we can run:</p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1"><span class="kw">dbListFields</span>(conn, <span class="st">&quot;highways&quot;</span>)</a>
 <a class="sourceLine" id="cb333-2" data-line-number="2"><span class="co">#&gt;[1] &quot;qc_id&quot;        &quot;wkb_geometry&quot; &quot;gid&quot;          &quot;feature&quot;     </span></a>
 <a class="sourceLine" id="cb333-3" data-line-number="3"><span class="co">#&gt;[5] &quot;name&quot;         &quot;state&quot;   </span></a></code></pre></div>
@@ -985,8 +984,8 @@ Figure 9.4: Visualization of the output of three spatial queries: highway (black
 <p>Unlike PostGIS, <strong>sf</strong> only supports spatial vector data.
 To query and manipulate raster data stored in a PostGIS database, use the <strong>rpostgis</strong> package <span class="citation">(Bucklin and Basille <a href="#ref-bucklin_rpostgis_2018">2018</a>)</span>.</p>
 <p>Of course, this subsection was only a very brief introduction to PostgreSQL/PostGIS.
+Nevertheless, we would like to encourage the practice of storing geographic and non-geographic data in a spatial database while only attaching those subsets to R’s global environment which are needed for further statistical analysis.
 Please refer to <span class="citation">Obe and Hsu (<a href="#ref-obe_postgis_2015">2015</a>)</span> for a much more detailed description of the here presented SQL queries and a much more comprehensive introduction to PostGIS and PostgreSQL in general.
-In fact, we advocate to store geographic data in a spatial database while only attaching those subsets to R’s global environment which are needed for further statistical analysis.
 PostgreSQL/PostGIS is a formidable choice as an open source spatial database.
 But the same is true for SQLite/SpatiaLite and GRASS (which uses SQLite in the background).</p>
 <!--

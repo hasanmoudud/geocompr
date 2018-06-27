@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve64c2b7f33a1e6906
+preserveaf3d033273d2b33c
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservec71af41a2c436b30
+preservee0c7cd5748d2d9bd
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve84f984dd93ac4ffc
+preservececd69135840a77d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee47c490923897adb
+preserve301c2962a622346a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7590,7 +7590,6 @@ Hopefully, this will give you an impression of all the spatial power that is ava
 
 ### GDAL as an example for a spatial library
 
-Attaching **sf** automatically links to GDAL, GEOS and proj.4 
 
 ```r
 link2GI::linkGDAL()
@@ -7631,10 +7630,9 @@ system(cmd)
 
 This is of course a very simple example.
 Still, it shows how we can use GDAL via the command-line from within R, and nothing stops you from using much more advanced GDAL/OGR utilities.
-In fact, **sf** links among others to GDAL.
-Instead of using the command-line interface, **sf** 
-
-(c)lean Rcpp interface to external dependencies GDAL/GEOS/Proj.4
+Note that **sf** automatically brings most of the power of GDAL, GEOS and proj.4 to R.
+Instead of using the command-line interface to access the functionality of these external dependencies, **sf** uses an **Rcpp** interface.
+This is an even better approach since it circumvents the command-line and allows a direct access to  GDAL/GEOS/Proj.4 all of which are written in either C++ or C.
 
 GDAL also supports SQL queries.
 But like R, GDAL is not a (spatial) database management system.
@@ -7677,7 +7675,7 @@ dbListTables(conn)
 
 We are only interested in the `restaurants` and the `highways` tables.
 The former represents the locations of fast-food restaurants in the US and the latter are principal US highways.
-To find out about available attributes, we can run:
+To find out about attributes available in a table, we can run:
 
 
 ```r
@@ -7750,8 +7748,8 @@ Unlike PostGIS, **sf** only supports spatial vector data.
 To query and manipulate raster data stored in a PostGIS database, use the **rpostgis** package [@bucklin_rpostgis_2018]. 
 
 Of course, this subsection was only a very brief introduction to PostgreSQL/PostGIS.
+Nevertheless, we would like to encourage the practice of storing geographic and non-geographic data in a spatial database while only attaching those subsets to R's global environment which are needed for further statistical analysis.
 Please refer to @obe_postgis_2015 for a much more detailed description of the here presented SQL queries and a much more comprehensive introduction to PostGIS and PostgreSQL in general.
-In fact, we advocate to store geographic data in a spatial database while only attaching those subsets to R's global environment which are needed for further statistical analysis.
 PostgreSQL/PostGIS is a formidable choice as an open source spatial database.
 But the same is true for SQLite/SpatiaLite and GRASS (which uses SQLite in the background).
 
@@ -10120,7 +10118,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve42f5a215a4b6be43
+preserve8b27e14d4d907541
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
