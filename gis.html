@@ -928,7 +928,7 @@ This is an even better approach since it circumvents the command-line and allows
 <h3><span class="header-section-number">9.6.2</span> Spatial database API - PostgreSQL/PostGIS</h3>
 <p>Spatial database management systems (spatial DBMS) allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other explicitly via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join).
 Geographic data tends to become big quite quickly.
-Databases are especially useful for big data and querying it efficiently spatially and non-spatially.
+Databases are especially useful for large and big data and querying it efficiently spatially and non-spatially.
 Additionally, spatial DBMS provide multi-user access and topology support.
 The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
 <p>From within R, one can easily query data from a (spatial) DBMS which is needed for a specific analysis.
@@ -994,10 +994,11 @@ Figure 9.4: Visualization of the output of three spatial queries: highway (black
 <p>Unlike PostGIS, <strong>sf</strong> only supports spatial vector data.
 To query and manipulate raster data stored in a PostGIS database, use the <strong>rpostgis</strong> package <span class="citation">(Bucklin and Basille <a href="#ref-bucklin_rpostgis_2018">2018</a>)</span> and/or use command-line tools such as <code>rastertopgsql</code> which comes as part of the PostGIS installation.</p>
 <p>Of course, this subsection was only a very brief introduction to PostgreSQL/PostGIS.
-Nevertheless, we would like to encourage the practice of storing geographic and non-geographic data in a spatial database while only attaching those subsets to R’s global environment which are needed for further (geo-)statistical analysis.
-Please refer to <span class="citation">Obe and Hsu (<a href="#ref-obe_postgis_2015">2015</a>)</span> for a much more detailed description of the here presented SQL queries and a much more comprehensive introduction to PostGIS and PostgreSQL in general.
+Nevertheless, we would like to encourage the practice of storing geographic and non-geographic data in a spatial DBMS while only attaching those subsets to R’s global environment which are needed for further (geo-)statistical analysis.
+Please refer to <span class="citation">Obe and Hsu (<a href="#ref-obe_postgis_2015">2015</a>)</span> for a much more detailed description of the here presented SQL queries and a much more comprehensive introduction to PostgreSQL/PostGIS in general.
 PostgreSQL/PostGIS is a formidable choice as an open source spatial database.
-But the same is true for SQLite/SpatiaLite and GRASS (which uses SQLite in the background).</p>
+But the same is true for the lightweight SQLite/SpatiaLite database engine and GRASS which uses SQLite in the background (see section <a href="#grass7"><strong>??</strong></a>).
+As a final note, if your data is even getting to big for PostgreSQL/PostGIS and you require massive spatial data management and query performance, then the logical next step is to use large-scale geographic querying on distributed computing systems, as for example, provided by GeoMesa (<a href="http://www.geomesa.org/" class="uri">http://www.geomesa.org/</a>) or GeoSpark <span class="citation">(<a href="http://geospark.datasyslab.org/" class="uri">http://geospark.datasyslab.org/</a>; Huang et al. <a href="#ref-huang_geospark_2017">2017</a>)</span>.</p>
 </div>
 </div>
 <div id="exercises-7" class="section level2">
@@ -1063,6 +1064,9 @@ Additionally, give <code>mapview</code> a try.</p></li>
 </div>
 <div id="ref-bucklin_rpostgis_2018">
 <p>Bucklin, David, and Mathieu Basille. 2018. “Rpostgis: Linking R with a PostGIS Spatial Database.” <em>The R Journal</em>. <a href="https://journal.r-project.org/archive/2018/RJ-2018-025/index.html" class="uri">https://journal.r-project.org/archive/2018/RJ-2018-025/index.html</a>.</p>
+</div>
+<div id="ref-huang_geospark_2017">
+<p>Huang, Zhou, Yiran Chen, Lin Wan, and Xia Peng. 2017. “GeoSpark SQL: An Effective Framework Enabling Spatial Queries on Spark.” <em>ISPRS International Journal of Geo-Information</em> 6 (9): 285. <a href="https://doi.org/10.3390/ijgi6090285" class="uri">https://doi.org/10.3390/ijgi6090285</a>.</p>
 </div>
 </div>
 <div class="footnotes">
