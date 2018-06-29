@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-28'
+date: '2018-06-29'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-28 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-29 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea8cea7a6a928f842
+preserved580cfbe3e58e9df
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve8d6382f3c68a87cf
+preserve42f2b71dd3c700b9
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservefa8b65cd75119605
+preservec06c382ab39dcf24
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3b598a1e4d095a73
+preserve2deb37438cd6cdeb
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7242,7 +7242,7 @@ Other notes:
 
 To learn more about **RQGIS** please refer to @muenchow_rqgis:_2017. 
 
-## (R)SAGA
+## (R)SAGA {#rsaga}
 
 The System for Automated Geoscientific Analyses (SAGA; Table \@ref(tab:gis-comp)) provides the possibility to execute SAGA modules via the command line interface (saga_cmd.exe under Windows and just saga_cmd under Linux) (see also [https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/(https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/))
 In addition, there is a Python interface (SAGA Python API).
@@ -7566,7 +7566,7 @@ For instance, SAGA uses `.sdat` grid files and GRASS uses its own database forma
 Please note that **rgrass7** inspired the latter two features.
 
 By all means, there are use cases when you certainly should use one of the other R-GIS bridges.
-Though QGIS is the only GIS providing a unified interface to several GIS software packages, it only provides access to a subset of the corresponding third-party geoalgorithms (for more information please refer to @muenchow_rqis:_2017).
+Though QGIS is the only GIS providing a unified interface to several GIS software packages, it only provides access to a subset of the corresponding third-party geoalgorithms (for more information please refer to @muenchow_rqgis:_2017).
 Therefore, to use the complete set of SAGA and GRASS functions, stick with **RSAGA** and **rgrass7**. 
 When doing so, make advantage of **RSAGA**'s numerous user-friendly functions.
 Note also, that **RSAGA** offers native R functions for geocomputation such as `multi.local.function`, `pick.from.grid` and many more.
@@ -7583,12 +7583,19 @@ GRASS: excellent documentation, topology (network analysis) and topological rule
 Please note that there are a number of further GIS software packages that have a scripting interface but for which there is no dedicated R package that accesses these: gvSig, OpenJump, Orfeo Toolbox and TauDEM.
 
 ## A short note on further spatial APIs
-There are of course numerous interfaces to other spatial software packages aside from the interfaces to Desktop GIS software presented in detail in this chapter.
-This includes interfaces to spatial libraries, spatial databases and web mapping services (see also Chapter \@ref(adv-map)).
-This collection is by no means compreshensive, and in this section we will only have a short glance at a few selected examples.
-Hopefully, this will give you an impression of all the spatial power that is available on your fingertips.
+There are many further interfaces to other spatial software packages aside from the interfaces to Desktop GIS software presented in detail in this chapter.
+This includes interfaces to spatial libraries (section \@ref(gdal)), spatial databases (section \@ref(postgis)) and web mapping services (see section \@ref(adv-map)).
+In this section we will only have a short glance at two selected examples.
+Hopefully, this will give an impression of all the spatial power and flexibility that is readily available on our fingertips.
 
-### GDAL as an example for a spatial library
+### Spatial library API - GDAL {#gdal}
+GDAL/OGR is especially known for its support for numerous spatial drivers (data formats).
+In fact, there is barely a geospatial software that is not using GDAL in the background for importing and exporting geographic data.
+But GDAL offers more than I/O functions, e.g., geoprocessing tools for vector and raster data (for an overview have a look at http://www.gdal.org/pages.html).
+One can easily access these tools via the command line. 
+In the code chunk below `linkGDAL()` searches the computer for a working GDAL installation and adds the path of the executable files to the PATH variable. 
+This allows us to easily run GDAL/OGR via system calls.
+For example, `ogrinfo` gives back meta information of vector data.
 
 
 ```r
@@ -7628,29 +7635,29 @@ system(cmd)
 #>NWBIR79: Real (24.15)
 ```
 
-This is of course a very simple example.
-Still, it shows how we can use GDAL via the command-line from within R, and nothing stops you from using much more advanced GDAL/OGR utilities.
-Note that **sf** automatically brings most of the power of GDAL, GEOS and proj.4 to R.
+This is of course a very simple example, and we could have achieved the same using `rgdal::ogrInfo()`.
+Still, it shows how we can use GDAL via the command-line from within R indepedently of other packages, and nothing stops us from using more advanced and/or not already implemented GDAL/OGR utilities in R.
+Note also that the **RSAGA** package uses the command line interface to use SAGA geoalgorithms from within R (see section \@ref(rsaga)). 
+TauDEM (http://hydrology.usu.edu/taudem/taudem5/index.html) and the Orfeo Toolbox (https://www.orfeo-toolbox.org/) are further examples for offering a command line interface. 
+At the time of writing it appears that there is only a developer version of an R/TauDEM interface on R-Forge (https://r-forge.r-project.org/R/?group_id=956)).
+In any case, you now have the tools to build an interface yourself.
+
+Please keep in mind that the **sf** package already brings most of the power provided by GDAL, GEOS and proj.4 to R.
 Instead of using the command-line interface to access the functionality of these external dependencies, **sf** uses an **Rcpp** interface.
 This is an even better approach since it circumvents the command-line and allows a direct access to  GDAL/GEOS/Proj.4 all of which are written in either C++ or C.
 
-GDAL also supports SQL queries.
-But like R, GDAL is not a (spatial) database management system.
-However, one can easily access, modify and create data stored in databases from within R (see next subsection).
-
-### PostgreSQL/PostGIS as an example for a spatial database
-
-The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS [@obe_postgis_2015].^[SQlLite and its spatial extension SpatiaLite are certainly also important but implicitly we have already presented this approach since GRASS is using SQLite in the background.]
+### Spatial database API - PostgreSQL/PostGIS {#postgis}
+The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS [@obe_postgis_2015].^[SQlLite/SpatiaLite are certainly also important but implicitly we have already presented this approach since GRASS is using SQLite in the background.]
 PostgreSQL/PostGIS is a relational spatial database management system supporting multi-user access and topology.
-Spatial databases allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other via unique identifiers (primary and foreign keys) and space (think for instance of a spatial join). 
+Spatial databases allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other explicitly via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join). 
 Databases are especially useful if your data becomes big which tends to be the case quite quickly with geographic data.
 
 From within R, you can easily query the data you need for a specific analysis. 
 Hence, it is not necessary to attach several gigabyte of geographic data to R's global environment which most likely would crash your session.
 Instead you query the data you need.
-To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from "1.4 Hello real word" of the book **PostGIS in action** [@obe_postgis_2015].
+To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from "1.4 Hello real word" of the book **PostGIS in Action, Second Edition** published with Manning [@obe_postgis_2015].^[We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.]
 
-The subsequent code requires a working internet connection since we are accessing a PostgreSQL database with a PostGIS extension which is living in the [QGIS Cloud](https://qgiscloud.com/).^[QGIS Cloud lets you store geographic data and maps in the cloud. 
+The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the [QGIS Cloud](https://qgiscloud.com/).^[QGIS Cloud lets you store geographic data and maps in the cloud. 
 In the background it uses QGIS Server and PostgreSQL/PostGIS.
 This way, the reader can follow the PostGIS example without the need to have PostgreSQL/PostGIS installed on a local machine.
 We are thankful to the QGIS Cloud team for hosting our PostGIS example.]
@@ -7709,7 +7716,8 @@ query = paste(
 buf = st_read(conn, query = query)
 ```
 
-Note that this was a spatial query using functions you should be already familiar with from the **sf**-package.
+Note that this was a spatial query using functions (`ST_Union()`, `ST_Buffer()`) you should be already familiar since you find them also in the **sf**-package though here they are written in lowercase characters (`st_union()`, `st_buffer()`).
+In fact, function names of the **sf** package largely follow the PostGIS naming conventions.^[By the way, the prefix `st` stands for space/time.]
 The last query will find all Hardee restaurants (`HDE`) within the buffer zone (Figure \@ref(fig:postgis)).
 
 
@@ -7729,8 +7737,9 @@ query = paste(
 hardees = st_read(conn, query = query)
 ```
 
+Please refer to @obe_postgis_2015 for a detailed explanation of the spatial SQL query.
 Finally, it is good practice to close the database connection.
-Here, it is even more important since the free plan of QGIScloud database allows only ten users to access the database at the same time. 
+Here, it is even more important since the free plan of QGIS Cloud allows only ten users to access the database at the same time. 
 
 
 ```r
@@ -7745,19 +7754,13 @@ RPostgreSQL::postgresqlCloseConnection(conn)
 </div>
 
 Unlike PostGIS, **sf** only supports spatial vector data. 
-To query and manipulate raster data stored in a PostGIS database, use the **rpostgis** package [@bucklin_rpostgis_2018]. 
+To query and manipulate raster data stored in a PostGIS database, use the **rpostgis** package [@bucklin_rpostgis_2018] and/or use command-line tools such as `rastertopgsql` which comes as part of the PostGIS installation. 
 
 Of course, this subsection was only a very brief introduction to PostgreSQL/PostGIS.
-Nevertheless, we would like to encourage the practice of storing geographic and non-geographic data in a spatial database while only attaching those subsets to R's global environment which are needed for further statistical analysis.
+Nevertheless, we would like to encourage the practice of storing geographic and non-geographic data in a spatial database while only attaching those subsets to R's global environment which are needed for further (geo-)statistical analysis.
 Please refer to @obe_postgis_2015 for a much more detailed description of the here presented SQL queries and a much more comprehensive introduction to PostGIS and PostgreSQL in general.
 PostgreSQL/PostGIS is a formidable choice as an open source spatial database.
 But the same is true for SQLite/SpatiaLite and GRASS (which uses SQLite in the background).
-
-<!--
-- GEOS, GDAL, rgdal, rgeos, sf, gdalUtils
-- other CLI/GIS interfaces (Orfeo, TauDem) + show exemplarily how to use GDAL via the command line
-- Reviewer comment: There’s no direct mention of SQL here, very familiar to Oracle, Manifold GIS, PostGIS, GDAL-OGR, Spatialite and now QGIS users, and pervasive in modern SQL Server (which includes R- Revolutions!) and other applications. It’s probably way too much to include a spatial SQL treatment in geomcompr but I think it should be mentioned, it’s very strong complement to CLI and programming in general for spatial and external applications can be easily invoked via SQL which means there’s a lot of promise for future coupling/bridges as well as DIY-potential with so much flexibility.
--->
 
 ## Exercises
 
@@ -7777,6 +7780,10 @@ Select randomly a point from `random_points` and find all `dem` pixels that can 
 Visualize your result.
 For example, plot a hillshade, and on top of it the digital elevation model, your viewshed output and the point.
 Additionally, give `mapview` a try.
+
+1. Use `gdalinfo` via a system call for a raster file stored on disk of your choice.
+
+1. Query all Californian highways from the PostgreSQL/PostGIS database living in the QGIS Cloud introduced in this chapter.
 
 
 <!--chapter:end:09-gis.Rmd-->
@@ -10118,7 +10125,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve6f0482e1dfa72346
+preserve2d360f38599d233e
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
