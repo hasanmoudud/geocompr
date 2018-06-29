@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved580cfbe3e58e9df
+preserve8f5962bc4d7e42b7
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve42f2b71dd3c700b9
+preserve97a8afb159e24989
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec06c382ab39dcf24
+preservedca8e7bd2af89b61
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2deb37438cd6cdeb
+preserve08f332a421564df3
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7647,14 +7647,14 @@ Instead of using the command-line interface to access the functionality of these
 This is an even better approach since it circumvents the command-line and allows a direct access to  GDAL/GEOS/Proj.4 all of which are written in either C++ or C.
 
 ### Spatial database API - PostgreSQL/PostGIS {#postgis}
+Spatial database management systems (spatial DBMS) allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other explicitly via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join). 
+Geographic data tends to become big quite quickly.
+Databases are especially useful for big data and querying it efficiently spatially and non-spatially.
+Additionally, spatial DBMS provide multi-user access and topology support.
 The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS [@obe_postgis_2015].^[SQlLite/SpatiaLite are certainly also important but implicitly we have already presented this approach since GRASS is using SQLite in the background.]
-PostgreSQL/PostGIS is a relational spatial database management system supporting multi-user access and topology.
-Spatial databases allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other explicitly via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join). 
-Databases are especially useful if your data becomes big which tends to be the case quite quickly with geographic data.
 
-From within R, you can easily query the data you need for a specific analysis. 
-Hence, it is not necessary to attach several gigabyte of geographic data to R's global environment which most likely would crash your session.
-Instead you query the data you need.
+From within R, one can easily query data from (spatial) DBMS which is needed for a specific analysis. 
+Hence, it is not necessary to attach several gigabyte of geographic data to R's global environment which most likely would crash the R session anyways.
 To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from "1.4 Hello real word" of the book **PostGIS in Action, Second Edition** published with Manning [@obe_postgis_2015].^[We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.]
 
 The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the [QGIS Cloud](https://qgiscloud.com/).^[QGIS Cloud lets you store geographic data and maps in the cloud. 
@@ -10125,7 +10125,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve2d360f38599d233e
+preserve824f49ee8b281c41
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
