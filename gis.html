@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="gis.html"><a href="gis.html#introduction-6"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
 <li class="chapter" data-level="9.2" data-path="gis.html"><a href="gis.html#rqgis"><i class="fa fa-check"></i><b>9.2</b> (R)QGIS</a></li>
 <li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.3</b> (R)SAGA</a></li>
-<li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#grass-through-rgrass7"><i class="fa fa-check"></i><b>9.4</b> GRASS through <strong>rgrass7</strong></a></li>
+<li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#rgrass"><i class="fa fa-check"></i><b>9.4</b> GRASS through <strong>rgrass7</strong></a></li>
 <li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.5</b> When to use what?</a></li>
 <li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#a-short-note-on-further-spatial-apis"><i class="fa fa-check"></i><b>9.6</b> A short note on further spatial APIs</a><ul>
 <li class="chapter" data-level="9.6.1" data-path="gis.html"><a href="gis.html#gdal"><i class="fa fa-check"></i><b>9.6.1</b> Spatial library API - GDAL</a></li>
@@ -690,7 +690,7 @@ Figure 9.2: SAGA wetness index of Mount Mongón, Peru.
 This example includes statistical geocomputing, i.e., it uses a GIS to derive terrain attributes as predictors for a non-linear Generalized Additive Model (GAM) to predict spatially landslide susceptibility <span class="citation">(Muenchow, Brenning, and Richter <a href="#ref-muenchow_geomorphic_2012">2012</a>)</span>.
 The term statistical geocomputation emphasizes the strength of combining R’s data science power with the geoprocessing power of a GIS which is at the very heart of building a bridge from R to GIS.</p>
 </div>
-<div id="grass-through-rgrass7" class="section level2">
+<div id="rgrass" class="section level2">
 <h2><span class="header-section-number">9.4</span> GRASS through <strong>rgrass7</strong></h2>
 <p>The U.S. Army - Construction Engineering Research Laboratory (USA-CERL) created the core of the Geographical Resources Analysis Support System (GRASS) <span class="citation">(Table <a href="gis.html#tab:gis-comp">9.1</a>; Neteler and Mitasova <a href="#ref-neteler_open_2008">2008</a>)</span> from 1982 to 1995.
 Academia continued this work since 1997.
@@ -931,7 +931,7 @@ Geographic data tends to become big quite quickly.
 Databases are especially useful for big data and querying it efficiently spatially and non-spatially.
 Additionally, spatial DBMS provide multi-user access and topology support.
 The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
-<p>From within R, one can easily query data from (spatial) DBMS which is needed for a specific analysis.
+<p>From within R, one can easily query data from a (spatial) DBMS which is needed for a specific analysis.
 Hence, it is not necessary to attach several gigabyte of geographic data to R’s global environment which most likely would crash the R session anyways.
 To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from “1.4 Hello real word” of the book <strong>PostGIS in Action, Second Edition</strong> published with Manning <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
 <p>The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the <a href="https://qgiscloud.com/">QGIS Cloud</a>.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
@@ -1080,7 +1080,7 @@ GRASS GIS and PostGIS are popular in academia and industry and can be seen as pr
 <!-- To make it clear, though PostGIS provides spatial functions, its main purpose is the handling of spatial objects in a relational database management system. -->
 <!-- Therefore, frequently users store their spatial data in PostGIS, and interact with it through a dedicated GIS software such as QGIS. Of course, you can also use R to access data from PostGIS (**sf**, **rgdal**, **rpostgis**). -->
 <!-- In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.    --><a href="gis.html#fnref39" class="footnote-back">↩</a></p></li>
-<li id="fn40"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already presented this approach since GRASS is using SQLite in the background.<a href="gis.html#fnref40" class="footnote-back">↩</a></p></li>
+<li id="fn40"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="#grass7"><strong>??</strong></a>).<a href="gis.html#fnref40" class="footnote-back">↩</a></p></li>
 <li id="fn41"><p>We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.<a href="gis.html#fnref41" class="footnote-back">↩</a></p></li>
 <li id="fn42"><p>QGIS Cloud lets you store geographic data and maps in the cloud.
 In the background it uses QGIS Server and PostgreSQL/PostGIS.
