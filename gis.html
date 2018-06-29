@@ -904,7 +904,7 @@ For example, <code>ogrinfo</code> gives back meta information of vector data.</p
 <a class="sourceLine" id="cb330-33" data-line-number="33"><span class="co">#&gt;SID79: Real (24.15)</span></a>
 <a class="sourceLine" id="cb330-34" data-line-number="34"><span class="co">#&gt;NWBIR79: Real (24.15)</span></a></code></pre></div>
 <p>This is of course a very simple example, and we could have achieved the same using <code>rgdal::ogrInfo()</code>.
-Still, it shows how we can use GDAL via the command-line from within R indepedently of other packages, and nothing stops us from using more advanced and/or not already implemented GDAL/OGR utilities in R.
+Still, it shows how we can use GDAL via the command-line from within R independently of other packages, and nothing stops us from using more advanced and/or not already implemented GDAL/OGR utilities in R.
 Note also that the <strong>RSAGA</strong> package uses the command line interface to use SAGA geoalgorithms from within R (see section <a href="gis.html#rsaga">9.3</a>).
 TauDEM (<a href="http://hydrology.usu.edu/taudem/taudem5/index.html" class="uri">http://hydrology.usu.edu/taudem/taudem5/index.html</a>) and the Orfeo Toolbox (<a href="https://www.orfeo-toolbox.org/" class="uri">https://www.orfeo-toolbox.org/</a>) are further examples for offering a command line interface.
 At the time of writing it appears that there is only a developer version of an R/TauDEM interface on R-Forge (<a href="https://r-forge.r-project.org/R/?group_id=956" class="uri">https://r-forge.r-project.org/R/?group_id=956</a>)).
@@ -921,7 +921,7 @@ Databases are especially useful for large and big data and querying it efficient
 Additionally, spatial DBMS provide multi-user access and topology support.
 The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
 <p>From within R, one can easily query data from a (spatial) DBMS which is needed for a specific analysis.
-Hence, it is not necessary to attach several gigabyte of geographic data to R’s global environment which most likely would crash the R session anyways.
+Hence, it is not necessary to attach several gigabyte of geographic data to R’s global environment which most likely would crash the R session anyway.
 To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from “1.4 Hello real word” of the book <strong>PostGIS in Action, Second Edition</strong> published with Manning <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
 <p>The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the <a href="https://qgiscloud.com/">QGIS Cloud</a>.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a></p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1"><span class="kw">library</span>(RPostgreSQL)</a>
@@ -954,7 +954,7 @@ The next step is to add a 20-mile buffer around the selected highway (Figure <a 
 <a class="sourceLine" id="cb335-3" data-line-number="3">  <span class="st">&quot;FROM highways&quot;</span>,</a>
 <a class="sourceLine" id="cb335-4" data-line-number="4">  <span class="st">&quot;WHERE name = &#39;US Route 1&#39; AND state = &#39;MD&#39;;&quot;</span>)</a>
 <a class="sourceLine" id="cb335-5" data-line-number="5">buf =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query)</a></code></pre></div>
-<p>Note that this was a spatial query using functions (<code>ST_Union()</code>, <code>ST_Buffer()</code>) you should be already familiar since you find them also in the <strong>sf</strong>-package though here they are written in lowercase characters (<code>st_union()</code>, <code>st_buffer()</code>).
+<p>Note that this was a spatial query using functions (<code>ST_Union()</code>, <code>ST_Buffer()</code>) you should be already familiar with since you find them also in the <strong>sf</strong>-package though here they are written in lowercase characters (<code>st_union()</code>, <code>st_buffer()</code>).
 In fact, function names of the <strong>sf</strong> package largely follow the PostGIS naming conventions.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a>
 The last query will find all Hardee restaurants (<code>HDE</code>) within the buffer zone (Figure <a href="gis.html#fig:postgis">9.4</a>).</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">query =<span class="st"> </span><span class="kw">paste</span>(</a>
@@ -986,8 +986,8 @@ To query and manipulate raster data stored in a PostGIS database, use the <stron
 Nevertheless, we would like to encourage the practice of storing geographic and non-geographic data in a spatial DBMS while only attaching those subsets to R’s global environment which are needed for further (geo-)statistical analysis.
 Please refer to <span class="citation">Obe and Hsu (<a href="#ref-obe_postgis_2015">2015</a>)</span> for a much more detailed description of the here presented SQL queries and a much more comprehensive introduction to PostgreSQL/PostGIS in general.
 PostgreSQL/PostGIS is a formidable choice as an open source spatial database.
-But the same is true for the lightweight SQLite/SpatiaLite database engine and GRASS which uses SQLite in the background (see section <a href="#grass7"><strong>??</strong></a>).
-As a final note, if your data is even getting to big for PostgreSQL/PostGIS and you require massive spatial data management and query performance, then the logical next step is to use large-scale geographic querying on distributed computing systems, as for example, provided by GeoMesa (<a href="http://www.geomesa.org/" class="uri">http://www.geomesa.org/</a>) or GeoSpark <span class="citation">(<a href="http://geospark.datasyslab.org/" class="uri">http://geospark.datasyslab.org/</a>; Huang et al. <a href="#ref-huang_geospark_2017">2017</a>)</span>.</p>
+But the same is true for the lightweight SQLite/SpatiaLite database engine and GRASS which uses SQLite in the background (see section <a href="#grass"><strong>??</strong></a>).</p>
+<p>As a final note, if your data is even getting to big for PostgreSQL/PostGIS and you require massive spatial data management and query performance, then the logical next step is to use large-scale geographic querying on distributed computing systems, as for example, provided by GeoMesa (<a href="http://www.geomesa.org/" class="uri">http://www.geomesa.org/</a>) or GeoSpark <span class="citation">(<a href="http://geospark.datasyslab.org/" class="uri">http://geospark.datasyslab.org/</a>; Huang et al. <a href="#ref-huang_geospark_2017">2017</a>)</span>.</p>
 </div>
 </div>
 <div id="exercises-7" class="section level2">
@@ -1074,7 +1074,7 @@ GRASS GIS and PostGIS are popular in academia and industry and can be seen as pr
 <!-- Therefore, frequently users store their spatial data in PostGIS, and interact with it through a dedicated GIS software such as QGIS. Of course, you can also use R to access data from PostGIS (**sf**, **rgdal**, **rpostgis**). -->
 <!-- In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.    --><a href="gis.html#fnref39" class="footnote-back">↩</a></p></li>
 <li id="fn40"><p>Note that there is also the <strong>mapedit</strong> package but its intention is to allow the quick editing of a few spatial features, and not professional, large-scale cartographic digitizing.<a href="gis.html#fnref40" class="footnote-back">↩</a></p></li>
-<li id="fn41"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="#grass7"><strong>??</strong></a>).<a href="gis.html#fnref41" class="footnote-back">↩</a></p></li>
+<li id="fn41"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="gis.html#rgrass">9.4</a>).<a href="gis.html#fnref41" class="footnote-back">↩</a></p></li>
 <li id="fn42"><p>We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.<a href="gis.html#fnref42" class="footnote-back">↩</a></p></li>
 <li id="fn43"><p>QGIS Cloud lets you store geographic data and maps in the cloud.
 In the background it uses QGIS Server and PostgreSQL/PostGIS.
