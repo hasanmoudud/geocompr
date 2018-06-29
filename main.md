@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec9c43f9e3a8edfc9
+preserve11567e57bb3820cb
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef2756b02bdbdc5af
+preserveda9af632a9f8bf86
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea80f86671ea903e1
+preserved3f9bebb6f2af7c7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved6c28ada5181ad09
+preserve9a718cfe947dc16a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6983,35 +6983,24 @@ can do it with a GUI.
 Gary Sherman is well-qualified to comment on this matter as the creator of QGIS, the world's premier open source GUI-based GIS!
 
 The 'CLI vs GUI' debate is often adversarial and polarized but it does not have to be: both options are great if well chosen in accordance with your needs and tasks.
-The advantages of a good CLI such as that provided by R are numerous. Among others, a CLI:
+The advantages of a good CLI such as that provided by R are numerous. 
+Among others, a CLI:
 
-- Facilitates the automation of repetitive tasks. We strongly dislike the manual execution of iterations, and would recommend to always think about how to solve such tasks programmatically.
-This way, you most likely discover new programming features and concepts, i.e., you learn and enhance your skill set. 
-By contrast, what are you learning from executing the same tasks a 1000 times?
-As a nice side-effect, automation is surely more effective and less error-prone.
-- Ensures transparency and reproducibility (which also is the backbone of good scientific practice).
-In short, it is easier to share your R script than explain a sequence of 10+ 'points and clicks'.
-- Encourages extending existing software by making it easy to modify and extend functions.
-If you are missing an algorithm you need, the CLI gives you the freedom to write your own!
-<!-- add link to most sexiest job in the 21st century -->
-- Is the way to (geo-)data science.
-Professional and advanced technical skills will certainly enhance your career prospects, and are in dire need across a wide range of disciplines.
+- Facilitates the automation of repetitive tasks. 
+- Ensures transparency and reproducibility (which also is the backbone of good scientific practice), and therefore is the preferred option for doing geographic data science.
+- Encourages extending existing software by making it easy to modify, extend and implement new functions.
+- Professional and advanced technical skills will certainly enhance your career prospects, and are in dire need across a wide range of disciplines.
 - Is fun, but admittedly that is a subjective argument.
-<!-- any other points that we have missed? -->
 
 On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous.
 For instance, think of:
 
-- The GUI.
-The really user-friendly graphical interface spares the user from programming.
-Though you probably wouldn't read the book if this were your main objective.
-- Digitizing and all related tools (trace, snap, topological rules, etc.). 
-Note that there is also the new **mapedit** package but its intention is to allow the quick editing of a few spatial features, and not professional, large-scale cartographic digitizing.
-- Georeferencing with ground control points and orthorectification. The process of locating control points, choosing the right transformation model, and evaluating the registration error are inherently interactive, and thus unsuitable to be done with R, or any other programming language for that matter
+- The really user-friendly graphical interface which spares the user from programming and facilitates interactive geographic data exploration and interactive map production.
+- Digitizing and all related tools (trace, snap, topological rules, etc.).^[Note that there is also the **mapedit** package but its intention is to allow the quick editing of a few spatial features, and not professional, large-scale cartographic digitizing.]
+- Georeferencing with ground control points and orthorectification. 
+The process of locating control points, choosing the right transformation model, and evaluating the registration error are inherently interactive, and thus unsuitable to be done with R, or any other programming language.
 - Stereoscopic mapping (e.g., LiDAR and structure from motion).
-- The built-in geodatabase management system often integrated in Desktop GIS (ArcGIS, GRASS GIS) and all related advantages such as object relational modeling, topology, fast (spatial) querying, etc.
-- Map production, in case you only want to create a beautiful map once. If you have to produce it over and over again, then maybe the CLI approach is better.
-- Zooming and dragging on WMS (though this is also possible with **mapview** and **leaflet**).
+- The built-in geodatabase management system often integrated in Desktop GIS (ArcMap, GRASS GIS) and all related advantages such as object-oriented relational data modeling, topology, fast (spatial) querying, among others.
 
 This general overview already points out the differences between R's CLI and desktop GIS. 
 However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
@@ -10126,7 +10115,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservea6ec966894c054b9
+preservee452cd2ca7c2d37e
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
