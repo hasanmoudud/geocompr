@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-06-29">
+<meta name="date" content="2018-06-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -833,13 +833,13 @@ Figure 8.16: Animated map showing the top 30 largest ‘urban agglomerations’ 
 <p>The animated map illustrated in Figure <a href="adv-map.html#fig:urban-animated">8.16</a> can be created using the same <strong>tmap</strong> techniques that generates faceted maps, demonstrated in section <a href="adv-map.html#faceted-maps">8.2.6</a>.
 There are two differences, however, related to arguments in <code>tm_facets()</code>:</p>
 <ul>
+<li><code>along = &quot;year&quot;</code> is used instead of <code>by = &quot;year&quot;</code></li>
 <li><code>free.coords = FALSE</code>, which maintains the map extent for each map iteration.</li>
-<li><code>nrow = 1</code> and <code>ncol = 1</code> ensure only one facet is created per year.</li>
 </ul>
 <p>These additional arguments are demonstrated in the subsequent code chunk:</p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1">urb_anim =<span class="st"> </span><span class="kw">tm_shape</span>(world) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb281-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_shape</span>(urban_agglomerations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">size =</span> <span class="st">&quot;population_millions&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="st">  </span><span class="kw">tm_facets</span>(<span class="dt">by =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">free.coords =</span> <span class="ot">FALSE</span>, <span class="dt">nrow =</span> <span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="st">  </span><span class="kw">tm_facets</span>(<span class="dt">along =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">free.coords =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>The resulting <code>urb_anim</code> represents a set of separate maps for each year.
 The final stage is to combine them and save the result as a <code>.gif</code> file with <code>tmap_animation()</code>.
 The following command creates the animation illustrated in Figure <a href="adv-map.html#fig:urban-animated">8.16</a>, with a few elements missing, that we will add-in during the exercises:</p>

@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-06-29'
+date: '2018-06-30'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: book
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-06-29 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-06-30 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve073d66ed23138943
+preserve51eae923940b06a8
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve6daa609795c63baa
+preserve63f305de2172a971
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6467,8 +6467,8 @@ Unlike the faceted plot it does not squeeze multiple maps into a single screen a
 The animated map illustrated in Figure \@ref(fig:urban-animated) can be created using the same **tmap** techniques that generates faceted maps, demonstrated in section \@ref(faceted-maps).
 There are two differences, however, related to arguments in `tm_facets()`:
 
+- `along = "year"` is used instead of `by = "year"`
 - `free.coords = FALSE`, which maintains the map extent for each map iteration.
-- `nrow = 1` and `ncol = 1` ensure only one facet is created per year.
 
 These additional arguments are demonstrated in the subsequent code chunk:
 
@@ -6476,7 +6476,7 @@ These additional arguments are demonstrated in the subsequent code chunk:
 ```r
 urb_anim = tm_shape(world) + tm_polygons() + 
   tm_shape(urban_agglomerations) + tm_dots(size = "population_millions") +
-  tm_facets(by = "year", free.coords = FALSE, nrow = 1, ncol = 1)
+  tm_facets(along = "year", free.coords = FALSE)
 ```
 
 The resulting `urb_anim` represents a set of separate maps for each year.
@@ -6529,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2148a35cf11c303a
+preserve3e5b857f6821acbb
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebcf285d69b03f24a
+preservef64b4c15d078181b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10116,7 +10116,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9fd235e82c6d7244
+preserve2c404e58606dbeda
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
