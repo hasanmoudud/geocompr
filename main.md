@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9ea8327e9cb650d4
+preserve16583506ee553f68
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9dfb01a656dcd8fe
+preserve2cdae35042f93b5b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5535,12 +5535,6 @@ Therefore, we recommend to discontinue using ESRI Shapefile and use one of the O
 Especially, GeoPackage proved to be a complete vector data format.
 To learn more about the ESRI Shapefile limitations and possible alternative file formats visit http://switchfromshapefile.org/.
 
-<!-- http://switchfromshapefile.org/ -->
-<!-- 3. JPEG - (possibly mention SAGA's sdat, Erdas Imagine) -->
-<!-- 1. SQLite/SpatialLite + mention GRASS (uses SQLite) -->
-<!-- 3. WKT/WKB for transfering and storing geometry data on databases. PostGIS (has even its own raster WKT (https://trac.osgeo.org/postgis/wiki/WKTRasterTutorial01); WKT also supported by Spatiallite, Oracle, MySQL, etc. (https://en.wikipedia.org/wiki/Well-known_text#RDBMS_Engines_that_provide_support) -->
-<!-- 4. ESRI geodatabase, Oracle spatial database (mention + gdal support?) -->
-
 ## Data Input (I) {#data-input}
 
 Executing commands such as `sf::st_read()` (the main function we use for loading vector data) or `raster::raster()` (the main function used for loading raster data) silently sets off a chain of events that reads data from files.
@@ -6535,7 +6529,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve956f913942663c94
+preserve2ab0f325ed7e57d2
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6633,7 +6627,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6a0f217e3eba0169
+preserve421c0ec5e0cc2012
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10122,7 +10116,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee60ecf1648bdd1dc
+preserve3c985b5fe6b70c9d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
