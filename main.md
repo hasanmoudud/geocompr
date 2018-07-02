@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-01'
+date: '2018-07-02'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-01 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-02 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef1ae6bc371e5f880
+preserveef572223ddaf7f02
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve8e6234cf17803a17
+preservec660c2b6ab7a4b9a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5491,16 +5491,19 @@ world3 = st_read(system.file("shapes/world.gpkg", package = "spData"))
 ## File formats
 
 Spatial datasets are usually stored as files or in spatial databases.
-File formats can either store vector or raster data, while spatial databases such as [PostGIS](https://trac.osgeo.org/postgis/wiki/WKTRaster) can store both.
-Today file formats may seem bewildering but there has been much consolidation and standardization since the beginnings of GIS software in the 1960s when the first widely distributed program ([SYMAP](https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/)) for spatial analysis was created at Harvard University [@coppock_history_1991].
+File formats can either store vector or raster data, while spatial databases such as [PostGIS](https://trac.osgeo.org/postgis/wiki/WKTRaster) can store both (see also section \@ref(postgis)).
+Today the variety of file formats may seem bewildering but there has been much consolidation and standardization since the beginnings of GIS software in the 1960s when the first widely distributed program ([SYMAP](https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/)) for spatial analysis was created at Harvard University [@coppock_history_1991].
 
-GDAL (which should be pronounced "goo-dal", with the double o making a reference to object-orientation), the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between file formats since its release in 2000.
+GDAL (which should be pronounced "goo-dal", with the double o making a reference to object-orientation), the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between geographic file formats since its release in 2000.
 GDAL provides a unified and high-performance interface for reading and writing of many raster and vector data formats.
 Many open and proprietary GIS programs, including GRASS, ArcGIS and QGIS, use GDAL behind their GUIs for doing the legwork of ingesting and spitting-out geographic data in appropriate formats.
 <!-- GDAL (it's great - you can read, convert, and very often (though not always) write) -->
 <!-- GDAL info "it is possible to have smaller number of supported formats than there are on the GDAL webpage; you may need to recompile..." -->
 
-There are more than 100 spatial data formats exist available to R users via GDAL.
+<!-- not sure if the next sentence is still correct. gdal::gdalDrivers() vs. sf:::CPL_get_rgdal_drivers() hence I would rewrite.
+There are more than 100 spatial data formats available to R users via GDAL.
+-->
+GDAL provides access to more than 200 vector and raster data formats.
 <!-- In the same time, they could differ in many ways. -->
 <!-- Spatial data could be stored as a single file (e.g. GeoPackage), multiple files (e.g. ESRI Shapefile), or folders (ESRI ArcInfo Coverages). -->
 <!-- way of storage (single file, multiple files, folders) -->
@@ -5523,16 +5526,21 @@ SQLite/SpatiaLite   .sqlite                SQLite is a standalone, relational da
 ESRI FileGDB        .gdb                   Collection of spatial and nonspatial objects created in the ArcGIS software. It allows storage of multiple feature classes and enables use of topological definitions. Limited access to this format is provided by GDAL with the use of the OpenFileGDB and FileGDB drivers.            Vector and raster   Proprietary    
 GeoPackage          .gpkg                  Lightweight database container based on SQLite allowing an easy and platform-independent exchange of geodata                                                                                                                                                                             Vector and raster   Open           
 
-An important development ensuring greater standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium ([OGC](http://www.opengeospatial.org)) in 1994.
+An important development ensuring greater standardization and open-sourcing of file formats was the creation of the Open Geospatial Consortium ([OGC](http://www.opengeospatial.org)) in 1994.
 The OGC coordinates the development of open standards for geospatial content including file formats such as KML and GeoPackage.
 As described in Chapter \@ref(spatial-class) the OGC publishes the simple feature data model, which underlies the vector data classes provided by **sf** and used in this book. 
-Open file formats of the kind endorsed by the OGC have several advantages over proprietary formats: the standards are published, ensuring transparency and enabling innovation to improve the file formats.
+Open file formats of the kind endorsed by the OGC have several advantages over proprietary formats: the standards are published, ensure transparency and open up the possibility for users to further develop and adjust the file formats to their specific needs.
 
-The issues with non-OGC file formats are especially visible in the most popular vector format - ESRI Shapefile.
-It has a large number of limitations, including column names only up to 10 characters, the number of columns restricted at 255, and file size limited to 2GB.
-ESRI Shapefile also does not support all of the possible geometry types, for example, it is unable to distinguish between a polygon and a multipolygon.
-Therefore, we recommend to discontinue using ESRI Shapefile and use one of the OGC file formats instead.
+<!-- Be careful with your reasoning here, ESRI Shapefile is almost an open specification. And again, just because a format is open does not mean that some fo the open formats do not come with limitations of their kind. Hence, I would rephrase, and say that there are some problems with the most commonly used vector data exchange format.
+P.S.: Also on the Shapefile-must-die site (which is really a very bad title for a homepage) they say that the format is proprietary but the specification is open. See also ESRI's documentation: http://www.esri.com/esri-news/arcnews/winter1213articles/a-look-at-standards 
+ESRI Shapefile is an open standard!!!-->
+The disadvantages of non-OGC file formats are especially visible in the most popular vector data exchange format - ESRI Shapefile.
+Limitations  including the restriction of the number of columns to 255 and the number of column names to 10 characters, and file size limited to 2GB.
+Furthermore, ESRI Shapefile does not support all possible geometry types, for example, it is unable to distinguish between a polygon and a multipolygon.
+Therefore, we recommend to discontinue the use of ESRI Shapefile and use one of the OGC file formats instead. <!-- again, here it sounds as if open data formats do not have any of these limitations, is this true (I don't know)? -->
 Especially, GeoPackage proved to be a complete vector data format.
+<!-- gpkg is not a vector data format! It is a tiny, easily exchangeable SQLite database which can store both vector and raster data, see:
+https://www.geopackage.org/ -->
 To learn more about the ESRI Shapefile limitations and possible alternative file formats visit http://switchfromshapefile.org/.
 
 ## Data Input (I) {#data-input}
@@ -6529,7 +6537,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservedf00245cc160d683
+preservee10a9a02a0edf451
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6627,7 +6635,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5ea09e65e821c485
+preservebc4d026318cce72a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10116,7 +10124,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve46a9726ac55e8e89
+preservee3523dfabd79148f
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
