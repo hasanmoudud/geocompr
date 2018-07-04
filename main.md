@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5df60e7824a61f22
+preserve98e5bf56a9b611f3
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve512558f43f5a1bed
+preservefbdb754c938a5470
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5538,7 +5538,7 @@ Despite these limitations, a viable alternative has been missing for a long time
 In the meantime, [GeoPackage](https://www.geopackage.org/) emerged, and seems to be a more than suitable replacement candidate for ESRI's Shapefile.
 Geopackage is a format for exchanging geospatial information and an OGC standard. 
 The GeoPackage standard describes the rules how to store geospatial information in a tiny SQLite container.
-Hence, GeoPackage is a tiny spatial database, which allows the storage of vector and raster data but also of non-spatial data and extensions.
+Hence, GeoPackage is a lightweight spatial database container, which allows the storage of vector and raster data but also of non-spatial data and extensions.
 Aside from GeoPackage there are other geospatial data exchange formats worth checking out (Table \@ref(tab:formats)).
 
 
@@ -6536,7 +6536,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2fc4afe13b57dc6e
+preservedab9cd4ddf36d676
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6634,7 +6634,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2d2d2be434cf545a
+preserve85d6483294ebfba9
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10123,7 +10123,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserved897a1a2fc03fe02
+preservec6ec3b20b433a54d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
