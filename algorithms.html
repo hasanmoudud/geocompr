@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-03">
+<meta name="date" content="2018-07-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -423,12 +423,12 @@ An example is <code>10-hello.R</code>, a script file stored in the <code>code</c
 Saved scripts can be called and executed in their entirety with <code>source()</code>, as demonstrated below which shows how the comment is ignored but the instruction is executed:</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-hello.R&quot;</span>)</a>
 <a class="sourceLine" id="cb339-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Hello geocompr&quot;</span></a></code></pre></div>
-<p>There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a>
+<p>There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>
 There are, however, some conventions worth following:</p>
 <ul>
 <li>Write the script in order: just like the script of a film, scripts should have a clear order such as ‘setup’, ‘data processing’ and ‘save results’ (roughly equivalent to ‘beginning’, ‘middle’ and ‘end’ in a film).</li>
 <li>Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure <a href="algorithms.html#fig:codecheck">10.1</a>) and (for long scripts) divide it into sections (e.g. with <code>Ctl+Shift+R</code> in RStudio which creates comments ending in <code>----</code> that can be ‘folded’ in the editor).</li>
-<li>Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></li>
+<li>Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></li>
 </ul>
 <p>It is hard to enforce reproducibility in R scripts, but there are tools that can help.
 By default RStudio ‘code-checks’ R scripts and underlines faulty code with a red wavy line, as illustrated below:</p>
@@ -503,7 +503,7 @@ A translation of this formula into R code that works with the data in the matrix
 <a class="sourceLine" id="cb342-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
 <a class="sourceLine" id="cb342-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb342-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
-<p>This code chunk works and outputs the correct result.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>
+<p>This code chunk works and outputs the correct result.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
 The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
 To make the code more generalizable, we will see how it can be converted into a function in <a href="algorithms.html#functions">10.4</a>.</p>
 <p>Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
@@ -536,7 +536,7 @@ Running the script with the <code>poly_mat</code> object loaded yields the follo
 It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel.
 Even in cases where a new algorithm is needed, compiled languages such as C++ may be more appropriate than base R for performant solutions (see section <a href="intro.html#software-for-geocomputation">1.3</a>).</p>
 <p>Algorithm development is hard, especially if it involves learning a new language.
-The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
+The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
 It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).</p>
 </div>
 <div id="functions" class="section level2">
@@ -671,16 +671,16 @@ To see the input data type check working we can try running the function on a ma
 </div>
 <div class="footnotes">
 <hr />
-<ol start="45">
-<li id="fn45"><p>
-Lines of code that do not contain valid R should be commented to prevent errors, as with line 1 of the <code>10-hello.R</code> script.<a href="algorithms.html#fnref45" class="footnote-back">↩</a></p></li>
+<ol start="46">
 <li id="fn46"><p>
-Prior steps can be referred to with a comment or with an if statement such as <code>if(!exists(&quot;x&quot;)) source(&quot;x.R&quot;)</code> (which would run the script file <code>x.R</code> if the object <code>x</code> is missing).<a href="algorithms.html#fnref46" class="footnote-back">↩</a></p></li>
+Lines of code that do not contain valid R should be commented to prevent errors, as with line 1 of the <code>10-hello.R</code> script.<a href="algorithms.html#fnref46" class="footnote-back">↩</a></p></li>
 <li id="fn47"><p>
-as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height — <span class="math inline">\(A = B * H / 2\)</span> — (<span class="math inline">\(10 * 10 / 2\)</span> in this case, as can be seen in Figure <a href="algorithms.html#fig:polycent">10.3</a>).<a href="algorithms.html#fnref47" class="footnote-back">↩</a></p></li>
+Prior steps can be referred to with a comment or with an if statement such as <code>if(!exists(&quot;x&quot;)) source(&quot;x.R&quot;)</code> (which would run the script file <code>x.R</code> if the object <code>x</code> is missing).<a href="algorithms.html#fnref47" class="footnote-back">↩</a></p></li>
 <li id="fn48"><p>
+as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height — <span class="math inline">\(A = B * H / 2\)</span> — (<span class="math inline">\(10 * 10 / 2\)</span> in this case, as can be seen in Figure <a href="algorithms.html#fig:polycent">10.3</a>).<a href="algorithms.html#fnref48" class="footnote-back">↩</a></p></li>
+<li id="fn49"><p>
 The CGAL function <code>CGAL::centroid()</code> is in fact composed of 7 sub-functions as described at <a href="https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html" class="uri">https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html</a> allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
-The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref48" class="footnote-back">↩</a></p></li>
+The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref49" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
