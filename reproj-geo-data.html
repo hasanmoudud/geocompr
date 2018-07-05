@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-04">
+<meta name="date" content="2018-07-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -695,6 +695,7 @@ transforming a vector object involves changing the coordinates of every vertex b
 Rasters are composed of rectangular cells of the same size (expressed by map units, such as degrees or meters), so it is impossible to transform coordinates of pixels separately.
 Raster reprojection involves creating a new raster object, often with a different number of columns and rows than the original.
 The attributes must subsequently be re-estimated, allowing the new pixels to be ‘filled’ with appropriate values.
+In other words, raster reprojection can be thought as two separate spatial operations - a vector reprojection of cell centroids to the other CRS (<a href="reproj-geo-data.html#reproj-vec-geom">6.4</a>) and next computing values for new pixel locations through resampling (<a href="geometric-operations.html#aggregation-and-disaggregation">5.3.3</a>).
 Thus in most cases when both raster and vector data are used, it is better to avoid reprojecting rasters and reproject vectors instead.</p>
 <p>The raster reprojection process is done with <code>projectRaster()</code> from the <strong>raster</strong> package.
 Like the <code>st_transform()</code> function demonstrated in the previous section, <code>projectRaster()</code> takes a geographic object (a raster dataset in this case) and a <code>crs</code> argument.
