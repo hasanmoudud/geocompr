@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-06'
+date: '2018-07-08'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-06 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-08 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveeeded8d8563cc5af
+preservec9f39e4a098e4d32
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveca0d67137b430256
+preservee1c5cd3e261e0ce4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6537,7 +6537,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1e46b128cf834e8a
+preservecb91d5c34d72c293
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6635,7 +6635,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5c0e0ee47399e160
+preservedcee04376e73bb5c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7796,9 +7796,9 @@ This chapter primarily uses base R. The **sf** package must also be installed.
 
 ## Introduction {#intro-algorithms}
 
-Chapter \@ref(intro) states that geocomputation is not only about using existing tools, but developing new ones, "in the form of shareable R scripts and functions".
-The aim of this chapter is to teach how to create these things.
-After reading it and completing the exercises at the end, you should be able to use methods for geocomputation to create reproducible workflows and --- for confident readers --- develop new tools.
+Chapter \@ref(intro) established that geocomputation is not only about using existing tools, but developing new ones, "in the form of shareable R scripts and functions".
+The aim of this chapter is to teach how to create these vital components of reproducible and generalizable code.
+After reading it and completing the exercises at the end, you should be able to use methods for geocomputation to create reproducible workflows and --- for confident readers --- develop new tools, and have an understanding of the low level code underlying the 'geoalgorithms' we accessed in the previous chapter (\@ref(gis)).
 The chapter assumes you have an understanding of the geographic data classes introduced in Chapter \@ref(spatial-class), and have already imported the datasets needed for your work (see Chapter \@ref(read-write)).
 
 We will consider example R scripts for geographic data and how to make them more reproducible in section \@ref(scripts).
@@ -10124,7 +10124,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve060c4a07b8c253d1
+preserve187e3fdc0ed02a76
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
