@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec9f39e4a098e4d32
+preserve8600f104949cda32
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservee1c5cd3e261e0ce4
+preservebb36fab88a3f2f71
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6537,7 +6537,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservecb91d5c34d72c293
+preservef51761b0eb881860
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6635,7 +6635,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedcee04376e73bb5c
+preservefc42dbca8c326a16
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7869,8 +7869,8 @@ Such dependencies should be mentioned as comments in the script or elsewhere in 
 ## Geographic algorithms
 
 Algorithms are, roughly speaking, the computing equivalent of a cooking recipe.
-They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs, to continue the metaphor.
-Before diving into the detail a brief history will show how they relate to the more recent concepts of scripts (covered in the previous section) and functions (covered next).
+They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs.
+Before diving into the detail a brief history will show how they relate to the more recent concepts of scripts (see section \@ref(scripts)) and functions (see section \@ref(functions)).
 
 The word algorithm originated in 9^th^ Century Baghdad with the publication of *Hisab al-jabr w’al-muqabala*, an early maths textbook.
 The book was translated into Latin and became so popular that the author's last name [al-Khwārizmī](https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi) "was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm" [@bellos_alex_2011].
@@ -10124,7 +10124,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve187e3fdc0ed02a76
+preserve863a11c7c47bc07e
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
