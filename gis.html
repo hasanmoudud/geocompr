@@ -435,13 +435,8 @@ The process of locating control points, choosing the right transformation model,
 <li>Stereoscopic mapping (e.g., LiDAR and structure from motion).</li>
 <li>The built-in geodatabase management system often integrated in Desktop GIS (ArcMap, GRASS GIS) and all related advantages such as object-oriented relational data modeling, topology, fast (spatial) querying, among others.</li>
 </ul>
-<p>This general overview already points out the differences between R’s CLI and desktop GIS.
-However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
-The good news is that ‘GIS bridges’ enable the access to these with the comfort of the R command line.
-An early use of the term ‘bridge’ referred the coupling of R with GRASS <span class="citation">(Neteler and Mitasova <a href="#ref-neteler_open_2008">2008</a>)</span>.
-Roger Bivand elaborated on this in his talk “Bridges between GIS and R”, delivered at the 2016 GEOSTAT summer school (see <a href="http://spatial.nhh.no/misc/" class="uri">http://spatial.nhh.no/misc/</a>).
-<!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
-<!-- `geostat_talk16.zip`. --></p>
+<p>Another advantage of GIS software is that they provide access to hundreds of ‘geoalgorithms’ (computational recipes to solve geographic problems — see Chapter <a href="algorithms.html#algorithms">10</a>), many of which are unavailable from the R command line.
+The good news is that such geoalgorithms can be accessed from the R command via ‘GIS bridges’, hence the title of (and motivation for) this chapter.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
 <p>The R language was originally designed as an interface to and extension of other languages, especially C and FORTRAN, to enable access to statistical algorithms in a user-friendly and intuitive read-evaluate-print loop (REPL) <span class="citation">(Chambers <a href="#ref-chambers_extending_2016">2016</a>)</span>.
 R was not originally intended to be a GIS.
 This makes the breadth of R’s geospatial capabilities astonishing to many who are unaware of its ability to replicate established GIS software for many operations on spatial data.
@@ -919,11 +914,11 @@ This is an even better approach since it circumvents the command-line and allows
 Geographic data tends to become big quite quickly.
 Databases are especially useful for large and big data and querying it efficiently spatially and non-spatially.
 Additionally, spatial DBMS provide multi-user access and topology support.
-The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
+The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a></p>
 <p>From within R, one can easily query data from a (spatial) DBMS which is needed for a specific analysis.
 Hence, it is not necessary to attach several gigabyte of geographic data to R’s global environment which most likely would crash the R session anyway.
-To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from “1.4 Hello real word” of the book <strong>PostGIS in Action, Second Edition</strong> published with Manning <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a></p>
-<p>The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the <a href="https://qgiscloud.com/">QGIS Cloud</a>.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
+To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from “1.4 Hello real word” of the book <strong>PostGIS in Action, Second Edition</strong> published with Manning <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
+<p>The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the <a href="https://qgiscloud.com/">QGIS Cloud</a>.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1"><span class="kw">library</span>(RPostgreSQL)</a>
 <a class="sourceLine" id="cb331-2" data-line-number="2">conn =<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> <span class="kw">PostgreSQL</span>(), <span class="dt">dbname =</span> <span class="st">&quot;rtafdf_zljbqm&quot;</span>,</a>
 <a class="sourceLine" id="cb331-3" data-line-number="3">                 <span class="dt">host =</span> <span class="st">&quot;db.qgiscloud.com&quot;</span>,</a>
@@ -955,7 +950,7 @@ The next step is to add a 20-mile buffer around the selected highway (Figure <a 
 <a class="sourceLine" id="cb335-4" data-line-number="4">  <span class="st">&quot;WHERE name = &#39;US Route 1&#39; AND state = &#39;MD&#39;;&quot;</span>)</a>
 <a class="sourceLine" id="cb335-5" data-line-number="5">buf =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query)</a></code></pre></div>
 <p>Note that this was a spatial query using functions (<code>ST_Union()</code>, <code>ST_Buffer()</code>) you should be already familiar with since you find them also in the <strong>sf</strong>-package though here they are written in lowercase characters (<code>st_union()</code>, <code>st_buffer()</code>).
-In fact, function names of the <strong>sf</strong> package largely follow the PostGIS naming conventions.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a>
+In fact, function names of the <strong>sf</strong> package largely follow the PostGIS naming conventions.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>
 The last query will find all Hardee restaurants (<code>HDE</code>) within the buffer zone (Figure <a href="gis.html#fig:postgis">9.4</a>).</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">query =<span class="st"> </span><span class="kw">paste</span>(</a>
 <a class="sourceLine" id="cb336-2" data-line-number="2">  <span class="st">&quot;SELECT r.wkb_geometry&quot;</span>,</a>
@@ -1018,9 +1013,6 @@ Additionally, give <code>mapview</code> a try.</p></li>
 <div id="ref-sherman_desktop_2008">
 <p>Sherman, Gary. 2008. <em>Desktop GIS: Mapping the Planet with Open Source Tools</em>. Pragmatic Bookshelf.</p>
 </div>
-<div id="ref-neteler_open_2008">
-<p>Neteler, Markus, and Helena Mitasova. 2008. <em>Open Source GIS: A GRASS GIS Approach</em>. 3. ed. New York, NY: Springer.</p>
-</div>
 <div id="ref-chambers_extending_2016">
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
 </div>
@@ -1038,6 +1030,9 @@ Additionally, give <code>mapview</code> a try.</p></li>
 </div>
 <div id="ref-muenchow_geomorphic_2012">
 <p>Muenchow, Jannes, Alexander Brenning, and Michael Richter. 2012. “Geomorphic Process Rates of Landslides Along a Humidity Gradient in the Tropical Andes.” <em>Geomorphology</em> 139-140 (February): 271–84. <a href="https://doi.org/10.1016/j.geomorph.2011.10.029" class="uri">https://doi.org/10.1016/j.geomorph.2011.10.029</a>.</p>
+</div>
+<div id="ref-neteler_open_2008">
+<p>Neteler, Markus, and Helena Mitasova. 2008. <em>Open Source GIS: A GRASS GIS Approach</em>. 3. ed. New York, NY: Springer.</p>
 </div>
 <div id="ref-bivand_applied_2013">
 <p>Bivand, Roger S., Edzer Pebesma, and Virgilio Gómez-Rubio. 2013. <em>Applied Spatial Data Analysis with R</em>. 2nd ed. Springer Science &amp; Business Media.</p>
@@ -1074,13 +1069,18 @@ GRASS GIS and PostGIS are popular in academia and industry and can be seen as pr
 <!-- Therefore, frequently users store their spatial data in PostGIS, and interact with it through a dedicated GIS software such as QGIS. Of course, you can also use R to access data from PostGIS (**sf**, **rgdal**, **rpostgis**). -->
 <!-- In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.    --><a href="gis.html#fnref40" class="footnote-back">↩</a></p></li>
 <li id="fn41"><p>Note that there is also the <strong>mapedit</strong> package but its intention is to allow the quick editing of a few spatial features, and not professional, large-scale cartographic digitizing.<a href="gis.html#fnref41" class="footnote-back">↩</a></p></li>
-<li id="fn42"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="gis.html#rgrass">9.4</a>).<a href="gis.html#fnref42" class="footnote-back">↩</a></p></li>
-<li id="fn43"><p>We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.<a href="gis.html#fnref43" class="footnote-back">↩</a></p></li>
-<li id="fn44"><p>QGIS Cloud lets you store geographic data and maps in the cloud.
+<li id="fn42"><p>
+An early use of the term ‘bridge’ referred the coupling of R with GRASS <span class="citation">(Neteler and Mitasova <a href="#ref-neteler_open_2008">2008</a>)</span>.
+Roger Bivand elaborated on this in his talk “Bridges between GIS and R”, delivered at the 2016 GEOSTAT summer school (see slides at <a href="http://spatial.nhh.no/misc/" class="uri">http://spatial.nhh.no/misc/</a>).
+<!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
+<!-- `geostat_talk16.zip`. --><a href="gis.html#fnref42" class="footnote-back">↩</a></p></li>
+<li id="fn43"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="gis.html#rgrass">9.4</a>).<a href="gis.html#fnref43" class="footnote-back">↩</a></p></li>
+<li id="fn44"><p>We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.<a href="gis.html#fnref44" class="footnote-back">↩</a></p></li>
+<li id="fn45"><p>QGIS Cloud lets you store geographic data and maps in the cloud.
 In the background it uses QGIS Server and PostgreSQL/PostGIS.
 This way, the reader can follow the PostGIS example without the need to have PostgreSQL/PostGIS installed on a local machine.
-We are thankful to the QGIS Cloud team for hosting our PostGIS example.<a href="gis.html#fnref44" class="footnote-back">↩</a></p></li>
-<li id="fn45"><p>By the way, the prefix <code>st</code> stands for space/time.<a href="gis.html#fnref45" class="footnote-back">↩</a></p></li>
+We are thankful to the QGIS Cloud team for hosting our PostGIS example.<a href="gis.html#fnref45" class="footnote-back">↩</a></p></li>
+<li id="fn46"><p>By the way, the prefix <code>st</code> stands for space/time.<a href="gis.html#fnref46" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

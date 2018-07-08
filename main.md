@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8600f104949cda32
+preserve80e658883ac9402a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebb36fab88a3f2f71
+preservebb5e5986900e1059
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6537,7 +6537,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservef51761b0eb881860
+preservedcd7cc7f4ce380b1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6635,7 +6635,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefc42dbca8c326a16
+preserve29c6b4dda2423b9b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7010,13 +7010,13 @@ The process of locating control points, choosing the right transformation model,
 - Stereoscopic mapping (e.g., LiDAR and structure from motion).
 - The built-in geodatabase management system often integrated in Desktop GIS (ArcMap, GRASS GIS) and all related advantages such as object-oriented relational data modeling, topology, fast (spatial) querying, among others.
 
-This general overview already points out the differences between R's CLI and desktop GIS. 
-However, there is more: dedicated GIS software provides hundreds of geoalgorithms that are simply missing in R.
-The good news is that 'GIS bridges' enable the access to these with the comfort of the R command line.
+Another advantage of GIS software is that they provide access to hundreds of 'geoalgorithms' (computational recipes to solve geographic problems --- see Chapter \@ref(algorithms)), many of which are unavailable from the R command line.
+The good news is that such geoalgorithms can be accessed from the R command via 'GIS bridges', hence the title of (and motivation for) this chapter.^[
 An early use of the term 'bridge' referred the coupling of R with GRASS [@neteler_open_2008].
-Roger Bivand elaborated on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school (see http://spatial.nhh.no/misc/).
+Roger Bivand elaborated on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school (see slides at http://spatial.nhh.no/misc/).
 <!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
 <!-- `geostat_talk16.zip`. -->
+]
 
 The R language was originally designed as an interface to and extension of other languages, especially C and FORTRAN, to enable access to statistical algorithms in a user-friendly and intuitive read-evaluate-print loop (REPL) [@chambers_extending_2016].
 R was not originally intended to be a GIS.
@@ -7870,17 +7870,19 @@ Such dependencies should be mentioned as comments in the script or elsewhere in 
 
 Algorithms are, roughly speaking, the computing equivalent of a cooking recipe.
 They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs.
-Before diving into the detail a brief history will show how they relate to the more recent concepts of scripts (see section \@ref(scripts)) and functions (see section \@ref(functions)).
+Before diving into a concrete case study, a brief history will show how they relate to scripts (covered in section \@ref(scripts)) and functions (which can be used to generalize algorithms, as we'll see in section \@ref(functions)).
 
 The word algorithm originated in 9^th^ Century Baghdad with the publication of *Hisab al-jabr w’al-muqabala*, an early maths textbook.
-The book was translated into Latin and became so popular that the author's last name [al-Khwārizmī](https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi) "was immortalized as a scientific term: Al-Khwarizmi [sic] became Alchoarismi, Algorismi and, eventually, algorithm" [@bellos_alex_2011].
+The book was translated into Latin and became so popular that the author's last name [al-Khwārizmī](https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi) "was immortalized as a scientific term: Al-Khwarizmi
+<!-- [sic] -->
+became Alchoarismi, Algorismi and, eventually, algorithm" [@bellos_alex_2011].
 <!-- ^[ -->
 <!-- The book's title was also influential, forming the basis of the word *algebra*. -->
 <!-- ] -->
-
-In the computing age algorithm refers to a series of steps that take a clearly defined input to produce an output.
+In the computing age algorithm refers to a series of steps that solves a problem, resulting in a pre-defined output.
+Inputs must be formally defined: "the information for the problem is stored in a suitable data structure" [@wise_gis_2001].
 Algorithms often start as flow charts or psuedocode showing the aim of the process before being implemented in code.
-Because the same algorithm will be used many times on the different inputs it rarely makes sense to type out the entire algorithm each time: algorithms are most easily used when they are implemented inside functions (see section \@ref(functions)).
+To ease usability, common algorithms are often packaged inside functions, which may hide some or all of the steps taken (unless you look at the function's source code, see section \@ref(functions)).
 
 Geoalgorithms are a type of algorithm that take geographic data in and, generally, return geographic results.
 Also referred to as *GIS algorithms* and *geometric algorithms*, an entire academic field --- *Computational Geometry*, a branch of computer science --- is dedicated to their study and development [@berg_computational_2008].
@@ -10124,7 +10126,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve863a11c7c47bc07e
+preserve0466a4989ac01971
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
