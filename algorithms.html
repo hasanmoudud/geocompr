@@ -397,9 +397,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 The aim of this chapter is to teach how to create these vital components of reproducible and generalizable code.
 After reading it and completing the exercises at the end, you should be able to use methods for geocomputation to create reproducible workflows and — for confident readers — develop new tools, and have an understanding of the low level code underlying the ‘geoalgorithms’ we accessed in the previous chapter (<a href="gis.html#gis">9</a>).
 The chapter assumes you have an understanding of the geographic data classes introduced in Chapter <a href="spatial-class.html#spatial-class">2</a>, and have already imported the datasets needed for your work (see Chapter <a href="read-write.html#read-write">7</a>).</p>
-<p>We will consider example R scripts for geographic data and how to make them more reproducible in section <a href="algorithms.html#scripts">10.2</a>.
+<p>We will consider an example script and how to make them more reproducible in section <a href="algorithms.html#scripts">10.2</a>.
 Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section <a href="algorithms.html#geographic-algorithms">10.3</a>.
-To ease sharing and reproducibility algorithms can be placed into functions, the building blocks of generalizable code, the topic of section <a href="algorithms.html#functions">10.4</a>.</p>
+To ease sharing and reproducibility algorithms can be placed into functions.
+That is the topic of section <a href="algorithms.html#functions">10.4</a>.</p>
 <!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
 <!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
 <!-- , with dozens of lines of non-reproducible psuedo-code and equations -->
@@ -407,8 +408,11 @@ To ease sharing and reproducibility algorithms can be placed into functions, the
 <!-- The focus of this chapter is on understanding, using reproducible code and clear explanation. -->
 <p>The example of finding the centroid of a polygon will be used to tie these concepts together.
 Of course, you already know how to do the with <code>st_centroid()</code> having read Chapter <a href="geometric-operations.html#geometric-operations">5</a>.
-We use this example because it highlights how seemingly simple operations are the result of comparatively complex code, that can run to hundreds of lines if they are to deal with various ‘edge cases’.
-The example also reflects a secondary aim of the chapter: “not to duplicate what is available out there, but to show how things out there work” <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a>)</span>.
+We use this example because it highlights how seemingly simple operations are the result of comparatively complex code, affirming the following observation <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>:</p>
+<blockquote>
+<p>One of the most intriguing things about spatial data problems is that things which appear to be trivially easy to a human being can be surprisingly difficult on a computer.</p>
+</blockquote>
+<p>The example also reflects a secondary aim of the chapter which, following <span class="citation">Xiao (<a href="#ref-xiao_gis_2016">2016</a>)</span>, is “not to duplicate what is available out there, but to show how things out there work”.
 <!-- This chapter takes a similar approach and is therefore the most low-level and potentially advanced (in terms of the code, not application) so far. --></p>
 </div>
 <div id="scripts" class="section level2">
@@ -451,7 +455,7 @@ Such dependencies should be mentioned as comments in the script or elsewhere in 
 </div>
 <div id="geographic-algorithms" class="section level2">
 <h2><span class="header-section-number">10.3</span> Geographic algorithms</h2>
-<p>Algorithms are, roughly speaking, the computing equivalent of a cooking recipe.
+<p>Algorithms can be understood as the computing equivalent of a cooking recipe.
 They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs.
 Before diving into a concrete case study, a brief history will show how they relate to scripts (covered in section <a href="algorithms.html#scripts">10.2</a>) and functions (which can be used to generalize algorithms, as we’ll see in section <a href="algorithms.html#functions">10.4</a>).</p>
 <p>The word algorithm originated in 9<sup>th</sup> Century Baghdad with the publication of <em>Hisab al-jabr w’al-muqabala</em>, an early maths textbook.
@@ -462,28 +466,31 @@ became Alchoarismi, Algorismi and, eventually, algorithm” <span class="citatio
 <!-- The book's title was also influential, forming the basis of the word *algebra*. -->
 <!-- ] -->
 In the computing age algorithm refers to a series of steps that solves a problem, resulting in a pre-defined output.
-Inputs must be formally defined: “the information for the problem is stored in a suitable data structure” <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>.
+Inputs must be formally defined in a suitable data structure <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>.
 Algorithms often start as flow charts or psuedocode showing the aim of the process before being implemented in code.
 To ease usability, common algorithms are often packaged inside functions, which may hide some or all of the steps taken (unless you look at the function’s source code, see section <a href="algorithms.html#functions">10.4</a>).</p>
-<p>Geoalgorithms are a type of algorithm that take geographic data in and, generally, return geographic results.
-Also referred to as <em>GIS algorithms</em> and <em>geometric algorithms</em>, an entire academic field — <em>Computational Geometry</em>, a branch of computer science — is dedicated to their study and development <span class="citation">(Berg et al. <a href="#ref-berg_computational_2008">2008</a>)</span>.
-A simple example is an algorithm that finds the centroid of an object.
-As with many problems, it helps to break the overall task into chunks at the outset (these could be presented as a schematic diagram or pseudocode):</p>
+<p>Geoalgorithms such, as those we encountered in Chapter <a href="gis.html#gis">9</a>, are algorithms that take geographic data in and, generally, return geographic results (alternative terms for the same thing include <em>GIS algorithms</em> and <em>geometric algorithms</em>).
+That may sound simple but it is a deep subject with an entire academic field — <em>Computational Geometry</em>, a branch of computer science — dedicated to their study <span class="citation">(Berg et al. <a href="#ref-berg_computational_2008">2008</a>)</span>.</p>
+<p>An example is an algorithm that finds the centroid of a polygon.
+There are many approaches to centroid calculation, some of which work only on specific types of <a href="https://en.wikipedia.org/wiki/Centroid">spatial data</a>.
+For the purposes of this section, we choose an approach that is easy to visualize: breaking the polygon into many triangles and finding the centroid of each of these, an approach discussed by <span class="citation">Kaiser and Morin (<a href="#ref-kaiser_algorithms_1993">1993</a>)</span> alongside other centroid algorithms.
+It helps to further break-down this approach into discrete tasks before writing any code (these could be presented as a schematic diagram or pseudocode):</p>
 <ol style="list-style-type: decimal">
 <li>Divide the polygon into contiguous triangles</li>
 <li>Find the centroid of each triangle</li>
 <li>Find the area of each triangle</li>
 <li>Find the area-weighted mean of triangle centroids</li>
+<li>Return the result</li>
 </ol>
-<p>These steps may sound straightforward, but require some work, even for the simple case of convex polygons containing no holes that we will use.
-The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same).
+<p>These steps may sound straightforward, but converting words into working code requires some work and plenty of trial-and-error, even when the inputs are constrained.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
+The simplest data structure of a polygon is a matrix of x and y coordinates in which each row represents a vertex tracing the polygon’s border in order where the first and last rows are identical <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>.
 In this case we’ll create a polygon with 5 vertices in base R, building on an example from <em>GIS Algorithms</em> <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a> see <a href="https://github.com/gisalgs/geom">github.com/gisalgs</a> for Python code)</span>, as illustrated in Figure <a href="algorithms.html#fig:polymat">10.2</a>:</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">x_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb340-2" data-line-number="2">y_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb340-2" data-line-number="2">y_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb340-3" data-line-number="3">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(x_coords, y_coords)</a></code></pre></div>
 <p>Now we have an example dataset we are ready to undertake step 1 outlined above.
 The code below shows how this can be done by creating of a single triangle (<code>T1</code>), that demonstrates the method; it also demonstrates step 2 by calculating its centroid based on the <a href="https://math.stackexchange.com/q/1702595/">formula</a>
-<span class="math inline">\(1/3(a + b + c)\)</span> where <span class="math inline">\(a\)</span> to <span class="math inline">\(c\)</span> are coordinates representing the triangles vertices:</p>
+<span class="math inline">\(1/3(a + b + c)\)</span> where <span class="math inline">\(a\)</span> to <span class="math inline">\(c\)</span> are coordinates representing the triangle’s vertices:</p>
 <div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1">O =<span class="st"> </span>poly_mat[<span class="dv">1</span>, ] <span class="co"># create a point representing the origin</span></a>
 <a class="sourceLine" id="cb341-2" data-line-number="2">T1 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ], O) <span class="co"># create &#39;triangle matrix&#39;</span></a>
 <a class="sourceLine" id="cb341-3" data-line-number="3">C1 =<span class="st"> </span>(T1[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span> <span class="co"># find centroid</span></a></code></pre></div>
@@ -494,7 +501,7 @@ Figure 10.2: Illustration of polygon centroid calculation problem.
 </p>
 </div>
 <p>Step 3 is to find the area of each triangle, so a <em>weighted mean</em> accounting for the disproportionate impact of large triangles is accounted for.
-The formula to calculate the area of a triangle is:</p>
+The formula to calculate the area of a triangle is as follows <span class="citation">(Kaiser and Morin <a href="#ref-kaiser_algorithms_1993">1993</a>)</span>:</p>
 <p><span class="math display">\[
 \frac{Ax ( B y − C y ) + B x ( C y − A y ) + C x ( A y − B y )}
 { 2 }
@@ -506,7 +513,7 @@ A translation of this formula into R code that works with the data in the matrix
 <a class="sourceLine" id="cb342-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
 <a class="sourceLine" id="cb342-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb342-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
-<p>This code chunk works and outputs the correct result.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
+<p>This code chunk works and outputs the correct result.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
 The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
 To make the code more generalizable, we will see how it can be converted into a function in <a href="algorithms.html#functions">10.4</a>.</p>
 <p>Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
@@ -532,14 +539,14 @@ Figure 10.3: Illustration of iterative centroid algorithm with triangles. The �
 To demonstrate how algorithms can be shared we have combined the components demonstrated in this section into the script <code>10-centroid-alg.R</code> in the <code>code</code> folder of the book’s repo.
 Running the script with the <code>poly_mat</code> object loaded yields the following result (see exercises below to verify these results with reference to <code>st_centroid()</code>):</p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-centroid-alg.R&quot;</span>)</a>
-<a class="sourceLine" id="cb344-2" data-line-number="2"><span class="co">#&gt; [1] &quot;The area is: 185&quot;</span></a>
-<a class="sourceLine" id="cb344-3" data-line-number="3"><span class="co">#&gt; [1] &quot;The coordinates are: 8.23, 7.23&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb344-2" data-line-number="2"><span class="co">#&gt; [1] &quot;The area is: 245&quot;</span></a>
+<a class="sourceLine" id="cb344-3" data-line-number="3"><span class="co">#&gt; [1] &quot;The coordinates are: 8.83, 9.22&quot;</span></a></code></pre></div>
 <!-- We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph). -->
 <p>The example above shows that low-level geographic operations <em>can</em> be developed from first principles with base R.
 It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel.
 Even in cases where a new algorithm is needed, compiled languages such as C++ may be more appropriate than base R for performant solutions (see section <a href="intro.html#software-for-geocomputation">1.3</a>).</p>
 <p>Algorithm development is hard, especially if it involves learning a new language.
-The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
+The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>
 It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).</p>
 </div>
 <div id="functions" class="section level2">
@@ -588,9 +595,9 @@ This function, that we’ll call <code>poly_centroid()</code> will mimick the be
 <a class="sourceLine" id="cb349-10" data-line-number="10">    <span class="kw">return</span>(<span class="kw">sum</span>(A))</a>
 <a class="sourceLine" id="cb349-11" data-line-number="11">}</a></code></pre></div>
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1"><span class="kw">poly_centroid</span>(poly_mat)</a>
-<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="co">#&gt; [1] 8.23 7.23</span></a>
+<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="co">#&gt; [1] 8.83 9.22</span></a>
 <a class="sourceLine" id="cb350-3" data-line-number="3"><span class="kw">poly_centroid</span>(poly_mat, <span class="dt">output =</span> <span class="st">&quot;area&quot;</span>)</a>
-<a class="sourceLine" id="cb350-4" data-line-number="4"><span class="co">#&gt; [1] 185</span></a></code></pre></div>
+<a class="sourceLine" id="cb350-4" data-line-number="4"><span class="co">#&gt; [1] 245</span></a></code></pre></div>
 <p>Low-level function such as <code>poly_centroid()</code> can be built-on to provide different types of output.
 If a common need is to return the result as an object of class <code>sfg</code>, for example, this can be done by creating a ‘wrapper’ function that modifies the output of <code>poly_centroid()</code> before returning the result:</p>
 <div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1">poly_centroid_sfg =<span class="st"> </span><span class="cf">function</span>(x) {</a>
@@ -637,7 +644,7 @@ To see the input data type check working we can try running the function on a ma
 <li>How could the documentation be improved?
 <!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` --></li>
 </ul></li>
-<li>In section <a href="algorithms.html#geographic-algorithms">10.3</a> we calculated that the area and geographic centroid of the polygon represented by <code>poly_mat</code> was 185 and 8.2, 7.2, respectively.
+<li>In section <a href="algorithms.html#geographic-algorithms">10.3</a> we calculated that the area and geographic centroid of the polygon represented by <code>poly_mat</code> was 245 and 8.8, 9.2, respectively.
 <ul>
 <li>Reproduce the results on your own computer with reference to the script <code>10-centroid-alg.R</code>, an implementation of this algorithm (bonus: type out the commands - try to avoid copy-pasting).
 <!-- Todo: add link to that script file (RL) --></li>
@@ -662,17 +669,20 @@ To see the input data type check working we can try running the function on a ma
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-wise_gis_2001">
+<p>Wise, Stephen. 2001. <em>GIS Basics</em>. CRC Press.</p>
+</div>
 <div id="ref-xiao_gis_2016">
 <p>Xiao, Ningchuan. 2016. <em>GIS Algorithms: Theory and Applications for Geographic Information Science &amp; Technology</em>. 55 City Road, London. <a href="https://doi.org/10.4135/9781473921498" class="uri">https://doi.org/10.4135/9781473921498</a>.</p>
 </div>
 <div id="ref-bellos_alex_2011">
 <p>Bellos, Alex. 2011. <em>Alex’s Adventures in Numberland</em>. London: Bloomsbury Paperbacks.</p>
 </div>
-<div id="ref-wise_gis_2001">
-<p>Wise, Stephen. 2001. <em>GIS Basics</em>. CRC Press.</p>
-</div>
 <div id="ref-berg_computational_2008">
 <p>Berg, Mark de, Otfried Cheong, Marc van Kreveld, and Mark Overmars. 2008. <em>Computational Geometry: Algorithms and Applications</em>. Springer Science &amp; Business Media.</p>
+</div>
+<div id="ref-kaiser_algorithms_1993">
+<p>Kaiser, M.J., and T.L. Morin. 1993. “Algorithms for Computing Centroids.” <em>Computers &amp; Operations Research</em> 20 (2): 151–65. <a href="https://doi.org/10.1016/0305-0548(93)90071-P" class="uri">https://doi.org/10.1016/0305-0548(93)90071-P</a>.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -683,10 +693,12 @@ Lines of code that do not contain valid R should be commented to prevent errors,
 <li id="fn48"><p>
 Prior steps can be referred to with a comment or with an if statement such as <code>if(!exists(&quot;x&quot;)) source(&quot;x.R&quot;)</code> (which would run the script file <code>x.R</code> if the object <code>x</code> is missing).<a href="algorithms.html#fnref48" class="footnote-back">↩</a></p></li>
 <li id="fn49"><p>
-as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height — <span class="math inline">\(A = B * H / 2\)</span> — (<span class="math inline">\(10 * 10 / 2\)</span> in this case, as can be seen in Figure <a href="algorithms.html#fig:polycent">10.3</a>).<a href="algorithms.html#fnref49" class="footnote-back">↩</a></p></li>
+The algorithm will only work for <em>convex polygons</em>, which contain no internal angles greater than 180° — no star shapes allowed.<a href="algorithms.html#fnref49" class="footnote-back">↩</a></p></li>
 <li id="fn50"><p>
+as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height — <span class="math inline">\(A = B * H / 2\)</span> — (<span class="math inline">\(10 * 10 / 2\)</span> in this case, as can be seen in Figure <a href="algorithms.html#fig:polycent">10.3</a>).<a href="algorithms.html#fnref50" class="footnote-back">↩</a></p></li>
+<li id="fn51"><p>
 The CGAL function <code>CGAL::centroid()</code> is in fact composed of 7 sub-functions as described at <a href="https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html" class="uri">https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html</a> allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
-The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref50" class="footnote-back">↩</a></p></li>
+The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref51" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>

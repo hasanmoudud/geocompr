@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea8e175687f801964
+preserve16c3eda9bd6dcee7
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservece6316372d91787a
+preserve8a1c2f766c8edbe7
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6541,7 +6541,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve104ca32cd672cb0a
+preservedc6f4dc2edda83fb
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecb77b82fa4b76709
+preserve84713b73785ab9fa
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7805,9 +7805,10 @@ The aim of this chapter is to teach how to create these vital components of repr
 After reading it and completing the exercises at the end, you should be able to use methods for geocomputation to create reproducible workflows and --- for confident readers --- develop new tools, and have an understanding of the low level code underlying the 'geoalgorithms' we accessed in the previous chapter (\@ref(gis)).
 The chapter assumes you have an understanding of the geographic data classes introduced in Chapter \@ref(spatial-class), and have already imported the datasets needed for your work (see Chapter \@ref(read-write)).
 
-We will consider example R scripts for geographic data and how to make them more reproducible in section \@ref(scripts).
+We will consider an example script and how to make them more reproducible in section \@ref(scripts).
 Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
-To ease sharing and reproducibility algorithms can be placed into functions, the building blocks of generalizable code, the topic of section \@ref(functions).
+To ease sharing and reproducibility algorithms can be placed into functions.
+That is the topic of section \@ref(functions).
 
 <!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
 <!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
@@ -7816,8 +7817,11 @@ To ease sharing and reproducibility algorithms can be placed into functions, the
 <!-- The focus of this chapter is on understanding, using reproducible code and clear explanation. -->
 The example of finding the centroid of a polygon will be used to tie these concepts together.
 Of course, you already know how to do the with `st_centroid()` having read Chapter \@ref(geometric-operations).
-We use this example because it highlights how seemingly simple operations are the result of comparatively complex code, that can run to hundreds of lines if they are to deal with various 'edge cases'.
-The example also reflects a secondary aim of the chapter: "not to duplicate what is available out there, but to show how things out there work" [@xiao_gis_2016].
+We use this example because it highlights how seemingly simple operations are the result of comparatively complex code, affirming the following observation [@wise_gis_2001]:
+
+> One of the most intriguing things about spatial data problems is that things which appear to be trivially easy to a human being can be surprisingly difficult on a computer.
+
+The example also reflects a secondary aim of the chapter which, following @xiao_gis_2016, is "not to duplicate what is available out there, but to show how things out there work".
 <!-- This chapter takes a similar approach and is therefore the most low-level and potentially advanced (in terms of the code, not application) so far. -->
 
 ## Scripts
@@ -7872,7 +7876,7 @@ Such dependencies should be mentioned as comments in the script or elsewhere in 
 
 ## Geographic algorithms
 
-Algorithms are, roughly speaking, the computing equivalent of a cooking recipe.
+Algorithms can be understood as the computing equivalent of a cooking recipe.
 They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs.
 Before diving into a concrete case study, a brief history will show how they relate to scripts (covered in section \@ref(scripts)) and functions (which can be used to generalize algorithms, as we'll see in section \@ref(functions)).
 
@@ -7884,22 +7888,28 @@ became Alchoarismi, Algorismi and, eventually, algorithm" [@bellos_alex_2011].
 <!-- The book's title was also influential, forming the basis of the word *algebra*. -->
 <!-- ] -->
 In the computing age algorithm refers to a series of steps that solves a problem, resulting in a pre-defined output.
-Inputs must be formally defined: "the information for the problem is stored in a suitable data structure" [@wise_gis_2001].
+Inputs must be formally defined in a suitable data structure [@wise_gis_2001].
 Algorithms often start as flow charts or psuedocode showing the aim of the process before being implemented in code.
 To ease usability, common algorithms are often packaged inside functions, which may hide some or all of the steps taken (unless you look at the function's source code, see section \@ref(functions)).
 
-Geoalgorithms are a type of algorithm that take geographic data in and, generally, return geographic results.
-Also referred to as *GIS algorithms* and *geometric algorithms*, an entire academic field --- *Computational Geometry*, a branch of computer science --- is dedicated to their study and development [@berg_computational_2008].
-A simple example is an algorithm that finds the centroid of an object.
-As with many problems, it helps to break the overall task into chunks at the outset (these could be presented as a schematic diagram or pseudocode):
+Geoalgorithms such, as those we encountered in Chapter \@ref(gis), are algorithms that take geographic data in and, generally, return geographic results (alternative terms for the same thing include *GIS algorithms* and *geometric algorithms*).
+That may sound simple but it is a deep subject with an entire academic field --- *Computational Geometry*, a branch of computer science --- dedicated to their study [@berg_computational_2008].
+
+An example is an algorithm that finds the centroid of a polygon.
+There are many approaches to centroid calculation, some of which work only on specific types of [spatial data](https://en.wikipedia.org/wiki/Centroid).
+For the purposes of this section, we choose an approach that is easy to visualize: breaking the polygon into many triangles and finding the centroid of each of these, an approach discussed by @kaiser_algorithms_1993 alongside other centroid algorithms.
+It helps to further break-down this approach into discrete tasks before writing any code (these could be presented as a schematic diagram or pseudocode):
 
 1. Divide the polygon into contiguous triangles
 2. Find the centroid of each triangle
 3. Find the area of each triangle
 4. Find the area-weighted mean of triangle centroids
+5. Return the result
 
-These steps may sound straightforward, but require some work, even for the simple case of convex polygons containing no holes that we will use.
-The basic representation of a polygon object is in a matrix representing the vertices between which straight lines are drawn (the first and last points must be the same).
+These steps may sound straightforward, but converting words into working code requires some work and plenty of trial-and-error, even when the inputs are constrained.^[
+The algorithm will only work for *convex polygons*, which contain no internal angles greater than 180° --- no star shapes allowed.
+]
+The simplest data structure of a polygon is a matrix of x and y coordinates in which each row represents a vertex tracing the polygon's border in order where the first and last rows are identical [@wise_gis_2001].
 In this case we'll create a polygon with 5 vertices in base R, building on an example from *GIS Algorithms* [@xiao_gis_2016 see [github.com/gisalgs](https://github.com/gisalgs/geom) for Python code], as illustrated in Figure \@ref(fig:polymat):
 
 
@@ -7907,13 +7917,13 @@ In this case we'll create a polygon with 5 vertices in base R, building on an ex
 
 ```r
 x_coords = c(10, 0, 0, 12, 20, 10)
-y_coords = c(0, 0, 10, 14, 15, 0)
+y_coords = c(0, 0, 10, 20, 15, 0)
 poly_mat = cbind(x_coords, y_coords)
 ```
 
 Now we have an example dataset we are ready to undertake step 1 outlined above.
 The code below shows how this can be done by creating of a single triangle (`T1`), that demonstrates the method; it also demonstrates step 2 by calculating its centroid based on the [formula](https://math.stackexchange.com/q/1702595/)
-$1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangles vertices:
+$1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangle's vertices:
 
 
 ```r
@@ -7928,7 +7938,7 @@ C1 = (T1[1, ] + T1[2, ] + T1[3, ]) / 3 # find centroid
 </div>
 
 Step 3 is to find the area of each triangle, so a *weighted mean* accounting for the disproportionate impact of large triangles is accounted for. 
-The formula to calculate the area of a triangle is:
+The formula to calculate the area of a triangle is as follows [@kaiser_algorithms_1993]:
 
 $$
 \frac{Ax ( B y − C y ) + B x ( C y − A y ) + C x ( A y − B y )}
@@ -7983,8 +7993,8 @@ Running the script with the `poly_mat` object loaded yields the following result
 
 ```r
 source("code/10-centroid-alg.R")
-#> [1] "The area is: 185"
-#> [1] "The coordinates are: 8.23, 7.23"
+#> [1] "The area is: 245"
+#> [1] "The coordinates are: 8.83, 9.22"
 ```
 
 <!-- We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph). -->
@@ -8072,9 +8082,9 @@ poly_centroid = function(x, output = "matrix") {
 
 ```r
 poly_centroid(poly_mat)
-#> [1] 8.23 7.23
+#> [1] 8.83 9.22
 poly_centroid(poly_mat, output = "area")
-#> [1] 185
+#> [1] 245
 ```
 
 Low-level function such as `poly_centroid()` can be built-on to provide different types of output.
@@ -8143,7 +8153,7 @@ poly_centroid_type_stable(poly_mat3)
 <!-- u = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson" -->
     - How could the documentation be improved?
   <!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` -->
-1. In section \@ref(geographic-algorithms) we calculated that the area and geographic centroid of the polygon represented by `poly_mat` was 185 and 8.2, 7.2, respectively.
+1. In section \@ref(geographic-algorithms) we calculated that the area and geographic centroid of the polygon represented by `poly_mat` was 245 and 8.8, 9.2, respectively.
     - Reproduce the results on your own computer with reference to the script `10-centroid-alg.R`, an implementation of this algorithm (bonus: type out the commands - try to avoid copy-pasting).
     <!-- Todo: add link to that script file (RL) -->
     - Are the results correct? Verify them by converting `poly_mat` into an `sfc` object (named `poly_sfc`) with `st_polygon()` (hint: this function takes objects of class `list()`) and then using `st_area()` and `st_centroid()`.
@@ -10130,7 +10140,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee653605871c68a67
+preservedc6f9b92f1c3586d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
