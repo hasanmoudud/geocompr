@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-09">
+<meta name="date" content="2018-07-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -533,9 +533,9 @@ However, angles or length are not necessarily preserved.
 Affine transformations include, among others, shifting (translation), scaling and rotation.
 <!-- translation, scaling, homothety, similarity transformation, reflection, rotation, shear mapping -->
 Additionally, it is possible to use any combination of these.
-Affine transformations are an essential part of geocomputation, e.g. when reprojecting or when improving the geometry of a vector dataset that was created based on a distorted or wrongly projected map.</p>
-<p>The <strong>sf</strong> package implements affine transformation for objects of classes <code>sfg</code> and <code>sfc</code>.
-<!-- stats sfc issue --></p>
+Affine transformations are an essential part of geocomputation, e.g. when reprojecting or when improving the geometry of a vector dataset that was created based on a distorted or wrongly projected map.
+<!-- For instance, two examples where shifting is needed is for labels placement and for shadow casting algorithms. --></p>
+<p>The <strong>sf</strong> package implements affine transformation for objects of classes <code>sfg</code> and <code>sfc</code>.</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">nz_sfc =<span class="st"> </span><span class="kw">st_geometry</span>(nz)</a></code></pre></div>
 <p>Shifting moves every point by the same distance in map units.
 It could be done by adding a numerical vector to a vector object.
@@ -547,7 +547,8 @@ Global scaling increases or decreases all coordinates values in relation to the 
 It can by done by subtraction or multiplication of a<code>sfg</code> or <code>sfc</code> object.</p>
 <p>Local scaling treats geometries independently and requires points around which geometries are going to be scaled, e.g. centroids.
 In the example below, each geometry is shrunk by a factor of two around the centroids (central panel on the Fig. <a href="geometric-operations.html#fig:affine-trans">5.5</a>).
-<!-- scaling by a two-elements vector --></p>
+<!-- scaling by a two-elements vector -->
+<!-- JN explain "nz_sfc–nz_centroid_sfc" --></p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">nz_centroid_sfc =<span class="st"> </span><span class="kw">st_centroid</span>(nz_sfc)</a>
 <a class="sourceLine" id="cb157-2" data-line-number="2">nz_scale =<span class="st"> </span>(nz_sfc <span class="op">-</span><span class="st"> </span>nz_centroid_sfc) <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">+</span><span class="st"> </span>nz_centroid_sfc</a></code></pre></div>
 <p>Rotation of two-dimensional coordinates requires a rotation matrix:</p>
