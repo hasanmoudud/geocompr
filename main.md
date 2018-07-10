@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2ead18dcce0654f9
+preservea8e175687f801964
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7bb9bbabd708518c
+preservece6316372d91787a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3801,6 +3801,7 @@ Affine transformations include, among others, shifting (translation), scaling an
 Additionally, it is possible to use any combination of these.
 Affine transformations are an essential part of geocomputation, e.g. when reprojecting or when improving the geometry of a vector dataset that was created based on a distorted or wrongly projected map.
 <!-- For instance, two examples where shifting is needed is for labels placement and for shadow casting algorithms. -->
+<!-- cartograms -->
 
 The **sf** package implements affine transformation for objects of classes `sfg` and `sfc`.
 
@@ -3827,8 +3828,9 @@ It can by done by subtraction or multiplication of a`sfg` or `sfc` object.
 
 Local scaling treats geometries independently and requires points around which geometries are going to be scaled, e.g. centroids.
 In the example below, each geometry is shrunk by a factor of two around the centroids (central panel on the Fig. \@ref(fig:affine-trans)).
-<!-- scaling by a two-elements vector -->
-<!-- JN explain "nz_sfc–nz_centroid_sfc" -->
+To achieve that, each object is firstly shifted in a way that its center has coordinates of `0, 0` (`(nz_sfc - nz_centroid_sfc)`). 
+Next, the sizes of the geometries are reduced by half (`* 0.5`).
+Finally, each object's centroid is moved back to the input data coordinates (`+ nz_centroid_sfc`). 
 
 
 ```r
@@ -6539,7 +6541,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve615333ea538bdaf2
+preserve104ca32cd672cb0a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6637,7 +6639,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve945d648b6de1e843
+preservecb77b82fa4b76709
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10128,7 +10130,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserved242bc10fb34cafc
+preservee653605871c68a67
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
