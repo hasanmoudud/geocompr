@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea35fb50891a6dc38
+preserve3fc97b7c9ab9532b
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -659,12 +659,12 @@ This section introduces **sf** classes in preparation for subsequent chapters (C
 
 ### An introduction to simple features {#intro-sf}
 
-Simple features is an open standard developed and endorsed by the Open Geospatial Consortium ([OGC](http://portal.opengeospatial.org/files/?artifact_id=25355)) to represent a wide range of geographic information.
-It is a hierarchical data model that simplifies geographic data by condensing a complex range of geographic forms into a single geometry class.
-Only 7 out of 17 possible types of simple feature are currently used in the vast majority of GIS operations (Figure \@ref(fig:sf-ogc)).
-The R package **sf** [@pebesma_simple_2018] fully supports all of these (including plotting methods etc.).^[
+Simple features is an [open standard](http://portal.opengeospatial.org/files/?artifact_id=25355) developed and endorsed by the Open Geospatial Consortium (OGC), a not-for-profit organization whose activities we will revisit in a later chapter (in section \@ref(file-formats)).
+Simple Features is a hierarchical data model that represents a wide range of geometry types.
+Of 68 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure \@ref(fig:sf-ogc));
+these core geometry types are fully supported by R package **sf** [@pebesma_simple_2018].^[
 The full OGC standard includes rather exotic geometry types including 'surface' and 'curve' geometry types, which currently have limited application in real world applications.
-All 68 types can be represented with the **sf** package, although (at the time of writing) all methods, such as plotting, are only supported for the 7 types described in this chapter.
+All 68 types can be represented with the **sf** package, although (as of summer 2018) plotting only works for the 'core 7'.
 ]
 
 <div class="figure" style="text-align: center">
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservec797b699bbb89dbb
+preserveea34c3486d45af2a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5527,9 +5527,8 @@ SQLite/SpatiaLite   .sqlite                SQLite is a standalone, relational da
 ESRI FileGDB        .gdb                   Collection of spatial and nonspatial objects created in the ArcGIS software. It allows storage of multiple feature classes and enables use of topological definitions. Limited access to this format is provided by GDAL with the use of the OpenFileGDB and FileGDB drivers.            Vector and raster   Proprietary    
 GeoPackage          .gpkg                  Lightweight database container based on SQLite allowing an easy and platform-independent exchange of geodata                                                                                                                                                                             Vector and raster   Open           
 
-An important development ensuring greater standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium ([OGC](http://www.opengeospatial.org)) in 1994.
-The OGC coordinates the development of open standards for geospatial content including file formats such as KML and GeoPackage.
-As described in Chapter \@ref(spatial-class) the OGC publishes the simple feature data model, which underlies the vector data classes provided by **sf** and used in this book. 
+An important development ensuring the standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium ([OGC](http://www.opengeospatial.org/)) in 1994.
+Beyond defining the simple features data model (see section \@ref(intro-sf)), the OGC also coordinates the development of open standards, for example as used in file formats such as KML and GeoPackage.
 Open file formats of the kind endorsed by the OGC have several advantages over proprietary formats: the standards are published, ensure transparency and open up the possibility for users to further develop and adjust the file formats to their specific needs.
 
 ESRI' Shapefile is the most popular vector data exchange format.
@@ -6540,7 +6539,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5ed2ef189034d2c2
+preserve581b56eb60ef8fe3
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6638,7 +6637,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve882912f83d3ca3aa
+preserve90c3a05434b8e21f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10129,7 +10128,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8ffc228606be1e4d
+preserve59a3053659b8ac6a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

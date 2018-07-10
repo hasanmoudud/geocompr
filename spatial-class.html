@@ -488,10 +488,10 @@ This section introduces <strong>sf</strong> classes in preparation for subsequen
 <!-- ``` -->
 <div id="intro-sf" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> An introduction to simple features</h3>
-<p>Simple features is an open standard developed and endorsed by the Open Geospatial Consortium (<a href="http://portal.opengeospatial.org/files/?artifact_id=25355">OGC</a>) to represent a wide range of geographic information.
-It is a hierarchical data model that simplifies geographic data by condensing a complex range of geographic forms into a single geometry class.
-Only 7 out of 17 possible types of simple feature are currently used in the vast majority of GIS operations (Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>).
-The R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span> fully supports all of these (including plotting methods etc.).<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>Simple features is an <a href="http://portal.opengeospatial.org/files/?artifact_id=25355">open standard</a> developed and endorsed by the Open Geospatial Consortium (OGC), a not-for-profit organization whose activities we will revisit in a later chapter (in section <a href="read-write.html#file-formats">7.4</a>).
+Simple Features is a hierarchical data model that represents a wide range of geometry types.
+Of 68 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>);
+these core geometry types are fully supported by R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:sf-ogc"></span>
 <img src="figures/sf-classes.png" alt="The subset of the Simple Features class hierarchy supported by sf." width="100%" />
 <p class="caption">
@@ -1412,7 +1412,7 @@ This was selected by the Ordnance Survey to be roughly in the center of the Brit
 <!-- This was selected by the [Ordnance Survey](https://www.ordnancesurvey.co.uk/support/the-national-grid.html) to be roughly in the center of the British landmass longitudinally. --><a href="spatial-class.html#fnref6" class="footnote-back">↩</a></p></li>
 <li id="fn7"><p>
 The full OGC standard includes rather exotic geometry types including ‘surface’ and ‘curve’ geometry types, which currently have limited application in real world applications.
-All 68 types can be represented with the <strong>sf</strong> package, although (at the time of writing) all methods, such as plotting, are only supported for the 7 types described in this chapter.<a href="spatial-class.html#fnref7" class="footnote-back">↩</a></p></li>
+All 68 types can be represented with the <strong>sf</strong> package, although (as of summer 2018) plotting only works for the ‘core 7’.<a href="spatial-class.html#fnref7" class="footnote-back">↩</a></p></li>
 <li id="fn8"><p>The
 development version, which may contain new features, can be installed with <code>devtools::install_github(&quot;r-spatial/sf&quot;).</code><a href="spatial-class.html#fnref8" class="footnote-back">↩</a></p></li>
 <li id="fn9"><p>
