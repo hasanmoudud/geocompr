@@ -1256,6 +1256,19 @@ Check out the <code>stackApply()</code> example in the documentation for getting
 See more at <a href="http://gdal.org/gdal_rasterize.html" class="uri">http://gdal.org/gdal_rasterize.html</a>.<a href="geometric-operations.html#fnref23" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
+<script>
+/*
+Sorts the references alphabetically.
+Modified from code by Yvonne Aburrow.
+*/
+$(function(){
+    var elems = $('#refs').children('div').remove();
+    elems.sort(function (a, b) {
+        return $(b).children('p').html().toUpperCase() > $(a).children('p').html().toUpperCase() ? -1 : 1;
+    });
+    $('#refs').append(elems);
+})
+</script>
             </section>
 
           </div>

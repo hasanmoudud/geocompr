@@ -957,6 +957,19 @@ For real-world use one would use centroid values generated from projected data o
 To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref62" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
+<script>
+/*
+Sorts the references alphabetically.
+Modified from code by Yvonne Aburrow.
+*/
+$(function(){
+    var elems = $('#refs').children('div').remove();
+    elems.sort(function (a, b) {
+        return $(b).children('p').html().toUpperCase() > $(a).children('p').html().toUpperCase() ? -1 : 1;
+    });
+    $('#refs').append(elems);
+})
+</script>
             </section>
 
           </div>

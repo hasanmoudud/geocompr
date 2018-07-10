@@ -1113,6 +1113,19 @@ Map algebra operations are also possible with headerless rasters but in this cas
 An example showing how to import a headerless raster into R is provided in a post at <a href="https://stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html" class="uri">https://stat.ethz.ch/pipermail/r-sig-geo/2013-May/018278.html</a>.<a href="spatial-operations.html#fnref18" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
+<script>
+/*
+Sorts the references alphabetically.
+Modified from code by Yvonne Aburrow.
+*/
+$(function(){
+    var elems = $('#refs').children('div').remove();
+    elems.sort(function (a, b) {
+        return $(b).children('p').html().toUpperCase() > $(a).children('p').html().toUpperCase() ? -1 : 1;
+    });
+    $('#refs').append(elems);
+})
+</script>
             </section>
 
           </div>

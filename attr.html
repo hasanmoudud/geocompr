@@ -1033,6 +1033,19 @@ A more in-depth explanation of joining is provided in <code>join.Rmd</code>, a r
 <code>st_geometry(world_st) = NULL</code> also works to remove the geometry from <code>world</code> but overwrites the original object.<a href="attr.html#fnref16" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
+<script>
+/*
+Sorts the references alphabetically.
+Modified from code by Yvonne Aburrow.
+*/
+$(function(){
+    var elems = $('#refs').children('div').remove();
+    elems.sort(function (a, b) {
+        return $(b).children('p').html().toUpperCase() > $(a).children('p').html().toUpperCase() ? -1 : 1;
+    });
+    $('#refs').append(elems);
+})
+</script>
             </section>
 
           </div>

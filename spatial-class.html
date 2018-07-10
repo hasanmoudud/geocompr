@@ -1433,6 +1433,19 @@ Values of <span class="math inline">\(a\)</span> and <span class="math inline">\
 A complete list of the <code>proj4string</code> parameters can be found at <a href="https://proj4.org/" class="uri">https://proj4.org/</a>.<a href="spatial-class.html#fnref13" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
+<script>
+/*
+Sorts the references alphabetically.
+Modified from code by Yvonne Aburrow.
+*/
+$(function(){
+    var elems = $('#refs').children('div').remove();
+    elems.sort(function (a, b) {
+        return $(b).children('p').html().toUpperCase() > $(a).children('p').html().toUpperCase() ? -1 : 1;
+    });
+    $('#refs').append(elems);
+})
+</script>
             </section>
 
           </div>

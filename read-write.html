@@ -1003,6 +1003,19 @@ A list of supported vector formats and options can be found at <a href="http://g
 Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info--><a href="read-write.html#fnref34" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
+<script>
+/*
+Sorts the references alphabetically.
+Modified from code by Yvonne Aburrow.
+*/
+$(function(){
+    var elems = $('#refs').children('div').remove();
+    elems.sort(function (a, b) {
+        return $(b).children('p').html().toUpperCase() > $(a).children('p').html().toUpperCase() ? -1 : 1;
+    });
+    $('#refs').append(elems);
+})
+</script>
             </section>
 
           </div>

@@ -689,6 +689,19 @@ The CGAL function <code>CGAL::centroid()</code> is in fact composed of 7 sub-fun
 The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref50" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
+<script>
+/*
+Sorts the references alphabetically.
+Modified from code by Yvonne Aburrow.
+*/
+$(function(){
+    var elems = $('#refs').children('div').remove();
+    elems.sort(function (a, b) {
+        return $(b).children('p').html().toUpperCase() > $(a).children('p').html().toUpperCase() ? -1 : 1;
+    });
+    $('#refs').append(elems);
+})
+</script>
             </section>
 
           </div>
