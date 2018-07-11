@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb6a2c509fa338cd2
+preserve66fb1787b2edfa30
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef9b9bc5da2d5aeda
+preserve13430d791081a18f
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6541,7 +6541,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserved28a6dc792e65348
+preserve1d36c26df02dd514
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0f682cb899f50987
+preserve541673b6217283f6
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7898,13 +7898,13 @@ That may sound simple but it is a deep subject with an entire academic field ---
 An example is an algorithm that finds the centroid of a polygon.
 There are many approaches to centroid calculation, some of which work only on specific types of [spatial data](https://en.wikipedia.org/wiki/Centroid).
 For the purposes of this section, we choose an approach that is easy to visualize: breaking the polygon into many triangles and finding the centroid of each of these, an approach discussed by @kaiser_algorithms_1993 alongside other centroid algorithms.
-It helps to further break-down this approach into discrete tasks before writing any code (these could be presented as a schematic diagram or pseudocode):
+It helps to further break-down this approach into discrete tasks before writing any code (subsequently referred to as step 1 to step 4, these could also be presented as a schematic diagram or pseudocode):
 
 1. Divide the polygon into contiguous triangles
 2. Find the centroid of each triangle
 3. Find the area of each triangle
 4. Find the area-weighted mean of triangle centroids
-5. Return the result
+<!-- 5. Return the result -->
 
 These steps may sound straightforward, but converting words into working code requires some work and plenty of trial-and-error, even when the inputs are constrained.^[
 The algorithm will only work for *convex polygons*, which contain no internal angles greater than 180° --- no star shapes allowed.
@@ -7967,8 +7967,9 @@ To make the code more generalizable, we will see how it can be converted into a 
 
 Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
 This requires *iteration* to create all triangles representing the polygon, illustrated in Figure \@ref(fig:polycent).
-`lapply()` is used here because it is a concise solution in base R;
-alternatives include `map()` from the **purrr** package or a `for()` loop (see Chapter \@ref(location)):
+`lapply()` is used to iterate over each triangle here because it is a concise solution in base R:^[
+Alternative functions for iteration include `map()` from the **purrr** package or a `for()` loop (see Chapter \@ref(location)).
+]
 
 
 ```r
@@ -10143,7 +10144,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservecfb8a432d2020a62
+preserve2ab2381e20e42dba
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

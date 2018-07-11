@@ -474,13 +474,13 @@ That may sound simple but it is a deep subject with an entire academic field —
 <p>An example is an algorithm that finds the centroid of a polygon.
 There are many approaches to centroid calculation, some of which work only on specific types of <a href="https://en.wikipedia.org/wiki/Centroid">spatial data</a>.
 For the purposes of this section, we choose an approach that is easy to visualize: breaking the polygon into many triangles and finding the centroid of each of these, an approach discussed by <span class="citation">Kaiser and Morin (<a href="#ref-kaiser_algorithms_1993">1993</a>)</span> alongside other centroid algorithms.
-It helps to further break-down this approach into discrete tasks before writing any code (these could be presented as a schematic diagram or pseudocode):</p>
+It helps to further break-down this approach into discrete tasks before writing any code (subsequently referred to as step 1 to step 4, these could also be presented as a schematic diagram or pseudocode):</p>
 <ol style="list-style-type: decimal">
 <li>Divide the polygon into contiguous triangles</li>
 <li>Find the centroid of each triangle</li>
 <li>Find the area of each triangle</li>
-<li>Find the area-weighted mean of triangle centroids</li>
-<li>Return the result</li>
+<li>Find the area-weighted mean of triangle centroids
+<!-- 5. Return the result --></li>
 </ol>
 <p>These steps may sound straightforward, but converting words into working code requires some work and plenty of trial-and-error, even when the inputs are constrained.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
 The simplest data structure of a polygon is a matrix of x and y coordinates in which each row represents a vertex tracing the polygon’s border in order where the first and last rows are identical <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>.
@@ -518,8 +518,7 @@ The problem is that code is clunky and must by re-typed we want to run it on ano
 To make the code more generalizable, we will see how it can be converted into a function in <a href="algorithms.html#functions">10.4</a>.</p>
 <p>Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
 This requires <em>iteration</em> to create all triangles representing the polygon, illustrated in Figure <a href="algorithms.html#fig:polycent">10.3</a>.
-<code>lapply()</code> is used here because it is a concise solution in base R;
-alternatives include <code>map()</code> from the <strong>purrr</strong> package or a <code>for()</code> loop (see Chapter <a href="location.html#location">13</a>):</p>
+<code>lapply()</code> is used to iterate over each triangle here because it is a concise solution in base R:<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(poly_mat) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb343-2" data-line-number="2">T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb343-3" data-line-number="3">  <span class="kw">rbind</span>(O, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O)</a>
@@ -547,7 +546,7 @@ Running the script with the <code>poly_mat</code> object loaded yields the follo
 It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel.
 Even in cases where a new algorithm is needed, compiled languages such as C++ may be more appropriate than base R for performant solutions (see section <a href="intro.html#software-for-geocomputation">1.3</a>).</p>
 <p>Algorithm development is hard, especially if it involves learning a new language.
-The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>
+The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>
 It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).</p>
 </div>
 <div id="functions" class="section level2">
@@ -700,8 +699,10 @@ The result can be verified using the formula for the area of a triangle whose ba
 area is half of the base width times its height or <span class="math inline">\(A = B * H / 2\)</span>.
 In this case <span class="math inline">\(10 * 10 / 2 = 50\)</span>.<a href="algorithms.html#fnref50" class="footnote-back">↩</a></p></li>
 <li id="fn51"><p>
+Alternative functions for iteration include <code>map()</code> from the <strong>purrr</strong> package or a <code>for()</code> loop (see Chapter <a href="location.html#location">13</a>).<a href="algorithms.html#fnref51" class="footnote-back">↩</a></p></li>
+<li id="fn52"><p>
 The CGAL function <code>CGAL::centroid()</code> is in fact composed of 7 sub-functions as described at <a href="https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html" class="uri">https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html</a> allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
-The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref51" class="footnote-back">↩</a></p></li>
+The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref52" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
