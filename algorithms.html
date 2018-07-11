@@ -515,10 +515,10 @@ A translation of this formula into R code that works with the data in the matrix
 <a class="sourceLine" id="cb343-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
 <p>This code chunk outputs the correct result.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
 The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
-To make the code more generalizable, we will see how it can be converted into a function in <a href="algorithms.html#functions">10.4</a>.</p>
+To make the code more generalizable, we will see how it can be converted into a function in the next section (<a href="algorithms.html#functions">10.4</a>).</p>
 <p>Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
 This requires <em>iteration</em> to create all triangles representing the polygon, illustrated in Figure <a href="algorithms.html#fig:polycent">10.3</a>.
-<code>lapply()</code> is used to iterate over each triangle here because it is a concise solution in base R:<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
+<code>lapply()</code> and <code>vapply()</code> are used to iterate over each triangle here because they provide a concise solution in base R:<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1">i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(poly_mat) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb344-2" data-line-number="2">T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb344-3" data-line-number="3">  <span class="kw">rbind</span>(O, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O)</a>
@@ -701,7 +701,10 @@ The result can be verified using the formula for the area of a triangle whose ba
 area is half of the base width times its height or <span class="math inline">\(A = B * H / 2\)</span>.
 In this case <span class="math inline">\(10 * 10 / 2 = 50\)</span>.<a href="algorithms.html#fnref50" class="footnote-back">↩</a></p></li>
 <li id="fn51"><p>
-Alternative functions for iteration include <code>map()</code> from the <strong>purrr</strong> package or a <code>for()</code> loop (see Chapter <a href="location.html#location">13</a>).<a href="algorithms.html#fnref51" class="footnote-back">↩</a></p></li>
+See <code>?lapply</code> for documentation.
+Alternative functions for iteration include <code>map()</code> from the <strong>purrr</strong> package or a <code>for()</code> loop (see Chapter <a href="location.html#location">13</a>).
+<code>do.call()</code> is used in the code chunk as a base R equivalent of <code>dplyr::bind_rows()</code>:
+it coerces the list elements into a single matrix. <a href="algorithms.html#fnref51" class="footnote-back">↩</a></p></li>
 <li id="fn52"><p>
 The CGAL function <code>CGAL::centroid()</code> is in fact composed of 7 sub-functions as described at <a href="https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html" class="uri">https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html</a> allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
 The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref52" class="footnote-back">↩</a></p></li>

@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve18cd43086079782c
+preserve828d46bfc2a5f46a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve37f5341ec4a1ed52
+preserve2ad99c93a6756ea0
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6547,7 +6547,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve233639094340584d
+preserve3c04a2ca35ca5dba
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6645,7 +6645,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8292ec7318af8c39
+preservec72ecaf2e66aef22
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7969,12 +7969,15 @@ area is half of the base width times its height or $A = B * H / 2$.
 In this case $10 * 10 / 2 = 50$.
 ]
 The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
-To make the code more generalizable, we will see how it can be converted into a function in \@ref(functions).
+To make the code more generalizable, we will see how it can be converted into a function in the next section (\@ref(functions)).
 
 Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
 This requires *iteration* to create all triangles representing the polygon, illustrated in Figure \@ref(fig:polycent).
-`lapply()` is used to iterate over each triangle here because it is a concise solution in base R:^[
+`lapply()` and `vapply()` are used to iterate over each triangle here because they provide a concise solution in base R:^[
+See `?lapply` for documentation.
 Alternative functions for iteration include `map()` from the **purrr** package or a `for()` loop (see Chapter \@ref(location)).
+`do.call()` is used in the code chunk as a base R equivalent of `dplyr::bind_rows()`:
+it coerces the list elements into a single matrix. 
 ]
 
 
@@ -10152,7 +10155,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9b5e37d1b47d8259
+preserveee01b23be68471f2
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
