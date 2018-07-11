@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve330a37628d424a94
+preserved4f0ffa320191df5
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve6f194927f3bd4279
+preserve4d2ff8296919ab25
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6547,7 +6547,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve9a3c01fc9177807c
+preserve580d2c4b88736225
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6645,7 +6645,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve29d2dfefc98edc3f
+preserve47ed8b49d7af5408
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7889,7 +7889,7 @@ poly_mat = cbind(
 )
 source("code/10-centroid-alg.R")
 #> [1] "The area is: 81"
-#> [1] "The coordinates are: 4.5, 4.5"
+#> [1] "The coordinates of the centroid are: 4.5, 4.5"
 ```
 
 ## Geographic algorithms
@@ -7998,13 +7998,15 @@ i = 2:(nrow(poly_mat) - 2)
 T_all = lapply(i, function(x) {
   rbind(O, poly_mat[x:(x + 1), ], O)
 })
+
+C_list = lapply(T_all,  function(x) (x[1, ] + x[2, ] + x[3, ]) / 3)
+C = do.call(rbind, C_list)
+
 A = vapply(T_all, function(x) {
   abs(x[1, 1] * (x[2, 2] - x[3, 2]) +
         x[2, 1] * (x[3, 2] - x[1, 2]) +
         x[3, 1] * (x[1, 2] - x[2, 2]) ) / 2
   }, FUN.VALUE = double(1))
-C_list = lapply(T_all,  function(x) (x[1, ] + x[2, ] + x[3, ]) / 3)
-C = do.call(rbind, C_list)
 ```
 
 <div class="figure" style="text-align: center">
@@ -8021,7 +8023,7 @@ The great thing about *scripting* the algorithm is that it works on the new `pol
 ```r
 source("code/10-centroid-alg.R")
 #> [1] "The area is: 245"
-#> [1] "The coordinates are: 8.83, 9.22"
+#> [1] "The coordinates of the centroid are: 8.83, 9.22"
 ```
 
 <!-- We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph). -->
@@ -8043,10 +8045,31 @@ The source code underlying GEOS function `Centroid::getCentroid()` can be found 
 ## Functions
 
 Like algorithms functions take an input and return an output.
-The difference is that functions are 'first class' objects in R.
-We have already seen the advantages of using functions in the previous section:
-the function `t_area()`, created in the code chunk below, *contains* the steps needed find the area of any 'triangle matrix' and can be called with a single line, whereas in the previous section it required 3 lines.
-Functions are thus a mechanism for *generalizing* code.
+The difference is that functions are 'first class' objects in R and are more flexible than scripts.
+We can, for example, create function that undertakes step 2 of our centroid generation algorithm as follows:
+
+
+```r
+t_centroid = function(x) {
+  (x[1, ] + x[2, ] + x[3, ]) / 3
+}
+```
+
+The above example demonstrates two key components of [functions](http://adv-r.had.co.nz/Functions.html):
+1) the function *body*, the code inside the curly brackets that define what the function does with the inputs; and 2) the *formals*, the list of arguments the function works with --- `x` in this case (the third component, the environment, is beyond the scope of this section).
+
+
+
+The function now works on any inputs you pass it, as illustrated in the below command which calculates the area of the 1^st^ triangle from the example polygon in the previous section (see Figure \@ref(fig:polycent)):
+
+
+```r
+t_centroid(T1)
+#> x_coords y_coords 
+#>     3.33     3.33
+```
+
+We can also create a function to calculate a triangle's area, which we will name `t_area()`:
 <!-- We can use the function to find the area of a triangle with a base 3 units wide and a height of 1, for example, as follows: -->
 
 
@@ -8060,8 +8083,9 @@ t_area = function(x) {
 }
 ```
 
-The function `t_area` generalizes the solution by taking any object `x`, assumed to have the same dimensions as the triangle represented in `T1`.
-We can verify it works on the triangle matrix `T1` as follows:
+Note that after the function's creation, a triangle's area can be calculated in a single line of code, avoiding duplication of verbose code:
+functions are a mechanism for *generalizing* code.
+The newly created function `t_area()` takes any object `x`, assumed to have the same dimensions as the 'triangle matrix' data structure we've been using, and returns its area, as illustrated on `T1` as follows:
 
 
 ```r
@@ -8069,65 +8093,55 @@ t_area(T1)
 #> [1] 50
 ```
 
-Likewise we can create a function that finds the triangle's centroid:
+We can test the generalizability of the function by using it to find the area of a new triangle matrix, which has a height of 1 and a base of 3:
 
 
 ```r
-t_centroid = function(x) {
-  (x[1, ] + x[2, ] + x[3, ]) / 3
-}
-t_centroid(T1)
-#> x_coords y_coords 
-#>     3.33     3.33
-```
-
-
-
-```r
-t_new = matrix(c(0, 3, 3, 0, 0, 0, 1, 0), ncol = 2)
+t_new = cbind(x = c(0, 3, 3, 0),
+              y = c(0, 0, 1, 0))
 t_area(t_new)
-#> [1] 1.5
+#>   x 
+#> 1.5
 ```
 
 A useful feature of functions is that they are modular.
 Providing you know what the output will be, one function can be used as the building block of another.
-This is exactly what we will do in this section.
-Building on the content of the previous section, in which it was shown how the area of a polygon can be found by following a series of steps in order, this section will *create a function* to calculate the area of any polygon (with caveats that will become clear).
-This function, that we'll call `poly_centroid()` will mimick the behaviour of `sf::st_centroid()` from the **sf** package, with a few additions to show how arguments work.
+Thus, the functions `t_centroid()` and `t_area()` can be used as sub-components of a larger function to do the work of the script `10-centroid-alg.R`: calculate the area of any convex polygon.
+The code chunk below creates the function `poly_centroid()` to mimick the behaviour of `sf::st_centroid()`:
 
 
 ```r
-poly_centroid = function(x, output = "matrix") {
+poly_centroid = function(x) {
   i = 2:(nrow(x) - 2)
-  T_all = purrr::map(i, ~rbind(O, x[.:(. + 1), ], O))
-  A = purrr::map_dbl(T_all, ~t_area(.))
+  T_all = T_all = lapply(i, function(x) {
+    rbind(O, poly_mat[x:(x + 1), ], O)
+  })
   C_list = lapply(T_all, t_centroid)
   C = do.call(rbind, C_list)
+  A = vapply(T_all, t_area, FUN.VALUE = double(1))
   centroid_coords = c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
-  if(output == "matrix") {
-    return(centroid_coords)
-  } else if(output == "area")
-    return(sum(A))
+  return(centroid_coords)
 }
 ```
+
+
+
 
 
 ```r
 poly_centroid(poly_mat)
 #> [1] 8.83 9.22
-poly_centroid(poly_mat, output = "area")
-#> [1] 245
 ```
 
-Low-level function such as `poly_centroid()` can be built-on to provide different types of output.
-If a common need is to return the result as an object of class `sfg`, for example, this can be done by creating a 'wrapper' function that modifies the output of `poly_centroid()` before returning the result:
+Functions such as `poly_centroid()` can further be built-on to provide different types of output.
+To return the result as an object of class `sfg`, for example, a 'wrapper' function can be used to modify the output of `poly_centroid()` before returning the result:
 
 
 ```r
 poly_centroid_sfg = function(x) {
   centroid_coords = poly_centroid(x)
   centroid_sfg = sf::st_point(centroid_coords)
-  centroid_sfg
+  return(centroid_sfg)
 }
 ```
 
@@ -8140,38 +8154,35 @@ identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
 #> [1] TRUE
 ```
 
-An important concept to consider when developing your own function is *type stability*.
-Functions are type stable if they always return objects of the same class and, generally, this means returning objects of the same type as the input object.
-To illustrate this concept in practice we will create a type stable version `poly_centroid()` that always takes a matrix with 2 columns as an input and always returns a matrix with 2 columns representing x and y coordinates:
+<!-- RL: I've commented-out the rest of this section as I think it distracts from the core content -->
+<!-- An important concept to consider when developing your own function is *type stability*. -->
+<!-- Functions are type stable if they always return objects of the same class and, generally, this means returning objects of the same type as the input object. -->
+<!-- To illustrate this concept in practice we will create a type stable version `poly_centroid()` that always takes a matrix with 2 columns as an input and always returns a matrix with 2 columns representing x and y coordinates: -->
 
+<!-- ```{r} -->
+<!-- poly_centroid_type_stable = function(x) { -->
+<!--   stopifnot(is.matrix(x) & ncol(x) == 2) -->
+<!--   centroid_coords = poly_centroid(x) -->
+<!--   return(matrix(centroid_coords, ncol = 2)) -->
+<!-- } -->
+<!-- ``` -->
 
-```r
-poly_centroid_type_stable = function(x) {
-  stopifnot(is.matrix(x) & ncol(x) == 2)
-  centroid_coords = poly_centroid(x)
-  return(matrix(centroid_coords, ncol = 2))
-}
-```
+<!-- The first line of the function is an example of 'defensive programming': -->
+<!-- it checks the input is in the right format (a matrix with 2 columns) before proceeding. -->
+<!-- Such checks can ensure that the code is robust and does not silently fail. -->
+<!-- We can verify it works with `matrix(centroid_coords, ncol = 2)`. -->
+<!-- To see the input data type check working we can try running the function on a matrix with 3 columns: -->
 
-The first line of the function is an example of 'defensive programming':
-it checks the input is in the right format (a matrix with 2 columns) before proceeding.
-Such checks can ensure that the code is robust and does not silently fail.
-We can verify it works with `matrix(centroid_coords, ncol = 2)`.
-To see the input data type check working we can try running the function on a matrix with 3 columns:
+<!-- ```{r, warning=FALSE} -->
+<!-- poly_mat3 = cbind(1:nrow(poly_mat), poly_mat) -->
+<!-- poly_centroid(poly_mat3) -->
+<!-- ``` -->
 
-
-```r
-poly_mat3 = cbind(1:nrow(poly_mat), poly_mat)
-poly_centroid(poly_mat3)
-#> [1] 5.94 6.78
-```
-
-
-```r
-poly_centroid_type_stable(poly_mat3)
-#> Error in poly_centroid_type_stable(poly_mat3) : 
-#>   is.matrix(x) & ncol(x) == 2 is not TRUE 
-```
+<!-- ```{r, eval=FALSE} -->
+<!-- poly_centroid_type_stable(poly_mat3) -->
+<!-- #> Error in poly_centroid_type_stable(poly_mat3) :  -->
+<!-- #>   is.matrix(x) & ncol(x) == 2 is not TRUE  -->
+<!-- ``` -->
 
 
 ## Case study
@@ -10172,7 +10183,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee2bd6db758dad84e
+preserve1dde17296e1355cc
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
