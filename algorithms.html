@@ -544,24 +544,29 @@ This requires <em>iteration</em> to create all triangles representing the polygo
 Figure 10.3: Illustration of iterative centroid algorithm with triangles. The ‘x’ represents the area-weighted centroid in iterations 2 and 3.
 </p>
 </div>
-<p>We are now in a position to complete step 4 to calculate the total area with <code>sum(A)</code> and the centroid coordinates of the polygon with <code>weighted.mean(C[, 1], A)</code> and <code>weighted.mean(C[, 2], A)</code>.
-To demonstrate how algorithms can be shared we have combined the components demonstrated in this section into the script <code>10-centroid-alg.R</code> in the <code>code</code> folder of the book’s repo.
-Running the script with the <code>poly_mat</code> object loaded yields the following result (see exercises below to verify these results with reference to <code>st_centroid()</code>):</p>
+<p>We are now in a position to complete step 4 to calculate the total area with <code>sum(A)</code> and the centroid coordinates of the polygon with <code>weighted.mean(C[, 1], A)</code> and <code>weighted.mean(C[, 2], A)</code> (exercise for alert readers: verify these commands work).
+To demonstrate the link between algorithms and scripts the contents of this section have been condensed into <code>10-centroid-alg.R</code>.
+We saw at the end of section <a href="algorithms.html#scripts">10.2</a> how this script can calculate the centroid of a square.
+The great thing about <em>scripting</em> the algorithm is that it works on the new <code>poly_mat</code> object (see exercises below to verify these results with reference to <code>st_centroid()</code>):</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-centroid-alg.R&quot;</span>)</a>
 <a class="sourceLine" id="cb346-2" data-line-number="2"><span class="co">#&gt; [1] &quot;The area is: 245&quot;</span></a>
 <a class="sourceLine" id="cb346-3" data-line-number="3"><span class="co">#&gt; [1] &quot;The coordinates are: 8.83, 9.22&quot;</span></a></code></pre></div>
 <!-- We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph). -->
 <p>The example above shows that low-level geographic operations <em>can</em> be developed from first principles with base R.
-It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel.
-Even in cases where a new algorithm is needed, compiled languages such as C++ may be more appropriate than base R for performant solutions (see section <a href="intro.html#software-for-geocomputation">1.3</a>).</p>
-<p>Algorithm development is hard, especially if it involves learning a new language.
-The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>
-It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).</p>
+It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel:
+if our aim was simply to find the centroid of a polygon it would have been quicker to represent <code>poly_mat</code> as an <strong>sf</strong> object and use the pre-existing <code>sf::st_centroid()</code> function instead.
+However, the great benefit of writing algorithms from 1<sup>st</sup> principles is that you will understand every step of the process, something that cannot be guaranteed when using other peoples’ code.
+A further consideration is performance: R is slow compared with low level languages such as C++ for number crunching (see section <a href="intro.html#software-for-geocomputation">1.3</a>) and optimization is difficult.
+Still, if the aim is to develop new methods computational efficiency should not be a primary consideration, as encapsulated in the saying “premature optimization is the root of all evil” <span class="citation">(Knuth <a href="#ref-knuth_computer_1974">1974</a>)</span>.</p>
+<p>Algorithm development is hard.
+This should be apparent from the amount of work that has gone into developing a centroid algorithm in base R that is just one, rather inefficient, approach to the problem with limited real-world applications (in the real world convex polygons are uncommon).
+The experience should lead to an appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) which not only run fast but work on a wide range of input geometry types.
+A great advantage of the open source nature of such libraries is that their source code is readily available for study, comprehension and (for those with the skills and confidence) modification.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a></p>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">10.4</span> Functions</h2>
 <p>Like algorithms functions take an input and return an output.
-The difference is that functions are ‘first class’ objects in their own right.
+The difference is that functions are ‘first class’ objects in R.
 We have already seen the advantages of using functions in the previous section:
 the function <code>t_area()</code>, created in the code chunk below, <em>contains</em> the steps needed find the area of any ‘triangle matrix’ and can be called with a single line, whereas in the previous section it required 3 lines.
 Functions are thus a mechanism for <em>generalizing</em> code.
@@ -693,6 +698,9 @@ To see the input data type check working we can try running the function on a ma
 </div>
 <div id="ref-kaiser_algorithms_1993">
 <p>Kaiser, M.J., and T.L. Morin. 1993. “Algorithms for Computing Centroids.” <em>Computers &amp; Operations Research</em> 20 (2): 151–65. <a href="https://doi.org/10.1016/0305-0548(93)90071-P" class="uri">https://doi.org/10.1016/0305-0548(93)90071-P</a>.</p>
+</div>
+<div id="ref-knuth_computer_1974">
+<p>Knuth, Donald E. 1974. “Computer Programming as an Art.” <em>Commun. ACM</em> 17 (12): 667–73. <a href="https://doi.org/10.1145/361604.361612" class="uri">https://doi.org/10.1145/361604.361612</a>.</p>
 </div>
 </div>
 <div class="footnotes">

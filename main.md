@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef7e0a77e9cd58587
+preserve330a37628d424a94
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve38f6105d07071308
+preserve6f194927f3bd4279
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6547,7 +6547,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1a3708dcc79a56e7
+preserve9a3c01fc9177807c
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6645,7 +6645,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve145f41bca0cf967f
+preserve29d2dfefc98edc3f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8012,9 +8012,10 @@ C = do.call(rbind, C_list)
 <p class="caption">(\#fig:polycent)Illustration of iterative centroid algorithm with triangles. The 'x' represents the area-weighted centroid in iterations 2 and 3.</p>
 </div>
 
-We are now in a position to complete step 4 to calculate the total area with `sum(A)` and the centroid coordinates of the polygon with `weighted.mean(C[, 1], A)` and `weighted.mean(C[, 2], A)`.
-To demonstrate how algorithms can be shared we have combined the components demonstrated in this section into the script `10-centroid-alg.R` in the `code` folder of the book's repo.
-Running the script with the `poly_mat` object loaded yields the following result (see exercises below to verify these results with reference to `st_centroid()`):
+We are now in a position to complete step 4 to calculate the total area with `sum(A)` and the centroid coordinates of the polygon with `weighted.mean(C[, 1], A)` and `weighted.mean(C[, 2], A)` (exercise for alert readers: verify these commands work).
+To demonstrate the link between algorithms and scripts the contents of this section have been condensed into `10-centroid-alg.R`.
+We saw at the end of section \@ref(scripts) how this script can calculate the centroid of a square.
+The great thing about *scripting* the algorithm is that it works on the new `poly_mat` object (see exercises below to verify these results with reference to `st_centroid()`):
 
 
 ```r
@@ -8025,20 +8026,24 @@ source("code/10-centroid-alg.R")
 
 <!-- We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph). -->
 The example above shows that low-level geographic operations *can* be developed from first principles with base R.
-It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel.
-Even in cases where a new algorithm is needed, compiled languages such as C++ may be more appropriate than base R for performant solutions (see section \@ref(software-for-geocomputation)).
+It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel:
+if our aim was simply to find the centroid of a polygon it would have been quicker to represent `poly_mat` as an **sf** object and use the pre-existing `sf::st_centroid()` function instead.
+However, the great benefit of writing algorithms from 1^st^ principles is that you will understand every step of the process, something that cannot be guaranteed when using other peoples' code.
+A further consideration is performance: R is slow compared with low level languages such as C++ for number crunching (see section \@ref(software-for-geocomputation)) and optimization is difficult.
+Still, if the aim is to develop new methods computational efficiency should not be a primary consideration, as encapsulated in the saying "premature optimization is the root of all evil" [@knuth_computer_1974].
 
-Algorithm development is hard, especially if it involves learning a new language.
-The experience should, if nothing else, lead to a greater appreciation of low-level geographic libraries such as GEOS (which underlies `sf::st_centroid()`) and CGAL (the Computational Geometry Algorithms Library) and interest in their source code.^[
+Algorithm development is hard.
+This should be apparent from the amount of work that has gone into developing a centroid algorithm in base R that is just one, rather inefficient, approach to the problem with limited real-world applications (in the real world convex polygons are uncommon).
+The experience should lead to an appreciation of low-level geographic libraries such as GEOS (which underlies `sf::st_centroid()`) and CGAL (the Computational Geometry Algorithms Library) which not only run fast but work on a wide range of input geometry types.
+A great advantage of the open source nature of such libraries is that their source code is readily available for study, comprehension and (for those with the skills and confidence) modification.^[
 The CGAL function `CGAL::centroid()` is in fact composed of 7 sub-functions as described at https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
 The source code underlying GEOS function `Centroid::getCentroid()` can be found at https://github.com/libgeos/geos/search?q=getCentroid.
 ]
-It may be disapointing to learn that the algorithm we have developed works only for a very specific type of polygon: convex hulls (see exercises).
 
 ## Functions
 
 Like algorithms functions take an input and return an output.
-The difference is that functions are 'first class' objects in their own right.
+The difference is that functions are 'first class' objects in R.
 We have already seen the advantages of using functions in the previous section:
 the function `t_area()`, created in the code chunk below, *contains* the steps needed find the area of any 'triangle matrix' and can be called with a single line, whereas in the previous section it required 3 lines.
 Functions are thus a mechanism for *generalizing* code.
@@ -10167,7 +10172,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservea1cbe5a4d4093577
+preservee2bd6db758dad84e
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
