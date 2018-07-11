@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4383e5f77c44362a
+preserve18eba8522d0fee60
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef2cc1e0dd50552ce
+preserve111852d519dd1897
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6541,7 +6541,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve0d540ad3f4e73b23
+preservec53c8bd03249947a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb8aa10638a22cbfd
+preserve211539701c3d7fce
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7977,12 +7977,13 @@ i = 2:(nrow(poly_mat) - 2)
 T_all = lapply(i, function(x) {
   rbind(O, poly_mat[x:(x + 1), ], O)
 })
-A = sapply(T_all, function(x) {
+A = vapply(T_all, function(x) {
   abs(x[1, 1] * (x[2, 2] - x[3, 2]) +
         x[2, 1] * (x[3, 2] - x[1, 2]) +
         x[3, 1] * (x[1, 2] - x[2, 2]) ) / 2
-  })
-C = t(sapply(T_all,  function(x) (x[1, ] + x[2, ] + x[3, ]) / 3))
+  }, FUN.VALUE = double(1))
+C_list = lapply(T_all,  function(x) (x[1, ] + x[2, ] + x[3, ]) / 3)
+C = do.call(rbind, C_list)
 ```
 
 <div class="figure" style="text-align: center">
@@ -8074,7 +8075,8 @@ poly_centroid = function(x, output = "matrix") {
   i = 2:(nrow(x) - 2)
   T_all = purrr::map(i, ~rbind(O, x[.:(. + 1), ], O))
   A = purrr::map_dbl(T_all, ~t_area(.))
-  C = t(sapply(T_all, t_centroid))
+  C_list = lapply(T_all, t_centroid)
+  C = do.call(rbind, C_list)
   centroid_coords = c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
   if(output == "matrix") {
     return(centroid_coords)
@@ -10144,7 +10146,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve0bd491896d5dc524
+preserve867790b69d1b3f4b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
