@@ -320,8 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="algorithms.html"><a href="algorithms.html#scripts"><i class="fa fa-check"></i><b>10.2</b> Scripts</a></li>
 <li class="chapter" data-level="10.3" data-path="algorithms.html"><a href="algorithms.html#geographic-algorithms"><i class="fa fa-check"></i><b>10.3</b> Geographic algorithms</a></li>
 <li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#functions"><i class="fa fa-check"></i><b>10.4</b> Functions</a></li>
-<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>10.5</b> Case study</a></li>
-<li class="chapter" data-level="10.6" data-path="algorithms.html"><a href="algorithms.html#ex-algorithms"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#ex-algorithms"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>11</b> Statistical learning for geographic data</a><ul>
 <li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
@@ -353,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="location.html"><a href="location.html"><i class="fa fa-check"></i><b>13</b> Geomarketing</a><ul>
 <li class="chapter" data-level="" data-path="location.html"><a href="location.html#prerequisites-11"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="13.1" data-path="location.html"><a href="location.html#introduction-8"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
-<li class="chapter" data-level="13.2" data-path="algorithms.html"><a href="algorithms.html#case-study"><i class="fa fa-check"></i><b>13.2</b> Case study: bike shops in Germany</a></li>
+<li class="chapter" data-level="13.2" data-path="location.html"><a href="location.html#case-study"><i class="fa fa-check"></i><b>13.2</b> Case study: bike shops in Germany</a></li>
 <li class="chapter" data-level="13.3" data-path="location.html"><a href="location.html#tidy-the-input-data"><i class="fa fa-check"></i><b>13.3</b> Tidy the input data</a></li>
 <li class="chapter" data-level="13.4" data-path="location.html"><a href="location.html#create-census-rasters"><i class="fa fa-check"></i><b>13.4</b> Create census rasters</a></li>
 <li class="chapter" data-level="13.5" data-path="location.html"><a href="location.html#define-metropolitan-areas"><i class="fa fa-check"></i><b>13.5</b> Define metropolitan areas</a></li>
@@ -428,7 +427,7 @@ Saved scripts can be called and executed in their entirety with <code>source()</
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-hello.R&quot;</span>)</a>
 <a class="sourceLine" id="cb340-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Hello geocompr&quot;</span></a></code></pre></div>
 <p>There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>
-There are, however, some conventions worth following:</p>
+There are, however, some best practice conventions worth following:</p>
 <ul>
 <li>Write the script in order: just like the script of a film, scripts should have a clear order such as ‘setup’, ‘data processing’ and ‘save results’ (roughly equivalent to ‘beginning’, ‘middle’ and ‘end’ in a film).</li>
 <li>Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure <a href="algorithms.html#fig:codecheck">10.1</a>) and (for long scripts) divide it into sections (e.g. with <code>Ctl+Shift+R</code> in RStudio which creates comments ending in <code>----</code> that can be ‘folded’ in the editor).</li>
@@ -652,16 +651,18 @@ To return the result as an object of class <code>sfg</code>, for example, a ‘w
 <!-- #>   is.matrix(x) & ncol(x) == 2 is not TRUE  -->
 <!-- ``` -->
 </div>
-<div id="case-study" class="section level2">
-<h2><span class="header-section-number">10.5</span> Case study</h2>
-</div>
 <div id="ex-algorithms" class="section level2">
-<h2><span class="header-section-number">10.6</span> Exercises</h2>
+<h2><span class="header-section-number">10.5</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Check-out the script <code>10-earthquakes.R</code> in the <code>code</code> folder of the book’s GitHub <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/10-earthquakes.R">repo</a>.
+<li>Read the script <code>10-centroid-alg.R</code> in the <code>code</code> folder of the book’s GitHub <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/10-centroid-alg.R">repo</a>.
 <ul>
-<li>Try to reproduce the results: how many significant earthquakes were there last month?</li>
-<li>Modify the script so that it provides a map with all earthquakes that happened in the past hour.
+<li>Which of the best practices covered in section <a href="algorithms.html#scripts">10.2</a> does it follow?</li>
+<li>Create a version of the script on your computer in an IDE such as RStudio (preferably by typing-out the script line-by-line, in your own coding style and with your own comments, rather than copy-pasting — this will help you learn how to type scripts) and, using the example of a square polygon (e.g. created with <code>poly_mat = cbind(x = c(0, 0, 9, 9, 0), y = c(0, 9, 9, 0, 0))</code>) execute the script line-by-line.</li>
+<li>What changes could be made to the script to make it more reproducible?
+<!-- - Answer: The script could state that it needs a an object called `poly_mat` to be present and, if none is present, create an example dataset at the outset for testing. -->
+<!-- 1. Check-out the script `10-earthquakes.R` in the `code` folder of the book's GitHub [repo](https://github.com/Robinlovelace/geocompr/blob/master/code/10-earthquakes.R). -->
+<!--     - Try to reproduce the results: how many significant earthquakes were there last month? -->
+<!--     - Modify the script so that it provides a map with all earthquakes that happened in the past hour. -->
 <!-- change line 10 to: -->
 <!-- u = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson" --></li>
 <li>How could the documentation be improved?
