@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve18eba8522d0fee60
+preserve19026bdedb7791fa
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve111852d519dd1897
+preservea0575df011cb3586
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4262,9 +4262,15 @@ Additionally, the output cell value should correspond to the mean of the input c
 ```r
 data("dem", package = "RQGIS")
 dem_agg = aggregate(dem, fact = 5, fun = mean)
-par(mfrow = c(1, 2))
-plot(dem)
-plot(dem_agg)
+```
+
+
+```r
+p_ar1 = tm_shape(dem) + tm_raster(style = "cont", legend.show = FALSE) +
+  tm_layout(main.title = "Original")
+p_ar2 = tm_shape(dem_agg) + tm_raster(style = "cont", legend.show = FALSE) +
+  tm_layout(main.title = "Aggregated")
+tmap_arrange(p_ar1, p_ar2, ncol = 2)
 ```
 
 <div class="figure" style="text-align: center">
@@ -6541,7 +6547,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec53c8bd03249947a
+preserve83e2a6d7871079a8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6639,7 +6645,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve211539701c3d7fce
+preservebff0bf87013d43e0
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10146,7 +10152,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve867790b69d1b3f4b
+preserve535f9aa19154f23b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
