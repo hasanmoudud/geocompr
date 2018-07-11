@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-10'
+date: '2018-07-11'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-10 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-11 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefad2ce839c6b6861
+preservebe89a821c3d551fa
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved65737267416f9f4
+preserve68bf9c4ff3b1aaf0
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6541,7 +6541,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea28b1acc0fc4e7b9
+preserveaf7b0c7d2ac8fc25
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6639,7 +6639,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve745f18e13907e8f2
+preservebde34929979f83aa
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7957,28 +7957,31 @@ abs(T1[1, 1] * (T1[2, 2] - T1[3, 2]) +
 #> [1] 50
 ```
 
-This code chunk works and outputs the correct result.^[
-as can be verified with the formula for the area of a triangle whose base is horizontal: area equals half of the base width times its height --- $A = B * H / 2$ --- ($10 * 10 / 2$ in this case, as can be seen in Figure \@ref(fig:polycent)).
+This code chunk outputs the correct result.^[
+The result can be verified using the formula for the area of a triangle whose base is horizontal, as is the case for T1 (see Figure \@ref(fig:polycent)):
+area is half of the base width times its height or $A = B * H / 2$.
+In this case $10 * 10 / 2 = 50$.
 ]
 The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
 To make the code more generalizable, we will see how it can be converted into a function in \@ref(functions).
 
 Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
 This requires *iteration* to create all triangles representing the polygon, illustrated in Figure \@ref(fig:polycent).
-We use `lapply()` for this work because it is concise and is part of base R, but could have chosen `map()` from the **purrr** package or a `for()` loop (see Chapter \@ref(location)):
+`lapply()` is used here because it is a concise solution in base R;
+alternatives include `map()` from the **purrr** package or a `for()` loop (see Chapter \@ref(location)):
 
 
 ```r
 i = 2:(nrow(poly_mat) - 2)
-Ti = lapply(i, function(x) {
+T_all = lapply(i, function(x) {
   rbind(O, poly_mat[x:(x + 1), ], O)
 })
-A = sapply(Ti, function(x) {
+A = sapply(T_all, function(x) {
   abs(x[1, 1] * (x[2, 2] - x[3, 2]) +
         x[2, 1] * (x[3, 2] - x[1, 2]) +
         x[3, 1] * (x[1, 2] - x[2, 2]) ) / 2
   })
-C = t(sapply(Ti,  function(x) (x[1, ] + x[2, ] + x[3, ]) / 3))
+C = t(sapply(T_all,  function(x) (x[1, ] + x[2, ] + x[3, ]) / 3))
 ```
 
 <div class="figure" style="text-align: center">
@@ -8068,9 +8071,9 @@ This function, that we'll call `poly_centroid()` will mimick the behaviour of `s
 ```r
 poly_centroid = function(x, output = "matrix") {
   i = 2:(nrow(x) - 2)
-  Ti = purrr::map(i, ~rbind(O, x[.:(. + 1), ], O))
-  A = purrr::map_dbl(Ti, ~t_area(.))
-  C = t(sapply(Ti, t_centroid))
+  T_all = purrr::map(i, ~rbind(O, x[.:(. + 1), ], O))
+  A = purrr::map_dbl(T_all, ~t_area(.))
+  C = t(sapply(T_all, t_centroid))
   centroid_coords = c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
   if(output == "matrix") {
     return(centroid_coords)
@@ -10140,7 +10143,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveeb689c139d640722
+preserve75c899d972aa8777
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
