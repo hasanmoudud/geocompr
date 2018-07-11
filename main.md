@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4273653b021b0dfd
+preserveb95b98037d67438f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve8dcc667c674d15b6
+preservee6b3420270083bfa
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6545,7 +6545,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservebc23a24c7ca29d3c
+preserve62c9f7a07d812660
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6643,7 +6643,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb193662f6233165f
+preserve197d5defd2768691
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8055,6 +8055,9 @@ t_centroid = function(x) {
 
 The above example demonstrates two key components of [functions](http://adv-r.had.co.nz/Functions.html):
 1) the function *body*, the code inside the curly brackets that define what the function does with the inputs; and 2) the *formals*, the list of arguments the function works with --- `x` in this case (the third component, the environment, is beyond the scope of this section).
+By default, functions return the last object that has been calculated (the coordinates of the centroid in the case of `t_centroid()`).^[
+You can also explicitly set the output of a function by adding `return(output)` into the body of the function, where `output` is the result to be returned.
+]
 
 
 
@@ -8117,8 +8120,7 @@ poly_centroid = function(x) {
   C_list = lapply(T_all, t_centroid)
   C = do.call(rbind, C_list)
   A = vapply(T_all, t_area, FUN.VALUE = double(1))
-  centroid_coords = c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
-  return(centroid_coords)
+  c(weighted.mean(C[, 1], A), weighted.mean(C[, 2], A))
 }
 ```
 
@@ -8138,8 +8140,7 @@ To return the result as an object of class `sfg`, for example, a 'wrapper' funct
 ```r
 poly_centroid_sfg = function(x) {
   centroid_coords = poly_centroid(x)
-  centroid_sfg = sf::st_point(centroid_coords)
-  return(centroid_sfg)
+  sf::st_point(centroid_coords)
 }
 ```
 
@@ -10181,7 +10182,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservea24e11c3ae3010a1
+preserveba6e69cac0d083aa
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
