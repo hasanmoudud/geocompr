@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9ae2501a45c61237
+preservef7e0a77e9cd58587
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve8edf6bfb4e95b57a
+preserve38f6105d07071308
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6547,7 +6547,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve10bbb9ba7931001d
+preserve1a3708dcc79a56e7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6645,7 +6645,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedd09eeeaaa7ab9e3
+preserve145f41bca0cf967f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7877,8 +7877,20 @@ Its main function `reprex()` tests of lines of R code to check if they are repro
 See [reprex.tidyverse.org/](http://reprex.tidyverse.org/) for details.</div>\EndKnitrBlock{rmdnote}
 
 The contents of this section apply to any type of R script.
-A particular consideration with scripts for geocomputation is that they tend to have external dependencies, such as the QGIS dependency to run code in Chapter \@ref(gis).
-Such dependencies should be mentioned as comments in the script or elsewhere in the project of which it is a part.
+A particular consideration with scripts for geocomputation is that they tend to have external dependencies, such as the QGIS dependency to run code in Chapter \@ref(gis), and require input data in a specific format.
+Such dependencies should be mentioned as comments in the script or elsewhere in the project of which it is a part, as illustrated in the script `10-centroid-alg.R`.
+To demonstrate a basic geographic data processing script in action, the final code chunk of this section finds the area and centroid of a square with sides 9 units in length (the meaning of this will become apparent in the next section):
+
+
+```r
+poly_mat = cbind(
+  x = c(0, 0, 9, 9, 0),
+  y = c(0, 9, 9, 0, 0)
+)
+source("code/10-centroid-alg.R")
+#> [1] "The area is: 81"
+#> [1] "The coordinates are: 4.5, 4.5"
+```
 
 ## Geographic algorithms
 
@@ -10155,7 +10167,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve2007b44540b9cdb5
+preservea1cbe5a4d4093577
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
