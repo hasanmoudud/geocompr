@@ -715,7 +715,7 @@ In most cases, as with the ESRI Shapefile (<code>.shp</code>) or the <code>GeoPa
 <code>st_read()</code> guesses the driver based on the file extension, as illustrated for a <code>.gpkg</code> file below:</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">vector_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;shapes/world.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>)</a>
 <a class="sourceLine" id="cb240-2" data-line-number="2">world =<span class="st"> </span><span class="kw">st_read</span>(vector_filepath)</a>
-<a class="sourceLine" id="cb240-3" data-line-number="3"><span class="co">#&gt; Reading layer `wrld.gpkg&#39; from data source `/home/travis/R/Library/spData/shapes/world.gpkg&#39; using driver `GPKG&#39;</span></a>
+<a class="sourceLine" id="cb240-3" data-line-number="3"><span class="co">#&gt; Reading layer `wrld.gpkg&#39; from data source `/usr/local/lib/R/site-library/spData/shapes/world.gpkg&#39; using driver `GPKG&#39;</span></a>
 <a class="sourceLine" id="cb240-4" data-line-number="4"><span class="co">#&gt; Simple feature collection with 177 features and 10 fields</span></a>
 <a class="sourceLine" id="cb240-5" data-line-number="5"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
 <a class="sourceLine" id="cb240-6" data-line-number="6"><span class="co">#&gt; dimension:      XY</span></a>

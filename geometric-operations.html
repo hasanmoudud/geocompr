@@ -996,7 +996,7 @@ The generation of summary statistics is demonstrated the code below, which creat
 <a class="sourceLine" id="cb193-3" data-line-number="3"><span class="co">#&gt; # A tibble: 1 x 4</span></a>
 <a class="sourceLine" id="cb193-4" data-line-number="4"><span class="co">#&gt;      ID   min  mean   max</span></a>
 <a class="sourceLine" id="cb193-5" data-line-number="5"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb193-6" data-line-number="6"><span class="co">#&gt; 1    1. 1122. 1818. 2661.</span></a></code></pre></div>
+<a class="sourceLine" id="cb193-6" data-line-number="6"><span class="co">#&gt; 1     1  1122 1818.  2661</span></a></code></pre></div>
 <p>The preceding code chunk used the <strong>tidyverse</strong> to provide summary statistics for cell values per polygon ID, as described in Chapter <a href="attr.html#attr">3</a>.
 The results provide useful summaries, for example that the maximum height in the park is around 2,661 meters (other summary statistics such as standard deviation can also be calculated in this way).
 Because there is only one polygon in the example a data frame with a single row is returned, but the method works when multiple selector polygons are used.</p>
@@ -1010,9 +1010,9 @@ This is illustrated with a land cover dataset (<code>nlcd</code>) from the <stro
 <a class="sourceLine" id="cb194-6" data-line-number="6"><span class="st">  </span><span class="kw">spread</span>(value, n, <span class="dt">fill =</span> <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb194-7" data-line-number="7"><span class="co">#&gt; # A tibble: 1 x 9</span></a>
 <a class="sourceLine" id="cb194-8" data-line-number="8"><span class="co">#&gt; # Groups:   ID, key [1]</span></a>
-<a class="sourceLine" id="cb194-9" data-line-number="9"><span class="co">#&gt;      ID key    Barren Cultivated Developed  Forest Herbaceous Shrubland</span></a>
-<a class="sourceLine" id="cb194-10" data-line-number="10"><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb194-11" data-line-number="11"><span class="co">#&gt; 1    1. levels 98285.        62.     4205. 298299.       235.   203701.</span></a>
+<a class="sourceLine" id="cb194-9" data-line-number="9"><span class="co">#&gt;      ID key    Barren Cultivated Developed Forest Herbaceous Shrubland</span></a>
+<a class="sourceLine" id="cb194-10" data-line-number="10"><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb194-11" data-line-number="11"><span class="co">#&gt; 1     1 levels  98285         62      4205 298299        235    203701</span></a>
 <a class="sourceLine" id="cb194-12" data-line-number="12"><span class="co">#&gt; # ... with 1 more variable: Wetlands &lt;dbl&gt;</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:polyextr"></span>
 <img src="figures/polyextr-1.png" alt="Area used for continuous (left) and categorical (right) raster extraction." width="576" />

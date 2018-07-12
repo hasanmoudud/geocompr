@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve98d1c8afe90c03a3
+preserve876b748276c893f1
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1348,7 +1348,7 @@ new_raster
 #> resolution  : 0.000833, 0.000833  (x, y)
 #> extent      : -113, -113, 37.1, 37.5  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-#> data source : /home/travis/R/Library/spDataLarge/raster/srtm.tif 
+#> data source : /usr/local/lib/R/site-library/spDataLarge/raster/srtm.tif 
 #> names       : srtm 
 #> values      : 1024, 2892  (min, max)
 ```
@@ -1515,7 +1515,7 @@ r_brick
 #> resolution  : 30, 30  (x, y)
 #> extent      : 301905, 335745, 4111245, 4154085  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=utm +zone=12 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 
-#> data source : /home/travis/R/Library/spDataLarge/raster/landsat.tif 
+#> data source : /usr/local/lib/R/site-library/spDataLarge/raster/landsat.tif 
 #> names       : landsat.1, landsat.2, landsat.3, landsat.4 
 #> min values  :      7550,      6404,      5678,      5252 
 #> max values  :     19071,     22051,     25780,     31961
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9a68633baa6b3567
+preserve256eebd8df7971f3
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4474,7 +4474,7 @@ group_by(zion_srtm_values, ID) %>%
 #> # A tibble: 1 x 4
 #>      ID   min  mean   max
 #>   <dbl> <dbl> <dbl> <dbl>
-#> 1    1. 1122. 1818. 2661.
+#> 1     1  1122 1818.  2661
 ```
 
 The preceding code chunk used the **tidyverse** to provide summary statistics for cell values per polygon ID, as described in Chapter \@ref(attr).
@@ -4494,9 +4494,9 @@ dplyr::select(zion_nlcd, ID, levels) %>%
   spread(value, n, fill = 0)
 #> # A tibble: 1 x 9
 #> # Groups:   ID, key [1]
-#>      ID key    Barren Cultivated Developed  Forest Herbaceous Shrubland
-#>   <dbl> <chr>   <dbl>      <dbl>     <dbl>   <dbl>      <dbl>     <dbl>
-#> 1    1. levels 98285.        62.     4205. 298299.       235.   203701.
+#>      ID key    Barren Cultivated Developed Forest Herbaceous Shrubland
+#>   <dbl> <chr>   <dbl>      <dbl>     <dbl>  <dbl>      <dbl>     <dbl>
+#> 1     1 levels  98285         62      4205 298299        235    203701
 #> # ... with 1 more variable: Wetlands <dbl>
 ```
 
@@ -5595,7 +5595,7 @@ In most cases, as with the ESRI Shapefile (`.shp`) or the `GeoPackage` format (`
 ```r
 vector_filepath = system.file("shapes/world.gpkg", package = "spData")
 world = st_read(vector_filepath)
-#> Reading layer `wrld.gpkg' from data source `/home/travis/R/Library/spData/shapes/world.gpkg' using driver `GPKG'
+#> Reading layer `wrld.gpkg' from data source `/usr/local/lib/R/site-library/spData/shapes/world.gpkg' using driver `GPKG'
 #> Simple feature collection with 177 features and 10 fields
 #> geometry type:  MULTIPOLYGON
 #> dimension:      XY
@@ -6547,7 +6547,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve046fc9dc8acc3e6b
+preserve37ceaea25befaed4
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6645,7 +6645,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3cb93311cb4ac35f
+preserveb14afa3a2df4c878
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10187,7 +10187,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservecda626c23938d6ec
+preserved7390351e3096d15
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
