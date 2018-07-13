@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecb70a40b77fd9384
+preservee575b62a44a16d42
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3088,7 +3088,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve0af3c9a9fd498267
+preserveb2c54441e5e5f9af
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6545,7 +6545,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve8328b951ed4146b3
+preserve3599169f5836f9ec
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6643,7 +6643,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2afdd78fabc93f7d
+preservefab55bfc866c98fd
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8030,7 +8030,7 @@ It also shows that if a tried-and-tested solution already exists, it may not be 
 if our aim was simply to find the centroid of a polygon it would have been quicker to represent `poly_mat` as an **sf** object and use the pre-existing `sf::st_centroid()` function instead.
 However, the great benefit of writing algorithms from 1^st^ principles is that you will understand every step of the process, something that cannot be guaranteed when using other peoples' code.
 A further consideration is performance: R is slow compared with low level languages such as C++ for number crunching (see section \@ref(software-for-geocomputation)) and optimization is difficult.
-Still, if the aim is to develop new methods computational efficiency should not be a primary consideration, as encapsulated in the saying "premature optimization is the root of all evil" [@knuth_computer_1974].
+Still, if the aim is to develop new methods computational efficiency should not be a primary consideration, as encapsulated in the saying "premature optimization is the root of all evil (or at least most of it) in programming" [@knuth_computer_1974].
 
 Algorithm development is hard.
 This should be apparent from the amount of work that has gone into developing a centroid algorithm in base R that is just one, rather inefficient, approach to the problem with limited real-world applications (in the real world convex polygons are uncommon).
@@ -10185,7 +10185,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef1258093b435c4b0
+preserveac88513cf8444dc1
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
