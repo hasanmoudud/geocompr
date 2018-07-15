@@ -651,17 +651,17 @@ The result is an <code>sf</code> object with a single row representing the world
 <tbody>
 <tr class="odd">
 <td align="left">Africa</td>
-<td align="right">1147005839</td>
+<td align="right">1154946633</td>
 <td align="right">51</td>
 </tr>
 <tr class="even">
 <td align="left">Asia</td>
-<td align="right">4306025131</td>
+<td align="right">4311408059</td>
 <td align="right">47</td>
 </tr>
 <tr class="odd">
 <td align="left">Europe</td>
-<td align="right">739178065</td>
+<td align="right">669036256</td>
 <td align="right">39</td>
 </tr>
 </tbody>
@@ -710,8 +710,10 @@ We will use a ‘left join’ (meaning the left-hand dataset is kept intact) to 
 The result of the code chunk below is a new <code>sf</code> object.</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">world_coffee =<span class="st"> </span><span class="kw">left_join</span>(world, coffee_data)</a>
 <a class="sourceLine" id="cb85-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
-<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="kw">class</span>(world_coffee)</a>
-<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="co">#&gt; Warning: Column `name_long` joining factor and character vector, coercing</span></a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="co">#&gt; into character vector</span></a>
+<a class="sourceLine" id="cb85-5" data-line-number="5"><span class="kw">class</span>(world_coffee)</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
 <p>The resulting simple features object is the same as the orignal <code>world</code> object but has two new variables (with column indeces 11 and 12) reporting coffee production by year.
 This can be plotted as a map, as illustrated in Figure <a href="attr.html#fig:coffeemap">3.1</a>, generated with the <code>plot()</code> function below:</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">names</span>(world_coffee)</a>
@@ -739,7 +741,9 @@ In the majority of cases where variable names are not the same you have two opti
 </ol>
 <p>The latter approach is demonstrated below on a renamed version of <code>coffee_data</code>:</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">coffee_renamed =<span class="st"> </span><span class="kw">rename</span>(coffee_data, <span class="dt">nm =</span> name_long)</a>
-<a class="sourceLine" id="cb87-2" data-line-number="2">world_coffee2 =<span class="st"> </span><span class="kw">left_join</span>(world, coffee_renamed, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">name_long =</span> <span class="st">&quot;nm&quot;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb87-2" data-line-number="2">world_coffee2 =<span class="st"> </span><span class="kw">left_join</span>(world, coffee_renamed, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">name_long =</span> <span class="st">&quot;nm&quot;</span>))</a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="co">#&gt; Warning: Column `name_long`/`nm` joining factor and character vector,</span></a>
+<a class="sourceLine" id="cb87-4" data-line-number="4"><span class="co">#&gt; coercing into character vector</span></a></code></pre></div>
 <p>Note that the name in the original object is kept, meaning that <code>world_coffee</code> and the new object <code>world_coffee2</code> are identical.
 Another feature of the result is that it has the same number of rows as the original dataset.
 Although there are only 47 rows of data in <code>coffee_data</code> all 177 the country records are kept intact in <code>world_coffee</code> and <code>world_coffee2</code>:
@@ -748,19 +752,21 @@ What if we only want to keep countries that have a match in the key variable?
 In that case an inner join can be used:</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">world_coffee_inner =<span class="st"> </span><span class="kw">inner_join</span>(world, coffee_data)</a>
 <a class="sourceLine" id="cb88-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
-<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="kw">nrow</span>(world_coffee_inner)</a>
-<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="co">#&gt; [1] 44</span></a></code></pre></div>
+<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="co">#&gt; Warning: Column `name_long` joining factor and character vector, coercing</span></a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="co">#&gt; into character vector</span></a>
+<a class="sourceLine" id="cb88-5" data-line-number="5"><span class="kw">nrow</span>(world_coffee_inner)</a>
+<a class="sourceLine" id="cb88-6" data-line-number="6"><span class="co">#&gt; [1] 45</span></a></code></pre></div>
 <p>Note that the result of <code>inner_join()</code> has only 44 rows compared with 47 in <code>coffee_data</code>.
 What happened to the remaining rows?
 We can identify the rows that did not match using the <code>setdiff()</code> function as follows:</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">setdiff</span>(coffee_data<span class="op">$</span>name_long, world<span class="op">$</span>name_long)</a>
-<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Congo, Dem. Rep. of&quot; &quot;Côte d&#39;Ivoire&quot;       &quot;Others&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Congo, Dem. Rep. of&quot; &quot;Others&quot;</span></a></code></pre></div>
 <p>The result shows that 2 countries have not matched due to name discrepancies.
 These discrepancies can be fixed by identifying the value that they were expected to have in the <code>world</code> dataset and updating the names accordingly.
 In this case we will use string matching to find out what <code>Congo, Dem. Rep. of</code> and <code>Côte d'Ivoire</code> are called:</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">str_subset</span>(world<span class="op">$</span>name_long, <span class="st">&quot;Ivo|Cong&quot;</span>)</a>
-<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Ivory Coast&quot;                      &quot;Democratic Republic of the Congo&quot;</span></a>
-<a class="sourceLine" id="cb90-3" data-line-number="3"><span class="co">#&gt; [3] &quot;Republic of Congo&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Democratic Republic of the Congo&quot; &quot;Côte d&#39;Ivoire&quot;                   </span></a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"><span class="co">#&gt; [3] &quot;Republic of the Congo&quot;</span></a></code></pre></div>
 <p>From these results we can identify the matching names and update the names in <code>coffee_data</code> accordingly.
 As demonstrated below, <code>inner_join()</code>ing the updated data frame returns a result with all 46 coffee producing nations represented in the dataset:</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">coffee_data_match =<span class="st"> </span><span class="kw">mutate_if</span>(coffee_data, is.character, recode,</a>
@@ -768,16 +774,20 @@ As demonstrated below, <code>inner_join()</code>ing the updated data frame retur
 <a class="sourceLine" id="cb91-3" data-line-number="3">            <span class="st">`</span><span class="dt">Côte d&#39;Ivoire</span><span class="st">`</span> =<span class="st"> &quot;Ivory Coast&quot;</span>)</a>
 <a class="sourceLine" id="cb91-4" data-line-number="4">world_coffee_match =<span class="st"> </span><span class="kw">inner_join</span>(world, coffee_data_match)</a>
 <a class="sourceLine" id="cb91-5" data-line-number="5"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
-<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="kw">nrow</span>(world_coffee_match)</a>
-<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="co">#&gt; [1] 46</span></a></code></pre></div>
+<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="co">#&gt; Warning: Column `name_long` joining factor and character vector, coercing</span></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="co">#&gt; into character vector</span></a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="kw">nrow</span>(world_coffee_match)</a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co">#&gt; [1] 45</span></a></code></pre></div>
 <p>It is also possible to join in the other direction: starting with a non-spatial dataset and adding variables from a simple features object.
 This is demonstrated below, which starts with the <code>coffee_data_match</code> object and adds variables from the original <code>world</code> dataset.
 In contrast with the previous joins, the result is <em>not</em> another simple feature object, but a data frame in the form of a <strong>tidyverse</strong> tibble:
 the output of a join tends to match its first argument:</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">coffee_world =<span class="st"> </span><span class="kw">left_join</span>(coffee_data_match, world)</a>
 <a class="sourceLine" id="cb92-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
-<a class="sourceLine" id="cb92-3" data-line-number="3"><span class="kw">class</span>(coffee_world)</a>
-<a class="sourceLine" id="cb92-4" data-line-number="4"><span class="co">#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb92-3" data-line-number="3"><span class="co">#&gt; Warning: Column `name_long` joining character vector and factor, coercing</span></a>
+<a class="sourceLine" id="cb92-4" data-line-number="4"><span class="co">#&gt; into character vector</span></a>
+<a class="sourceLine" id="cb92-5" data-line-number="5"><span class="kw">class</span>(coffee_world)</a>
+<a class="sourceLine" id="cb92-6" data-line-number="6"><span class="co">#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></a></code></pre></div>
 
 <div class="rmdnote">
 In most cases the geometry column is only useful in an <code>sf</code> object.

@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1e9e9e43485a020a
+preserve8141b9c2837ac10f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -718,13 +718,13 @@ The commonly used `summary()` function, for example, provides a useful overview 
 ```r
 summary(world["lifeExp"])
 #>     lifeExp                geom    
-#>  Min.   :48.9   MULTIPOLYGON :177  
-#>  1st Qu.:64.3   epsg:4326    :  0  
-#>  Median :72.8   +proj=long...:  0  
-#>  Mean   :70.6                      
-#>  3rd Qu.:77.1                      
+#>  Min.   :50.6   MULTIPOLYGON :177  
+#>  1st Qu.:65.0   epsg:4326    :  0  
+#>  Median :72.9   +proj=long...:  0  
+#>  Mean   :70.9                      
+#>  3rd Qu.:76.8                      
 #>  Max.   :83.6                      
-#>  NA's   :9
+#>  NA's   :10
 ```
 
 Although we have only selected one variable for the `summary` command, it also outputs a report on the geometry.
@@ -748,12 +748,12 @@ world[1:2, 1:3]
 #> Simple feature collection with 2 features and 3 fields
 #> geometry type:  MULTIPOLYGON
 #> dimension:      XY
-#> bbox:           xmin: 11.6 ymin: -17.9 xmax: 75.2 ymax: 38.5
+#> bbox:           xmin: -180 ymin: -18.3 xmax: 180 ymax: -0.95
 #> epsg (SRID):    4326
 #> proj4string:    +proj=longlat +datum=WGS84 +no_defs
-#>   iso_a2   name_long continent                           geom
-#> 1     AF Afghanistan      Asia MULTIPOLYGON (((61.2 35.7, ...
-#> 2     AO      Angola    Africa MULTIPOLYGON (((16.3 -5.88,...
+#>   iso_a2 name_long continent                           geom
+#> 1     FJ      Fiji   Oceania MULTIPOLYGON (((180 -16.1, ...
+#> 2     TZ  Tanzania    Africa MULTIPOLYGON (((33.9 -0.95,...
 ```
 
 All this may seem rather complex, especially for a class system that is supposed to be simple.
@@ -2213,9 +2213,9 @@ Table: (\#tab:continents)The top 3 most populous continents, and the number of c
 
 continent           pop   n_countries
 ----------  -----------  ------------
-Africa       1147005839            51
-Asia         4306025131            47
-Europe        739178065            39
+Africa       1154946633            51
+Asia         4311408059            47
+Europe        669036256            39
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">More details are provided in the help pages (which can be accessed via `?summarize` and `vignette(package = "dplyr")` and Chapter 5 of [R for Data Science](http://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarize). </div>\EndKnitrBlock{rmdnote}
 
@@ -2266,6 +2266,8 @@ The result of the code chunk below is a new `sf` object.
 ```r
 world_coffee = left_join(world, coffee_data)
 #> Joining, by = "name_long"
+#> Warning: Column `name_long` joining factor and character vector, coercing
+#> into character vector
 class(world_coffee)
 #> [1] "sf"         "data.frame"
 ```
@@ -2305,6 +2307,8 @@ The latter approach is demonstrated below on a renamed version of `coffee_data`:
 ```r
 coffee_renamed = rename(coffee_data, nm = name_long)
 world_coffee2 = left_join(world, coffee_renamed, by = c(name_long = "nm"))
+#> Warning: Column `name_long`/`nm` joining factor and character vector,
+#> coercing into character vector
 ```
 
 
@@ -2320,8 +2324,10 @@ In that case an inner join can be used:
 ```r
 world_coffee_inner = inner_join(world, coffee_data)
 #> Joining, by = "name_long"
+#> Warning: Column `name_long` joining factor and character vector, coercing
+#> into character vector
 nrow(world_coffee_inner)
-#> [1] 44
+#> [1] 45
 ```
 
 Note that the result of `inner_join()` has only 44 rows compared with 47 in `coffee_data`.
@@ -2331,7 +2337,7 @@ We can identify the rows that did not match using the `setdiff()` function as fo
 
 ```r
 setdiff(coffee_data$name_long, world$name_long)
-#> [1] "Congo, Dem. Rep. of" "Côte d'Ivoire"       "Others"
+#> [1] "Congo, Dem. Rep. of" "Others"
 ```
 
 The result shows that 2 countries have not matched due to name discrepancies.
@@ -2341,8 +2347,8 @@ In this case we will use string matching to find out what `Congo, Dem. Rep. of` 
 
 ```r
 str_subset(world$name_long, "Ivo|Cong")
-#> [1] "Ivory Coast"                      "Democratic Republic of the Congo"
-#> [3] "Republic of Congo"
+#> [1] "Democratic Republic of the Congo" "Côte d'Ivoire"                   
+#> [3] "Republic of the Congo"
 ```
 
 From these results we can identify the matching names and update the names in `coffee_data` accordingly.
@@ -2355,8 +2361,10 @@ coffee_data_match = mutate_if(coffee_data, is.character, recode,
             `Côte d'Ivoire` = "Ivory Coast")
 world_coffee_match = inner_join(world, coffee_data_match)
 #> Joining, by = "name_long"
+#> Warning: Column `name_long` joining factor and character vector, coercing
+#> into character vector
 nrow(world_coffee_match)
-#> [1] 46
+#> [1] 45
 ```
 
 It is also possible to join in the other direction: starting with a non-spatial dataset and adding variables from a simple features object.
@@ -2368,6 +2376,8 @@ the output of a join tends to match its first argument:
 ```r
 coffee_world = left_join(coffee_data_match, world)
 #> Joining, by = "name_long"
+#> Warning: Column `name_long` joining character vector and factor, coercing
+#> into character vector
 class(coffee_world)
 #> [1] "tbl_df"     "tbl"        "data.frame"
 ```
@@ -3088,7 +3098,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve3301164feaed0323
+preservea75793d063351f09
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5598,7 +5608,7 @@ In most cases, as with the ESRI Shapefile (`.shp`) or the `GeoPackage` format (`
 ```r
 vector_filepath = system.file("shapes/world.gpkg", package = "spData")
 world = st_read(vector_filepath)
-#> Reading layer `wrld.gpkg' from data source `/home/travis/R/Library/spData/shapes/world.gpkg' using driver `GPKG'
+#> Reading layer `world' from data source `/home/travis/R/Library/spData/shapes/world.gpkg' using driver `GPKG'
 #> Simple feature collection with 177 features and 10 fields
 #> geometry type:  MULTIPOLYGON
 #> dimension:      XY
@@ -6598,7 +6608,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve9f7349d9df9f9e03
+preserveb8757d6c6db2ce41
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6696,7 +6706,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecb0f2c5e5845abb4
+preserve525ae94735311f2e
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6948,6 +6958,8 @@ africa = world %>%
   left_join(worldbank_df, by = "iso_a2") %>% 
   dplyr::select(name, subregion, gdpPercap, HDI, pop_growth) %>% 
   st_transform("+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25")
+#> Warning: Column `iso_a2` joining factor and character vector, coercing into
+#> character vector
 ```
 
 We will also use `zion` and `nlcd` datasets from **spDataLarge**:
@@ -10244,7 +10256,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve99ccc621a05108f0
+preserve4a26083ca92fbbb9
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

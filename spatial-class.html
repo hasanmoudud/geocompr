@@ -525,13 +525,13 @@ This behavior can be useful for exploring the spatial distribution of different 
 The commonly used <code>summary()</code> function, for example, provides a useful overview of the variables within the <code>world</code> object.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">summary</span>(world[<span class="st">&quot;lifeExp&quot;</span>])</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt;     lifeExp                geom    </span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt;  Min.   :48.9   MULTIPOLYGON :177  </span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt;  1st Qu.:64.3   epsg:4326    :  0  </span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt;  Median :72.8   +proj=long...:  0  </span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">#&gt;  Mean   :70.6                      </span></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co">#&gt;  3rd Qu.:77.1                      </span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt;  Min.   :50.6   MULTIPOLYGON :177  </span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt;  1st Qu.:65.0   epsg:4326    :  0  </span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt;  Median :72.9   +proj=long...:  0  </span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">#&gt;  Mean   :70.9                      </span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co">#&gt;  3rd Qu.:76.8                      </span></a>
 <a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">#&gt;  Max.   :83.6                      </span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#&gt;  NA&#39;s   :9</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#&gt;  NA&#39;s   :10</span></a></code></pre></div>
 <p>Although we have only selected one variable for the <code>summary</code> command, it also outputs a report on the geometry.
 This demonstrates the ‘sticky’ behavior of the geometry columns of <strong>sf</strong> objects, meaning the geometry is kept unless the user deliberately removes them, as we’ll see in section <a href="attr.html#vector-attribute-manipulation">3.2</a>.
 The result provides a quick summary of both the non-spatial and spatial data contained in <code>world</code>: the mean average life expectancy is 71 years (ranging from less than 50 to more than 80 years with a median of 73 years) across all countries.</p>
@@ -551,12 +551,12 @@ The output shows two major differences compared with a regular <code>data.frame<
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 2 features and 3 fields</span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; bbox:           xmin: 11.6 ymin: -17.9 xmax: 75.2 ymax: 38.5</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; bbox:           xmin: -180 ymin: -18.3 xmax: 180 ymax: -0.95</span></a>
 <a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; epsg (SRID):    4326</span></a>
 <a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt;   iso_a2   name_long continent                           geom</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 1     AF Afghanistan      Asia MULTIPOLYGON (((61.2 35.7, ...</span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; 2     AO      Angola    Africa MULTIPOLYGON (((16.3 -5.88,...</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt;   iso_a2 name_long continent                           geom</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 1     FJ      Fiji   Oceania MULTIPOLYGON (((180 -16.1, ...</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; 2     TZ  Tanzania    Africa MULTIPOLYGON (((33.9 -0.95,...</span></a></code></pre></div>
 <p>All this may seem rather complex, especially for a class system that is supposed to be simple.
 However, there are good reasons for organizing things this way and using <strong>sf</strong>.</p>
 <!-- It's a `MULTIPOLYGON` with 177 features and a geographic (longitude/latidue) coordinate reference system (CRS) with an EPSG code of `4326`. -->
