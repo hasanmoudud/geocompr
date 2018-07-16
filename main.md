@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve518df36717190e2b
+preservebb09f19664d794aa
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservefc91d57a3ecfa046
+preserve6593b68d92c2e25a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4072,11 +4072,23 @@ However, only the first element of the old object would remain in the second gro
 
 
 Geometry casting of simple features geometry column (`sfc`) and simple features objects works the same as for single geometries in most of the cases. 
-<!--
-not sure about phrasing of above sentence
--->
 One important difference is conversion between multi to non-multi types.
 As a result of this process, multi-objects are split into many non-multi objects.
+
+<!-- add a short paragraph -->
+
+
+Table: (\#tab:sfs-st-cast)Geometry casting on simple features objects. The first column represents input objects (see Section 2.1.5.1). The next columns represent an output geometry type. NA indicates that geometry casting is impossible. A number of elements in each object is shown in parentheses.
+
+                        POINT       MULTIPOINT      LINESTRING      MULTILINESTRING      POLYGON      MULTIPOLYGON      GEOMETRYCOLLECTION    
+----------------------  ----------  --------------  --------------  -------------------  -----------  ----------------  ----------------------
+POINT(1)                POINT(1)    MULTIPOINT(1)   LINESTRING(1)   NA                   NA           NA                NA                    
+MULTIPOINT(1)           POINT(4)    MULTIPOINT(1)   LINESTRING(1)   MULTILINESTRING(1)   POLYGON(1)   NA                NA                    
+LINESTRING(1)           POINT(5)    MULTIPOINT(1)   LINESTRING(1)   MULTILINESTRING(1)   POLYGON(1)   NA                NA                    
+MULTILINESTRING(1)      POINT(7)    MULTIPOINT(2)   LINESTRING(2)   MULTILINESTRING(1)   NA           NA                NA                    
+POLYGON(1)              POINT(5)    MULTIPOINT(1)   LINESTRING(1)   MULTILINESTRING(1)   POLYGON(1)   MULTIPOLYGON(1)   NA                    
+MULTIPOLYGON(1)         POINT(10)   MULTIPOINT(1)   NA              MULTILINESTRING(1)   POLYGON(2)   MULTIPOLYGON(1)   GEOMETRYCOLLECTION(1) 
+GEOMETRYCOLLECTION(1)   POINT(9)    MULTIPOINT(1)   NA              NA                   NA           NA                GEOMETRYCOLLECTION(1) 
 
 We would use a new object, `multilinestring_sf`, as an example (on the left in Figure \@ref(fig:line-cast)):
 
@@ -5568,7 +5580,6 @@ The GeoPackage standard describes the rules how to store geospatial information 
 Hence, GeoPackage is a lightweight spatial database container, which allows the storage of vector and raster data but also of non-spatial data and extensions.
 Aside from GeoPackage there are other geospatial data exchange formats worth checking out (Table \@ref(tab:formats)).
 
-
 ## Data Input (I) {#data-input}
 
 Executing commands such as `sf::st_read()` (the main function we use for loading vector data) or `raster::raster()` (the main function used for loading raster data) silently sets off a chain of events that reads data from files.
@@ -6611,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveb54295b001c613c0
+preservec24a60d6f1a2ae57
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6709,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6200bec6b66d5bc9
+preserve46f9da0dcac0adb7
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10259,7 +10270,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve6d6d871f5b817558
+preservef34c3ce07cac97aa
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

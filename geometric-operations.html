@@ -697,11 +697,96 @@ However, only the first element of the old object would remain in the second gro
 </div>
 
 <p>Geometry casting of simple features geometry column (<code>sfc</code>) and simple features objects works the same as for single geometries in most of the cases.
-<!--
-not sure about phrasing of above sentence
--->
 One important difference is conversion between multi to non-multi types.
 As a result of this process, multi-objects are split into many non-multi objects.</p>
+<!-- add a short paragraph -->
+<table>
+<caption><span id="tab:sfs-st-cast">Table 5.1: </span>Geometry casting on simple features objects. The first column represents input objects (see Section 2.1.5.1). The next columns represent an output geometry type. NA indicates that geometry casting is impossible. A number of elements in each object is shown in parentheses.</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">POINT</th>
+<th align="left">MULTIPOINT</th>
+<th align="left">LINESTRING</th>
+<th align="left">MULTILINESTRING</th>
+<th align="left">POLYGON</th>
+<th align="left">MULTIPOLYGON</th>
+<th align="left">GEOMETRYCOLLECTION</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>POINT(1)</td>
+<td align="left">POINT(1)</td>
+<td align="left">MULTIPOINT(1)</td>
+<td align="left">LINESTRING(1)</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>MULTIPOINT(1)</td>
+<td align="left">POINT(4)</td>
+<td align="left">MULTIPOINT(1)</td>
+<td align="left">LINESTRING(1)</td>
+<td align="left">MULTILINESTRING(1)</td>
+<td align="left">POLYGON(1)</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>LINESTRING(1)</td>
+<td align="left">POINT(5)</td>
+<td align="left">MULTIPOINT(1)</td>
+<td align="left">LINESTRING(1)</td>
+<td align="left">MULTILINESTRING(1)</td>
+<td align="left">POLYGON(1)</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>MULTILINESTRING(1)</td>
+<td align="left">POINT(7)</td>
+<td align="left">MULTIPOINT(2)</td>
+<td align="left">LINESTRING(2)</td>
+<td align="left">MULTILINESTRING(1)</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>POLYGON(1)</td>
+<td align="left">POINT(5)</td>
+<td align="left">MULTIPOINT(1)</td>
+<td align="left">LINESTRING(1)</td>
+<td align="left">MULTILINESTRING(1)</td>
+<td align="left">POLYGON(1)</td>
+<td align="left">MULTIPOLYGON(1)</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>MULTIPOLYGON(1)</td>
+<td align="left">POINT(10)</td>
+<td align="left">MULTIPOINT(1)</td>
+<td align="left">NA</td>
+<td align="left">MULTILINESTRING(1)</td>
+<td align="left">POLYGON(2)</td>
+<td align="left">MULTIPOLYGON(1)</td>
+<td align="left">GEOMETRYCOLLECTION(1)</td>
+</tr>
+<tr class="odd">
+<td>GEOMETRYCOLLECTION(1)</td>
+<td align="left">POINT(9)</td>
+<td align="left">MULTIPOINT(1)</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">GEOMETRYCOLLECTION(1)</td>
+</tr>
+</tbody>
+</table>
 <p>We would use a new object, <code>multilinestring_sf</code>, as an example (on the left in Figure <a href="geometric-operations.html#fig:line-cast">5.11</a>):</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1">multilinestring_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">3</span>), <span class="dt">ncol =</span> <span class="dv">2</span>), </a>
 <a class="sourceLine" id="cb172-2" data-line-number="2">                            <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>),</a>
