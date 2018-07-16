@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1890f3251a5d9562
+preservedb8a629f832c4b00
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef6c6b6024de20302
+preservee148046184832f15
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6638,7 +6638,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1f39928b85e83134
+preservec599296c286cc0b8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6736,7 +6736,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve95dfa2b5907e5aa4
+preserveb59fc74b08f7c5d1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6900,13 +6900,14 @@ We have covered mapping with **sf**, **raster** and **ggplot2** packages first b
 Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose mapping (Table \@ref(tab:map-gpkg)).
 
 
-Table: (\#tab:map-gpkg)Selected general-purpose mapping packages, with associated metrics.
+Table: (\#tab:map-gpkg)Selected general-purpose mapping packages.
 
 package       title                                                            
 ------------  -----------------------------------------------------------------
 cartography   Thematic Cartography                                             
 ggplot2       Create Elegant Data Visualisations Using the Grammar of Graphics 
 googleway     Accesses Google Maps APIs to Retrieve Data and Plot Maps         
+ggspatial     Spatial Data Framework for ggplot2                               
 leaflet       Create Interactive Web Maps with Leaflet                         
 mapview       Interactive Viewing of Spatial Data in R                         
 plotly        Create Interactive Web Graphics via 'plotly.js'                  
@@ -10282,7 +10283,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve3b82c3fcbb8f7932
+preserve71ef1bc87dbfe5de
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
