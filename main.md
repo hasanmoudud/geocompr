@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecca1592422be0c3a
+preserve17514fbdeb378da0
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve64d9451ade049f90
+preserve225dc2175dd854e0
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6619,10 +6619,11 @@ map_nz
 
 ```
 #> tmap mode set to interactive viewing
+#> [1] 8
 ```
 
 <div class="figure" style="text-align: center">
-preservee164838b584f752c
+preservec65ec4f6b8b04fe4
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6721,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea7aa8010bde32328
+preservebb2e50207f7edd1c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7642,12 +7643,14 @@ Use `v.select` and `v.extract` for vector data.
 
 ## When to use what?
 
-To recommend a single R-GIS interface is hard since the usage depends on personal preferences, the tasks at hand and your familiarity with different GIS software packages.
-The latter means if you have already preferred the GUI of a certain GIS, you are quite likely to use the corresponding interface.
-That being said, **RQGIS** is an appropriate choice for most use cases.
+To recommend a single R-GIS interface is hard since the usage depends on personal preferences, the tasks at hand and your familiarity with different GIS software packages which in turn probably depends on your field of study.
+As mentioned previously, SAGA is especially good at the fast processing of large (high-resolution) raster datasets, and frequently used by hydrologists, climatologists and soil scientists [@conrad_system_2015].
+GRASS GIS, on the other hand, is the only GIS presented here supporting a topologically based spatial database which is especially useful for network analyses but also simulation studies (see further below).
+QGIS is much more user-friendly compared to GRASS- and SAGA-GIS, especially for first-time GIS users, and probably the most popular open-source GIS.
+Therefore, **RQGIS** is an appropriate choice for most use cases.
 Its main advantages are:
 
-- An unified access to several GIS, and therefore the provision of >1000 geoalgorithms.
+- A unified access to several GIS, and therefore the provision of >1000 geoalgorithms (Table \@ref(tab:gis-comp)).
 Of course, this includes duplicated functionality, e.g., you can perform overlay-operations using QGIS-, SAGA- or GRASS-geoalgorithms.
 - The automatic data format conversions. 
 For instance, SAGA uses `.sdat` grid files and GRASS uses its own database format but QGIS will handle the corresponding conversions for you on the fly.
@@ -7663,12 +7666,6 @@ Note also, that **RSAGA** offers native R functions for geocomputation such as `
 **RSAGA** supports much more SAGA versions than (R)QGIS.
 Finally, if you need topological correct data and/or geodatabase-management functionality such as multi-user access, we recommend the usage of GRASS. 
 In addition, if you would like to run simulations with the help of a geodatabase [@krug_clearing_2010], use **rgrass7** directly since **RQGIS** always starts a new GRASS session for each call.
-
-<!-- brain storming
-Advantages:
-SAGA: raster processing and especially terrain analysis, improvable documentation
-GRASS: excellent documentation, topology (network analysis) and topological rules. Uses SQLite in the background so would be the natural choice when one need spatial database capabilities (simulations, multi-user access, permissions, etc.)
--->
 
 Please note that there are a number of further GIS software packages that have a scripting interface but for which there is no dedicated R package that accesses these: gvSig, OpenJump, Orfeo Toolbox and TauDEM.
 
@@ -10270,7 +10267,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve5824a06149b00729
+preserve0439a7aa1e56e94a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

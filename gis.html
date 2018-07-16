@@ -441,7 +441,7 @@ R was not originally intended to be a GIS.
 This makes the breadth of R’s geospatial capabilities astonishing to many who are unaware of its ability to replicate established GIS software for many operations on spatial data.
 There are some domains where R can now outperform desktop GIS including spatial statistical modeling, online interactive visualization and the generation of animated or faceted maps.</p>
 <p>Instead of implementing existing GIS algorithms in R, it makes sense to avoid ‘reinventing the wheel’ by taking advantage of R’s ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work).
-Using compiled code for new geoprocessing functionality (particularly with the help of the excellent <strong>Rcpp</strong> package) could form the basis of new R packages, building on the success of <strong>sf</strong> <span class="citation">(<span class="citeproc-not-found" data-reference-id="pebesma_simple_2018"><strong>???</strong></span>)</span>.
+Using compiled code for new geoprocessing functionality (particularly with the help of the excellent <strong>Rcpp</strong> package) could form the basis of new R packages, building on the success of <strong>sf</strong> <span class="citation">(Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.
 However, there is already a wide range of algorithms that can be accessed via R’s interfaces to dedicated GIS software.
 It makes sense to understand these before moving to develop your own optimized algorithms.
 For this reason this chapter focuses on ‘bridges’ to the mature GIS products <a href="http://qgis.org/">QGIS</a> (via the package <strong>RQGIS</strong>), <a href="http://www.saga-gis.org/">SAGA</a> (<strong>RSAGA</strong>) and <a href="https://grass.osgeo.org/">GRASS</a> (<strong>rgrass7</strong>) from within R (Table <a href="gis.html#tab:gis-comp">9.1</a>).
@@ -820,12 +820,14 @@ Use <code>v.select</code> and <code>v.extract</code> for vector data.
 </div>
 <div id="when-to-use-what" class="section level2">
 <h2><span class="header-section-number">9.5</span> When to use what?</h2>
-<p>To recommend a single R-GIS interface is hard since the usage depends on personal preferences, the tasks at hand and your familiarity with different GIS software packages.
-The latter means if you have already preferred the GUI of a certain GIS, you are quite likely to use the corresponding interface.
-That being said, <strong>RQGIS</strong> is an appropriate choice for most use cases.
+<p>To recommend a single R-GIS interface is hard since the usage depends on personal preferences, the tasks at hand and your familiarity with different GIS software packages which in turn probably depends on your field of study.
+As mentioned previously, SAGA is especially good at the fast processing of large (high-resolution) raster datasets, and frequently used by hydrologists, climatologists and soil scientists <span class="citation">(Conrad et al. <a href="#ref-conrad_system_2015">2015</a>)</span>.
+GRASS GIS, on the other hand, is the only GIS presented here supporting a topologically based spatial database which is especially useful for network analyses but also simulation studies (see further below).
+QGIS is much more user-friendly compared to GRASS- and SAGA-GIS, especially for first-time GIS users, and probably the most popular open-source GIS.
+Therefore, <strong>RQGIS</strong> is an appropriate choice for most use cases.
 Its main advantages are:</p>
 <ul>
-<li>An unified access to several GIS, and therefore the provision of &gt;1000 geoalgorithms.
+<li>A unified access to several GIS, and therefore the provision of &gt;1000 geoalgorithms (Table <a href="gis.html#tab:gis-comp">9.1</a>).
 Of course, this includes duplicated functionality, e.g., you can perform overlay-operations using QGIS-, SAGA- or GRASS-geoalgorithms.</li>
 <li>The automatic data format conversions.
 For instance, SAGA uses <code>.sdat</code> grid files and GRASS uses its own database format but QGIS will handle the corresponding conversions for you on the fly.</li>
@@ -840,12 +842,7 @@ When doing so, make advantage of <strong>RSAGA</strong>’s numerous user-friend
 Note also, that <strong>RSAGA</strong> offers native R functions for geocomputation such as <code>multi.local.function</code>, <code>pick.from.grid</code> and many more.
 <strong>RSAGA</strong> supports much more SAGA versions than (R)QGIS.
 Finally, if you need topological correct data and/or geodatabase-management functionality such as multi-user access, we recommend the usage of GRASS.
-In addition, if you would like to run simulations with the help of a geodatabase <span class="citation">(<span class="citeproc-not-found" data-reference-id="krug_clearing_2010"><strong>???</strong></span>)</span>, use <strong>rgrass7</strong> directly since <strong>RQGIS</strong> always starts a new GRASS session for each call.</p>
-<!-- brain storming
-Advantages:
-SAGA: raster processing and especially terrain analysis, improvable documentation
-GRASS: excellent documentation, topology (network analysis) and topological rules. Uses SQLite in the background so would be the natural choice when one need spatial database capabilities (simulations, multi-user access, permissions, etc.)
--->
+In addition, if you would like to run simulations with the help of a geodatabase <span class="citation">(Krug, Roura-Pascual, and Richardson <a href="#ref-krug_clearing_2010">2010</a>)</span>, use <strong>rgrass7</strong> directly since <strong>RQGIS</strong> always starts a new GRASS session for each call.</p>
 <p>Please note that there are a number of further GIS software packages that have a scripting interface but for which there is no dedicated R package that accesses these: gvSig, OpenJump, Orfeo Toolbox and TauDEM.</p>
 </div>
 <div id="a-short-note-on-further-spatial-apis" class="section level2">
@@ -1015,6 +1012,9 @@ Additionally, give <code>mapview</code> a try.</p></li>
 <div id="ref-chambers_extending_2016">
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
 </div>
+<div id="ref-pebesma_simple_2018">
+<p>Pebesma, Edzer. 2018. “Simple Features for R: Standardized Support for Spatial Vector Data.” <em>The R Journal</em>.</p>
+</div>
 <div id="ref-muenchow_rqgis:_2017">
 <p>Muenchow, Jannes, Patrick Schratz, and Alexander Brenning. 2017. “RQGIS: Integrating R with QGIS for Statistical Geocomputing.” <em>The R Journal</em> 9 (2): 409–28.</p>
 </div>
@@ -1029,6 +1029,9 @@ Additionally, give <code>mapview</code> a try.</p></li>
 </div>
 <div id="ref-longley_geographic_2015">
 <p>Longley, Paul. 2015. <em>Geographic Information Science &amp; Systems</em>. Fourth edition. Hoboken, NJ: Wiley.</p>
+</div>
+<div id="ref-krug_clearing_2010">
+<p>Krug, Rainer M., Núria Roura-Pascual, and David M. Richardson. 2010. “Clearing of Invasive Alien Plants Under Different Budget Scenarios: Using a Simulation Model to Test Efficiency.” <em>Biological Invasions</em> 12 (12): 4099–4112.</p>
 </div>
 <div id="ref-obe_postgis_2015">
 <p>Obe, Regina O., and Leo S. Hsu. 2015. <em>PostGIS in Action</em>. Second edition. Shelter Island, NY: Manning.</p>
