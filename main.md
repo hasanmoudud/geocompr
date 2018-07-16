@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-15'
+date: '2018-07-16'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-15 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-16 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8141b9c2837ac10f
+preserve518df36717190e2b
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -938,9 +938,12 @@ However, **sf** also allows multiple geometries to exist within a single feature
 
 Finally, a geometry collection might contain any combination of geometry types:
 
-- Geometry collection - `GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)))`
+- Geometry collection - `GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))`
 
-
+<div class="figure" style="text-align: center">
+<img src="figures/geom_collection-1.png" alt="Illustration of geometry collection." width="30%" />
+<p class="caption">(\#fig:geom_collection)Illustration of geometry collection.</p>
+</div>
 
 #### Simple feature geometry (sfg) objects {#sfg}
 
@@ -3098,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea75793d063351f09
+preservefc91d57a3ecfa046
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6608,7 +6611,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveb8757d6c6db2ce41
+preserveb54295b001c613c0
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6706,7 +6709,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve525ae94735311f2e
+preserve6200bec6b66d5bc9
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10256,7 +10259,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve4a26083ca92fbbb9
+preserve6d6d871f5b817558
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
