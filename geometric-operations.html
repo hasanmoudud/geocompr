@@ -701,89 +701,89 @@ One important difference is conversion between multi to non-multi types.
 As a result of this process, multi-objects are split into many non-multi objects.</p>
 <!-- add a short paragraph -->
 <table>
-<caption><span id="tab:sfs-st-cast">Table 5.1: </span>Geometry casting on simple features objects. The first column represents input objects (see Section 2.1.5.1). The next columns represent an output geometry type. NA indicates that geometry casting is impossible. A number of elements in each object is shown in parentheses.</caption>
+<caption><span id="tab:sfs-st-cast">Table 5.1: </span>Geometry casting on simple features objects. The first column represents input objects (see Section 2.1.5.1). The next columns represent an output geometry type. The value indicates a number of elements in each object, while NA shows that geometry casting is impossible.</caption>
 <thead>
 <tr class="header">
 <th></th>
-<th align="left">POINT</th>
-<th align="left">MULTIPOINT</th>
-<th align="left">LINESTRING</th>
-<th align="left">MULTILINESTRING</th>
-<th align="left">POLYGON</th>
-<th align="left">MULTIPOLYGON</th>
-<th align="left">GEOMETRYCOLLECTION</th>
+<th align="right">POINT</th>
+<th align="right">MULTIPOINT</th>
+<th align="right">LINESTRING</th>
+<th align="right">MULTILINESTRING</th>
+<th align="right">POLYGON</th>
+<th align="right">MULTIPOLYGON</th>
+<th align="right">GEOMETRYCOLLECTION</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>POINT(1)</td>
-<td align="left">POINT(1)</td>
-<td align="left">MULTIPOINT(1)</td>
-<td align="left">LINESTRING(1)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td>MULTIPOINT(1)</td>
-<td align="left">POINT(4)</td>
-<td align="left">MULTIPOINT(1)</td>
-<td align="left">LINESTRING(1)</td>
-<td align="left">MULTILINESTRING(1)</td>
-<td align="left">POLYGON(1)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td>LINESTRING(1)</td>
-<td align="left">POINT(5)</td>
-<td align="left">MULTIPOINT(1)</td>
-<td align="left">LINESTRING(1)</td>
-<td align="left">MULTILINESTRING(1)</td>
-<td align="left">POLYGON(1)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td>MULTILINESTRING(1)</td>
-<td align="left">POINT(7)</td>
-<td align="left">MULTIPOINT(2)</td>
-<td align="left">LINESTRING(2)</td>
-<td align="left">MULTILINESTRING(1)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="right">7</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td>POLYGON(1)</td>
-<td align="left">POINT(5)</td>
-<td align="left">MULTIPOINT(1)</td>
-<td align="left">LINESTRING(1)</td>
-<td align="left">MULTILINESTRING(1)</td>
-<td align="left">POLYGON(1)</td>
-<td align="left">MULTIPOLYGON(1)</td>
-<td align="left">NA</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td>MULTIPOLYGON(1)</td>
-<td align="left">POINT(10)</td>
-<td align="left">MULTIPOINT(1)</td>
-<td align="left">NA</td>
-<td align="left">MULTILINESTRING(1)</td>
-<td align="left">POLYGON(2)</td>
-<td align="left">MULTIPOLYGON(1)</td>
-<td align="left">GEOMETRYCOLLECTION(1)</td>
+<td align="right">10</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td>GEOMETRYCOLLECTION(1)</td>
-<td align="left">POINT(9)</td>
-<td align="left">MULTIPOINT(1)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">GEOMETRYCOLLECTION(1)</td>
+<td align="right">9</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
 </tr>
 </tbody>
 </table>

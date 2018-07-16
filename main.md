@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedb8a629f832c4b00
+preserve4aa73d62470aae40
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservee148046184832f15
+preservea2e1e7c0a5e2b5a1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4078,17 +4078,17 @@ As a result of this process, multi-objects are split into many non-multi objects
 <!-- add a short paragraph -->
 
 
-Table: (\#tab:sfs-st-cast)Geometry casting on simple features objects. The first column represents input objects (see Section 2.1.5.1). The next columns represent an output geometry type. NA indicates that geometry casting is impossible. A number of elements in each object is shown in parentheses.
+Table: (\#tab:sfs-st-cast)Geometry casting on simple features objects. The first column represents input objects (see Section 2.1.5.1). The next columns represent an output geometry type. The value indicates a number of elements in each object, while NA shows that geometry casting is impossible. 
 
-                        POINT       MULTIPOINT      LINESTRING      MULTILINESTRING      POLYGON      MULTIPOLYGON      GEOMETRYCOLLECTION    
-----------------------  ----------  --------------  --------------  -------------------  -----------  ----------------  ----------------------
-POINT(1)                POINT(1)    MULTIPOINT(1)   LINESTRING(1)   NA                   NA           NA                NA                    
-MULTIPOINT(1)           POINT(4)    MULTIPOINT(1)   LINESTRING(1)   MULTILINESTRING(1)   POLYGON(1)   NA                NA                    
-LINESTRING(1)           POINT(5)    MULTIPOINT(1)   LINESTRING(1)   MULTILINESTRING(1)   POLYGON(1)   NA                NA                    
-MULTILINESTRING(1)      POINT(7)    MULTIPOINT(2)   LINESTRING(2)   MULTILINESTRING(1)   NA           NA                NA                    
-POLYGON(1)              POINT(5)    MULTIPOINT(1)   LINESTRING(1)   MULTILINESTRING(1)   POLYGON(1)   MULTIPOLYGON(1)   NA                    
-MULTIPOLYGON(1)         POINT(10)   MULTIPOINT(1)   NA              MULTILINESTRING(1)   POLYGON(2)   MULTIPOLYGON(1)   GEOMETRYCOLLECTION(1) 
-GEOMETRYCOLLECTION(1)   POINT(9)    MULTIPOINT(1)   NA              NA                   NA           NA                GEOMETRYCOLLECTION(1) 
+                         POINT   MULTIPOINT   LINESTRING   MULTILINESTRING   POLYGON   MULTIPOLYGON   GEOMETRYCOLLECTION
+----------------------  ------  -----------  -----------  ----------------  --------  -------------  -------------------
+POINT(1)                     1            1            1                NA        NA             NA                   NA
+MULTIPOINT(1)                4            1            1                 1         1             NA                   NA
+LINESTRING(1)                5            1            1                 1         1             NA                   NA
+MULTILINESTRING(1)           7            2            2                 1        NA             NA                   NA
+POLYGON(1)                   5            1            1                 1         1              1                   NA
+MULTIPOLYGON(1)             10            1           NA                 1         2              1                    1
+GEOMETRYCOLLECTION(1)        9            1           NA                NA        NA             NA                    1
 
 We would use a new object, `multilinestring_sf`, as an example (on the left in Figure \@ref(fig:line-cast)):
 
@@ -6638,7 +6638,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec599296c286cc0b8
+preserve6beee54b4fecab89
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6736,7 +6736,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb59fc74b08f7c5d1
+preserve5d20c2e6305b1be0
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10283,7 +10283,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve71ef1bc87dbfe5de
+preserveb31e7594dc3306fd
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
