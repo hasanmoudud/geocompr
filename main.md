@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve17514fbdeb378da0
+preserve1890f3251a5d9562
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve225dc2175dd854e0
+preservef6c6b6024de20302
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4690,16 +4690,31 @@ Contour lines can be created with the **raster** function `rasterToContour()`, w
 # not shown
 data(dem, package = "RQGIS")
 plot(dem, axes = FALSE)
-contour(dem, add = TRUE)
+cl = rasterToContour(dem)
+plot(cl, add = TRUE)
 ```
 
-Contours can be added to existing plots with functions such as `contour()`, `rasterVis::contourplot()` or `tmap::tm_iso()`.
-As illustrated in Figure \@ref(fig:contour) (which was created using the **tmap** package described in Chapter \@ref(adv-map)), isolines can be labelled.
+Contours can also be added to existing plots with functions such as `contour()`, `rasterVis::contourplot()` or `tmap::tm_iso()`.
+As illustrated in Figure \@ref(fig:contour), isolines can be labelled.
+
+
+```r
+data("dem", package = "RQGIS")
+# create hillshade
+hs = hillShade(slope = terrain(dem, "slope"), aspect = terrain(dem, "aspect"))
+plot(hs, col = gray(0:100 / 100), legend = FALSE)
+# overlay with DEM
+plot(dem, terrain.colors(25), alpha = 0.5, legend = FALSE, add = TRUE)
+# add contour lines
+contour(dem, col = "white", add = TRUE)
+```
 
 <div class="figure" style="text-align: center">
 <img src="figures/contour-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines." width="576" />
 <p class="caption">(\#fig:contour)DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines.</p>
 </div>
+
+
 
 The final type of vectorisation involves conversion of rasters to polygons.
 This can be done with `raster::rasterToPolygons()`, wich converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!).
@@ -6623,7 +6638,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec65ec4f6b8b04fe4
+preserve1f39928b85e83134
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6721,7 +6736,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebb2e50207f7edd1c
+preserve95dfa2b5907e5aa4
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10267,7 +10282,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve0439a7aa1e56e94a
+preserve3b82c3fcbb8f7932
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

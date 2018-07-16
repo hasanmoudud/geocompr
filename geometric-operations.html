@@ -1216,9 +1216,18 @@ Contour lines can be created with the <strong>raster</strong> function <code>ras
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="co"># not shown</span></a>
 <a class="sourceLine" id="cb204-2" data-line-number="2"><span class="kw">data</span>(dem, <span class="dt">package =</span> <span class="st">&quot;RQGIS&quot;</span>)</a>
 <a class="sourceLine" id="cb204-3" data-line-number="3"><span class="kw">plot</span>(dem, <span class="dt">axes =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb204-4" data-line-number="4"><span class="kw">contour</span>(dem, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>Contours can be added to existing plots with functions such as <code>contour()</code>, <code>rasterVis::contourplot()</code> or <code>tmap::tm_iso()</code>.
-As illustrated in Figure <a href="geometric-operations.html#fig:contour">5.23</a> (which was created using the <strong>tmap</strong> package described in Chapter <a href="adv-map.html#adv-map">8</a>), isolines can be labelled.</p>
+<a class="sourceLine" id="cb204-4" data-line-number="4">cl =<span class="st"> </span><span class="kw">rasterToContour</span>(dem)</a>
+<a class="sourceLine" id="cb204-5" data-line-number="5"><span class="kw">plot</span>(cl, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Contours can also be added to existing plots with functions such as <code>contour()</code>, <code>rasterVis::contourplot()</code> or <code>tmap::tm_iso()</code>.
+As illustrated in Figure <a href="geometric-operations.html#fig:contour">5.23</a>, isolines can be labelled.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;dem&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;RQGIS&quot;</span>)</a>
+<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="co"># create hillshade</span></a>
+<a class="sourceLine" id="cb205-3" data-line-number="3">hs =<span class="st"> </span><span class="kw">hillShade</span>(<span class="dt">slope =</span> <span class="kw">terrain</span>(dem, <span class="st">&quot;slope&quot;</span>), <span class="dt">aspect =</span> <span class="kw">terrain</span>(dem, <span class="st">&quot;aspect&quot;</span>))</a>
+<a class="sourceLine" id="cb205-4" data-line-number="4"><span class="kw">plot</span>(hs, <span class="dt">col =</span> <span class="kw">gray</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span><span class="dv">100</span>), <span class="dt">legend =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb205-5" data-line-number="5"><span class="co"># overlay with DEM</span></a>
+<a class="sourceLine" id="cb205-6" data-line-number="6"><span class="kw">plot</span>(dem, <span class="kw">terrain.colors</span>(<span class="dv">25</span>), <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">legend =</span> <span class="ot">FALSE</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb205-7" data-line-number="7"><span class="co"># add contour lines</span></a>
+<a class="sourceLine" id="cb205-8" data-line-number="8"><span class="kw">contour</span>(dem, <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:contour"></span>
 <img src="figures/contour-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines." width="576" />
 <p class="caption">
@@ -1230,11 +1239,11 @@ This can be done with <code>raster::rasterToPolygons()</code>, wich converts eac
 <p>This is illustrated below by converting the <code>grain</code> object into polygons and subsequently dissolving borders between polygons with the same attribute values (also see the <code>dissolve</code> argument in <code>rasterToPolygons()</code>).
 Attributes in this case are stored in a collumn called <code>layer</code> (see section <a href="geometric-operations.html#geometry-unions">5.2.6</a> and Figure <a href="geometric-operations.html#fig:raster-vectorization2">5.24</a>).
 (Note: a convenient alternative for converting rasters into polygons is <code>spex::polygonize()</code> which by default returns an <code>sf</code> object.)</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">grain_poly =<span class="st"> </span><span class="kw">rasterToPolygons</span>(grain) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>()</a>
-<a class="sourceLine" id="cb205-3" data-line-number="3">grain_poly2 =<span class="st"> </span>grain_poly <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb205-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(layer) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-5" data-line-number="5"><span class="st">  </span><span class="kw">summarize</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">grain_poly =<span class="st"> </span><span class="kw">rasterToPolygons</span>(grain) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb206-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>()</a>
+<a class="sourceLine" id="cb206-3" data-line-number="3">grain_poly2 =<span class="st"> </span>grain_poly <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb206-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(layer) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-5" data-line-number="5"><span class="st">  </span><span class="kw">summarize</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:raster-vectorization2"></span>
 <img src="figures/raster-vectorization2-1.png" alt="Illustration of vectorization of raster (left) into polygon (center) and polygon aggregation (right)." width="576" />
 <p class="caption">
@@ -1248,11 +1257,11 @@ Figure 5.24: Illustration of vectorization of raster (left) into polygon (center
 <h2><span class="header-section-number">5.5</span> Exercises</h2>
 <p>Some of the exercises will use a vector (<code>random_points</code>) and raster dataset (<code>ndvi</code>) from the <strong>RQGIS</strong> package.
 It also uses a polygonal ‘convex hull’ derived from the vector dataset (<code>ch</code>) to represent the area of interest:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
-<a class="sourceLine" id="cb206-2" data-line-number="2"><span class="kw">data</span>(random_points)</a>
-<a class="sourceLine" id="cb206-3" data-line-number="3"><span class="kw">data</span>(ndvi)</a>
-<a class="sourceLine" id="cb206-4" data-line-number="4">ch =<span class="st"> </span><span class="kw">st_combine</span>(random_points) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb206-5" data-line-number="5"><span class="st">  </span><span class="kw">st_convex_hull</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
+<a class="sourceLine" id="cb207-2" data-line-number="2"><span class="kw">data</span>(random_points)</a>
+<a class="sourceLine" id="cb207-3" data-line-number="3"><span class="kw">data</span>(ndvi)</a>
+<a class="sourceLine" id="cb207-4" data-line-number="4">ch =<span class="st"> </span><span class="kw">st_combine</span>(random_points) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb207-5" data-line-number="5"><span class="st">  </span><span class="kw">st_convex_hull</span>()</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Generate and plot simplified versions of the <code>nz</code> dataset.
 Experiment with different values of <code>keep</code> (ranging from 0.5 to 0.00005) for <code>ms_simplify()</code> and <code>dTolerance</code> (from 100 to 100,000) <code>st_simplify()</code> .
