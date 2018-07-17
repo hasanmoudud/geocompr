@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveee5d8ed059ef34b7
+preservee3a2049711e665ea
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve3048982f22f7c3bd
+preserveb2f91a55ed838baa
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6713,7 +6713,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve90cd5e6e08714e6e
+preserve32a445d459a11103
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6811,7 +6811,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee53bc5885c913ce7
+preserve4bea1e5a42174c2c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8400,7 +8400,7 @@ This chapter assumes proficiency with spatial data, for example gained by studyi
 A familiarity with generalized linear regression and machine learning is highly recommended [for example from @zuur_mixed_2009;@james_introduction_2013].
 
 The chapter uses the following packages:^[
-Package **pROC**, **RSAGA** and **spDataLarge** must also be installed although these do not need to be attached.
+Package **kernlab**, **pROC**, **RSAGA** and **spDataLarge** must also be installed although these do not need to be attached.
 ]
 
 
@@ -8410,7 +8410,6 @@ library(raster)
 library(mlr)
 library(tidyverse)
 library(parallelMap)
-library(kernlab)
 ```
 
 Required data will be attached in due course.
@@ -8474,9 +8473,12 @@ This should load three objects: a `data.frame` named `landslides`, a `list` name
 The landslide initiation point is located in the scarp of a landslide polygon. See @muenchow_geomorphic_2012 for further details.
 ]
 
-The coordinates for the non-landslide points were sampled randomly from the study area, with the restriction that they must fall outside a small buffer around the landslide polygons.
 There are 175 landslide points and 1360 non-landslide, as shown by `summary(landslides)`.
-To make number of landslide and non-landslide points balanced, let us sample 175 from the 1360 non-landslide points.
+The 1360 non-landslide points were sampled randomly from the study area, with the restriction that they must fall outside a small buffer around the landslide polygons.
+
+To make the number of landslide and non-landslide points balanced, let us sample 175 from the 1360 non-landslide points.^[The `landslides` dataset has been used in classes and summer schools.
+To show how predictive performance of different algorithms changes with an unbalanced and highly spatially autocorrelated response variable, 1360 non-landslide points were randomly selected, i.e. much more absences than presences.
+However, especially a logistic regression with a log-link, as used in this chapter, expects roughly the same number of presences and absences in the response.]
 
 
 ```r
@@ -10370,7 +10372,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservee897972a97d336e4
+preserve7e14128832cc25ac
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
