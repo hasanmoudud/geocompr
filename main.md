@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-16'
+date: '2018-07-17'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-16 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-17 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4aa73d62470aae40
+preserveeb46092493d7304d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea2e1e7c0a5e2b5a1
+preserve4869f7e8a5123811
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4076,6 +4076,17 @@ One important difference is conversion between multi to non-multi types.
 As a result of this process, multi-objects are split into many non-multi objects.
 
 <!-- add a short paragraph -->
+
+
+```
+#> Warning in kableExtra::kable_styling(., "striped", full_width = FALSE):
+#> Please specify format in kable. kableExtra can customize either HTML or
+#> LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.
+#> Warning in kableExtra::row_spec(., 0, angle = 45): Please specify format in
+#> kable. kableExtra can customize either HTML or LaTeX outputs. See https://
+#> haozhu233.github.io/kableExtra/ for details.
+```
+
 
 
 Table: (\#tab:sfs-st-cast)Geometry casting on simple features objects. The first column represents input objects (see Section 2.1.5.1). The next columns represent an output geometry type. The value indicates a number of elements in each object, while NA shows that geometry casting is impossible. 
@@ -6638,7 +6649,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve6beee54b4fecab89
+preserve4613382b0c5f085f
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6736,7 +6747,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5d20c2e6305b1be0
+preserve4e95bc8db2d0114f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10283,7 +10294,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb31e7594dc3306fd
+preserved015c8b110442885
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
