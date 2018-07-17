@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee3a2049711e665ea
+preserve685e9eb78fe26181
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb2f91a55ed838baa
+preserve360f259839c7ad78
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4078,7 +4078,7 @@ As a result of this process, multi-objects are split into many non-multi objects
 <!-- add a short paragraph -->
 
 <table class="table table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">(\#tab:sfs-st-cast)Geometry casting on simple features objects. The first column represents input objects (see Section 2.1.5.1). The next columns represent an output geometry type. The values indicate the number of elements in the output objects, while NA shows that geometry casting is not possible.</caption>
+<caption style="font-size: initial !important;">(\#tab:sfs-st-cast)Geometry casting on simple feature geometries with input type by row and output type by column. Values such as (1) represent the number of features; NA means the operation is not possible.</caption>
  <thead>
   <tr>
    <th style="text-align:left;">  </th>
@@ -6713,7 +6713,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve32a445d459a11103
+preservede78411a96f4c9f8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6811,7 +6811,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4bea1e5a42174c2c
+preservee55486806760bcfe
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10372,7 +10372,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve7e14128832cc25ac
+preserve0c30a74523a42cf7
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
