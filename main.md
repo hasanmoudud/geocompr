@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef5d99fdc72edce26
+preservebb84906c8cdb5485
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebe6e69482dda0710
+preserved77664cf68098f1e
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6638,7 +6638,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservef035a40960866d31
+preservee739a97a4b0d44f3
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6736,7 +6736,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee570354af6d61f83
+preservec1f8b13b249441d6
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8335,6 +8335,7 @@ library(raster)
 library(mlr)
 library(tidyverse)
 library(parallelMap)
+library(kernlab)
 ```
 
 Required data will be attached in due course.
@@ -8664,14 +8665,14 @@ listLearners(task, warn.missing.packages = FALSE) %>%
 
 Table: (\#tab:lrns)Sample of available learners for binomial tasks in the **mlr** package.
 
-class                 name                           short.name    package 
---------------------  -----------------------------  ------------  --------
-classif.binomial      Binomial Regression            binomial      stats   
-classif.featureless   Featureless classifier         featureless   mlr     
-classif.fnn           Fast k-Nearest Neighbour       fnn           FNN     
-classif.knn           k-Nearest Neighbor             knn           class   
-classif.lda           Linear Discriminant Analysis   lda           MASS    
-classif.logreg        Logistic Regression            logreg        stats   
+class                 name                       short.name    package 
+--------------------  -------------------------  ------------  --------
+classif.binomial      Binomial Regression        binomial      stats   
+classif.featureless   Featureless classifier     featureless   mlr     
+classif.fnn           Fast k-Nearest Neighbour   fnn           FNN     
+classif.gausspr       Gaussian Processes         gausspr       kernlab 
+classif.knn           k-Nearest Neighbor         knn           class   
+classif.ksvm          Support Vector Machines    ksvm          kernlab 
 
 This yields all learners able to model two-class problems (landslide yes or no).
 We opt for the binomial classification method used in section \@ref(conventional-model) and implemented as `classif.binomial` in **mlr**.
@@ -8729,8 +8730,7 @@ We will use a 100-repeated 5-fold spatial CV: five partitions will be chosen bas
 
 
 ```r
-resampling = makeResampleDesc(method = "SpRepCV", folds = 5, 
-                              reps = 100)
+perf_level = makeResampleDesc(method = "SpRepCV", folds = 5, reps = 100)
 ```
 
 To execute the spatial resampling, we run `resample()` using the specified learner, task, resampling strategy and of course the performance measure, here the AUROC.
@@ -8744,7 +8744,7 @@ Setting a seed ensures the reprocubility of the obtained result and will ensure 
 ```r
 set.seed(012348)
 sp_cv = mlr::resample(learner = lrn, task = task,
-                      resampling = resampling, 
+                      resampling = perf_level, 
                       measures = mlr::auc)
 ```
 
@@ -8799,7 +8799,7 @@ Some SVM implementations such as that provided by **kernlab** allow hyperparamet
 This works for non-spatial data but is of less use for spatial data where 'spatial tuning' should be undertaken.
 
 Before defining spatial tuning we will set-up the **mlr** building blocks, introduced in section \@ref(glm), for the SVM.
-The task remains the same as the `task` object created in section \@ref(glm).
+The classification task remains the same, hence we can simply resue the `task` object created in section \@ref(glm).
 Learners implementing SVM can be found using `listLearners()` as follows:
 
 
@@ -8824,7 +8824,7 @@ lrn_ksvm = makeLearner("classif.ksvm",
 ```
 
 The next stage is to specify a resampling strategy.
-Again we will use a 100-repeated 5-fold spatial CV:
+Again we will use a 100-repeated 5-fold spatial CV.
 
 <!-- Instead of saying "outer resampling" we concluded to use "performance estimation level" and "tuning level" (inner) in our paper
 # this is also what is shown in the nested CV figure so it would be more consistent -->
@@ -8832,10 +8832,12 @@ Again we will use a 100-repeated 5-fold spatial CV:
 
 ```r
 # performance estimation level
-perf_level = makeResampleDesc("SpRepCV", folds = 5, reps = 100)
+perf_level = makeResampleDesc(method = "SpRepCV", folds = 5, reps = 100)
 ```
 
-So far, the process is identical to that described in section \@ref(glm).
+Note that this is the exact same code as used for the GLM in section \@ref(glm)), we have simply repeated it here as a reminder.
+
+So far, the process has been identical to that described in section \@ref(glm).
 The next step is new, however: to tune the hyperparameters.
 Using the same data for the performance assessment and the tuning would potentially lead to overoptimistic results [@cawley_overfitting_2010].
 This can be avoided using nested spatial CV.
@@ -8846,9 +8848,9 @@ This can be avoided using nested spatial CV.
 </div>
 
 This means that we split each fold again into five spatially disjoint subfolds which are used to determine the optimal hyperparameters (`tune_level` object in the code chunk below; see Figure \@ref(fig:inner-outer) for a visual representation).
-To find the optimal hyperparameter combination we here fit 50 models in each of these subfolds with randomly selected hyperparameter values (`ctrl` object in the code chunk below).
-Additionally, we restrict the randomly chosen values to a predefined tuning space (`ps` object).
-The latter was chosen with values recommended in the literature [@schratz_performance_nodate].
+To find the optimal hyperparameter combination we here fit 50 models (`ctrl` object in the code chunk below) in each of these subfolds with randomly selected values for the hyperparameters C and Sigma.
+The random selection of values C and Sigma is additionally restricted to a predefined tuning space (`ps` object).
+The range of the tuning space was chosen with values recommended in the literature [@schratz_performance_nodate].
 
 <!--
 Questions Pat:
@@ -8895,6 +8897,16 @@ The **mlr** is now set-up to fit 250 models to determine optimal hyperparameters
 Repeating this for each fold, we end up with 1250 (250 \* 5) models for each repetition.
 Repeated 100 times means fitting a total of 125,000 models to identify optimal hyperparameters (Figure \@ref(fig:partitioning)).
 These are used in the performance estimation, which requires the fitting of another 500 models (5 folds \* 100 repetitions; see Figure \@ref(fig:partitioning)). 
+To make the performance estimation processing chain even clearer, let us write down the commands we have given to the computer:
+
+1. Performance level (upper left part of Figure \@ref(fig:inner-outer)): split the dataset into five spatially disjoint (outer) subfolds.
+1. Tuning level (lower left part of Figure \@ref(fig:inner-outer)): For each of these folds, run the hyperparameter tuning, i.e. spatially split the performance fold again into five (inner) subfolds. 
+Use the 50 randomly selected hyperparameters in each of these inner subfolds, i.e. fit 250 models.
+1. Performance estimation: Use the best hyperparameter combination from the previous step (tuning level) in the performance level to estimate the performance (AUROC).
+1. Do all of the steps described above for the remaining four outer folds.
+1. Repeat a 100 times all the steps described above.
+
+
 
 The process of hyperparameter tuning and performance estimation is computationally intensive.
 Model runtime can be reduced with parallelization, which can be done in a number of ways, depending on the operating system.
@@ -10283,7 +10295,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservec086811aca872a5b
+preserve0bfea74681eec123
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
