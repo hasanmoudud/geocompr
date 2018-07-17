@@ -57,6 +57,7 @@
 <script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
 <script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/leaflet-minimap-3.3.1/Control.MiniMap.min.css" rel="stylesheet" />
 <script src="libs/leaflet-minimap-3.3.1/Control.MiniMap.min.js"></script>
 <script src="libs/leaflet-minimap-3.3.1/Minimap-binding.js"></script>
@@ -420,12 +421,12 @@ We use this example because it highlights how seemingly simple operations are th
 To programming novices scripts may sound intimidating but they are simply plain text files, typically saved with an extension representing the language they contain.
 R scripts are generally saved with a <code>.R</code> extension and named to reflect what they do.
 An example is <code>10-hello.R</code>, a script file stored in the <code>code</code> folder of the book’s repository, which contains the following two lines of code:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1"><span class="co"># Aim: provide a minimal R script</span></a>
-<a class="sourceLine" id="cb349-2" data-line-number="2"><span class="kw">print</span>(<span class="st">&quot;Hello geocompr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" data-line-number="1"><span class="co"># Aim: provide a minimal R script</span></a>
+<a class="sourceLine" id="cb348-2" data-line-number="2"><span class="kw">print</span>(<span class="st">&quot;Hello geocompr&quot;</span>)</a></code></pre></div>
 <p>The lines of code may not be particularly exciting but they demonstrate the point: scripts do not need to be complicated.
 Saved scripts can be called and executed in their entirety with <code>source()</code>, as demonstrated below which shows how the comment is ignored but the instruction is executed:</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-hello.R&quot;</span>)</a>
-<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Hello geocompr&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-hello.R&quot;</span>)</a>
+<a class="sourceLine" id="cb349-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Hello geocompr&quot;</span></a></code></pre></div>
 <p>There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>
 There are, however, some best practice conventions worth following:</p>
 <ul>
@@ -452,13 +453,13 @@ See <a href="http://reprex.tidyverse.org/">reprex.tidyverse.org/</a> for details
 A particular consideration with scripts for geocomputation is that they tend to have external dependencies, such as the QGIS dependency to run code in Chapter <a href="gis.html#gis">9</a>, and require input data in a specific format.
 Such dependencies should be mentioned as comments in the script or elsewhere in the project of which it is a part, as illustrated in the script <code>10-centroid-alg.R</code>.
 To demonstrate a basic geographic data processing script in action, the final code chunk of this section finds the area and centroid of a square with sides 9 units in length (the meaning of this will become apparent in the next section):</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(</a>
-<a class="sourceLine" id="cb351-2" data-line-number="2">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb351-3" data-line-number="3">  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">0</span>, <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb351-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb351-5" data-line-number="5"><span class="kw">source</span>(<span class="st">&quot;code/10-centroid-alg.R&quot;</span>)</a>
-<a class="sourceLine" id="cb351-6" data-line-number="6"><span class="co">#&gt; [1] &quot;The area is: 81&quot;</span></a>
-<a class="sourceLine" id="cb351-7" data-line-number="7"><span class="co">#&gt; [1] &quot;The coordinates of the centroid are: 4.5, 4.5&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(</a>
+<a class="sourceLine" id="cb350-2" data-line-number="2">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb350-3" data-line-number="3">  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">0</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb350-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb350-5" data-line-number="5"><span class="kw">source</span>(<span class="st">&quot;code/10-centroid-alg.R&quot;</span>)</a>
+<a class="sourceLine" id="cb350-6" data-line-number="6"><span class="co">#&gt; [1] &quot;The area is: 81&quot;</span></a>
+<a class="sourceLine" id="cb350-7" data-line-number="7"><span class="co">#&gt; [1] &quot;The coordinates of the centroid are: 4.5, 4.5&quot;</span></a></code></pre></div>
 </div>
 <div id="geographic-algorithms" class="section level2">
 <h2><span class="header-section-number">10.3</span> Geographic algorithms</h2>
@@ -492,15 +493,15 @@ It helps to further break-down this approach into discrete tasks before writing 
 <p>These steps may sound straightforward, but converting words into working code requires some work and plenty of trial-and-error, even when the inputs are constrained.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
 The simplest data structure of a polygon is a matrix of x and y coordinates in which each row represents a vertex tracing the polygon’s border in order where the first and last rows are identical <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>.
 In this case we’ll create a polygon with 5 vertices in base R, building on an example from <em>GIS Algorithms</em> <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a> see <a href="https://github.com/gisalgs/geom">github.com/gisalgs</a> for Python code)</span>, as illustrated in Figure <a href="algorithms.html#fig:polymat">10.2</a>:</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">x_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb352-2" data-line-number="2">y_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb352-3" data-line-number="3">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(x_coords, y_coords)</a></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1">x_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb351-2" data-line-number="2">y_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb351-3" data-line-number="3">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(x_coords, y_coords)</a></code></pre></div>
 <p>Now we have an example dataset we are ready to undertake step 1 outlined above.
 The code below shows how this can be done by creating a single triangle (<code>T1</code>), that demonstrates the method; it also demonstrates step 2 by calculating its centroid based on the <a href="https://math.stackexchange.com/q/1702595/">formula</a>
 <span class="math inline">\(1/3(a + b + c)\)</span> where <span class="math inline">\(a\)</span> to <span class="math inline">\(c\)</span> are coordinates representing the triangle’s vertices:</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">O =<span class="st"> </span>poly_mat[<span class="dv">1</span>, ] <span class="co"># create a point representing the origin</span></a>
-<a class="sourceLine" id="cb353-2" data-line-number="2">T1 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ], O) <span class="co"># create &#39;triangle matrix&#39;</span></a>
-<a class="sourceLine" id="cb353-3" data-line-number="3">C1 =<span class="st"> </span>(T1[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span> <span class="co"># find centroid</span></a></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">O =<span class="st"> </span>poly_mat[<span class="dv">1</span>, ] <span class="co"># create a point representing the origin</span></a>
+<a class="sourceLine" id="cb352-2" data-line-number="2">T1 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ], O) <span class="co"># create &#39;triangle matrix&#39;</span></a>
+<a class="sourceLine" id="cb352-3" data-line-number="3">C1 =<span class="st"> </span>(T1[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span> <span class="co"># find centroid</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:polymat"></span>
 <img src="figures/polymat-1.png" alt="Illustration of polygon centroid calculation problem." width="576" />
 <p class="caption">
@@ -516,29 +517,29 @@ The formula to calculate the area of a triangle is as follows <span class="citat
 <p>Where <span class="math inline">\(A\)</span> to <span class="math inline">\(C\)</span> are the triangle’s three points and <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> refer to the x and y dimensions.
 A translation of this formula into R code that works with the data in the matrix representation of a triangle <code>T1</code> is as follows (the function <code>abs()</code> ensures a positive result):
 <!-- Note: we could replace this code chunk with the function definition if space is an issue (RL) --></p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="kw">abs</span>(T1[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb354-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb354-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb354-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="kw">abs</span>(T1[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb353-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb353-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb353-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
 <p>This code chunk outputs the correct result.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
 The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
 To make the code more generalizable, we will see how it can be converted into a function in the next section (<a href="algorithms.html#functions">10.4</a>).</p>
 <p>Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
 This requires <em>iteration</em> to create all triangles representing the polygon, illustrated in Figure <a href="algorithms.html#fig:polycent">10.3</a>.
 <code>lapply()</code> and <code>vapply()</code> are used to iterate over each triangle here because they provide a concise solution in base R:<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1">i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(poly_mat) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb355-2" data-line-number="2">T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb355-3" data-line-number="3">  <span class="kw">rbind</span>(O, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O)</a>
-<a class="sourceLine" id="cb355-4" data-line-number="4">})</a>
-<a class="sourceLine" id="cb355-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb355-6" data-line-number="6">C_list =<span class="st"> </span><span class="kw">lapply</span>(T_all,  <span class="cf">function</span>(x) (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb355-7" data-line-number="7">C =<span class="st"> </span><span class="kw">do.call</span>(rbind, C_list)</a>
-<a class="sourceLine" id="cb355-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb355-9" data-line-number="9">A =<span class="st"> </span><span class="kw">vapply</span>(T_all, <span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb355-10" data-line-number="10">  <span class="kw">abs</span>(x[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb355-11" data-line-number="11"><span class="st">        </span>x[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb355-12" data-line-number="12"><span class="st">        </span>x[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb355-13" data-line-number="13">  }, <span class="dt">FUN.VALUE =</span> <span class="kw">double</span>(<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1">i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(poly_mat) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb354-2" data-line-number="2">T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb354-3" data-line-number="3">  <span class="kw">rbind</span>(O, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O)</a>
+<a class="sourceLine" id="cb354-4" data-line-number="4">})</a>
+<a class="sourceLine" id="cb354-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb354-6" data-line-number="6">C_list =<span class="st"> </span><span class="kw">lapply</span>(T_all,  <span class="cf">function</span>(x) (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb354-7" data-line-number="7">C =<span class="st"> </span><span class="kw">do.call</span>(rbind, C_list)</a>
+<a class="sourceLine" id="cb354-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb354-9" data-line-number="9">A =<span class="st"> </span><span class="kw">vapply</span>(T_all, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb354-10" data-line-number="10">  <span class="kw">abs</span>(x[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb354-11" data-line-number="11"><span class="st">        </span>x[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb354-12" data-line-number="12"><span class="st">        </span>x[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb354-13" data-line-number="13">  }, <span class="dt">FUN.VALUE =</span> <span class="kw">double</span>(<span class="dv">1</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:polycent"></span>
 <img src="figures/polycent-1.png" alt="Illustration of iterative centroid algorithm with triangles. The 'x' represents the area-weighted centroid in iterations 2 and 3." width="576" />
 <p class="caption">
@@ -549,9 +550,9 @@ Figure 10.3: Illustration of iterative centroid algorithm with triangles. The �
 To demonstrate the link between algorithms and scripts the contents of this section have been condensed into <code>10-centroid-alg.R</code>.
 We saw at the end of section <a href="algorithms.html#scripts">10.2</a> how this script can calculate the centroid of a square.
 The great thing about <em>scripting</em> the algorithm is that it works on the new <code>poly_mat</code> object (see exercises below to verify these results with reference to <code>st_centroid()</code>):</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-centroid-alg.R&quot;</span>)</a>
-<a class="sourceLine" id="cb356-2" data-line-number="2"><span class="co">#&gt; [1] &quot;The area is: 245&quot;</span></a>
-<a class="sourceLine" id="cb356-3" data-line-number="3"><span class="co">#&gt; [1] &quot;The coordinates of the centroid are: 8.83, 9.22&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-centroid-alg.R&quot;</span>)</a>
+<a class="sourceLine" id="cb355-2" data-line-number="2"><span class="co">#&gt; [1] &quot;The area is: 245&quot;</span></a>
+<a class="sourceLine" id="cb355-3" data-line-number="3"><span class="co">#&gt; [1] &quot;The coordinates of the centroid are: 8.83, 9.22&quot;</span></a></code></pre></div>
 <!-- We have succefully duplicated a small part of **sf**'s functionality (with a major caveat mentioned in the next paragraph). -->
 <p>The example above shows that low-level geographic operations <em>can</em> be developed from first principles with base R.
 It also shows that if a tried-and-tested solution already exists, it may not be worth re-inventing the wheel:
@@ -569,62 +570,62 @@ A great advantage of the open source nature of such libraries is that their sour
 <p>Like algorithms functions take an input and return an output.
 The difference is that functions are ‘first class’ objects in R and are more flexible than scripts.
 We can, for example, create function that undertakes step 2 of our centroid generation algorithm as follows:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1">t_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb357-2" data-line-number="2">  (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb357-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">t_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb356-2" data-line-number="2">  (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb356-3" data-line-number="3">}</a></code></pre></div>
 <p>The above example demonstrates two key components of <a href="http://adv-r.had.co.nz/Functions.html">functions</a>:
 1) the function <em>body</em>, the code inside the curly brackets that define what the function does with the inputs; and 2) the <em>formals</em>, the list of arguments the function works with — <code>x</code> in this case (the third component, the environment, is beyond the scope of this section).
 By default, functions return the last object that has been calculated (the coordinates of the centroid in the case of <code>t_centroid()</code>).<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a></p>
 <p>The function now works on any inputs you pass it, as illustrated in the below command which calculates the area of the 1<sup>st</sup> triangle from the example polygon in the previous section (see Figure <a href="algorithms.html#fig:polycent">10.3</a>):</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1"><span class="kw">t_centroid</span>(T1)</a>
-<a class="sourceLine" id="cb358-2" data-line-number="2"><span class="co">#&gt; x_coords y_coords </span></a>
-<a class="sourceLine" id="cb358-3" data-line-number="3"><span class="co">#&gt;     3.33     3.33</span></a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1"><span class="kw">t_centroid</span>(T1)</a>
+<a class="sourceLine" id="cb357-2" data-line-number="2"><span class="co">#&gt; x_coords y_coords </span></a>
+<a class="sourceLine" id="cb357-3" data-line-number="3"><span class="co">#&gt;     3.33     3.33</span></a></code></pre></div>
 <p>We can also create a function to calculate a triangle’s area, which we will name <code>t_area()</code>:
 <!-- We can use the function to find the area of a triangle with a base 3 units wide and a height of 1, for example, as follows: --></p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1">t_area =<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb359-2" data-line-number="2">  <span class="kw">abs</span>(</a>
-<a class="sourceLine" id="cb359-3" data-line-number="3">    x[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb359-4" data-line-number="4"><span class="st">    </span>x[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb359-5" data-line-number="5"><span class="st">    </span>x[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">2</span>, <span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb359-6" data-line-number="6">  ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb359-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1">t_area =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb358-2" data-line-number="2">  <span class="kw">abs</span>(</a>
+<a class="sourceLine" id="cb358-3" data-line-number="3">    x[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">3</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb358-4" data-line-number="4"><span class="st">    </span>x[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb358-5" data-line-number="5"><span class="st">    </span>x[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(x[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>x[<span class="dv">2</span>, <span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb358-6" data-line-number="6">  ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb358-7" data-line-number="7">}</a></code></pre></div>
 <p>Note that after the function’s creation, a triangle’s area can be calculated in a single line of code, avoiding duplication of verbose code:
 functions are a mechanism for <em>generalizing</em> code.
 The newly created function <code>t_area()</code> takes any object <code>x</code>, assumed to have the same dimensions as the ‘triangle matrix’ data structure we’ve been using, and returns its area, as illustrated on <code>T1</code> as follows:</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="kw">t_area</span>(T1)</a>
-<a class="sourceLine" id="cb360-2" data-line-number="2"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="kw">t_area</span>(T1)</a>
+<a class="sourceLine" id="cb359-2" data-line-number="2"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
 <p>We can test the generalizability of the function by using it to find the area of a new triangle matrix, which has a height of 1 and a base of 3:</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1">t_new =<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb361-2" data-line-number="2">              <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb361-3" data-line-number="3"><span class="kw">t_area</span>(t_new)</a>
-<a class="sourceLine" id="cb361-4" data-line-number="4"><span class="co">#&gt;   x </span></a>
-<a class="sourceLine" id="cb361-5" data-line-number="5"><span class="co">#&gt; 1.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1">t_new =<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb360-2" data-line-number="2">              <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb360-3" data-line-number="3"><span class="kw">t_area</span>(t_new)</a>
+<a class="sourceLine" id="cb360-4" data-line-number="4"><span class="co">#&gt;   x </span></a>
+<a class="sourceLine" id="cb360-5" data-line-number="5"><span class="co">#&gt; 1.5</span></a></code></pre></div>
 <p>A useful feature of functions is that they are modular.
 Providing you know what the output will be, one function can be used as the building block of another.
 Thus, the functions <code>t_centroid()</code> and <code>t_area()</code> can be used as sub-components of a larger function to do the work of the script <code>10-centroid-alg.R</code>: calculate the area of any convex polygon.
 The code chunk below creates the function <code>poly_centroid()</code> to mimick the behaviour of <code>sf::st_centroid()</code>:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1">poly_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb362-2" data-line-number="2">  i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb362-3" data-line-number="3">  T_all =<span class="st"> </span>T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb362-4" data-line-number="4">    <span class="kw">rbind</span>(O, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O)</a>
-<a class="sourceLine" id="cb362-5" data-line-number="5">  })</a>
-<a class="sourceLine" id="cb362-6" data-line-number="6">  C_list =<span class="st"> </span><span class="kw">lapply</span>(T_all, t_centroid)</a>
-<a class="sourceLine" id="cb362-7" data-line-number="7">  C =<span class="st"> </span><span class="kw">do.call</span>(rbind, C_list)</a>
-<a class="sourceLine" id="cb362-8" data-line-number="8">  A =<span class="st"> </span><span class="kw">vapply</span>(T_all, t_area, <span class="dt">FUN.VALUE =</span> <span class="kw">double</span>(<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb362-9" data-line-number="9">  <span class="kw">c</span>(<span class="kw">weighted.mean</span>(C[, <span class="dv">1</span>], A), <span class="kw">weighted.mean</span>(C[, <span class="dv">2</span>], A))</a>
-<a class="sourceLine" id="cb362-10" data-line-number="10">}</a></code></pre></div>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="kw">poly_centroid</span>(poly_mat)</a>
-<a class="sourceLine" id="cb363-2" data-line-number="2"><span class="co">#&gt; [1] 8.83 9.22</span></a></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1">poly_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb361-2" data-line-number="2">  i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb361-3" data-line-number="3">  T_all =<span class="st"> </span>T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb361-4" data-line-number="4">    <span class="kw">rbind</span>(O, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O)</a>
+<a class="sourceLine" id="cb361-5" data-line-number="5">  })</a>
+<a class="sourceLine" id="cb361-6" data-line-number="6">  C_list =<span class="st"> </span><span class="kw">lapply</span>(T_all, t_centroid)</a>
+<a class="sourceLine" id="cb361-7" data-line-number="7">  C =<span class="st"> </span><span class="kw">do.call</span>(rbind, C_list)</a>
+<a class="sourceLine" id="cb361-8" data-line-number="8">  A =<span class="st"> </span><span class="kw">vapply</span>(T_all, t_area, <span class="dt">FUN.VALUE =</span> <span class="kw">double</span>(<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb361-9" data-line-number="9">  <span class="kw">c</span>(<span class="kw">weighted.mean</span>(C[, <span class="dv">1</span>], A), <span class="kw">weighted.mean</span>(C[, <span class="dv">2</span>], A))</a>
+<a class="sourceLine" id="cb361-10" data-line-number="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="kw">poly_centroid</span>(poly_mat)</a>
+<a class="sourceLine" id="cb362-2" data-line-number="2"><span class="co">#&gt; [1] 8.83 9.22</span></a></code></pre></div>
 <p>Functions such as <code>poly_centroid()</code> can further be built-on to provide different types of output.
 To return the result as an object of class <code>sfg</code>, for example, a ‘wrapper’ function can be used to modify the output of <code>poly_centroid()</code> before returning the result:</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1">poly_centroid_sfg =<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb364-2" data-line-number="2">  centroid_coords =<span class="st"> </span><span class="kw">poly_centroid</span>(x)</a>
-<a class="sourceLine" id="cb364-3" data-line-number="3">  sf<span class="op">::</span><span class="kw">st_point</span>(centroid_coords)</a>
-<a class="sourceLine" id="cb364-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1">poly_centroid_sfg =<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb363-2" data-line-number="2">  centroid_coords =<span class="st"> </span><span class="kw">poly_centroid</span>(x)</a>
+<a class="sourceLine" id="cb363-3" data-line-number="3">  sf<span class="op">::</span><span class="kw">st_point</span>(centroid_coords)</a>
+<a class="sourceLine" id="cb363-4" data-line-number="4">}</a></code></pre></div>
 <p>We can verify that the output is the same as the output from <code>sf::st_centroid()</code> as follows:</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1">poly_sfc =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_polygon</span>(<span class="kw">list</span>(poly_mat))</a>
-<a class="sourceLine" id="cb365-2" data-line-number="2"><span class="kw">identical</span>(<span class="kw">poly_centroid_sfg</span>(poly_mat), sf<span class="op">::</span><span class="kw">st_centroid</span>(poly_sfc))</a>
-<a class="sourceLine" id="cb365-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1">poly_sfc =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_polygon</span>(<span class="kw">list</span>(poly_mat))</a>
+<a class="sourceLine" id="cb364-2" data-line-number="2"><span class="kw">identical</span>(<span class="kw">poly_centroid_sfg</span>(poly_mat), sf<span class="op">::</span><span class="kw">st_centroid</span>(poly_sfc))</a>
+<a class="sourceLine" id="cb364-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <!-- RL: I've commented-out the rest of this section as I think it distracts from the core content -->
 <!-- An important concept to consider when developing your own function is *type stability*. -->
 <!-- Functions are type stable if they always return objects of the same class and, generally, this means returning objects of the same type as the input object. -->
