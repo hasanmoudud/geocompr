@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-17">
+<meta name="date" content="2018-07-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -491,7 +491,7 @@ This section introduces <strong>sf</strong> classes in preparation for subsequen
 <p>Simple features is an <a href="http://portal.opengeospatial.org/files/?artifact_id=25355">open standard</a> developed and endorsed by the Open Geospatial Consortium (OGC), a not-for-profit organization whose activities we will revisit in a later chapter (in section <a href="read-write.html#file-formats">7.4</a>).
 Simple Features is a hierarchical data model that represents a wide range of geometry types.
 Of 68 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>);
-these core geometry types are fully supported by R package <strong>sf</strong> <span class="citation">(Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+these core geometry types are fully supported by R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:sf-ogc"></span>
 <img src="figures/sf-classes.png" alt="The subset of the Simple Features class hierarchy supported by sf." width="100%" />
 <p class="caption">
@@ -501,7 +501,7 @@ Figure 2.2: The subset of the Simple Features class hierarchy supported by sf.
 <p><strong>sf</strong> can represent all common vector geometry types (raster data classes are not supported by <strong>sf</strong>): points, lines, polygons and their respective ‘multi’ versions (which group together features of the same type into a single feature).
 <strong>sf</strong> also supports geometry collections, which can contain multiple geometry types in a single object.
 Given the breadth of geographic data forms, it may come as a surprise that a class system to support all of them is provided in a single package, which can be installed from CRAN:<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
-<strong>sf</strong> incorporates the functionality of the three main packages of the <strong>sp</strong> paradigm, <strong>sp</strong> <span class="citation">(Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span> for the class system, <strong>rgdal</strong> <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> for reading and writing data, <strong>rgeos</strong> <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span> for spatial operations undertaken by GEOS, in a single, cohesive whole.
+<strong>sf</strong> incorporates the functionality of the three main packages of the <strong>sp</strong> paradigm, <strong>sp</strong> <span class="citation">(E. Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span> for the class system, <strong>rgdal</strong> <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> for reading and writing data, <strong>rgeos</strong> <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span> for spatial operations undertaken by GEOS, in a single, cohesive whole.
 This is well-documented in <strong>sf</strong>’s <a href="http://cran.rstudio.com/package=sf">vignettes</a>.</p>
 <p>As the first vignette explains, simple feature objects in R are stored in a data frame, with geographic data occupying a special column, a ‘list-column’. This column is usually named ‘geom’ or ‘geometry’.
 We will use the <code>world</code> dataset provided by the <strong>spData</strong>, loaded at the beginning of this chapter (see <a href="https://nowosad.github.io/spData/">nowosad.github.io/spData</a> for a list datasets loaded by the package).

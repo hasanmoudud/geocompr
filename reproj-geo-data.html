@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-17">
+<meta name="date" content="2018-07-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -505,13 +505,13 @@ It may come as a surprise that <code>london</code> and <code>london2</code> are 
 <div id="which-crs-to-use" class="section level2">
 <h2><span class="header-section-number">6.3</span> Which CRS to use?</h2>
 <p>The question of <em>which CRS</em> is tricky, and there is rarely a ‘right’ answer:
-“There exist no all-purpose projections, all involve distortion when far from the center of the specified frame” <span class="citation">(<span class="citeproc-not-found" data-reference-id="bivand_applied_2013"><strong>???</strong></span>)</span>.
+“There exist no all-purpose projections, all involve distortion when far from the center of the specified frame” <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span>.
 For geographic CRSs the answer is often <a href="https://en.wikipedia.org/wiki/World_Geodetic_System#A_new_World_Geodetic_System:_WGS_84">WGS84</a>, not only for web mapping (covered in the previous paragraph) but also because GPS datasets and thousands of raster and vector datasets are provided in this CRS by default.
 WGS84 is the most common CRS in the world, so it is worth knowing its EPSG code: 4326.
 This ‘magic number’ can be used to convert objects with unusual projected CRSs into something that is widely understood.</p>
 <p>What about when a projected CRS is required?
 In some cases it is not something that we are free to decide:
-“often the choice of projection is made by a public mapping agency” <span class="citation">(<span class="citeproc-not-found" data-reference-id="bivand_applied_2013"><strong>???</strong></span>)</span>.
+“often the choice of projection is made by a public mapping agency” <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span>.
 This means that when working with local data sources, it is likely preferable to work with the CRS in which the data was provided, to ensure compatibility, even if the official CRS is not the most accurate.
 The example of London was easy to answer because a) the CRS ‘BNG’ (with its associated EPSG code 27700) is well-known and b) the original dataset (<code>london</code>) already had that CRS.</p>
 <p>In cases where an appropriate CRS is not immediately clear, the choice of CRS should depend on the properties that are most important to preserve in the subsequent maps and analysis.
@@ -864,6 +864,9 @@ How does it influence the results?</p></li>
 <div id="refs" class="references">
 <div id="ref-maling_coordinate_1992">
 <p>Maling, D. H. 1992. <em>Coordinate Systems and Map Projections</em>. 2nd ed. Oxford ; New York: Pergamon Press.</p>
+</div>
+<div id="ref-bivand_applied_2013">
+<p>Bivand, Roger, Edzer J Pebesma, and Virgilio Gómez-Rubio. 2013. <em>Applied Spatial Data Analysis with R</em>. Vol. 747248717. Springer.</p>
 </div>
 <div id="ref-jenny_guide_2017">
 <p>Jenny, Bernhard, Bojan Šavrič, Nicholas D Arnold, Brooke E Marston, and Charles A Preppernau. 2017. “A Guide to Selecting Map Projections for World and Hemisphere Maps.” In <em>Choosing a Map Projection</em>, edited by Miljenko Lapaine and Lynn Usery, 213–28. Springer.</p>

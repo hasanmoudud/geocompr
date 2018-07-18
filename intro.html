@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-17">
+<meta name="date" content="2018-07-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -471,7 +471,7 @@ This book aims to contribute to the ‘Geographic Tradition’ <span class="cita
 Each has advantages.
 The former conveys the message that it comprises much more than just spatial data:
 non-spatial attribute data are inevitably interwoven with geometry data, and Geography is about more than where something is on the map.
-The latter communicates that this is a book about using R as a GIS, to perform spatial operations on <em>geographic data</em> <span class="citation">(<span class="citeproc-not-found" data-reference-id="bivand_applied_2013"><strong>???</strong></span>)</span>.
+The latter communicates that this is a book about using R as a GIS, to perform spatial operations on <em>geographic data</em> <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span>.
 However, the term GIS conveys some connotations (see Table <a href="intro.html#tab:gdsl">1.1</a>) which simply fail to communicate one of R’s greatest strengths:
 its console-based ability to seamlessly switch between geographic and non-geographic data processing, modeling and visualization tasks.
 By contrast, the term geocomputation implies reproducible and creative programming.
@@ -506,7 +506,7 @@ the packages <strong>Rcpp</strong> and <strong>reticulate</strong> enable access
 This means R can be used as a ‘bridge’ to a wide range of geospatial programs (see section <a href="intro.html#software-for-geocomputation">1.3</a>).</p>
 <p>An example showing R’s flexibility and evolving geographic capabilities is <strong>leaflet</strong> <span class="citation">(Cheng, Karambelkar, and Xie <a href="#ref-R-leaflet">2018</a>)</span>.
 We’ll see in Chapter <a href="adv-map.html#adv-map">8</a> how this interactive mapping package has been extended: there are now many ways to generate interactive geographic data visualizations from the R command line.
-Thanks to these developments the statement that R has “limited interactive [plotting] facilities” <span class="citation">(<span class="citeproc-not-found" data-reference-id="bivand_applied_2013"><strong>???</strong></span>)</span> is no longer true.
+Thanks to these developments the statement that R has “limited interactive [plotting] facilities” <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span> is no longer true.
 This is demonstrated by the following code chunk (which creates Figure <a href="intro.html#fig:interactive">1.1</a>).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(leaflet)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">popup =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Jakub&quot;</span>, <span class="st">&quot;Jannes&quot;</span>)</a>
@@ -658,7 +658,7 @@ The work on the “Map” class representation was nevertheless important since 
 Around this time the development of R’s spatial capabilities increasingly supported interfaces to external libraries, especially to GDAL and PROJ.
 These interfaces facilitated geographic data I/O (meaning input output and covered in chapter <a href="read-write.html#read-write">7</a>) and CRS transformations, respectively.
 <span class="citation">Bivand (<a href="#ref-hornik_approaches_2003">2003</a>)</span> proposed a spatial data class system, including support for points, lines, polygons and grids based on GDAL’s support for a wide range of spatial data formats.
-All these ideas contributed to the packages <strong>rgdal</strong> and <strong>sp</strong>, which became the foundational packages for spatial data analysis with R <span class="citation">(<span class="citeproc-not-found" data-reference-id="bivand_applied_2013"><strong>???</strong></span>)</span>.</p>
+All these ideas contributed to the packages <strong>rgdal</strong> and <strong>sp</strong>, which became the foundational packages for spatial data analysis with R <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span>.</p>
 <p><strong>rgdal</strong>, released in 2003, provided GDAL bindings for R which greatly enhanced its ability to import data from previously unavailable geographic data formats.
 The initial release supported only raster drivers but subsequent enhancements provided support for coordinate reference systems (via the PROJ library), reprojections and import of vector file formats (see Chapter <a href="read-write.html#read-write">7</a> for more on file formats).
 Many of these additional capabilities were developed by Barry Rowlingson and released in the <strong>rgdal</strong> codebase in 2006 <span class="citation">(see Rowlingson et al. <a href="#ref-rowlingson_rasp:_2003">2003</a> and the <a href="https://stat.ethz.ch/pipermail/r-help/2003-January/028413.html">R-help</a> email list for context)</span>.</p>
@@ -678,11 +678,11 @@ Prior to 2005, geographic coordinates were generally treated like any other numb
 <!-- This enables non-spatial data operations to work alongside spatial operations (see section \@ref(why-simple-features)). -->
 enabling data operations to work on geographic data (see section <a href="spatial-class.html#why-simple-features">2.1.2</a>).
 Further, <strong>sp</strong> provides generic methods such as <code>summary()</code> and <code>plot()</code> for geographic data.
-In the following decade, <strong>sp</strong> classes rapidly became the go-to standard for spatial data in R and the number of packages that depended on it increased from around 20 in 2008 and over 100 in 2013 <span class="citation">(<span class="citeproc-not-found" data-reference-id="bivand_applied_2013"><strong>???</strong></span>)</span>.
+In the following decade, <strong>sp</strong> classes rapidly became the go-to standard for spatial data in R and the number of packages that depended on it increased from around 20 in 2008 and over 100 in 2013 <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span>.
 As of 2018 almost 500 packages rely on <strong>sp</strong>, making it an important part of the R ecosystem.
 <!-- https://github.com/Robinlovelace/geocompr/issues/58 -->
 <!-- https://github.com/edzer/sfr/issues/387#issuecomment-308949140 -->
-Prominent R packages using <strong>sp</strong> include: <strong>gstat</strong>, for spatial and spatio-temporal geostatistics; <strong>geosphere</strong>, for spherical trigonometry; and <strong>adehabitat</strong> used for the analysis of habitat selection by animals <span class="citation">(Pebesma and Graeler <a href="#ref-R-gstat">2018</a>; <span class="citeproc-not-found" data-reference-id="calenge_package_2006"><strong>???</strong></span>; Hijmans <a href="#ref-hijmans_geosphere:_2016">2016</a>)</span>.</p>
+Prominent R packages using <strong>sp</strong> include: <strong>gstat</strong>, for spatial and spatio-temporal geostatistics; <strong>geosphere</strong>, for spherical trigonometry; and <strong>adehabitat</strong> used for the analysis of habitat selection by animals <span class="citation">(E. Pebesma and Graeler <a href="#ref-R-gstat">2018</a>; <span class="citeproc-not-found" data-reference-id="calenge_package_2006"><strong>???</strong></span>; Hijmans <a href="#ref-hijmans_geosphere:_2016">2016</a>)</span>.</p>
 <p>While <strong>rgdal</strong> and <strong>sp</strong> solved many spatial issues, R was still lacked the ability to do geometric operations (see chapter <a href="geometric-operations.html#geometric-operations">5</a>).
 Colin Rundel addressed this issue by developing <strong>rgeos</strong>, an R interface to the open-source geometry library (GEOS) during a Google Summer of Coding project in 2010 <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span>.
 <strong>rgeos</strong> enabled GEOS to manipulate <strong>sp</strong> objects, with functions such as <code>gIntersection()</code>.</p>
@@ -756,6 +756,9 @@ As of 2018 map making in R is a hot topic with dedicated packages such as <stron
 </div>
 <div id="ref-livingstone_geographical_1992">
 <p>Livingstone, David N. 1992. <em>The Geographical Tradition: Episodes in the History of a Contested Enterprise</em>. Oxford, UK ; Cambridge, USA: John Wiley &amp; Sons Ltd.</p>
+</div>
+<div id="ref-bivand_applied_2013">
+<p>Bivand, Roger, Edzer J Pebesma, and Virgilio Gómez-Rubio. 2013. <em>Applied Spatial Data Analysis with R</em>. Vol. 747248717. Springer.</p>
 </div>
 <div id="ref-theeconomist_autonomous_2016">
 <p>The Economist. 2016. “The Autonomous Car’s Reality Check.” <em>The Economist</em>.</p>
