@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3722992aa78241eb
+preserve4b70110a761797e0
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserved12d5b56dc2aa5b0
+preserve34168c680ce8d59f
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6713,7 +6713,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservef4e90df70e0da1ac
+preserve7943c8fe471d023e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6811,7 +6811,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3fae0f39642e5696
+preservee68b7dfeac950fed
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8513,7 +8513,7 @@ dem = raster(
 
 To model landslide susceptibility, we need some predictors.
 Terrain attributes are frequently associated with landsliding [@muenchow_geomorphic_2012], and these can be computed from the digital elevation model (`dem`) using R-GIS bridges (see Chapter \@ref(gis)).
-We leave it as an exercise to the reader to compute the following terrain attribute rasters and extract the corresponding values to our landslide/non-landslide data frame (see exercises):
+We leave it as an exercise to the reader to compute the following terrain attribute rasters and extract the corresponding values to our landslide/non-landslide dataframe (see exercises; we also provide the resulting dataframe via the **spDataLarge** package, see further below):
 
 - `slope`: slope angle (°).
 - `cplan`: plan curvature (rad m^−1^) expressing the convergence or divergence of a slope and thus water flow.
@@ -8521,17 +8521,30 @@ We leave it as an exercise to the reader to compute the following terrain attrib
 - `elev`: elevation (m a.s.l.) as the representation of different altitudinal zones of vegetation and precipitation in the study area.
 - `log10_carea`: the decadic logarithm of the catchment area (log10 m^2^) representing the amount of water flowing towards a location.
 
-The first three rows of the resulting data frame, still named `lsl` look like this (rounded to two significant digits):
+As a convenience to the reader, the dataframe containing the landslide points with the corresponding terrain attributes is also available in the **spDataLarge** package along with the a terrain attribute raster stack from which the values were extracted.
+Hence, if you have not computed the predictors yourself, attach the corresponding data before running the code of the remaining chapter:
 
 
+```r
+# attach landslide points with terrain attributes
+data("lsl", package = "spDataLarge")
+# attach terrain attribute raster stack
+data("ta", package = "spDataLarge")
 ```
+
+The first three rows of `lsl` look like this (rounded to two significant digits):
+
+
+```r
+lsl %>%
+  mutate_at(vars(-one_of("x", "y", "lslpts")), funs(signif(., 2))) %>%
+  head(3)
 #>        x       y lslpts slope  cplan  cprof elev log10_carea
 #> 1 715078 9558647  FALSE    37  0.021 0.0087 2500         2.6
 #> 2 713748 9558047  FALSE    42 -0.024 0.0068 2500         3.1
 #> 3 712508 9558887  FALSE    20  0.039 0.0150 2100         2.3
 ```
 
-As a convenience to the reader, `lsl` is also available in the **spDataLarge** package along with the corresponding terrain attributes stored in a raster stack (`data("ta", package = "spDataLarge")`).
 
 <div class="figure" style="text-align: center">
 <img src="figures/lsl-map-1.png" alt="Landslide initiation points (red) and points unaffected by landsliding (blue) in Southern Ecuador." width="576" />
@@ -8615,7 +8628,7 @@ pred = raster::predict(object = ta, model = fit,
 </div>
 
 Here, when making predictions we neglect spatial autocorrelation since we assume that on average the predictive accuracy remains the same with or without spatial autocorrelation structures.
-However, it is possible to include spatial autocorrelation structures into models [@zuur_mixed_2009;@blangiardo_spatial_2015; @zuur_beginners_2017] as well as into predictions [kriging approaches,  see e.g., @goovaerts_geostatistics_1997;@hengl_practical_2007;@bivand_applied_2013].
+However, it is possible to include spatial autocorrelation structures into models [@zuur_mixed_2009;@blangiardo_spatial_2015;@zuur_beginners_2017] as well as into predictions [kriging approaches,  see e.g., @goovaerts_geostatistics_1997;@hengl_practical_2007;@bivand_applied_2013].
 This is, however, beyond the scope of this book.
 <!--
 Nevertheless, we give the interested reader some pointers where to look it up:
@@ -8977,13 +8990,11 @@ These are used in the performance estimation, which requires the fitting of anot
 To make the performance estimation processing chain even clearer, let us write down the commands we have given to the computer:
 
 1. Performance level (upper left part of Figure \@ref(fig:inner-outer)): split the dataset into five spatially disjoint (outer) subfolds.
-1. Tuning level (lower left part of Figure \@ref(fig:inner-outer)): For each of these folds, run the hyperparameter tuning, i.e. spatially split the performance fold again into five (inner) subfolds. 
+1. Tuning level (lower left part of Figure \@ref(fig:inner-outer)): use the first fold of the performance level and split it again spatially into five (inner) subfolds for the hyperparameter tuning. 
 Use the 50 randomly selected hyperparameters in each of these inner subfolds, i.e. fit 250 models.
-1. Performance estimation: Use the best hyperparameter combination from the previous step (tuning level) in the performance level to estimate the performance (AUROC).
-1. Do all of the steps described above for the remaining four outer folds.
-1. Repeat a 100 times all the steps described above.
-
-
+1. Performance estimation: Use the best hyperparameter combination from the previous step (tuning level) and apply it to the first outer fold in the performance level to estimate the performance (AUROC).
+1. Repeat steps 2 and 3 for the remaining four outer folds.
+1. Repeat a 100 times steps 2 to 4.
 
 The process of hyperparameter tuning and performance estimation is computationally intensive.
 Model runtime can be reduced with parallelization, which can be done in a number of ways, depending on the operating system.
@@ -9066,6 +9077,8 @@ Note that runtime depends on many aspects: CPU speed, the selected algorithm, th
 round(result$runtime / 60, 2)
 #> [1] 37.4
 ```
+
+<!-- interestingly, running the code with 4 cores takes 41.67 minutes -->
 
 Even more important than the runtime is the final aggregated AUROC: the model's ability to discriminate the two classes. 
 
@@ -9160,7 +9173,7 @@ Apply a nested spatial CV.
 Parallelize the tuning level.
 Use a random search with 50 iterations to find the optimal hyperparameter combination (here: `mtry` and `num.trees`).
 The tuning space limits are 1 and 4 for `mtry`, and 1 and 10,000 for `num.trees`.
-(warning: this might take a long time).
+(warning: this might take a very long time).
 
 <!--chapter:end:11-spatial-cv.Rmd-->
 
@@ -10372,7 +10385,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve976e3855cacbbc63
+preservea34eb39ce666fbb5
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
