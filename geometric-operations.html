@@ -694,13 +694,16 @@ Conversion from multipoint or linestring to polygon is often used to calculate a
 <div class="rmdnote">
 For single simple feature geometries (<code>sfg</code>), <code>st_cast</code> also provides geometry casting from non-multi to multi types (e.g. <code>POINT</code> to <code>MULTIPOINT</code>) and from multi types to non-multi types.
 However, only the first element of the old object would remain in the second group of cases.
-<!-- note: beware of information lost (you will get a warning) -->
 </div>
 
 <p>Geometry casting of simple features geometry column (<code>sfc</code>) and simple features objects works the same as for single geometries in most of the cases.
 One important difference is conversion between multi to non-multi types.
 As a result of this process, multi-objects are split into many non-multi objects.</p>
-<!-- add a short paragraph -->
+<p>Table <a href="geometric-operations.html#tab:sfs-st-cast">5.1</a> shows a possible geometry type transformations on simple feature objects.
+Each input simple feature object with only one element (first column) is transformed directly into another geometry type.
+Several of the transformations are not possible, for example, you cannot convert a single point into a multilinestring or a polygon.
+On the other hand, some of the transformations are splitting the single element input object into multi-element one.
+You can see that, for example, when you cast a multipoint consisting of five pairs of coordinated into a point.</p>
 <table class="table table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:sfs-st-cast">Table 5.1: </span>Geometry casting on simple feature geometries with input type by row and output type by column. Values such as (1) represent the number of features; NA means the operation is not possible.
@@ -917,7 +920,7 @@ NA
 </tr>
 </tbody>
 </table>
-<p>We would use a new object, <code>multilinestring_sf</code>, as an example (on the left in Figure <a href="geometric-operations.html#fig:line-cast">5.11</a>):</p>
+<p>Let’s try to apply geometry type transformations on a new object, <code>multilinestring_sf</code>, as an example (on the left in Figure <a href="geometric-operations.html#fig:line-cast">5.11</a>):</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1">multilinestring_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">3</span>), <span class="dt">ncol =</span> <span class="dv">2</span>), </a>
 <a class="sourceLine" id="cb172-2" data-line-number="2">                            <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>),</a>
 <a class="sourceLine" id="cb172-3" data-line-number="3">                            <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">2</span>))</a>
