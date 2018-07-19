@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-18'
+date: '2018-07-19'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-18 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-19 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5b5bd4954e63df7e
+preserve1818cc42036dc092
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb90ef4d5a6284bcc
+preserve577222b99e9bd1a4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6713,7 +6713,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec7594c18f9c198f2
+preserve934c5a338b649461
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6811,7 +6811,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0a5bc5c91951f77a
+preserve35188c35bacff071
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7969,20 +7969,28 @@ Additionally, give `mapview` a try.
 <!--chapter:end:09-gis.Rmd-->
 
 
-# Algorithms and functions {#algorithms}
+# Scripts, algorithms and functions {#algorithms}
 
 ## Prerequisites {-}
 
 This chapter primarily uses base R. The **sf** package must also be installed.
+The chapter assumes you have an understanding of the geographic data classes introduced in Chapter \@ref(spatial-class), and have already imported the datasets needed for your work (see Chapter \@ref(read-write)).
 
 ## Introduction {#intro-algorithms}
 
 Chapter \@ref(intro) established that geocomputation is not only about using existing tools, but developing new ones, "in the form of shareable R scripts and functions".
-The aim of this chapter is to teach how to create these vital components of reproducible and generalizable code.
-After reading it and completing the exercises at the end, you should be able to use methods for geocomputation to create reproducible workflows and --- for confident readers --- develop new tools, and have an understanding of the low level code underlying the 'geoalgorithms' we accessed in the previous chapter (\@ref(gis)).
-The chapter assumes you have an understanding of the geographic data classes introduced in Chapter \@ref(spatial-class), and have already imported the datasets needed for your work (see Chapter \@ref(read-write)).
+The aim of this chapter is to teach how to create these vital components of reproducible code.
+After reading it and engaging with the exercises you should be able to go beyond 'one-off' uses to create workflows that can be used many times, by many people, on multiple input datasets.
+Programming --- as opposed to working in a trail-and-error, fix-and-forget manner --- is hard.
+It requires practice [@abelson_structure_1996]:
 
-We will consider an example script and how to make them more reproducible in section \@ref(scripts).
+> To appreciate programming as an intellectual activity in its own right you must turn to computer programming; you must read and write computer programs -- many of them.
+
+The rewards can be great, however.
+In addition to the advantages of reproduciblity, learning elements programming can yield many rewards (this chapter does not teach programming itself, for that look elsewhere, including resources cited in this chapter).
+They can lead to an appreciation of the low-level code underlying the 'geoalgorithms' discussed in Chapter (\@ref(gis)) and the skills needed to create new, high performance ones.
+
+Scripts are the basis of reproducible R code, a topic covered in section \@ref(scripts).
 Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
 To ease sharing and reproducibility algorithms can be placed into functions.
 That is the topic of section \@ref(functions).
@@ -8003,7 +8011,7 @@ The example also reflects a secondary aim of the chapter which, following @xiao_
 
 ## Scripts
 
-If functions distributed in packages are the building blocks of R code, scripts are the glue that holds them together in order to create reproducible workflows.
+If functions distributed in packages are the building blocks of R code, scripts are the glue that holds them together, in a logical order, to create reproducible workflows.
 To programming novices scripts may sound intimidating but they are simply plain text files, typically saved with an extension representing the language they contain.
 R scripts are generally saved with a `.R` extension and named to reflect what they do.
 An example is `10-hello.R`, a script file stored in the `code` folder of the book's repository, which contains the following two lines of code:
@@ -8026,7 +8034,7 @@ source("code/10-hello.R")
 There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.^[
 Lines of code that do not contain valid R should be commented to prevent errors, as with line 1 of the `10-hello.R` script.
 ]
-There are, however, some best practice conventions worth following:
+There are, however, some conventions worth following:
 
 - Write the script in order: just like the script of a film, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
 - Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure \@ref(fig:codecheck)) and (for long scripts) divide it into sections (e.g. with `Ctl+Shift+R` in RStudio which creates comments ending in `----` that can be 'folded' in the editor).
@@ -8049,8 +8057,11 @@ See [reprex.tidyverse.org/](http://reprex.tidyverse.org/) for details.</div>\End
 
 The contents of this section apply to any type of R script.
 A particular consideration with scripts for geocomputation is that they tend to have external dependencies, such as the QGIS dependency to run code in Chapter \@ref(gis), and require input data in a specific format.
-Such dependencies should be mentioned as comments in the script or elsewhere in the project of which it is a part, as illustrated in the script `10-centroid-alg.R`.
-To demonstrate a basic geographic data processing script in action, the final code chunk of this section finds the area and centroid of a square with sides 9 units in length (the meaning of this will become apparent in the next section):
+Such dependencies should be mentioned as comments in the script or elsewhere in the project of which it is a part, as illustrated in the script [`10-centroid-alg.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/10-centroid-alg.R).
+The work undertaken by this script is demonstrated in the reproducible example below, which works on a pre-requisite object named `poly_mat`, a square with sides 9 units in length (the meaning of this will become apparent in the next section):^[
+This example shows that `source()` works with URLs (a shortened version is used here), assuming you have an internet connection.
+If you do not, the same script can be called with `source("code/10-centroid-alg.R")`, assuming you are running R from the root directory of the `geocompr` folder, which can downloaded from https://github.com/Robinlovelace/geocompr.
+]
 
 
 ```r
@@ -8058,10 +8069,15 @@ poly_mat = cbind(
   x = c(0, 0, 9, 9, 0),
   y = c(0, 9, 9, 0, 0)
 )
-source("code/10-centroid-alg.R")
+source("https://git.io/10-centroid-alg.R") # short url
+```
+
+
+```
 #> [1] "The area is: 81"
 #> [1] "The coordinates of the centroid are: 4.5, 4.5"
 ```
+
 
 ## Geographic algorithms
 
@@ -8359,7 +8375,7 @@ identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
 
 ## Exercises {#ex-algorithms}
 
-1. Read the script `10-centroid-alg.R` in the `code` folder of the book's GitHub [repo](https://github.com/Robinlovelace/geocompr/blob/master/code/10-centroid-alg.R).
+1. Read the script `10-centroid-alg.R` in the `code` folder of the book's GitHub repo.
     - Which of the best practices covered in section \@ref(scripts) does it follow?
     - Create a version of the script on your computer in an IDE such as RStudio (preferably by typing-out the script line-by-line, in your own coding style and with your own comments, rather than copy-pasting --- this will help you learn how to type scripts) and, using the example of a square polygon (e.g. created with `poly_mat = cbind(x = c(0, 0, 9, 9, 0), y = c(0, 9, 9, 0, 0))`) execute the script line-by-line.
     - What changes could be made to the script to make it more reproducible?
@@ -10385,7 +10401,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9a505c2771a2bbdd
+preserve2897ab628df73d9a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
