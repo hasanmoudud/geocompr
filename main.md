@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve359e31b33be73102
+preserve7a123616fe497729
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef4328b1014098c94
+preserve66d91748a3b0b861
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6716,7 +6716,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve45cdf17abb3350c8
+preservec24ba7977ab71377
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6814,7 +6814,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef1cfa8a996f9eaca
+preserve39d419d9b5cd34e6
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7237,9 +7237,9 @@ __Note:__
 
 ## (R)QGIS
 
-QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing:_2015]. 
+QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing_2015]. 
 Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
-This means that you have access to GDAL/OGR, GRASS and SAGA through QGIS [@graser_processing:_2015]. 
+This means that you have access to GDAL/OGR, GRASS and SAGA through QGIS [@graser_processing_2015]. 
 To run all these geoalgorithms (frequently more than 1000 depending on your set up) outside of the QGIS GUI, QGIS provides a Python API.
 **RQGIS** establishes a tunnel to this Python API through the **reticulate** package. 
 Basically, functions `set_env()` and `open_app()` are doing this. 
@@ -7941,7 +7941,7 @@ Of course, this subsection was only a very brief introduction to PostgreSQL/Post
 Nevertheless, we would like to encourage the practice of storing geographic and non-geographic data in a spatial DBMS while only attaching those subsets to R's global environment which are needed for further (geo-)statistical analysis.
 Please refer to @obe_postgis_2015 for a much more detailed description of the here presented SQL queries and a much more comprehensive introduction to PostgreSQL/PostGIS in general.
 PostgreSQL/PostGIS is a formidable choice as an open source spatial database.
-But the same is true for the lightweight SQLite/SpatiaLite database engine and GRASS which uses SQLite in the background (see section \@ref(grass)).
+But the same is true for the lightweight SQLite/SpatiaLite database engine and GRASS which uses SQLite in the background (see section \@ref(rgrass)).
 
 As a final note, if your data is even getting to big for PostgreSQL/PostGIS and you require massive spatial data management and query performance, then the logical next step is to use large-scale geographic querying on distributed computing systems, as for example, provided by GeoMesa (http://www.geomesa.org/) or GeoSpark [http://geospark.datasyslab.org/; @huang_geospark_2017].
 
@@ -10404,7 +10404,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve75f80d018f6d9a53
+preserve87038d345e43e0f0
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
