@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-19">
+<meta name="date" content="2018-07-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -412,7 +412,7 @@ This includes clipping and geometry unions, covered in sections <a href="geometr
 Type transformations (from a polygon to a line, for example) are demonstrated in section <a href="geometric-operations.html#type-trans">5.2.7</a>.</p>
 <p>Section <a href="geometric-operations.html#geo-ras">5.3</a> covers geometric transformations on raster objects.
 This involves changing the size and number of the underlying pixels, and assigning them new values.
-It teaches how to change the resolution (also called raster aggregation and disaggregation), the extent and the origin of a raster.
+It teaches how to change the resolution (also called raster aggregation and dis-aggregation), the extent and the origin of a raster.
 These operations are especially useful if one would like to align raster datasets from diverse sources.
 Aligned raster objects share a one-to-one correspondence between pixels, allowing them to be processed using map algebra operations, described in section <a href="spatial-operations.html#map-algebra">4.3.2</a>.</p>
 <p>Section <a href="geometric-operations.html#raster-vector">5.4</a> connects vector and raster objects.
@@ -479,13 +479,13 @@ Figure 5.2: Polygon simplification in action, comparing the original geometry of
 Like statistical measures of central tendency (including mean and median definitions of ‘average’), there are many ways to define the geographic center of an object.
 All of create single point representations of more complex vector objects.</p>
 <p>The most commonly used centroid operation is the <em>geographic centroid</em>.
-This type of centroid operation (often referred to as ‘the centoid’) represents the centre of mass in a spatial object (think of balancing a plate on your finger).
+This type of centroid operation (often referred to as ‘the centroid’) represents the center of mass in a spatial object (think of balancing a plate on your finger).
 Geographic centroids have many uses, for example to create a simple point representation of complex geometries, or to estimate distances between polygons.
 They can be calculated with the <strong>sf</strong> function <code>st_centroid()</code> as demonstrated in the code below, which generates the geographic centroids of regions in New Zealand and tributaries to the River Seine, illustrated with black points in Figure <a href="geometric-operations.html#fig:centr">5.3</a>.</p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">nz_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(nz)</a>
 <a class="sourceLine" id="cb153-2" data-line-number="2">seine_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(seine)</a></code></pre></div>
-<p>Sometimes the geographic centroid falls outside the boundaries of their parent objects (think of a dohnut).
-In such cases <em>point on surface</em> operations can be used to guarantee the point will be in the parent object (e.g. for labelling irregular multipolygon objects such as island states), as illustrated by the red points in Figure <a href="geometric-operations.html#fig:centr">5.3</a>.
+<p>Sometimes the geographic centroid falls outside the boundaries of their parent objects (think of a doughnut).
+In such cases <em>point on surface</em> operations can be used to guarantee the point will be in the parent object (e.g. for labeling irregular multipolygon objects such as island states), as illustrated by the red points in Figure <a href="geometric-operations.html#fig:centr">5.3</a>.
 Notice that these red points always lie on their parent objects.
 They were created with <code>st_point_on_surface()</code> as follows:<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a></p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">nz_pos =<span class="st"> </span><span class="kw">st_point_on_surface</span>(nz)</a>
@@ -657,7 +657,7 @@ Figure 5.9: Spatial aggregation on contiguous polygons, illustrated by aggregati
 </p>
 </div>
 <p>What is going on in terms of the geometries?
-Behind the scenes, both <code>aggregate()</code> and <code>summarize()</code> combine the geometries and disolve the boundaries between them using <code>st_union()</code>.
+Behind the scenes, both <code>aggregate()</code> and <code>summarize()</code> combine the geometries and dissolve the boundaries between them using <code>st_union()</code>.
 This is demonstrated in the code chunk below which creates a united western US:</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">us_west =<span class="st"> </span>us_states[us_states<span class="op">$</span>REGION <span class="op">==</span><span class="st"> &quot;West&quot;</span>, ]</a>
 <a class="sourceLine" id="cb167-2" data-line-number="2">us_west_union =<span class="st"> </span><span class="kw">st_union</span>(us_west)</a></code></pre></div>
@@ -706,7 +706,7 @@ On the other hand, some of the transformations are splitting the single element 
 You can see that, for example, when you cast a multipoint consisting of five pairs of coordinated into a point.</p>
 <table class="table table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:sfs-st-cast">Table 5.1: </span>Geometry casting on simple feature geometries with input type by row and output type by column. Values such as (1) represent the number of features; NA means the operation is not possible.
+<span id="tab:sfs-st-cast">Table 5.1: </span>Geometry casting on simple feature geometries (see section 2.1) with input type by row and output type by column. Values such as (1) represent the number of features; NA means the operation is not possible.
 </caption>
 <thead>
 <tr>
@@ -992,7 +992,7 @@ A matching projection is of course also required but is already covered in secti
 In any case, there are other reasons why to perform a geometric operation on a single raster image.
 For instance, in chapter <a href="location.html#location">13</a> we define metropolitan areas in Germany as 20 km<sup>2</sup> pixels with more than 500,000 inhabitants.
 The original inhabitant raster, however, has a resolution of 1 km<sup>2</sup> which is why we will decrease (aggregate) the resolution by a factor of 20 (see section <a href="location.html#define-metropolitan-areas">13.5</a>).
-Another reason for aggregating a raster is simply to decrease runtime or save disk space.
+Another reason for aggregating a raster is simply to decrease run-time or save disk space.
 Of course, this is only possible if the task at hand allows a coarser resolution.
 Sometimes a coarser resolution is sufficient for the task at hand.</p>
 <div id="geometric-intersections" class="section level3">
@@ -1270,7 +1270,7 @@ Often the target resolution is imposed on the user, for example when the output 
 <p>Rasterization is a very flexible operation: the results depend not only on the nature of the template raster, but also on the type of input vector (e.g. points, polygons) and a variety arguments taken by the <code>rasterize()</code> function.</p>
 <p>To illustrate this flexibility we will try three different approaches rasterization.
 First we create a raster representing the presence or absence of cycle hire points (known as presence/absence rasters).
-In this case <code>rasterize()</code> requires only one argument in addition to <code>x</code> and <code>y</code> (the aformentioned vector and raster objects): a value to be transferred to all non-empty cells specified by <code>field</code> (results illustrated Figure <a href="geometric-operations.html#fig:vector-rasterization1">5.20</a>:B).</p>
+In this case <code>rasterize()</code> requires only one argument in addition to <code>x</code> and <code>y</code> (the aforementioned vector and raster objects): a value to be transferred to all non-empty cells specified by <code>field</code> (results illustrated Figure <a href="geometric-operations.html#fig:vector-rasterization1">5.20</a>:B).</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1">ch_raster1 =<span class="st"> </span><span class="kw">rasterize</span>(cycle_hire_osm_projected, raster_template, <span class="dt">field =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p>The <code>fun</code> argument specifies summary statistics used to covert multiple observations in close proximity into associate cells in the raster object.
 By default <code>fun = &quot;last&quot;</code> is used but other options such as <code>fun = &quot;count&quot;</code> can be used, in this case to count the number of cycle hire points in each grid cell (the results of this operation are illustrated in Figure <a href="geometric-operations.html#fig:vector-rasterization1">5.20</a>:C).</p>
@@ -1367,10 +1367,10 @@ As illustrated in Figure <a href="geometric-operations.html#fig:contour">5.23</a
 Figure 5.23: DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines.
 </p>
 </div>
-<p>The final type of vectorisation involves conversion of rasters to polygons.
-This can be done with <code>raster::rasterToPolygons()</code>, wich converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!).</p>
+<p>The final type of vectorization involves conversion of rasters to polygons.
+This can be done with <code>raster::rasterToPolygons()</code>, which converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!).</p>
 <p>This is illustrated below by converting the <code>grain</code> object into polygons and subsequently dissolving borders between polygons with the same attribute values (also see the <code>dissolve</code> argument in <code>rasterToPolygons()</code>).
-Attributes in this case are stored in a collumn called <code>layer</code> (see section <a href="geometric-operations.html#geometry-unions">5.2.6</a> and Figure <a href="geometric-operations.html#fig:raster-vectorization2">5.24</a>).
+Attributes in this case are stored in a column called <code>layer</code> (see section <a href="geometric-operations.html#geometry-unions">5.2.6</a> and Figure <a href="geometric-operations.html#fig:raster-vectorization2">5.24</a>).
 (Note: a convenient alternative for converting rasters into polygons is <code>spex::polygonize()</code> which by default returns an <code>sf</code> object.)</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">grain_poly =<span class="st"> </span><span class="kw">rasterToPolygons</span>(grain) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb206-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>()</a>
@@ -1402,7 +1402,7 @@ Experiment with different values of <code>keep</code> (ranging from 0.5 to 0.000
 <li>At what value does the form of the result start to break-down for each method, making New Zealand unrecognizable?</li>
 <li>Advanced: What is different about the geometry type of the results from <code>st_simplify()</code> compared with the geometry type of <code>ms_simplify()</code>? What problems does this create and how can this be resolved?</li>
 </ul></li>
-<li><p>In the first exercise in Chapter <a href="spatial-operations.html#spatial-operations">4</a> it was established that Canterbury region had 61 of the 101 highest points in New Zealand. Using <code>st_buffer()</code>, how many points in <code>nz_height</code> are within 100 km of Canturbury?</p></li>
+<li><p>In the first exercise in Chapter <a href="spatial-operations.html#spatial-operations">4</a> it was established that Canterbury region had 61 of the 101 highest points in New Zealand. Using <code>st_buffer()</code>, how many points in <code>nz_height</code> are within 100 km of Canterbury?</p></li>
 <li><p>Find the geographic centroid of New Zealand. How far is it from the geographic centroid of Canterbury?</p></li>
 <li>Most world maps have a north-up orientation.
 A world map with a south-up orientation could be created by a reflection (one of the affine transformations not mentioned in <a href="geometric-operations.html#affine-transformations">5.2.4</a>) of the <code>world</code> object’s geometry.

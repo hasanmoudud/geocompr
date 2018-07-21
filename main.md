@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-19'
+date: '2018-07-21'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-19 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-21 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebef9487c434f6163
+preserve359e31b33be73102
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve49c8fad44029523d
+preservef4328b1014098c94
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -3654,7 +3654,7 @@ Type transformations (from a polygon to a line, for example) are demonstrated in
 
 Section \@ref(geo-ras) covers geometric transformations on raster objects.
 This involves changing the size and number of the underlying pixels, and assigning them new values.
-It teaches how to change the resolution (also called raster aggregation and disaggregation), the extent and the origin of a raster.
+It teaches how to change the resolution (also called raster aggregation and dis-aggregation), the extent and the origin of a raster.
 These operations are especially useful if one would like to align raster datasets from diverse sources.
 Aligned raster objects share a one-to-one correspondence between pixels, allowing them to be processed using map algebra operations, described in section \@ref(map-algebra). 
 
@@ -3749,7 +3749,7 @@ Like statistical measures of central tendency (including mean and median definit
 All of create single point representations of more complex vector objects.
 
 The most commonly used centroid operation is the *geographic centroid*.
-This type of centroid operation (often referred to as 'the centoid') represents the centre of mass in a spatial object (think of balancing a plate on your finger).
+This type of centroid operation (often referred to as 'the centroid') represents the center of mass in a spatial object (think of balancing a plate on your finger).
 Geographic centroids have many uses, for example to create a simple point representation of complex geometries, or to estimate distances between polygons.
 They can be calculated with the **sf** function `st_centroid()` as demonstrated in the code below, which generates the geographic centroids of regions in New Zealand and tributaries to the River Seine, illustrated with black points in Figure \@ref(fig:centr).
 
@@ -3759,8 +3759,8 @@ nz_centroid = st_centroid(nz)
 seine_centroid = st_centroid(seine)
 ```
 
-Sometimes the geographic centroid falls outside the boundaries of their parent objects (think of a dohnut).
-In such cases *point on surface* operations can be used to guarantee the point will be in the parent object (e.g. for labelling irregular multipolygon objects such as island states), as illustrated by the red points in Figure \@ref(fig:centr).
+Sometimes the geographic centroid falls outside the boundaries of their parent objects (think of a doughnut).
+In such cases *point on surface* operations can be used to guarantee the point will be in the parent object (e.g. for labeling irregular multipolygon objects such as island states), as illustrated by the red points in Figure \@ref(fig:centr).
 Notice that these red points always lie on their parent objects.
 They were created with `st_point_on_surface()` as follows:^[
 A description of how `st_point_on_surface()` works is provided at https://gis.stackexchange.com/q/76498.
@@ -4005,7 +4005,7 @@ regions2 = us_states %>% group_by(REGION) %>%
 </div>
 
 What is going on in terms of the geometries?
-Behind the scenes, both `aggregate()` and `summarize()` combine the geometries and disolve the boundaries between them using `st_union()`.
+Behind the scenes, both `aggregate()` and `summarize()` combine the geometries and dissolve the boundaries between them using `st_union()`.
 This is demonstrated in the code chunk below which creates a united western US: 
 
 
@@ -4081,7 +4081,7 @@ On the other hand, some of the transformations are splitting the single element 
 You can see that, for example, when you cast a multipoint consisting of five pairs of coordinated into a point.
 
 <table class="table table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">(\#tab:sfs-st-cast)Geometry casting on simple feature geometries with input type by row and output type by column. Values such as (1) represent the number of features; NA means the operation is not possible.</caption>
+<caption style="font-size: initial !important;">(\#tab:sfs-st-cast)Geometry casting on simple feature geometries (see section 2.1) with input type by row and output type by column. Values such as (1) represent the number of features; NA means the operation is not possible.</caption>
  <thead>
   <tr>
    <th style="text-align:left;">  </th>
@@ -4253,7 +4253,7 @@ A matching projection is of course also required but is already covered in secti
 In any case, there are other reasons why to perform a geometric operation on a single raster image.
 For instance, in chapter \@ref(location) we define metropolitan areas in Germany as 20 km^2^ pixels with more than 500,000 inhabitants. 
 The original inhabitant raster, however, has a resolution of 1 km^2^ which is why we will decrease (aggregate) the resolution by a factor of 20 (see section \@ref(define-metropolitan-areas)).
-Another reason for aggregating a raster is simply to decrease runtime or save disk space.
+Another reason for aggregating a raster is simply to decrease run-time or save disk space.
 Of course, this is only possible if the task at hand allows a coarser resolution.
 Sometimes a coarser resolution is sufficient for the task at hand.
 
@@ -4652,7 +4652,7 @@ Rasterization is a very flexible operation: the results depend not only on the n
 
 To illustrate this flexibility we will try three different approaches rasterization.
 First we create a raster representing the presence or absence of cycle hire points (known as presence/absence rasters).
-In this case `rasterize()` requires only one argument in addition to `x` and `y` (the aformentioned vector and raster objects): a value to be transferred to all non-empty cells specified by `field` (results illustrated Figure \@ref(fig:vector-rasterization1):B).
+In this case `rasterize()` requires only one argument in addition to `x` and `y` (the aforementioned vector and raster objects): a value to be transferred to all non-empty cells specified by `field` (results illustrated Figure \@ref(fig:vector-rasterization1):B).
 
 
 ```r
@@ -4794,11 +4794,11 @@ contour(dem, col = "white", add = TRUE)
 
 
 
-The final type of vectorisation involves conversion of rasters to polygons.
-This can be done with `raster::rasterToPolygons()`, wich converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!).
+The final type of vectorization involves conversion of rasters to polygons.
+This can be done with `raster::rasterToPolygons()`, which converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!).
 
 This is illustrated below by converting the `grain` object into polygons and subsequently dissolving borders between polygons with the same attribute values (also see the `dissolve` argument in `rasterToPolygons()`).
-Attributes in this case are stored in a collumn called `layer` (see section \@ref(geometry-unions) and Figure \@ref(fig:raster-vectorization2)).
+Attributes in this case are stored in a column called `layer` (see section \@ref(geometry-unions) and Figure \@ref(fig:raster-vectorization2)).
 (Note: a convenient alternative for converting rasters into polygons is `spex::polygonize()` which by default returns an `sf` object.)
 
 
@@ -4834,7 +4834,7 @@ Experiment with different values of `keep` (ranging from 0.5 to 0.00005) for `ms
     - At what value does the form of the result start to break-down for each method, making New Zealand unrecognizable?
     - Advanced: What is different about the geometry type of the results from `st_simplify()` compared with the geometry type of `ms_simplify()`? What problems does this create and how can this be resolved?
 
-1. In the first exercise in Chapter \@ref(spatial-operations) it was established that Canterbury region had 61 of the 101 highest points in New Zealand. Using `st_buffer()`, how many points in `nz_height` are within 100 km of Canturbury?
+1. In the first exercise in Chapter \@ref(spatial-operations) it was established that Canterbury region had 61 of the 101 highest points in New Zealand. Using `st_buffer()`, how many points in `nz_height` are within 100 km of Canterbury?
 
 1. Find the geographic centroid of New Zealand. How far is it from the geographic centroid of Canterbury?
 
@@ -6716,7 +6716,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve241f843622293670
+preserve45cdf17abb3350c8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6814,7 +6814,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4a2088db9d2ffc70
+preservef1cfa8a996f9eaca
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10404,7 +10404,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8ee75329076ba22a
+preserve75f80d018f6d9a53
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
