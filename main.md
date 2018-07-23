@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3b7a3bb20dbea036
+preservefc435531bd6a839c
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7c2eec6875d25677
+preserve841c1a402fb63f03
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6642,7 +6642,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve24d435f2e71cf35e
+preserve67c21a8f38b9b38c
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6740,7 +6740,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve364b1969372e9abb
+preserve9255825363439916
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7159,7 +7159,7 @@ QGIS    2002            >1000           hybrid
 SAGA    2004            >600            hybrid  
 
 __Note:__
-^a^ Comparing downloads of different providers is rather difficult (see [http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world/](http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world/)), and here also useless since every Windows QGIS download automatically also downloads SAGA and GRASS.
+^a^ Comparing downloads of different providers is rather difficult (see http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world), and here also useless since every Windows QGIS download automatically also downloads SAGA and GRASS.
 
 ## (R)QGIS
 
@@ -10330,7 +10330,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb7042c6f1627b4a2
+preservedc821bd0d5542f45
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
