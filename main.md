@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb91a28b1ad1e6eb8
+preserve3311eee1891cd223
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve740c13eda31f3841
+preservee526eaca29282aca
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4074,99 +4074,25 @@ Geometry casting of simple features geometry column (`sfc`) and simple features 
 One important difference is conversion between multi to non-multi types.
 As a result of this process, multi-objects are split into many non-multi objects.
 
-Table \@ref(tab:sfs-st-cast) shows a possible geometry type transformations on simple feature objects.
+Table \@ref(tab:sfs-st-cast) shows possible geometry type transformations on simple feature objects.
+(Note the abbreviated geometry type names: POI, MPOI, LIN and GC for example refer to POINT, MULTIPOINT, LINESTRING and GEOMETRYCOLLECTION respectively.)
 Each input simple feature object with only one element (first column) is transformed directly into another geometry type.
-Several of the transformations are not possible, for example, you cannot convert a single point into a multilinestring or a polygon.
+Several of the transformations are not possible, for example, you cannot convert a single point into a multilinestring or a polygon (so the cells `[1, 4:5]` in the table are NA).
 On the other hand, some of the transformations are splitting the single element input object into multi-element one.
 You can see that, for example, when you cast a multipoint consisting of five pairs of coordinated into a point.
 
-<table class="table table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">(\#tab:sfs-st-cast)Geometry casting on simple feature geometries (see section 2.1) with input type by row and output type by column. Values such as (1) represent the number of features; NA means the operation is not possible.</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;">  </th>
-   <th style="text-align:right;"> POINT </th>
-   <th style="text-align:right;"> MULTIPOINT </th>
-   <th style="text-align:right;"> LINESTRING </th>
-   <th style="text-align:right;"> MULTILINESTRING </th>
-   <th style="text-align:right;"> POLYGON </th>
-   <th style="text-align:right;"> MULTIPOLYGON </th>
-   <th style="text-align:right;"> GEOMETRYCOLLECTION </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> POINT(1) </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> MULTIPOINT(1) </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> LINESTRING(1) </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> MULTILINESTRING(1) </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> POLYGON(1) </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> MULTIPOLYGON(1) </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> GEOMETRYCOLLECTION(1) </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table>
+
+Table: (\#tab:sfs-st-cast)Geometry casting on simple feature geometries (see section 2.1, type names abbreviated) with input type by row and output type by column. Values like (1) represent the number of features; NA means the operation is not possible.
+
+           POI   MPOI   LIN   MLIN   POL   MPOL   GC
+--------  ----  -----  ----  -----  ----  -----  ---
+POI(1)       1      1     1     NA    NA     NA   NA
+MPOI(1)      4      1     1      1     1     NA   NA
+LIN(1)       5      1     1      1     1     NA   NA
+MLIN(1)      7      2     2      1    NA     NA   NA
+POL(1)       5      1     1      1     1      1   NA
+MPOL(1)     10      1    NA      1     2      1    1
+GC(1)        9      1    NA     NA    NA     NA    1
 
 Let's try to apply geometry type transformations on a new object, `multilinestring_sf`, as an example (on the left in Figure \@ref(fig:line-cast)):
 
@@ -6716,7 +6642,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve4576bcd22c8d62f7
+preserve162bbee3c6f1aeb9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6814,7 +6740,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve63038ce9ed3fd89e
+preservec97427e37aa570a1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10404,7 +10330,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve40e65b8c4f269f4d
+preserve65f6b1e3491bd673
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

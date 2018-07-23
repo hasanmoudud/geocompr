@@ -57,7 +57,6 @@
 <script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
 <script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/leaflet-minimap-3.3.1/Control.MiniMap.min.css" rel="stylesheet" />
 <script src="libs/leaflet-minimap-3.3.1/Control.MiniMap.min.js"></script>
 <script src="libs/leaflet-minimap-3.3.1/Minimap-binding.js"></script>
@@ -699,224 +698,96 @@ However, only the first element of the old object would remain in the second gro
 <p>Geometry casting of simple features geometry column (<code>sfc</code>) and simple features objects works the same as for single geometries in most of the cases.
 One important difference is conversion between multi to non-multi types.
 As a result of this process, multi-objects are split into many non-multi objects.</p>
-<p>Table <a href="geometric-operations.html#tab:sfs-st-cast">5.1</a> shows a possible geometry type transformations on simple feature objects.
+<p>Table <a href="geometric-operations.html#tab:sfs-st-cast">5.1</a> shows possible geometry type transformations on simple feature objects.
+(Note the abbreviated geometry type names: POI, MPOI, LIN and GC for example refer to POINT, MULTIPOINT, LINESTRING and GEOMETRYCOLLECTION respectively.)
 Each input simple feature object with only one element (first column) is transformed directly into another geometry type.
-Several of the transformations are not possible, for example, you cannot convert a single point into a multilinestring or a polygon.
+Several of the transformations are not possible, for example, you cannot convert a single point into a multilinestring or a polygon (so the cells <code>[1, 4:5]</code> in the table are NA).
 On the other hand, some of the transformations are splitting the single element input object into multi-element one.
 You can see that, for example, when you cast a multipoint consisting of five pairs of coordinated into a point.</p>
-<table class="table table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<span id="tab:sfs-st-cast">Table 5.1: </span>Geometry casting on simple feature geometries (see section 2.1) with input type by row and output type by column. Values such as (1) represent the number of features; NA means the operation is not possible.
-</caption>
+<table>
+<caption><span id="tab:sfs-st-cast">Table 5.1: </span>Geometry casting on simple feature geometries (see section 2.1, type names abbreviated) with input type by row and output type by column. Values like (1) represent the number of features; NA means the operation is not possible.</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-POINT
-</th>
-<th style="text-align:right;">
-MULTIPOINT
-</th>
-<th style="text-align:right;">
-LINESTRING
-</th>
-<th style="text-align:right;">
-MULTILINESTRING
-</th>
-<th style="text-align:right;">
-POLYGON
-</th>
-<th style="text-align:right;">
-MULTIPOLYGON
-</th>
-<th style="text-align:right;">
-GEOMETRYCOLLECTION
-</th>
+<tr class="header">
+<th></th>
+<th align="right">POI</th>
+<th align="right">MPOI</th>
+<th align="right">LIN</th>
+<th align="right">MLIN</th>
+<th align="right">POL</th>
+<th align="right">MPOL</th>
+<th align="right">GC</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-POINT(1)
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
+<tr class="odd">
+<td>POI(1)</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-MULTIPOINT(1)
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
+<tr class="even">
+<td>MPOI(1)</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-LINESTRING(1)
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
+<tr class="odd">
+<td>LIN(1)</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-MULTILINESTRING(1)
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
+<tr class="even">
+<td>MLIN(1)</td>
+<td align="right">7</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-POLYGON(1)
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
+<tr class="odd">
+<td>POL(1)</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-MULTIPOLYGON(1)
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
+<tr class="even">
+<td>MPOL(1)</td>
+<td align="right">10</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GEOMETRYCOLLECTION(1)
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-1
-</td>
+<tr class="odd">
+<td>GC(1)</td>
+<td align="right">9</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
 </tr>
 </tbody>
 </table>
