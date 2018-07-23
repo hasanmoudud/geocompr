@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved614f5a1f96676f9
+preserve3b7a3bb20dbea036
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve74ff794795a50ed3
+preserve7c2eec6875d25677
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6642,7 +6642,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec4d96fcc829ccdc5
+preserve24d435f2e71cf35e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6740,7 +6740,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0b27ea871da40808
+preserve364b1969372e9abb
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10131,7 +10131,7 @@ coords = st_centroid(metros_wgs) %>%
 
 Additionally, `ggmap::revgeocode()` only accepts one coordinate at a time, which is why we iterate over each coordinate of `coords` via a loop (`map_dfr()`).
 `map_dfr()` does exactly the same as `lapply()` except for returning a `data.frame` instead of a `list`.^[
-For more on `lapply()` see @grolemund_r_2016 and @wickham_split-apply-combine_2011.
+For more on `lapply()` see @grolemund_r_2016 and @wickham_splitapplycombine_2011.
 ]
 Sometimes, Google's reverse geocoding API is unable to find an address returning `NA`.
 Usually, trying the same coordinate again returns an address at the second or third attempt (see `while()-loop`).
@@ -10330,7 +10330,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve64623c715f5ddd70
+preserveb7042c6f1627b4a2
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
