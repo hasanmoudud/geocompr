@@ -458,7 +458,7 @@ The following code chunk downloads, unzips and reads-in the 1 km data.</p>
 <div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;census_de&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
 <p>The <code>census_de</code> object is a data frame containing 13 variables for more than 300,000 grid cells across Germany.
 For our work we only need a subset of these: Easting (<code>x</code>) and Northing (<code>y</code>), number of inhabitants (population; <code>pop</code>), mean average age (<code>mean_age</code>), proportion of women (<code>women</code>) and average household size (<code>hh_size</code>).
-These variables are selected and renamed from German into English in the code chunk below and summarized in Table <a href="location.html#tab:census-desc">13.1</a>.
+These variables are selected and renamed from German into English in the code chunk below and summarized in Table <a href="#tab:census-desc">13.1</a>.
 Further, <code>mutate_all()</code> is used to convert values -1 and -9 (meaning unknown) to <code>NA</code>.</p>
 <div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1"><span class="co"># pop = population, hh_size = household size</span></a>
 <a class="sourceLine" id="cb424-2" data-line-number="2">input =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(census_de, <span class="dt">x =</span> x_mp_1km, <span class="dt">y =</span> y_mp_1km, <span class="dt">pop =</span> Einwohner,</a>
@@ -466,135 +466,19 @@ Further, <code>mutate_all()</code> is used to convert values -1 and -9 (meaning 
 <a class="sourceLine" id="cb424-4" data-line-number="4">                      <span class="dt">hh_size =</span> HHGroesse_D)</a>
 <a class="sourceLine" id="cb424-5" data-line-number="5"><span class="co"># set -1 and -9 to NA</span></a>
 <a class="sourceLine" id="cb424-6" data-line-number="6">input_tidy =<span class="st"> </span><span class="kw">mutate_all</span>(input, <span class="kw">funs</span>(<span class="kw">ifelse</span>(. <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-9</span>), <span class="ot">NA</span>, .)))</a></code></pre></div>
-<table>
-<caption>
-<span id="tab:census-desc">Table 13.1: </span>Excerpt from the data description ‘Datensatzbeschreibung_klassierte_Werte_1km-Gitter.xlsx’ located in the downloaded file census.zip describing the classes of the retained variables. The classes -1 and -9 refer to uninhabited areas or areas which have to be kept secret, for example due to the need to preserve anonymity.
-</caption>
-<thead>
-<tr>
-<th style="text-align:center;">
-class
-</th>
-<th style="text-align:center;">
-population<br />
+<p>Table: (#tab:census-desc)Excerpt from the data description ‘Datensatzbeschreibung_klassierte_Werte_1km-Gitter.xlsx’ located in the downloaded file census.zip describing the classes of the retained variables. The classes -1 and -9 refer to uninhabited areas or areas which have to be kept secret, for example due to the need to preserve anonymity.</p>
+<p>class population<br />
+(number of people) women<br />
+(%) mean age<br />
+(years) household size<br />
 (number of people)
-</th>
-<th style="text-align:center;">
-women<br />
-(%)
-</th>
-<th style="text-align:center;">
-mean age<br />
-(years)
-</th>
-<th style="text-align:center;">
-household size<br />
-(number of people)
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-3-250
-</td>
-<td style="text-align:center;">
-0-40
-</td>
-<td style="text-align:center;">
-0-40
-</td>
-<td style="text-align:center;">
-1-2
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-2
-</td>
-<td style="text-align:center;">
-250-500
-</td>
-<td style="text-align:center;">
-40-47
-</td>
-<td style="text-align:center;">
-40-42
-</td>
-<td style="text-align:center;">
-2-2.5
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-500-2000
-</td>
-<td style="text-align:center;">
-47-53
-</td>
-<td style="text-align:center;">
-42-44
-</td>
-<td style="text-align:center;">
-2.5-3
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-2000-4000
-</td>
-<td style="text-align:center;">
-53-60
-</td>
-<td style="text-align:center;">
-44-47
-</td>
-<td style="text-align:center;">
-3-3.5
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-4000-8000
-</td>
-<td style="text-align:center;">
-&gt;60
-</td>
-<td style="text-align:center;">
-&gt;47
-</td>
-<td style="text-align:center;">
-&gt;3.5
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-&gt;8000
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-</tbody>
-</table>
+——- ——————————– ———— ——————- ————————————
+1 3-250 0-40 0-40 1-2<br />
+2 250-500 40-47 40-42 2-2.5<br />
+3 500-2000 47-53 42-44 2.5-3<br />
+4 2000-4000 53-60 44-47 3-3.5<br />
+5 4000-8000 &gt;60 &gt;47 &gt;3.5<br />
+6 &gt;8000</p>
 </div>
 <div id="create-census-rasters" class="section level2">
 <h2><span class="header-section-number">13.4</span> Create census rasters</h2>
@@ -624,13 +508,13 @@ Be careful with geographic CRS where grid cell areas constantly decrease in pole
 <div class="figure" style="text-align: center"><span id="fig:census-stack"></span>
 <img src="figures/08_census_stack.png" alt="Gridded German census data of 2011. See Table \@ref(tab:census-desc) for a description of the classes." width="765" />
 <p class="caption">
-Figure 13.1: Gridded German census data of 2011. See Table <a href="location.html#tab:census-desc">13.1</a> for a description of the classes.
+Figure 13.1: Gridded German census data of 2011. See Table <a href="#tab:census-desc">13.1</a> for a description of the classes.
 </p>
 </div>
 <!-- find out about new lines in headings + blank cells-->
 <p>The next stage is to reclassify the values of the rasters stored in <code>input_ras</code> in accordance with the survey mentioned in section <a href="location.html#case-study">13.2</a>, using the <strong>raster</strong> function <code>reclassify()</code>, which was introduced in section <a href="spatial-operations.html#local-operations">4.3.3</a>.
 In the case of the population data we convert the classes into a numeric data type using class means.
-Raster cells are assumed to have a population of 127 if they have a value of 1 (cells in ‘class 1’ contain between 3 and 250 inhabitants) and 375 if they have a value of 2 (containing 250 to 500 inhabitants), and so on (see Table <a href="location.html#tab:census-desc">13.1</a>).
+Raster cells are assumed to have a population of 127 if they have a value of 1 (cells in ‘class 1’ contain between 3 and 250 inhabitants) and 375 if they have a value of 2 (containing 250 to 500 inhabitants), and so on (see Table <a href="#tab:census-desc">13.1</a>).
 A cell value of 8000 inhabitants was chosen for ‘class 6’ because these cells contain more than 8000 people.
 Of course, these are approximations of the true population, not precise values.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a>
 However, the level of detail is sufficient to delineate metropolitan areas (see next section).</p>

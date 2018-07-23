@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefc435531bd6a839c
+preservedaa9b69cee95b430
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve841c1a402fb63f03
+preserve89c737c1d7dc50ce
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6642,7 +6642,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve67c21a8f38b9b38c
+preserve70c7af9a559eea28
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6740,7 +6740,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9255825363439916
+preserve2388a1a40a580739
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9845,66 +9845,21 @@ input_tidy = mutate_all(input, funs(ifelse(. %in% c(-1, -9), NA, .)))
 ```
 
 
-<table>
-<caption>(\#tab:census-desc)Excerpt from the data description 'Datensatzbeschreibung_klassierte_Werte_1km-Gitter.xlsx' located in the downloaded file census.zip describing the classes of the retained variables. The classes -1 and -9 refer to uninhabited areas or areas which have to be kept secret, for example due to the need to preserve anonymity.</caption>
- <thead>
-  <tr>
-   <th style="text-align:center;"> class </th>
-   <th style="text-align:center;"> population\
-(number of people) </th>
-   <th style="text-align:center;"> women\
-(%) </th>
-   <th style="text-align:center;"> mean age\
-(years) </th>
-   <th style="text-align:center;"> household size\
-(number of people) </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> 3-250 </td>
-   <td style="text-align:center;"> 0-40 </td>
-   <td style="text-align:center;"> 0-40 </td>
-   <td style="text-align:center;"> 1-2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:center;"> 250-500 </td>
-   <td style="text-align:center;"> 40-47 </td>
-   <td style="text-align:center;"> 40-42 </td>
-   <td style="text-align:center;"> 2-2.5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 3 </td>
-   <td style="text-align:center;"> 500-2000 </td>
-   <td style="text-align:center;"> 47-53 </td>
-   <td style="text-align:center;"> 42-44 </td>
-   <td style="text-align:center;"> 2.5-3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 4 </td>
-   <td style="text-align:center;"> 2000-4000 </td>
-   <td style="text-align:center;"> 53-60 </td>
-   <td style="text-align:center;"> 44-47 </td>
-   <td style="text-align:center;"> 3-3.5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 5 </td>
-   <td style="text-align:center;"> 4000-8000 </td>
-   <td style="text-align:center;"> &gt;60 </td>
-   <td style="text-align:center;"> &gt;47 </td>
-   <td style="text-align:center;"> &gt;3.5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 6 </td>
-   <td style="text-align:center;"> &gt;8000 </td>
-   <td style="text-align:center;">  </td>
-   <td style="text-align:center;">  </td>
-   <td style="text-align:center;">  </td>
-  </tr>
-</tbody>
-</table>
+
+Table: (\#tab:census-desc)Excerpt from the data description 'Datensatzbeschreibung_klassierte_Werte_1km-Gitter.xlsx' located in the downloaded file census.zip describing the classes of the retained variables. The classes -1 and -9 refer to uninhabited areas or areas which have to be kept secret, for example due to the need to preserve anonymity.
+
+ class    population\
+(number of people)    women\
+(%)    mean age\
+(years)    household size\
+(number of people) 
+-------  --------------------------------  ------------  -------------------  ------------------------------------
+   1                  3-250                    0-40             0-40                          1-2                 
+   2                 250-500                  40-47             40-42                        2-2.5                
+   3                 500-2000                 47-53             42-44                        2.5-3                
+   4                2000-4000                 53-60             44-47                        3-3.5                
+   5                4000-8000                  >60               >47                          >3.5                
+   6                  >8000                                                                                       
 
 ## Create census rasters
  
@@ -10330,7 +10285,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservedc821bd0d5542f45
+preserveb69cbd7e702054d1
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
