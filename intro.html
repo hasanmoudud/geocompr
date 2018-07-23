@@ -664,7 +664,7 @@ The initial release supported only raster drivers but subsequent enhancements pr
 Many of these additional capabilities were developed by Barry Rowlingson and released in the <strong>rgdal</strong> codebase in 2006 <span class="citation">(see Rowlingson et al. <a href="#ref-rowlingson_rasp:_2003">2003</a> and the <a href="https://stat.ethz.ch/pipermail/r-help/2003-January/028413.html">R-help</a> email list for context)</span>.</p>
 <!-- ^[ -->
 <!-- A presentation at the 2003 DSC conference in Vienna gives the background as he saw it then [@rowlingson_rasp:_2003]; see also his announcement of the **Rmap** package on [R-help](https://stat.ethz.ch/pipermail/r-help/2003-January/028413.html) in early 2003.] -->
-<p><strong>sp</strong>, released in 2005, overcame R’s inability to distinguish spatial and non-spatial objects <span class="citation">(<span class="citeproc-not-found" data-reference-id="pebesma_classes_2005"><strong>???</strong></span>)</span>.
+<p><strong>sp</strong>, released in 2005, overcame R’s inability to distinguish spatial and non-spatial objects <span class="citation">(Pebesma and Bivand <a href="#ref-pebesma_classes_2005">2005</a>)</span>.
 <!-- It grew from a [workshop](http://spatial.nhh.no/meetings/vienna/index.html) before, and a session at the 2003 DSC conference in Vienna, gathering input from most interested package developers.  -->
 <strong>sp</strong> grew from a <a href="http://spatial.nhh.no/meetings/vienna/index.html">workshop</a> in Vienna in 2003 and was hosted at sourceforge before migrating to <a href="https://r-forge.r-project.org">R-Forge</a>.
 <!-- removed: r-sig-geo is mentioned elsewhere -->
@@ -682,7 +682,7 @@ In the following decade, <strong>sp</strong> classes rapidly became the go-to st
 As of 2018 almost 500 packages rely on <strong>sp</strong>, making it an important part of the R ecosystem.
 <!-- https://github.com/Robinlovelace/geocompr/issues/58 -->
 <!-- https://github.com/edzer/sfr/issues/387#issuecomment-308949140 -->
-Prominent R packages using <strong>sp</strong> include: <strong>gstat</strong>, for spatial and spatio-temporal geostatistics; <strong>geosphere</strong>, for spherical trigonometry; and <strong>adehabitat</strong> used for the analysis of habitat selection by animals <span class="citation">(E. Pebesma and Graeler <a href="#ref-R-gstat">2018</a>; <span class="citeproc-not-found" data-reference-id="calenge_package_2006"><strong>???</strong></span>; Hijmans <a href="#ref-hijmans_geosphere:_2016">2016</a>)</span>.</p>
+Prominent R packages using <strong>sp</strong> include: <strong>gstat</strong>, for spatial and spatio-temporal geostatistics; <strong>geosphere</strong>, for spherical trigonometry; and <strong>adehabitat</strong> used for the analysis of habitat selection by animals <span class="citation">(E. Pebesma and Graeler <a href="#ref-R-gstat">2018</a>; Calenge <a href="#ref-calenge_package_2006">2006</a>; Hijmans <a href="#ref-hijmans_geosphere:_2016">2016</a>)</span>.</p>
 <p>While <strong>rgdal</strong> and <strong>sp</strong> solved many spatial issues, R was still lacked the ability to do geometric operations (see chapter <a href="geometric-operations.html#geometric-operations">5</a>).
 Colin Rundel addressed this issue by developing <strong>rgeos</strong>, an R interface to the open-source geometry library (GEOS) during a Google Summer of Coding project in 2010 <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span>.
 <strong>rgeos</strong> enabled GEOS to manipulate <strong>sp</strong> objects, with functions such as <code>gIntersection()</code>.</p>
@@ -823,8 +823,14 @@ As of 2018 map making in R is a hot topic with dedicated packages such as <stron
 <div id="ref-rowlingson_rasp:_2003">
 <p>Rowlingson, Barry, Adrian Baddeley, Rolf Turner, and Peter Diggle. 2003. “Rasp: A Package for Spatial Statistics.” In <em>Proceedings of the 3rd International Workshop on Distributed Statistical Computing</em>, edited by Kurt Hornik.</p>
 </div>
+<div id="ref-pebesma_classes_2005">
+<p>Pebesma, Edzer J, and Roger S Bivand. 2005. “Classes and Methods for Spatial Data in R.” <em>R News</em> 5 (2): 9–13.</p>
+</div>
 <div id="ref-R-gstat">
 <p>Pebesma, Edzer, and Benedikt Graeler. 2018. <em>Gstat: Spatial and Spatio-Temporal Geostatistical Modelling, Prediction and Simulation</em>. <a href="https://CRAN.R-project.org/package=gstat" class="uri">https://CRAN.R-project.org/package=gstat</a>.</p>
+</div>
+<div id="ref-calenge_package_2006">
+<p>Calenge, C. 2006. “The Package Adehabitat for the R Software: Tool for the Analysis of Space and Habitat Use by Animals.” <em>Ecological Modelling</em> 197: 1035.</p>
 </div>
 <div id="ref-hijmans_geosphere:_2016">
 <p>Hijmans, Robert J. 2016. <em>Geosphere: Spherical Trigonometry</em>.</p>
