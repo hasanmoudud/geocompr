@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1aae9567f999fd45
+preserve52d728effe24ff1a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef860836c26df5fc6
+preserve2018f67be56c8c2b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6194,11 +6194,6 @@ tm_shape(nz) + tm_fill(col = "Land_area")
 #> Some legend labels were too wide. These labels have been resized to 0.53, 0.53, 0.53, 0.53. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
 ```
 
-
-```
-#> Some legend labels were too wide. These labels have been resized to 0.53, 0.53, 0.53, 0.53. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-```
-
 <div class="figure" style="text-align: center">
 <img src="figures/tmcol-1.png" alt="Comparison of base (left) and tmap (right) handling of a numeric color field." width="50%" /><img src="figures/tmcol-2.png" alt="Comparison of base (left) and tmap (right) handling of a numeric color field." width="50%" />
 <p class="caption">(\#fig:tmcol)Comparison of base (left) and tmap (right) handling of a numeric color field.</p>
@@ -6642,7 +6637,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1503af7d11ad0de5
+preserve42ba145029476d9e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6740,7 +6735,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve10a197d13d66e810
+preserveff13281ad58de805
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10278,7 +10273,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve0d4ea895ebc22a1f
+preservef031b8e4c1398b66
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
