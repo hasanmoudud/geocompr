@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec5426f7549f2f947
+preserve0f62645ea561d2ce
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2b1f2e02079d0035
+preservee5a8512c19c80798
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6642,7 +6642,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve186367d31127813a
+preserve1327a1b246a27178
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6740,7 +6740,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve33c7a028a1ca3e35
+preservef0a3fa99763c6717
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7109,7 +7109,7 @@ The advantages of a good CLI such as that provided by R are numerous.
 Among others, a CLI:
 
 - Facilitates the automation of repetitive tasks. 
-- Ensures transparency and reproducibility (which also is the backbone of good scientific practice), and therefore is the preferred option for doing geographic data science.
+- Ensures transparency and reproducibility (which also is the backbone of good scientific practice), and therefore is the preferred option for doing Geographic Data Science.
 - Encourages extending existing software by making it easy to modify, enhance and implement new functions.
 - Professional and advanced technical skills will certainly enhance your career prospects, and are in dire need across a wide range of disciplines.
 - Is fun, but admittedly that is a subjective argument.
@@ -7162,7 +7162,7 @@ SAGA    2004            >600            hybrid
 
 QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing_2015]. 
 Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
-This means that you have access to GDAL/OGR, GRASS and SAGA through QGIS [@graser_processing_2015]. 
+This means that you have access to GDAL, GRASS and SAGA through QGIS [@graser_processing_2015]. 
 To run all these geoalgorithms (frequently more than 1000 depending on your set up) outside of the QGIS GUI, QGIS provides a Python API.
 **RQGIS** establishes a tunnel to this Python API through the **reticulate** package. 
 Basically, functions `set_env()` and `open_app()` are doing this. 
@@ -7688,12 +7688,12 @@ Hopefully, this will give an impression of all the spatial power and flexibility
 
 ### Spatial library API - GDAL {#gdal}
 
-GDAL/OGR is especially known for its support for numerous spatial drivers (data formats).
+GDAL is especially known for its support for numerous spatial drivers (data formats).
 In fact, there is barely a geospatial software that is not using GDAL in the background for importing and exporting geographic data.
 But GDAL offers more than I/O functions, e.g., geoprocessing tools for vector and raster data (for an overview have a look at http://www.gdal.org/pages.html).
 One can easily access these tools via the command line. 
 In the code chunk below `linkGDAL()` searches the computer for a working GDAL installation and adds the path of the executable files to the PATH variable. 
-This allows us to easily run GDAL/OGR via system calls.
+This allows us to easily run GDAL via system calls.
 For example, `ogrinfo` gives back meta information of vector data.
 
 
@@ -7735,7 +7735,7 @@ system(cmd)
 ```
 
 This is of course a very simple example, and we could have achieved the same using `rgdal::ogrInfo()`.
-Still, it shows how we can use GDAL via the command-line from within R independently of other packages, and nothing stops us from using more advanced and/or not already implemented GDAL/OGR utilities in R.
+Still, it shows how we can use GDAL via the command-line from within R independently of other packages, and nothing stops us from using more advanced and/or not already implemented GDAL utilities in R.
 Note also that the **RSAGA** package uses the command line interface to use SAGA geoalgorithms from within R (see section \@ref(rsaga)). 
 TauDEM (http://hydrology.usu.edu/taudem/taudem5/index.html) and the Orfeo Toolbox (https://www.orfeo-toolbox.org/) are further examples for offering a command line interface. 
 At the time of writing it appears that there is only a developer version of an R/TauDEM interface on R-Forge (https://r-forge.r-project.org/R/?group_id=956)).
@@ -7749,7 +7749,7 @@ This is an even better approach since it circumvents the command-line and allows
 
 Spatial database management systems (spatial DBMS) allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other explicitly via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join). 
 Geographic data tends to become big quite quickly.
-Databases are especially useful for large and big data and querying it efficiently spatially and non-spatially.
+Databases are especially useful for large data and querying it efficiently spatially and non-spatially.
 Additionally, spatial DBMS provide multi-user access and topology support.
 The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS [@obe_postgis_2015].^[SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section \@ref(rgrass)).]
 
@@ -10278,7 +10278,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve36c413f1abb71c95
+preserve6acf0b53d7e6db47
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

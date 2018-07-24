@@ -419,7 +419,7 @@ The advantages of a good CLI such as that provided by R are numerous.
 Among others, a CLI:</p>
 <ul>
 <li>Facilitates the automation of repetitive tasks.</li>
-<li>Ensures transparency and reproducibility (which also is the backbone of good scientific practice), and therefore is the preferred option for doing geographic data science.</li>
+<li>Ensures transparency and reproducibility (which also is the backbone of good scientific practice), and therefore is the preferred option for doing Geographic Data Science.</li>
 <li>Encourages extending existing software by making it easy to modify, enhance and implement new functions.</li>
 <li>Professional and advanced technical skills will certainly enhance your career prospects, and are in dire need across a wide range of disciplines.</li>
 <li>Is fun, but admittedly that is a subjective argument.</li>
@@ -486,7 +486,7 @@ As mentioned in Chapter <a href="intro.html#intro">1</a>, doing GIS at the comma
 <h2><span class="header-section-number">9.2</span> (R)QGIS</h2>
 <p>QGIS is one of the most popular open-source GIS <span class="citation">(Table <a href="gis.html#tab:gis-comp">9.1</a>; Graser and Olaya <a href="#ref-graser_processing_2015">2015</a>)</span>.
 Its main advantage lies in the fact that it provides a unified interface to several other open-source GIS.
-This means that you have access to GDAL/OGR, GRASS and SAGA through QGIS <span class="citation">(Graser and Olaya <a href="#ref-graser_processing_2015">2015</a>)</span>.
+This means that you have access to GDAL, GRASS and SAGA through QGIS <span class="citation">(Graser and Olaya <a href="#ref-graser_processing_2015">2015</a>)</span>.
 To run all these geoalgorithms (frequently more than 1000 depending on your set up) outside of the QGIS GUI, QGIS provides a Python API.
 <strong>RQGIS</strong> establishes a tunnel to this Python API through the <strong>reticulate</strong> package.
 Basically, functions <code>set_env()</code> and <code>open_app()</code> are doing this.
@@ -844,12 +844,12 @@ In this section we will only have a short glance at two selected examples.
 Hopefully, this will give an impression of all the spatial power and flexibility that is readily available on our fingertips.</p>
 <div id="gdal" class="section level3">
 <h3><span class="header-section-number">9.6.1</span> Spatial library API - GDAL</h3>
-<p>GDAL/OGR is especially known for its support for numerous spatial drivers (data formats).
+<p>GDAL is especially known for its support for numerous spatial drivers (data formats).
 In fact, there is barely a geospatial software that is not using GDAL in the background for importing and exporting geographic data.
 But GDAL offers more than I/O functions, e.g., geoprocessing tools for vector and raster data (for an overview have a look at <a href="http://www.gdal.org/pages.html" class="uri">http://www.gdal.org/pages.html</a>).
 One can easily access these tools via the command line.
 In the code chunk below <code>linkGDAL()</code> searches the computer for a working GDAL installation and adds the path of the executable files to the PATH variable.
-This allows us to easily run GDAL/OGR via system calls.
+This allows us to easily run GDAL via system calls.
 For example, <code>ogrinfo</code> gives back meta information of vector data.</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">link2GI<span class="op">::</span><span class="kw">linkGDAL</span>()</a>
 <a class="sourceLine" id="cb340-2" data-line-number="2">cmd =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;ogrinfo -ro -so -al&quot;</span>, </a>
@@ -886,7 +886,7 @@ For example, <code>ogrinfo</code> gives back meta information of vector data.</p
 <a class="sourceLine" id="cb340-33" data-line-number="33"><span class="co">#&gt;SID79: Real (24.15)</span></a>
 <a class="sourceLine" id="cb340-34" data-line-number="34"><span class="co">#&gt;NWBIR79: Real (24.15)</span></a></code></pre></div>
 <p>This is of course a very simple example, and we could have achieved the same using <code>rgdal::ogrInfo()</code>.
-Still, it shows how we can use GDAL via the command-line from within R independently of other packages, and nothing stops us from using more advanced and/or not already implemented GDAL/OGR utilities in R.
+Still, it shows how we can use GDAL via the command-line from within R independently of other packages, and nothing stops us from using more advanced and/or not already implemented GDAL utilities in R.
 Note also that the <strong>RSAGA</strong> package uses the command line interface to use SAGA geoalgorithms from within R (see section <a href="gis.html#rsaga">9.3</a>).
 TauDEM (<a href="http://hydrology.usu.edu/taudem/taudem5/index.html" class="uri">http://hydrology.usu.edu/taudem/taudem5/index.html</a>) and the Orfeo Toolbox (<a href="https://www.orfeo-toolbox.org/" class="uri">https://www.orfeo-toolbox.org/</a>) are further examples for offering a command line interface.
 At the time of writing it appears that there is only a developer version of an R/TauDEM interface on R-Forge (<a href="https://r-forge.r-project.org/R/?group_id=956" class="uri">https://r-forge.r-project.org/R/?group_id=956</a>)).
@@ -899,7 +899,7 @@ This is an even better approach since it circumvents the command-line and allows
 <h3><span class="header-section-number">9.6.2</span> Spatial database API - PostgreSQL/PostGIS</h3>
 <p>Spatial database management systems (spatial DBMS) allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other explicitly via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join).
 Geographic data tends to become big quite quickly.
-Databases are especially useful for large and big data and querying it efficiently spatially and non-spatially.
+Databases are especially useful for large data and querying it efficiently spatially and non-spatially.
 Additionally, spatial DBMS provide multi-user access and topology support.
 The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a></p>
 <p>From within R, one can easily query data from a (spatial) DBMS which is needed for a specific analysis.
