@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve990f0587b4c8b7ab
+preserve727ded33cb372cc7
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2438db5bc42d7a5d
+preserve448b0859dda86ea0
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6642,7 +6642,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec343f2e59e6a8130
+preserve38dc553e31460c6b
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6740,7 +6740,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve018163740a599e58
+preserve3148b3be1eded909
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7110,7 +7110,7 @@ Among others, a CLI:
 
 - Facilitates the automation of repetitive tasks. 
 - Ensures transparency and reproducibility (which also is the backbone of good scientific practice), and therefore is the preferred option for doing geographic data science.
-- Encourages extending existing software by making it easy to modify, extend and implement new functions.
+- Encourages extending existing software by making it easy to modify, enhance and implement new functions.
 - Professional and advanced technical skills will certainly enhance your career prospects, and are in dire need across a wide range of disciplines.
 - Is fun, but admittedly that is a subjective argument.
 
@@ -7158,9 +7158,6 @@ GRASS   1984            >500            hybrid
 QGIS    2002            >1000           hybrid  
 SAGA    2004            >600            hybrid  
 
-__Note:__
-^a^ Comparing downloads of different providers is rather difficult (see http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world), and here also useless since every Windows QGIS download automatically also downloads SAGA and GRASS.
-
 ## (R)QGIS
 
 QGIS is one of the most popular open-source GIS [Table \@ref(tab:gis-comp); @graser_processing_2015]. 
@@ -7179,7 +7176,6 @@ Please install the long-term release of QGIS, i.e. 2.18, since **RQGIS** so far 
 devtools::install_github("jannes-m/RQGIS") # use dev version (for now)
 library(RQGIS)
 set_env(dev = FALSE)
-
 #> $`root`
 #> [1] "C:/OSGeo4W64"
 #> $qgis_prefix_path
@@ -7199,8 +7195,8 @@ open_app()
 
 We are now ready for some QGIS geoprocessing from within R! 
 
-Unioning polygons often produces so-called sliver polygons.
-This is the case when the borders of the polygons to union do not overlap completely which is frequently the case when combining data from different sources.
+Unioning polygons often produces so-called sliver polygons - the case when the borders of the polygons to union do not overlap completely.
+This happens often when combining data from different sources.
 Here, we will reuse the incongruent polygons we have already encountered in section \@ref(spatial-aggr).
 Both polygon datasets are available in the **spData** package, and for both we would like to use a geographic CRS (see also Chapter \@ref(reproj-geo-data)).
 
@@ -7225,7 +7221,7 @@ find_algorithms("union", name_only = TRUE)
 
 If you also want to have a short description for each geoalgorithm, set the `name_only`-parameter to `FALSE`.
 If one has no clue at all what the name of a geoalgorithm might be, one can leave the `search_term`-argument empty which will return a list of all available QGIS geoalgorithms.
-One can find the algorithms also in the [QGIS online documentation](https://docs.qgis.org/2.18/en/docs/user_manual/processing_algs/index.html).
+You can also find the algorithms in the [QGIS online documentation](https://docs.qgis.org/2.18/en/docs/user_manual/processing_algs/index.html).
 
 The next step is to find out how `qgis:union` can be used.
 `open_help()` opens the online help of the geoalgorithm in question.
@@ -7255,7 +7251,7 @@ union = run_qgis(alg, INPUT = incongruent, INPUT2 = aggregating_zones,
                  OUTPUT = file.path(tempdir(), "union.shp"),
                  load_output = TRUE)
 #> $`OUTPUT`
-#> [1] "C:/Users/pi37pat/AppData/Local/Temp/RtmpcJlnUx/union.shp"
+#> [1] "C:/Users/geocompr/AppData/Local/Temp/RtmpcJlnUx/union.shp"
 ```
 
 Note that the QGIS union operation merges the two input layers into one layer by using the intersection and the symmetrical difference of the two input layers (which by the way is also the default when doing a union operation in GRASS and SAGA).
@@ -7283,16 +7279,11 @@ One way to identify slivers is to find polygons with comparatively very small ar
 
 
 ```r
-single$area = st_area(single)
 # find polygons which are smaller than 25000 m^2
 x = 25000
 units(x) = "m^2"
+single$area = st_area(single)
 sub = dplyr::filter(single, area < x)
-tm_shape(single) + 
-  tm_borders() + 
-  tm_shape(sub) + 
-  tm_fill(col = "blue") + 
-  tm_borders(col = "blue", lwd = 1.5)
 ```
 
 The next step is to find a function that makes the slivers disappear.
@@ -7337,7 +7328,7 @@ clean = run_qgis("qgis:eliminatesliverpolygons",
                  OUTPUT = file.path(tempdir(), "clean.shp"),
                  load_output = TRUE)
 #> $`OUTPUT`
-#> [1] "C:/Users/pi37pat/AppData/Local/Temp/RtmpcJlnUx/clean.shp"
+#> [1] "C:/Users/geocompr/AppData/Local/Temp/RtmpcJlnUx/clean.shp"
 ```
 
 <div class="figure" style="text-align: center">
@@ -7504,7 +7495,7 @@ london_streets = opq(b_box) %>%
   add_osm_feature(key = "highway") %>%
   osmdata_sf() %>%
   `[[`("osm_lines")
-london_streets = dplyr::select(london_streets, 1)
+london_streets = dplyr::select(london_streets, osm_id)
 ```
 
 As a convenience to the reader, one can attach `london_streets` to the global environment using `data("london_streets", package = "spDataLarge")`. 
@@ -7633,18 +7624,17 @@ execGRASS(cmd = "v.net.salesman", input = "streets_points_con",
 To visualize our result, we import the output layer into R, convert it into an sf-object , just keep the geometry and visualize it with the help of the **mapview** package (Figure \@ref(fig:grass-mapview)).
 
 <div class="figure" style="text-align: center">
-<img src="figures/09_shortest_route.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London." width="496" />
-<p class="caption">(\#fig:grass-mapview)Shortest route between 25 cycle hire station on the OSM street network of London.</p>
+<img src="figures/09_shortest_route.png" alt="Shortest route between 24 cycle hire station on the OSM street network of London." width="496" />
+<p class="caption">(\#fig:grass-mapview)Shortest route between 24 cycle hire station on the OSM street network of London.</p>
 </div>
 
 
 ```r
-library(mapview)
 route = readVECT("shortest_route") %>%
-  st_as_sf %>%
-  st_geometry
-mapview(route, map.types = "OpenStreetMap.BlackAndWhite", lwd = 7) +
-  mapview(points)
+  st_as_sf() %>%
+  st_geometry()
+mapview::mapview(route, map.types = "OpenStreetMap.BlackAndWhite", lwd = 7) +
+  points
 ```
 
 Further notes:
@@ -7690,12 +7680,14 @@ In addition, if you would like to run simulations with the help of a geodatabase
 Please note that there are a number of further GIS software packages that have a scripting interface but for which there is no dedicated R package that accesses these: gvSig, OpenJump, Orfeo Toolbox and TauDEM.
 
 ## A short note on further spatial APIs
+
 There are many further interfaces to other spatial software packages aside from the interfaces to Desktop GIS software presented in detail in this chapter.
-This includes interfaces to spatial libraries (section \@ref(gdal)), spatial databases (section \@ref(postgis)) and web mapping services (see section \@ref(adv-map)).
+This includes interfaces to spatial libraries (section \@ref(gdal)), spatial databases (section \@ref(postgis)) and web mapping services (see chapter \@ref(adv-map)).
 In this section we will only have a short glance at two selected examples.
 Hopefully, this will give an impression of all the spatial power and flexibility that is readily available on our fingertips.
 
 ### Spatial library API - GDAL {#gdal}
+
 GDAL/OGR is especially known for its support for numerous spatial drivers (data formats).
 In fact, there is barely a geospatial software that is not using GDAL in the background for importing and exporting geographic data.
 But GDAL offers more than I/O functions, e.g., geoprocessing tools for vector and raster data (for an overview have a look at http://www.gdal.org/pages.html).
@@ -7749,11 +7741,12 @@ TauDEM (http://hydrology.usu.edu/taudem/taudem5/index.html) and the Orfeo Toolbo
 At the time of writing it appears that there is only a developer version of an R/TauDEM interface on R-Forge (https://r-forge.r-project.org/R/?group_id=956)).
 In any case, you now have the tools to build an interface yourself.
 
-Please keep in mind that the **sf** package already brings most of the power provided by GDAL, GEOS and proj.4 to R.
+Please keep in mind that the **sf** package already brings most of the power provided by GDAL, GEOS and PROJ to R.
 Instead of using the command-line interface to access the functionality of these external dependencies, **sf** uses an **Rcpp** interface.
-This is an even better approach since it circumvents the command-line and allows a direct access to  GDAL/GEOS/Proj.4 all of which are written in either C++ or C.
+This is an even better approach since it circumvents the command-line and allows a direct access to GDAL/GEOS/PROJ all of which are written in either C++ or C.
 
 ### Spatial database API - PostgreSQL/PostGIS {#postgis}
+
 Spatial database management systems (spatial DBMS) allow to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other explicitly via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join). 
 Geographic data tends to become big quite quickly.
 Databases are especially useful for large and big data and querying it efficiently spatially and non-spatially.
@@ -10285,7 +10278,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve5dab0ceabfaa5734
+preserveb0ccfd4b5cd79db6
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

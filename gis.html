@@ -420,7 +420,7 @@ Among others, a CLI:</p>
 <ul>
 <li>Facilitates the automation of repetitive tasks.</li>
 <li>Ensures transparency and reproducibility (which also is the backbone of good scientific practice), and therefore is the preferred option for doing geographic data science.</li>
-<li>Encourages extending existing software by making it easy to modify, extend and implement new functions.</li>
+<li>Encourages extending existing software by making it easy to modify, enhance and implement new functions.</li>
 <li>Professional and advanced technical skills will certainly enhance your career prospects, and are in dire need across a wide range of disciplines.</li>
 <li>Is fun, but admittedly that is a subjective argument.</li>
 </ul>
@@ -481,8 +481,6 @@ As mentioned in Chapter <a href="intro.html#intro">1</a>, doing GIS at the comma
 </tr>
 </tbody>
 </table>
-<p><strong>Note:</strong>
-<sup>a</sup> Comparing downloads of different providers is rather difficult (see <a href="http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world" class="uri">http://spatialgalaxy.net/2011/12/19/qgis-users-around-the-world</a>), and here also useless since every Windows QGIS download automatically also downloads SAGA and GRASS.</p>
 </div>
 <div id="rqgis" class="section level2">
 <h2><span class="header-section-number">9.2</span> (R)QGIS</h2>
@@ -499,20 +497,19 @@ Please install the long-term release of QGIS, i.e. 2.18, since <strong>RQGIS</s
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;jannes-m/RQGIS&quot;</span>) <span class="co"># use dev version (for now)</span></a>
 <a class="sourceLine" id="cb309-2" data-line-number="2"><span class="kw">library</span>(RQGIS)</a>
 <a class="sourceLine" id="cb309-3" data-line-number="3"><span class="kw">set_env</span>(<span class="dt">dev =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb309-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb309-5" data-line-number="5"><span class="co">#&gt; $`root`</span></a>
-<a class="sourceLine" id="cb309-6" data-line-number="6"><span class="co">#&gt; [1] &quot;C:/OSGeo4W64&quot;</span></a>
-<a class="sourceLine" id="cb309-7" data-line-number="7"><span class="co">#&gt; $qgis_prefix_path</span></a>
-<a class="sourceLine" id="cb309-8" data-line-number="8"><span class="co">#&gt; [1] &quot;C:/OSGeo4W64/apps/qgis-ltr&quot;</span></a>
-<a class="sourceLine" id="cb309-9" data-line-number="9"><span class="co">#&gt; $python_plugins</span></a>
-<a class="sourceLine" id="cb309-10" data-line-number="10"><span class="co">#&gt; [1] &quot;C:/OSGeo4W64/apps/qgis-ltr/python/plugins&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb309-4" data-line-number="4"><span class="co">#&gt; $`root`</span></a>
+<a class="sourceLine" id="cb309-5" data-line-number="5"><span class="co">#&gt; [1] &quot;C:/OSGeo4W64&quot;</span></a>
+<a class="sourceLine" id="cb309-6" data-line-number="6"><span class="co">#&gt; $qgis_prefix_path</span></a>
+<a class="sourceLine" id="cb309-7" data-line-number="7"><span class="co">#&gt; [1] &quot;C:/OSGeo4W64/apps/qgis-ltr&quot;</span></a>
+<a class="sourceLine" id="cb309-8" data-line-number="8"><span class="co">#&gt; $python_plugins</span></a>
+<a class="sourceLine" id="cb309-9" data-line-number="9"><span class="co">#&gt; [1] &quot;C:/OSGeo4W64/apps/qgis-ltr/python/plugins&quot;</span></a></code></pre></div>
 <p>Leaving the <code>path</code>-argument of <code>set_env()</code> unspecified will search the computer for a QGIS installation.
 Hence, it is faster to specify explicitly the path to your QGIS installation.
 Subsequently, <code>open_app</code> sets all paths necessary to run QGIS from within R, and finally creates a so-called QGIS custom application (see <a href="http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications" class="uri">http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications</a>).</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="kw">open_app</span>()</a></code></pre></div>
 <p>We are now ready for some QGIS geoprocessing from within R!</p>
-<p>Unioning polygons often produces so-called sliver polygons.
-This is the case when the borders of the polygons to union do not overlap completely which is frequently the case when combining data from different sources.
+<p>Unioning polygons often produces so-called sliver polygons - the case when the borders of the polygons to union do not overlap completely.
+This happens often when combining data from different sources.
 Here, we will reuse the incongruent polygons we have already encountered in section <a href="spatial-operations.html#spatial-aggr">4.2.5</a>.
 Both polygon datasets are available in the <strong>spData</strong> package, and for both we would like to use a geographic CRS (see also Chapter <a href="reproj-geo-data.html#reproj-geo-data">6</a>).</p>
 <div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;incongruent&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>)</a>
@@ -526,7 +523,7 @@ Assuming that the short description of the function contains the word “union�
 <a class="sourceLine" id="cb312-2" data-line-number="2"><span class="co">#&gt; [1] &quot;qgis:union&quot;        &quot;saga:fuzzyunionor&quot; &quot;saga:union&quot;   </span></a></code></pre></div>
 <p>If you also want to have a short description for each geoalgorithm, set the <code>name_only</code>-parameter to <code>FALSE</code>.
 If one has no clue at all what the name of a geoalgorithm might be, one can leave the <code>search_term</code>-argument empty which will return a list of all available QGIS geoalgorithms.
-One can find the algorithms also in the <a href="https://docs.qgis.org/2.18/en/docs/user_manual/processing_algs/index.html">QGIS online documentation</a>.</p>
+You can also find the algorithms in the <a href="https://docs.qgis.org/2.18/en/docs/user_manual/processing_algs/index.html">QGIS online documentation</a>.</p>
 <p>The next step is to find out how <code>qgis:union</code> can be used.
 <code>open_help()</code> opens the online help of the geoalgorithm in question.
 <code>get_usage()</code> returns all function parameters and default values.</p>
@@ -546,7 +543,7 @@ Setting the <code>load_output</code> to <code>TRUE</code> automatically loads th
 <a class="sourceLine" id="cb314-2" data-line-number="2">                 <span class="dt">OUTPUT =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;union.shp&quot;</span>),</a>
 <a class="sourceLine" id="cb314-3" data-line-number="3">                 <span class="dt">load_output =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb314-4" data-line-number="4"><span class="co">#&gt; $`OUTPUT`</span></a>
-<a class="sourceLine" id="cb314-5" data-line-number="5"><span class="co">#&gt; [1] &quot;C:/Users/pi37pat/AppData/Local/Temp/RtmpcJlnUx/union.shp&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb314-5" data-line-number="5"><span class="co">#&gt; [1] &quot;C:/Users/geocompr/AppData/Local/Temp/RtmpcJlnUx/union.shp&quot;</span></a></code></pre></div>
 <p>Note that the QGIS union operation merges the two input layers into one layer by using the intersection and the symmetrical difference of the two input layers (which by the way is also the default when doing a union operation in GRASS and SAGA).
 This is <strong>not</strong> the same as <code>st_union(incongruent, aggregating_zones)</code> (see Exercises)!
 The QGIS output contains empty geometries and multipart polygons.
@@ -559,16 +556,11 @@ This is necessary for the deletion of sliver polygons later on.</p>
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="co"># multipart polygons to single polygons</span></a>
 <a class="sourceLine" id="cb316-2" data-line-number="2">single =<span class="st"> </span><span class="kw">st_cast</span>(union, <span class="st">&quot;POLYGON&quot;</span>)</a></code></pre></div>
 <p>One way to identify slivers is to find polygons with comparatively very small areas, here, e.g., 25000 m<sup>2</sup> (see left panel of Figure <a href="gis.html#fig:sliver-fig">9.1</a>).</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1">single<span class="op">$</span>area =<span class="st"> </span><span class="kw">st_area</span>(single)</a>
-<a class="sourceLine" id="cb317-2" data-line-number="2"><span class="co"># find polygons which are smaller than 25000 m^2</span></a>
-<a class="sourceLine" id="cb317-3" data-line-number="3">x =<span class="st"> </span><span class="dv">25000</span></a>
-<a class="sourceLine" id="cb317-4" data-line-number="4"><span class="kw">units</span>(x) =<span class="st"> &quot;m^2&quot;</span></a>
-<a class="sourceLine" id="cb317-5" data-line-number="5">sub =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(single, area <span class="op">&lt;</span><span class="st"> </span>x)</a>
-<a class="sourceLine" id="cb317-6" data-line-number="6"><span class="kw">tm_shape</span>(single) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb317-7" data-line-number="7"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb317-8" data-line-number="8"><span class="st">  </span><span class="kw">tm_shape</span>(sub) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb317-9" data-line-number="9"><span class="st">  </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb317-10" data-line-number="10"><span class="st">  </span><span class="kw">tm_borders</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="co"># find polygons which are smaller than 25000 m^2</span></a>
+<a class="sourceLine" id="cb317-2" data-line-number="2">x =<span class="st"> </span><span class="dv">25000</span></a>
+<a class="sourceLine" id="cb317-3" data-line-number="3"><span class="kw">units</span>(x) =<span class="st"> &quot;m^2&quot;</span></a>
+<a class="sourceLine" id="cb317-4" data-line-number="4">single<span class="op">$</span>area =<span class="st"> </span><span class="kw">st_area</span>(single)</a>
+<a class="sourceLine" id="cb317-5" data-line-number="5">sub =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(single, area <span class="op">&lt;</span><span class="st"> </span>x)</a></code></pre></div>
 <p>The next step is to find a function that makes the slivers disappear.
 Assuming the function or its short description contains the word “sliver”, we can run:</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="kw">find_algorithms</span>(<span class="st">&quot;sliver&quot;</span>, <span class="dt">name_only =</span> <span class="ot">TRUE</span>)</a>
@@ -597,7 +589,7 @@ To find out about the default values, run <code>get_args_man()</code>.</p>
 <a class="sourceLine" id="cb320-6" data-line-number="6">                 <span class="dt">OUTPUT =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;clean.shp&quot;</span>),</a>
 <a class="sourceLine" id="cb320-7" data-line-number="7">                 <span class="dt">load_output =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb320-8" data-line-number="8"><span class="co">#&gt; $`OUTPUT`</span></a>
-<a class="sourceLine" id="cb320-9" data-line-number="9"><span class="co">#&gt; [1] &quot;C:/Users/pi37pat/AppData/Local/Temp/RtmpcJlnUx/clean.shp&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb320-9" data-line-number="9"><span class="co">#&gt; [1] &quot;C:/Users/geocompr/AppData/Local/Temp/RtmpcJlnUx/clean.shp&quot;</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:sliver-fig"></span>
 <img src="figures/09_sliver.png" alt="Sliver polygons colored in blue (left panel). Cleaned polygons (right panel)." width="708" />
 <p class="caption">
@@ -706,7 +698,7 @@ Remember that the geometry column is sticky, hence, even though we are just sele
 <a class="sourceLine" id="cb331-5" data-line-number="5"><span class="st">  </span><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">&quot;highway&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb331-6" data-line-number="6"><span class="st">  </span><span class="kw">osmdata_sf</span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb331-7" data-line-number="7"><span class="st">  `</span><span class="dt">[[</span><span class="st">`</span>(<span class="st">&quot;osm_lines&quot;</span>)</a>
-<a class="sourceLine" id="cb331-8" data-line-number="8">london_streets =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(london_streets, <span class="dv">1</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb331-8" data-line-number="8">london_streets =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(london_streets, osm_id)</a></code></pre></div>
 <p>As a convenience to the reader, one can attach <code>london_streets</code> to the global environment using <code>data(&quot;london_streets&quot;, package = &quot;spDataLarge&quot;)</code>.</p>
 <p>Now that we have the data, we can go on and initiate a GRASS session, i.e., we have to create a GRASS geodatabase.
 The GRASS geodatabase system is based on SQLite.
@@ -792,17 +784,16 @@ To access the GRASS help page of the traveling salesman algorithm, run <code>exe
 <a class="sourceLine" id="cb338-3" data-line-number="3">          <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>))</a></code></pre></div>
 <p>To visualize our result, we import the output layer into R, convert it into an sf-object , just keep the geometry and visualize it with the help of the <strong>mapview</strong> package (Figure <a href="gis.html#fig:grass-mapview">9.3</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:grass-mapview"></span>
-<img src="figures/09_shortest_route.png" alt="Shortest route between 25 cycle hire station on the OSM street network of London." width="496" />
+<img src="figures/09_shortest_route.png" alt="Shortest route between 24 cycle hire station on the OSM street network of London." width="496" />
 <p class="caption">
-Figure 9.3: Shortest route between 25 cycle hire station on the OSM street network of London.
+Figure 9.3: Shortest route between 24 cycle hire station on the OSM street network of London.
 </p>
 </div>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">library</span>(mapview)</a>
-<a class="sourceLine" id="cb339-2" data-line-number="2">route =<span class="st"> </span><span class="kw">readVECT</span>(<span class="st">&quot;shortest_route&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb339-3" data-line-number="3"><span class="st">  </span>st_as_sf <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb339-4" data-line-number="4"><span class="st">  </span>st_geometry</a>
-<a class="sourceLine" id="cb339-5" data-line-number="5"><span class="kw">mapview</span>(route, <span class="dt">map.types =</span> <span class="st">&quot;OpenStreetMap.BlackAndWhite&quot;</span>, <span class="dt">lwd =</span> <span class="dv">7</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb339-6" data-line-number="6"><span class="st">  </span><span class="kw">mapview</span>(points)</a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">route =<span class="st"> </span><span class="kw">readVECT</span>(<span class="st">&quot;shortest_route&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb339-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb339-3" data-line-number="3"><span class="st">  </span><span class="kw">st_geometry</span>()</a>
+<a class="sourceLine" id="cb339-4" data-line-number="4">mapview<span class="op">::</span><span class="kw">mapview</span>(route, <span class="dt">map.types =</span> <span class="st">&quot;OpenStreetMap.BlackAndWhite&quot;</span>, <span class="dt">lwd =</span> <span class="dv">7</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb339-5" data-line-number="5"><span class="st">  </span>points</a></code></pre></div>
 <p>Further notes:</p>
 <ul>
 <li>Please note that we have used GRASS’s geodatabase (based on SQLite) which allows faster processing.
@@ -848,7 +839,7 @@ In addition, if you would like to run simulations with the help of a geodatabase
 <div id="a-short-note-on-further-spatial-apis" class="section level2">
 <h2><span class="header-section-number">9.6</span> A short note on further spatial APIs</h2>
 <p>There are many further interfaces to other spatial software packages aside from the interfaces to Desktop GIS software presented in detail in this chapter.
-This includes interfaces to spatial libraries (section <a href="gis.html#gdal">9.6.1</a>), spatial databases (section <a href="gis.html#postgis">9.6.2</a>) and web mapping services (see section <a href="adv-map.html#adv-map">8</a>).
+This includes interfaces to spatial libraries (section <a href="gis.html#gdal">9.6.1</a>), spatial databases (section <a href="gis.html#postgis">9.6.2</a>) and web mapping services (see chapter <a href="adv-map.html#adv-map">8</a>).
 In this section we will only have a short glance at two selected examples.
 Hopefully, this will give an impression of all the spatial power and flexibility that is readily available on our fingertips.</p>
 <div id="gdal" class="section level3">
@@ -900,9 +891,9 @@ Note also that the <strong>RSAGA</strong> package uses the command line interfac
 TauDEM (<a href="http://hydrology.usu.edu/taudem/taudem5/index.html" class="uri">http://hydrology.usu.edu/taudem/taudem5/index.html</a>) and the Orfeo Toolbox (<a href="https://www.orfeo-toolbox.org/" class="uri">https://www.orfeo-toolbox.org/</a>) are further examples for offering a command line interface.
 At the time of writing it appears that there is only a developer version of an R/TauDEM interface on R-Forge (<a href="https://r-forge.r-project.org/R/?group_id=956" class="uri">https://r-forge.r-project.org/R/?group_id=956</a>)).
 In any case, you now have the tools to build an interface yourself.</p>
-<p>Please keep in mind that the <strong>sf</strong> package already brings most of the power provided by GDAL, GEOS and proj.4 to R.
+<p>Please keep in mind that the <strong>sf</strong> package already brings most of the power provided by GDAL, GEOS and PROJ to R.
 Instead of using the command-line interface to access the functionality of these external dependencies, <strong>sf</strong> uses an <strong>Rcpp</strong> interface.
-This is an even better approach since it circumvents the command-line and allows a direct access to GDAL/GEOS/Proj.4 all of which are written in either C++ or C.</p>
+This is an even better approach since it circumvents the command-line and allows a direct access to GDAL/GEOS/PROJ all of which are written in either C++ or C.</p>
 </div>
 <div id="postgis" class="section level3">
 <h3><span class="header-section-number">9.6.2</span> Spatial database API - PostgreSQL/PostGIS</h3>
