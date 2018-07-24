@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4f4b90446f2ad5d4
+preserve73cb246d618b2a6c
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3101,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve3f9da0674213b063
+preservea8ee6f367c07fc66
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6637,7 +6637,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve4cd47d4e5f1e7bab
+preserve0ae345db8d448c03
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6735,7 +6735,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1f8651d1d226c248
+preserve28f69ce06d88a919
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7189,10 +7189,12 @@ open_app()
 ```
 
 We are now ready for some QGIS geoprocessing from within R! 
+First, we will union polygons.
+Unfortunately, in our example this will produce so-called sliver polygons.
+These are tiny polygons that are the result when the input polygons slightly overlap which frequently occurs with real-world data.
+In a third step, we will get rid off the sliver polygons.
 
-Unioning polygons often produces so-called sliver polygons - the case when the borders of the polygons to union do not overlap completely.
-This happens often when combining data from different sources.
-Here, we will reuse the incongruent polygons we have already encountered in section \@ref(spatial-aggr).
+For the uninion, we use again the incongruent polygons we have already encountered in section \@ref(spatial-aggr).
 Both polygon datasets are available in the **spData** package, and for both we would like to use a geographic CRS (see also Chapter \@ref(reproj-geo-data)).
 
 
@@ -7203,7 +7205,7 @@ incongruent = st_transform(incongruent, 4326)
 aggregating_zones = st_transform(aggregating_zones, 4326)
 ```
 
-First, we will need a QGIS geoalgorithm that unions polygons.
+Now we need a QGIS geoalgorithm that unions polygons.
 `find_algorithms()` searches all QGIS geoalgorithms with the help of regular expressions.
 Assuming that the short description of the function contains the word "union", we can run:
 
@@ -7212,7 +7214,6 @@ Assuming that the short description of the function contains the word "union", w
 find_algorithms("union", name_only = TRUE)
 #> [1] "qgis:union"        "saga:fuzzyunionor" "saga:union"   
 ```
-
 
 If you also want to have a short description for each geoalgorithm, set the `name_only`-parameter to `FALSE`.
 If one has no clue at all what the name of a geoalgorithm might be, one can leave the `search_term`-argument empty which will return a list of all available QGIS geoalgorithms.
@@ -10273,7 +10274,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve5f98eb54060ecc71
+preservef3edadbb6a302d56
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
