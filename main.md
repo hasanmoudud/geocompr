@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve73cb246d618b2a6c
+preserve45a098d927fb3ac8
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3061,13 +3061,14 @@ The spatial join operation is done by `st_join()`, which adds the `name_long` va
 
 
 ```r
+world$name_long = as.character(world$name_long)
 world_random = world[random_points, ]
 random_joined = st_join(random_points, world["name_long"])
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/spatial-join-1.png" alt="Illustration of a spatial join: the names of the source world object are added to random points." width="576" />
-<p class="caption">(\#fig:spatial-join)Illustration of a spatial join: the names of the source world object are added to random points.</p>
+<img src="figures/spatial-join-1.png" alt="Illustration of a spatial join. A new attribute variable is added to random points (left) from a source object representing countries (middle) resulting the data represented in the final panel (right)." width="100%" />
+<p class="caption">(\#fig:spatial-join)Illustration of a spatial join. A new attribute variable is added to random points (left) from a source object representing countries (middle) resulting the data represented in the final panel (right).</p>
 </div>
 
 By default, `st_join()` performs a left join (see section \@ref(vector-attribute-joining)), but it can also do inner joins by setting the argument `left = FALSE`.
@@ -3101,7 +3102,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea8ee6f367c07fc66
+preserve1e2157891f3330db
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6637,7 +6638,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve0ae345db8d448c03
+preserve7e790de84e4ff2d1
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6735,7 +6736,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve28f69ce06d88a919
+preservede32c562ed63823a
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10274,7 +10275,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef3edadbb6a302d56
+preserve4c8410dfe04e46a0
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

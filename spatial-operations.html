@@ -649,12 +649,13 @@ Random points to demonstrate spatial joining are created as follows:</p>
 <p>The scenario is illustrated in Figure <a href="spatial-operations.html#fig:spatial-join">4.3</a>.
 The <code>random_points</code> object (left) has no attribute data, while the <code>world</code> (middle) does.
 The spatial join operation is done by <code>st_join()</code>, which adds the <code>name_long</code> variable to the points, resulting in <code>random_joined</code> which is illustrated in Figure <a href="spatial-operations.html#fig:spatial-join">4.3</a> (right — see <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/04-spatial-join.R"><code>04-spatial-join.R</code></a>).</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">world_random =<span class="st"> </span>world[random_points, ]</a>
-<a class="sourceLine" id="cb125-2" data-line-number="2">random_joined =<span class="st"> </span><span class="kw">st_join</span>(random_points, world[<span class="st">&quot;name_long&quot;</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">world<span class="op">$</span>name_long =<span class="st"> </span><span class="kw">as.character</span>(world<span class="op">$</span>name_long)</a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">world_random =<span class="st"> </span>world[random_points, ]</a>
+<a class="sourceLine" id="cb125-3" data-line-number="3">random_joined =<span class="st"> </span><span class="kw">st_join</span>(random_points, world[<span class="st">&quot;name_long&quot;</span>])</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:spatial-join"></span>
-<img src="figures/spatial-join-1.png" alt="Illustration of a spatial join: the names of the source world object are added to random points." width="576" />
+<img src="figures/spatial-join-1.png" alt="Illustration of a spatial join. A new attribute variable is added to random points (left) from a source object representing countries (middle) resulting the data represented in the final panel (right)." width="100%" />
 <p class="caption">
-Figure 4.3: Illustration of a spatial join: the names of the source world object are added to random points.
+Figure 4.3: Illustration of a spatial join. A new attribute variable is added to random points (left) from a source object representing countries (middle) resulting the data represented in the final panel (right).
 </p>
 </div>
 <p>By default, <code>st_join()</code> performs a left join (see section <a href="attr.html#vector-attribute-joining">3.2.3</a>), but it can also do inner joins by setting the argument <code>left = FALSE</code>.
