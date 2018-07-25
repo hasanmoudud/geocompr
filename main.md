@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve37f5f0059dd87e6d
+preserve62b930bf48054b1e
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3105,7 +3105,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservea7449f9946515547
+preserve195501f4957395e8
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6641,7 +6641,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve3d7752fbe9907f03
+preserved995c97056979cb3
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6739,7 +6739,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve63a920271b9e621b
+preserveaedc65745aae91f4
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7203,8 +7203,7 @@ Both polygon datasets are available in the **spData** package, and for both we w
 
 
 ```r
-data("incongruent", package = "spData")
-data("aggregating_zones", package = "spData")
+data("incongruent", "aggregating_zones")
 incongruent = st_transform(incongruent, 4326)
 aggregating_zones = st_transform(aggregating_zones, 4326)
 ```
@@ -10275,7 +10274,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve872d6642dd19040e
+preserveb58f788ef11207d0
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

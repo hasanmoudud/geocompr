@@ -514,10 +514,9 @@ These are tiny polygons that are the result when the input polygons slightly ove
 In a third step, we will get rid off the sliver polygons.</p>
 <p>For the uninion, we use again the incongruent polygons we have already encountered in section <a href="spatial-operations.html#spatial-aggr">4.2.5</a>.
 Both polygon datasets are available in the <strong>spData</strong> package, and for both we would like to use a geographic CRS (see also Chapter <a href="reproj-geo-data.html#reproj-geo-data">6</a>).</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;incongruent&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>)</a>
-<a class="sourceLine" id="cb310-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;aggregating_zones&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>)</a>
-<a class="sourceLine" id="cb310-3" data-line-number="3">incongruent =<span class="st"> </span><span class="kw">st_transform</span>(incongruent, <span class="dv">4326</span>)</a>
-<a class="sourceLine" id="cb310-4" data-line-number="4">aggregating_zones =<span class="st"> </span><span class="kw">st_transform</span>(aggregating_zones, <span class="dv">4326</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;incongruent&quot;</span>, <span class="st">&quot;aggregating_zones&quot;</span>)</a>
+<a class="sourceLine" id="cb310-2" data-line-number="2">incongruent =<span class="st"> </span><span class="kw">st_transform</span>(incongruent, <span class="dv">4326</span>)</a>
+<a class="sourceLine" id="cb310-3" data-line-number="3">aggregating_zones =<span class="st"> </span><span class="kw">st_transform</span>(aggregating_zones, <span class="dv">4326</span>)</a></code></pre></div>
 <p>Now we need a QGIS geoalgorithm that unions polygons.
 <code>find_algorithms()</code> searches all QGIS geoalgorithms with the help of regular expressions.
 Assuming that the short description of the function contains the word “union”, we can run:</p>
