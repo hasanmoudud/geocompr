@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebfccba52030fd56e
+preserveebd6b115c1534a3b
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3105,7 +3105,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve516d138ec54430c4
+preservebe98551c4f49041d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6641,7 +6641,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve5092e3bb5e200b64
+preserveee8fb7117d53ec21
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6739,7 +6739,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedff37f7e5875e8c2
+preserve133743b0936a4d09
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9860,17 +9860,17 @@ All the remaining columns (here: `pop`, `women`, `mean_age`, `hh_size`) will ser
 
 ```r
 input_ras = rasterFromXYZ(input_tidy, crs = st_crs(3035)$proj4string)
+```
+
+
+```r
 # print the output to the console
 input_ras
-#> class       : RasterBrick 
-#> dimensions  : 868, 642, 557256, 4  (nrow, ncol, ncell, nlayers)
-#> resolution  : 1000, 1000  (x, y)
-#> extent      : 4031000, 4673000, 2684000, 3552000  (xmin, xmax, ymin, ymax)
-#> coord. ref. : +proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
-#> data source : in memory
-#> names       : pop, women, mean_age, hh_size 
-#> min values  :   1,     1,        1,       1 
-#> max values  :   6,     5,        5,       5
+#> class : RasterBrick
+#> dimensions : 868, 642, 557256, 4 (nrow, ncol, ncell, nlayers)
+#> resolution : 1000, 1000 (x, y)
+#> extent : 4031000, 4673000, 2684000, 3552000 (xmin, xmax, ymin, ymax)
+#> coord. ref. : +proj=laea +lat_0=52 +lon_0=10 ...
 ```
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">Note that we are using an equal-area projection (EPSG:3035; Lambert Equal Area Europe), i.e. a projected CRS where each grid cell has the same area, here 1000 x 1000 square meters. 
@@ -10274,7 +10274,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservec45cfee2bd92456d
+preserve6c0698f273f9750e
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
