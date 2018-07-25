@@ -466,7 +466,7 @@ Further, <code>mutate_all()</code> is used to convert values -1 and -9 (meaning 
 <a class="sourceLine" id="cb423-4" data-line-number="4">                      <span class="dt">hh_size =</span> HHGroesse_D)</a>
 <a class="sourceLine" id="cb423-5" data-line-number="5"><span class="co"># set -1 and -9 to NA</span></a>
 <a class="sourceLine" id="cb423-6" data-line-number="6">input_tidy =<span class="st"> </span><span class="kw">mutate_all</span>(input, <span class="kw">funs</span>(<span class="kw">ifelse</span>(. <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-9</span>), <span class="ot">NA</span>, .)))</a></code></pre></div>
-<p>Table: (#tab:census-desc)Excerpt from the data description ‘Datensatzbeschreibung_klassierte_Werte_1km-Gitter.xlsx’ located in the downloaded file census.zip describing the classes of the retained variables. The classes -1 and -9 refer to uninhabited areas or areas which have to be kept secret, for example due to the need to preserve anonymity.</p>
+<p>Table: (#tab:census-desc)Description of Census data from ‘Datensatzbeschreibung…xlsx’ located in the downloaded file census.zip. The classes -1 and -9 refer to areas for which there is no data.</p>
 <p>class population<br />
 (number of people) women<br />
 (%) mean age<br />
