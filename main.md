@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4f4738c15daf8080
+preservebfccba52030fd56e
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3105,7 +3105,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4cca786c66efec37
+preserve516d138ec54430c4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6641,7 +6641,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservedad87a967514ae98
+preserve5092e3bb5e200b64
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6739,7 +6739,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve97828e35414009cd
+preservedff37f7e5875e8c2
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9841,18 +9841,14 @@ input_tidy = mutate_all(input, funs(ifelse(. %in% c(-1, -9), NA, .)))
 
 Table: (\#tab:census-desc)Description of Census data from 'Datensatzbeschreibung...xlsx' located in the downloaded file census.zip. The classes -1 and -9 refer to areas for which there is no data.
 
- class    population\
-(number of people)    women\
-(%)    mean age\
-(years)    household size\
-(number of people) 
--------  --------------------------------  ------------  -------------------  ------------------------------------
-   1                  3-250                    0-40             0-40                          1-2                 
-   2                 250-500                  40-47             40-42                        2-2.5                
-   3                 500-2000                 47-53             42-44                        2.5-3                
-   4                2000-4000                 53-60             44-47                        3-3.5                
-   5                4000-8000                  >60               >47                          >3.5                
-   6                  >8000                                                                                       
+ class    Population    % female    Mean age    Household size 
+-------  ------------  ----------  ----------  ----------------
+   1        3-250         0-40        0-40           1-2       
+   2       250-500       40-47       40-42          2-2.5      
+   3       500-2000      47-53       42-44          2.5-3      
+   4      2000-4000      53-60       44-47          3-3.5      
+   5      4000-8000       >60         >47            >3.5      
+   6        >8000                                              
 
 ## Create census rasters
  
@@ -10278,7 +10274,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve5756cbd78b85d35b
+preservec45cfee2bd92456d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
