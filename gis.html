@@ -955,13 +955,12 @@ The last query will find all Hardee restaurants (<code>HDE</code>) within the bu
 <a class="sourceLine" id="cb345-12" data-line-number="12">)</a>
 <a class="sourceLine" id="cb345-13" data-line-number="13">hardees =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query)</a></code></pre></div>
 <p>Please refer to <span class="citation">Obe and Hsu (<a href="#ref-obe_postgis_2015">2015</a>)</span> for a detailed explanation of the spatial SQL query.
-Finally, it is good practice to close the database connection.
-Here, it is even more important since the free plan of QGIS Cloud allows only ten users to access the database at the same time.</p>
+Finally, it is good practice to close the database connection as follows:<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1">RPostgreSQL<span class="op">::</span><span class="kw">postgresqlCloseConnection</span>(conn)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:postgis"></span>
-<img src="figures/postgis-1.png" alt="Visualization of the output of three spatial queries: highway (black line), 20-mile buffer (light yellow) and three restaurants (lightblue points) within the buffer." width="576" />
+<img src="figures/postgis-1.png" alt="Visualization of the output of previous PostGIS commands showing the highway (black line), a buffer (light yellow) and three restaurants (lightblue points) within the buffer." width="40%" />
 <p class="caption">
-Figure 9.4: Visualization of the output of three spatial queries: highway (black line), 20-mile buffer (light yellow) and three restaurants (lightblue points) within the buffer.
+Figure 9.4: Visualization of the output of previous PostGIS commands showing the highway (black line), a buffer (light yellow) and three restaurants (lightblue points) within the buffer.
 </p>
 </div>
 <p>Unlike PostGIS, <strong>sf</strong> only supports spatial vector data.
@@ -1070,6 +1069,8 @@ In the background it uses QGIS Server and PostgreSQL/PostGIS.
 This way, the reader can follow the PostGIS example without the need to have PostgreSQL/PostGIS installed on a local machine.
 We are thankful to the QGIS Cloud team for hosting our PostGIS example.<a href="gis.html#fnref45" class="footnote-back">↩</a></p></li>
 <li id="fn46"><p>By the way, the prefix <code>st</code> stands for space/time.<a href="gis.html#fnref46" class="footnote-back">↩</a></p></li>
+<li id="fn47"><p>
+It is important to close the connection here because QGIS Cloud (free version) allows only ten concurrent connections.<a href="gis.html#fnref47" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
