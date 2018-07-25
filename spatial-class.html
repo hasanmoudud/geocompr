@@ -1067,7 +1067,12 @@ Thus, we suggest to convert <strong>sf</strong> objects to Spatial^*^ class() wh
 <h3><span class="header-section-number">2.2.2</span> Basic map making</h3>
 <p>Similar to the <strong>sf</strong> package, <strong>raster</strong> also provides <code>plot()</code> methods for its own classes.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">plot</span>(new_raster)</a></code></pre></div>
-<p><img src="figures/basic-new-raster-plot-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:basic-new-raster-plot"></span>
+<img src="figures/basic-new-raster-plot-1.png" alt="Basic raster plot." width="576" />
+<p class="caption">
+Figure 2.12: Basic raster plot.
+</p>
+</div>
 <!-- Moreover, it is possible to plot a raster and overlay it with vector data. -->
 <!-- For this purpose, we need to read-in a vector dataset: -->
 <!-- ```{r, message=FALSE, results='hide'} -->
@@ -1269,7 +1274,7 @@ For this, we need to read-in a vector dataset:</p>
 <div class="figure" style="text-align: center"><span id="fig:vector-crs"></span>
 <img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="765" />
 <p class="caption">
-Figure 2.12: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.
+Figure 2.13: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.
 </p>
 </div>
 <p>The <code>projection()</code> function can be used to access CRS information from a <code>Raster*</code> object:</p>
@@ -1282,7 +1287,7 @@ The main difference, compared to vector data, is that raster objects only accept
 <div class="figure" style="text-align: center"><span id="fig:raster-crs"></span>
 <img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type" width="475" />
 <p class="caption">
-Figure 2.13: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type
+Figure 2.14: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type
 </p>
 </div>
 <p>We will expand on CRSs and how to project from one CRS to another in much more detail in chapter <a href="reproj-geo-data.html#reproj-geo-data">6</a>.

@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0e9589ff5ab2de2c
+preserve69b7d74fbb2ba5dc
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1424,7 +1424,10 @@ Similar to the **sf** package, **raster** also provides `plot()` methods for its
 plot(new_raster)
 ```
 
-<img src="figures/basic-new-raster-plot-1.png" width="576" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="figures/basic-new-raster-plot-1.png" alt="Basic raster plot." width="576" />
+<p class="caption">(\#fig:basic-new-raster-plot)Basic raster plot.</p>
+</div>
 
 <!-- Moreover, it is possible to plot a raster and overlay it with vector data. -->
 <!-- For this purpose, we need to read-in a vector dataset: -->
@@ -3102,7 +3105,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve2ef2123d50ee170a
+preservecf5165b4661c4011
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6638,7 +6641,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve9d1f307e83b81d77
+preservea8e7ea706ec7220a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6736,7 +6739,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea6eb486644cecd32
+preserve8036c6c8ae55cda4
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10275,7 +10278,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef4a5ec2adb765da7
+preservefa8390f286c5159f
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
