@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea094a0a97f5d2f8b
+preserved4840c69e0996712
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3105,7 +3105,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve0313d72eb4744e55
+preservee449df65f8b12536
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6641,7 +6641,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve8a2b45553162fc84
+preserve68c6243ca6854113
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6739,7 +6739,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9b691ff07929cd53
+preserve173e3f9a26f5855d
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9839,7 +9839,7 @@ input_tidy = mutate_all(input, funs(ifelse(. %in% c(-1, -9), NA, .)))
 
 
 
-Table: (\#tab:census-desc)Categories for each variable in Census data from 'Datensatzbeschreibung...xlsx' located in the downloaded file census.zip. See Figure \@ref(fig:census-stack) for a spatial distribution of the variables.
+Table: (\#tab:census-desc)Categories for each variable in Census data from 'Datensatzbeschreibung...xlsx' located in the downloaded file census.zip. See Figure \@ref(fig:census-stack) for their spatial distribution.
 
  class    Population    % female    Mean age    Household size 
 -------  ------------  ----------  ----------  ----------------
@@ -10276,7 +10276,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9b72c7114eacfab4
+preserve3c3307c8a031e0f5
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
