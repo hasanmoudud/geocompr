@@ -467,7 +467,7 @@ Further, <code>mutate_all()</code> is used to convert values -1 and -9 (meaning 
 <a class="sourceLine" id="cb423-5" data-line-number="5"><span class="co"># set -1 and -9 to NA</span></a>
 <a class="sourceLine" id="cb423-6" data-line-number="6">input_tidy =<span class="st"> </span><span class="kw">mutate_all</span>(input, <span class="kw">funs</span>(<span class="kw">ifelse</span>(. <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-9</span>), <span class="ot">NA</span>, .)))</a></code></pre></div>
 <table>
-<caption><span id="tab:census-desc">Table 13.1: </span>Categories for each variable in Census data from ‘Datensatzbeschreibung…xlsx’ located in the downloaded file census.zip. See Figure <a href="location.html#fig:census-stack">13.1</a> for their spatial distribution.</caption>
+<caption><span id="tab:census-desc">Table 13.1: </span>Categories for each variable in Census data from ‘Datensatzbeschreibung…xlsx’ located in the downloaded file census.zip. See Figure 13.1 for their spatial distribution.</caption>
 <thead>
 <tr class="header">
 <th align="center">class</th>
