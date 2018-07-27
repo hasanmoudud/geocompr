@@ -621,8 +621,8 @@ Sorry for commenting on this again but just to clarify africa[0] selects zero co
 <p>Advanced map making is covered in detail in Chapter <a href="adv-map.html#adv-map">8</a>.
 However, it is worth knowing how to modify plots using the <strong>sf</strong> package for quick and flexible visualization.
 Because <strong>sf</strong> extends base R plotting methods <code>plot()</code>’s arguments such as <code>main =</code> — which specifies the title of the map — work with <code>sf</code> objects (see <code>?graphics::plot</code> and <code>?par</code>).<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
-<p>Figure <a href="spatial-class.html#fig:contpop">2.5</a> illustrates this flexibility by overlaying circles, whose diameter (set with <code>cex =</code>) represent country populations, on a map of the world.
-A basic version of the map can be created with the following commands (see exercises in section <a href="spatial-class.html#ex2">2.5</a> <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R"><code>02-contplot.R</code></a> in the book’s GitHub repo for details):</p>
+<p>Figure <a href="spatial-class.html#fig:contpop">2.5</a> illustrates this flexibility by overlaying circles, whose diameters (set with <code>cex =</code>) represent country populations, on a map of the world.
+A basic version of the map can be created with the following commands (see exercises at the end of this chapter and the script <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R"><code>02-contplot.R</code></a> to create Figure <a href="spatial-class.html#fig:contpop">2.5</a>):</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">plot</span>(world[<span class="st">&quot;continent&quot;</span>], <span class="dt">reset =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb17-2" data-line-number="2">cex =<span class="st"> </span><span class="kw">sqrt</span>(world<span class="op">$</span>pop) <span class="op">/</span><span class="st"> </span><span class="dv">10000</span></a>
 <a class="sourceLine" id="cb17-3" data-line-number="3">world_cents =<span class="st"> </span><span class="kw">st_centroid</span>(world, <span class="dt">of_largest =</span> <span class="ot">TRUE</span>)</a>
@@ -639,11 +639,10 @@ The point is that simple feature geometries can come in different forms, the top
 </div>
 <div id="sf-classes" class="section level3">
 <h3><span class="header-section-number">2.1.5</span> Simple feature classes</h3>
-<p>To understand new data formats in depth, it often helps to build them from the ground up.
-This section walks you through vector spatial classes step-by-step, from the elementary simple feature geometry to simple feature objects of class <code>sf</code> representing complex spatial data.
+<p>This section shows how vector spatial classes are created.
 Before describing each geometry type that the <strong>sf</strong> package supports, it is worth taking a step back to understand the building blocks of <code>sf</code> objects.
-As stated in section <a href="spatial-class.html#intro-sf">2.1.1</a>, simple features are simply data frames with at least one special column that makes it spatial.
-These spatial columns are often called <code>geom</code> or <code>geometry</code> and can be accessed like non-spatial columns: <code>world$geom</code> refers to the spatial element of the <code>world</code> object described above.
+Section <a href="spatial-class.html#intro-sf">2.1.1</a> shows how simple features are data frames, with special geometry columns.
+These spatial columns are often called <code>geom</code> or <code>geometry</code>: <code>world$geom</code> refers to the spatial element of the <code>world</code> object described above.
 These geometry columns are ‘list columns’ of class <code>sfc</code>.
 In turn, <code>sfc</code> objects are composed of one or more objects of class <code>sfg</code>: simple feature geometries.</p>
 <p>To understand how the spatial components of simple features work, it is vital to understand simple feature geometries.

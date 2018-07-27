@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef5c991bda7f42a39
+preserve44b8db28732aac02
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -858,8 +858,8 @@ Note: many plot arguments are ignored in facet maps, when more than one `sf` col
 
 
 
-Figure \@ref(fig:contpop) illustrates this flexibility by overlaying circles, whose diameter (set with `cex =`) represent country populations, on a map of the world.
-A basic version of the map can be created with the following commands (see exercises in section \@ref(ex2) [`02-contplot.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R) in the book's GitHub repo for details):
+Figure \@ref(fig:contpop) illustrates this flexibility by overlaying circles, whose diameters (set with `cex =`) represent country populations, on a map of the world.
+A basic version of the map can be created with the following commands (see exercises at the end of this chapter and the script [`02-contplot.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R) to create Figure \@ref(fig:contpop)):
 
 
 ```r
@@ -880,11 +880,10 @@ The point is that simple feature geometries can come in different forms, the top
 
 ### Simple feature classes {#sf-classes}
 
-To understand new data formats in depth, it often helps to build them from the ground up.
-This section walks you through vector spatial classes step-by-step, from the elementary simple feature geometry to simple feature objects of class `sf` representing complex spatial data.
+This section shows how vector spatial classes are created.
 Before describing each geometry type that the **sf** package supports, it is worth taking a step back to understand the building blocks of `sf` objects. 
-As stated in section \@ref(intro-sf), simple features are simply data frames with at least one special column that makes it spatial.
-These spatial columns are often called `geom` or `geometry` and can be accessed like non-spatial columns: `world$geom` refers to the spatial element of the `world` object described above.
+Section \@ref(intro-sf) shows how simple features are data frames, with special geometry columns.
+These spatial columns are often called `geom` or `geometry`: `world$geom` refers to the spatial element of the `world` object described above.
 These geometry columns are 'list columns' of class `sfc`.
 In turn, `sfc` objects are composed of one or more objects of class `sfg`: simple feature geometries.
 
@@ -3111,7 +3110,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9d3024e09b6594a7
+preservec8252b399ff25c7a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6647,7 +6646,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve83fa0d5879d1acd7
+preserve9bb9b9da16e9cf6d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6745,7 +6744,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecf43ca7872fff67c
+preserve430f852b832cb0a0
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10282,7 +10281,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveec8fc1858667ffab
+preserve7a107f9201a85345
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
