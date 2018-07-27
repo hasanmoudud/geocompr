@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve35f166b10920d3ba
+preservef5c991bda7f42a39
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -826,18 +826,13 @@ asia = st_union(asia)
 
 We can now plot the Asian continent over a map of the world.
 Note that the first plot must only have one facet for `add = TRUE` to work.
-If the first plot has a key, `reset = FALSE` must be used:
+If the first plot has a key, `reset = FALSE` must be used (result not shown):
 
 
 ```r
 plot(world["pop"], reset = FALSE)
 plot(asia, add = TRUE, col = "red")
 ```
-
-<div class="figure" style="text-align: center">
-<img src="figures/asia-1.png" alt="A plot of Asia added as a layer on top of countries worldwide." width="50%" />
-<p class="caption">(\#fig:asia)A plot of Asia added as a layer on top of countries worldwide.</p>
-</div>
 
 Adding layers in this way can be used to verify the geographic correspondence between layers: 
 the `plot()` function is fast to execute and requires few lines of code, but does not create interactive maps with a wide range of options.
@@ -855,22 +850,33 @@ Sorry for commenting on this again but just to clarify africa[0] selects zero co
 
 ### Base plot arguments {#base-args}
 
-Since **sf**'s `plot()` function builds on base plotting methods, it has many optional arguments (see `?graphics::plot` and `?par`).
-This may not be the most concise way to generate maps for publication, as we will see in Chapter \@ref(adv-map), but it is worth learning some base plotting arguments for future reference.
-A simple illustration of the flexibility of `plot()` is provided in Figure \@ref(fig:contpop), which adds circles representing population size to a map of the world.
+Advanced map making is covered in detail in Chapter \@ref(adv-map).
+However, it is worth knowing how to modify plots using the **sf** package for quick and flexible visualization.
+Because **sf** extends base R plotting methods `plot()`'s arguments such as `main =` --- which specifies the title of the map --- work with `sf` objects (see `?graphics::plot` and `?par`).^[
+Note: many plot arguments are ignored in facet maps, when more than one `sf` column is plotted.
+]
+
+
+
+Figure \@ref(fig:contpop) illustrates this flexibility by overlaying circles, whose diameter (set with `cex =`) represent country populations, on a map of the world.
 A basic version of the map can be created with the following commands (see exercises in section \@ref(ex2) [`02-contplot.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R) in the book's GitHub repo for details):
 
 
 ```r
 plot(world["continent"], reset = FALSE)
 cex = sqrt(world$pop) / 10000
-plot(st_geometry(world_centroids), add = TRUE, cex = cex)
+world_cents = st_centroid(world, of_largest = TRUE)
+plot(st_geometry(world_cents), add = TRUE, cex = cex)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/contpop-1.png" alt="Country continents (represented by fill color) and 2015 populations (represented by points, with point area proportional to population) worldwide." width="576" />
-<p class="caption">(\#fig:contpop)Country continents (represented by fill color) and 2015 populations (represented by points, with point area proportional to population) worldwide.</p>
+<img src="figures/contpop-1.png" alt="Country continents (represented by fill color) and 2015 populations (represented by circles, with area proportional to population)." width="576" />
+<p class="caption">(\#fig:contpop)Country continents (represented by fill color) and 2015 populations (represented by circles, with area proportional to population).</p>
 </div>
+
+The code above uses the function `st_centroid()` to convert one geometry type (polygon) to another (point).
+Here is not the place to explain how the function works (this is covered in Chapter \@ref(geometric-operations)).
+The point is that simple feature geometries can come in different forms, the topic of the next section.
 
 ### Simple feature classes {#sf-classes}
 
@@ -3105,7 +3111,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve57e2761080735af2
+preserve9d3024e09b6594a7
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6641,7 +6647,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1744c7608e24473c
+preserve83fa0d5879d1acd7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6739,7 +6745,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve69f001f332f76cee
+preservecf43ca7872fff67c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10276,7 +10282,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve58bb98b5ff71fc61
+preserveec8fc1858667ffab
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

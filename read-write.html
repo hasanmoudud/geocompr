@@ -512,7 +512,7 @@ Although the quality is not as spatially consistent as many official datasets, O
 Further examples of <strong>osmdata</strong> in action are provided in Chapters <a href="transport.html#transport">12</a>, <a href="location.html#location">13</a> and <a href="gis.html#gis">9</a>.</p>
 <p>Sometimes, packages come with inbuilt datasets.
 These can be accessed in four ways: by attaching the package (if the package uses ‘lazy loading’ as <strong>spData</strong> does), with <code>data(dataset)</code>, by referring to the dataset with <code>pkg::dataset</code> or with <code>system.file()</code> to access raw data files.
-The following code chunk illustrates the latter two options using the <code>world</code> (already loaded by attaching its parent package with <code>library(spData)</code>):<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a></p>
+The following code chunk illustrates the latter two options using the <code>world</code> (already loaded by attaching its parent package with <code>library(spData)</code>):<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a></p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">world2 =<span class="st"> </span>spData<span class="op">::</span>world</a>
 <a class="sourceLine" id="cb239-2" data-line-number="2">world3 =<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">system.file</span>(<span class="st">&quot;shapes/world.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spData&quot;</span>))</a></code></pre></div>
 </div>
@@ -624,7 +624,7 @@ However, it is not an open format (though its specification is open).
 It was developed in the early 1990s and has a number of limitations.
 First of all, it is a multi-file format, which consists of at least three files.
 It only supports 255 columns, column names are restricted to ten characters and the file size limit is to 2GB.
-Furthermore, Shapefile does not support all possible geometry types, for example, it is unable to distinguish between a polygon and a multipolygon.<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a>
+Furthermore, Shapefile does not support all possible geometry types, for example, it is unable to distinguish between a polygon and a multipolygon.<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>
 Despite these limitations, a viable alternative had been missing for a long time.
 In the meantime, <a href="https://www.geopackage.org/">GeoPackage</a> emerged, and seems to be a more than suitable replacement candidate for ESRI’s Shapefile.
 Geopackage is a format for exchanging geospatial information and an OGC standard.
@@ -725,7 +725,7 @@ In most cases, as with the ESRI Shapefile (<code>.shp</code>) or the <code>GeoPa
 <p>For some drivers, <code>dsn</code> could be provided as a folder name, access credentials for a database, or a GeoJSON string representation (see the examples of the <code>st_read()</code> help page for more details).</p>
 <p>Some vector driver formats can store multiple data layers.
 By default, <code>st_read</code> automatically reads the first layer of the file specified in <code>dsn</code>, however, using the <code>layer</code> argument you can specify any other layer.</p>
-<p>Naturally, some options are specific to certain drivers.<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>
+<p>Naturally, some options are specific to certain drivers.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>
 For example, think of coordinates stored in a spreadsheet format (<code>.csv</code>).
 To read in such files as spatial objects, we naturally have to specify the names of the columns (<code>X</code> and <code>Y</code> in our example below) representing the coordinates.
 We can do this with the help of the <code>options</code> parameter.
@@ -842,7 +842,7 @@ It could be either <code>AS_XY</code> for simple point datasets (it creates two 
 <h3><span class="header-section-number">7.6.2</span> Raster data</h3>
 <p>The <code>writeRaster()</code> function saves <code>Raster*</code> objects to files on disk.
 The function expects input regarding output data type and file format, but also accepts GDAL options specific to a selected file format (see <code>?writeRaster</code> for more details).</p>
-<p>The <strong>raster</strong> package offers nine data types when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>
+<p>The <strong>raster</strong> package offers nine data types when saving a raster: LOG1S, INT1S, INT1U, INT2S, INT2U, INT4S, INT4U, FLT4S, and FLT8S.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>
 The data type determines the bit representation of the raster object written to disk (<a href="read-write.html#tab:datatypes">7.4</a>).
 Which data type to use depends on the range of the values of your raster object.
 The more values a data type can represent, the larger the file will get on disk.
@@ -992,14 +992,14 @@ Export this map to a file called <code>cycle_hire.html</code>.</p></li>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="31">
-<li id="fn31"><p>
-For more information on data import with R packages see sections 5.5 and 5.6 of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.<a href="read-write.html#fnref31" class="footnote-back">↩</a></p></li>
-<li id="fn32"><p>To learn more about ESRI Shapefile limitations and possible alternative file formats, visit <a href="http://switchfromshapefile.org/" class="uri">http://switchfromshapefile.org/</a>.<a href="read-write.html#fnref32" class="footnote-back">↩</a></p></li>
-<li id="fn33"><p>
-A list of supported vector formats and options can be found at <a href="http://gdal.org/ogr_formats.html" class="uri">http://gdal.org/ogr_formats.html</a>.<a href="read-write.html#fnref33" class="footnote-back">↩</a></p></li>
+<ol start="32">
+<li id="fn32"><p>
+For more information on data import with R packages see sections 5.5 and 5.6 of <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span>.<a href="read-write.html#fnref32" class="footnote-back">↩</a></p></li>
+<li id="fn33"><p>To learn more about ESRI Shapefile limitations and possible alternative file formats, visit <a href="http://switchfromshapefile.org/" class="uri">http://switchfromshapefile.org/</a>.<a href="read-write.html#fnref33" class="footnote-back">↩</a></p></li>
 <li id="fn34"><p>
-Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info--><a href="read-write.html#fnref34" class="footnote-back">↩</a></p></li>
+A list of supported vector formats and options can be found at <a href="http://gdal.org/ogr_formats.html" class="uri">http://gdal.org/ogr_formats.html</a>.<a href="read-write.html#fnref34" class="footnote-back">↩</a></p></li>
+<li id="fn35"><p>
+Using INT4U is not recommended as R does not support 32-bit unsigned integers.<!--recheck this info--><a href="read-write.html#fnref35" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
