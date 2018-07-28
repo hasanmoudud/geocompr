@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-27'
+date: '2018-07-28'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-27 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-28 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve44b8db28732aac02
+preserve8f2e6abcfbb5eef6
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3110,7 +3110,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservec8252b399ff25c7a
+preserve64cb2537fb188577
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4840,8 +4840,8 @@ This chapter goes further.
 It highlights issues that can arise when using inappropriate CRSs and how to *transform* data from one CRS to another.
 
 As illustrated in Figure \@ref(fig:vectorplots), there are two types of CRS: *geographic* ('lon/lat', with units in degrees longitude and latitude) and *projected* (typically in units of meters from a datum).
-This has consequences because many geometric operations a *projected* CRS:
-most geometric operations in **sf**, for example, assume a projected CRS and generate warnings if the data is *geographic*, using the function `st_is_longlat()` (this is because under the hood GEOS assumes projected data).
+This has consequences because many geometric operations require a *projected* CRS:
+many geometric operations in **sf**, for example, assume a projected CRS and generate warnings if the data is *geographic*, using the function `st_is_longlat()` (this is because under the hood GEOS assumes projected data).
 Unfortunately R does not always know the CRS of an object, as shown below using the example of London introduced in section \@ref(vector-data):
 
 <!-- , which is created by *coercing* a `data.frame` into an `sf` object (the `coords` argument specifies the coordinates): -->
@@ -4854,7 +4854,7 @@ st_is_longlat(london)
 #> [1] NA
 ```
 
-This shows that unless a CRS is manually specifified or is loaded from a source that has CRS metadata, the CRS is `NA`.
+This shows that unless a CRS is manually specified or is loaded from a source that has CRS metadata, the CRS is `NA`.
 A CRS can be added to `sf` objects with `st_set_crs()` as follows:^[
 The CRS can also be added when creating `sf` objects with the `crs` argument (e.g. `st_sf(geometry = st_sfc(st_point(c(-0.1, 51.5))), crs = 4326)`).
 The same argument can also be used to set the CRS when creating raster datasets (e.g. `raster(crs = "+proj=longlat")`).
@@ -4867,7 +4867,7 @@ st_is_longlat(london_geo)
 #> [1] TRUE
 ```
 
-If the CRS of an object with lon/lat coordinates is not specified CRSs, this can lead to problems.
+Datasets without a specified CRS can cause problems.
 An example is provided below, which creates a buffer of one unit around `london` and `london_geo` objects:
 
 
@@ -4880,11 +4880,11 @@ london_buff = st_buffer(london_geo, dist = 1)
 ```
 
 Only the second operation generates a warning.
-The warning message it useful, telling us that result may be of limited use because it is in units of latitude and longitude, rather than meters or some other suitable measure of distance assumed by `st_buffer()`.
+The warning message is useful, telling us that the result may be of limited use because it is in units of latitude and longitude, rather than meters or some other suitable measure of distance assumed by `st_buffer()`.
 The consequences of a failure to work on projected data are illustrated in Figure \@ref(fig:crs-buf) (left panel):
 the buffer is elongated in the north-south direction because lines of longitude converge towards the Earth's poles.
 
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">The distance between two lines of longitude, called meridians, is around 111 km at the equator (execute `geosphere::distGeo(c(0, 0), c(1, 0))` to find the precise distance).
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">The distance between two lines of longitude, called meridians, is around 111 at the equator (execute `geosphere::distGeo(c(0, 0), c(1, 0))` to find the precise distance).
 This shrinks to zero at the poles.
 At the latitude of London, for example, meridians are less than 70 km apart (challenge: execute code that verifies this).
 <!-- `geosphere::distGeo(c(0, 51.5), c(1, 51.5))` -->
@@ -4904,7 +4904,7 @@ london_proj = data.frame(x = 530000, y = 180000) %>%
 ```
 
 The result is a new object that is identical to `london`, but reprojected onto a suitable CRS (the British National Grid, which has an EPSG code of 27700 in this case) that has units of meters. 
-We can verify that the CRS has changed using `st_crs()` as follows (some of the output has been replace by `...`):
+We can verify that the CRS has changed using `st_crs()` as follows (some of the output has been replaced by `...`):
 
 
 ```r
@@ -4957,7 +4957,7 @@ There are no clear-cut answers to these questions and CRS selection always invol
 However there are some general principles, provided in this section, that can help decide. 
 
 First it's worth considering *when to transform*.
-In some cases transformation to a projected CRS is essential, such as when using geometric functions such as `st_buffer()`, Figure \@ref(fig:crs-buf) shows.
+In some cases transformation to a projected CRS is essential, such as when using geometric functions such as `st_buffer()`, as Figure \@ref(fig:crs-buf) shows.
 Conversely, publishing data online with the **leaflet** package may require a geographic CRS.
 <!-- If the visualization phase of a project involves publishing results using [leaflet](https://github.com/Leaflet/Leaflet) via the common format [GeoJSON](http://geojson.org/) (a common scenario) projected data should probably be transformed to WGS84.  -->
 Another case is when two objects with different CRSs must be compared or combined, as shown when we try to find the distance between two objects with different CRSs:
@@ -5059,7 +5059,7 @@ st_crs(epsg_utm_lnd)$proj4string
 #> [1] "+proj=utm +zone=30 +datum=WGS84 +units=m +no_defs"
 ```
 
-Maps of UTM zones such as that provided by [dmap.co.uk](http://www.dmap.co.uk/utmworld.htm) confirm: the London is in UTM zone 30U.
+Maps of UTM zones such as that provided by [dmap.co.uk](http://www.dmap.co.uk/utmworld.htm) confirm that London is in UTM zone 30U.
 <!-- London can be transformed into this CRS as follows (result not shown): -->
 <!-- idea: create figure showing UTM zones -->
 
@@ -5167,7 +5167,7 @@ This system allows a very wide range of projections to be created, as we'll see 
 A long and growing list of projections has been developed and many of these these can be set with the `+proj=` element of `proj4string`s.^[
 The Wikipedia page 'List of map projections' has 70+ projections and illustrations.
 ]
-When mapping the world while preserving areal relationships, the Mollweide projection is a good choice [@jenny_guide_2017] (Figure \@ref(fig:mollproj)).
+When mapping the world while preserving area relationships, the Mollweide projection is a good choice [@jenny_guide_2017] (Figure \@ref(fig:mollproj)).
 To use this projection, we need to specify it using the `proj4string` element, `"+proj=moll"`, in the `st_transform` function:
 
 
@@ -5186,7 +5186,7 @@ On the other hand, when mapping the world, it is often desirable to have as litt
 One of the most popular projections to achieve this is the Winkel tripel projection (Figure \@ref(fig:wintriproj)).^[
 This projection is used, among others, by the National Geographic Society.
 ]
-`st_transform_proj()` from the **lwgeom** package allows for coordinate transformations to a wide range of CRSs, including the Winkel tripel projection: 
+`st_transform_proj()` from the **lwgeom** package which allows for coordinate transformations to a wide range of CRSs, including the Winkel tripel projection: 
 
 
 ```r
@@ -5222,7 +5222,7 @@ world_laea1 = st_transform(world, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_
 <p class="caption">(\#fig:laeaproj1)Lambert azimuthal equal-area projection of the world centered on longitude and latitude of 0.</p>
 </div>
 
-We can change the PROJ parameters, for example the center of the projection using the `+lon_0` and `+lat_0` parameters. 
+We can change the PROJ parameters, for example the center of the projection, using the `+lon_0` and `+lat_0` parameters. 
 The code below gives the map centered on New York City (Figure \@ref(fig:laeaproj2)).
 
 
@@ -5256,7 +5256,7 @@ transforming a vector object involves changing the coordinates of every vertex b
 Rasters are composed of rectangular cells of the same size (expressed by map units, such as degrees or meters), so it is impossible to transform coordinates of pixels separately.
 Raster reprojection involves creating a new raster object, often with a different number of columns and rows than the original.
 The attributes must subsequently be re-estimated, allowing the new pixels to be 'filled' with appropriate values.
-In other words, raster reprojection can be thought as two separate spatial operations - a vector reprojection of cell centroids to the other CRS (\@ref(reproj-vec-geom)) and next computing values for new pixel locations through resampling (\@ref(aggregation-and-disaggregation)).
+In other words, raster reprojection can be thought of as two separate spatial operations: a vector reprojection of cell centroids to another CRS (\@ref(reproj-vec-geom)), and computation of new pixel values through resampling (\@ref(aggregation-and-disaggregation)).
 Thus in most cases when both raster and vector data are used, it is better to avoid reprojecting rasters and reproject vectors instead.
 
 The raster reprojection process is done with `projectRaster()` from the **raster** package.
@@ -5280,7 +5280,7 @@ crs(cat_raster)
 #> +no_defs
 ```
 
-In this region, 14 land cover classes were distinguished (a full list of NLCD2011 land cover classes can be found at [mrlc.gov](https://www.mrlc.gov/nlcd11_leg.php):
+In this region, 14 land cover classes were distinguished (a full list of NLCD2011 land cover classes can be found at [mrlc.gov](https://www.mrlc.gov/nlcd11_leg.php)):
 
 
 ```r
@@ -5288,14 +5288,12 @@ unique(cat_raster)
 #>  [1] 11 21 22 23 31 41 42 43 52 71 81 82 90 95
 ```
 
-When reprojecting categorical raster, we need to ensure that our new estimated values would still have values of our original classes.
+When reprojecting categorical rasters, the estimated values must be the same as those of the original.
 This could be done using the nearest neighbor method (`ngb`).
-In this method, value of the output cell is calculated based on the nearest cell center of the input raster.
-
-For example, we want to change the CRS to WGS 84. 
-It can be desired when we want to visualize a raster data on top of a web basemap, such as the Google or OpenStreetMap map tiles.
+This method assigns new cell values to the nearest cell center of the input raster.
+An example is reprojecting `cat_raster` to WGS84, a geographic CRS well suited for web mapping.
 The first step is to obtain the proj4 definition of this CRS, which can be done using the [http://spatialreference.org](http://spatialreference.org/ref/epsg/wgs-84/) webpage. 
-The second and last step is to define the reprojection method in the `projectRaster()` function, which in case of categorical data is the nearest neighbor method (`ngb`):
+The final step is to reproject the raster with the `projectRaster()` function which, in the case of categorical data, uses the nearest neighbor method (`ngb`):
 
 
 ```r
@@ -5303,7 +5301,7 @@ wgs84 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 cat_raster_wgs84 = projectRaster(cat_raster, crs = wgs84, method = "ngb")
 ```
 
-Many properties of the new object differ from the previous one, which include the number of columns and rows (and therefore number of cells), resolution (transformed from meters into degrees), and extent, as illustrated in Table \@ref(tab:catraster) (note that the number of categories increases from 14 to 15 because of the addition of `NA` values, not because a new category has been created --- the land cover classes are preserved).
+Many properties of the new object differ from the previous one, including the number of columns and rows (and therefore number of cells), resolution (transformed from meters into degrees), and extent, as illustrated in Table \@ref(tab:catraster) (note that the number of categories increases from 14 to 15 because of the addition of `NA` values, not because a new category has been created --- the land cover classes are preserved).
 <!-- freq(cat_raster_wgs84) -->
 <!-- freq(cat_raster) -->
 
@@ -5315,9 +5313,8 @@ CRS      nrow   ncol     ncell   resolution   unique_categories
 NAD83    1359   1073   1458207      31.5275                  14
 WGS84    1394   1111   1548734       0.0003                  15
 
-Reprojecting raster data with continuous (`numeric` or in this case `integer`) values follows an almost identical procedure.
-`srtm.tif` in **spDataLarge** contains a digital elevation model from [the Shuttle Radar Topography Mission (SRTM)](https://www2.jpl.nasa.gov/srtm/) representing height above sea level (elevation) in meters.
-Its CRS is WGS84:
+Reprojecting numeric rasters (with `numeric` or in this case `integer` values) follows an almost identical procedure.
+This is demonstrated below with `srtm.tif` in **spDataLarge** from [the Shuttle Radar Topography Mission (SRTM)](https://www2.jpl.nasa.gov/srtm/), which represents height in m above sea level (elevation) with the WGS84 CRS:
 
 
 ```r
@@ -5350,7 +5347,7 @@ crs(con_raster_ea)
 #>  +proj=laea +lat_0=37.32 +lon_0=-113.04 +ellps=WGS84
 ```
 
-Raster reprojection on numeric variables also leads to small changes values and spatial properties, such as the number of cells, resolution, and extent.
+Raster reprojection on numeric variables also leads to small changes to values and spatial properties, such as the number of cells, resolution, and extent.
 These changes are demonstrated in Table \@ref(tab:rastercrs)^[
 Another minor change, that is not represented in Table \@ref(tab:rastercrs), is that the class of the values in the new projected raster dataset is `numeric`.
 This is because the `bilinear` method works with continuous data and the results are rarely coerced into whole integer values.
@@ -6646,7 +6643,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve9bb9b9da16e9cf6d
+preserve449b2804fbff2fc8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6744,7 +6741,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve430f852b832cb0a0
+preservefeda53c6136a0569
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10281,7 +10278,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve7a107f9201a85345
+preserve03736fa71b4703af
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
