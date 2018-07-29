@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefb5f83fe52fa6392
+preserve61cf0e7644e68266
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3087,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve3a33dc22babf4ae6
+preserve713d12c11f5eb238
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -4917,8 +4917,8 @@ The result in Figure \@ref(fig:crs-buf) (right panel) shows that buffers based o
 every part of the buffer's border is equidistant to London.
 
 <div class="figure" style="text-align: center">
-<img src="figures/crs-buf-1.png" alt="Buffer on vector representations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK." width="45%" /><img src="figures/crs-buf-2.png" alt="Buffer on vector representations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK." width="45%" />
-<p class="caption">(\#fig:crs-buf)Buffer on vector representations of London with a geographic (left) and projected (right) CRS. The circular point represents London and the grey outline represents the outline of the UK.</p>
+<img src="figures/crs-buf-1.png" alt="Buffers around London with a geographic (left) and projected (right) CRS. The grey outline represents the UK coastline." width="45%" /><img src="figures/crs-buf-2.png" alt="Buffers around London with a geographic (left) and projected (right) CRS. The grey outline represents the UK coastline." width="45%" />
+<p class="caption">(\#fig:crs-buf)Buffers around London with a geographic (left) and projected (right) CRS. The grey outline represents the UK coastline.</p>
 </div>
 
 The importance of CRSs (primarily whether they are projected or geographic) has been demonstrated using the example of London.
@@ -6622,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1bc07a80bf139317
+preserve63e5c220490cec5d
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecac0f741e0040044
+preserve26bd91cf1b79073c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10257,7 +10257,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve7e02a7909e2eb335
+preservedf4732315b5f637a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
