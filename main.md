@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve273b00ec06abc557
+preservefb5f83fe52fa6392
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1497,16 +1497,11 @@ Usually, you provide it with a filename to a multilayer raster file but might al
 ```r
 multi_raster_file = system.file("raster/landsat.tif", package = "spDataLarge")
 r_brick = brick(multi_raster_file)
+```
+
+
+```r
 r_brick
-#> class       : RasterBrick 
-#> dimensions  : 1428, 1128, 1610784, 4  (nrow, ncol, ncell, nlayers)
-#> resolution  : 30, 30  (x, y)
-#> extent      : 301905, 335745, 4111245, 4154085  (xmin, xmax, ymin, ymax)
-#> coord. ref. : +proj=utm +zone=12 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 
-#> data source : /home/travis/R/Library/spDataLarge/raster/landsat.tif 
-#> names       : landsat.1, landsat.2, landsat.3, landsat.4 
-#> min values  :      7550,      6404,      5678,      5252 
-#> max values  :     19071,     22051,     25780,     31961
 #> class       : RasterBrick 
 #> resolution  : 30, 30  (x, y)
 #> ...
@@ -3092,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve32bff61967b2ccb4
+preserve3a33dc22babf4ae6
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6627,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserved2a6844cab9506ce
+preserve1bc07a80bf139317
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6725,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb2ed858634131768
+preservecac0f741e0040044
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10262,7 +10257,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve7bfadeac520e09af
+preserve7e02a7909e2eb335
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
