@@ -935,20 +935,16 @@ Simple features are created using the <code>st_sf()</code> function:</p>
 Firstly, coordinates define the geometry of the simple feature geometry (<code>sfg</code>).
 Secondly, we can combine the geometries in a simple feature geometry column (<code>sfc</code>) which also stores the CRS.
 Subsequently, we store the attribute information on the geometries in a <code>data.frame</code>.
-Finally, the <code>st_sf()</code> function combines the attribute table and the <code>sfc</code> object in an <code>sf</code> object.</p>
+Finally, the <code>st_sf()</code> function combines the attribute table and the <code>sfc</code> object in an <code>sf</code> object, as demonstrated below (some output ommited):</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">sf_points</a>
 <a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 2 features and 5 fields</span></a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co">#&gt; geometry type:  POINT</span></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">#&gt; bbox:           xmin: -9 ymin: 51.5 xmax: 0.1 ymax: 53</span></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">#&gt; epsg (SRID):    4326</span></a>
-<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span></a>
-<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="co">#&gt;     name temperature       date category automatic         geometry</span></a>
-<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="co">#&gt; 1 London          25 2017-06-21     city     FALSE POINT (0.1 51.5)</span></a>
-<a class="sourceLine" id="cb35-10" data-line-number="10"><span class="co">#&gt; 2   Ruan          13 2017-06-22  village      TRUE    POINT (-9 53)</span></a></code></pre></div>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co">#&gt;     name temperature       date category automatic         geometry</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">#&gt; 1 London          25 2017-06-21     city     FALSE POINT (0.1 51.5)</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">#&gt; 2   Ruan          13 2017-06-22  village      TRUE    POINT (-9 53)</span></a></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">class</span>(sf_points)</a>
 <a class="sourceLine" id="cb36-2" data-line-number="2"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
-<p>The result shows that <code>sf</code> objects actually have two classes, <code>sf</code> and <code>data.frame</code>.
+<p>The resultshows that <code>sf</code> objects actually have two classes, <code>sf</code> and <code>data.frame</code>.
 Simple features are simply data frames (square tables), but with spatial attributes (usually stored in a special <code>geom</code> list-column in the data frame).
 This duality is central to the concept of simple features:
 most of the time a <code>sf</code> can be treated as and behaves like a <code>data.frame</code>.

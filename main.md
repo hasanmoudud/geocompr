@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve697b45c899ab5aa9
+preserve8855a47745f50c4d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1267,17 +1267,13 @@ The above example illustrates the components of `sf` objects.
 Firstly, coordinates define the geometry of the simple feature geometry (`sfg`).
 Secondly, we can combine the geometries in a simple feature geometry column (`sfc`) which also stores the CRS.
 Subsequently, we store the attribute information on the geometries in a `data.frame`.
-Finally, the `st_sf()` function combines the attribute table and the `sfc` object in an `sf` object.
+Finally, the `st_sf()` function combines the attribute table and the `sfc` object in an `sf` object, as demonstrated below (some output ommited):
 
 
 ```r
 sf_points
 #> Simple feature collection with 2 features and 5 fields
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: -9 ymin: 51.5 xmax: 0.1 ymax: 53
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#> ...
 #>     name temperature       date category automatic         geometry
 #> 1 London          25 2017-06-21     city     FALSE POINT (0.1 51.5)
 #> 2   Ruan          13 2017-06-22  village      TRUE    POINT (-9 53)
@@ -1289,7 +1285,7 @@ class(sf_points)
 #> [1] "sf"         "data.frame"
 ```
 
-The result shows that `sf` objects actually have two classes, `sf` and `data.frame`.
+The resultshows that `sf` objects actually have two classes, `sf` and `data.frame`.
 Simple features are simply data frames (square tables), but with spatial attributes (usually stored in a special `geom` list-column in the data frame).
 This duality is central to the concept of simple features:
 most of the time a `sf` can be treated as and behaves like a `data.frame`.
@@ -3101,7 +3097,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservecfd015321474a525
+preservec33d7cc2e82a0cbe
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6636,7 +6632,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve9a45feb2ee82c455
+preserve2c731ee23f5b7ae7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6734,7 +6730,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0ecb9fe3eea16aae
+preserve91b2fb8fb3aad225
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10271,7 +10267,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservebfd74c8e6541f7c7
+preserve35cfc5c6deca205b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
