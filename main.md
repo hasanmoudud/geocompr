@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-28'
+date: '2018-07-29'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-28 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-29 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve929d3c517798aae3
+preserve697b45c899ab5aa9
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1356,15 +1356,16 @@ new_raster
 #> resolution  : 0.000833, 0.000833  (x, y)
 #> extent      : -113, -113, 37.1, 37.5  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-#> data source : /home/travis/R/Library/spDataLarge/raster/srtm.tif 
+#> data source : /home/robin/R/x86_64-pc-linux../3.5/spDataLarge/raster/srtm.tif 
 #> names       : srtm 
 #> values      : 1024, 2892  (min, max)
 ```
 
-To access individual header information, you can use following commands: `dim(new_raster)` (dimensions - number of rows, number of columns, number of raster layers), `ncell(new_raster)` (number of raster cells), `res(new_raster)` (spatial resolution), `extent(new_raster)` (spatial extent), and `crs(new_raster)` (coordinate reference system).
+Dedicated functions report each component: `dim(new_raster)` returns the number of rows, columns and layers; the `ncell()` function the number cells (pixels); `res()` the raster's spatial resolution; `extent()` its spatial extent; and `crs()` its coordinate reference system (raster reprojection is covered in section \@ref(reprojecting-raster-geometries)).
+`inMemory()` reports whether the the raster data is stored in memory (the default) or on disk.
 
 <!--CRSargs(CRS("+init=epsg:4326"))-->
-Note that in contrast to the **sf** package, **raster** only accepts the `proj4string` representation of the coordinate reference system.
+<!-- Note that in contrast to the **sf** package, **raster** only accepts the `proj4string` representation of the coordinate reference system. -->
 
 <!--
 You can also summarize and plot raster cell values in a non-spatial fashion using base R functions such as `summary()` and `hist()`.
@@ -1406,19 +1407,10 @@ head(new_raster_values)
 The new vector, `new_raster_values`, can serve as input for subsequent statistical operations.
 -->
 
-Sometimes it is important to know if all values of a raster are currently in memory or on disk.
-Find out with the `inMemory()` function:
+`help("raster-package")` returns a full list of all available **raster** functions.
 
-
-```r
-inMemory(new_raster)
-#> [1] FALSE
-```
-
-`help(package = "raster", topic = "raster-package")` returns a full list of all available **raster** functions.
-
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">The **raster** package is not yet fully compatible with objects from the **sf** package.
-Thus, we suggest to convert **sf** objects to Spatial^*^ class() when using a vector data inside a **raster** function, for example `crop(raster_obj, as(sf_object, "Spatial")`.</div>\EndKnitrBlock{rmdnote}
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">The current version of **raster** (2.6.7) is not fully compatible with `sf` objects.
+We therefore suggest converting `sf` objects to an intermediate `Spatial` class (from the **sp** package) for compatibility between raster and vector data, for example `crop(raster_obj, as(sf_object, "Spatial")` (see section \@ref(raster-vector)).</div>\EndKnitrBlock{rmdnote}
 
 ### Basic map making {#basic-map-raster}
 
@@ -3109,7 +3101,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef867d321314b438c
+preservecfd015321474a525
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6644,7 +6636,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1e85dcd4f3d075be
+preserve9a45feb2ee82c455
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6742,7 +6734,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7c8564dca2d32cb1
+preserve0ecb9fe3eea16aae
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10279,7 +10271,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve4cbe944d55a4d913
+preservebfd74c8e6541f7c7
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
