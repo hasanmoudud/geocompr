@@ -772,7 +772,8 @@ Only the XYM type needs to be specified using a <code>dim</code> argument.</p>
 <a class="sourceLine" id="cb24-2" data-line-number="2">gemetrycollection_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">st_multipoint</span>(multipoint_matrix),</a>
 <a class="sourceLine" id="cb24-3" data-line-number="3">                              <span class="kw">st_linestring</span>(linestring_matrix))</a>
 <a class="sourceLine" id="cb24-4" data-line-number="4"><span class="kw">st_geometrycollection</span>(gemetrycollection_list)</a>
-<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="co">#&gt; GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))</span></a></code></pre></div>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="co">#&gt; GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2),</span></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="co">#&gt;   LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))</span></a></code></pre></div>
 <!-- table -->
 <!-- figure - image/fig1.jpg -->
 <!-- they are interconnected - points could create mulitpoints or lines; -->
@@ -883,26 +884,15 @@ This argument accepts either an integer with the <code>epsg</code> code (for exa
 <a class="sourceLine" id="cb31-10" data-line-number="10"><span class="co">#&gt; POINT (1 3)</span></a></code></pre></div>
 <p>For example, we can set the UTM Zone 11N projection with <code>epsg</code> code <code>2955</code>:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="dv">2955</span>)</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#&gt; Geometry set for 2 features </span></a>
-<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="co">#&gt; geometry type:  POINT</span></a>
-<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span></a>
-<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="co">#&gt; epsg (SRID):    2955</span></a>
-<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="co">#&gt; proj4string:    +proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</span></a>
-<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="co">#&gt; POINT (5 2)</span></a>
-<a class="sourceLine" id="cb32-9" data-line-number="9"><span class="co">#&gt; POINT (1 3)</span></a></code></pre></div>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="co">#&gt; epsg (SRID):    2955</span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="co">#&gt; proj4string:    +proj=utm +zone=11 +ellps=GRS80 ... +units=m +no_defs</span></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="co">#&gt; POINT (5 2)</span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="co">#&gt; POINT (1 3)</span></a></code></pre></div>
 <p>As you can see above, the <code>proj4string</code> definition was automatically added.
-Now we can try to set the CRS using <code>proj4string</code>:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">crs_utm =<span class="st"> &quot;+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> crs_utm)</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="co">#&gt; Geometry set for 2 features </span></a>
-<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="co">#&gt; geometry type:  POINT</span></a>
-<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span></a>
-<a class="sourceLine" id="cb33-7" data-line-number="7"><span class="co">#&gt; epsg (SRID):    NA</span></a>
-<a class="sourceLine" id="cb33-8" data-line-number="8"><span class="co">#&gt; proj4string:    +proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</span></a>
-<a class="sourceLine" id="cb33-9" data-line-number="9"><span class="co">#&gt; POINT (5 2)</span></a>
-<a class="sourceLine" id="cb33-10" data-line-number="10"><span class="co">#&gt; POINT (1 3)</span></a></code></pre></div>
+The CRS can also be set with the full <code>proj4string</code> (result not shown):</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">p4s =<span class="st"> &quot;+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> crs_utm)</a></code></pre></div>
 <p>However, the <code>epsg</code> string of our result remained empty.
 This is because there is no general method to convert from <code>proj4string</code> to <code>epsg</code>.</p>
 <!-- precision -->
@@ -1127,9 +1117,9 @@ new_raster4[2, 4] = 826
 Both can handle multiple layers, but differ regarding the number of supported file formats, type of internal representation and processing speed.</p>
 <p>A <code>RasterBrick</code> consists of multiple layers, which typically correspond to a single multispectral satellite file or a single multilayer object in memory.
 The <code>brick()</code> function creates a <code>RasterBrick</code> object.
-Usually, you provide it with a filename to a multilayer raster file but might also use another raster object and other spatial objects (see its help page for all supported formats).</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">multilayer_raster_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/landsat.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">r_brick =<span class="st"> </span><span class="kw">brick</span>(multilayer_raster_filepath)</a>
+Usually, you provide it with a filename to a multilayer raster file but might also use another raster object and other spatial objects (see <code>?brick</code> for all supported formats).</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">multi_raster_file =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/landsat.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">r_brick =<span class="st"> </span><span class="kw">brick</span>(multi_raster_file)</a>
 <a class="sourceLine" id="cb42-3" data-line-number="3">r_brick</a>
 <a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">#&gt; class       : RasterBrick </span></a>
 <a class="sourceLine" id="cb42-5" data-line-number="5"><span class="co">#&gt; dimensions  : 1428, 1128, 1610784, 4  (nrow, ncol, ncell, nlayers)</span></a>
@@ -1139,8 +1129,14 @@ Usually, you provide it with a filename to a multilayer raster file but might al
 <a class="sourceLine" id="cb42-9" data-line-number="9"><span class="co">#&gt; data source : /home/travis/R/Library/spDataLarge/raster/landsat.tif </span></a>
 <a class="sourceLine" id="cb42-10" data-line-number="10"><span class="co">#&gt; names       : landsat.1, landsat.2, landsat.3, landsat.4 </span></a>
 <a class="sourceLine" id="cb42-11" data-line-number="11"><span class="co">#&gt; min values  :      7550,      6404,      5678,      5252 </span></a>
-<a class="sourceLine" id="cb42-12" data-line-number="12"><span class="co">#&gt; max values  :     19071,     22051,     25780,     31961</span></a></code></pre></div>
-<p>The <code>nlayers</code> function retrieves the number of layers stored in a <code>Raster*</code> object:</p>
+<a class="sourceLine" id="cb42-12" data-line-number="12"><span class="co">#&gt; max values  :     19071,     22051,     25780,     31961</span></a>
+<a class="sourceLine" id="cb42-13" data-line-number="13"><span class="co">#&gt; class       : RasterBrick </span></a>
+<a class="sourceLine" id="cb42-14" data-line-number="14"><span class="co">#&gt; resolution  : 30, 30  (x, y)</span></a>
+<a class="sourceLine" id="cb42-15" data-line-number="15"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb42-16" data-line-number="16"><span class="co">#&gt; names       : landsat.1, landsat.2, landsat.3, landsat.4 </span></a>
+<a class="sourceLine" id="cb42-17" data-line-number="17"><span class="co">#&gt; min values  :      7550,      6404,      5678,      5252 </span></a>
+<a class="sourceLine" id="cb42-18" data-line-number="18"><span class="co">#&gt; max values  :     19071,     22051,     25780,     31961</span></a></code></pre></div>
+<p><code>nlayers()</code> retrieves the number of layers stored in a <code>Raster*</code> object:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">nlayers</span>(r_brick)</a>
 <a class="sourceLine" id="cb43-2" data-line-number="2"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
 <p>A <code>RasterStack</code> is similar to a <code>RasterBrick</code> in the sense that it consists also of multiple layers.
@@ -1157,14 +1153,13 @@ And again, one can simply specify a path to a file stored on disk.
 <a class="sourceLine" id="cb44-6" data-line-number="6"><span class="kw">crs</span>(raster_in_memory) =<span class="st"> </span><span class="kw">crs</span>(raster_on_disk)</a></code></pre></div>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">r_stack =<span class="st"> </span><span class="kw">stack</span>(raster_in_memory, raster_on_disk)</a>
 <a class="sourceLine" id="cb45-2" data-line-number="2">r_stack</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">#&gt; class       : RasterStack </span></a>
-<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co">#&gt; dimensions  : 1428, 1128, 1610784, 2  (nrow, ncol, ncell, nlayers)</span></a>
-<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co">#&gt; resolution  : 30, 30  (x, y)</span></a>
-<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="co">#&gt; extent      : 301905, 335745, 4111245, 4154085  (xmin, xmax, ymin, ymax)</span></a>
-<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="co">#&gt; coord. ref. : +proj=utm +zone=12 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 </span></a>
-<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="co">#&gt; names       :   layer, landsat.1 </span></a>
-<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="co">#&gt; min values  :       1,      7550 </span></a>
-<a class="sourceLine" id="cb45-10" data-line-number="10"><span class="co">#&gt; max values  : 1610784,     19071</span></a></code></pre></div>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">#&gt; class : RasterStack</span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co">#&gt; dimensions : 1428, 1128, 1610784, 2</span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co">#&gt; resolution : 30, 30</span></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="co">#&gt; names       :   layer, landsat.1 </span></a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="co">#&gt; min values  :       1,      7550 </span></a>
+<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="co">#&gt; max values  : 1610784,     19071</span></a></code></pre></div>
 <p>Another difference is that the processing time for <code>RasterBrick</code> objects is usually shorter than for <code>RasterStack</code> objects.</p>
 <p>Decision on which <code>Raster*</code> class should be used depends mostly on a character of input data.
 Processing of a single mulitilayer file or object is the most effective with <code>RasterBrick</code>, while <code>RasterStack</code> allows calculations based on many files, many <code>Raster*</code> objects, or both.</p>
@@ -1256,8 +1251,8 @@ For this, we need to read-in a vector dataset:</p>
 <p>Our new object, <code>new_vector</code>, is a polygon representing the borders of Zion National Park (<code>?zion</code>).</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">st_crs</span>(new_vector) <span class="co"># get CRS</span></a>
 <a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co">#&gt; Coordinate Reference System:</span></a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="co">#&gt;   No EPSG code</span></a>
-<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co">#&gt;   proj4string: &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="co">#&gt; No EPSG code</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co">#&gt; proj4string: &quot;+proj=utm +zone=12 +ellps=GRS80 ... +units=m +no_defs&quot;</span></a></code></pre></div>
 <p>In cases when a coordinate reference system (CRS) is missing or the wrong CRS is set, the <code>st_set_crs()</code> function can be used:</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">new_vector =<span class="st"> </span><span class="kw">st_set_crs</span>(new_vector, <span class="dv">26912</span>) <span class="co"># set CRS</span></a></code></pre></div>
 <p>The warning message informs us that the <code>st_set_crs()</code> function does not transform data from one CRS to another.</p>

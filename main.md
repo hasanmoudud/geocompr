@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8855a47745f50c4d
+preserve273b00ec06abc557
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1050,7 +1050,8 @@ st_multipolygon(multipolygon_list)
 gemetrycollection_list = list(st_multipoint(multipoint_matrix),
                               st_linestring(linestring_matrix))
 st_geometrycollection(gemetrycollection_list)
-#> GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))
+#> GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2),
+#>   LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))
 ```
 
 <!-- table -->
@@ -1201,31 +1202,20 @@ For example, we can set the UTM Zone 11N projection with `epsg` code `2955`:
 
 ```r
 st_sfc(point1, point2, crs = 2955)
-#> Geometry set for 2 features 
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3
+#> ...
 #> epsg (SRID):    2955
-#> proj4string:    +proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
+#> proj4string:    +proj=utm +zone=11 +ellps=GRS80 ... +units=m +no_defs
 #> POINT (5 2)
 #> POINT (1 3)
 ```
 
 As you can see above, the `proj4string` definition was automatically added.
-Now we can try to set the CRS using `proj4string`:
+The CRS can also be set with the full `proj4string` (result not shown):
 
 
 ```r
-crs_utm = "+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+p4s = "+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 st_sfc(point1, point2, crs = crs_utm)
-#> Geometry set for 2 features 
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3
-#> epsg (SRID):    NA
-#> proj4string:    +proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
-#> POINT (5 2)
-#> POINT (1 3)
 ```
 
 However, the `epsg` string of our result remained empty. 
@@ -1501,12 +1491,12 @@ Both can handle multiple layers, but differ regarding the number of supported fi
 
 A `RasterBrick` consists of multiple layers, which typically correspond to a single multispectral satellite file or a single multilayer object in memory. 
 The `brick()` function creates a `RasterBrick` object.
-Usually, you provide it with a filename to a multilayer raster file but might also use another raster object and other spatial objects (see its help page for all supported formats).
+Usually, you provide it with a filename to a multilayer raster file but might also use another raster object and other spatial objects (see `?brick` for all supported formats).
 
 
 ```r
-multilayer_raster_filepath = system.file("raster/landsat.tif", package = "spDataLarge")
-r_brick = brick(multilayer_raster_filepath)
+multi_raster_file = system.file("raster/landsat.tif", package = "spDataLarge")
+r_brick = brick(multi_raster_file)
 r_brick
 #> class       : RasterBrick 
 #> dimensions  : 1428, 1128, 1610784, 4  (nrow, ncol, ncell, nlayers)
@@ -1517,9 +1507,15 @@ r_brick
 #> names       : landsat.1, landsat.2, landsat.3, landsat.4 
 #> min values  :      7550,      6404,      5678,      5252 
 #> max values  :     19071,     22051,     25780,     31961
+#> class       : RasterBrick 
+#> resolution  : 30, 30  (x, y)
+#> ...
+#> names       : landsat.1, landsat.2, landsat.3, landsat.4 
+#> min values  :      7550,      6404,      5678,      5252 
+#> max values  :     19071,     22051,     25780,     31961
 ```
 
-The `nlayers` function retrieves the number of layers stored in a `Raster*` object:
+`nlayers()` retrieves the number of layers stored in a `Raster*` object:
 
 
 ```r
@@ -1548,11 +1544,10 @@ crs(raster_in_memory) = crs(raster_on_disk)
 ```r
 r_stack = stack(raster_in_memory, raster_on_disk)
 r_stack
-#> class       : RasterStack 
-#> dimensions  : 1428, 1128, 1610784, 2  (nrow, ncol, ncell, nlayers)
-#> resolution  : 30, 30  (x, y)
-#> extent      : 301905, 335745, 4111245, 4154085  (xmin, xmax, ymin, ymax)
-#> coord. ref. : +proj=utm +zone=12 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 
+#> class : RasterStack
+#> dimensions : 1428, 1128, 1610784, 2
+#> resolution : 30, 30
+#> ...
 #> names       :   layer, landsat.1 
 #> min values  :       1,      7550 
 #> max values  : 1610784,     19071
@@ -1673,8 +1668,8 @@ Our new object, `new_vector`, is a polygon representing the borders of Zion Nati
 ```r
 st_crs(new_vector) # get CRS
 #> Coordinate Reference System:
-#>   No EPSG code
-#>   proj4string: "+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+#> No EPSG code
+#> proj4string: "+proj=utm +zone=12 +ellps=GRS80 ... +units=m +no_defs"
 ```
 
 In cases when a coordinate reference system (CRS) is missing or the wrong CRS is set, the `st_set_crs()` function can be used:
@@ -3097,7 +3092,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservec33d7cc2e82a0cbe
+preserve32bff61967b2ccb4
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6632,7 +6627,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2c731ee23f5b7ae7
+preserved2a6844cab9506ce
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6730,7 +6725,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve91b2fb8fb3aad225
+preserveb2ed858634131768
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10267,7 +10262,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve35cfc5c6deca205b
+preserve7bfadeac520e09af
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
