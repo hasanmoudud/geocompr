@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve764caee95c4d8b3a
+preserved477d700ad2c7ded
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3087,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4cc95083f4ba6e2b
+preserve759ef7bf73d3fbc5
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6622,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve421e2241ccd2045f
+preserve18d1caa838547328
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0fff76ee2a88e57d
+preserve649742956f2d6fe8
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7112,10 +7112,13 @@ Roger Bivand elaborated on this in his talk "Bridges between GIS and R", deliver
 <!-- `geostat_talk16.zip`. -->
 ]
 
-The R language was originally designed as an interface to and extension of other languages, especially C and FORTRAN, to enable access to statistical algorithms in a user-friendly and intuitive read-evaluate-print loop (REPL) [@chambers_extending_2016].
-R was not originally intended to be a GIS.
-This makes the breadth of R's geospatial capabilities astonishing to many who are unaware of its ability to replicate established GIS software for many operations on spatial data.
-There are some domains where R can now outperform desktop GIS including spatial statistical modeling, online interactive visualization and the generation of animated or faceted maps.
+R originated as an interface language.
+Its predecesor S provided access to statistical algorithms in other languages (particularly FORTRAN), but from an intuitive read-evaluate-print loop (REPL) [@chambers_extending_2016].
+R continues this tradition with interfaces to numerous languages, notably C++, as described in Chapter \@ref(intro).
+R was not designed as a GIS.
+However, its ability to interface with dedicated GISs gives it astonishing geospatial capabilities.
+R is well-known as  statistical programming language, but many people are unaware of its ability to replicate GIS workflows, with the additional benefits of a (relatively) consistent CLI.
+Furthermore R outperforms GISs in some areas of geocomputation, including interactive/animated map making (see Chapter \@ref(adv-map)) and spatial statistical modeling (see Chapter \@ref(spatial-cv)).
 
 Instead of implementing existing GIS algorithms in R, it makes sense to avoid 'reinventing the wheel' by taking advantage of R's ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work).
 Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf** [@pebesma_simple_2018].
@@ -10255,7 +10258,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8c8250a61c9f3fb3
+preservec782eba211c6025c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

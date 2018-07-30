@@ -433,10 +433,13 @@ A good GIS GUI:</p>
 </ul>
 <p>Another advantage of dedicated GISs is that they provide access to hundreds of ‘geoalgorithms’ (computational recipes to solve geographic problems — see Chapter <a href="algorithms.html#algorithms">10</a>).
 Many of these are unavailable from the R command line, except via ‘GIS bridges’, the topic of (and motivation for) this chapter.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
-<p>The R language was originally designed as an interface to and extension of other languages, especially C and FORTRAN, to enable access to statistical algorithms in a user-friendly and intuitive read-evaluate-print loop (REPL) <span class="citation">(Chambers <a href="#ref-chambers_extending_2016">2016</a>)</span>.
-R was not originally intended to be a GIS.
-This makes the breadth of R’s geospatial capabilities astonishing to many who are unaware of its ability to replicate established GIS software for many operations on spatial data.
-There are some domains where R can now outperform desktop GIS including spatial statistical modeling, online interactive visualization and the generation of animated or faceted maps.</p>
+<p>R originated as an interface language.
+Its predecesor S provided access to statistical algorithms in other languages (particularly FORTRAN), but from an intuitive read-evaluate-print loop (REPL) <span class="citation">(Chambers <a href="#ref-chambers_extending_2016">2016</a>)</span>.
+R continues this tradition with interfaces to numerous languages, notably C++, as described in Chapter <a href="intro.html#intro">1</a>.
+R was not designed as a GIS.
+However, its ability to interface with dedicated GISs gives it astonishing geospatial capabilities.
+R is well-known as statistical programming language, but many people are unaware of its ability to replicate GIS workflows, with the additional benefits of a (relatively) consistent CLI.
+Furthermore R outperforms GISs in some areas of geocomputation, including interactive/animated map making (see Chapter <a href="adv-map.html#adv-map">8</a>) and spatial statistical modeling (see Chapter <a href="spatial-cv.html#spatial-cv">11</a>).</p>
 <p>Instead of implementing existing GIS algorithms in R, it makes sense to avoid ‘reinventing the wheel’ by taking advantage of R’s ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work).
 Using compiled code for new geoprocessing functionality (particularly with the help of the excellent <strong>Rcpp</strong> package) could form the basis of new R packages, building on the success of <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.
 However, there are already a wide range of algorithms that can be accessed via R’s interfaces to dedicated GIS software.
