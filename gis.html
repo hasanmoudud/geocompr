@@ -439,17 +439,17 @@ R continues this tradition with interfaces to numerous languages, notably C++, a
 R was not designed as a GIS.
 However, its ability to interface with dedicated GISs gives it astonishing geospatial capabilities.
 R is well-known as statistical programming language, but many people are unaware of its ability to replicate GIS workflows, with the additional benefits of a (relatively) consistent CLI.
-Furthermore R outperforms GISs in some areas of geocomputation, including interactive/animated map making (see Chapter <a href="adv-map.html#adv-map">8</a>) and spatial statistical modeling (see Chapter <a href="spatial-cv.html#spatial-cv">11</a>).</p>
-<p>Instead of implementing existing GIS algorithms in R, it makes sense to avoid ‘reinventing the wheel’ by taking advantage of R’s ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work).
-Using compiled code for new geoprocessing functionality (particularly with the help of the excellent <strong>Rcpp</strong> package) could form the basis of new R packages, building on the success of <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.
-However, there are already a wide range of algorithms that can be accessed via R’s interfaces to dedicated GIS software.
-It makes sense to understand these before moving to develop your own optimized algorithms.
-For this reason this chapter focuses on ‘bridges’ to the mature GIS products <a href="http://qgis.org/">QGIS</a> (via the package <strong>RQGIS</strong>), <a href="http://www.saga-gis.org/">SAGA</a> (<strong>RSAGA</strong>) and <a href="https://grass.osgeo.org/">GRASS</a> (<strong>rgrass7</strong>) from within R (Table <a href="gis.html#tab:gis-comp">9.1</a>).
-Here we focus on open-source software solutions, however, there is also a bridge to the commercial GIS leader <a href="https://www.arcgis.com">ArcGIS</a> through the <strong>RPyGeo</strong> package.
-And the so-called <a href="https://github.com/R-ArcGIS/r-bridge">R-ArcGIS bridge</a> allows us to use R from within ArcGIS.
-As a final note, we would like to point out that aside from interfaces to desktop GIS there are also interfaces to geospatial libraries such as <a href="www.gdal.org">GDAL</a> (<strong>gdalUtils</strong>, <strong>rgdal</strong>, <strong>sf</strong>) and <a href="https://trac.osgeo.org/geos/">GEOS</a> (<strong>rgeos</strong>, <strong>sf</strong>).
-By the end of the chapter you should have a working knowledge of the functionality such packages make possible, and a more nuanced understanding of the ‘CLI vs GUI’ debate.
-As mentioned in Chapter <a href="intro.html#intro">1</a>, doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science.</p>
+Furthermore R outperforms GISs in some areas of geocomputation, including interactive/animated map making (see Chapter <a href="adv-map.html#adv-map">8</a>) and spatial statistical modeling (see Chapter <a href="spatial-cv.html#spatial-cv">11</a>).
+<!-- Instead of implementing existing GIS algorithms in R, it makes sense to avoid 'reinventing the wheel' by taking advantage of R's ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work). -->
+<!-- Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf** [@pebesma_simple_2018]. -->
+<!-- However, there are already a wide range of algorithms that can be accessed via R's interfaces to dedicated GIS software. -->
+<!-- It makes sense to understand these before moving to develop your own optimized algorithms. -->
+This chapter focuses on ‘bridges’ to three mature GIS products: QGIS (via the package <strong>RQGIS</strong>), SAGA (via <strong>RSAGA</strong>) and GRASS (via <strong>rgrass7</strong>) (see Table <a href="gis.html#tab:gis-comp">9.1</a>).</p>
+<p>Although the focus is on R bridges to dedicated open-source GISs, it is worth being aware of ‘bridges’ <em>not</em> covered in this chapter.
+R can access the proprietary GIS software ArcGIS (via <strong>RPyGeo</strong>), and a so-called <a href="https://github.com/R-ArcGIS/r-bridge">R-ArcGIS bridge</a> allows R to be used from within ArcGIS (R can also be used from within QGIS via <a href="https://docs.qgis.org/2.14/en/docs/training_manual/processing/r_intro.html">Processing</a>).
+There are also R interfaces to geospatial libraries such as <a href="www.gdal.org">GDAL</a> (<strong>gdalUtils</strong>, <strong>rgdal</strong>, <strong>sf</strong>) and <a href="https://trac.osgeo.org/geos/">GEOS</a> (<strong>rgeos</strong>, <strong>sf</strong>), covered elsewhere in this book.</p>
+<!-- The chapter's aim is to provide working knowledge of R's bridges to open source GISs. -->
+<!-- As mentioned in Chapter \@ref(intro), doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science. -->
 <table>
 <caption><span id="tab:gis-comp">Table 9.1: </span>Comparison between three open-source GIS. Hybrid refers to the support of vector and raster operations.</caption>
 <thead>
@@ -1000,9 +1000,6 @@ Additionally, give <code>mapview</code> a try.</p></li>
 </div>
 <div id="ref-chambers_extending_2016">
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
-</div>
-<div id="ref-pebesma_simple_2018">
-<p>Pebesma, Edzer. 2018. “Simple Features for R: Standardized Support for Spatial Vector Data.” <em>The R Journal</em>.</p>
 </div>
 <div id="ref-graser_processing_2015">
 <p>Graser, Anita, and Victor Olaya. 2015. “Processing: A Python Framework for the Seamless Integration of Geoprocessing Tools in QGIS.” <em>ISPRS International Journal of Geo-Information</em> 4 (4): 2219–45. <a href="https://doi.org/10.3390/ijgi4042219" class="uri">https://doi.org/10.3390/ijgi4042219</a>.</p>
