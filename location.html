@@ -557,7 +557,7 @@ Figure 13.1: Gridded German census data of 2011. See Table 13.1 for a descriptio
 In the case of the population data we convert the classes into a numeric data type using class means.
 Raster cells are assumed to have a population of 127 if they have a value of 1 (cells in ‘class 1’ contain between 3 and 250 inhabitants) and 375 if they have a value of 2 (containing 250 to 500 inhabitants), and so on (see Table <a href="location.html#tab:census-desc">13.1</a>).
 A cell value of 8000 inhabitants was chosen for ‘class 6’ because these cells contain more than 8000 people.
-Of course, these are approximations of the true population, not precise values.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a>
+Of course, these are approximations of the true population, not precise values.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a>
 However, the level of detail is sufficient to delineate metropolitan areas (see next section).</p>
 <p>In contrast to the <code>pop</code> variable, representing absolute estimates of the total population, the remaining variables were re-classified as weights corresponding with weights used in the survey.
 Class 1 in the variable <code>women</code>, for instance, represents areas in which 0 to 40% of the population is female;
@@ -685,7 +685,7 @@ Figure 13.2: The aggregated population raster (resolution: 20 km) with the ident
 A reverse geocoding approach can settle this problem.
 Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
-The <strong>ggmap</strong> package makes use of the one provided by Google.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a>
+The <strong>ggmap</strong> package makes use of the one provided by Google.<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a>
 <code>ggmap::revgeocode()</code> only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter <a href="reproj-geo-data.html#reproj-geo-data">6</a>).</p>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" data-line-number="1">metros_wgs =<span class="st"> </span><span class="kw">st_transform</span>(metros, <span class="dv">4326</span>)</a>
 <a class="sourceLine" id="cb433-2" data-line-number="2">coords =<span class="st"> </span><span class="kw">st_centroid</span>(metros_wgs) <span class="op">%&gt;%</span></a>
@@ -697,7 +697,7 @@ The <strong>ggmap</strong> package makes use of the one provided by Google.<a hr
 <a class="sourceLine" id="cb433-8" data-line-number="8"><span class="co">#&gt; of_largest_polygon): st_centroid does not give correct centroids for</span></a>
 <a class="sourceLine" id="cb433-9" data-line-number="9"><span class="co">#&gt; longitude/latitude data</span></a></code></pre></div>
 <p>Additionally, <code>ggmap::revgeocode()</code> only accepts one coordinate at a time, which is why we iterate over each coordinate of <code>coords</code> via a loop (<code>map_dfr()</code>).
-<code>map_dfr()</code> does exactly the same as <code>lapply()</code> except for returning a <code>data.frame</code> instead of a <code>list</code>.<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a>
+<code>map_dfr()</code> does exactly the same as <code>lapply()</code> except for returning a <code>data.frame</code> instead of a <code>list</code>.<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a>
 Sometimes, Google’s reverse geocoding API is unable to find an address returning <code>NA</code>.
 Usually, trying the same coordinate again returns an address at the second or third attempt (see <code>while()-loop</code>).
 However, if ten attempts have already failed, this is a good indication that the requested information is indeed unavailable.
@@ -786,7 +786,7 @@ The subsequent code chunk does this using a number of functions including:</p>
 <!-- Alternatively, we could have provided the bounding box in the form of coordinates ourselves. --></li>
 <li><code>add_osm_feature()</code> to specify OSM elements with a key value of <code>shop</code> (see <a href="http://wiki.openstreetmap.org/wiki/Map_Features">wiki.openstreetmap.org</a> for a list of common key:value pairs).</li>
 <li><code>osmdata_sf()</code>, which converts the the OSM data into spatial objects (of class <code>sf</code>).</li>
-<li><code>while()</code>, which tries repeatedly (three times in this case) to download the data if it fails first time.<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a>
+<li><code>while()</code>, which tries repeatedly (three times in this case) to download the data if it fails first time.<a href="#fn74" class="footnote-ref" id="fnref74"><sup>74</sup></a>
 Before running this code: please consider it will download almost 2GB of data.
 To save time and resources we have output into <strong>spDataLarge</strong> and should already be available in your environment as an object called <code>shops</code>.</li>
 </ul>
@@ -959,15 +959,15 @@ Change the age raster accordingly, repeat the remaining analyses and compare the
 </div>
 <div class="footnotes">
 <hr />
-<ol start="70">
-<li id="fn70"><p>
-The potential error introduced during this reclassification stage will be explored in the exercises.<a href="location.html#fnref70" class="footnote-back">↩</a></p></li>
+<ol start="71">
 <li id="fn71"><p>
-Google allows each user to access its services on a free basis for a maximum of 2500 queries a day.<a href="location.html#fnref71" class="footnote-back">↩</a></p></li>
+The potential error introduced during this reclassification stage will be explored in the exercises.<a href="location.html#fnref71" class="footnote-back">↩</a></p></li>
 <li id="fn72"><p>
-For more on <code>lapply()</code> see <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span> and <span class="citation">Wickham (<a href="#ref-wickham_splitapplycombine_2011">2011</a>)</span>.<a href="location.html#fnref72" class="footnote-back">↩</a></p></li>
+Google allows each user to access its services on a free basis for a maximum of 2500 queries a day.<a href="location.html#fnref72" class="footnote-back">↩</a></p></li>
 <li id="fn73"><p>
-As with Google’s reverse geocode API, the OSM-download will sometimes fail at the first attempt.<a href="location.html#fnref73" class="footnote-back">↩</a></p></li>
+For more on <code>lapply()</code> see <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span> and <span class="citation">Wickham (<a href="#ref-wickham_splitapplycombine_2011">2011</a>)</span>.<a href="location.html#fnref73" class="footnote-back">↩</a></p></li>
+<li id="fn74"><p>
+As with Google’s reverse geocode API, the OSM-download will sometimes fail at the first attempt.<a href="location.html#fnref74" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>

@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee2288b3f916a6448
+preservec8fb0c71f300c368
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3087,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve677c97477641ff78
+preserve8ec4cee163d0d86a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6622,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve93a3d411d38d4c06
+preserveb243d90ad46a980e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7855930740229a21
+preserve46119ee543ade6a8
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7043,18 +7043,17 @@ Next, compare it with the maps of a hexagonal and regular grid created using the
 
 ## Prerequisites {-}
 
-- This chapter requires the following packages:
+- This chapter requires QGIS, SAGA and GRASS to be installed and the following packages to be attached:^[
+Packages that have already been used including **spData**, **spDataLarge** and **dplyr** need to be installed. 
+]
 
 
 ```r
 library(sf)
 library(raster)
-library(dplyr)
-library(spData)
 library(RQGIS)
 library(RSAGA)
 library(rgrass7)
-library(tmap)
 ```
 
 ## Introduction
@@ -7062,7 +7061,8 @@ library(tmap)
 An important feature of R is that users must use the command-line interface (CLI) to interact with the computer:
 you type commands and hit `Enter` to execute them interactively.
 The most popular open-source GIS software packages, by contrast, feature a prominent graphical user interface (GUI):
-you *can* interact with QGIS, SAGA and gvSIG by typing into (dockable) command-lines, but most users interact with such programs by 'pointing and clicking their way through life' as Gary Sherman puts it below [@sherman_desktop_2008]:^[
+you *can* interact with QGIS, SAGA and gvSIG by typing into (dockable) command-lines, but most users interact with such programs by 'pointing and clicking their way through life' as Gary Sherman --- someone well-qualified to comment on this matter as the creator of QGIS, the world's premier open source GUI-based GIS! ---
+puts it below [@sherman_desktop_2008]:^[
 <!-- Should the commented-out mega-footnote go in a vignette? (todo, RL) -->
 <!-- yes, we should shorten the footnote or put it somewhere into the text. I just rewrote it to make clearer what was meant. At least this was what I gathered. -->
 GRASS GIS and PostGIS are popular in academia and industry and can be seen as products which buck this trend as they are built around the command-line.
@@ -7081,8 +7081,6 @@ click their way through life. That’s good, but there is a tremendous amount
 of flexibility and power waiting for you with the command line. Many times
 you can do something on the command line in a fraction of the time you
 can do it with a GUI.
-
-Gary Sherman is well-qualified to comment on this matter as the creator of QGIS, the world's premier open source GUI-based GIS!
 
 The 'CLI vs GUI' debate is often adversarial and polarized but it does not have to be: both options are great if well chosen in accordance with your needs and tasks.
 The advantages of a good CLI such as that provided by R are numerous. 
@@ -7183,9 +7181,9 @@ Both polygon datasets are available in the **spData** package, and for both we w
 
 
 ```r
-data("incongruent", "aggregating_zones")
-incongruent = st_transform(incongruent, 4326)
-aggregating_zones = st_transform(aggregating_zones, 4326)
+data("incongruent", "aggregating_zones", package = "spData")
+incongr_wgs = st_transform(incongruent, 4326)
+aggzone_wgs = st_transform(aggregating_zones, 4326)
 ```
 
 Now we need a QGIS geoalgorithm that unions polygons.
@@ -7220,13 +7218,13 @@ get_usage(alg)
 
 Finally, we can let QGIS do the work.
 Note that the workhorse function `run_qgis()` accepts R named arguments, i.e., you can specify the parameter names as returned by `get_usage()` in `run_qgis()` as you would do in any other regular R function.
-Note also that `run_qgis()` accepts spatial objects residing in R's global environment as input (here: `aggregating_zones` and `incongruent`). 
+Note also that `run_qgis()` accepts spatial objects residing in R's global environment as input (here: `aggzone_wgs` and `incongr_wgs`). 
 But of course, you could also specify paths to spatial vector files stored on disk.
 Setting the `load_output` to `TRUE` automatically loads the QGIS output as an **sf**-object into R.
 
 
 ```r
-union = run_qgis(alg, INPUT = incongruent, INPUT2 = aggregating_zones, 
+union = run_qgis(alg, INPUT = incongr_wgs, INPUT2 = aggzone_wgs, 
                  OUTPUT = file.path(tempdir(), "union.shp"),
                  load_output = TRUE)
 #> $`OUTPUT`
@@ -7234,7 +7232,7 @@ union = run_qgis(alg, INPUT = incongruent, INPUT2 = aggregating_zones,
 ```
 
 Note that the QGIS union operation merges the two input layers into one layer by using the intersection and the symmetrical difference of the two input layers (which by the way is also the default when doing a union operation in GRASS and SAGA).
-This is **not** the same as `st_union(incongruent, aggregating_zones)` (see Exercises)!
+This is **not** the same as `st_union(incongr_wgs, aggzone_wgs)` (see Exercises)!
 The QGIS output contains empty geometries and multipart polygons.
 Empty geometries might lead to problems in subsequent geoprocessing tasks which is why they will be deleted.
 `st_dimension()` returns `NA` if a geometry is empty, and can therefore be used as a filter. 
@@ -7414,7 +7412,7 @@ Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-t
 To load and plot the SAGA output file, we use the **raster** package. 
 
 <div class="figure" style="text-align: center">
-<img src="figures/09_twi.png" alt="SAGA wetness index of Mount Mongón, Peru." width="531" />
+<img src="figures/09_twi.png" alt="SAGA wetness index of Mount Mongón, Peru." width="70%" />
 <p class="caption">(\#fig:saga-twi)SAGA wetness index of Mount Mongón, Peru.</p>
 </div>
 
@@ -10255,7 +10253,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserved9fa936d749e1512
+preserveee3e752d2981657f
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
