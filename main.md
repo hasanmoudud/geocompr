@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve82da1cdc423a450d
+preserve764caee95c4d8b3a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3087,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve14c4bacc40345bf1
+preserve4cc95083f4ba6e2b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6622,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve57f8991f2fdc42b0
+preserve421e2241ccd2045f
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve11a645cd9f4c179c
+preserve0fff76ee2a88e57d
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7044,7 +7044,7 @@ Next, compare it with the maps of a hexagonal and regular grid created using the
 ## Prerequisites {-}
 
 - This chapter requires QGIS, SAGA and GRASS to be installed and the following packages to be attached:^[
-Packages that have already been used including **spData**, **spDataLarge** and **dplyr** need to be installed. 
+Packages that have already been used including **spData**, **spDataLarge** and **dplyr** also need to be installed. 
 ]
 
 
@@ -7058,11 +7058,19 @@ library(rgrass7)
 
 ## Introduction
 
-An important feature of R is that users must use the command-line interface (CLI) to interact with the computer:
-you type commands and hit `Enter` to execute them interactively.
-The most popular open-source GIS software packages, by contrast, feature a prominent graphical user interface (GUI):
-you *can* interact with QGIS, SAGA and gvSIG by typing into (dockable) command-lines, but most users interact with such programs by 'pointing and clicking their way through life' as Gary Sherman --- someone well-qualified to comment on this matter as the creator of QGIS, the world's premier open source GUI-based GIS! ---
-puts it below [@sherman_desktop_2008]:^[
+A defining feature of R is its command-line interface (CLI):
+you type commands and hit `Enter` (or `Ctl+Enter` if writing code in the source editor in RStudio) to execute them interactively.
+In dedicated GIS packages, by contrast, the emphasis tends to be on the graphical user interface (GUI):
+you *can* interact with QGIS, SAGA and gvSIG with dockable CLIs, but 'pointing and clicking' is the norm.
+This means many GIS users miss-out on the advantages of the command-line according to Gary Sherman, creator of QGIS [@sherman_desktop_2008]:
+
+> With the advent of 'modern' GIS software, most people want to point and
+click their way through life. That’s good, but there is a tremendous amount
+of flexibility and power waiting for you with the command line. Many times
+you can do something on the command line in a fraction of the time you
+can do it with a GUI.
+
+The 'CLI vs GUI' debate can be adversial but it does not have to be: both options can be used interchangeably, depending on the task at hand and the user's skillset.^[
 <!-- Should the commented-out mega-footnote go in a vignette? (todo, RL) -->
 <!-- yes, we should shorten the footnote or put it somewhere into the text. I just rewrote it to make clearer what was meant. At least this was what I gathered. -->
 GRASS GIS and PostGIS are popular in academia and industry and can be seen as products which buck this trend as they are built around the command-line.
@@ -7075,35 +7083,29 @@ GRASS GIS and PostGIS are popular in academia and industry and can be seen as pr
 <!-- Therefore, frequently users store their spatial data in PostGIS, and interact with it through a dedicated GIS software such as QGIS. Of course, you can also use R to access data from PostGIS (**sf**, **rgdal**, **rpostgis**). -->
 <!-- In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.    -->
 ]
-
-> With the advent of 'modern' GIS software, most people want to point and
-click their way through life. That’s good, but there is a tremendous amount
-of flexibility and power waiting for you with the command line. Many times
-you can do something on the command line in a fraction of the time you
-can do it with a GUI.
-
-The 'CLI vs GUI' debate is often adversarial and polarized but it does not have to be: both options are great if well chosen in accordance with your needs and tasks.
-The advantages of a good CLI such as that provided by R are numerous. 
-Among others, a CLI:
+The advantages of a good CLI such as that provided by R (and enhanced by IDEs such as RStudio) are numerous.
+A good CLI:
 
 - Facilitates the automation of repetitive tasks. 
-- Ensures transparency and reproducibility (which is also the backbone of good scientific practice), and therefore is the preferred option for doing Geographic Data Science.
-- Encourages extending existing software by making it easy to modify, enhance and implement new functions.
-- Helps you to develop advanced technical skills which will certainly enhance your career prospects, and are in dire need across a wide range of disciplines.
-- Is fun, but admittedly that is a subjective argument.
+- Enables transparency and reproducibility, the backbone of good scientific practice and Data Science.
+- Encourages software development by providing tools to modify existing functions and implement new ones.
+- Helps develop future-proof programming skills which are in high demand in many disciplines and industries.
+- Is user-friendly and fast, allowing an efficient work-flow.
 
 On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous.
-For instance, think of:
+A good GIS GUI:
 
-- The very user-friendly graphical interface which spares the user from programming and facilitates interactive geographic data exploration and interactive map production.
-- Digitizing and all related tools (trace, snap, topological rules, etc.).^[Note that there is also the **mapedit** package but its intention is to allow the quick editing of a few spatial features, and not professional, large-scale cartographic digitizing.]
-- Georeferencing with ground control points and orthorectification. 
-The process of locating control points, choosing the right transformation model, and evaluating the registration error are inherently interactive, and thus unsuitable to be done with R, or any other programming language.
-- Stereoscopic mapping (e.g., LiDAR and structure from motion).
-- The built-in geodatabase management system often integrated in Desktop GIS (ArcMap, GRASS GIS) and all related advantages such as object-oriented relational data modeling, topology, fast (spatial) querying, among others.
+- Has a 'shallow' learning curve meaning geographic data can be explored and visualized without hours of learning a new language.
+- Provides excellent support for 'digitizing' (creating new vector datasets), including trace, snap and topological tools.^[
+The **mapedit** package allows the quick editing of a few spatial features but not professional, large-scale cartographic digitizing.
+]
+- Enables georeferencing (matching raster images to existing maps) with ground control points and orthorectification.
+<!-- The process of locating control points, choosing the right transformation model, and evaluating the registration error are inherently interactive, and thus unsuitable to be done with R, or any other programming language. -->
+- Supports stereoscopic mapping (e.g., LiDAR and structure from motion).
+- Provides access to geodatabase management systems with object-oriented relational data models, topology and fast (spatial) querying.
 
-Another advantage of dedicated GISs is that they provide access to hundreds of 'geoalgorithms' (computational recipes to solve geographic problems --- see Chapter \@ref(algorithms)), many of which are unavailable from the R command line.
-The good news is that such geoalgorithms can be accessed from the R command via 'GIS bridges', hence the title of (and motivation for) this chapter.^[
+Another advantage of dedicated GISs is that they provide access to hundreds of 'geoalgorithms' (computational recipes to solve geographic problems --- see Chapter \@ref(algorithms)).
+Many of these are unavailable from the R command line, except via 'GIS bridges', the topic of (and motivation for) this chapter.^[
 An early use of the term 'bridge' referred the coupling of R with GRASS [@neteler_open_2008].
 Roger Bivand elaborated on this in his talk "Bridges between GIS and R", delivered at the 2016 GEOSTAT summer school (see slides at http://spatial.nhh.no/misc/).
 <!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
@@ -10253,7 +10255,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve38df150049ff710c
+preserve8c8250a61c9f3fb3
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
