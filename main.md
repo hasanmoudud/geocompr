@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef7576433f14d472e
+preserveb978d462d7d1c2c7
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -767,11 +767,11 @@ However, there are good reasons for organizing things this way and using **sf**.
 Before describing each geometry type that the **sf** package supports, it is worth taking a step back to understand the building blocks of `sf` objects. 
 Section \@ref(sf) shows how simple features objects are data frames, with special geometry columns.
 These spatial columns are often called `geom` or `geometry`: `world$geom` refers to the spatial element of the `world` object described above.
-These geometry columns are 'list columns' of class `sfc` (see Section \@ref(sfc)).
-In turn, `sfc` objects are composed of one or more objects of class `sfg`: simple feature geometries that we describe in Section \@ref(sfg).
+These geometry columns are 'list columns' of class `sfc` (see section \@ref(sfc)).
+In turn, `sfc` objects are composed of one or more objects of class `sfg`: simple feature geometries that we describe in section \@ref(sfg).
 
 To understand how the spatial components of simple features work, it is vital to understand simple feature geometries.
-For this reason we cover each currently supported simple features geometry types in the Section \@ref(geometry) before moving on to describe how these can be represented in R using `sfg` objects, combined to form `sfc` and eventually full `sf` objects.
+For this reason we cover each currently supported simple features geometry types in the section \@ref(geometry) before moving on to describe how these can be represented in R using `sfg` objects, combined to form `sfc` and eventually full `sf` objects.
 
 ### Why simple features?
 
@@ -3087,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve200d7210e0acfe91
+preserve175797dc18244ed9
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6622,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve82837d2ec128952f
+preserve76197cda9319c1a5
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1d08186ab54af846
+preserve406300b6fa35bfe7
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10259,7 +10259,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservecfcbe7a144396802
+preserve05f861fb5e85eb32
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

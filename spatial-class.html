@@ -568,10 +568,10 @@ However, there are good reasons for organizing things this way and using <strong
 <p>Before describing each geometry type that the <strong>sf</strong> package supports, it is worth taking a step back to understand the building blocks of <code>sf</code> objects.
 Section <a href="spatial-class.html#sf">2.1.8</a> shows how simple features objects are data frames, with special geometry columns.
 These spatial columns are often called <code>geom</code> or <code>geometry</code>: <code>world$geom</code> refers to the spatial element of the <code>world</code> object described above.
-These geometry columns are ‘list columns’ of class <code>sfc</code> (see Section <a href="spatial-class.html#sfc">2.1.7</a>).
-In turn, <code>sfc</code> objects are composed of one or more objects of class <code>sfg</code>: simple feature geometries that we describe in Section <a href="spatial-class.html#sfg">2.1.6</a>.</p>
+These geometry columns are ‘list columns’ of class <code>sfc</code> (see section <a href="spatial-class.html#sfc">2.1.7</a>).
+In turn, <code>sfc</code> objects are composed of one or more objects of class <code>sfg</code>: simple feature geometries that we describe in section <a href="spatial-class.html#sfg">2.1.6</a>.</p>
 <p>To understand how the spatial components of simple features work, it is vital to understand simple feature geometries.
-For this reason we cover each currently supported simple features geometry types in the Section <a href="spatial-class.html#geometry">2.1.5</a> before moving on to describe how these can be represented in R using <code>sfg</code> objects, combined to form <code>sfc</code> and eventually full <code>sf</code> objects.</p>
+For this reason we cover each currently supported simple features geometry types in the section <a href="spatial-class.html#geometry">2.1.5</a> before moving on to describe how these can be represented in R using <code>sfg</code> objects, combined to form <code>sfc</code> and eventually full <code>sf</code> objects.</p>
 </div>
 <div id="why-simple-features" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> Why simple features?</h3>
