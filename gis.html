@@ -577,7 +577,7 @@ Assuming the function or its short description contains the word “sliver”, w
 <p>Conveniently, the user does not need to specify each single parameter.
 In case a parameter is left unspecified, <code>run_qgis()</code> will automatically use the corresponding default value as an argument if available.
 To find out about the default values, run <code>get_args_man()</code>.</p>
-<p>To get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m<sup>2</sup> should be joined to the neighboring polygon with the largest area (see right panel of Figure <a href="gis.html#fig:sliver-fig">9.1</a>).</p>
+<p>To remove the slivers, we specify that all polygons with an area less or equal to 25000 m<sup>2</sup> should be joined to the neighboring polygon with the largest area (see right panel of Figure <a href="gis.html#fig:sliver-fig">9.1</a>).</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">clean =<span class="st"> </span><span class="kw">run_qgis</span>(<span class="st">&quot;qgis:eliminatesliverpolygons&quot;</span>,</a>
 <a class="sourceLine" id="cb319-2" data-line-number="2">                 <span class="dt">INPUT =</span> single,</a>
 <a class="sourceLine" id="cb319-3" data-line-number="3">                 <span class="dt">ATTRIBUTE =</span> <span class="st">&quot;area&quot;</span>,</a>

@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservec8fb0c71f300c368
+preserve82da1cdc423a450d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3087,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve8ec4cee163d0d86a
+preserve14c4bacc40345bf1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6622,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveb243d90ad46a980e
+preserve57f8991f2fdc42b0
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve46119ee543ade6a8
+preserve11a645cd9f4c179c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7293,7 +7293,7 @@ Conveniently, the user does not need to specify each single parameter.
 In case a parameter is left unspecified, `run_qgis()` will automatically use the corresponding default value as an argument if available.
 To find out about the default values, run `get_args_man()`.  
 
-To get rid off the slivers, we specify that all polygons with an area less or equal to 25000 m^2^ should be joined to the neighboring polygon with the largest area (see right panel of Figure \@ref(fig:sliver-fig)).
+To remove the slivers, we specify that all polygons with an area less or equal to 25000 m^2^ should be joined to the neighboring polygon with the largest area (see right panel of Figure \@ref(fig:sliver-fig)).
 
 
 ```r
@@ -10253,7 +10253,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveee3e752d2981657f
+preserve38df150049ff710c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
