@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5c6c82f029e2b8cd
+preservedc6c062a9c6fc26d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1072,7 +1072,8 @@ This is important since `sfc` represents the geometry column in **sf** data fram
 # sfc POINT
 point1 = st_point(c(5, 2))
 point2 = st_point(c(1, 3))
-st_sfc(point1, point2)
+points_sfc = st_sfc(point1, point2)
+points_sfc
 #> Geometry set for 2 features 
 #> geometry type:  POINT
 #> dimension:      XY
@@ -1084,7 +1085,7 @@ st_sfc(point1, point2)
 ```
 
 In most cases, an `sfc` object contains objects of the same geometry type.
-Therefore, when we convert `sfg` objects of type polygon into a simple feature geometry column, we would also end up with an `sfc` object of type polygon. 
+Therefore, when we convert `sfg` objects of type polygon into a simple feature geometry column, we would also end up with an `sfc` object of type polygon, which can be verified with `st_geometry_type()`. 
 Equally, a geometry column of multilinestrings would result in an `sfc` object of type multilinestring:
 
 
@@ -1094,15 +1095,10 @@ polygon_list1 = list(rbind(c(1, 5), c(2, 2), c(4, 1), c(4, 4), c(1, 5)))
 polygon1 = st_polygon(polygon_list1)
 polygon_list2 = list(rbind(c(0, 2), c(1, 2), c(1, 3), c(0, 3), c(0, 2)))
 polygon2 = st_polygon(polygon_list2)
-st_sfc(polygon1, polygon2)
-#> Geometry set for 2 features 
-#> geometry type:  POLYGON
-#> dimension:      XY
-#> bbox:           xmin: 0 ymin: 1 xmax: 4 ymax: 5
-#> epsg (SRID):    NA
-#> proj4string:    NA
-#> POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))
-#> POLYGON ((0 2, 1 2, 1 3, 0 3, 0 2))
+polygon_sfc = st_sfc(polygon1, polygon2)
+st_geometry_type(polygon_sfc)
+#> [1] POLYGON POLYGON
+#> 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE
 ```
 
 
@@ -1114,15 +1110,10 @@ multilinestring1 = st_multilinestring((multilinestring_list1))
 multilinestring_list2 = list(rbind(c(2, 9), c(7, 9), c(5, 6), c(4, 7), c(2, 7)), 
                             rbind(c(1, 7), c(3, 8)))
 multilinestring2 = st_multilinestring((multilinestring_list2))
-st_sfc(multilinestring1, multilinestring2)
-#> Geometry set for 2 features 
-#> geometry type:  MULTILINESTRING
-#> dimension:      XY
-#> bbox:           xmin: 1 ymin: 1 xmax: 7 ymax: 9
-#> epsg (SRID):    NA
-#> proj4string:    NA
-#> MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 ...
-#> MULTILINESTRING ((2 9, 7 9, 5 6, 4 7, 2 7), (1 ...
+multilinestring_sfc = st_sfc(multilinestring1, multilinestring2)
+st_geometry_type(multilinestring_sfc)
+#> [1] MULTILINESTRING MULTILINESTRING
+#> 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE
 ```
 
 It is also possible to create an `sfc` object from `sfg` objects with different geometry types:
@@ -1130,15 +1121,10 @@ It is also possible to create an `sfc` object from `sfg` objects with different 
 
 ```r
 # sfc GEOMETRY
-st_sfc(point1, multilinestring1)
-#> Geometry set for 2 features 
-#> geometry type:  GEOMETRY
-#> dimension:      XY
-#> bbox:           xmin: 1 ymin: 1 xmax: 5 ymax: 5
-#> epsg (SRID):    NA
-#> proj4string:    NA
-#> POINT (5 2)
-#> MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 ...
+point_multilinestring_sfc = st_sfc(point1, multilinestring1)
+st_geometry_type(point_multilinestring_sfc)
+#> [1] POINT           MULTILINESTRING
+#> 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE
 ```
 
 <!-- if you want to use it - st_cast() to a proper geometry type -->
@@ -1149,89 +1135,69 @@ st_sfc(point1, multilinestring1)
 As mentioned before, `sfc` objects can additionally store information on the coordinate reference systems (CRS).
 <!-- What's CRS -->
 To specify a certain CRS, we can use the `epsg (SRID)` or `proj4string` attributes of an `sfc` object.
-The default value of `epsg (SRID)` and `proj4string` is `NA` (*Not Available*):
+The default value of `epsg (SRID)` and `proj4string` is `NA` (*Not Available*), as can be verified with `st_crs()`:
 
 
 ```r
-st_sfc(point1, point2)
-#> Geometry set for 2 features 
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3
-#> epsg (SRID):    NA
-#> proj4string:    NA
-#> POINT (5 2)
-#> POINT (1 3)
+st_crs(points_sfc)
+#> Coordinate Reference System: NA
 ```
 
-All geometries in an `sfc` object must have the same CRS. 
-
+All geometries in an `sfc` object must have the same CRS.
 We can add coordinate reference system as a `crs` argument of `st_sfc()`. 
-This argument accepts either an integer with the `epsg` code (for example, `4326`)  or a `proj4string` character string (for example, `"+proj=longlat +datum=WGS84 +no_defs"`) (see section \@ref(crs-intro)). 
+This argument accepts an integer with the `epsg` code such as `4326`, which automatically adds the 'proj4string' (see section \@ref(crs-intro)):
 
 
 ```r
 # EPSG definition
-st_sfc(point1, point2, crs = 4326)
-#> Geometry set for 2 features 
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
-#> POINT (5 2)
-#> POINT (1 3)
+points_sfc_wgs = st_sfc(point1, point2, crs = 4326)
+st_crs(points_sfc_wgs)
+#> Coordinate Reference System:
+#>   EPSG: 4326 
+#>   proj4string: "+proj=longlat +datum=WGS84 +no_defs"
 ```
+
+It also accepts a raw proj4string (result not shown):
 
 
 ```r
 # PROJ4STRING definition
 st_sfc(point1, point2, crs = "+proj=longlat +datum=WGS84 +no_defs")
-#> Geometry set for 2 features 
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
-#> POINT (5 2)
-#> POINT (1 3)
 ```
 
-For example, we can set the UTM Zone 11N projection with `epsg` code `2955`:
+<!-- For example, we can set the UTM Zone 11N projection with `epsg` code `2955`: -->
 
+<!-- ```{r, eval=FALSE} -->
+<!-- st_sfc(point1, point2, crs = 2955) -->
+<!-- #> ... -->
+<!-- #> epsg (SRID):    2955 -->
+<!-- #> proj4string:    +proj=utm +zone=11 +ellps=GRS80 ... +units=m +no_defs -->
+<!-- #> POINT (5 2) -->
+<!-- #> POINT (1 3) -->
+<!-- ``` -->
 
-```r
-st_sfc(point1, point2, crs = 2955)
-#> ...
-#> epsg (SRID):    2955
-#> proj4string:    +proj=utm +zone=11 +ellps=GRS80 ... +units=m +no_defs
-#> POINT (5 2)
-#> POINT (1 3)
-```
+<!-- As you can see above, the `proj4string` definition was automatically added. -->
+<!-- The CRS can also be set with the full `proj4string` (result not shown): -->
 
-As you can see above, the `proj4string` definition was automatically added.
-The CRS can also be set with the full `proj4string` (result not shown):
+<!-- ```{r, eval=FALSE} -->
+<!-- p4s = "+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs" -->
+<!-- st_sfc(point1, point2, crs = crs_utm) -->
+<!-- ``` -->
 
-
-```r
-p4s = "+proj=utm +zone=11 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
-st_sfc(point1, point2, crs = crs_utm)
-```
-
-However, the `epsg` string of our result remained empty. 
-This is because there is no general method to convert from `proj4string` to `epsg`.
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">Sometimes `st_crs()` will return a `proj4string` but not an `epsg` code. 
+This is because there is no general method to convert from `proj4string` to `epsg` (see Chapter \@ref(reproj-geo-data)).</div>\EndKnitrBlock{rmdnote}
 
 <!-- precision -->
 <!-- plots can be made -->
 
 ### The sf class {#sf}
 
-The previous sections (\@ref() to \@ref()) deal with purely geometric objects, 'sf geometry' and 'sf column' objects respectively.
+Sections \@ref(geometry) to \@ref(sfc) deal with purely geometric objects, 'sf geometry' and 'sf column' objects respectively.
 These are geographic building blocks of geographic vector data represented as simple features.
 The final building block is non-geographic attributes, representing the name of the feature or other attributes such as measured values, groups, and other things.
 
 To illustrate attributes, we will represent a temperature of 25°C in London on June 21^st^ 2017.
-This example contains a geometry (the coordinates), and three attributes with three different classes (place name, temperature and date).[
+This example contains a geometry (the coordinates), and three attributes with three different classes (place name, temperature and date).^[
 Other attributes might include a urbanity category (city or village), or a remark if the measurement was made using an automatic station.
 ]
 Objects of class `sf` represent such data by combining the attributes (`data.frame`) with the simple feature geometry column (`sfc`).
@@ -3084,7 +3050,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve9decfbfd2a6c98ca
+preservec92dc27dadcb448a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6619,7 +6585,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservea98816d0b652c5c7
+preserve1f2a653c8f3f94cd
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6717,7 +6683,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9c7baf187da3b19b
+preserve2685e5669b73f9cc
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10255,7 +10221,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef3cb47027909f57a
+preserve17ed04884bd850cc
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
