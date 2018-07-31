@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4919f014d9e5a3af
+preservefd2460564684bc5a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -890,7 +890,7 @@ The code above uses the function `st_centroid()` to convert one geometry type (p
 Here is not the place to explain how the function works (this is covered in Chapter \@ref(geometric-operations)).
 The point is that simple feature geometries can come in different forms, the topic of the next sections.
 
-### Simple feature geometry types {#geometry}
+### Geometry types {#geometry}
 
 <!-- This section demonstrates how the full range of geometry types supported by the **sf** package can be created, combined and plotted. -->
 Geometries are the basic building blocks of simple features.
@@ -950,7 +950,7 @@ Finally, a geometrycollection might contain any combination of geometries includ
 <p class="caption">(\#fig:geomcollection)Illustration of geometry collection.</p>
 </div>
 
-### Simple feature geometry (sfg) objects {#sfg}
+### Simple feature geometries (sfg) {#sfg}
 
 The `sfg` class represents the different simple feature geometry types: point, linestring, polygon (and their 'multi' equivalents, such as multipoints) or geometry collection.
 
@@ -1060,7 +1060,7 @@ st_geometrycollection(gemetrycollection_list)
 <!-- lines could create mutlilines or polygons, etc. -->
 <!-- https://r-spatial.github.io/sf/articles/sf1.html -->
 
-### Simple feature geometry column {#sfc}
+### Simple feature columns (sfc) {#sfc}
 
 One `sfg` object contains only a single simple feature geometry. 
 A simple feature geometry column (`sfc`) is a list of `sfg` objects, which is additionally able to contain information about the coordinate reference system in use.
@@ -1224,7 +1224,7 @@ This is because there is no general method to convert from `proj4string` to `eps
 <!-- precision -->
 <!-- plots can be made -->
 
-### Simple feature objects {#sf}
+### Simple features (sf) {#sf}
 
 So far, we have only dealt with the pure geometries.
 Most of the time, however, these geometries come with a set of attributes describing them. 
@@ -3087,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve6c77569f624d5c02
+preserveb2419366e40785f5
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6622,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservedb1185ad14cfb4f0
+preserve854b019787d46eb9
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve078aaacde5a8d016
+preservee25a94d23c6d1c37
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10258,7 +10258,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservecb456e51c0805ce3
+preserve9bc87a971dcca548
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
