@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedc6c062a9c6fc26d
+preserve6bf633ba16e1e22d
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1682,29 +1682,29 @@ Likewise, it is important to formally specify the units in which the geometry da
 A novel feature of geometry data in `sf` objects is that they have *native support* for units.
 This means that distance, area and other geometric calculations in **sf** return values that come with a `units` attribute, defined by the **units** package [@pebesma_measurement_2016].
 This is advantageous because it prevents confusion caused by the fact that different CRSs use different units (most use meters, some use feet).
-Furthermore, it also provides information on dimensionality, as illustrated by the following calculation which reports the area of Nigeria:
+Furthermore, it also provides information on dimensionality, as illustrated by the following calculation which reports the area of Luxembourg:
 
 
 ```r
-nigeria = world[world$name_long == "Nigeria", ]
+luxembourg = world[world$name_long == "Luxembourg", ]
 ```
 
 
 ```r
-st_area(nigeria)
-#> 9.05e+11 m^2
+st_area(luxembourg)
+#> 2.41e+09 m^2
 ```
 
-The result is in units of square meters (m^2^), showing a) that the result represents two-dimensional space and b) and that Nigeria is a large country!
-This information, stored as an attribute (which interested readers can discover with `attributes(st_area(nigeria))`) is advantageous for many reasons, for example it could feed into subsequent calculations such as population density.
+The result is in units of square meters (m^2^), showing that the result represents two-dimensional space.
+This information, stored as an attribute (which interested readers can discover with `attributes(st_area(luxembourg))`) is advantageous for many reasons, for example it could feed into subsequent calculations such as population density.
 Reporting units prevents confusion.
-To take the Nigeria example, if the units remained unspecified, one could incorrectly assume that the units were in km^2^.
+To take the Luxembourg example, if the units remained unspecified, one could incorrectly assume that the units were in hectares.
 To translate the huge number into a more digestible size, it is tempting to divide the results by a million (the number of square meters in a square kilometer):
 
 
 ```r
-st_area(nigeria) / 1000000
-#> 905062 m^2
+st_area(luxembourg) / 1000000
+#> 2414 m^2
 ```
 
 However, the result is incorrectly given again as square meters.
@@ -1712,8 +1712,8 @@ The solution is to set the correct units with the **units** package:
 
 
 ```r
-units::set_units(st_area(nigeria), km^2)
-#> 905062 km^2
+units::set_units(st_area(luxembourg), km^2)
+#> 2414 km^2
 ```
 
 <!-- Is that right? I mean, the units DESCRIPTION says "Support for measurement units in R vectors, matrices and arrays". Since raster datasets are just matrices, units might be easily used with them?-->
@@ -3050,7 +3050,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservec92dc27dadcb448a
+preservefcdc748c76c1b84d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6585,7 +6585,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1f2a653c8f3f94cd
+preserveff67dfb0fb87232e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6683,7 +6683,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve2685e5669b73f9cc
+preserve152cb5cf1b40f5c1
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10221,7 +10221,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve17ed04884bd850cc
+preserve5810966be02dbd4f
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
