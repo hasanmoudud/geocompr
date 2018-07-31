@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.5" data-path="spatial-class.html"><a href="spatial-class.html#geometry"><i class="fa fa-check"></i><b>2.1.5</b> Geometry types</a></li>
 <li class="chapter" data-level="2.1.6" data-path="spatial-class.html"><a href="spatial-class.html#sfg"><i class="fa fa-check"></i><b>2.1.6</b> Simple feature geometries (sfg)</a></li>
 <li class="chapter" data-level="2.1.7" data-path="spatial-class.html"><a href="spatial-class.html#sfc"><i class="fa fa-check"></i><b>2.1.7</b> Simple feature columns (sfc)</a></li>
-<li class="chapter" data-level="2.1.8" data-path="spatial-class.html"><a href="spatial-class.html#sf"><i class="fa fa-check"></i><b>2.1.8</b> Simple features (sf)</a></li>
+<li class="chapter" data-level="2.1.8" data-path="spatial-class.html"><a href="spatial-class.html#sf"><i class="fa fa-check"></i><b>2.1.8</b> The sf class</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="spatial-class.html"><a href="spatial-class.html#raster-data"><i class="fa fa-check"></i><b>2.2</b> Raster data</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="spatial-class.html"><a href="spatial-class.html#an-introduction-to-raster"><i class="fa fa-check"></i><b>2.2.1</b> An introduction to raster</a></li>
@@ -901,42 +901,35 @@ This is because there is no general method to convert from <code>proj4string</co
 <!-- plots can be made -->
 </div>
 <div id="sf" class="section level3">
-<h3><span class="header-section-number">2.1.8</span> Simple features (sf)</h3>
-<p>So far, we have only dealt with the pure geometries.
-Most of the time, however, these geometries come with a set of attributes describing them.
-These attributes could represent the name of the geometry, measured values, groups to which the geometry belongs, and many more.
-For example, we measured a temperature of 25°C on Trafalgar Square in London on June 21<sup>st</sup> 2017.
-Hence, we have a specific point in space (the coordinates), the name of the location (Trafalgar Square), a temperature value and the date of the measurement.
-Other attributes might include a urbanity category (city or village), or a remark if the measurement was made using an automatic station.</p>
-<p>The simple feature class, <code>sf</code>, is a combination of an attribute table (<code>data.frame</code>) and a simple feature geometry column (<code>sfc</code>).
-Simple features are created using the <code>st_sf()</code> function:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co"># sfg objects</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">london_point =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">51.5</span>))</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3">ruan_point =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">9</span>, <span class="dv">53</span>))</a>
-<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="co"># sfc object</span></a>
-<a class="sourceLine" id="cb34-5" data-line-number="5">our_geometry =<span class="st"> </span><span class="kw">st_sfc</span>(london_point, ruan_point, <span class="dt">crs =</span> <span class="dv">4326</span>)</a>
-<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="co"># data.frame object</span></a>
-<a class="sourceLine" id="cb34-7" data-line-number="7">our_attributes =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;London&quot;</span>, <span class="st">&quot;Ruan&quot;</span>),</a>
-<a class="sourceLine" id="cb34-8" data-line-number="8">                            <span class="dt">temperature =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">13</span>),</a>
-<a class="sourceLine" id="cb34-9" data-line-number="9">                            <span class="dt">date =</span> <span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2017-06-21&quot;</span>), <span class="kw">as.Date</span>(<span class="st">&quot;2017-06-22&quot;</span>)),</a>
-<a class="sourceLine" id="cb34-10" data-line-number="10">                            <span class="dt">category =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;village&quot;</span>),</a>
-<a class="sourceLine" id="cb34-11" data-line-number="11">                            <span class="dt">automatic =</span> <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb34-12" data-line-number="12"><span class="co"># sf object</span></a>
-<a class="sourceLine" id="cb34-13" data-line-number="13">sf_points =<span class="st"> </span><span class="kw">st_sf</span>(our_attributes, <span class="dt">geometry =</span> our_geometry)</a></code></pre></div>
-<p>The above example illustrates the components of <code>sf</code> objects.
-Firstly, coordinates define the geometry of the simple feature geometry (<code>sfg</code>).
-Secondly, we can combine the geometries in a simple feature geometry column (<code>sfc</code>) which also stores the CRS.
-Subsequently, we store the attribute information on the geometries in a <code>data.frame</code>.
-Finally, the <code>st_sf()</code> function combines the attribute table and the <code>sfc</code> object in an <code>sf</code> object, as demonstrated below (some output ommited):</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">sf_points</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 2 features and 5 fields</span></a>
+<h3><span class="header-section-number">2.1.8</span> The sf class</h3>
+<p>The previous sections (@ref() to @ref()) deal with purely geometric objects, ‘sf geometry’ and ‘sf column’ objects respectively.
+These are geographic building blocks of geographic vector data represented as simple features.
+The final building block is non-geographic attributes, representing the name of the feature or other attributes such as measured values, groups, and other things.</p>
+<p>To illustrate attributes, we will represent a temperature of 25°C in London on June 21<sup>st</sup> 2017.
+This example contains a geometry (the coordinates), and three attributes with three different classes (place name, temperature and date).[
+Other attributes might include a urbanity category (city or village), or a remark if the measurement was made using an automatic station.]
+Objects of class <code>sf</code> represent such data by combining the attributes (<code>data.frame</code>) with the simple feature geometry column (<code>sfc</code>).
+They are created with <code>st_sf()</code> as illustrated below, which creates the London example described above:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">lnd_point =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">51.5</span>))                 <span class="co"># sfg object</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">lnd_geom =<span class="st"> </span><span class="kw">st_sfc</span>(lnd_point, <span class="dt">crs =</span> <span class="dv">4326</span>)           <span class="co"># sfc object</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">lnd_attrib =<span class="st"> </span><span class="kw">data.frame</span>(                           <span class="co"># data.frame object</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">  <span class="dt">name =</span> <span class="st">&quot;London&quot;</span>,</a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">  <span class="dt">temperature =</span> <span class="dv">25</span>,</a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">  <span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2017-06-21&quot;</span>)</a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">  )</a>
+<a class="sourceLine" id="cb34-8" data-line-number="8">lnd_sf =<span class="st"> </span><span class="kw">st_sf</span>(lnd_attrib, <span class="dt">geometry =</span> lnd_geom)    <span class="co"># sf object</span></a></code></pre></div>
+<p>What just happened? First, the coordinates were used to create the simple feature geometry (<code>sfg</code>).
+Second, the geometry was converted into a simple feature geometry column (<code>sfc</code>), with a CRS.
+Third, attributes were stored in a <code>data.frame</code>, which was combined with the <code>sfc</code> object with <code>st_sf()</code>.
+This results in an <code>sf</code> object, as demonstrated below (some output ommited):</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">lnd_sf</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 1 features and 3 fields</span></a>
 <a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co">#&gt; ...</span></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co">#&gt;     name temperature       date category automatic         geometry</span></a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">#&gt; 1 London          25 2017-06-21     city     FALSE POINT (0.1 51.5)</span></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">#&gt; 2   Ruan          13 2017-06-22  village      TRUE    POINT (-9 53)</span></a></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">class</span>(sf_points)</a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co">#&gt;     name temperature       date         geometry</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">#&gt; 1 London          25 2017-06-21 POINT (0.1 51.5)</span></a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">class</span>(lnd_sf)</a>
 <a class="sourceLine" id="cb36-2" data-line-number="2"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
-<p>The resultshows that <code>sf</code> objects actually have two classes, <code>sf</code> and <code>data.frame</code>.
+<p>The result shows that <code>sf</code> objects actually have two classes, <code>sf</code> and <code>data.frame</code>.
 Simple features are simply data frames (square tables), but with spatial attributes (usually stored in a special <code>geom</code> list-column in the data frame).
 This duality is central to the concept of simple features:
 most of the time a <code>sf</code> can be treated as and behaves like a <code>data.frame</code>.

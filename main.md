@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefd2460564684bc5a
+preserve5c6c82f029e2b8cd
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1224,62 +1224,59 @@ This is because there is no general method to convert from `proj4string` to `eps
 <!-- precision -->
 <!-- plots can be made -->
 
-### Simple features (sf) {#sf}
+### The sf class {#sf}
 
-So far, we have only dealt with the pure geometries.
-Most of the time, however, these geometries come with a set of attributes describing them. 
-These attributes could represent the name of the geometry, measured values, groups to which the geometry belongs, and many more.
-For example, we measured a temperature of 25°C on Trafalgar Square in London on June 21^st^ 2017. 
-Hence, we have a specific point in space (the coordinates), the name of the location (Trafalgar Square), a temperature value and the date of the measurement.
+The previous sections (\@ref() to \@ref()) deal with purely geometric objects, 'sf geometry' and 'sf column' objects respectively.
+These are geographic building blocks of geographic vector data represented as simple features.
+The final building block is non-geographic attributes, representing the name of the feature or other attributes such as measured values, groups, and other things.
+
+To illustrate attributes, we will represent a temperature of 25°C in London on June 21^st^ 2017.
+This example contains a geometry (the coordinates), and three attributes with three different classes (place name, temperature and date).[
 Other attributes might include a urbanity category (city or village), or a remark if the measurement was made using an automatic station.
-
-The simple feature class, `sf`, is a combination of an attribute table (`data.frame`) and a simple feature geometry column (`sfc`).
-Simple features are created using the `st_sf()` function:
+]
+Objects of class `sf` represent such data by combining the attributes (`data.frame`) with the simple feature geometry column (`sfc`).
+They are created with `st_sf()` as illustrated below, which creates the London example described above:
 
 
 ```r
-# sfg objects
-london_point = st_point(c(0.1, 51.5))
-ruan_point = st_point(c(-9, 53))
-# sfc object
-our_geometry = st_sfc(london_point, ruan_point, crs = 4326)
-# data.frame object
-our_attributes = data.frame(name = c("London", "Ruan"),
-                            temperature = c(25, 13),
-                            date = c(as.Date("2017-06-21"), as.Date("2017-06-22")),
-                            category = c("city", "village"),
-                            automatic = c(FALSE, TRUE))
-# sf object
-sf_points = st_sf(our_attributes, geometry = our_geometry)
+lnd_point = st_point(c(0.1, 51.5))                 # sfg object
+lnd_geom = st_sfc(lnd_point, crs = 4326)           # sfc object
+lnd_attrib = data.frame(                           # data.frame object
+  name = "London",
+  temperature = 25,
+  date = as.Date("2017-06-21")
+  )
+lnd_sf = st_sf(lnd_attrib, geometry = lnd_geom)    # sf object
 ```
 
-The above example illustrates the components of `sf` objects. 
-Firstly, coordinates define the geometry of the simple feature geometry (`sfg`).
-Secondly, we can combine the geometries in a simple feature geometry column (`sfc`) which also stores the CRS.
-Subsequently, we store the attribute information on the geometries in a `data.frame`.
-Finally, the `st_sf()` function combines the attribute table and the `sfc` object in an `sf` object, as demonstrated below (some output ommited):
+What just happened? First, the coordinates were used to create the simple feature geometry (`sfg`).
+Second, the geometry was converted into a simple feature geometry column (`sfc`), with a CRS.
+Third, attributes were stored in a `data.frame`, which was combined with the `sfc` object with `st_sf()`.
+This results in an `sf` object, as demonstrated below (some output ommited):
 
 
 ```r
-sf_points
-#> Simple feature collection with 2 features and 5 fields
+lnd_sf
+#> Simple feature collection with 1 features and 3 fields
 #> ...
-#>     name temperature       date category automatic         geometry
-#> 1 London          25 2017-06-21     city     FALSE POINT (0.1 51.5)
-#> 2   Ruan          13 2017-06-22  village      TRUE    POINT (-9 53)
+#>     name temperature       date         geometry
+#> 1 London          25 2017-06-21 POINT (0.1 51.5)
 ```
 
 
 ```r
-class(sf_points)
+class(lnd_sf)
 #> [1] "sf"         "data.frame"
 ```
 
-The resultshows that `sf` objects actually have two classes, `sf` and `data.frame`.
+The result shows that `sf` objects actually have two classes, `sf` and `data.frame`.
 Simple features are simply data frames (square tables), but with spatial attributes (usually stored in a special `geom` list-column in the data frame).
 This duality is central to the concept of simple features:
 most of the time a `sf` can be treated as and behaves like a `data.frame`.
 Simple features are, in essence, data frames with a spatial extension.
+
+
+
 
 <!-- https://r-spatial.github.io/sf/articles/sf1.html#how-attributes-relate-to-geometries -->
 
@@ -3087,7 +3084,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb2419366e40785f5
+preserve9decfbfd2a6c98ca
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6622,7 +6619,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve854b019787d46eb9
+preservea98816d0b652c5c7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6717,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee25a94d23c6d1c37
+preserve9c7baf187da3b19b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10258,7 +10255,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve9bc87a971dcca548
+preservef3cb47027909f57a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
