@@ -402,11 +402,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="introduction-6" class="section level2">
 <h2><span class="header-section-number">9.1</span> Introduction</h2>
-<p>A defining feature of R is its command-line interface (CLI):
+<p>A defining feature of R is its console:
 you type commands and hit <code>Enter</code> (or <code>Ctl+Enter</code> if writing code in the source editor in RStudio) to execute them interactively.
 In dedicated GIS packages, by contrast, the emphasis tends to be on the graphical user interface (GUI):
-you <em>can</em> interact with QGIS, SAGA and gvSIG with dockable CLIs, but ‘pointing and clicking’ is the norm.
-This means many GIS users miss-out on the advantages of the command-line according to Gary Sherman, creator of QGIS <span class="citation">(Sherman <a href="#ref-sherman_desktop_2008">2008</a>)</span>:</p>
+you <em>can</em> interact with QGIS, SAGA and gvSIG via the console and the command line, respectively, but ‘pointing and clicking’ is the norm.
+This means many GIS users miss-out on the advantages of the console and programming according to Gary Sherman, creator of QGIS <span class="citation">(Sherman <a href="#ref-sherman_desktop_2008">2008</a>)</span>:</p>
 <blockquote>
 <p>With the advent of ‘modern’ GIS software, most people want to point and
 click their way through life. That’s good, but there is a tremendous amount
@@ -414,9 +414,9 @@ of flexibility and power waiting for you with the command line. Many times
 you can do something on the command line in a fraction of the time you
 can do it with a GUI.</p>
 </blockquote>
-<p>The ‘CLI vs GUI’ debate can be adversial but it does not have to be: both options can be used interchangeably, depending on the task at hand and the user’s skillset.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
-The advantages of a good CLI such as that provided by R (and enhanced by IDEs such as RStudio) are numerous.
-A good CLI:</p>
+<p>Please run <code>fortunes::fortune(&quot;SUV&quot;)</code> for a superb analogy summarizing the dis-/advantages of R compared to a GUI-based program.</p>
+<p>The ‘programming vs GUI’ debate can be adversial but it does not have to be: both options can be used interchangeably, depending on the task at hand and the user’s skillset.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
+The advantages of a good console such as that provided by R (and enhanced by IDEs such as RStudio) are numerous:</p>
 <ul>
 <li>Facilitates the automation of repetitive tasks.</li>
 <li>Enables transparency and reproducibility, the backbone of good scientific practice and data science.</li>
@@ -424,8 +424,7 @@ A good CLI:</p>
 <li>Helps develop future-proof programming skills which are in high demand in many disciplines and industries.</li>
 <li>Is user-friendly and fast, allowing an efficient work-flow.</li>
 </ul>
-<p>On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous.
-A good GIS GUI:</p>
+<p>On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous:</p>
 <ul>
 <li>Has a ‘shallow’ learning curve meaning geographic data can be explored and visualized without hours of learning a new language.</li>
 <li>Provides excellent support for ‘digitizing’ (creating new vector datasets), including trace, snap and topological tools.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></li>
@@ -441,13 +440,13 @@ Its predecesor S provided access to statistical algorithms in other languages (p
 R continues this tradition with interfaces to numerous languages, notably C++, as described in Chapter <a href="intro.html#intro">1</a>.
 R was not designed as a GIS.
 However, its ability to interface with dedicated GISs gives it astonishing geospatial capabilities.
-R is well-known as statistical programming language, but many people are unaware of its ability to replicate GIS workflows, with the additional benefits of a (relatively) consistent CLI.
+R is well-known as statistical programming language, but many people are unaware of its ability to replicate GIS workflows.
 Furthermore R outperforms GISs in some areas of geocomputation, including interactive/animated map making (see Chapter <a href="adv-map.html#adv-map">8</a>) and spatial statistical modeling (see Chapter <a href="spatial-cv.html#spatial-cv">11</a>).
 <!-- Instead of implementing existing GIS algorithms in R, it makes sense to avoid 'reinventing the wheel' by taking advantage of R's ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work). -->
 <!-- Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf** [@pebesma_simple_2018]. -->
 <!-- However, there are already a wide range of algorithms that can be accessed via R's interfaces to dedicated GIS software. -->
 <!-- It makes sense to understand these before moving to develop your own optimized algorithms. -->
-This chapter focuses on ‘bridges’ to three mature open source GIS products (see Table <a href="gis.html#tab:gis-comp">9.1</a>): QGIS (via the package <strong>RQGIS</strong>; section <a href="gis.html#rqgis">9.2</a>), SAGA (via <strong>RSAGA</strong>; section <a href="gis.html#rsaga">9.3</a>) and GRASS (via <strong>rgrass7</strong>; section <a href="#rgrass7"><strong>??</strong></a>).
+This chapter focuses on ‘bridges’ from R to three mature open source GIS products (see Table <a href="gis.html#tab:gis-comp">9.1</a>): QGIS (via the package <strong>RQGIS</strong>; section <a href="gis.html#rqgis">9.2</a>), SAGA (via <strong>RSAGA</strong>; section <a href="gis.html#rsaga">9.3</a>) and GRASS (via <strong>rgrass7</strong>; section <a href="gis.html#rgrass">9.4</a>).
 Though not covered here, it is worth being aware of the interface to ArcGIS, a proprietary and very popular GIS software, via <strong>RPyGeo</strong>.
 <!-- The so-called [R-ArcGIS bridge](https://github.com/R-ArcGIS/r-bridge) allows R to be used from within ArcGIS (R can also be used from within QGIS). -->
 To complement the R-GIS bridges, the chapter ends with a very brief introduction to interfaces to spatial libraries (section <a href="gis.html#gdal">9.6.1</a>) and spatial databases (section <a href="gis.html#postgis">9.6.2</a>).</p>
@@ -1044,9 +1043,7 @@ Additionally, give <code>mapview</code> a try.</p></li>
 <li id="fn42"><p>
 Packages that have already been used including <strong>spData</strong>, <strong>spDataLarge</strong> and <strong>dplyr</strong> also need to be installed. <a href="gis.html#fnref42" class="footnote-back">↩</a></p></li>
 <li id="fn43"><p>
-<!-- Should the commented-out mega-footnote go in a vignette? (todo, RL) -->
-<!-- yes, we should shorten the footnote or put it somewhere into the text. I just rewrote it to make clearer what was meant. At least this was what I gathered. -->
-GRASS GIS and PostGIS are popular in academia and industry and can be seen as products which buck this trend as they are built around the command-line.
+GRASS GIS and PostGIS are popular in academia and industry and can be seen as products which buck this trend as they are built around a pogramming interface.
 <!-- In [2008](http://gama.fsv.cvut.cz/~landa/publications/2008/gis-ostrava-08/paper/landa-grass-gui-wxpython.pdf) GRASS developers added a sophisticated GUI, shifting the emphasis slightly away from its CLI. -->
 <!-- However, GRASS lacks a sophisticated and feature-rich IDE such as RStudio that supports 'CLI newbies'.  -->
 <!-- On the other hand, PostGIS is the spatial extension of the popular PostgreSQL open source database, and therefore not really a dedicated GIS.  -->
