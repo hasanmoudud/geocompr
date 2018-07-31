@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-30'
+date: '2018-07-31'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-30 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-07-31 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee6386f650c2b9899
+preserve9d8b6b14f95ac090
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3087,7 +3087,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve52b211d5b1f76eb2
+preserve932426cbfcba74c1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6622,7 +6622,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve8edb2c42d10b6897
+preserve749b98765fba7979
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6720,7 +6720,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve1552b6c6a9d15742
+preserve803f8f4362d7b356
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7087,7 +7087,7 @@ The advantages of a good CLI such as that provided by R (and enhanced by IDEs su
 A good CLI:
 
 - Facilitates the automation of repetitive tasks. 
-- Enables transparency and reproducibility, the backbone of good scientific practice and Data Science.
+- Enables transparency and reproducibility, the backbone of good scientific practice and data science.
 - Encourages software development by providing tools to modify existing functions and implement new ones.
 - Helps develop future-proof programming skills which are in high demand in many disciplines and industries.
 - Is user-friendly and fast, allowing an efficient work-flow.
@@ -7123,11 +7123,10 @@ Furthermore R outperforms GISs in some areas of geocomputation, including intera
 <!-- Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf** [@pebesma_simple_2018]. -->
 <!-- However, there are already a wide range of algorithms that can be accessed via R's interfaces to dedicated GIS software. -->
 <!-- It makes sense to understand these before moving to develop your own optimized algorithms. -->
-This chapter focuses on 'bridges' to three mature GIS products: QGIS (via the package **RQGIS**), SAGA (via **RSAGA**) and GRASS (via **rgrass7**) (see Table \@ref(tab:gis-comp)).
-
-Although the focus is on R bridges to dedicated open-source GISs, it is worth being aware of 'bridges' *not* covered in this chapter.
-R can access the proprietary GIS software ArcGIS (via **RPyGeo**), and a so-called [R-ArcGIS bridge](https://github.com/R-ArcGIS/r-bridge) allows R to be used from within ArcGIS (R can also be used from within QGIS via [Processing](https://docs.qgis.org/2.14/en/docs/training_manual/processing/r_intro.html)).
-There are also R interfaces to geospatial libraries such as [GDAL](www.gdal.org) (**gdalUtils**, **rgdal**, **sf**) and [GEOS](https://trac.osgeo.org/geos/) (**rgeos**, **sf**), covered elsewhere in this book.
+This chapter focuses on 'bridges' to three mature open source GIS products (see Table \@ref(tab:gis-comp)): QGIS (via the package **RQGIS**; section \@ref(rqgis)), SAGA (via **RSAGA**; section \@ref(rsaga)) and GRASS (via **rgrass7**; section \@ref(rgrass7)).
+Though not covered here, it is worth being aware of the interface to ArcGIS, a proprietary and very popular GIS software, via **RPyGeo**.
+<!-- The so-called [R-ArcGIS bridge](https://github.com/R-ArcGIS/r-bridge) allows R to be used from within ArcGIS (R can also be used from within QGIS). -->
+To complement the R-GIS bridges, the chapter ends with a very brief introduction to interfaces to spatial libraries (section \@ref(gdal)) and spatial databases (section \@ref(postgis)).
 
 <!-- The chapter's aim is to provide working knowledge of R's bridges to open source GISs. -->
 <!-- As mentioned in Chapter \@ref(intro), doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science. -->
@@ -10259,7 +10258,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve1478f39b37f9d055
+preserve001b00a83abd7b14
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

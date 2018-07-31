@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-30">
+<meta name="date" content="2018-07-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -419,7 +419,7 @@ The advantages of a good CLI such as that provided by R (and enhanced by IDEs su
 A good CLI:</p>
 <ul>
 <li>Facilitates the automation of repetitive tasks.</li>
-<li>Enables transparency and reproducibility, the backbone of good scientific practice and Data Science.</li>
+<li>Enables transparency and reproducibility, the backbone of good scientific practice and data science.</li>
 <li>Encourages software development by providing tools to modify existing functions and implement new ones.</li>
 <li>Helps develop future-proof programming skills which are in high demand in many disciplines and industries.</li>
 <li>Is user-friendly and fast, allowing an efficient work-flow.</li>
@@ -447,10 +447,10 @@ Furthermore R outperforms GISs in some areas of geocomputation, including intera
 <!-- Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf** [@pebesma_simple_2018]. -->
 <!-- However, there are already a wide range of algorithms that can be accessed via R's interfaces to dedicated GIS software. -->
 <!-- It makes sense to understand these before moving to develop your own optimized algorithms. -->
-This chapter focuses on ‘bridges’ to three mature GIS products: QGIS (via the package <strong>RQGIS</strong>), SAGA (via <strong>RSAGA</strong>) and GRASS (via <strong>rgrass7</strong>) (see Table <a href="gis.html#tab:gis-comp">9.1</a>).</p>
-<p>Although the focus is on R bridges to dedicated open-source GISs, it is worth being aware of ‘bridges’ <em>not</em> covered in this chapter.
-R can access the proprietary GIS software ArcGIS (via <strong>RPyGeo</strong>), and a so-called <a href="https://github.com/R-ArcGIS/r-bridge">R-ArcGIS bridge</a> allows R to be used from within ArcGIS (R can also be used from within QGIS via <a href="https://docs.qgis.org/2.14/en/docs/training_manual/processing/r_intro.html">Processing</a>).
-There are also R interfaces to geospatial libraries such as <a href="www.gdal.org">GDAL</a> (<strong>gdalUtils</strong>, <strong>rgdal</strong>, <strong>sf</strong>) and <a href="https://trac.osgeo.org/geos/">GEOS</a> (<strong>rgeos</strong>, <strong>sf</strong>), covered elsewhere in this book.</p>
+This chapter focuses on ‘bridges’ to three mature open source GIS products (see Table <a href="gis.html#tab:gis-comp">9.1</a>): QGIS (via the package <strong>RQGIS</strong>; section <a href="gis.html#rqgis">9.2</a>), SAGA (via <strong>RSAGA</strong>; section <a href="gis.html#rsaga">9.3</a>) and GRASS (via <strong>rgrass7</strong>; section <a href="#rgrass7"><strong>??</strong></a>).
+Though not covered here, it is worth being aware of the interface to ArcGIS, a proprietary and very popular GIS software, via <strong>RPyGeo</strong>.
+<!-- The so-called [R-ArcGIS bridge](https://github.com/R-ArcGIS/r-bridge) allows R to be used from within ArcGIS (R can also be used from within QGIS). -->
+To complement the R-GIS bridges, the chapter ends with a very brief introduction to interfaces to spatial libraries (section <a href="gis.html#gdal">9.6.1</a>) and spatial databases (section <a href="gis.html#postgis">9.6.2</a>).</p>
 <!-- The chapter's aim is to provide working knowledge of R's bridges to open source GISs. -->
 <!-- As mentioned in Chapter \@ref(intro), doing GIS at the command-line makes it more reproducible, in-line with the principles of Geographic Data Science. -->
 <table>
