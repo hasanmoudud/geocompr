@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-07-31">
+<meta name="date" content="2018-08-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -694,7 +694,7 @@ Remember that the geometry column is sticky, hence, even though we are just sele
 <!-- To learn more about how to use the **osmdata**-package, please refer to [https://ropensci.github.io/osmdata/](https://ropensci.github.io/osmdata/). --></p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
 <a class="sourceLine" id="cb328-2" data-line-number="2"><span class="kw">library</span>(osmdata)</a>
-<a class="sourceLine" id="cb328-3" data-line-number="3">b_box =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_bbox</span>(cycle_hire)</a>
+<a class="sourceLine" id="cb328-3" data-line-number="3">b_box =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_bbox</span>(points)</a>
 <a class="sourceLine" id="cb328-4" data-line-number="4">london_streets =<span class="st"> </span><span class="kw">opq</span>(b_box) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb328-5" data-line-number="5"><span class="st">  </span><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">&quot;highway&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb328-6" data-line-number="6"><span class="st">  </span><span class="kw">osmdata_sf</span>() <span class="op">%&gt;%</span></a>
@@ -770,11 +770,13 @@ It is likely that a few of our cycling station points will not lie exactly on a 
 However, to find the shortest route between them, we need to connect them to the nearest streets segment.
 <code>v.net</code>’s connect-operator does exactly this.
 We save its output in <code>streets_points_con</code>.</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.clean&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;london_streets&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;streets_clean&quot;</span>,</a>
-<a class="sourceLine" id="cb334-2" data-line-number="2">          <span class="dt">tool =</span> <span class="st">&quot;break&quot;</span>, <span class="dt">flags =</span> <span class="st">&quot;overwrite&quot;</span>)</a>
-<a class="sourceLine" id="cb334-3" data-line-number="3"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.net&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets_clean&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;streets_points_con&quot;</span>, </a>
-<a class="sourceLine" id="cb334-4" data-line-number="4">          <span class="dt">points =</span> <span class="st">&quot;points&quot;</span>, <span class="dt">operation =</span> <span class="st">&quot;connect&quot;</span>, <span class="dt">threshold =</span> <span class="fl">0.001</span>,</a>
-<a class="sourceLine" id="cb334-5" data-line-number="5">          <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>, <span class="st">&quot;c&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1"><span class="co"># clean street network</span></a>
+<a class="sourceLine" id="cb334-2" data-line-number="2"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.clean&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;london_streets&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;streets_clean&quot;</span>,</a>
+<a class="sourceLine" id="cb334-3" data-line-number="3">          <span class="dt">tool =</span> <span class="st">&quot;break&quot;</span>, <span class="dt">flags =</span> <span class="st">&quot;overwrite&quot;</span>)</a>
+<a class="sourceLine" id="cb334-4" data-line-number="4"><span class="co"># connect points with street network</span></a>
+<a class="sourceLine" id="cb334-5" data-line-number="5"><span class="kw">execGRASS</span>(<span class="dt">cmd =</span> <span class="st">&quot;v.net&quot;</span>, <span class="dt">input =</span> <span class="st">&quot;streets_clean&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;streets_points_con&quot;</span>, </a>
+<a class="sourceLine" id="cb334-6" data-line-number="6">          <span class="dt">points =</span> <span class="st">&quot;points&quot;</span>, <span class="dt">operation =</span> <span class="st">&quot;connect&quot;</span>, <span class="dt">threshold =</span> <span class="fl">0.001</span>,</a>
+<a class="sourceLine" id="cb334-7" data-line-number="7">          <span class="dt">flags =</span> <span class="kw">c</span>(<span class="st">&quot;overwrite&quot;</span>, <span class="st">&quot;c&quot;</span>))</a></code></pre></div>
 <p>The resulting clean dataset serves as input for the <code>v.net.salesman</code>-algorithm, which finally finds the shortest route between all cycle hire stations.
 <code>center_cats</code> requires a numeric range as input.
 This range represents the points for which a shortest route should be calculated.

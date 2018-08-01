@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-07-31'
+date: '2018-08-01'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-07-31 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-08-01 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefe807258c73f449e
+preserve6a22ec6f17888360
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3050,7 +3050,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve94ac747992b43aa7
+preserved076900e78f8d8d1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6585,7 +6585,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve22d42212b1dccdce
+preserve761fbf0c8cc99334
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6683,7 +6683,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve7464feb15e16be1d
+preserve27ad7a59eee1b8dc
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7432,7 +7432,7 @@ Remember that the geometry column is sticky, hence, even though we are just sele
 ```r
 library(sf)
 library(osmdata)
-b_box = sf::st_bbox(cycle_hire)
+b_box = sf::st_bbox(points)
 london_streets = opq(b_box) %>%
   add_osm_feature(key = "highway") %>%
   osmdata_sf() %>%
@@ -7543,8 +7543,10 @@ We save its output in `streets_points_con`.
 
 
 ```r
+# clean street network
 execGRASS(cmd = "v.clean", input = "london_streets", output = "streets_clean",
           tool = "break", flags = "overwrite")
+# connect points with street network
 execGRASS(cmd = "v.net", input = "streets_clean", output = "streets_points_con", 
           points = "points", operation = "connect", threshold = 0.001,
           flags = c("overwrite", "c"))
@@ -7578,6 +7580,8 @@ route = readVECT("shortest_route") %>%
 mapview::mapview(route, map.types = "OpenStreetMap.BlackAndWhite", lwd = 7) +
   points
 ```
+
+
 
 Further notes:
 
@@ -10222,7 +10226,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservec4467df817c2cb96
+preserveee51500787e2c8eb
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
