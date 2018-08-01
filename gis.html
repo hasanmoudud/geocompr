@@ -402,11 +402,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="introduction-6" class="section level2">
 <h2><span class="header-section-number">9.1</span> Introduction</h2>
-<p>A defining feature of R is its console:
+<p>A defining feature of R is the way you interact with it:
 you type commands and hit <code>Enter</code> (or <code>Ctl+Enter</code> if writing code in the source editor in RStudio) to execute them interactively.
+This way of interacting with the computer is called a command-line interface (CLI) (see definition in the note below).
+CLIs are not unique to R.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
 In dedicated GIS packages, by contrast, the emphasis tends to be on the graphical user interface (GUI):
-you <em>can</em> interact with QGIS, SAGA and gvSIG via the console and the command line, respectively, but ‘pointing and clicking’ is the norm.
-This means many GIS users miss-out on the advantages of the console and programming according to Gary Sherman, creator of QGIS <span class="citation">(Sherman <a href="#ref-sherman_desktop_2008">2008</a>)</span>:</p>
+you <em>can</em> interact with QGIS, SAGA and gvSIG with dockable CLIs, but ‘pointing and clicking’ is the norm.
+This means many GIS users miss-out on the advantages of the command-line according to Gary Sherman, creator of QGIS <span class="citation">(Sherman <a href="#ref-sherman_desktop_2008">2008</a>)</span>:</p>
 <blockquote>
 <p>With the advent of ‘modern’ GIS software, most people want to point and
 click their way through life. That’s good, but there is a tremendous amount
@@ -414,9 +416,9 @@ of flexibility and power waiting for you with the command line. Many times
 you can do something on the command line in a fraction of the time you
 can do it with a GUI.</p>
 </blockquote>
-<p>Please run <code>fortunes::fortune(&quot;SUV&quot;)</code> for a superb analogy summarizing the dis-/advantages of R compared to a GUI-based program.</p>
-<p>The ‘programming vs GUI’ debate can be adversial but it does not have to be: both options can be used interchangeably, depending on the task at hand and the user’s skillset.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
-The advantages of a good console such as that provided by R (and enhanced by IDEs such as RStudio) are numerous:</p>
+<p>The ‘CLI vs GUI’ debate can be adversial but it does not have to be: both options can be used interchangeably, depending on the task at hand and the user’s skillset.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a>
+The advantages of a good CLI such as that provided by R (and enhanced by IDEs such as RStudio) are numerous.
+A good CLI:</p>
 <ul>
 <li>Facilitates the automation of repetitive tasks.</li>
 <li>Enables transparency and reproducibility, the backbone of good scientific practice and data science.</li>
@@ -424,29 +426,37 @@ The advantages of a good console such as that provided by R (and enhanced by IDE
 <li>Helps develop future-proof programming skills which are in high demand in many disciplines and industries.</li>
 <li>Is user-friendly and fast, allowing an efficient work-flow.</li>
 </ul>
-<p>On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous:</p>
+<p>On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous.
+A good GIS GUI:</p>
 <ul>
 <li>Has a ‘shallow’ learning curve meaning geographic data can be explored and visualized without hours of learning a new language.</li>
-<li>Provides excellent support for ‘digitizing’ (creating new vector datasets), including trace, snap and topological tools.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></li>
+<li>Provides excellent support for ‘digitizing’ (creating new vector datasets), including trace, snap and topological tools.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></li>
 <li>Enables georeferencing (matching raster images to existing maps) with ground control points and orthorectification.
 <!-- The process of locating control points, choosing the right transformation model, and evaluating the registration error are inherently interactive, and thus unsuitable to be done with R, or any other programming language. --></li>
 <li>Supports stereoscopic mapping (e.g., LiDAR and structure from motion).</li>
 <li>Provides access to geodatabase management systems with object-oriented relational data models, topology and fast (spatial) querying.</li>
 </ul>
 <p>Another advantage of dedicated GISs is that they provide access to hundreds of ‘geoalgorithms’ (computational recipes to solve geographic problems — see Chapter <a href="algorithms.html#algorithms">10</a>).
-Many of these are unavailable from the R command line, except via ‘GIS bridges’, the topic of (and motivation for) this chapter.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
+Many of these are unavailable from the R command line, except via ‘GIS bridges’, the topic of (and motivation for) this chapter.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
+
+<div class="rmdnote">
+A command-line interface is a means of interacting computer programs in which the user issues commands via successive lines of text (command lines).
+<code>bash</code> in Linux and <code>PowerShell</code> in Windows are common examples.
+CLIs can be augmented with IDEs such as RStudio for R, which provides code auto-completion and other features to improve the user experience.
+</div>
+
 <p>R originated as an interface language.
 Its predecesor S provided access to statistical algorithms in other languages (particularly FORTRAN), but from an intuitive read-evaluate-print loop (REPL) <span class="citation">(Chambers <a href="#ref-chambers_extending_2016">2016</a>)</span>.
 R continues this tradition with interfaces to numerous languages, notably C++, as described in Chapter <a href="intro.html#intro">1</a>.
 R was not designed as a GIS.
 However, its ability to interface with dedicated GISs gives it astonishing geospatial capabilities.
-R is well-known as statistical programming language, but many people are unaware of its ability to replicate GIS workflows.
+R is well-known as statistical programming language, but many people are unaware of its ability to replicate GIS workflows, with the additional benefits of a (relatively) consistent CLI.
 Furthermore R outperforms GISs in some areas of geocomputation, including interactive/animated map making (see Chapter <a href="adv-map.html#adv-map">8</a>) and spatial statistical modeling (see Chapter <a href="spatial-cv.html#spatial-cv">11</a>).
 <!-- Instead of implementing existing GIS algorithms in R, it makes sense to avoid 'reinventing the wheel' by taking advantage of R's ability to interface with other languages (especially C++, which is used for much low-level and high-performance GIS work). -->
 <!-- Using compiled code for new geoprocessing functionality (particularly with the help of the excellent **Rcpp** package) could form the basis of new R packages, building on the success of **sf** [@pebesma_simple_2018]. -->
 <!-- However, there are already a wide range of algorithms that can be accessed via R's interfaces to dedicated GIS software. -->
 <!-- It makes sense to understand these before moving to develop your own optimized algorithms. -->
-This chapter focuses on ‘bridges’ from R to three mature open source GIS products (see Table <a href="gis.html#tab:gis-comp">9.1</a>): QGIS (via the package <strong>RQGIS</strong>; section <a href="gis.html#rqgis">9.2</a>), SAGA (via <strong>RSAGA</strong>; section <a href="gis.html#rsaga">9.3</a>) and GRASS (via <strong>rgrass7</strong>; section <a href="gis.html#rgrass">9.4</a>).
+This chapter focuses on ‘bridges’ to three mature open source GIS products (see Table <a href="gis.html#tab:gis-comp">9.1</a>): QGIS (via the package <strong>RQGIS</strong>; section <a href="gis.html#rqgis">9.2</a>), SAGA (via <strong>RSAGA</strong>; section <a href="gis.html#rsaga">9.3</a>) and GRASS (via <strong>rgrass7</strong>; section <a href="gis.html#rgrass">9.4</a>).
 Though not covered here, it is worth being aware of the interface to ArcGIS, a proprietary and very popular GIS software, via <strong>RPyGeo</strong>.
 <!-- The so-called [R-ArcGIS bridge](https://github.com/R-ArcGIS/r-bridge) allows R to be used from within ArcGIS (R can also be used from within QGIS). -->
 To complement the R-GIS bridges, the chapter ends with a very brief introduction to interfaces to spatial libraries (section <a href="gis.html#gdal">9.6.1</a>) and spatial databases (section <a href="gis.html#postgis">9.6.2</a>).</p>
@@ -904,11 +914,11 @@ This is an even better approach since it circumvents the command-line and allows
 Geographic data tends to become big quite quickly.
 Databases are especially useful for large data and querying it efficiently spatially and non-spatially.
 Additionally, spatial DBMS provide multi-user access and topology support.
-The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
+The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
 <p>From within R, one can easily query data from a (spatial) DBMS which is needed for a specific analysis.
 Hence, it is not necessary to attach several gigabyte of geographic data to R’s global environment which most likely would crash the R session anyway.
-To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from “1.4 Hello real word” of the book <strong>PostGIS in Action, Second Edition</strong> published with Manning <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
-<p>The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the <a href="https://qgiscloud.com/">QGIS Cloud</a>.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
+To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from “1.4 Hello real word” of the book <strong>PostGIS in Action, Second Edition</strong> published with Manning <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
+<p>The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the <a href="https://qgiscloud.com/">QGIS Cloud</a>.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1"><span class="kw">library</span>(RPostgreSQL)</a>
 <a class="sourceLine" id="cb338-2" data-line-number="2">conn =<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> <span class="kw">PostgreSQL</span>(), <span class="dt">dbname =</span> <span class="st">&quot;rtafdf_zljbqm&quot;</span>,</a>
 <a class="sourceLine" id="cb338-3" data-line-number="3">                 <span class="dt">host =</span> <span class="st">&quot;db.qgiscloud.com&quot;</span>,</a>
@@ -940,7 +950,7 @@ The next step is to add a 20-mile buffer around the selected highway (Figure <a 
 <a class="sourceLine" id="cb342-4" data-line-number="4">  <span class="st">&quot;WHERE name = &#39;US Route 1&#39; AND state = &#39;MD&#39;;&quot;</span>)</a>
 <a class="sourceLine" id="cb342-5" data-line-number="5">buf =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query)</a></code></pre></div>
 <p>Note that this was a spatial query using functions (<code>ST_Union()</code>, <code>ST_Buffer()</code>) you should be already familiar with since you find them also in the <strong>sf</strong>-package, though here they are written in lowercase characters (<code>st_union()</code>, <code>st_buffer()</code>).
-In fact, function names of the <strong>sf</strong> package largely follow the PostGIS naming conventions.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
+In fact, function names of the <strong>sf</strong> package largely follow the PostGIS naming conventions.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
 The last query will find all Hardee restaurants (<code>HDE</code>) within the buffer zone (Figure <a href="gis.html#fig:postgis">9.4</a>).</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">query =<span class="st"> </span><span class="kw">paste</span>(</a>
 <a class="sourceLine" id="cb343-2" data-line-number="2">  <span class="st">&quot;SELECT r.wkb_geometry&quot;</span>,</a>
@@ -956,7 +966,7 @@ The last query will find all Hardee restaurants (<code>HDE</code>) within the bu
 <a class="sourceLine" id="cb343-12" data-line-number="12">)</a>
 <a class="sourceLine" id="cb343-13" data-line-number="13">hardees =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query)</a></code></pre></div>
 <p>Please refer to <span class="citation">Obe and Hsu (<a href="#ref-obe_postgis_2015">2015</a>)</span> for a detailed explanation of the spatial SQL query.
-Finally, it is good practice to close the database connection as follows:<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
+Finally, it is good practice to close the database connection as follows:<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1">RPostgreSQL<span class="op">::</span><span class="kw">postgresqlCloseConnection</span>(conn)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:postgis"></span>
 <img src="figures/postgis-1.png" alt="Visualization of the output of previous PostGIS commands showing the highway (black line), a buffer (light yellow) and three restaurants (lightblue points) within the buffer." width="40%" />
@@ -1045,7 +1055,12 @@ Additionally, give <code>mapview</code> a try.</p></li>
 <li id="fn42"><p>
 Packages that have already been used including <strong>spData</strong>, <strong>spDataLarge</strong> and <strong>dplyr</strong> also need to be installed. <a href="gis.html#fnref42" class="footnote-back">↩</a></p></li>
 <li id="fn43"><p>
-GRASS GIS and PostGIS are popular in academia and industry and can be seen as products which buck this trend as they are built around a pogramming interface.
+Other ‘command-lines’ include terminals for interacting with Linux, Mac and Windows systems (which are accessible from R with the <code>system()</code> function) and those of other interpreted languages such as Python.
+In fact, most early computers and GISs such had GRASS relied exclusively on CLIs, before the widespread uptake of computer mice and high resolution screens in the 1990s.<a href="gis.html#fnref43" class="footnote-back">↩</a></p></li>
+<li id="fn44"><p>
+<!-- Should the commented-out mega-footnote go in a vignette? (todo, RL) -->
+<!-- yes, we should shorten the footnote or put it somewhere into the text. I just rewrote it to make clearer what was meant. At least this was what I gathered. -->
+GRASS GIS and PostGIS are popular in academia and industry and can be seen as products which buck this trend as they are built around the command-line.
 <!-- In [2008](http://gama.fsv.cvut.cz/~landa/publications/2008/gis-ostrava-08/paper/landa-grass-gui-wxpython.pdf) GRASS developers added a sophisticated GUI, shifting the emphasis slightly away from its CLI. -->
 <!-- However, GRASS lacks a sophisticated and feature-rich IDE such as RStudio that supports 'CLI newbies'.  -->
 <!-- On the other hand, PostGIS is the spatial extension of the popular PostgreSQL open source database, and therefore not really a dedicated GIS.  -->
@@ -1053,23 +1068,23 @@ GRASS GIS and PostGIS are popular in academia and industry and can be seen as pr
 <!-- Similar to GRASS, PostgreSQGL provides a (partial) GUI called [pgAdmin](https://www.pgadmin.org/) to facilitate the editing and administration of the database.  -->
 <!-- To make it clear, though PostGIS provides spatial functions, its main purpose is the handling of spatial objects in a relational database management system. -->
 <!-- Therefore, frequently users store their spatial data in PostGIS, and interact with it through a dedicated GIS software such as QGIS. Of course, you can also use R to access data from PostGIS (**sf**, **rgdal**, **rpostgis**). -->
-<!-- In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.    --><a href="gis.html#fnref43" class="footnote-back">↩</a></p></li>
-<li id="fn44"><p>
-The <strong>mapedit</strong> package allows the quick editing of a few spatial features but not professional, large-scale cartographic digitizing.<a href="gis.html#fnref44" class="footnote-back">↩</a></p></li>
+<!-- In summary,  a typical workflow would be: perform a large spatial query with PostGIS, then load the result into a further application (QGIS, R) for further geoprocessing.    --><a href="gis.html#fnref44" class="footnote-back">↩</a></p></li>
 <li id="fn45"><p>
+The <strong>mapedit</strong> package allows the quick editing of a few spatial features but not professional, large-scale cartographic digitizing.<a href="gis.html#fnref45" class="footnote-back">↩</a></p></li>
+<li id="fn46"><p>
 An early use of the term ‘bridge’ referred the coupling of R with GRASS <span class="citation">(Neteler and Mitasova <a href="#ref-neteler_open_2008">2008</a>)</span>.
 Roger Bivand elaborated on this in his talk “Bridges between GIS and R”, delivered at the 2016 GEOSTAT summer school (see slides at <a href="http://spatial.nhh.no/misc/" class="uri">http://spatial.nhh.no/misc/</a>).
 <!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
-<!-- `geostat_talk16.zip`. --><a href="gis.html#fnref45" class="footnote-back">↩</a></p></li>
-<li id="fn46"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="gis.html#rgrass">9.4</a>).<a href="gis.html#fnref46" class="footnote-back">↩</a></p></li>
-<li id="fn47"><p>We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.<a href="gis.html#fnref47" class="footnote-back">↩</a></p></li>
-<li id="fn48"><p>QGIS Cloud lets you store geographic data and maps in the cloud.
+<!-- `geostat_talk16.zip`. --><a href="gis.html#fnref46" class="footnote-back">↩</a></p></li>
+<li id="fn47"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="gis.html#rgrass">9.4</a>).<a href="gis.html#fnref47" class="footnote-back">↩</a></p></li>
+<li id="fn48"><p>We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.<a href="gis.html#fnref48" class="footnote-back">↩</a></p></li>
+<li id="fn49"><p>QGIS Cloud lets you store geographic data and maps in the cloud.
 In the background it uses QGIS Server and PostgreSQL/PostGIS.
 This way, the reader can follow the PostGIS example without the need to have PostgreSQL/PostGIS installed on a local machine.
-We are thankful to the QGIS Cloud team for hosting our PostGIS example.<a href="gis.html#fnref48" class="footnote-back">↩</a></p></li>
-<li id="fn49"><p>By the way, the prefix <code>st</code> stands for space/time.<a href="gis.html#fnref49" class="footnote-back">↩</a></p></li>
-<li id="fn50"><p>
-It is important to close the connection here because QGIS Cloud (free version) allows only ten concurrent connections.<a href="gis.html#fnref50" class="footnote-back">↩</a></p></li>
+We are thankful to the QGIS Cloud team for hosting our PostGIS example.<a href="gis.html#fnref49" class="footnote-back">↩</a></p></li>
+<li id="fn50"><p>By the way, the prefix <code>st</code> stands for space/time.<a href="gis.html#fnref50" class="footnote-back">↩</a></p></li>
+<li id="fn51"><p>
+It is important to close the connection here because QGIS Cloud (free version) allows only ten concurrent connections.<a href="gis.html#fnref51" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>

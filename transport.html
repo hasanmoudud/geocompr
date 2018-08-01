@@ -392,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prerequisites-10" class="section level2 unnumbered">
 <h2>Prerequisites</h2>
 <ul>
-<li>This chapter requires the following packages to be attached, all but the last two of which have been used previously:<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a></li>
+<li>This chapter requires the following packages to be attached, all but the last two of which have been used previously:<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a></li>
 </ul>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
 <a class="sourceLine" id="cb394-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
@@ -477,7 +477,7 @@ These zone-level data are small but often vital for gaining a basic understandin
 <p>Although transport systems are primarily based on linear features and nodes — including pathways and stations — it often makes sense to start with areal data, to break continuous space into tangible units <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.
 Two zone types will typically be of particular interest: the study region and origin (typically residential areas) and destination (typically containing ‘trip attractors’ such as schools and shops) zones.
 Often the geographic units of destinations are the geographic units that comprise the origins, but a different zoning system, such as ‘<a href="https://data.gov.uk/dataset/workplace-zones-a-new-geography-for-workplace-statistics3">Workplace Zones</a>’, may be appropriate to represent the increased density of trip destinations in central areas <span class="citation">(Office for National Statistics <a href="#ref-office_for_national_statistics_workplace_2014">2014</a>)</span>.</p>
-<p>The simplest way to define a study area is often the first matching boundary returned by OpenStreetMap, which can be obtained using <strong>osmdata</strong> with a command such as <code>bristol_region = osmdata::getbb(&quot;Bristol&quot;, format_out = &quot;sf_polygon&quot;)</code>. This results in an <code>sf</code> object representing the bounds of the largest matching city region, either a rectangular polygon of the bounding box or a detailed polygonal boundary.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a>
+<p>The simplest way to define a study area is often the first matching boundary returned by OpenStreetMap, which can be obtained using <strong>osmdata</strong> with a command such as <code>bristol_region = osmdata::getbb(&quot;Bristol&quot;, format_out = &quot;sf_polygon&quot;)</code>. This results in an <code>sf</code> object representing the bounds of the largest matching city region, either a rectangular polygon of the bounding box or a detailed polygonal boundary.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a>
 For Bristol, UK, a detailed polygon is returned, representing the official boundary of Bristol (see the inner blue boundary in Figure <a href="transport.html#fig:bristol">12.1</a>) but there are a couple of issues with this approach:</p>
 <ul>
 <li>The first OSM boundary returned by OSM may not be the official boundary used by local authorities.</li>
@@ -518,7 +518,7 @@ The first column is the ID of the zone of origin and the second column is the zo
 <p>The preceding chunk performed three main steps:</p>
 <ul>
 <li>Grouped the data by zone of origin (contained in the column <code>o</code>).</li>
-<li>Aggregated the variables in the <code>bristol_od</code> dataset <em>if</em> they were numeric, to find the total number of people living in each zone by mode of transport.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a></li>
+<li>Aggregated the variables in the <code>bristol_od</code> dataset <em>if</em> they were numeric, to find the total number of people living in each zone by mode of transport.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a></li>
 <li>Renamed the grouping variable <code>o</code> so it matches the ID column <code>geo_code</code> in the <code>bristol_zones</code> object.</li>
 </ul>
 <p>The resulting object <code>zones_attr</code> is a data frame with rows representing zones and an ID variable.
@@ -526,7 +526,7 @@ We can verify that the IDs match those in the <code>zones</code> dataset using <
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="kw">summary</span>(zones_attr<span class="op">$</span>geo_code <span class="op">%in%</span><span class="st"> </span>bristol_zones<span class="op">$</span>geo_code)</a>
 <a class="sourceLine" id="cb398-2" data-line-number="2"><span class="co">#&gt;    Mode    TRUE </span></a>
 <a class="sourceLine" id="cb398-3" data-line-number="3"><span class="co">#&gt; logical     102</span></a></code></pre></div>
-<p>The results show that all 102 zones are present in the new object and that <code>zone_attr</code> is in a form that can be joined onto the zones.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a>
+<p>The results show that all 102 zones are present in the new object and that <code>zone_attr</code> is in a form that can be joined onto the zones.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a>
 This is done using the joining function <code>left_join()</code> (note that <code>inner_join()</code> would produce here the same result):</p>
 <div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1">zones_joined =<span class="st"> </span><span class="kw">left_join</span>(bristol_zones, zones_attr, <span class="dt">by =</span> <span class="st">&quot;geo_code&quot;</span>)</a>
 <a class="sourceLine" id="cb399-2" data-line-number="2"><span class="kw">sum</span>(zones_joined<span class="op">$</span>all)</a>
@@ -640,7 +640,7 @@ What is needed is a way to plot this origin-destination data on the map.</p>
 <p>The solution is to convert the non-geographic <code>bristol_od</code> dataset into geographical desire lines that can be plotted on a map.
 The geographic representation of the <em>interzonal</em> OD pairs (in which the destination is different from the origin) presented in Table <a href="transport.html#tab:od">12.1</a> are displayed as straight black lines in <a href="transport.html#fig:desire">12.3</a>.
 These are clearly more useful from a policy perspective.
-The conversion from <code>data.frame</code> to <code>sf</code> class is done by the <strong>stplanr</strong> function <code>od2line()</code>, which matches the IDs in the first two columns of the <code>bristol_od</code> object to the <code>zone_code</code> ID column in the geographic <code>zones_od</code> object.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a></p>
+The conversion from <code>data.frame</code> to <code>sf</code> class is done by the <strong>stplanr</strong> function <code>od2line()</code>, which matches the IDs in the first two columns of the <code>bristol_od</code> object to the <code>zone_code</code> ID column in the geographic <code>zones_od</code> object.<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a></p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" data-line-number="1">od_intra =<span class="st"> </span><span class="kw">filter</span>(bristol_od, o <span class="op">==</span><span class="st"> </span>d)</a>
 <a class="sourceLine" id="cb403-2" data-line-number="2">od_inter =<span class="st"> </span><span class="kw">filter</span>(bristol_od, o <span class="op">!=</span><span class="st"> </span>d)</a>
 <a class="sourceLine" id="cb403-3" data-line-number="3">desire_lines =<span class="st"> </span><span class="kw">od2line</span>(od_inter, zones_od)</a></code></pre></div>
@@ -809,7 +809,7 @@ Figure 12.5: Illustration of a small route network, with segment thickness propo
 This is can be done with <code>sum_network_routes()</code> from <strong>stplanr</strong>, which undertakes ‘local routing’ (see section <a href="transport.html#routes">12.5</a>).
 The code below finds the shortest path between two nodes on the network —
 ‘shortest’ with reference to the <code>weightfield</code> slot of <code>ways_sln</code> (route distance by default
-— and returns a linestring (plot not shown):<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a></p>
+— and returns a linestring (plot not shown):<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a></p>
 <div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1">path =<span class="st"> </span><span class="kw">sum_network_routes</span>(ways_sln, <span class="dv">1</span>, <span class="dv">20</span>, <span class="st">&quot;length&quot;</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(path), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb414-2" data-line-number="2"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -941,22 +941,22 @@ Similar tools could be used to encourage evidence-based transport policies relat
 </div>
 <div class="footnotes">
 <hr />
-<ol start="67">
-<li id="fn67"><p>
-<strong>osmdata</strong> and <strong>nabor</strong> must also be installed although these packages do not need to be attached.<a href="transport.html#fnref67" class="footnote-back">↩</a></p></li>
+<ol start="68">
 <li id="fn68"><p>
-In cases where the first match does not provide the right name, the country or region should be specified, for example <code>Bristol Tennessee</code> for a Bristol located in America.<a href="transport.html#fnref68" class="footnote-back">↩</a></p></li>
+<strong>osmdata</strong> and <strong>nabor</strong> must also be installed although these packages do not need to be attached.<a href="transport.html#fnref68" class="footnote-back">↩</a></p></li>
 <li id="fn69"><p>
-the <code>_if</code> affix requires a <code>TRUE</code>/<code>FALSE</code> question to be asked of the variables, in this case ‘is it numeric?’ and only variables returning true are summarized.<a href="transport.html#fnref69" class="footnote-back">↩</a></p></li>
+In cases where the first match does not provide the right name, the country or region should be specified, for example <code>Bristol Tennessee</code> for a Bristol located in America.<a href="transport.html#fnref69" class="footnote-back">↩</a></p></li>
 <li id="fn70"><p>
-It would also be important to check that IDs match in the opposite direction on real data.
-This could be done by reversing the order of the ID’s in the commend — <code>summary(bristol_zones$geo_code %in% zones_attr$geo_code)</code> — or by using <code>setdiff()</code> as follows: <code>setdiff(bristol_zones$geo_code, zones_attr$geo_code)</code>.<a href="transport.html#fnref70" class="footnote-back">↩</a></p></li>
+the <code>_if</code> affix requires a <code>TRUE</code>/<code>FALSE</code> question to be asked of the variables, in this case ‘is it numeric?’ and only variables returning true are summarized.<a href="transport.html#fnref70" class="footnote-back">↩</a></p></li>
 <li id="fn71"><p>
+It would also be important to check that IDs match in the opposite direction on real data.
+This could be done by reversing the order of the ID’s in the commend — <code>summary(bristol_zones$geo_code %in% zones_attr$geo_code)</code> — or by using <code>setdiff()</code> as follows: <code>setdiff(bristol_zones$geo_code, zones_attr$geo_code)</code>.<a href="transport.html#fnref71" class="footnote-back">↩</a></p></li>
+<li id="fn72"><p>
 Note that the operation emits a warning because <code>od2line()</code> works by allocating the start and end points of each origin-destination pair to the <em>centroid</em> of its zone of origin and destination.
 <!-- This represents a straight line between the centroid of zone `E02003047` and the centroid of `E02003043` for the second origin-destination pair represented in Table \@ref(tab:od), for example. -->
-For real-world use one would use centroid values generated from projected data or, preferably, use <em>population-weighted</em> centroids <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.<a href="transport.html#fnref71" class="footnote-back">↩</a></p></li>
-<li id="fn72"><p>
-To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref72" class="footnote-back">↩</a></p></li>
+For real-world use one would use centroid values generated from projected data or, preferably, use <em>population-weighted</em> centroids <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.<a href="transport.html#fnref72" class="footnote-back">↩</a></p></li>
+<li id="fn73"><p>
+To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref73" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
