@@ -294,7 +294,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6bef564aaf700aaa
+preserve95a340582643991f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3050,7 +3050,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve211fa32ad460876f
+preserve38dff960047f7166
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6585,7 +6585,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserved92c87a09944a67b
+preserve13177d635b0ebd1a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6683,7 +6683,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5ecd36251902db8b
+preserve18b551c69aedfd6c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7080,7 +7080,7 @@ Roger Bivand elaborated on this in his talk "Bridges between GIS and R", deliver
 <!-- `geostat_talk16.zip`. -->
 ]
 
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">A command-line interface is a means of interacting computer programs in which the user issues commands via successive lines of text (command lines).
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">A command-line interface is a means of interacting with computer programs in which the user issues commands via successive lines of text (command lines).
 `bash` in Linux and `PowerShell` in Windows are common examples.
 CLIs can be augmented with IDEs such as RStudio for R, which provides code auto-completion and other features to improve the user experience.</div>\EndKnitrBlock{rmdnote}
 
@@ -10238,7 +10238,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserved86ede9aeb1e5a70
+preserve8a7a731f86a5d9c7
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
