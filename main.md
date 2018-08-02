@@ -97,7 +97,7 @@ Completing these encourages using R interactively to solve geospatial problems, 
 Impatient readers are welcome to dive straight into the practical examples, starting in Chapter \@ref(spatial-class).
 However, we recommend reading about the wider context of *Geocomputation with R* in Chapter \@ref(intro) first.
 If you are new to R we also recommend learning more about the language before attempting to run the code chunks provided in each chapter (unless you're reading the book for an understanding of the concepts).
-Fortunately for R beginners R has supportive community that has developed a wealth of resources that can help.
+Fortunately for R beginners R has a supportive community that has developed a wealth of resources that can help.
 We particularly recommend three tutorials:  [R for Data Science](http://r4ds.had.co.nz/) [@grolemund_r_2016] and [Efficient R Programming](https://csgillespie.github.io/efficientR/) [@gillespie_efficient_2016], especially [Chapter 2](https://csgillespie.github.io/efficientR/set-up.html#r-version) (on installing and setting-up R/RStudio) and [Chapter 10](https://csgillespie.github.io/efficientR/learning.html) (on learning to learn), and  [An introduction to R](http://colinfay.me/intro-to-r/) [@venables_introduction_2017].
 A good interactive tutorial is DataCamp's [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r).
 <!-- and tutorials created with [**learnr**](https://rstudio.github.io/learnr/examples.html). -->
@@ -152,6 +152,8 @@ Many thanks to all the people who contributed to the book via GitHub: [katygregg
 
 
 We thank Patrick Schratz (University of Jena) for fruitful discussions on **mlr** and for providing code input (Chapter \@ref(spatial-cv)).
+We also thank Dr. Alexander Brenning (University of Jena) for providing detailed feedback on Chapter \@ref(spatial-cv).
+We also would like to thank numerous anonymous reviewers who provided detailed feedback which helped to substantially improve the book in terms of structure, content and programming.
 
 <!-- add list of people who helped with this book -->
 
@@ -294,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve3166f0fba60289a0
+preservec4e227f672126d52
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3050,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7f5cac4abd2736b2
+preserved3410462c12215ca
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6585,7 +6587,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserveeab1e9e442b35d82
+preserve799e38a0dfb5c354
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6683,7 +6685,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8b4204fc92d21e94
+preservea25e200e0ea58666
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10231,7 +10233,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve78dbce584abd9ce2
+preservec4a76065233852b4
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
