@@ -578,7 +578,7 @@ Overall, NMDS puts objects that are more similar (in terms of species compositio
 However, as opposed to most other ordination techniques, the axes are arbitrary and not necessarily ordered by importance <span class="citation">(Borcard, Gillet, and Legendre <a href="#ref-borcard_numerical_2011">2011</a>)</span>.
 However, we already know that humidity represents the main gradient in the study area <span class="citation">(J. Muenchow, Bräuning, et al. <a href="#ref-muenchow_predictive_2013">2013</a>; Muenchow, Schratz, and Brenning <a href="#ref-muenchow_rqgis:_2017">2017</a>)</span>.
 Since humidity is highly correlated with elevation, we rotate the NMDS in accordance with elevation.
-Plotting the result reveals that the first axis is, as intended, clearly associated with altitude.</p>
+Plotting the result reveals that the first axis is, as intended, clearly associated with altitude (Figure <a href="#xy-nmds"><strong>??</strong></a>).</p>
 <!-- JM: add fig.caption!!! -->
 <div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1">elev =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(random_points, id <span class="op">%in%</span><span class="st"> </span><span class="kw">rownames</span>(pa)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb454-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">pull</span>(dem)</a>
@@ -590,7 +590,12 @@ Plotting the result reveals that the first axis is, as intended, clearly associa
 <a class="sourceLine" id="cb454-8" data-line-number="8"><span class="co"># plotting the first axis against altitude</span></a>
 <a class="sourceLine" id="cb454-9" data-line-number="9"><span class="kw">plot</span>(<span class="dt">y =</span> sc[, <span class="dv">1</span>], <span class="dt">x =</span> elev, <span class="dt">xlab =</span> <span class="st">&quot;elevation in m&quot;</span>, </a>
 <a class="sourceLine" id="cb454-10" data-line-number="10">     <span class="dt">ylab =</span> <span class="st">&quot;First NMDS axis&quot;</span>, <span class="dt">cex.lab =</span> <span class="fl">0.8</span>, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>)</a></code></pre></div>
-<p><img src="figures/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:xy-nmds"></span>
+<img src="figures/xy-nmds-1.png" alt="Plotting the first NMDS axis against altitude." width="576" />
+<p class="caption">
+Figure 14.3: Plotting the first NMDS axis against altitude.
+</p>
+</div>
 <p>The scores of the first NMDS axis represent the different vegetations formations appearing along the slope of Mt. Mongón.
 To spatially visualize them, we can model the NMDS scores with the previously created predictors, and use the resulting model for predictive mapping (see next section).</p>
 </div>
@@ -617,11 +622,11 @@ To illustrate this, we apply a decision tree to our data using the scores of the
 <div class="figure" style="text-align: center"><span id="fig:tree"></span>
 <img src="figures/tree-1.png" alt="Simple example of a decision tree with three internal nodes and four terminal nodes." width="576" />
 <p class="caption">
-Figure 14.3: Simple example of a decision tree with three internal nodes and four terminal nodes.
+Figure 14.4: Simple example of a decision tree with three internal nodes and four terminal nodes.
 </p>
 </div>
 <!-- JM: rounding is wrong in the online figure output, ok, save the figure as png and include it separately -->
-<p>The resulting tree consists of three internal nodes and four terminal nodes (Figure <a href="eco.html#fig:tree">14.3</a>).
+<p>The resulting tree consists of three internal nodes and four terminal nodes (Figure <a href="eco.html#fig:tree">14.4</a>).
 The first internal node at the top of the tree assigns all observations which are below 328.5 m to the left and all other observations to the right branch.
 The observations falling into the left branch have a mean NMDS score of -1.198.
 Overall, we can interpret the tree as follows: the higher the elevation, the higher the NMDS score becomes.
@@ -688,7 +693,7 @@ In each of these spatial partitions, we run 50 models (<code>makeTuneControlRand
 If all predictors are used, then this corresponds in fact to bagging (see beginning of section <a href="eco.html#modeling-the-floristic-gradient">14.4</a>).
 The <code>sample.fraction</code> parameter specifies the fraction of observations to be used in each tree.
 Smaller fractions lead to greater diversity, and thus less correlated trees which often is desirable (see above).
-The <code>min.node.size</code> parameter indicates the number of observations a terminal node should at least have (see also Figure <a href="eco.html#fig:tree">14.3</a>).
+The <code>min.node.size</code> parameter indicates the number of observations a terminal node should at least have (see also Figure <a href="eco.html#fig:tree">14.4</a>).
 Naturally, trees and computing time become larger, the lower the <code>min.node.size</code>.</p>
 <p>Hyperparameter combinations will be selected randomly but should fall inside specific tuning limits (<code>makeParamSet()</code>).
 <code>mtry</code> should range between 1 and the number of predictors (4), <code>sample.fraction</code> should range between 0.2 and 0.9 and <code>min.node.size</code> should range between 1 and 10.</p>
@@ -743,7 +748,7 @@ We simply have to modify our learner using the result of the hyperparameter tuni
 <p>The last step is to apply the model to the spatially available predictors, i.e. to the raster stack.
 So far, <code>raster::predict()</code> does not support the output of <strong>ranger</strong> models, hence, we will have to programm the predition ourselves.
 First, we convert <code>ep</code> into a prediction dataframe which secondly serves as input for the <code>predict.ranger()</code> function.
-Thirdly, we put the predicted values back into a <code>RasterLayer</code> (see section <a href="attr.html#raster-subsetting">3.3.1</a> and Figure <a href="eco.html#fig:rf-pred">14.4</a>).</p>
+Thirdly, we put the predicted values back into a <code>RasterLayer</code> (see section <a href="attr.html#raster-subsetting">3.3.1</a> and Figure <a href="eco.html#fig:rf-pred">14.5</a>).</p>
 <div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1"><span class="co"># convert raster stack into a dataframe</span></a>
 <a class="sourceLine" id="cb463-2" data-line-number="2">new_data =<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">as.matrix</span>(ep))</a>
 <a class="sourceLine" id="cb463-3" data-line-number="3"><span class="co"># apply the model to the dataframe</span></a>
@@ -755,10 +760,10 @@ Thirdly, we put the predicted values back into a <code>RasterLayer</code> (see s
 <div class="figure" style="text-align: center"><span id="fig:rf-pred"></span>
 <img src="figures/rf-pred-1.png" alt="Predictive mapping of the floristic gradient clearly revealing distinct vegetation belts." width="960" />
 <p class="caption">
-Figure 14.4: Predictive mapping of the floristic gradient clearly revealing distinct vegetation belts.
+Figure 14.5: Predictive mapping of the floristic gradient clearly revealing distinct vegetation belts.
 </p>
 </div>
-<p>The predictive mapping clearly reveals distinct vegetation belts (Figure <a href="eco.html#fig:rf-pred">14.4</a>).
+<p>The predictive mapping clearly reveals distinct vegetation belts (Figure <a href="eco.html#fig:rf-pred">14.5</a>).
 Please refer to <span class="citation">J. Muenchow, Hauenstein, et al. (<a href="#ref-muenchow_soil_2013">2013</a>)</span> for a detailed descriptions of vegetation belts on <strong>lomas</strong> mountains.
 The blue color tones represent the so-called <em>Tillandsia</em>-belt .
 <code>Tillandsia</code> is a highly adapted genus especially found in high quantities at the sandy and quite desertic foot of <em>lomas</em> mountains.

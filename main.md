@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve743427797642626e
+preserve67b3765d2992d7f7
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservef9af45efa2d5a047
+preserve80983df9ff56cdf0
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6587,7 +6587,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservef584bd1c00b7ce18
+preservef70dc9a4e81e4f11
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6685,7 +6685,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve9614210894b7d58d
+preserveec3ec2b4c0dfa26d
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10233,7 +10233,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservebe2806de4d4aa57e
+preservea413ac6bad4654d4
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -10554,7 +10554,7 @@ Overall, NMDS puts objects that are more similar (in terms of species compositio
 However, as opposed to most other ordination techniques, the axes are arbitrary and not necessarily ordered by importance [@borcard_numerical_2011].
 However, we already know that humidity represents the main gradient in the study area [@muenchow_predictive_2013;@muenchow_rqgis:_2017].
 Since humidity is highly correlated with elevation, we rotate the NMDS in accordance with elevation.
-Plotting the result reveals that the first axis is, as intended, clearly associated with altitude.
+Plotting the result reveals that the first axis is, as intended, clearly associated with altitude (Figure \@ref(xy-nmds)).
 
 <!-- JM: add fig.caption!!! -->
 
@@ -10572,7 +10572,10 @@ plot(y = sc[, 1], x = elev, xlab = "elevation in m",
      ylab = "First NMDS axis", cex.lab = 0.8, cex.axis = 0.8)
 ```
 
-<img src="figures/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="figures/xy-nmds-1.png" alt="Plotting the first NMDS axis against altitude." width="576" />
+<p class="caption">(\#fig:xy-nmds)Plotting the first NMDS axis against altitude.</p>
+</div>
 
 The scores of the first NMDS axis represent the different vegetations formations appearing along the slope of Mt. Mongón.
 To spatially visualize them, we can model the NMDS scores with the previously created predictors, and use the resulting model for predictive mapping (see next section).
@@ -10827,7 +10830,6 @@ What might explain the observed difference?
 1. Retrieve the bias-reduced RMSE using spatial cross-validation including the estimation of optimal hyperparameter combinations (random search with 50 iterations) in an inner tuning loop (see section \@ref(svm)).
 Parallelize the tuning level (see section \@ref(svm)).
 Report the mean RMSE and use a boxplot to visualize all retrieved RMSEs.
-
 
 <!--chapter:end:14-eco.Rmd-->
 
