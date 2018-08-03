@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve24c63a6adececf8b
+preserve14303dd9516e2fee
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve81afed09504da93d
+preservea505682fed47de09
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6587,7 +6587,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2467670c9c2d945c
+preserve532200459c20ebac
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6689,7 +6689,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservef393233d94dad5d4
+preserve2d7429f79899bc9b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10242,7 +10242,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve35b1d4a78028dc8d
+preservedaf5a714b5bbdf9c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -10341,7 +10341,7 @@ This causes the desert to bloom, and provides tree seedlings a chance to develop
 Unfortunately fog oases are heavily endangered.
 This is mostly due to human activity (agriculture and climate change).
 To effectively protect the last remnants of this unique vegetation ecosystem, evidence is needed on the composition and spatial distribution of the native flora [@muenchow_predictive_2013; @muenchow_soil_2013].
-*Lomas* mountains also have economic value as a tourist destination, and can contribute to the wellbeing of local people via recreation.
+*Lomas* mountains also have economic value as a tourist destination, and can contribute to the well-being of local people via recreation.
 For example, most Peruvians live in the coastal desert, and *lomas* mountains are frequently the closest "green" destination.
 
 In this chapter we will demonstrate ecological applications of some of the techniques learned in the previous chapters.
@@ -10363,7 +10363,7 @@ The first hypothesis is that four plant belts will be found along the altitudina
 
 Ordinations are dimension-reducing techniques which allow the extraction of the main gradients from a (noisy) dataset, in our case the floristic gradient developing along the southern mountain slope.
 In this chapter we will model the first ordination axis, i.e., the floristic gradient, as a function of environmental predictors such as altitude, slope, catchment area and NDVI.
-For this, we will make use of a random forest model - a very popular machine learning algorithm [@probst_hyperparamters_2018].
+For this, we will make use of a random forest model - a very popular machine learning algorithm [@probst_hyperparameters_2018].
 The model will allow us to make spatial predictions of the floristic composition anywhere in the study area.
 To guarantee an optimal prediction, it is advisable to tune beforehand the hyperparameters with the help of spatial cross-validation (see section \@ref(svm)).
 
@@ -10382,7 +10382,7 @@ data("study_area", "random_points", "comm", "dem", "ndvi")
 The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points.
 The rownames of `comm` correspond to the `id` column of `random_points`.
 Though `comm` only consists of 86 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
-`dem` is the digital elevation model for the study area, and `ndvi` is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infred channels of a Landsat scene (see section \@ref(local-operations) and `?ndvi`).
+`dem` is the digital elevation model for the study area, and `ndvi` is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section \@ref(local-operations) and `?ndvi`).
 Visualizing the data helps to get more familiar with the data:
 
 
@@ -10477,7 +10477,6 @@ Finally, we can extract the terrain attributes to our field observations (see al
 
 
 ```r
-data("random_points", package = "RQGIS")
 random_points[, names(ep)] = raster::extract(ep, as(random_points, "Spatial"))
 ```
 
@@ -10496,8 +10495,8 @@ For one, relationships are usually non-linear along environmental gradients.
 That means the presence of a plant usually follows a unimodal relationship along a gradient (e.g., humidity, temperature or salinity) with a peak at the most favorable conditions and declining ends towards the unfavorable conditions. 
 
 Secondly, the joint absence of a species in two plots is hardly an indication for similarity.
-Suppose a plant species is absent from the driest (e.g., an extreme desert) and the most moist locations (e.g., a tree savannah) of our sampling.
-Then we really should refrain from counting this as a simlilarity because it is very likely that the only thing these two completely different environmental settings have in common in terms of floristic composition is the shared absence of species (except for rare ubiquist species). 
+Suppose a plant species is absent from the driest (e.g., an extreme desert) and the most moist locations (e.g., a tree savanna) of our sampling.
+Then we really should refrain from counting this as a similarity because it is very likely that the only thing these two completely different environmental settings have in common in terms of floristic composition is the shared absence of species (except for rare ubiquitous species). 
 
 Non-metric multidimensional scaling (NMDS) is one popular dimension-reducing technique in ecology [@vonwehrden_pluralism_2009].
 NMDS reduces the rank-based differences between the distances between objects in the original matrix and distances between the ordinated objects. 
@@ -10522,7 +10521,7 @@ comm[35:40, 1:5]
 ```
 
 Often ordinations using presence-absence data yield better results though the prize is, of course, a less informative input matrix (see also exercises).
-`decostand()` converts numerical obervations into presences and absences with 1 indicating the occurence of a species and 0 the absence of a species.
+`decostand()` converts numerical observations into presences and absences with 1 indicating the occurrence of a species and 0 the absence of a species.
 
 
 ```r
@@ -10580,12 +10579,12 @@ plot(y = sc[, 1], x = elev, xlab = "elevation in m",
 <p class="caption">(\#fig:xy-nmds)Plotting the first NMDS axis against altitude.</p>
 </div>
 
-The scores of the first NMDS axis represent the different vegetations formations appearing along the slope of Mt. Mongón.
+The scores of the first NMDS axis represent the different vegetation formations appearing along the slope of Mt. Mongón.
 To spatially visualize them, we can model the NMDS scores with the previously created predictors (section \@ref(data-and-data-preparation)), and use the resulting model for predictive mapping (see next section).
 
 ## Modeling the floristic gradient
 
-To predict the floristic gradient spatially, we will make use of a random forst model.
+To predict the floristic gradient spatially, we will make use of a random forest model.
 Random forest models are frequently used in environmental and ecological modeling, and often provide the best results in terms of predictive performance [@schratz_performance_nodate]. 
 Here, we shortly introduce decision trees and bagging, since they form the basis of random forests.
 We refer the reader to @james_introduction_2013 for a more detailed description of random forests and related techniques.
@@ -10597,8 +10596,8 @@ We will also use the resulting dataframe for the **mlr** modeling later on.
 ```r
 # construct response-predictor matrix
 # id- and response variable
-rp = data.frame(id = as.numeric(rownames(scores(rotnmds))),
-                sc = scores(rotnmds)[, 1])
+rp = data.frame(id = as.numeric(rownames(sc)),
+                sc = sc[, 1])
 # join the predictors (dem, ndvi and terrain attributes)
 rp = inner_join(random_points, rp,  by = "id")
 ```
@@ -10778,7 +10777,7 @@ model_rf = train(lrn_rf, task)
 ```
 
 The last step is to apply the model to the spatially available predictors, i.e. to the raster stack.
-So far, `raster::predict()` does not support the output of **ranger** models, hence, we will have to programm the predition ourselves.
+So far, `raster::predict()` does not support the output of **ranger** models, hence, we will have to program the prediction ourselves.
 First, we convert `ep` into a prediction dataframe which secondly serves as input for the `predict.ranger()` function.
 Thirdly, we put the predicted values back into a `RasterLayer` (see section \@ref(raster-subsetting) and Figure \@ref(fig:rf-pred)).
 
@@ -10806,8 +10805,8 @@ The blue color tones represent the so-called *Tillandsia*-belt .
 The yellow color tones refer to a herbaceous vegetation belt with a much higher plant cover compared to the *Tillandsia*-belt.
 The orange colors represent the bromeliad belt, which features the highest species richness and plant cover.
 It can be found directly beneath the temperature inversion (ca. 750-850 m asl) where humidity due to fog is highest.
-Water availabilitly naturally decreases above the temperature inversion, and the landscape becomes desertic again with only a few succulent species (succulent belt; red colors).
-Interestingly, the spatial prediction clearly reveals that the bromeliad belt is interrupted - a finding we would have not detected without the predictive mapping.
+Water availability naturally decreases above the temperature inversion, and the landscape becomes desertic again with only a few succulent species (succulent belt; red colors).
+Interestingly, the spatial prediction clearly reveals that the bromeliad belt is interrupted - a very interesting finding we would have not detected without the predictive mapping.
 
 ## Conclusions
 
@@ -10816,8 +10815,9 @@ The first axis, representing the main floristic gradient in the study area, was 
 The **mlr** package provided the building blocks to spatially tune the hyperparameters `mtry`, `sample.fraction` and `min.node.size` (section \@ref(mlr-building-blocks)).
 The tuned hyperparameters served as input for the final model which in turn was applied to the environmental predictors for a spatial representation of the floristic gradient (section \@ref(predictive-mapping)).
 The result demonstrates spatially the astounding biodiversity in the middle of the desert.
-Since **lomas** mountains are heavily endangered, the prediction map can serve as basis for informed decision-making on delineating protection zones.
-Things to further consider in terms of methodology:
+Since **lomas** mountains are heavily endangered, the prediction map can serve as basis for informed decision-making on delineating protection zones, and making the local population aware of the uniqueness found in their immediate neighborhood.
+
+In terms of methodology, a few additional points could be addressed:
 
 - It would be interesting to also model the second ordination axis, and to subsequently finding an innovative way of visualizing jointly the modeled scores of the two axes in one prediction map.
 - If we were interested in interpreting the model in an ecological meaningful way, we probably should use (semi-)parametric models [@muenchow_predictive_2013;@zuur_mixed_2009;@zuur_beginners_2017].
