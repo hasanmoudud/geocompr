@@ -203,7 +203,7 @@ Before going into the details of the software, however, it is worth taking a ste
 Geocomputation is a relatively young field with a ~30 year history, dating back to the first conference on the subject in 1996.^[The conference took place at the University of Leeds, where one of the authors (Robin) is currently based and where the 21^st^ GeoComputation was hosted in 2017 (see
 http://www.geocomputation.org/).]
 <!-- todo: which chapters? -->
-What distinguishes geocomputation from the older quantitative geography, is its emphasis on "creative and experimental" GIS applications [@longley_geocomputation:_1998].
+What distinguishes geocomputation from the older quantitative geography, is its emphasis on "creative and experimental" GIS applications [@longley_geocomputation_1998].
 Additionally, it is also about developing new, research-driven methods [@openshaw_geocomputation_2000]:
 
 > GeoComputation is about using the various different types of geodata and about developing relevant geo-tools within the overall context of a 'scientific' approach.
@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve56193a0ade772e9a
+preservea8399eb00a0e258f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -422,16 +422,16 @@ These can still be useful today, provided you know where to look.
 R's spatial capabilities originated in early spatial packages in the S language [@bivand_implementing_2000].
 The 1990s saw the development of numerous S scripts and a handful of packages for spatial statistics.
 R packages arose from these and by 2000 there were R packages for various spatial methods "point pattern analysis, geostatistics, exploratory spatial data analysis and spatial econometrics", according to an [article](http://www.geocomputation.org/2000/GC009/Gc009.htm) presented at GeoComputation 2000 [@bivand_open_2000]
-Some of these, notably **spatial**, **sgeostat** and **splancs** are still available on CRAN [@rowlingson_splancs:_1993; @rowlingson_splancs:_2017;@venables_modern_2002; @majure_sgeostat_2016].
+Some of these, notably **spatial**, **sgeostat** and **splancs** are still available on CRAN [@rowlingson_splancs_1993; @rowlingson_splancs_2017;@venables_modern_2002; @majure_sgeostat_2016].
 
 A subsequent article in R News (the predecessor of [The R Journal](https://journal.r-project.org/)) contained an overview of spatial statistical software in R at the time, much of which was based on previous code written for S/S-PLUS [@ripley_spatial_2001].
-This overview described packages for spatial smoothing and interpolation, including **akima** and **geoR** [@akima_akima:_2016; @jr_geor_2016], and point pattern analysis, including **splancs** [@rowlingson_splancs:_2017] and **spatstat**, which  remains dominant in the field of spatial point pattern analysis [@baddeley_spatial_2015].
+This overview described packages for spatial smoothing and interpolation, including **akima** and **geoR** [@akima_akima_2016; @jr_geor_2016], and point pattern analysis, including **splancs** [@rowlingson_splancs_2017] and **spatstat**, which  remains dominant in the field of spatial point pattern analysis [@baddeley_spatial_2015].
 
 The following R News issue (Volume 1/3) put spatial packages in the spotlight again, with an introduction to **splancs** and a commentary on future prospects regarding spatial statistics [@bivand_more_2001].
-Additionally, the issue introduced two packages for testing spatial autocorrelation that eventually became part of **spdep** [@bivand_spdep:_2017].
+Additionally, the issue introduced two packages for testing spatial autocorrelation that eventually became part of **spdep** [@bivand_spdep_2017].
 Notably, the commentary mentions the need for standardization of spatial interfaces, efficient mechanisms for exchanging data with GIS, and handling of spatial metadata such as coordinate reference systems (CRS).
 
-**maptools** [written by Nicholas Lewin-Koh; @bivand_maptools:_2017] is another important package from this time.
+**maptools** [written by Nicholas Lewin-Koh; @bivand_maptools_2017] is another important package from this time.
 Initially **maptools** just contained a wrapper around [shapelib](http://shapelib.maptools.org/) and permitted the reading of ESRI Shapefiles into geometry nested lists. 
 The corresponding and nowadays obsolete S3 class called "Map" stored this list alongside an attribute data frame. 
 The work on the "Map" class representation was nevertheless important since it directly fed into **sp** prior to its publication on CRAN.
@@ -468,7 +468,7 @@ In the following decade, **sp** classes rapidly became the go-to standard for sp
 As of 2018 almost 500 packages rely on **sp**, making it an important part of the R ecosystem. 
 <!-- https://github.com/Robinlovelace/geocompr/issues/58 -->
 <!-- https://github.com/edzer/sfr/issues/387#issuecomment-308949140 -->
-Prominent R packages using **sp** include: **gstat**, for spatial and spatio-temporal geostatistics; **geosphere**, for spherical trigonometry; and **adehabitat** used for the analysis of habitat selection by animals [@R-gstat; @calenge_package_2006; @hijmans_geosphere:_2016].
+Prominent R packages using **sp** include: **gstat**, for spatial and spatio-temporal geostatistics; **geosphere**, for spherical trigonometry; and **adehabitat** used for the analysis of habitat selection by animals [@R-gstat; @calenge_package_2006; @hijmans_geosphere_2016].
 
 While **rgdal** and **sp** solved many spatial issues, R was still lacked the ability to do geometric operations (see chapter \@ref(geometric-operations)).
 Colin Rundel addressed this issue by developing **rgeos**, an R interface to  the open-source geometry library (GEOS) during a Google Summer of Coding project in 2010 [@R-rgeos].
@@ -480,12 +480,12 @@ A key feature of **raster** is its ability to work with datasets that are too la
 **raster** also supports map algebra (see section \@ref(map-algebra)).
 
 In parallel with these developments of class systems and methods came the support for R as an interface to dedicated GIS software.
-**GRASS** [@bivand_using_2000] and follow-on packages **spgrass6** and **rgrass7** (for GRASS GIS 6 and 7, respectively) were prominent examples in this direction [@bivand_spgrass6:_2016;@bivand_rgrass7:_2016].
+**GRASS** [@bivand_using_2000] and follow-on packages **spgrass6** and **rgrass7** (for GRASS GIS 6 and 7, respectively) were prominent examples in this direction [@bivand_spgrass6_2016;@bivand_rgrass7_2016].
 Other examples of bridges between R and GIS include **RSAGA** [@R-RSAGA, first published in 2008], **ArcGIS** [@brenning_arcgis_2012, first published in 2008], and **RQGIS** [@muenchow_rqgis:_2017, first published in 2016] (see Chapter \@ref(gis)).
 
 Visualization was not a focus initially, with the bulk of R-spatial development focussed on analysis and geographic operations.
 **sp** provided methods for map making using both the base and lattice plotting system but demand was growing for advanced map making capabilities, especially after the release of **ggplot2** in 2007.
-**ggmap** extended **ggplot2**'s spatial capabilities [@kahle_ggmap:_2013], by facilitating access to 'basemap' tiles from online services such as Google Maps. 
+**ggmap** extended **ggplot2**'s spatial capabilities [@kahle_ggmap_2013], by facilitating access to 'basemap' tiles from online services such as Google Maps. 
 <!--Additionally, *ggmap** lets you use (mainly Google's) geocoding and routing services.-->
 Though **ggmap** facilitated map-making with **ggplot2**, its utility was limited by the need to `fortify` spatial objects, which means converting them into long data frame.
 While this works well for points it is computationally inefficient for lines and polygons, since each coordinate (vertex) is converted into a row, leading to huge data frames to represent complex geometries.
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveaefdcd5b2b367981
+preserve4b21f1fbb3e3fb26
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6587,7 +6587,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserved6d07b4f355b2e6b
+preserve194ef8d424a2982a
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6689,7 +6689,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4580619794cf99b4
+preserve4e09a65dacb2adad
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8581,7 +8581,7 @@ talk about this in person
 Overall, this sums up to 500 models whereas the mean performance measure (AUROC) of all models is the model's overall predictive power.
 
 However, geographic data is special.
-As we saw in Chapter \@ref(transport), the 'first law' of geography states that points close to each other are, generally, more similar than points further away [@miller_toblers_2004].
+As we saw in Chapter \@ref(transport), the 'first law' of geography states that points close to each other are, generally, more similar than points further away [@miller_tobler_2004].
 This means these points are not statistically independent because training and test points in conventional CV are often too close to each other (see first row of \@ref(fig:partitioning)).
 'Training' observations near the 'test' observations can provide a kind of 'sneak preview':
 information that should be unavailable to the training dataset.
@@ -9099,7 +9099,7 @@ library(tmap)         # a visualization package
 ## Introduction
 
 In few other sectors is geographic space more tangible than transport.
-The effort of moving (overcoming distance) is central to the 'first law' of geography, defined by Waldo Tobler in 1970 as follows [@miller_toblers_2004]: 
+The effort of moving (overcoming distance) is central to the 'first law' of geography, defined by Waldo Tobler in 1970 as follows [@miller_tobler_2004]: 
 
 > Everything  is related  to  everything  else,  but  near  things  are more  related  than  distant  things
 
@@ -10237,7 +10237,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve446778f2f8d296be
+preservef559783533332ede
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

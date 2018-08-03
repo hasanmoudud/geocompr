@@ -537,7 +537,7 @@ That means the presence of a plant usually follows a unimodal relationship along
 <p>Secondly, the joint absence of a species in two plots is often hardly an indication for similarity.
 Suppose a plant species is absent from the driest (e.g., an extreme desert) and the most moist locations (e.g., a tree savannah) of our sampling.
 Then we really should refrain from counting this as a simlilarity because it is very likely that the only thing these two completely different environmental settings have in common in terms of floristic composition is the shared absence of species (except for rare ubiquist species).</p>
-<p>Non-metric multidimensional scaling (NMDS) is one popular dimension-reducing technique in ecology <span class="citation">(<span class="citeproc-not-found" data-reference-id="vonwehrden_pluralism_2009"><strong>???</strong></span>)</span>.
+<p>Non-metric multidimensional scaling (NMDS) is one popular dimension-reducing technique in ecology <span class="citation">(von Wehrden et al. <a href="#ref-vonwehrden_pluralism_2009">2009</a>)</span>.
 NMDS reduces the rank-based differences between the distances between objects in the original matrix and distances between the ordinated objects.
 The difference is expressed as stress.
 The lower the stress value, the better the ordination, i.e. the low-dimensional representation of the original matrix.
@@ -680,7 +680,7 @@ The learner is a random forest model from the <strong>ranger</strong> package.</
 <a class="sourceLine" id="cb458-3" data-line-number="3"><span class="co"># learner</span></a>
 <a class="sourceLine" id="cb458-4" data-line-number="4">lrn_rf =<span class="st"> </span><span class="kw">makeLearner</span>(<span class="dt">cl =</span> <span class="st">&quot;regr.ranger&quot;</span>, <span class="dt">predict.type =</span> <span class="st">&quot;response&quot;</span>)</a></code></pre></div>
 <p>As opposed to for example support vector machines (see section <a href="spatial-cv.html#svm">11.5.2</a>), random forests often already show good performances when used with the default values of their hyperparameters (which may be one reason for their popularity).
-Still, tuning often moderately improves model results, and thus is worth the effort <span class="citation">(<span class="citeproc-not-found" data-reference-id="probst_hyperparameters_2018"><strong>???</strong></span>)</span>.
+Still, tuning often moderately improves model results, and thus is worth the effort <span class="citation">(Probst, Wright, and Boulesteix <a href="#ref-probst_hyperparameters_2018">2018</a>)</span>.
 Since we deal with geographic data, we will again make use of spatial cross-validation to tune the hyperparameters (see sections <a href="spatial-cv.html#intro-cv">11.1</a> and <a href="spatial-cv.html#spatial-cv-with-mlr">11.5</a>).
 Specifically, we will use a five-fold spatial partitioning with only one repetition (<code>makeResampleDesc()</code>).
 In each of these spatial partitions, we run 50 models (<code>makeTuneControlRandom</code>) to find the optimal hyperparameter combination.</p>
@@ -688,7 +688,7 @@ In each of these spatial partitions, we run 50 models (<code>makeTuneControlRand
 <a class="sourceLine" id="cb459-2" data-line-number="2">perf_level =<span class="st"> </span><span class="kw">makeResampleDesc</span>(<span class="st">&quot;SpCV&quot;</span>, <span class="dt">iters =</span> <span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb459-3" data-line-number="3"><span class="co"># specifying random search</span></a>
 <a class="sourceLine" id="cb459-4" data-line-number="4">ctrl =<span class="st"> </span><span class="kw">makeTuneControlRandom</span>(<span class="dt">maxit =</span> 50L)</a></code></pre></div>
-<p>In random forests, the hyperparameters <code>mtry</code>, <code>min.node.size</code> and <code>sample.fraction</code> determine the degree of randomness, and should be tuned <span class="citation">(<span class="citeproc-not-found" data-reference-id="probst_hyperparameters_2018"><strong>???</strong></span>)</span>.
+<p>In random forests, the hyperparameters <code>mtry</code>, <code>min.node.size</code> and <code>sample.fraction</code> determine the degree of randomness, and should be tuned <span class="citation">(Probst, Wright, and Boulesteix <a href="#ref-probst_hyperparameters_2018">2018</a>)</span>.
 <code>mtry</code> indicates how many predictor variables should be used in each tree.
 If all predictors are used, then this corresponds in fact to bagging (see beginning of section <a href="eco.html#modeling-the-floristic-gradient">14.4</a>).
 The <code>sample.fraction</code> parameter specifies the fraction of observations to be used in each tree.
@@ -786,7 +786,7 @@ Things to further consider include:</p>
 It would be interesting to also model the second axis and to subsequently finding an innovative way of visualizing jointly the modeled scores of the two axes in one prediction map.</li>
 <li>If we were interested in interpreting the model in an ecological meaningful way, we probably should use (semi-)parametric models <span class="citation">(J. Muenchow, Bräuning, et al. <a href="#ref-muenchow_predictive_2013">2013</a>; Zuur et al. <a href="#ref-zuur_mixed_2009">2009</a>, <a href="#ref-zuur_beginners_2017">2017</a>)</span>.
 However, there are at least approaches that help to interpret machine learning models such as random forests (see e.g., <a href="https://mlr-org.github.io/interpretable-machine-learning-iml-and-mlr/" class="uri">https://mlr-org.github.io/interpretable-machine-learning-iml-and-mlr/</a>).</li>
-<li>A sequential model-based optimization (SMBO) might be preferable to the here used random search for hyperparameter optimization <span class="citation">(<span class="citeproc-not-found" data-reference-id="probst_hyperparameters_2018"><strong>???</strong></span>)</span>.</li>
+<li>A sequential model-based optimization (SMBO) might be preferable to the here used random search for hyperparameter optimization <span class="citation">(Probst, Wright, and Boulesteix <a href="#ref-probst_hyperparameters_2018">2018</a>)</span>.</li>
 </ul>
 </div>
 <div id="exercises-10" class="section level2">
@@ -825,11 +825,17 @@ Report the mean RMSE and use a boxplot to visualize all retrieved RMSEs.</li>
 <div id="ref-borcard_numerical_2011">
 <p>Borcard, Daniel, François Gillet, and Pierre Legendre. 2011. <em>Numerical Ecology with R</em>. Use R! New York: Springer.</p>
 </div>
+<div id="ref-vonwehrden_pluralism_2009">
+<p>von Wehrden, Henrik, Jan Hanspach, Helge Bruelheide, and Karsten Wesche. 2009. “Pluralism and Diversity: Trends in the Use and Application of Ordination Methods 1990-2007.” <em>Journal of Vegetation Science</em> 20 (4): 695–705. <a href="https://doi.org/10.1111/j.1654-1103.2009.01063.x" class="uri">https://doi.org/10.1111/j.1654-1103.2009.01063.x</a>.</p>
+</div>
 <div id="ref-schratz_performance_nodate">
 <p>Schratz, Patrick, J. Muenchow, Eugenia Iturritxa, Jakob Richter, and A. Brenning. 2018. “Performance Evaluation and Hyperparameter Tuning of Statistical and Machine-Learning Models Using Spatial Data.” <em>Tba</em>.</p>
 </div>
 <div id="ref-james_introduction_2013">
 <p>James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani, eds. 2013. <em>An Introduction to Statistical Learning: With Applications in R</em>. Springer Texts in Statistics 103. New York: Springer.</p>
+</div>
+<div id="ref-probst_hyperparameters_2018">
+<p>Probst, Philipp, Marvin Wright, and Anne-Laure Boulesteix. 2018. “Hyperparameters and Tuning Strategies for Random Forest.” <em>arXiv:1804.03515 [Cs, Stat]</em>, April. <a href="http://arxiv.org/abs/1804.03515" class="uri">http://arxiv.org/abs/1804.03515</a>.</p>
 </div>
 <div id="ref-zuur_mixed_2009">
 <p>Zuur, Alain, Elena N. Ieno, Neil Walker, Anatoly A. Saveliev, and Graham M. Smith. 2009. <em>Mixed Effects Models and Extensions in Ecology with R</em>. Statistics for Biology and Health. New York: Springer-Verlag.</p>
