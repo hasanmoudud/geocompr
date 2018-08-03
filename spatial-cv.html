@@ -796,7 +796,10 @@ In applied machine learning we will borrow, reuse and steal algorithms from many
 </blockquote>
 <p>In section <a href="spatial-cv.html#glm">11.5.1</a> a GLM was used to predict landslide susceptibility.
 This section introduces support vector machines (SVM) for the same purpose.
-In short, SVMs search for the best possible ‘hyperplanes’ to separate classes (in a classification case) and estimate ‘kernels’ with specific hyperparameters to allow for non-linear boundaries between classes <span class="citation">(James et al. <a href="#ref-james_introduction_2013">2013</a>)</span>.
+Random forest models might be more popular than SVMs, however, the positive effect of tuning hyperparameters on model performance is much more pronounced in the case of SVMs <span class="citation">(Probst, Wright, and Boulesteix <a href="#ref-probst_hyperparameters_2018">2018</a>)</span>.
+Since (spatial) hyperparamter tuning is the major aim of this section, we will use a SVM.
+For those wishing to apply a random forest model, we recommend to read this chapter, and then proceed to Chapter <a href="eco.html#eco">14</a> in which we will apply the here covered concepts and techniques to make spatial predictions based on a random forest model.</p>
+<p>SVMs search for the best possible ‘hyperplanes’ to separate classes (in a classification case) and estimate ‘kernels’ with specific hyperparameters to allow for non-linear boundaries between classes <span class="citation">(James et al. <a href="#ref-james_introduction_2013">2013</a>)</span>.
 Hyperparameters should not be confused with coefficients of parametric models, which are sometimes also referred to as parameters.<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a>
 Coefficients can be estimated from the data while hyperparameters are set before the learning begins.
 Optimal hyperparameters are usually determined within a defined range with the help of cross-validation methods.
@@ -962,9 +965,10 @@ The following command shows the best hyperparameter combination of the first fol
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1">result<span class="op">$</span>measures.test[<span class="dv">1</span>, ]</a>
 <a class="sourceLine" id="cb393-2" data-line-number="2"><span class="co">#&gt;   iter   auc</span></a>
 <a class="sourceLine" id="cb393-3" data-line-number="3"><span class="co">#&gt; 1    1 0.799</span></a></code></pre></div>
-<p>So far spatial CV has been used to assess the ability of learning algorithms to generalize to unseen data.
-For spatial prediction, one would tune the hyperparameters on the complete dataset (see Chapter <a href="eco.html#eco">14</a>).</p>
 <!-- # maybe add a figure (boxplot) showing the differences between tuning and no tuning?-->
+<p>So far spatial CV has been used to assess the ability of learning algorithms to generalize to unseen data.
+For spatial predictions, one would tune the hyperparameters on the complete dataset.
+This will be covered in Chapter <a href="eco.html#eco">14</a>.</p>
 </div>
 </div>
 <div id="conclusions" class="section level2">
@@ -1051,6 +1055,9 @@ For a discussion on the need for (spatial) tuning of hyperparameters please refe
 </div>
 <div id="ref-bischl_mlr:_2016">
 <p>Bischl, Bernd, Michel Lang, Lars Kotthoff, Julia Schiffner, Jakob Richter, Erich Studerus, Giuseppe Casalicchio, and Zachary M. Jones. 2016. “Mlr: Machine Learning in R.” <em>Journal of Machine Learning Research</em> 17 (170): 1–5.</p>
+</div>
+<div id="ref-probst_hyperparameters_2018">
+<p>Probst, Philipp, Marvin Wright, and Anne-Laure Boulesteix. 2018. “Hyperparameters and Tuning Strategies for Random Forest.” <em>arXiv:1804.03515 [Cs, Stat]</em>, April. <a href="http://arxiv.org/abs/1804.03515" class="uri">http://arxiv.org/abs/1804.03515</a>.</p>
 </div>
 <div id="ref-karatzoglou_kernlab_2004">
 <p>Karatzoglou, Alexandros, Alex Smola, Kurt Hornik, and Achim Zeileis. 2004. “Kernlab - an S4 Package for Kernel Methods in R.” <em>Journal of Statistical Software</em> 11 (9). <a href="https://doi.org/10.18637/jss.v011.i09" class="uri">https://doi.org/10.18637/jss.v011.i09</a>.</p>

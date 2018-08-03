@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea8399eb00a0e258f
+preserve24c63a6adececf8b
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4b21f1fbb3e3fb26
+preserve81afed09504da93d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6587,7 +6587,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve194ef8d424a2982a
+preserve2467670c9c2d945c
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6689,7 +6689,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4e09a65dacb2adad
+preservef393233d94dad5d4
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8782,7 +8782,11 @@ In applied machine learning we will borrow, reuse and steal algorithms from many
 
 In section \@ref(glm) a GLM was used to predict landslide susceptibility.
 This section introduces support vector machines (SVM) for the same purpose.
-In short, SVMs search for the best possible 'hyperplanes' to separate classes (in a classification case) and estimate 'kernels' with specific hyperparameters to allow for non-linear boundaries between classes [@james_introduction_2013].
+Random forest models might be more popular than SVMs, however, the positive effect of tuning hyperparameters on model performance is much more pronounced in the case of SVMs [@probst_hyperparameters_2018].
+Since (spatial) hyperparamter tuning is the major aim of this section, we will use a SVM.
+For those wishing to apply a random forest model, we recommend to read this chapter, and then proceed to Chapter \@ref(eco) in which we will apply the here covered concepts and techniques to make spatial predictions based on a random forest model.
+
+SVMs search for the best possible 'hyperplanes' to separate classes (in a classification case) and estimate 'kernels' with specific hyperparameters to allow for non-linear boundaries between classes [@james_introduction_2013].
 Hyperparameters should not be confused with coefficients of parametric models, which are sometimes also referred to as parameters.^[
 For a detailed description of the difference between coefficients and hyperparameters, see the 'machine mastery' blog post on the subject.
 <!-- For a more detailed description of the difference between coefficients and hyperparameters, see the [machine mastery blog](https://machinelearningmastery.com/difference-between-a-parameter-and-a-hyperparameter/). -->
@@ -9027,10 +9031,11 @@ result$measures.test[1, ]
 #> 1    1 0.799
 ```
 
-So far spatial CV has been used to assess the ability of learning algorithms to generalize to unseen data.
-For spatial prediction, one would tune the hyperparameters on the complete dataset (see Chapter \@ref(eco)).
-
 <!-- # maybe add a figure (boxplot) showing the differences between tuning and no tuning?-->
+
+So far spatial CV has been used to assess the ability of learning algorithms to generalize to unseen data.
+For spatial predictions, one would tune the hyperparameters on the complete dataset.
+This will be covered in Chapter \@ref(eco).
 
 ## Conclusions
 
@@ -10237,7 +10242,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef559783533332ede
+preserve35b1d4a78028dc8d
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -10357,9 +10362,10 @@ The first hypothesis is that four plant belts will be found along the altitudina
 -->
 
 Ordinations are dimension-reducing techniques which allow the extraction of the main gradients from a (noisy) dataset, in our case the floristic gradient developing along the southern mountain slope.
-In this chapter we will try to model the first ordination axis, i.e., the floristic gradient, as a function of environmental predictors such as altitude, slope, catchment area and NDVI.
-The corresponding model will allow us to make spatial predictions of the floristic composition anywhere in the study area.
-To retrieve bias-reduced performance estimates, we will of course account for the likely presence of spatial autocorrelation with the help of spatial cross-validation (see Chapter \@ref(spatial-cv)).
+In this chapter we will model the first ordination axis, i.e., the floristic gradient, as a function of environmental predictors such as altitude, slope, catchment area and NDVI.
+For this, we will make use of a random forest model - a very popular machine learning algorithm [@probst_hyperparamters_2018].
+The model will allow us to make spatial predictions of the floristic composition anywhere in the study area.
+To guarantee an optimal prediction, it is advisable to tune beforehand the hyperparameters with the help of spatial cross-validation (see section \@ref(svm)).
 
 ## Data and data preparation
 All the data needed for the subsequent analyses is available via the **RQGIS** package.
@@ -10374,17 +10380,12 @@ data("study_area", "random_points", "comm", "dem", "ndvi")
 `comm` is a community matrix where the rows represent the visited sites and the columns the observed species.
 ^[In statistics this is also called a contingency or cross-table, and in data science we refer to this as the wide data format.]
 The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points.
-The rownames of `comm` correspond in fact to the `id` column of `random_points`.
+The rownames of `comm` correspond to the `id` column of `random_points`.
 Though `comm` only consists of 86 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
 `dem` is the digital elevation model for the study area, and `ndvi` is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infred channels of a Landsat scene (see section \@ref(local-operations) and `?ndvi`).
 Visualizing the data helps to get more familiar with the data:
 
 
-
-
-```
-#> Loading required package: RColorBrewer
-```
 
 <div class="figure" style="text-align: center">
 <img src="figures/unnamed-chunk-5-1.png" alt="Study mask (polgyon), location of the sampling sites (black points) and DEM in the background." width="576" />
@@ -10492,9 +10493,9 @@ It is a great tool to reduce dimensionality if one can expect linear relationshi
 This is barely the case with vegetation data.
 
 For one, relationships are usually non-linear along environmental gradients.
-That means the presence of a plant usually follows a unimodal relationship along a gradient (e.g., humidity, temperature or salinity) with a peak at the most favorable conditions and declining ends towards the unfavarable conditions. 
+That means the presence of a plant usually follows a unimodal relationship along a gradient (e.g., humidity, temperature or salinity) with a peak at the most favorable conditions and declining ends towards the unfavorable conditions. 
 
-Secondly, the joint absence of a species in two plots is often hardly an indication for similarity.
+Secondly, the joint absence of a species in two plots is hardly an indication for similarity.
 Suppose a plant species is absent from the driest (e.g., an extreme desert) and the most moist locations (e.g., a tree savannah) of our sampling.
 Then we really should refrain from counting this as a simlilarity because it is very likely that the only thing these two completely different environmental settings have in common in terms of floristic composition is the shared absence of species (except for rare ubiquist species). 
 
@@ -10558,9 +10559,7 @@ Overall, NMDS puts objects that are more similar (in terms of species compositio
 However, as opposed to most other ordination techniques, the axes are arbitrary and not necessarily ordered by importance [@borcard_numerical_2011].
 However, we already know that humidity represents the main gradient in the study area [@muenchow_predictive_2013;@muenchow_rqgis:_2017].
 Since humidity is highly correlated with elevation, we rotate the NMDS in accordance with elevation.
-Plotting the result reveals that the first axis is, as intended, clearly associated with altitude (Figure \@ref(xy-nmds)).
-
-<!-- JM: add fig.caption!!! -->
+Plotting the result reveals that the first axis is, as intended, clearly associated with altitude (Figure \@ref(fig:xy-nmds)).
 
 
 ```r
@@ -10582,7 +10581,7 @@ plot(y = sc[, 1], x = elev, xlab = "elevation in m",
 </div>
 
 The scores of the first NMDS axis represent the different vegetations formations appearing along the slope of Mt. Mongón.
-To spatially visualize them, we can model the NMDS scores with the previously created predictors, and use the resulting model for predictive mapping (see next section).
+To spatially visualize them, we can model the NMDS scores with the previously created predictors (section \@ref(data-and-data-preparation)), and use the resulting model for predictive mapping (see next section).
 
 ## Modeling the floristic gradient
 
@@ -10629,7 +10628,7 @@ Decision trees have a tendency to overfit, that is they mirror too closely the i
 Bootstrap aggregation (bagging) is an ensemble technique and helps to overcome this problem.
 Ensemble techniques simply combine the predictions of multiple models.
 Thus, bagging takes repeated samples from the same input data and averages the predictions.
-This reduces the variance and overfitting with the result of a much better predictive accuracy compared to a decision tree.
+This reduces the variance and overfitting with the result of a much better predictive accuracy compared to decision trees.
 Finally, random forests extend and improve bagging by decorrelating trees which is desirable since averaging the predictions of highly correlated trees shows a higher variance and thus lower reliability than averaging predictions of decorrelated trees [@james_introduction_2013].
 To achieve this, random forests use bagging but in contrast to the traditional bagging where each tree is allowed to use all available predictors, random forests only use a random sample of all available predictors.
 
@@ -10652,14 +10651,14 @@ The only differences are:
 Instead we show how to tune hyperparameters for (spatial) predictions.
 
 Remember that 125,500 models were necessary to retrieve bias-reduced performance estimates when using 100-repeated 5-fold spatial cross-validation and a random search of 50 iterations (see section \@ref(svm)).
-In the hyperparameter tuning fold, we found the best hyperparameter combination which in turn was used in the outer performance loop for predicting the test data of a specific spatial partition. 
+In the hyperparameter tuning level, we found the best hyperparameter combination which in turn was used in the outer performance level for predicting the test data of a specific spatial partition (see also Figure \@ref(fig:inner-outer)). 
 This was done for five spatial partitions, and repeated a 100 times yielding in total 500 optimal hyperparameter combinations.
 Which one should we use for making spatial predictions?
 The answer is simple, none at all. 
 Remember, the tuning was done to retrieve a bias-reduced performance estimate, not to do the best possible spatial prediction.
 For the latter, one estimates the best hyperparameter combination from the complete dataset.
 This means, the inner hyperparameter tuning level is no longer needed which makes perfectly sense since we are applying our model to new data (unvisited field observations) for which the true outcomes are unavailable, hence testing is impossible in any case. 
-In short, we tune the hyperparameters for a good spatial prediction on the complete dataset via a 5-fold spatial CV with one repetition.
+Therefore, we tune the hyperparameters for a good spatial prediction on the complete dataset via a 5-fold spatial CV with one repetition.
 <!-- If we used more than one repetition (say 2) we would retrieve multiple optimal tuned hyperparameter combinations (say 2) -->
 
 The preparation for the modeling using the **mlr** package includes the construction of a response-predictor matrix containing only variables which should be used in the modeling and the construction of a separate coordinate dataframe.
@@ -10816,10 +10815,11 @@ In this chapter we have ordinated the community matrix of the **lomas** Mt. Mong
 The first axis, representing the main floristic gradient in the study area, was modeled as a function of environmental predictors which partly were derived through R-GIS bridges (section \@ref(data-and-data-preparation)).
 The **mlr** package provided the building blocks to spatially tune the hyperparameters `mtry`, `sample.fraction` and `min.node.size` (section \@ref(mlr-building-blocks)).
 The tuned hyperparameters served as input for the final model which in turn was applied to the environmental predictors for a spatial representation of the floristic gradient (section \@ref(predictive-mapping)).
-Things to further consider include:
+The result demonstrates spatially the astounding biodiversity in the middle of the desert.
+Since **lomas** mountains are heavily endangered, the prediction map can serve as basis for informed decision-making on delineating protection zones.
+Things to further consider in terms of methodology:
 
-- We have used just the first NMDS axis.
-It would be interesting to also model the second axis and to subsequently finding an innovative way of visualizing jointly the modeled scores of the two axes in one prediction map.
+- It would be interesting to also model the second ordination axis, and to subsequently finding an innovative way of visualizing jointly the modeled scores of the two axes in one prediction map.
 - If we were interested in interpreting the model in an ecological meaningful way, we probably should use (semi-)parametric models [@muenchow_predictive_2013;@zuur_mixed_2009;@zuur_beginners_2017].
 However, there are at least approaches that help to interpret machine learning models such as random forests (see e.g., [https://mlr-org.github.io/interpretable-machine-learning-iml-and-mlr/](https://mlr-org.github.io/interpretable-machine-learning-iml-and-mlr/)).
 - A sequential model-based optimization (SMBO) might be preferable to the here used random search for hyperparameter optimization [@probst_hyperparameters_2018]. 
