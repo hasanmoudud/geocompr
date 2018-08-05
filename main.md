@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-08-03'
+date: '2018-08-05'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-08-03 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-08-05 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -258,7 +258,7 @@ The rate of data produced is overwhelming.
 An autonomous vehicle, for example, can generate 100 GB of data per day [@theeconomist_autonomous_2016].
 Remote sensing data from satellites has become too large to analyze the corresponding data with a single computer, leading to initiatives such as  [OpenEO](http://r-spatial.org/2016/11/29/openeo.html).
 
-This 'geodata revolution' drives demand for high performance computer hardware and efficent, scalable software to handle and extract signal from the noise to understand and perhaps change the world.
+This 'geodata revolution' drives demand for high performance computer hardware and efficent, scalable software to handle and extract signal from the noise, to understand and perhaps change the world.
 'Geodatabases' enable storage and generation of manageble subsets from the vast geographic data stores, making interfaces for gaining knowledge from them vital tools for the future.
 R is one such tool, with advanced analysis, modelling and visualization capabilities.
 In this context the focus of the book is not on the language itself [see @wickham_advanced_2014].
@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved46342e6ca84940a
+preserve5ad7897b2b6ea1cb
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve72b877900c4ec39d
+preserve67fce24b6e761e8a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6586,7 +6586,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve70b98cd2ebc2da6b
+preserve49d6fd3b44e0e4cc
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6688,7 +6688,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebbf756f77d647945
+preserve1fb767586cea646f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10241,7 +10241,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve3941d94d16a75f22
+preservea1500c96a147fab4
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
