@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-08-06'
+date: '2018-08-07'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-08-06 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-08-07 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve5f1387e89bd34527
+preserve45430a6339f4284f
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve0bc5a8c3db980732
+preserve9b7f81ad452ba508
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6586,7 +6586,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve20cc14dad0d9bb88
+preserve50761b7ef8d58dfc
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6688,7 +6688,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservea9d06a2e35ecb369
+preservefd82eca778be8906
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10241,7 +10241,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve8f76cf64afc54d35
+preserveaa54399b8180cf7b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -10312,8 +10312,8 @@ Change the age raster accordingly, repeat the remaining analyses and compare the
 
 ## Prerequisites {-}
 
-This chapter assumes you have a strong grasp of spatial data analysis and processing, covered in chapters 2-5.
-In it you will make use of R's interfaces to dedicated GIS software, and spatial cross validation, topics covered in chapters \@ref(gis) and \@ref(spatial-cv) respectively.
+This chapter assumes you have a strong grasp of spatial data analysis and processing, covered in chapters \@ref(spatial-class)-\@ref(geometric-operations).
+In it you will also make use of R's interfaces to dedicated GIS software, and spatial cross validation, topics covered in chapters \@ref(gis) and \@ref(spatial-cv) respectively.
 
 The chapter uses the following packages:
 
@@ -10367,6 +10367,7 @@ The model will allow us to make spatial predictions of the floristic composition
 To guarantee an optimal prediction, it is advisable to tune beforehand the hyperparameters with the help of spatial cross-validation (see section \@ref(svm)).
 
 ## Data and data preparation
+
 All the data needed for the subsequent analyses is available via the **RQGIS** package.
 
 
