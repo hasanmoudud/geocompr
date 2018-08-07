@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve18823b7a226d1817
+preserve5653aadf13061655
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve299208004072f34c
+preserve66e94db58ed8c30a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5967,12 +5967,14 @@ Map making is therefore a critical part of geocomputation and its emphasis not o
 ## Static maps
 
 Static maps are the most common type of visual output from geocomputation.
-They are fixed images that can be included in printed outputs or published online.
-The majority of maps contained in this book are static maps saved as `.png` files (interactive maps are covered in section \@ref(interactive-maps)).
+Fixed images for printed outputs, common formats for static maps include `.png` and `.pdf`, for raster and vector outputs, respectively (interactive maps are covered in section \@ref(interactive-maps)).
+Initially static maps were the *only* type of map that R could produce.
+Things have advanced greatly since **sp** was realeased [see @pebesma_classes_2005].
+Although many new techniques for geographic data visualization have been developed and demonstrated since then, a decade later static plotting (and some animations) was still the emphasis of geographic data visualisation in R [@cheshire_spatial_2015].
 
-The generic `plot()` function is often the fastest way to create static maps from vector and raster spatial objects, as demonstrated in sections \@ref(basic-map) and \@ref(basic-map-raster).
-Sometimes the simplicity and speed of this approach is sufficient, especially during the development phase of a project:
-when using R interactively to understand a geographic dataset, you will likely be the only person who sees them.
+Despite the innovation of interactive mapping in R, static maps are still the foundation of mapping in R.
+The generic `plot()` function is often the fastest way to create static maps from vector and raster spatial objects, as shown in sections \@ref(basic-map) and \@ref(basic-map-raster).
+Sometimes simplicity and speed are priorities, especially during the development phase of a project, and this is where `plot()` excels.
 The base R approach is also extensible, with `plot()` offering dozens of arguments and the **grid** providing functions for low-level control of graphical outputs, --- see *R Graphics* [@murrell_r_2016], especially  Chapter [14](https://www.stat.auckland.ac.nz/~paul/RG2e/chapter14.html).
 The focus of this section, however, is making static maps with **tmap**.
 
@@ -6586,7 +6588,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1376f4ce3cea1733
+preserve9457664fd18ba51c
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6688,7 +6690,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveeac4921fd5ad5214
+preserve5c6da6924cdfb192
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10241,7 +10243,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve14f7ac3d6bb153e8
+preserve73b844c9af1acf90
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
