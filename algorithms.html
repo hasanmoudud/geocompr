@@ -311,9 +311,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.3</b> (R)SAGA</a></li>
 <li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#rgrass"><i class="fa fa-check"></i><b>9.4</b> GRASS through <strong>rgrass7</strong></a></li>
 <li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.5</b> When to use what?</a></li>
-<li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#a-short-note-on-further-spatial-apis"><i class="fa fa-check"></i><b>9.6</b> A short note on further spatial APIs</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="gis.html"><a href="gis.html#gdal"><i class="fa fa-check"></i><b>9.6.1</b> Spatial library API - GDAL</a></li>
-<li class="chapter" data-level="9.6.2" data-path="gis.html"><a href="gis.html#postgis"><i class="fa fa-check"></i><b>9.6.2</b> Spatial database API - PostgreSQL/PostGIS</a></li>
+<li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#other-bridges"><i class="fa fa-check"></i><b>9.6</b> Other bridges</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="gis.html"><a href="gis.html#gdal"><i class="fa fa-check"></i><b>9.6.1</b> Bridges to GDAL</a></li>
+<li class="chapter" data-level="9.6.2" data-path="gis.html"><a href="gis.html#postgis"><i class="fa fa-check"></i><b>9.6.2</b> Bridges to spatial databases</a></li>
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
 </ul></li>
@@ -417,7 +417,7 @@ Programming is hard and requires plenty of practice <span class="citation">(Abel
 <blockquote>
 <p>To appreciate programming as an intellectual activity in its own right you must turn to computer programming; you must read and write computer programs — many of them.</p>
 </blockquote>
-<p>There are strong reasons for moving in that direction, however.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>
+<p>There are strong reasons for moving in that direction, however.<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a>
 The advantages of reproduciblity go beyond allowing others to replicate your work:
 reproducible code is often better in every way than code written to be run only once, including in terms of computational efficiency, scalability and ease of adapting and maintaining it.</p>
 <p>Scripts are the basis of reproducible R code, a topic covered in section <a href="algorithms.html#scripts">10.2</a>.
@@ -450,12 +450,12 @@ An example is <code>10-hello.R</code>, a script file stored in the <code>code</c
 Saved scripts can be called and executed in their entirety with <code>source()</code>, as demonstrated below which shows how the comment is ignored but the instruction is executed:</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;code/10-hello.R&quot;</span>)</a>
 <a class="sourceLine" id="cb346-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Hello geocompr&quot;</span></a></code></pre></div>
-<p>There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a>
+<p>There are no strict rules on what can and cannot go into script files and nothing to prevent you from saving broken, non-reproducible code.<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a>
 There are, however, some conventions worth following:</p>
 <ul>
 <li>Write the script in order: just like the script of a film, scripts should have a clear order such as ‘setup’, ‘data processing’ and ‘save results’ (roughly equivalent to ‘beginning’, ‘middle’ and ‘end’ in a film).</li>
 <li>Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure <a href="algorithms.html#fig:codecheck">10.1</a>) and (for long scripts) divide it into sections (e.g. with <code>Ctl+Shift+R</code> in RStudio which creates comments ending in <code>----</code> that can be ‘folded’ in the editor).</li>
-<li>Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a></li>
+<li>Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></li>
 </ul>
 <p>It is hard to enforce reproducibility in R scripts, but there are tools that can help.
 By default RStudio ‘code-checks’ R scripts and underlines faulty code with a red wavy line, as illustrated below:</p>
@@ -475,7 +475,7 @@ See <a href="http://reprex.tidyverse.org/">reprex.tidyverse.org/</a> for details
 <p>The contents of this section apply to any type of R script.
 A particular consideration with scripts for geocomputation is that they tend to have external dependencies, such as the QGIS dependency to run code in Chapter <a href="gis.html#gis">9</a>, and require input data in a specific format.
 Such dependencies should be mentioned as comments in the script or elsewhere in the project of which it is a part, as illustrated in the script <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/10-centroid-alg.R"><code>10-centroid-alg.R</code></a>.
-The work undertaken by this script is demonstrated in the reproducible example below, which works on a pre-requisite object named <code>poly_mat</code>, a square with sides 9 units in length (the meaning of this will become apparent in the next section):<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></p>
+The work undertaken by this script is demonstrated in the reproducible example below, which works on a pre-requisite object named <code>poly_mat</code>, a square with sides 9 units in length (the meaning of this will become apparent in the next section):<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a></p>
 <div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(</a>
 <a class="sourceLine" id="cb347-2" data-line-number="2">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">0</span>),</a>
 <a class="sourceLine" id="cb347-3" data-line-number="3">  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">0</span>, <span class="dv">0</span>)</a>
@@ -513,7 +513,7 @@ It helps to further break-down this approach into discrete tasks before writing 
 <li>Find the area-weighted mean of triangle centroids
 <!-- 5. Return the result --></li>
 </ol>
-<p>These steps may sound straightforward, but converting words into working code requires some work and plenty of trial-and-error, even when the inputs are constrained.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a>
+<p>These steps may sound straightforward, but converting words into working code requires some work and plenty of trial-and-error, even when the inputs are constrained.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a>
 The simplest data structure of a polygon is a matrix of x and y coordinates in which each row represents a vertex tracing the polygon’s border in order where the first and last rows are identical <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>.
 In this case we’ll create a polygon with 5 vertices in base R, building on an example from <em>GIS Algorithms</em> <span class="citation">(Xiao <a href="#ref-xiao_gis_2016">2016</a> see <a href="https://github.com/gisalgs/geom">github.com/gisalgs</a> for Python code)</span>, as illustrated in Figure <a href="algorithms.html#fig:polymat">10.2</a>:</p>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1">x_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">10</span>)</a>
@@ -544,12 +544,12 @@ A translation of this formula into R code that works with the data in the matrix
 <a class="sourceLine" id="cb351-2" data-line-number="2"><span class="st">  </span>T1[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">3</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span></a>
 <a class="sourceLine" id="cb351-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb351-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
-<p>This code chunk outputs the correct result.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a>
+<p>This code chunk outputs the correct result.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>
 The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
 To make the code more generalizable, we will see how it can be converted into a function in the next section (<a href="algorithms.html#functions">10.4</a>).</p>
 <p>Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
 This requires <em>iteration</em> to create all triangles representing the polygon, illustrated in Figure <a href="algorithms.html#fig:polycent">10.3</a>.
-<code>lapply()</code> and <code>vapply()</code> are used to iterate over each triangle here because they provide a concise solution in base R:<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a></p>
+<code>lapply()</code> and <code>vapply()</code> are used to iterate over each triangle here because they provide a concise solution in base R:<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(poly_mat) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb352-2" data-line-number="2">T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb352-3" data-line-number="3">  <span class="kw">rbind</span>(O, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O)</a>
@@ -586,7 +586,7 @@ Still, if the aim is to develop new methods computational efficiency should not 
 <p>Algorithm development is hard.
 This should be apparent from the amount of work that has gone into developing a centroid algorithm in base R that is just one, rather inefficient, approach to the problem with limited real-world applications (in the real world convex polygons are uncommon).
 The experience should lead to an appreciation of low-level geographic libraries such as GEOS (which underlies <code>sf::st_centroid()</code>) and CGAL (the Computational Geometry Algorithms Library) which not only run fast but work on a wide range of input geometry types.
-A great advantage of the open source nature of such libraries is that their source code is readily available for study, comprehension and (for those with the skills and confidence) modification.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
+A great advantage of the open source nature of such libraries is that their source code is readily available for study, comprehension and (for those with the skills and confidence) modification.<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a></p>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">10.4</span> Functions</h2>
@@ -598,7 +598,7 @@ We can, for example, create function that undertakes step 2 of our centroid gene
 <a class="sourceLine" id="cb354-3" data-line-number="3">}</a></code></pre></div>
 <p>The above example demonstrates two key components of <a href="http://adv-r.had.co.nz/Functions.html">functions</a>:
 1) the function <em>body</em>, the code inside the curly brackets that define what the function does with the inputs; and 2) the <em>formals</em>, the list of arguments the function works with — <code>x</code> in this case (the third component, the environment, is beyond the scope of this section).
-By default, functions return the last object that has been calculated (the coordinates of the centroid in the case of <code>t_centroid()</code>).<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a></p>
+By default, functions return the last object that has been calculated (the coordinates of the centroid in the case of <code>t_centroid()</code>).<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
 <p>The function now works on any inputs you pass it, as illustrated in the below command which calculates the area of the 1<sup>st</sup> triangle from the example polygon in the previous section (see Figure <a href="algorithms.html#fig:polycent">10.3</a>):</p>
 <div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">t_centroid</span>(T1)</a>
 <a class="sourceLine" id="cb355-2" data-line-number="2"><span class="co">#&gt; x_coords y_coords </span></a>
@@ -741,33 +741,33 @@ To return the result as an object of class <code>sfg</code>, for example, a ‘w
 </div>
 <div class="footnotes">
 <hr />
-<ol start="52">
-<li id="fn52"><p>
-This chapter does not teach programming itself, but the guidance and exercises within should provide a foundation for learning to program.
-For more on programming see <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a>)</span>, <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span> and, for a GIS-focussed book based on Python, <span class="citation">Xiao (<a href="#ref-xiao_gis_2016">2016</a>)</span>. <a href="algorithms.html#fnref52" class="footnote-back">↩</a></p></li>
+<ol start="53">
 <li id="fn53"><p>
-Lines of code that do not contain valid R should be commented to prevent errors, as with line 1 of the <code>10-hello.R</code> script.<a href="algorithms.html#fnref53" class="footnote-back">↩</a></p></li>
+This chapter does not teach programming itself, but the guidance and exercises within should provide a foundation for learning to program.
+For more on programming see <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a>)</span>, <span class="citation">Gillespie and Lovelace (<a href="#ref-gillespie_efficient_2016">2016</a>)</span> and, for a GIS-focussed book based on Python, <span class="citation">Xiao (<a href="#ref-xiao_gis_2016">2016</a>)</span>. <a href="algorithms.html#fnref53" class="footnote-back">↩</a></p></li>
 <li id="fn54"><p>
-Prior steps can be referred to with a comment or with an if statement such as <code>if(!exists(&quot;x&quot;)) source(&quot;x.R&quot;)</code> (which would run the script file <code>x.R</code> if the object <code>x</code> is missing).<a href="algorithms.html#fnref54" class="footnote-back">↩</a></p></li>
+Lines of code that do not contain valid R should be commented to prevent errors, as with line 1 of the <code>10-hello.R</code> script.<a href="algorithms.html#fnref54" class="footnote-back">↩</a></p></li>
 <li id="fn55"><p>
-This example shows that <code>source()</code> works with URLs (a shortened version is used here), assuming you have an internet connection.
-If you do not, the same script can be called with <code>source(&quot;code/10-centroid-alg.R&quot;)</code>, assuming you are running R from the root directory of the <code>geocompr</code> folder, which can downloaded from <a href="https://github.com/Robinlovelace/geocompr" class="uri">https://github.com/Robinlovelace/geocompr</a>.<a href="algorithms.html#fnref55" class="footnote-back">↩</a></p></li>
+Prior steps can be referred to with a comment or with an if statement such as <code>if(!exists(&quot;x&quot;)) source(&quot;x.R&quot;)</code> (which would run the script file <code>x.R</code> if the object <code>x</code> is missing).<a href="algorithms.html#fnref55" class="footnote-back">↩</a></p></li>
 <li id="fn56"><p>
-The algorithm will only work for <em>convex polygons</em>, which contain no internal angles greater than 180° — no star shapes allowed.<a href="algorithms.html#fnref56" class="footnote-back">↩</a></p></li>
+This example shows that <code>source()</code> works with URLs (a shortened version is used here), assuming you have an internet connection.
+If you do not, the same script can be called with <code>source(&quot;code/10-centroid-alg.R&quot;)</code>, assuming you are running R from the root directory of the <code>geocompr</code> folder, which can downloaded from <a href="https://github.com/Robinlovelace/geocompr" class="uri">https://github.com/Robinlovelace/geocompr</a>.<a href="algorithms.html#fnref56" class="footnote-back">↩</a></p></li>
 <li id="fn57"><p>
+The algorithm will only work for <em>convex polygons</em>, which contain no internal angles greater than 180° — no star shapes allowed.<a href="algorithms.html#fnref57" class="footnote-back">↩</a></p></li>
+<li id="fn58"><p>
 The result can be verified using the formula for the area of a triangle whose base is horizontal, as is the case for T1 (see Figure <a href="algorithms.html#fig:polycent">10.3</a>):
 area is half of the base width times its height or <span class="math inline">\(A = B * H / 2\)</span>.
-In this case <span class="math inline">\(10 * 10 / 2 = 50\)</span>.<a href="algorithms.html#fnref57" class="footnote-back">↩</a></p></li>
-<li id="fn58"><p>
+In this case <span class="math inline">\(10 * 10 / 2 = 50\)</span>.<a href="algorithms.html#fnref58" class="footnote-back">↩</a></p></li>
+<li id="fn59"><p>
 See <code>?lapply</code> for documentation.
 Alternative functions for iteration include <code>map()</code> from the <strong>purrr</strong> package or a <code>for()</code> loop (see Chapter <a href="location.html#location">13</a>).
 <code>do.call()</code> is used in the code chunk as a base R equivalent of <code>dplyr::bind_rows()</code>:
-it coerces the list elements into a single matrix. <a href="algorithms.html#fnref58" class="footnote-back">↩</a></p></li>
-<li id="fn59"><p>
-The CGAL function <code>CGAL::centroid()</code> is in fact composed of 7 sub-functions as described at <a href="https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html" class="uri">https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html</a> allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
-The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref59" class="footnote-back">↩</a></p></li>
+it coerces the list elements into a single matrix. <a href="algorithms.html#fnref59" class="footnote-back">↩</a></p></li>
 <li id="fn60"><p>
-You can also explicitly set the output of a function by adding <code>return(output)</code> into the body of the function, where <code>output</code> is the result to be returned.<a href="algorithms.html#fnref60" class="footnote-back">↩</a></p></li>
+The CGAL function <code>CGAL::centroid()</code> is in fact composed of 7 sub-functions as described at <a href="https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html" class="uri">https://doc.cgal.org/latest/Kernel_23/group__centroid__grp.html</a> allowing it to work on a wide range of input data types, whereas the solution we created works only on a very specific input data type.
+The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref60" class="footnote-back">↩</a></p></li>
+<li id="fn61"><p>
+You can also explicitly set the output of a function by adding <code>return(output)</code> into the body of the function, where <code>output</code> is the result to be returned.<a href="algorithms.html#fnref61" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>

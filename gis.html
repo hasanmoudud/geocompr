@@ -311,9 +311,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.3</b> (R)SAGA</a></li>
 <li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#rgrass"><i class="fa fa-check"></i><b>9.4</b> GRASS through <strong>rgrass7</strong></a></li>
 <li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.5</b> When to use what?</a></li>
-<li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#a-short-note-on-further-spatial-apis"><i class="fa fa-check"></i><b>9.6</b> A short note on further spatial APIs</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="gis.html"><a href="gis.html#gdal"><i class="fa fa-check"></i><b>9.6.1</b> Spatial library API - GDAL</a></li>
-<li class="chapter" data-level="9.6.2" data-path="gis.html"><a href="gis.html#postgis"><i class="fa fa-check"></i><b>9.6.2</b> Spatial database API - PostgreSQL/PostGIS</a></li>
+<li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#other-bridges"><i class="fa fa-check"></i><b>9.6</b> Other bridges</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="gis.html"><a href="gis.html#gdal"><i class="fa fa-check"></i><b>9.6.1</b> Bridges to GDAL</a></li>
+<li class="chapter" data-level="9.6.2" data-path="gis.html"><a href="gis.html#postgis"><i class="fa fa-check"></i><b>9.6.2</b> Bridges to spatial databases</a></li>
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
 </ul></li>
@@ -419,7 +419,7 @@ you type commands and hit <code>Enter</code> (or <code>Ctl+Enter</code> if writi
 This way of interacting with the computer is called a command-line interface (CLI) (see definition in the note below).
 CLIs are not unique to R.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
 In dedicated GIS packages, by contrast, the emphasis tends to be on the graphical user interface (GUI):
-you <em>can</em> interact with QGIS, SAGA and gvSIG with dockable CLIs, but ‘pointing and clicking’ is the norm.
+you <em>can</em> interact with GRASS (the longest-standing GIS program, which originated as a CLI), QGIS, SAGA and gvSIG with dockable CLIs, but ‘pointing and clicking’ is the norm.
 This means many GIS users miss-out on the advantages of the command-line according to Gary Sherman, creator of QGIS <span class="citation">(Sherman <a href="#ref-sherman_desktop_2008">2008</a>)</span>:</p>
 <blockquote>
 <p>With the advent of ‘modern’ GIS software, most people want to point and
@@ -630,7 +630,7 @@ Figure 9.1: Sliver polygons colored in blue (left panel). Cleaned polygons (righ
 </div>
 <div id="rsaga" class="section level2">
 <h2><span class="header-section-number">9.3</span> (R)SAGA</h2>
-<p>The System for Automated Geoscientific Analyses (SAGA; Table <a href="gis.html#tab:gis-comp">9.1</a>) provides the possibility to execute SAGA modules via the command line interface (saga_cmd.exe under Windows and just saga_cmd under Linux) (see also <a href="https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/">https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/</a>).
+<p>The System for Automated Geoscientific Analyses (SAGA; Table <a href="gis.html#tab:gis-comp">9.1</a>) provides the possibility to execute SAGA modules via the command line interface (<code>saga_cmd.exe</code> under Windows and just <code>saga_cmd</code> under Linux) (see the <a href="https://sourceforge.net/p/saga-gis/wiki/Executing%20Modules%20with%20SAGA%20CMD/">Saga wiki on modules</a>).
 In addition, there is a Python interface (SAGA Python API).
 <strong>RSAGA</strong> uses the former to run SAGA from within R.</p>
 <p>Though SAGA is a hybrid GIS, its main focus has been on raster processing, and here particularly on digital elevation models (soil properties, terrain attributes, climate parameters).
@@ -861,91 +861,72 @@ Finally, if you need topological correct data and/or geodatabase-management func
 In addition, if you would like to run simulations with the help of a geodatabase <span class="citation">(Krug, Roura-Pascual, and Richardson <a href="#ref-krug_clearing_2010">2010</a>)</span>, use <strong>rgrass7</strong> directly since <strong>RQGIS</strong> always starts a new GRASS session for each call.</p>
 <p>Please note that there are a number of further GIS software packages that have a scripting interface but for which there is no dedicated R package that accesses these: gvSig, OpenJump, Orfeo Toolbox and TauDEM.</p>
 </div>
-<div id="a-short-note-on-further-spatial-apis" class="section level2">
-<h2><span class="header-section-number">9.6</span> A short note on further spatial APIs</h2>
-<p>There are many further interfaces to other spatial software packages aside from the interfaces to Desktop GIS software presented in detail in this chapter.
-This includes interfaces to spatial libraries (section <a href="gis.html#gdal">9.6.1</a>), spatial databases (section <a href="gis.html#postgis">9.6.2</a>) and web mapping services (see chapter <a href="adv-map.html#adv-map">8</a>).
-In this section we will only have a short glance at two selected examples.
-Hopefully, this will give an impression of all the spatial power and flexibility that is readily available on our fingertips.</p>
+<div id="other-bridges" class="section level2">
+<h2><span class="header-section-number">9.6</span> Other bridges</h2>
+<p>The focus of this chapter is on R interfaces to Desktop GIS software.
+We emphasize these bridges because dedicated GIS software is well-known and a common ‘way in’ to understanding spatial data.
+They also provide access to many geoalgorithms.</p>
+<p>Other ‘bridges’ include interfaces to spatial libraries (section <a href="gis.html#gdal">9.6.1</a> shows how to access the GDAL CLI from R), spatial databases (see section <a href="gis.html#postgis">9.6.2</a>) and web mapping services (see chapter <a href="adv-map.html#adv-map">8</a>).
+This section provides only a snippet of what is possible.
+Thanks to R’s flexibility, with its ability to call other programs from the system and integration with other languages (notably via <strong>Rcpp</strong> and <strong>reticulate</strong>), many other bridges are possible.
+The aim is not to be comprehensive, but to demonstrate other ways of accessing the ‘flexibility and power’ in the quote by <span class="citation">Sherman (<a href="#ref-sherman_desktop_2008">2008</a>)</span> at the beginning of the chapter.</p>
 <div id="gdal" class="section level3">
-<h3><span class="header-section-number">9.6.1</span> Spatial library API - GDAL</h3>
-<p>GDAL is especially known for its support for numerous spatial drivers (data formats).
-In fact, there is barely a geospatial software that is not using GDAL in the background for importing and exporting geographic data.
-But GDAL offers more than I/O functions, e.g., geoprocessing tools for vector and raster data (for an overview have a look at <a href="http://www.gdal.org/pages.html" class="uri">http://www.gdal.org/pages.html</a>).
-One can easily access these tools via the command line.
-In the code chunk below <code>linkGDAL()</code> searches the computer for a working GDAL installation and adds the path of the executable files to the PATH variable.
-This allows us to easily run GDAL via system calls.
-For example, <code>ogrinfo</code> gives back meta information of vector data.</p>
+<h3><span class="header-section-number">9.6.1</span> Bridges to GDAL</h3>
+<p>As discussed in Chapter <a href="read-write.html#read-write">7</a>, GDAL is a low-level library that supports many spatial data formats.
+GDAL is so effective that most GIS programs use GDAL in the background for importing and exporting geographic data, rather than re-inventing the wheel and using bespoke read-write code.
+But GDAL offers more than data I/O.
+It has <a href="http://www.gdal.org/pages.html">geoprocessing tools</a> for vector and raster data, functionality to create <a href="https://www.gdal.org/gdal2tiles.html">tiles</a> for serving raster data online, and rapid <a href="https://www.gdal.org/gdal_rasterize.html">rasterization</a> of vector data, all of which can be accessed via the system of R command line.</p>
+<p>The code chunk below demonstrates this functionality:
+<code>linkGDAL()</code> searches the computer for a working GDAL installation and adds the location of the executable files to the PATH variable, allowing GDAL to be called.
+In the example below <code>ogrinfo</code> provides metadata on a vector dataset:</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1">link2GI<span class="op">::</span><span class="kw">linkGDAL</span>()</a>
-<a class="sourceLine" id="cb337-2" data-line-number="2">cmd =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;ogrinfo -ro -so -al&quot;</span>, </a>
-<a class="sourceLine" id="cb337-3" data-line-number="3">            <span class="kw">system.file</span>(<span class="st">&quot;shape/nc.shp&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sf&quot;</span>))</a>
-<a class="sourceLine" id="cb337-4" data-line-number="4"><span class="kw">system</span>(cmd)</a>
-<a class="sourceLine" id="cb337-5" data-line-number="5"><span class="co">#&gt;INFO: Open of `C:/Users/geocompr/Documents/R/win-library/3.5/sf/shape/nc.shp&#39;</span></a>
-<a class="sourceLine" id="cb337-6" data-line-number="6"><span class="co">#&gt;    using driver `ESRI Shapefile&#39; successful.</span></a>
-<a class="sourceLine" id="cb337-7" data-line-number="7"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb337-8" data-line-number="8"><span class="co">#&gt;Layer name: nc</span></a>
-<a class="sourceLine" id="cb337-9" data-line-number="9"><span class="co">#&gt;Metadata:</span></a>
-<a class="sourceLine" id="cb337-10" data-line-number="10"><span class="co">#&gt; DBF_DATE_LAST_UPDATE=2016-10-26</span></a>
-<a class="sourceLine" id="cb337-11" data-line-number="11"><span class="co">#&gt;Geometry: Polygon</span></a>
-<a class="sourceLine" id="cb337-12" data-line-number="12"><span class="co">#&gt;Feature Count: 100</span></a>
-<a class="sourceLine" id="cb337-13" data-line-number="13"><span class="co">#&gt;Extent: (-84.323853, 33.881992) - (-75.456978, 36.589649)</span></a>
-<a class="sourceLine" id="cb337-14" data-line-number="14"><span class="co">#&gt;Layer SRS WKT:</span></a>
-<a class="sourceLine" id="cb337-15" data-line-number="15"><span class="co">#&gt;GEOGCS[&quot;GCS_North_American_1927&quot;,</span></a>
-<a class="sourceLine" id="cb337-16" data-line-number="16"><span class="co">#&gt;    DATUM[&quot;North_American_Datum_1927&quot;,</span></a>
-<a class="sourceLine" id="cb337-17" data-line-number="17"><span class="co">#&gt;        SPHEROID[&quot;Clarke_1866&quot;,6378206.4,294.9786982]],</span></a>
-<a class="sourceLine" id="cb337-18" data-line-number="18"><span class="co">#&gt;    PRIMEM[&quot;Greenwich&quot;,0],</span></a>
-<a class="sourceLine" id="cb337-19" data-line-number="19"><span class="co">#&gt;    UNIT[&quot;Degree&quot;,0.017453292519943295],</span></a>
-<a class="sourceLine" id="cb337-20" data-line-number="20"><span class="co">#&gt;    AUTHORITY[&quot;EPSG&quot;,&quot;4267&quot;]]</span></a>
-<a class="sourceLine" id="cb337-21" data-line-number="21"><span class="co">#&gt;AREA: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-22" data-line-number="22"><span class="co">#&gt;PERIMETER: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-23" data-line-number="23"><span class="co">#&gt;CNTY_: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-24" data-line-number="24"><span class="co">#&gt;CNTY_ID: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-25" data-line-number="25"><span class="co">#&gt;NAME: String (80.0)</span></a>
-<a class="sourceLine" id="cb337-26" data-line-number="26"><span class="co">#&gt;FIPS: String (80.0)</span></a>
-<a class="sourceLine" id="cb337-27" data-line-number="27"><span class="co">#&gt;FIPSNO: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-28" data-line-number="28"><span class="co">#&gt;CRESS_ID: Integer (9.0)</span></a>
-<a class="sourceLine" id="cb337-29" data-line-number="29"><span class="co">#&gt;BIR74: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-30" data-line-number="30"><span class="co">#&gt;SID74: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-31" data-line-number="31"><span class="co">#&gt;NWBIR74: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-32" data-line-number="32"><span class="co">#&gt;BIR79: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-33" data-line-number="33"><span class="co">#&gt;SID79: Real (24.15)</span></a>
-<a class="sourceLine" id="cb337-34" data-line-number="34"><span class="co">#&gt;NWBIR79: Real (24.15)</span></a></code></pre></div>
-<p>This is of course a very simple example, and we could have achieved the same using <code>rgdal::ogrInfo()</code>.
-Still, it shows how we can use GDAL via the command-line from within R independently of other packages, and nothing stops us from using more advanced and/or not already implemented GDAL utilities in R.
-Note also that the <strong>RSAGA</strong> package uses the command line interface to use SAGA geoalgorithms from within R (see section <a href="gis.html#rsaga">9.3</a>).
-TauDEM (<a href="http://hydrology.usu.edu/taudem/taudem5/index.html" class="uri">http://hydrology.usu.edu/taudem/taudem5/index.html</a>) and the Orfeo Toolbox (<a href="https://www.orfeo-toolbox.org/" class="uri">https://www.orfeo-toolbox.org/</a>) are further examples for offering a command line interface.
+<a class="sourceLine" id="cb337-2" data-line-number="2">cmd =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;ogrinfo -ro -so -al&quot;</span>, <span class="kw">system.file</span>(<span class="st">&quot;shape/nc.shp&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sf&quot;</span>))</a>
+<a class="sourceLine" id="cb337-3" data-line-number="3"><span class="kw">system</span>(cmd)</a>
+<a class="sourceLine" id="cb337-4" data-line-number="4"><span class="co">#&gt; INFO: Open of `C:/Users/geocompr/Documents/R/win-library/3.5/sf/shape/nc.shp&#39;</span></a>
+<a class="sourceLine" id="cb337-5" data-line-number="5"><span class="co">#&gt;     using driver `ESRI Shapefile&#39; successful.</span></a>
+<a class="sourceLine" id="cb337-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb337-7" data-line-number="7"><span class="co">#&gt; Layer name: nc</span></a>
+<a class="sourceLine" id="cb337-8" data-line-number="8"><span class="co">#&gt; Metadata:</span></a>
+<a class="sourceLine" id="cb337-9" data-line-number="9"><span class="co">#&gt;  DBF_DATE_LAST_UPDATE=2016-10-26</span></a>
+<a class="sourceLine" id="cb337-10" data-line-number="10"><span class="co">#&gt; Geometry: Polygon</span></a>
+<a class="sourceLine" id="cb337-11" data-line-number="11"><span class="co">#&gt; Feature Count: 100</span></a>
+<a class="sourceLine" id="cb337-12" data-line-number="12"><span class="co">#&gt; Extent: (-84.323853, 33.881992) - (-75.456978, 36.589649)</span></a>
+<a class="sourceLine" id="cb337-13" data-line-number="13"><span class="co">#&gt; Layer SRS WKT:</span></a>
+<a class="sourceLine" id="cb337-14" data-line-number="14"><span class="co">#&gt; ...</span></a></code></pre></div>
+<p>This example — which returns the same result as <code>rgdal::ogrInfo()</code> — may be simple, but it shows how to use GDAL via the system command-line, independently of other packages.
+The ‘link’ to GDAL provided by <strong>link2gi</strong> could be used as a foundation for more doing more advanced GDAL work from the R or system CLI.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>
+TauDEM (<a href="http://hydrology.usu.edu/taudem/taudem5/index.html" class="uri">http://hydrology.usu.edu/taudem/taudem5/index.html</a>) and the Orfeo Toolbox (<a href="https://www.orfeo-toolbox.org/" class="uri">https://www.orfeo-toolbox.org/</a>) are other spatial data processing libraries/programs offering a command line interface.
 At the time of writing it appears that there is only a developer version of an R/TauDEM interface on R-Forge (<a href="https://r-forge.r-project.org/R/?group_id=956" class="uri">https://r-forge.r-project.org/R/?group_id=956</a>)).
-In any case, you now have the tools to build an interface yourself.</p>
-<p>Please keep in mind that the <strong>sf</strong> package already brings most of the power provided by GDAL, GEOS and PROJ to R.
-Instead of using the command-line interface to access the functionality of these external dependencies, <strong>sf</strong> uses an <strong>Rcpp</strong> interface.
-This is an even better approach since it circumvents the command-line and allows a direct access to GDAL/GEOS/PROJ all of which are written in either C++ or C.</p>
+In any case, the above example shows how to access low level libraries from the system command line, creating the possibility for new R bridges to these libraries to be created.</p>
+<p>Before diving into a project to create a new bridge, however, it is important to be aware of the power of existing R packages and that <code>system()</code> calls may not be platform-independent (they may fail on some computers).
+Furthermore, <strong>sf</strong> brings most of the power provided by GDAL, GEOS and PROJ to R via the R/C++ interface provided by <strong>Rcpp</strong>, which avoids <code>system()</code> calls.</p>
 </div>
 <div id="postgis" class="section level3">
-<h3><span class="header-section-number">9.6.2</span> Spatial database API - PostgreSQL/PostGIS</h3>
-<p>Spatial database management systems (spatial DBMS) allow us to store spatial and non-spatial data in a structured way (as opposed to loose collections of data somewhere stored on disk) and to relate tables (entities) to each other explicitly via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join).
-Geographic data tends to become big quite quickly.
-Databases are especially useful for large data and querying it efficiently spatially and non-spatially.
-Additionally, spatial DBMS provide multi-user access and topology support.
-The most important open source spatial database is probably the combination of PostgreSQL with its spatial extension PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
-<p>From within R, one can easily query data from a (spatial) DBMS which is needed for a specific analysis.
-Hence, it is not necessary to attach several gigabyte of geographic data to R’s global environment which most likely would crash the R session anyway.
-To give you an idea how to work with R and PostGIS in tandem, we present SQL queries from “1.4 Hello real word” of the book <strong>PostGIS in Action, Second Edition</strong> published with Manning <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
-<p>The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the <a href="https://qgiscloud.com/">QGIS Cloud</a>.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
+<h3><span class="header-section-number">9.6.2</span> Bridges to spatial databases</h3>
+<p>Spatial database management systems (spatial DBMS) store spatial and non-spatial data in a structured way.
+They can organise large collections of data into related tables (entities) via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join).
+This is useful because geographic datasets tend to become big and messy quite quickly.
+Databases enable storing and querying large datasets efficiently based on spatial and non-spatial fields, and provide multi-user access and topology support.</p>
+<p>The most important open source spatial database is PostGIS <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
+R bridges to spatial DBMSs such as PostGIS are important, allowing access to huge data stores without loading several gigabytes of geographic data into RAM, and likely crashing the R session.
+The remainder of this section shows how PostGIS can be called from R, based on “Hello real word” from <strong>PostGIS in Action, Second Edition</strong> <span class="citation">(Obe and Hsu <a href="#ref-obe_postgis_2015">2015</a>)</span>.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
+<p>The subsequent code requires a working internet connection since we are accessing a PostgreSQL/PostGIS database which is living in the <a href="https://qgiscloud.com/">QGIS Cloud</a>.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1"><span class="kw">library</span>(RPostgreSQL)</a>
 <a class="sourceLine" id="cb338-2" data-line-number="2">conn =<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> <span class="kw">PostgreSQL</span>(), <span class="dt">dbname =</span> <span class="st">&quot;rtafdf_zljbqm&quot;</span>,</a>
 <a class="sourceLine" id="cb338-3" data-line-number="3">                 <span class="dt">host =</span> <span class="st">&quot;db.qgiscloud.com&quot;</span>,</a>
 <a class="sourceLine" id="cb338-4" data-line-number="4">                 <span class="dt">port =</span> <span class="st">&quot;5432&quot;</span>, <span class="dt">user =</span> <span class="st">&quot;rtafdf_zljbqm&quot;</span>, </a>
 <a class="sourceLine" id="cb338-5" data-line-number="5">                 <span class="dt">password =</span> <span class="st">&quot;d3290ead&quot;</span>)</a></code></pre></div>
-<p>The first thing to find out is which tables can be found in the database.</p>
+<p>Often the first question is ‘which tables can be found in the database’?
+This can be asked as follows (the answer is 5 tables):</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">dbListTables</span>(conn)</a>
-<a class="sourceLine" id="cb339-2" data-line-number="2"><span class="co">#&gt;[1] &quot;spatial_ref_sys&quot; &quot;topology&quot;        &quot;layer&quot;           &quot;restaurants&quot;    </span></a>
-<a class="sourceLine" id="cb339-3" data-line-number="3"><span class="co">#&gt;[5] &quot;highways&quot; </span></a></code></pre></div>
+<a class="sourceLine" id="cb339-2" data-line-number="2"><span class="co">#&gt; [1] &quot;spatial_ref_sys&quot; &quot;topology&quot;        &quot;layer&quot;           &quot;restaurants&quot;    </span></a>
+<a class="sourceLine" id="cb339-3" data-line-number="3"><span class="co">#&gt; [5] &quot;highways&quot; </span></a></code></pre></div>
 <p>We are only interested in the <code>restaurants</code> and the <code>highways</code> tables.
 The former represents the locations of fast-food restaurants in the US and the latter are principal US highways.
 To find out about attributes available in a table, we can run:</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1"><span class="kw">dbListFields</span>(conn, <span class="st">&quot;highways&quot;</span>)</a>
-<a class="sourceLine" id="cb340-2" data-line-number="2"><span class="co">#&gt;[1] &quot;qc_id&quot;        &quot;wkb_geometry&quot; &quot;gid&quot;          &quot;feature&quot;     </span></a>
-<a class="sourceLine" id="cb340-3" data-line-number="3"><span class="co">#&gt;[5] &quot;name&quot;         &quot;state&quot;   </span></a></code></pre></div>
+<a class="sourceLine" id="cb340-2" data-line-number="2"><span class="co">#&gt; [1] &quot;qc_id&quot;        &quot;wkb_geometry&quot; &quot;gid&quot;          &quot;feature&quot;     </span></a>
+<a class="sourceLine" id="cb340-3" data-line-number="3"><span class="co">#&gt; [5] &quot;name&quot;         &quot;state&quot;   </span></a></code></pre></div>
 <p>The first query will select <code>US Route 1</code> in Maryland (<code>MD</code>).
 Note that <code>st_read()</code> allows us to read spatial data from a database if it is provided with an open connection to a database and a query.
 Additionally, <code>st_read()</code> needs to know which column represents the geometry (here: <code>wkb_geometry</code>).</p>
@@ -962,7 +943,7 @@ The next step is to add a 20-mile buffer around the selected highway (Figure <a 
 <a class="sourceLine" id="cb342-4" data-line-number="4">  <span class="st">&quot;WHERE name = &#39;US Route 1&#39; AND state = &#39;MD&#39;;&quot;</span>)</a>
 <a class="sourceLine" id="cb342-5" data-line-number="5">buf =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query)</a></code></pre></div>
 <p>Note that this was a spatial query using functions (<code>ST_Union()</code>, <code>ST_Buffer()</code>) you should be already familiar with since you find them also in the <strong>sf</strong>-package, though here they are written in lowercase characters (<code>st_union()</code>, <code>st_buffer()</code>).
-In fact, function names of the <strong>sf</strong> package largely follow the PostGIS naming conventions.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
+In fact, function names of the <strong>sf</strong> package largely follow the PostGIS naming conventions.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>
 The last query will find all Hardee restaurants (<code>HDE</code>) within the buffer zone (Figure <a href="gis.html#fig:postgis">9.4</a>).</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">query =<span class="st"> </span><span class="kw">paste</span>(</a>
 <a class="sourceLine" id="cb343-2" data-line-number="2">  <span class="st">&quot;SELECT r.wkb_geometry&quot;</span>,</a>
@@ -978,7 +959,7 @@ The last query will find all Hardee restaurants (<code>HDE</code>) within the bu
 <a class="sourceLine" id="cb343-12" data-line-number="12">)</a>
 <a class="sourceLine" id="cb343-13" data-line-number="13">hardees =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query)</a></code></pre></div>
 <p>Please refer to <span class="citation">Obe and Hsu (<a href="#ref-obe_postgis_2015">2015</a>)</span> for a detailed explanation of the spatial SQL query.
-Finally, it is good practice to close the database connection as follows:<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
+Finally, it is good practice to close the database connection as follows:<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a></p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1">RPostgreSQL<span class="op">::</span><span class="kw">postgresqlCloseConnection</span>(conn)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:postgis"></span>
 <img src="figures/postgis-1.png" alt="Visualization of the output of previous PostGIS commands showing the highway (black line), a buffer (light yellow) and three restaurants (lightblue points) within the buffer." width="40%" />
@@ -1088,15 +1069,21 @@ An early use of the term ‘bridge’ referred the coupling of R with GRASS <spa
 Roger Bivand elaborated on this in his talk “Bridges between GIS and R”, delivered at the 2016 GEOSTAT summer school (see slides at <a href="http://spatial.nhh.no/misc/" class="uri">http://spatial.nhh.no/misc/</a>).
 <!-- The resulting slides can be found on Roger's personal website at [http://spatial.nhh.no/misc](http://spatial.nhh.no/misc/?C=M;O=D) in the file -->
 <!-- `geostat_talk16.zip`. --><a href="gis.html#fnref46" class="footnote-back">↩</a></p></li>
-<li id="fn47"><p>SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="gis.html#rgrass">9.4</a>).<a href="gis.html#fnref47" class="footnote-back">↩</a></p></li>
-<li id="fn48"><p>We are thankful to Manning Publications and Regina Obe as well as Leo Hsu for giving us permission to reproduce their example here.<a href="gis.html#fnref48" class="footnote-back">↩</a></p></li>
-<li id="fn49"><p>QGIS Cloud lets you store geographic data and maps in the cloud.
+<li id="fn47"><p>
+Note also that the <strong>RSAGA</strong> package uses the command line interface to use SAGA geoalgorithms from within R (see section <a href="gis.html#rsaga">9.3</a>). <a href="gis.html#fnref47" class="footnote-back">↩</a></p></li>
+<li id="fn48"><p>
+SQlLite/SpatiaLite are certainly also important but implicitly we have already introduced this approach since GRASS is using SQLite in the background (see section <a href="gis.html#rgrass">9.4</a>).<a href="gis.html#fnref48" class="footnote-back">↩</a></p></li>
+<li id="fn49"><p>
+Thanks to Manning Publications, Regina Obe and Leo Hsu for permission to use this example.<a href="gis.html#fnref49" class="footnote-back">↩</a></p></li>
+<li id="fn50"><p>
+QGIS Cloud lets you store geographic data and maps in the cloud.
 In the background it uses QGIS Server and PostgreSQL/PostGIS.
 This way, the reader can follow the PostGIS example without the need to have PostgreSQL/PostGIS installed on a local machine.
-We are thankful to the QGIS Cloud team for hosting our PostGIS example.<a href="gis.html#fnref49" class="footnote-back">↩</a></p></li>
-<li id="fn50"><p>By the way, the prefix <code>st</code> stands for space/time.<a href="gis.html#fnref50" class="footnote-back">↩</a></p></li>
+Thanks to the QGIS Cloud team for hosting this example.<a href="gis.html#fnref50" class="footnote-back">↩</a></p></li>
 <li id="fn51"><p>
-It is important to close the connection here because QGIS Cloud (free version) allows only ten concurrent connections.<a href="gis.html#fnref51" class="footnote-back">↩</a></p></li>
+The prefix <code>st</code> stands for space/time.<a href="gis.html#fnref51" class="footnote-back">↩</a></p></li>
+<li id="fn52"><p>
+It is important to close the connection here because QGIS Cloud (free version) allows only ten concurrent connections.<a href="gis.html#fnref52" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>

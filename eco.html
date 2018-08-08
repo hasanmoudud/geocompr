@@ -311,9 +311,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="gis.html"><a href="gis.html#rsaga"><i class="fa fa-check"></i><b>9.3</b> (R)SAGA</a></li>
 <li class="chapter" data-level="9.4" data-path="gis.html"><a href="gis.html#rgrass"><i class="fa fa-check"></i><b>9.4</b> GRASS through <strong>rgrass7</strong></a></li>
 <li class="chapter" data-level="9.5" data-path="gis.html"><a href="gis.html#when-to-use-what"><i class="fa fa-check"></i><b>9.5</b> When to use what?</a></li>
-<li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#a-short-note-on-further-spatial-apis"><i class="fa fa-check"></i><b>9.6</b> A short note on further spatial APIs</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="gis.html"><a href="gis.html#gdal"><i class="fa fa-check"></i><b>9.6.1</b> Spatial library API - GDAL</a></li>
-<li class="chapter" data-level="9.6.2" data-path="gis.html"><a href="gis.html#postgis"><i class="fa fa-check"></i><b>9.6.2</b> Spatial database API - PostgreSQL/PostGIS</a></li>
+<li class="chapter" data-level="9.6" data-path="gis.html"><a href="gis.html#other-bridges"><i class="fa fa-check"></i><b>9.6</b> Other bridges</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="gis.html"><a href="gis.html#gdal"><i class="fa fa-check"></i><b>9.6.1</b> Bridges to GDAL</a></li>
+<li class="chapter" data-level="9.6.2" data-path="gis.html"><a href="gis.html#postgis"><i class="fa fa-check"></i><b>9.6.2</b> Bridges to spatial databases</a></li>
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="gis.html"><a href="gis.html#exercises-7"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
 </ul></li>
@@ -454,7 +454,7 @@ To guarantee an optimal prediction, it is advisable to tune beforehand the hyper
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;study_area&quot;</span>, <span class="st">&quot;random_points&quot;</span>, <span class="st">&quot;comm&quot;</span>, <span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>)</a></code></pre></div>
 <p><code>study_area</code> is an sf polygon representing the outlines of the study area.
 <code>random_points</code> is an sf-object, and contains the 100 randomly chosen sites.
-<code>comm</code> is a community matrix where the rows represent the visited sites and the columns the observed species.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>
+<code>comm</code> is a community matrix where the rows represent the visited sites and the columns the observed species.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
 The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points.
 The rownames of <code>comm</code> correspond to the <code>id</code> column of <code>random_points</code>.
 Though <code>comm</code> only consists of 86 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
@@ -469,7 +469,7 @@ Figure 14.2: Study mask (polgyon), location of the sampling sites (black points)
 <p>The next step is to compute variables which we will predominantly need for the modeling and predictive mapping (see section <a href="eco.html#predictive-mapping">14.4.2</a>) but also for aligning the NMDS axes with the main gradient, altitude and humidity, respectively, in the study area (see section <a href="eco.html#nmds">14.3</a>).</p>
 <p>Specifically, we will compute catchment slope and catchment area from a digital elevation model using R-GIS bridges (see Chapter <a href="gis.html#gis">9</a>).
 Curvatures might also represent valuable predictors, in the exercise section you can find out how they would change the modeling result.</p>
-<p>To compute catchment area and catchment slope, we will make use of the <code>saga:sagawetnessindex</code> function.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
+<p>To compute catchment area and catchment slope, we will make use of the <code>saga:sagawetnessindex</code> function.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a>
 <code>get_usage()</code> returns all function parameters and default values of a specific geoalgorithm.</p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="kw">get_usage</span>(<span class="st">&quot;saga:sagawetnessindex&quot;</span>)</a>
 <a class="sourceLine" id="cb445-2" data-line-number="2"><span class="co">#&gt;ALGORITHM: Saga wetness index</span></a>
@@ -844,9 +844,9 @@ Report the mean RMSE and use a boxplot to visualize all retrieved RMSEs.</li>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="78">
-<li id="fn78"><p>In statistics this is also called a contingency or cross-table, and in data science we refer to this as the wide data format.<a href="eco.html#fnref78" class="footnote-back">↩</a></p></li>
-<li id="fn79"><p>Admittedly, it is a bit unsatisfying, that the only way of knowing that <code>sagawetnessindex</code> computes the desired terrain attributes, is to be familiar with SAGA and/or google for “SAGA catchment slope”.<a href="eco.html#fnref79" class="footnote-back">↩</a></p></li>
+<ol start="79">
+<li id="fn79"><p>In statistics this is also called a contingency or cross-table, and in data science we refer to this as the wide data format.<a href="eco.html#fnref79" class="footnote-back">↩</a></p></li>
+<li id="fn80"><p>Admittedly, it is a bit unsatisfying, that the only way of knowing that <code>sagawetnessindex</code> computes the desired terrain attributes, is to be familiar with SAGA and/or google for “SAGA catchment slope”.<a href="eco.html#fnref80" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
