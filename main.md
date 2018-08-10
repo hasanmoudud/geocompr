@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveb3f1db7433baa305
+preserveefa458884a66b3d7
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb8f05ebeb56c4d22
+preserve7fd4b2db77fcf3e1
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6588,7 +6588,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec13eb8b4eee72ed8
+preserve1ec511f77d4f9da2
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6690,7 +6690,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecdd5228274f28ee7
+preserve372645d4903d8ca4
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -8926,7 +8926,7 @@ Unfortunately, `mc.set.seed` is only available under Unix-based systems.
 
 ```r
 library(parallelMap)
-if (Sys.info()["sysname"] %in% c("Linux, Darwin")) {
+if (Sys.info()["sysname"] %in% c("Linux", "Darwin")) {
 parallelStart(mode = "multicore", 
               # parallelize the hyperparameter tuning level
               level = "mlr.tuneParams", 
@@ -10236,7 +10236,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserveb5b88aeebb23280a
+preserve6645505a6c625acd
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

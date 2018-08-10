@@ -900,7 +900,7 @@ We will use half of the available cores (set with the <code>cpus</code> paramete
 Setting <code>mc.set.seed</code> to <code>TRUE</code> ensures that the randomly chosen hyperparameters during the tuning can be reproduced when running the code again.
 Unfortunately, <code>mc.set.seed</code> is only available under Unix-based systems.</p>
 <div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1"><span class="kw">library</span>(parallelMap)</a>
-<a class="sourceLine" id="cb387-2" data-line-number="2"><span class="cf">if</span> (<span class="kw">Sys.info</span>()[<span class="st">&quot;sysname&quot;</span>] <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Linux, Darwin&quot;</span>)) {</a>
+<a class="sourceLine" id="cb387-2" data-line-number="2"><span class="cf">if</span> (<span class="kw">Sys.info</span>()[<span class="st">&quot;sysname&quot;</span>] <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Linux&quot;</span>, <span class="st">&quot;Darwin&quot;</span>)) {</a>
 <a class="sourceLine" id="cb387-3" data-line-number="3"><span class="kw">parallelStart</span>(<span class="dt">mode =</span> <span class="st">&quot;multicore&quot;</span>, </a>
 <a class="sourceLine" id="cb387-4" data-line-number="4">              <span class="co"># parallelize the hyperparameter tuning level</span></a>
 <a class="sourceLine" id="cb387-5" data-line-number="5">              <span class="dt">level =</span> <span class="st">&quot;mlr.tuneParams&quot;</span>, </a>
