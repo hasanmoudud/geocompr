@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveefa458884a66b3d7
+preservec4f1aca578a8129a
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1755,7 +1755,7 @@ Again, the `res()` command gives back a numeric vector without any unit, forcing
     - The geometry type?
     - How many countries there are?
     - The coordinate reference system (CRS)?
-1. Using **sf**'s `plot()` command, create a map of Nigeria in context, building on the code that creates and plots Asia above (see Figure \@ref(fig:asia) for an example of what this could look like). 
+1. Using **sf**'s `plot()` command, create a map of Nigeria in context, building on the code that creates and plots Asia above (see section \@ref(basic-map)). 
     - Hint: this used the `lwd`, `main` and `col` arguments of `plot()`. 
     - Bonus: make the country boundaries a dotted gray line.
     - Hint: `border` is an additional argument of `plot()` for **sf**  objects.
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve7fd4b2db77fcf3e1
+preserveff001d1dd69c9f9e
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6588,7 +6588,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve1ec511f77d4f9da2
+preserve188cf4c387151070
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6690,7 +6690,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve372645d4903d8ca4
+preservead59aaec0387706f
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7033,7 +7033,7 @@ you type commands and hit `Enter` (or `Ctl+Enter` if writing code in the source 
 This way of interacting with the computer is called a command-line interface (CLI) (see definition in the note below).
 CLIs are not unique to R.^[
 Other 'command-lines' include terminals for interacting with Linux, Mac and Windows systems (which are accessible from R with the `system()` function) and those of other interpreted languages such as Python.
-In fact, most early computers and GISs such had GRASS relied exclusively on CLIs, before the widespread uptake of computer mice and high resolution screens in the 1990s.
+In fact, most early computers and GISs such as GRASS relied exclusively on CLIs, before the widespread uptake of computer mice and high resolution screens in the 1990s.
 ]
 In dedicated GIS packages, by contrast, the emphasis tends to be on the graphical user interface (GUI):
 you *can* interact with GRASS (one of the longest-standing GIS programs, which originated as a CLI), QGIS, SAGA and gvSIG with dockable CLIs, but 'pointing and clicking' is the norm.
@@ -10236,7 +10236,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve6645505a6c625acd
+preserve4bb92faf38c11ed3
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
