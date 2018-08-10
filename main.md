@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-08-08'
+date: '2018-08-10'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -37,7 +37,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-08-08 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-08-10 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -296,7 +296,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve4776adb6e70821ed
+preserveb3f1db7433baa305
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3052,7 +3052,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve945749bdbf5f83f7
+preserveb8f05ebeb56c4d22
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6588,7 +6588,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservebc567a7cac12e623
+preservec13eb8b4eee72ed8
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6690,7 +6690,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservecaa098b88e7f55d0
+preservecdd5228274f28ee7
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7036,7 +7036,7 @@ Other 'command-lines' include terminals for interacting with Linux, Mac and Wind
 In fact, most early computers and GISs such had GRASS relied exclusively on CLIs, before the widespread uptake of computer mice and high resolution screens in the 1990s.
 ]
 In dedicated GIS packages, by contrast, the emphasis tends to be on the graphical user interface (GUI):
-you *can* interact with GRASS (the longest-standing GIS program, which originated as a CLI), QGIS, SAGA and gvSIG with dockable CLIs, but 'pointing and clicking' is the norm.
+you *can* interact with GRASS (one of the longest-standing GIS programs, which originated as a CLI), QGIS, SAGA and gvSIG with dockable CLIs, but 'pointing and clicking' is the norm.
 This means many GIS users miss-out on the advantages of the command-line according to Gary Sherman, creator of QGIS [@sherman_desktop_2008]:
 
 > With the advent of 'modern' GIS software, most people want to point and
@@ -10236,7 +10236,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserved8d95179a22eb878
+preserveb5b88aeebb23280a
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
