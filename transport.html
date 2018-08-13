@@ -757,7 +757,7 @@ To make our approach easy to follow we will select just the top three desire lin
 This can be done by converting a desire line into a multiline object consisting of three line geometries representing origin, public transport and destination legs of the trip.
 This operation can be divided into three stages: matrix creation (of origins, destinations and the ‘via’ points representing rail stations), identification of nearest neighbors and conversion to multilines.
 These are undertaken by <code>line_via()</code>.
-This <strong>stplanr</strong> function takes input lines and points and returns a copy of the desire lines (see <a href="https://github.com/Robinlovelace/geocompr/blob/master/vignettes/12-line-via.Rmd"><code>12-line-via.Rmd</code></a>) in the book’s repo and <code>?line_via</code> for details on how this works).
+This <strong>stplanr</strong> function takes input lines and points and returns a copy of the desire lines — see the <a href="https://geocompr.github.io/geocompkg/articles/linevia.html">Desire Lines Extended</a> vignette on the geocompr.github.io website and <code>?line_via</code> for details on how this works.
 The output is the same as the input line, except it has new geometry columns representing the journey via public transport nodes, as demonstrated below:</p>
 <div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" data-line-number="1"><span class="kw">ncol</span>(desire_rail)</a>
 <a class="sourceLine" id="cb409-2" data-line-number="2"><span class="co">#&gt; [1] 9</span></a>

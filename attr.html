@@ -810,8 +810,8 @@ The geometry column can only be used for creating maps and spatial operations if
 Fortunately non-spatial data frames with a geometry list column (like <code>coffee_world</code>) can be coerced into an <code>sf</code> object as follows: <code>st_as_sf(coffee_world)</code>.
 </div>
 
-<p>The contents of this section should equip you with know-how to deal with the majority of spatial data use cases.
-For more advanced coverage of joins, beyond that in <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span>, we recommend checking-out the capabilities of <strong>data.table</strong>, a high-performance data processing package that is compatible with <code>sf</code> objects, and other on-line materials.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>
+<p>This section covers the majority joining use cases.
+For more information we recommend <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span>, the <a href="https://geocompr.github.io/geocompkg/articles/join.html">join vignette</a> in the <strong>geocompkg</strong> package that accompanies this book, and documentation of the <strong>data.table</strong> package.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>
 Another type of join is a spatial join, covered in the next chapter (section <a href="spatial-operations.html#spatial-joining">4.2.3</a>).</p>
 </div>
 <div id="vec-attr-creation" class="section level3">
@@ -1051,8 +1051,8 @@ The former provides fast and powerful functions for data manipulation
 <!-- (see [Section 6.7](https://csgillespie.github.io/efficientR/data-carpentry.html#data-processing-with-data.table) of @gillespie_efficient_2016),  -->
 and the latter provides powerful plotting capabilities.<a href="attr.html#fnref16" class="footnote-back">↩</a></p></li>
 <li id="fn17"><p>
-The use of <strong>data.table</strong> for geocomputation is not well-documented but a taster of what is possible is provided in a blog post entitled <em>Using data.table and Rcpp to scale geo-spatial analysis with sf</em> by Tim Applehans hosted at r-spatial.org.
-A more in-depth explanation of joining is provided in <code>join.Rmd</code>, a reproducible document in the <code>vignettes/</code> folder hosted at github.com/Robinlovelace/geocompr.<a href="attr.html#fnref17" class="footnote-back">↩</a></p></li>
+<strong>data.table</strong> is a high-performance data processing package.
+Its application to spatial data is covered in a blog post hosted at r-spatial.org/r/2017/11/13/perp-performance.html.<a href="attr.html#fnref17" class="footnote-back">↩</a></p></li>
 <li id="fn18"><p>
 <code>st_geometry(world_st) = NULL</code> also works to remove the geometry from <code>world</code> but overwrites the original object.<a href="attr.html#fnref18" class="footnote-back">↩</a></p></li>
 </ol>

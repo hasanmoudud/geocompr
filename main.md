@@ -297,7 +297,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve22188218534fbe35
+preservebb6ef7035f05aa35
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2340,10 +2340,10 @@ class(coffee_world)
 The geometry column can only be used for creating maps and spatial operations if R 'knows' it is a spatial object, defined by a spatial package such as **sf**.
 Fortunately non-spatial data frames with a geometry list column (like `coffee_world`) can be coerced into an `sf` object as follows: `st_as_sf(coffee_world)`. </div>\EndKnitrBlock{rmdnote}
 
-The contents of this section should equip you with know-how to deal with the majority of spatial data use cases.
-For more advanced coverage of joins, beyond that in @grolemund_r_2016, we recommend checking-out the capabilities of **data.table**, a high-performance data processing package that is compatible with `sf` objects, and other on-line materials.^[
-The use of **data.table** for geocomputation is not well-documented but a taster of what is possible is provided in a blog post entitled *Using data.table and Rcpp to scale geo-spatial analysis with sf* by Tim Applehans hosted at r-spatial.org.
-A more in-depth explanation of joining is provided in `join.Rmd`, a reproducible document in the `vignettes/` folder hosted at github.com/Robinlovelace/geocompr.
+This section covers the majority joining use cases.
+For more information we recommend @grolemund_r_2016, the [join vignette](https://geocompr.github.io/geocompkg/articles/join.html) in the **geocompkg** package that accompanies this book, and documentation of the **data.table** package.^[
+**data.table** is a high-performance data processing package.
+Its application to spatial data is covered in a blog post hosted at r-spatial.org/r/2017/11/13/perp-performance.html.
 ]
 Another type of join is a spatial join, covered in the next chapter (section \@ref(spatial-joining)).
 
@@ -2772,7 +2772,7 @@ canterbury_height3 = nz_height %>% filter(sel_logical)
 ```
 
 At this point there are three versions of `canterbury_height`, one created with spatial subsetting directly and the other two via intermediary selection objects.
-To explore these objects in more detail and understand spatial subsetting in more depth see the supplementary vignette [`09-advanced-subsetting.Rmd`](https://github.com/Robinlovelace/geocompr/blob/master/vignettes/09-advanced-subsetting.Rmd).
+To explore these objects in more detail and understand spatial subsetting in more depth see the supplementary vignette [Spatial Joins Extended](https://geocompr.github.io/geocompkg/articles/subsetting.html).
 
 ### Topological relations
 
@@ -3053,7 +3053,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve0cd21f8ea6ffd19e
+preserve351a7a65e4344af6
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6498,12 +6498,12 @@ print(alaska_map, vp = viewport(x = 0.15, y = 0.15, width = 0.3, height = 0.3))
 </div>
 
 The code presented above is very compact and allows for creation of many similar maps, however the map do not represent sizes and locations of Hawaii and Alaska well.
-You can see an alternative approach in the [`vignettes/us-map.Rmd`](https://github.com/Robinlovelace/geocompr/blob/master/vignettes/us-map.Rmd) file in the book's GitHub repo, which tries to mitigate these issues.
+See the [`us-map`](https://geocompr.github.io/geocompkg/articles/us-map.html) vignette from the **geocompkg** package for an alternative approach.
 
 <!-- extended info about using tm_layout to show legend in main plot and remove it in the others -->
-The main goal of this section is to present how to generate and arrange inset maps.
-The next step is to use the knowledge from the previous sections to improve the map style or to add another data layers.
-Moreover, the same skills can be applied to combine maps and plots.
+<!-- The main goal of this section is to present how to generate and arrange inset maps. -->
+<!-- The next step is to use the knowledge from the previous sections to improve the map style or to add another data layers. -->
+<!-- Moreover, the same skills can be applied to combine maps and plots. -->
 
 ## Animated maps
 
@@ -6589,7 +6589,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve2d3d8685bf471033
+preserve3594e2b8a52a16c7
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6691,7 +6691,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebc787f4fa0955bd6
+preservebd2e5434d17675f3
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -9500,7 +9500,7 @@ The challenge now is to 'break-up' each of these lines into three pieces, repres
 This can be done by converting a desire line into a multiline object consisting of three line geometries representing origin, public transport and destination legs of the trip.
 This operation can be divided into three stages: matrix creation (of origins, destinations and the 'via' points representing rail stations), identification of nearest neighbors and conversion to multilines.
 These are undertaken by `line_via()`.
-This **stplanr** function takes input lines and points and returns a copy of the desire lines (see [`12-line-via.Rmd`](https://github.com/Robinlovelace/geocompr/blob/master/vignettes/12-line-via.Rmd)) in the book's repo and `?line_via` for details on how this works).
+This **stplanr** function takes input lines and points and returns a copy of the desire lines --- see the [Desire Lines Extended](https://geocompr.github.io/geocompkg/articles/linevia.html) vignette on the geocompr.github.io website and `?line_via` for details on how this works.
 The output is the same as the input line, except it has new geometry columns representing the journey via public transport nodes, as demonstrated below:
 
 
@@ -10237,7 +10237,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve1bdae19bfb580bcc
+preserve9295ae4d2ed6f660
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
