@@ -56,7 +56,9 @@ To reproduce the book, you need a recent version of [R](https://cran.r-project.o
 
 
 ```r
-devtools::install_github("robinlovelace/geocompr")
+install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/",
+                 type = "source")
+devtools::install_github("geocompr/geocompkg")
 ```
 
 To build the book locally, clone or [download](https://github.com/Robinlovelace/geocompr/archive/master.zip) the [geocompr repo](https://github.com/Robinlovelace/geocompr/), load R in root directory (e.g. by opening [geocompr.Rproj](https://github.com/Robinlovelace/geocompr/blob/master/geocompr.Rproj) in RStudio) and run the following lines:
@@ -70,6 +72,14 @@ browseURL("_book/index.html") # to view it
 Further details can be found at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr#geocomputation-with-r).
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+
+<!-- suggested content on if you find the book useful but this intro is already quite long (RL)-->
+<!-- If you find the book useful, please support it by: -->
+
+<!-- - Recommending, citing or linking-to it -->
+<!-- - 'Starring' the Github repository -->
+<!-- - Reviewing it, e.g. on Amazon or Goodreads -->
+<!-- - Buying a copy -->
 
 # Preface {-}
 
@@ -297,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve876dc80846308963
+preserve921ff9ecb375be20
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3053,7 +3063,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve25de493dc34a255b
+preserve558b834583796330
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6589,7 +6599,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservebefbe7c682f45507
+preserve06bf3da7c2afdf54
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6670,8 +6680,6 @@ Many other functions are provided by the package, providing an R interface to a 
 
 
 
-
-
 Last but not least is **leaflet** which is the most mature and widely used interactive mapping package in R.
 **leaflet** provides a relatively low level interface to the Leaflet JavaScript library and many of its arguments can be understood by reading the documentation of the original JavaScript library (see [leafletjs.com](http://leafletjs.com/reference-1.3.0.html)).
 
@@ -6691,7 +6699,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservebe6d4004117fb001
+preservedad098112982e464
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10237,7 +10245,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservea5e2e7c0b445acc5
+preserve45ae9e95c6c2bf6e
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

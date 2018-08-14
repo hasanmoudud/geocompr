@@ -432,12 +432,20 @@ This will take you to an editable version of the the source <a href="http://rmar
 <div id="reproducibility" class="section level2 unnumbered">
 <h2>Reproducibility</h2>
 <p>To reproduce the book, you need a recent version of <a href="https://cran.r-project.org/">R</a> and up-to-date packages, which can be installed with the following command (which requires <a href="https://github.com/hadley/devtools"><strong>devtools</strong></a>):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;robinlovelace/geocompr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;spDataLarge&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;https://nowosad.github.io/drat/&quot;</span>,</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">                 <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;geocompr/geocompkg&quot;</span>)</a></code></pre></div>
 <p>To build the book locally, clone or <a href="https://github.com/Robinlovelace/geocompr/archive/master.zip">download</a> the <a href="https://github.com/Robinlovelace/geocompr/">geocompr repo</a>, load R in root directory (e.g. by opening <a href="https://github.com/Robinlovelace/geocompr/blob/master/geocompr.Rproj">geocompr.Rproj</a> in RStudio) and run the following lines:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">bookdown<span class="op">::</span><span class="kw">render_book</span>(<span class="st">&quot;index.Rmd&quot;</span>) <span class="co"># to build the book</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">browseURL</span>(<span class="st">&quot;_book/index.html&quot;</span>) <span class="co"># to view it</span></a></code></pre></div>
 <p>Further details can be found at <a href="https://github.com/Robinlovelace/geocompr#geocomputation-with-r">github.com/Robinlovelace/geocompr</a>.</p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+<!-- suggested content on if you find the book useful but this intro is already quite long (RL)-->
+<!-- If you find the book useful, please support it by: -->
+<!-- - Recommending, citing or linking-to it -->
+<!-- - 'Starring' the Github repository -->
+<!-- - Reviewing it, e.g. on Amazon or Goodreads -->
+<!-- - Buying a copy -->
 </div>
 </div>
 <script>
