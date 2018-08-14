@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve921ff9ecb375be20
+preserve39153016a930d901
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -562,8 +562,9 @@ Note that **spDataLarge** is not on CRAN, meaning that the `repos` and `type` ar
 install.packages("sf")
 ```
 
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">On Mac and Linux a few requirements must be met to install **sf**.
-These are described in the package's README at [github.com/r-spatial/sf](https://github.com/r-spatial/sf).</div>\EndKnitrBlock{rmdnote}
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">If you're running Mac or Linux the previous command to install **sf** may not workfirst time.
+A few 'systems requirements' must be installed, described in the package's README at [github.com/r-spatial/sf](https://github.com/r-spatial/sf).
+For users of Ubuntu 18.04 the steps are covered in detail in an article on [thinkr.fr](https://rtask.thinkr.fr/blog/installation-of-r-3-5-on-ubuntu-18-04-lts-and-tips-for-spatial-packages/).</div>\EndKnitrBlock{rmdnote}
 
 
 ```r
@@ -573,7 +574,8 @@ install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/",
                  type = "source")
 ```
 
-Packages are 'loaded' (technically they are attached) with the `library()` function, which is used to load the two spatial data processing packages installed previously as follows:
+To install these packages and *all other* packages used in this book in one go, you can use the following command, which requires the **devtools** package: `devtools::install_github("geocompr/geocompkg")`.
+After the necessary packages have been installed, they can be 'loaded' (technically they are attached) with `library()` as follows:
 
 
 ```r
@@ -3063,7 +3065,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve558b834583796330
+preservecb1ee721524b4a14
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6599,7 +6601,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve06bf3da7c2afdf54
+preservef913f35167d2858e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6699,7 +6701,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedad098112982e464
+preserve998bcfcfb1c9411b
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10245,7 +10247,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve45ae9e95c6c2bf6e
+preservec01522f33778371b
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
