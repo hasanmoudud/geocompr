@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-08-14">
+<meta name="date" content="2018-08-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1166,7 +1166,7 @@ Ellipsoidal models are defined by two parameters: the equatorial radius and the 
 These are suitable because the Earth is compressed: the equatorial radius is around 11.5 km longer than the polar radius <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
 <p>Ellipsoids are part of a wider component of CRSs: the <em>datum</em>.
 This contains information on what ellipsoid to use (with the <code>ellps</code> parameter in the proj4 CRS library) and the precise relationship between the Cartesian coordinates and location on the Earth’s surface.
-These additional details are stored in the <code>towgs84</code> argument of <a href="http://proj4.org/parameters.html#towgs84-datum-transformation-to-wgs84">proj4</a> notation (see <a href="http://proj4.org/parameters.html">proj4.org/parameters.html</a> for details).
+These additional details are stored in the <code>towgs84</code> argument of <a href="https://proj4.org/operations/conversions/latlon.html?highlight=towgs#cmdoption-arg-towgs84">proj4</a> notation (see <a href="https://proj4.org/usage/projections.html">proj4.org/parameters.html</a> for details).
 These allow local variations in Earth’s surface, e.g. due to large mountain ranges, to be accounted for in a local CRS.
 There are two types of datum — local and geocentric.
 In a <em>local datum</em> such as <code>NAD83</code> the ellipsoidal surface is shifted to align with the surface at a particular location.

@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-08-14'
+date: '2018-08-15'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -38,7 +38,7 @@ New chapters will be added to this website as the project progresses, hosted at 
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-08-14 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-08-15 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservedac2991061b858c5
+preserved476cdcae1adfffd
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -1563,7 +1563,7 @@ Values of $a$ and $rf$ used in a variety of ellipsoidal models can be seen be ex
 
 Ellipsoids are part of a wider component of CRSs: the *datum*.
 This contains information on what ellipsoid to use (with the `ellps` parameter in the proj4 CRS library) and the precise relationship between the Cartesian coordinates and location on the Earth's surface.
-These additional details are stored in the `towgs84` argument of  [proj4](http://proj4.org/parameters.html#towgs84-datum-transformation-to-wgs84) notation (see [proj4.org/parameters.html](http://proj4.org/parameters.html) for details).
+These additional details are stored in the `towgs84` argument of  [proj4](https://proj4.org/operations/conversions/latlon.html?highlight=towgs#cmdoption-arg-towgs84) notation (see [proj4.org/parameters.html](https://proj4.org/usage/projections.html) for details).
 These allow local variations in Earth's surface, e.g. due to large mountain ranges, to be accounted for in a local CRS.
 There are two types of datum --- local and geocentric.
 In a *local datum* such as `NAD83` the ellipsoidal surface is shifted to align with the surface at a particular location.
@@ -3065,7 +3065,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve59549ee1f99a99b3
+preserveb548c81fcc7e2e4a
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6601,7 +6601,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve0390ee32fda58bba
+preserve4d67461c9404f9c0
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6701,7 +6701,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservee72ccbcb93ae94e2
+preserve799285b7d6a4fddb
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10247,7 +10247,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve2d8785caa231e7a4
+preserve05abef0a8e188fcd
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
