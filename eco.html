@@ -512,9 +512,9 @@ Setting <code>load_output</code> to <code>TRUE</code> ensures that the resulting
 <a class="sourceLine" id="cb446-7" data-line-number="7">              <span class="dt">load_output =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb446-8" data-line-number="8">              <span class="dt">show_output_paths =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>This gives back the list <code>ep</code> consisting of two elements named <code>AREA</code> and <code>SLOPE</code>.
-Let us add to more raster elements to the list, namely <code>dem</code> and <code>ndvi</code>, and convert it into a raster stack (see section <a href="spatial-class.html#raster-classes">2.2.3</a>), .</p>
+Let us add two more raster objects to the list, namely <code>dem</code> and <code>ndvi</code>, and convert it into a raster stack (see section <a href="spatial-class.html#raster-classes">2.2.3</a>), .</p>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" data-line-number="1">ep =<span class="st"> </span><span class="kw">c</span>(dem, ndvi, ep) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb447-2" data-line-number="2"><span class="st">  </span>stack</a>
+<a class="sourceLine" id="cb447-2" data-line-number="2"><span class="st">  </span><span class="kw">stack</span>()</a>
 <a class="sourceLine" id="cb447-3" data-line-number="3"><span class="kw">names</span>(ep) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>, <span class="st">&quot;carea&quot;</span>, <span class="st">&quot;cslope&quot;</span>)</a></code></pre></div>
 <p>Additionally, the catchment area values are highly skewed to the right (<code>hist(ep$carea)</code>).
 A log10-transformation makes the distribution more normal.</p>
@@ -610,7 +610,7 @@ We will also use the resulting dataframe for the <strong>mlr</strong> modeling l
 <a class="sourceLine" id="cb454-3" data-line-number="3">rp =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">as.numeric</span>(<span class="kw">rownames</span>(sc)),</a>
 <a class="sourceLine" id="cb454-4" data-line-number="4">                <span class="dt">sc =</span> sc[, <span class="dv">1</span>])</a>
 <a class="sourceLine" id="cb454-5" data-line-number="5"><span class="co"># join the predictors (dem, ndvi and terrain attributes)</span></a>
-<a class="sourceLine" id="cb454-6" data-line-number="6">rp =<span class="st"> </span><span class="kw">inner_join</span>(random_points, rp,  <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb454-6" data-line-number="6">rp =<span class="st"> </span><span class="kw">inner_join</span>(random_points, rp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <p>Decision trees split the predictor space into a number of regions.
 To illustrate this, we apply a decision tree to our data using the scores of the first NMDS axis as the response (<code>sc</code>) and altitude (<code>dem</code>) as the only predictor.</p>
 <div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;tree&quot;</span>)</a>
@@ -646,10 +646,10 @@ for each split of the tree—in other words, that bagging should be done.
 <p>The code in this section largely follows the steps we have introduced in section <a href="spatial-cv.html#svm">11.5.2</a>.
 The only differences are:</p>
 <ol style="list-style-type: decimal">
-<li>the response variable is numeric, hence a regression task will replace the classification task of section <a href="spatial-cv.html#svm">11.5.2</a>.</li>
-<li>instead of the AUROC which can only be used for categorical response variables, we will use the root mean squared error (RMSE) as performance measure.</li>
-<li>we use a random forest model instead of a support vector machine which naturally goes along with different hyperparameters.</li>
-<li>we are leaving the assessment of a bias-reduced performance measure as an exercise to the reader (see exercises).
+<li>The response variable is numeric, hence a regression task will replace the classification task of section <a href="spatial-cv.html#svm">11.5.2</a>.</li>
+<li>Instead of the AUROC which can only be used for categorical response variables, we will use the root mean squared error (RMSE) as performance measure.</li>
+<li>We use a random forest model instead of a support vector machine which naturally goes along with different hyperparameters.</li>
+<li>We are leaving the assessment of a bias-reduced performance measure as an exercise to the reader (see exercises).
 Instead we show how to tune hyperparameters for (spatial) predictions.</li>
 </ol>
 <p>Remember that 125,500 models were necessary to retrieve bias-reduced performance estimates when using 100-repeated 5-fold spatial cross-validation and a random search of 50 iterations (see section <a href="spatial-cv.html#svm">11.5.2</a>).
@@ -672,7 +672,7 @@ Therefore, we tune the hyperparameters for a good spatial prediction on the comp
 <a class="sourceLine" id="cb456-7" data-line-number="7"><span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="ot">NULL</span>)</a></code></pre></div>
 <p>Having constructed the input variables, we are all set for specifying the <strong>mlr</strong> building blocks (task, learner, and resampling).
 We will use a regression task since the response variable is numeric.
-The learner is a random forest model from the <strong>ranger</strong> package.</p>
+The learner is a random forest model implementation from the <strong>ranger</strong> package.</p>
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1"><span class="co"># create task</span></a>
 <a class="sourceLine" id="cb457-2" data-line-number="2">task =<span class="st"> </span><span class="kw">makeRegrTask</span>(<span class="dt">data =</span> rp, <span class="dt">target =</span> <span class="st">&quot;sc&quot;</span>, <span class="dt">coordinates =</span> coords)</a>
 <a class="sourceLine" id="cb457-3" data-line-number="3"><span class="co"># learner</span></a>
@@ -763,7 +763,7 @@ Figure 14.5: Predictive mapping of the floristic gradient clearly revealing dist
 </div>
 <p>The predictive mapping clearly reveals distinct vegetation belts (Figure <a href="eco.html#fig:rf-pred">14.5</a>).
 Please refer to <span class="citation">J. Muenchow, Hauenstein, et al. (<a href="#ref-muenchow_soil_2013">2013</a>)</span> for a detailed descriptions of vegetation belts on <strong>lomas</strong> mountains.
-The blue color tones represent the so-called <em>Tillandsia</em>-belt .
+The blue color tones represent the so-called <em>Tillandsia</em>-belt.
 <code>Tillandsia</code> is a highly adapted genus especially found in high quantities at the sandy and quite desertic foot of <em>lomas</em> mountains.
 The yellow color tones refer to a herbaceous vegetation belt with a much higher plant cover compared to the <em>Tillandsia</em>-belt.
 The orange colors represent the bromeliad belt, which features the highest species richness and plant cover.

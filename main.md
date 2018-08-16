@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveab9d7c80287d074e
+preserveaf44f066e215ccab
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3065,7 +3065,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve1518a5ac8505d24b
+preservea8a295ca588d55cf
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6601,7 +6601,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservefc3370f3dba01e9b
+preservecb63ace22e58d033
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6701,7 +6701,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0aaefa7f85d98700
+preservee7640e27588fb281
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7893,7 +7893,7 @@ That is the topic of section \@ref(functions).
 <!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
 <!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
 <!-- , with dozens of lines of non-reproducible psuedo-code and equations -->
-<!-- nor entirely focussed on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). -->
+<!-- nor entirely focused on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). -->
 <!-- The focus of this chapter is on understanding, using reproducible code and clear explanation. -->
 The example of finding the centroid of a polygon will be used to tie these concepts together.
 Of course, you already know how to do that with `st_centroid()` having read Chapter \@ref(geometric-operations).
@@ -7932,7 +7932,7 @@ Lines of code that do not contain valid R should be commented to prevent errors,
 There are, however, some conventions worth following:
 
 - Write the script in order: just like the script of a film, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
-- Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure \@ref(fig:codecheck)) and (for long scripts) divide it into sections (e.g. with `Ctl+Shift+R` in RStudio which creates comments ending in `----` that can be 'folded' in the editor).
+- Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure \@ref(fig:codecheck)) and (for long scripts) divide it into sections (e.g. with `Ctrl+Shift+R` in RStudio which creates comments ending in `----` that can be 'folded' in the editor).
 - Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.^[
 Prior steps can be referred to with a comment or with an if statement such as `if(!exists("x")) source("x.R")` (which would run the script file `x.R` if the object `x` is missing).
 ]
@@ -7947,7 +7947,7 @@ By default RStudio 'code-checks' R scripts and underlines faulty code with a red
 
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">A useful tool for reproducibility is the **reprex** package.
-Its main function `reprex()` tests of lines of R code to check if they are reproduible, and provides markdown output to facilitate communication on sites such as GitHub.
+Its main function `reprex()` tests of lines of R code to check if they are reproducible, and provides markdown output to facilitate communication on sites such as GitHub.
 See [reprex.tidyverse.org/](http://reprex.tidyverse.org/) for details.</div>\EndKnitrBlock{rmdnote}
 
 The contents of this section apply to any type of R script.
@@ -8022,8 +8022,7 @@ poly_mat = cbind(x_coords, y_coords)
 ```
 
 Now we have an example dataset we are ready to undertake step 1 outlined above.
-The code below shows how this can be done by creating a single triangle (`T1`), that demonstrates the method; it also demonstrates step 2 by calculating its centroid based on the [formula](https://math.stackexchange.com/q/1702595/)
-$1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangle's vertices:
+The code below shows how this can be done by creating a single triangle (`T1`), that demonstrates the method; it also demonstrates step 2 by calculating its centroid based on the [formula](https://math.stackexchange.com/q/1702595/) $1/3(a + b + c)$ where $a$ to $c$ are coordinates representing the triangle's vertices:
 
 
 ```r
@@ -8138,7 +8137,7 @@ t_centroid = function(x) {
 ```
 
 The above example demonstrates two key components of [functions](http://adv-r.had.co.nz/Functions.html):
-1) the function *body*, the code inside the curly brackets that define what the function does with the inputs; and 2) the *formals*, the list of arguments the function works with --- `x` in this case (the third component, the environment, is beyond the scope of this section).
+1) the function *body*, the code inside the curly brackets that define what the function does with the inputs; and 2) the *formals*, the list of arguments the function works with --- `x` in this case (the third key component, the environment, is beyond the scope of this section).
 By default, functions return the last object that has been calculated (the coordinates of the centroid in the case of `t_centroid()`).^[
 You can also explicitly set the output of a function by adding `return(output)` into the body of the function, where `output` is the result to be returned.
 ]
@@ -8192,7 +8191,7 @@ t_area(t_new)
 A useful feature of functions is that they are modular.
 Providing you know what the output will be, one function can be used as the building block of another.
 Thus, the functions `t_centroid()` and `t_area()` can be used as sub-components of a larger function to do the work of the script `10-centroid-alg.R`: calculate the area of any convex polygon.
-The code chunk below creates the function `poly_centroid()` to mimick the behaviour of `sf::st_centroid()`:
+The code chunk below creates the function `poly_centroid()` to mimic the behavior of `sf::st_centroid()`:
 
 
 ```r
@@ -8281,7 +8280,7 @@ identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
 <!-- change line 10 to: -->
 <!-- u = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson" -->
     - How could the documentation be improved?
-  <!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` -->
+  <!-- It could document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` -->
 1. In section \@ref(geographic-algorithms) we calculated that the area and geographic centroid of the polygon represented by `poly_mat` was 245 and 8.8, 9.2, respectively.
     - Reproduce the results on your own computer with reference to the script `10-centroid-alg.R`, an implementation of this algorithm (bonus: type out the commands - try to avoid copy-pasting).
     <!-- Todo: add link to that script file (RL) -->
@@ -8297,7 +8296,6 @@ identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
     - Verify it works by running `poly_centroid_sf(sf::st_sf(sf::st_sfc(poly_sfc)))`
     - What error message do you get when you try to run `poly_centroid_sf(poly_mat)`?
     
-
 
 
 <!--chapter:end:10-algorithms.Rmd-->
@@ -10247,7 +10245,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve33cfa041dcc8d2b1
+preserve52659928cf1c955c
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -10458,12 +10456,12 @@ ep = run_qgis(alg = "saga:sagawetnessindex",
 ```
 
 This gives back the list `ep` consisting of two elements named `AREA` and `SLOPE`.
-Let us add to more raster elements to the list, namely `dem` and `ndvi`, and convert it into a raster stack (see section \@ref(raster-classes)), .
+Let us add two more raster objects to the list, namely `dem` and `ndvi`, and convert it into a raster stack (see section \@ref(raster-classes)), .
 
 
 ```r
 ep = c(dem, ndvi, ep) %>%
-  stack
+  stack()
 names(ep) = c("dem", "ndvi", "carea", "cslope")
 ```
 
@@ -10605,7 +10603,7 @@ We will also use the resulting dataframe for the **mlr** modeling later on.
 rp = data.frame(id = as.numeric(rownames(sc)),
                 sc = sc[, 1])
 # join the predictors (dem, ndvi and terrain attributes)
-rp = inner_join(random_points, rp,  by = "id")
+rp = inner_join(random_points, rp, by = "id")
 ```
 
 Decision trees split the predictor space into a number of regions.
@@ -10649,10 +10647,10 @@ for each split of the tree—in other words, that bagging should be done.
 The code in this section largely follows the steps we have introduced in section \@ref(svm).
 The only differences are:
 
-1. the response variable is numeric, hence a regression task will replace the classification task of section \@ref(svm).
-1. instead of the AUROC which can only be used for categorical response variables, we will use the root mean squared error (RMSE) as performance measure.
-1. we use a random forest model instead of a support vector machine which naturally goes along with different hyperparameters.
-1. we are leaving the assessment of a bias-reduced performance measure as an exercise to the reader (see exercises). 
+1. The response variable is numeric, hence a regression task will replace the classification task of section \@ref(svm).
+1. Instead of the AUROC which can only be used for categorical response variables, we will use the root mean squared error (RMSE) as performance measure.
+1. We use a random forest model instead of a support vector machine which naturally goes along with different hyperparameters.
+1. We are leaving the assessment of a bias-reduced performance measure as an exercise to the reader (see exercises). 
 Instead we show how to tune hyperparameters for (spatial) predictions.
 
 Remember that 125,500 models were necessary to retrieve bias-reduced performance estimates when using 100-repeated 5-fold spatial cross-validation and a random search of 50 iterations (see section \@ref(svm)).
@@ -10681,7 +10679,7 @@ rp = dplyr::select(rp, -id, -spri) %>%
 
 Having constructed the input variables, we are all set for specifying the **mlr** building blocks (task, learner, and resampling).
 We will use a regression task since the response variable is numeric.
-The learner is a random forest model from the **ranger** package.
+The learner is a random forest model implementation from the **ranger** package.
 
 
 ```r
@@ -10806,7 +10804,7 @@ pred[] = pred_rf$data$response
 
 The predictive mapping clearly reveals distinct vegetation belts (Figure \@ref(fig:rf-pred)).
 Please refer to @muenchow_soil_2013 for a detailed descriptions of vegetation belts on **lomas** mountains.
-The blue color tones represent the so-called *Tillandsia*-belt .
+The blue color tones represent the so-called *Tillandsia*-belt.
 `Tillandsia` is a highly adapted genus especially found in high quantities at the sandy and quite desertic foot of *lomas* mountains.
 The yellow color tones refer to a herbaceous vegetation belt with a much higher plant cover compared to the *Tillandsia*-belt.
 The orange colors represent the bromeliad belt, which features the highest species richness and plant cover.

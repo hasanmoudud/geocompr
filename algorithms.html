@@ -427,7 +427,7 @@ That is the topic of section <a href="algorithms.html#functions">10.4</a>.
 <!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
 <!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
 <!-- , with dozens of lines of non-reproducible psuedo-code and equations -->
-<!-- nor entirely focussed on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). -->
+<!-- nor entirely focused on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). -->
 <!-- The focus of this chapter is on understanding, using reproducible code and clear explanation. -->
 The example of finding the centroid of a polygon will be used to tie these concepts together.
 Of course, you already know how to do that with <code>st_centroid()</code> having read Chapter <a href="geometric-operations.html#geometric-operations">5</a>.
@@ -454,7 +454,7 @@ Saved scripts can be called and executed in their entirety with <code>source()</
 There are, however, some conventions worth following:</p>
 <ul>
 <li>Write the script in order: just like the script of a film, scripts should have a clear order such as ‘setup’, ‘data processing’ and ‘save results’ (roughly equivalent to ‘beginning’, ‘middle’ and ‘end’ in a film).</li>
-<li>Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure <a href="algorithms.html#fig:codecheck">10.1</a>) and (for long scripts) divide it into sections (e.g. with <code>Ctl+Shift+R</code> in RStudio which creates comments ending in <code>----</code> that can be ‘folded’ in the editor).</li>
+<li>Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure <a href="algorithms.html#fig:codecheck">10.1</a>) and (for long scripts) divide it into sections (e.g. with <code>Ctrl+Shift+R</code> in RStudio which creates comments ending in <code>----</code> that can be ‘folded’ in the editor).</li>
 <li>Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></li>
 </ul>
 <p>It is hard to enforce reproducibility in R scripts, but there are tools that can help.
@@ -468,7 +468,7 @@ Figure 10.1: Illustration of ‘code checking’ in RStudio. This example, from 
 
 <div class="rmdnote">
 A useful tool for reproducibility is the <strong>reprex</strong> package.
-Its main function <code>reprex()</code> tests of lines of R code to check if they are reproduible, and provides markdown output to facilitate communication on sites such as GitHub.
+Its main function <code>reprex()</code> tests of lines of R code to check if they are reproducible, and provides markdown output to facilitate communication on sites such as GitHub.
 See <a href="http://reprex.tidyverse.org/">reprex.tidyverse.org/</a> for details.
 </div>
 
@@ -520,8 +520,7 @@ In this case we’ll create a polygon with 5 vertices in base R, building on an 
 <a class="sourceLine" id="cb349-2" data-line-number="2">y_coords =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb349-3" data-line-number="3">poly_mat =<span class="st"> </span><span class="kw">cbind</span>(x_coords, y_coords)</a></code></pre></div>
 <p>Now we have an example dataset we are ready to undertake step 1 outlined above.
-The code below shows how this can be done by creating a single triangle (<code>T1</code>), that demonstrates the method; it also demonstrates step 2 by calculating its centroid based on the <a href="https://math.stackexchange.com/q/1702595/">formula</a>
-<span class="math inline">\(1/3(a + b + c)\)</span> where <span class="math inline">\(a\)</span> to <span class="math inline">\(c\)</span> are coordinates representing the triangle’s vertices:</p>
+The code below shows how this can be done by creating a single triangle (<code>T1</code>), that demonstrates the method; it also demonstrates step 2 by calculating its centroid based on the <a href="https://math.stackexchange.com/q/1702595/">formula</a> <span class="math inline">\(1/3(a + b + c)\)</span> where <span class="math inline">\(a\)</span> to <span class="math inline">\(c\)</span> are coordinates representing the triangle’s vertices:</p>
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1">O =<span class="st"> </span>poly_mat[<span class="dv">1</span>, ] <span class="co"># create a point representing the origin</span></a>
 <a class="sourceLine" id="cb350-2" data-line-number="2">T1 =<span class="st"> </span><span class="kw">rbind</span>(O, poly_mat[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ], O) <span class="co"># create &#39;triangle matrix&#39;</span></a>
 <a class="sourceLine" id="cb350-3" data-line-number="3">C1 =<span class="st"> </span>(T1[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>T1[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span> <span class="co"># find centroid</span></a></code></pre></div>
@@ -597,7 +596,7 @@ We can, for example, create function that undertakes step 2 of our centroid gene
 <a class="sourceLine" id="cb354-2" data-line-number="2">  (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
 <a class="sourceLine" id="cb354-3" data-line-number="3">}</a></code></pre></div>
 <p>The above example demonstrates two key components of <a href="http://adv-r.had.co.nz/Functions.html">functions</a>:
-1) the function <em>body</em>, the code inside the curly brackets that define what the function does with the inputs; and 2) the <em>formals</em>, the list of arguments the function works with — <code>x</code> in this case (the third component, the environment, is beyond the scope of this section).
+1) the function <em>body</em>, the code inside the curly brackets that define what the function does with the inputs; and 2) the <em>formals</em>, the list of arguments the function works with — <code>x</code> in this case (the third key component, the environment, is beyond the scope of this section).
 By default, functions return the last object that has been calculated (the coordinates of the centroid in the case of <code>t_centroid()</code>).<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
 <p>The function now works on any inputs you pass it, as illustrated in the below command which calculates the area of the 1<sup>st</sup> triangle from the example polygon in the previous section (see Figure <a href="algorithms.html#fig:polycent">10.3</a>):</p>
 <div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">t_centroid</span>(T1)</a>
@@ -626,7 +625,7 @@ The newly created function <code>t_area()</code> takes any object <code>x</code>
 <p>A useful feature of functions is that they are modular.
 Providing you know what the output will be, one function can be used as the building block of another.
 Thus, the functions <code>t_centroid()</code> and <code>t_area()</code> can be used as sub-components of a larger function to do the work of the script <code>10-centroid-alg.R</code>: calculate the area of any convex polygon.
-The code chunk below creates the function <code>poly_centroid()</code> to mimick the behaviour of <code>sf::st_centroid()</code>:</p>
+The code chunk below creates the function <code>poly_centroid()</code> to mimic the behavior of <code>sf::st_centroid()</code>:</p>
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1">poly_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb359-2" data-line-number="2">  i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb359-3" data-line-number="3">  T_all =<span class="st"> </span>T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
@@ -690,7 +689,7 @@ To return the result as an object of class <code>sfg</code>, for example, a ‘w
 <!-- change line 10 to: -->
 <!-- u = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson" --></li>
 <li>How could the documentation be improved?
-<!-- It coud document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` --></li>
+<!-- It could document the source of the data better - e.g. with `data from https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php` --></li>
 </ul></li>
 <li>In section <a href="algorithms.html#geographic-algorithms">10.3</a> we calculated that the area and geographic centroid of the polygon represented by <code>poly_mat</code> was 245 and 8.8, 9.2, respectively.
 <ul>
