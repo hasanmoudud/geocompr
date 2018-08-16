@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-08-15'
+date: '2018-08-16'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -11,7 +11,7 @@ bibliography:
   - packages.bib
 biblio-style: apalike
 link-citations: yes
-description: "Forthcoming book on geographic data with R."
+description: "A book on geographic data with R."
 github-repo: "Robinlovelace/geocompr"
 cover-image: "images/cover.png"
 url: 'https\://geocompr.robinlovelace.net/'
@@ -21,24 +21,24 @@ url: 'https\://geocompr.robinlovelace.net/'
 
 # Welcome {-}
 
-Welcome to the online home of *Geocomputation with R*, a forthcoming book with [CRC Press](https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER).
+This is the online home of *Geocomputation with R*, a forthcoming book with [CRC Press](https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER).
 
 ## Development {-}
 
-Inspired by [**bookdown**](https://github.com/rstudio/bookdown) and other open source projects we are developing this book in the open.
-This approach encourages contributions, ensures reproducibility and provides access to the material as it evolves.
+Inspired by [**bookdown**](https://github.com/rstudio/bookdown) and the Free and Open Source Software for Geospatial ([FOSS4G](http://foss4g.org/)) movement, this book is open source and publicly available.
+This approach encourages contributions, ensures reproducibility and provides access to the material worldwide.
 
-The book development can be divided into three main phases:
+The book explains how to undertake a range of geographic techniques from R and is divided into the floowing parts:
 
-1. Foundations
-2. Extensions
-3. Applications
+1. Foundations, aimed at getting you up-to-speed with geographic data in R.
+2. Extensions, which covers advanced techniques.
+3. Applications, to real-world problems.
 
-New chapters will be added to this website as the project progresses, hosted at [geocompr.robinlovelace.net](https://geocompr.robinlovelace.net) and kept up-to-date thanks to [Travis](https://travis-ci.org/Robinlovelace/geocompr) which ensures the reproducibility:
+The online version of the book is hosted at [geocompr.robinlovelace.net](https://geocompr.robinlovelace.net) and kept up-to-date thanks to [Travis](https://travis-ci.org/Robinlovelace/geocompr), which provides information on its 'build status' as follows:
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-08-15 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-08-16 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve54707cd2715ced05
+preserveab9d7c80287d074e
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3065,7 +3065,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservebfd0a9977ad676bc
+preserve1518a5ac8505d24b
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6601,7 +6601,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve701109b68722b3ad
+preservefc3370f3dba01e9b
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6701,7 +6701,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve0a9b6b0742c3f18a
+preserve0aaefa7f85d98700
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10247,7 +10247,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve09026dd761ba550e
+preserve33cfa041dcc8d2b1
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
