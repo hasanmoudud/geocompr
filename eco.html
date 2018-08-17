@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-08-16">
+<meta name="date" content="2018-08-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -665,7 +665,7 @@ Therefore, we tune the hyperparameters for a good spatial prediction on the comp
 <p>The preparation for the modeling using the <strong>mlr</strong> package includes the construction of a response-predictor matrix containing only variables which should be used in the modeling and the construction of a separate coordinate dataframe.</p>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1"><span class="co"># extract the coordinates into a separate dataframe</span></a>
 <a class="sourceLine" id="cb456-2" data-line-number="2">coords =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_coordinates</span>(rp) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb456-3" data-line-number="3"><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb456-3" data-line-number="3"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb456-4" data-line-number="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y)</a>
 <a class="sourceLine" id="cb456-5" data-line-number="5"><span class="co"># only keep response and predictors which should be used for the modeling</span></a>
 <a class="sourceLine" id="cb456-6" data-line-number="6">rp =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(rp, <span class="op">-</span>id, <span class="op">-</span>spri) <span class="op">%&gt;%</span></a>
