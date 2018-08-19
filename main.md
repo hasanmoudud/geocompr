@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve62f0653af63084c2
+preserve6f140fad21a6a4d8
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2286,8 +2286,6 @@ In that case an inner join can be used:
 ```r
 world_coffee_inner = inner_join(world, coffee_data)
 #> Joining, by = "name_long"
-#> Warning: Column `name_long` joining factor and character vector, coercing
-#> into character vector
 nrow(world_coffee_inner)
 #> [1] 45
 ```
@@ -2319,23 +2317,22 @@ To fix this issue we will create a new version of `coffee_data` and update the n
 
 
 ```r
-coffee_data_match = coffee_data
-coffee_data_match$name_long[grepl("Congo,", coffee_data_match$name_long)] = 
+coffee_data$name_long[grepl("Congo,", coffee_data$name_long)] = 
   str_subset(world$name_long, "Dem*.+Congo")
-world_coffee_match = inner_join(world, coffee_data_match)
+world_coffee_match = inner_join(world, coffee_data)
 #> Joining, by = "name_long"
 nrow(world_coffee_match)
 #> [1] 46
 ```
 
 It is also possible to join in the other direction: starting with a non-spatial dataset and adding variables from a simple features object.
-This is demonstrated below, which starts with the `coffee_data_match` object and adds variables from the original `world` dataset.
+This is demonstrated below, which starts with the `coffee_data` object and adds variables from the original `world` dataset.
 In contrast with the previous joins, the result is *not* another simple feature object, but a data frame in the form of a **tidyverse** tibble:
 the output of a join tends to match its first argument:
 
 
 ```r
-coffee_world = left_join(coffee_data_match, world)
+coffee_world = left_join(coffee_data, world)
 #> Joining, by = "name_long"
 class(coffee_world)
 #> [1] "tbl_df"     "tbl"        "data.frame"
@@ -3058,7 +3055,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveb0a368b636feda58
+preserve3d726d6fda7d21de
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6086,9 +6083,6 @@ This is demonstrated in the code chunk below which plots `map_nz1` to `map_nz3`,
 
 ```r
 tmap_arrange(map_nz1, map_nz2, map_nz3)
-#> Legend labels were too wide. The labels have been resized to 0.61, 0.43, 0.43, 0.43, 0.43. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.61, 0.43, 0.43, 0.43, 0.43. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.61, 0.43, 0.43, 0.43, 0.43. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
 ```
 
 <div class="figure" style="text-align: center">
@@ -6149,7 +6143,6 @@ Thus, one would achieve the desired result as follows (plotted in the right-hand
 
 ```r
 tm_shape(nz) + tm_fill(col = "Land_area")
-#> Some legend labels were too wide. These labels have been resized to 0.53, 0.53, 0.53, 0.53. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
 ```
 
 <div class="figure" style="text-align: center">
@@ -6187,14 +6180,6 @@ tm_shape(nz) + tm_polygons(col = "Median_income", n = 10)
 tm_shape(nz) + tm_polygons(col = "Median_income", palette = "RdBu")
 ```
 
-
-```
-#> Legend labels were too wide. The labels have been resized to 0.22, 0.22, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.22, 0.22, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-```
-
 <div class="figure" style="text-align: center">
 <img src="figures/tmpal-1.png" alt="Illustration of settings that affect color settings. The results show (from left to right): default settings, manual breaks, n breaks, and the impact of changing the palette." width="576" />
 <p class="caption">(\#fig:tmpal)Illustration of settings that affect color settings. The results show (from left to right): default settings, manual breaks, n breaks, and the impact of changing the palette.</p>
@@ -6210,14 +6195,6 @@ Six of the most useful break styles are illustrated in Figure \@ref(fig:break-st
 - `style = jenks` identifies groups of similar values in the data and maximizes the differences between categories
 - `style = cont` (and `order`) present a large number of colors over continuous color field, and are particularly suited for continuous rasters (`order` can help visualize skewed distributions)
 - `style = cat` was designed to represent categorical values and assures that each category receives a unique color
-
-
-```
-#> Legend labels were too wide. The labels have been resized to 0.37, 0.37, 0.37, 0.37, 0.37, 0.37. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.37, 0.37, 0.37, 0.37, 0.37. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.37, 0.37, 0.37, 0.37, 0.37. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.37, 0.37, 0.37, 0.37, 0.37. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-```
 
 <div class="figure" style="text-align: center">
 <img src="figures/break-styles-1.png" alt="Illustration of different binning methods set using the style argument in tmap." width="576" />
@@ -6253,7 +6230,7 @@ Their main purpose is to visualize the difference from an important reference po
 The reference point's value can be adjusted in **tmap** using the `midpoint` argument.
 
 <div class="figure" style="text-align: center">
-<img src="figures/colpal-1.png" alt="Examples of categorical, sequential and diverging palettes." width="576" />
+<img src="figures/colpal-1.png" alt="Examples of categorical, sequential and diverging palettes." width="40%" />
 <p class="caption">(\#fig:colpal)Examples of categorical, sequential and diverging palettes.</p>
 </div>
 
@@ -6313,27 +6290,12 @@ Some useful layout settings are listed below (see Figure \@ref(fig:layout2) for 
 - Default colors of aesthetic layers (`aes.color`), map attributes such as the frame (`attr.color`).
 - Color settings controlling `sepia.intensity` (how yellowy the map looks) and `saturation` (a color-greyscale).
 
-
-```
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-```
-
 <div class="figure" style="text-align: center">
 <img src="figures/layout2-1.png" alt="Illustration of selected layout options." width="576" />
 <p class="caption">(\#fig:layout2)Illustration of selected layout options.</p>
 </div>
 
 The impact of changing the color settings listed above is illustrated in Figure \@ref(fig:layout3) (see `?tm_layout` for a full list).
-
-
-```
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-```
 
 <div class="figure" style="text-align: center">
 <img src="figures/layout3-1.png" alt="Illustration of selected color-related layout options." width="576" />
@@ -6350,14 +6312,6 @@ map_nza + tm_style("bw")
 map_nza + tm_style("classic")
 map_nza + tm_style("cobalt")
 map_nza + tm_style("col_blind")
-```
-
-
-```
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.33, 0.22, 0.22, 0.22, 0.22. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
 ```
 
 <div class="figure" style="text-align: center">
@@ -6588,13 +6542,8 @@ tmap_mode("view")
 map_nz
 ```
 
-
-```
-#> tmap mode set to interactive viewing
-```
-
 <div class="figure" style="text-align: center">
-preserve2b32165b65042a72
+preserve39b334f250ad74dd
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6694,7 +6643,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preservefb5d28fcc30bbd6c
+preserveec7e3689bc024994
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -6906,12 +6855,6 @@ For example, we could represent median income in New Zeleand's regions as a cont
 library(cartogram)
 nz_carto = cartogram_cont(nz, "Median_income", itermax = 5)
 tm_shape(nz_carto) + tm_polygons("Median_income")
-```
-
-
-```
-#> Legend labels were too wide. The labels have been resized to 0.66, 0.66, 0.66, 0.66, 0.66, 0.66. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-#> Legend labels were too wide. The labels have been resized to 0.66, 0.66, 0.66, 0.66, 0.66, 0.66. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
 ```
 
 <div class="figure" style="text-align: center">
@@ -10238,7 +10181,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservef8001459302349d5
+preserve598306b0b6a8f8e3
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -10344,8 +10287,8 @@ In this chapter we will demonstrate ecological applications of some of the techn
 This case study will involve analyzing the composition and the spatial distribution of the vascular plants on the southern slope of Mt. Mongón, a *lomas* mountain near Casma on the central northern coast of Peru (Fig. \@ref(fig:study-area-mongon)).
 
 <div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/38989956-6eae7c9a-43d0-11e8-8f25-3dd3594f7e74.png" alt="The Mt. Mongón study area (taken from @muenchow_rqgis:_2017; Landsat image: path 9, row 67, acquisition date 09/22/2000; @usgs_geological_2016)." width="60%" />
-<p class="caption">(\#fig:study-area-mongon)The Mt. Mongón study area (taken from @muenchow_rqgis:_2017; Landsat image: path 9, row 67, acquisition date 09/22/2000; @usgs_geological_2016).</p>
+<img src="https://user-images.githubusercontent.com/1825120/38989956-6eae7c9a-43d0-11e8-8f25-3dd3594f7e74.png" alt="The Mt. Mongón study area, from Muenchow, Schratz, and Brenning (2017)." width="60%" />
+<p class="caption">(\#fig:study-area-mongon)The Mt. Mongón study area, from Muenchow, Schratz, and Brenning (2017).</p>
 </div>
 
 During a field study to Mt. Mongón we recorded all vascular plants living in 100 randomly sampled 4x4 m^2^ plots in the austral winter of 2011 [@muenchow_predictive_2013].

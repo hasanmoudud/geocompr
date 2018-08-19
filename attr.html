@@ -763,10 +763,8 @@ What if we only want to keep countries that have a match in the key variable?
 In that case an inner join can be used:</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">world_coffee_inner =<span class="st"> </span><span class="kw">inner_join</span>(world, coffee_data)</a>
 <a class="sourceLine" id="cb86-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
-<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="co">#&gt; Warning: Column `name_long` joining factor and character vector, coercing</span></a>
-<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="co">#&gt; into character vector</span></a>
-<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="kw">nrow</span>(world_coffee_inner)</a>
-<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="co">#&gt; [1] 45</span></a></code></pre></div>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="kw">nrow</span>(world_coffee_inner)</a>
+<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="co">#&gt; [1] 45</span></a></code></pre></div>
 <p>Note that the result of <code>inner_join()</code> has only 45 rows compared with 47 in <code>coffee_data</code>.
 What happened to the remaining rows?
 We can identify the rows that did not match using the <code>setdiff()</code> function as follows:</p>
@@ -779,18 +777,17 @@ The following command uses string matching (regex) to confirm what <code>Congo, 
 <a class="sourceLine" id="cb88-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Democratic Republic of the Congo&quot;</span></a></code></pre></div>
 <p>To fix this issue we will create a new version of <code>coffee_data</code> and update the name.
 <code>inner_join()</code>ing the updated data frame returns a result with all 46 coffee producing nations:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">coffee_data_match =<span class="st"> </span>coffee_data</a>
-<a class="sourceLine" id="cb89-2" data-line-number="2">coffee_data_match<span class="op">$</span>name_long[<span class="kw">grepl</span>(<span class="st">&quot;Congo,&quot;</span>, coffee_data_match<span class="op">$</span>name_long)] =<span class="st"> </span></a>
-<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="st">  </span><span class="kw">str_subset</span>(world<span class="op">$</span>name_long, <span class="st">&quot;Dem*.+Congo&quot;</span>)</a>
-<a class="sourceLine" id="cb89-4" data-line-number="4">world_coffee_match =<span class="st"> </span><span class="kw">inner_join</span>(world, coffee_data_match)</a>
-<a class="sourceLine" id="cb89-5" data-line-number="5"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
-<a class="sourceLine" id="cb89-6" data-line-number="6"><span class="kw">nrow</span>(world_coffee_match)</a>
-<a class="sourceLine" id="cb89-7" data-line-number="7"><span class="co">#&gt; [1] 46</span></a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">coffee_data<span class="op">$</span>name_long[<span class="kw">grepl</span>(<span class="st">&quot;Congo,&quot;</span>, coffee_data<span class="op">$</span>name_long)] =<span class="st"> </span></a>
+<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="st">  </span><span class="kw">str_subset</span>(world<span class="op">$</span>name_long, <span class="st">&quot;Dem*.+Congo&quot;</span>)</a>
+<a class="sourceLine" id="cb89-3" data-line-number="3">world_coffee_match =<span class="st"> </span><span class="kw">inner_join</span>(world, coffee_data)</a>
+<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
+<a class="sourceLine" id="cb89-5" data-line-number="5"><span class="kw">nrow</span>(world_coffee_match)</a>
+<a class="sourceLine" id="cb89-6" data-line-number="6"><span class="co">#&gt; [1] 46</span></a></code></pre></div>
 <p>It is also possible to join in the other direction: starting with a non-spatial dataset and adding variables from a simple features object.
-This is demonstrated below, which starts with the <code>coffee_data_match</code> object and adds variables from the original <code>world</code> dataset.
+This is demonstrated below, which starts with the <code>coffee_data</code> object and adds variables from the original <code>world</code> dataset.
 In contrast with the previous joins, the result is <em>not</em> another simple feature object, but a data frame in the form of a <strong>tidyverse</strong> tibble:
 the output of a join tends to match its first argument:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">coffee_world =<span class="st"> </span><span class="kw">left_join</span>(coffee_data_match, world)</a>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">coffee_world =<span class="st"> </span><span class="kw">left_join</span>(coffee_data, world)</a>
 <a class="sourceLine" id="cb90-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
 <a class="sourceLine" id="cb90-3" data-line-number="3"><span class="kw">class</span>(coffee_world)</a>
 <a class="sourceLine" id="cb90-4" data-line-number="4"><span class="co">#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></a></code></pre></div>
