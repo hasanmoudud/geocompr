@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-08-17'
+date: '2018-08-19'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -38,7 +38,7 @@ The online version of the book is hosted at [geocompr.robinlovelace.net](https:/
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-08-17 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-08-19 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserved17b88ac790221b8
+preserve62f0653af63084c2
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -2232,8 +2232,6 @@ The result of the code chunk below is a new `sf` object.
 ```r
 world_coffee = left_join(world, coffee_data)
 #> Joining, by = "name_long"
-#> Warning: Column `name_long` joining factor and character vector, coercing
-#> into character vector
 class(world_coffee)
 #> [1] "sf"         "data.frame"
 ```
@@ -2273,8 +2271,6 @@ The latter approach is demonstrated below on a renamed version of `coffee_data`:
 ```r
 coffee_renamed = rename(coffee_data, nm = name_long)
 world_coffee2 = left_join(world, coffee_renamed, by = c(name_long = "nm"))
-#> Warning: Column `name_long`/`nm` joining factor and character vector,
-#> coercing into character vector
 ```
 
 
@@ -2296,7 +2292,7 @@ nrow(world_coffee_inner)
 #> [1] 45
 ```
 
-Note that the result of `inner_join()` has only 44 rows compared with 47 in `coffee_data`.
+Note that the result of `inner_join()` has only 45 rows compared with 47 in `coffee_data`.
 What happened to the remaining rows?
 We can identify the rows that did not match using the `setdiff()` function as follows:
 
@@ -2306,31 +2302,30 @@ setdiff(coffee_data$name_long, world$name_long)
 #> [1] "Congo, Dem. Rep. of" "Others"
 ```
 
-The result shows that 2 countries have not matched due to name discrepancies.
-These discrepancies can be fixed by identifying the value that they were expected to have in the `world` dataset and updating the names accordingly.
-In this case we will use string matching to find out what `Congo, Dem. Rep. of` and `Côte d'Ivoire` are called:
+The result shows that `Others` accounts for one row not present in the `world` dataset and that the name of the `Democratic Republic of the Congo` accounts for the other:
+it has been abbreviated, causing the join to miss it.
+The following command uses string matching (regex) to confirm what `Congo, Dem. Rep. of` should be:
 
 
 ```r
-str_subset(world$name_long, "Ivo|Cong")
-#> [1] "Democratic Republic of the Congo" "Côte d'Ivoire"                   
-#> [3] "Republic of the Congo"
+str_subset(world$name_long, "Dem*.+Congo")
+#> [1] "Democratic Republic of the Congo"
 ```
 
-From these results we can identify the matching names and update the names in `coffee_data` accordingly.
-As demonstrated below, `inner_join()`ing the updated data frame returns a result with all 46 coffee producing nations represented in the dataset:
+
+
+To fix this issue we will create a new version of `coffee_data` and update the name.
+`inner_join()`ing the updated data frame returns a result with all 46 coffee producing nations:
 
 
 ```r
-coffee_data_match = mutate_if(coffee_data, is.character, recode,
-            `Congo, Dem. Rep. of` = "Democratic Republic of the Congo",
-            `Côte d'Ivoire` = "Ivory Coast")
+coffee_data_match = coffee_data
+coffee_data_match$name_long[grepl("Congo,", coffee_data_match$name_long)] = 
+  str_subset(world$name_long, "Dem*.+Congo")
 world_coffee_match = inner_join(world, coffee_data_match)
 #> Joining, by = "name_long"
-#> Warning: Column `name_long` joining factor and character vector, coercing
-#> into character vector
 nrow(world_coffee_match)
-#> [1] 45
+#> [1] 46
 ```
 
 It is also possible to join in the other direction: starting with a non-spatial dataset and adding variables from a simple features object.
@@ -2342,8 +2337,6 @@ the output of a join tends to match its first argument:
 ```r
 coffee_world = left_join(coffee_data_match, world)
 #> Joining, by = "name_long"
-#> Warning: Column `name_long` joining character vector and factor, coercing
-#> into character vector
 class(coffee_world)
 #> [1] "tbl_df"     "tbl"        "data.frame"
 ```
@@ -3065,7 +3058,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve929938e90176199a
+preserveb0a368b636feda58
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6601,7 +6594,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve9892e129ef1f1d91
+preserve2b32165b65042a72
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6701,7 +6694,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve8ed3c8e2c03014ac
+preservefb5d28fcc30bbd6c
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10245,7 +10238,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve61060c4151c94ff6
+preservef8001459302349d5
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
