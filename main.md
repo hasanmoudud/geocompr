@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-08-19'
+date: '2018-08-20'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -38,7 +38,7 @@ The online version of the book is hosted at [geocompr.robinlovelace.net](https:/
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-08-19 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-08-20 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6f140fad21a6a4d8
+preserve127dced1b38c4dbb
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3055,7 +3055,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve3d726d6fda7d21de
+preservea5d6fe510bb93dc8
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6543,7 +6543,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve39b334f250ad74dd
+preserve75b3cac8a07e6203
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6643,7 +6643,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveec7e3689bc024994
+preserve6b53d3d60b57a21d
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10181,7 +10181,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve598306b0b6a8f8e3
+preservec07a06f12c2f6766
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
@@ -10269,7 +10269,7 @@ library(vegan)
 
 ## Introduction
 
-Fog oases are one of the most fascinating vegetation formations I have ever encountered. 
+Fog oases are one of the most fascinating vegetation formations we have ever encountered. 
 These formations, locally termed *lomas*, develop on mountains along the coastal deserts of Peru and Chile.
 The deserts' extreme conditions and remoteness provide the habitat for a unique ecosystem, including species endemic to the fog oases.
 Despite the arid conditions and low levels of precipitation of around 30-50 mm per year on average, plants can survive, by 'combing out' fog.
@@ -10302,7 +10302,7 @@ The first hypothesis is that four plant belts will be found along the altitudina
 
 Ordinations are dimension-reducing techniques which allow the extraction of the main gradients from a (noisy) dataset, in our case the floristic gradient developing along the southern mountain slope.
 In this chapter we will model the first ordination axis, i.e., the floristic gradient, as a function of environmental predictors such as altitude, slope, catchment area and NDVI.
-For this, we will make use of a random forest model - a very popular machine learning algorithm [@probst_hyperparameters_2018].
+For this, we will make use of a random forest model - a very popular machine learning algorithm [@breiman_random_2001].
 The model will allow us to make spatial predictions of the floristic composition anywhere in the study area.
 To guarantee an optimal prediction, it is advisable to tune beforehand the hyperparameters with the help of spatial cross-validation (see section \@ref(svm)).
 
@@ -10317,11 +10317,11 @@ data("study_area", "random_points", "comm", "dem", "ndvi")
 
 `study_area` is an sf polygon representing the outlines of the study area.
 `random_points` is an sf-object, and contains the 100 randomly chosen sites.
-`comm` is a community matrix where the rows represent the visited sites and the columns the observed species.
-^[In statistics this is also called a contingency or cross-table, and in data science we refer to this as the wide data format.]
+`comm` is a community matrix of the wide data format [@wickham_tidy_2014] where the rows represent the visited sites and the columns the observed species.
+^[In statistics this is also called a contingency or cross-table.]
 The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points.
 The rownames of `comm` correspond to the `id` column of `random_points`.
-Though `comm` only consists of 86 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
+Though `comm` only consists of 84 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
 `dem` is the digital elevation model for the study area, and `ndvi` is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section \@ref(local-operations) and `?ndvi`).
 Visualizing the data helps to get more familiar with the data:
 
@@ -10341,36 +10341,25 @@ Curvatures might also represent valuable predictors, in the exercise section you
 To compute catchment area and catchment slope, we will make use of the `saga:sagawetnessindex` function.
 ^[Admittedly, it is a bit unsatisfying, that the only way of knowing that `sagawetnessindex` computes the desired terrain attributes, is to be familiar with SAGA and/or google for "SAGA catchment slope".]
 `get_usage()` returns all function parameters and default values of a specific geoalgorithm.
+Here, we present only a selection of the complete output.
 
 
 ```r
 get_usage("saga:sagawetnessindex")
 #>ALGORITHM: Saga wetness index
 #>	DEM <ParameterRaster>
-#>	SUCTION <ParameterNumber>
-#>	AREA_TYPE <ParameterSelection>
+#>  ...
 #>	SLOPE_TYPE <ParameterSelection>
-#>	SLOPE_MIN <ParameterNumber>
-#>	SLOPE_OFF <ParameterNumber>
-#>	SLOPE_WEIGHT <ParameterNumber>
-#>	_RESAMPLING <ParameterSelection>
+#>  ...
 #>	AREA <OutputRaster>
 #>	SLOPE <OutputRaster>
 #>	AREA_MOD <OutputRaster>
 #>	TWI <OutputRaster>
-#>
-#>AREA_TYPE(Type of Area)
-#>	0 - [0] absolute catchment area
-#>	1 - [1] square root of catchment area
-#>	2 - [2] specific catchment area
+#> ...
 #>SLOPE_TYPE(Type of Slope)
 #>	0 - [0] local slope
 #>	1 - [1] catchment slope
-#>_RESAMPLING(Resampling method)
-#>	0 - Nearest Neighbour
-#>	1 - Bilinear Interpolation
-#>	2 - Bicubic Spline Interpolation
-#>	3 - B-Spline Interpolation
+#> ...
 ```
 
 Subsequently, we can specify the needed parameters using R named arguments (see section \@ref(rqgis)).
@@ -10442,7 +10431,7 @@ Non-metric multidimensional scaling (NMDS) is one popular dimension-reducing tec
 NMDS reduces the rank-based differences between the distances between objects in the original matrix and distances between the ordinated objects. 
 The difference is expressed as stress. 
 The lower the stress value, the better the ordination, i.e. the low-dimensional representation of the original matrix.
-Stress values lower than 10 represent an excellent fit, stress values of around 15 are still good, and values greater than 20 represent a poor fit.
+Stress values lower than 10 represent an excellent fit, stress values of around 15 are still good, and values greater than 20 represent a poor fit [@mccune_analysis_2002].
 In R, `metaMDS()` of the **vegan** package can execute a NMDS.
 As input it expects a community matrix with the sites as rows and the species as columns, e.g.:
 
@@ -10469,7 +10458,7 @@ pa = decostand(comm, "pa")
 ```
 
 The resulting output matrix serves as input for the NMDS.
-`k` specifies the number of output axes, here, set to 4.
+`k` specifies the number of output axes, here, set to 4.^[One way of choosing `k` is to try `k` values between 1 and 6 and then using the result which yields the best stress value [@mccune_analysis_2002].]
 NMDS is an iterative procedure trying to make the ordinated space more similar to the input matrix in each step.
 To make sure that the algorithm converges, we set the number of steps to 500 (`try` parameter).
 
@@ -10519,7 +10508,7 @@ plot(y = sc[, 1], x = elev, xlab = "elevation in m",
 <p class="caption">(\#fig:xy-nmds)Plotting the first NMDS axis against altitude.</p>
 </div>
 
-The scores of the first NMDS axis represent the different vegetation formations appearing along the slope of Mt. Mongón.
+The scores of the first NMDS axis represent the different vegetation formations, i.e. the floristic gradient, appearing along the slope of Mt. Mongón.
 To spatially visualize them, we can model the NMDS scores with the previously created predictors (section \@ref(data-and-data-preparation)), and use the resulting model for predictive mapping (see next section).
 
 ## Modeling the floristic gradient

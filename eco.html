@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-08-19">
+<meta name="date" content="2018-08-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -415,7 +415,7 @@ In it you will also make use of R’s interfaces to dedicated GIS software, and 
 </div>
 <div id="introduction-9" class="section level2">
 <h2><span class="header-section-number">14.1</span> Introduction</h2>
-<p>Fog oases are one of the most fascinating vegetation formations I have ever encountered.
+<p>Fog oases are one of the most fascinating vegetation formations we have ever encountered.
 These formations, locally termed <em>lomas</em>, develop on mountains along the coastal deserts of Peru and Chile.
 The deserts’ extreme conditions and remoteness provide the habitat for a unique ecosystem, including species endemic to the fog oases.
 Despite the arid conditions and low levels of precipitation of around 30-50 mm per year on average, plants can survive, by ‘combing out’ fog.
@@ -444,7 +444,7 @@ The first hypothesis is that four plant belts will be found along the altitudina
 -->
 <p>Ordinations are dimension-reducing techniques which allow the extraction of the main gradients from a (noisy) dataset, in our case the floristic gradient developing along the southern mountain slope.
 In this chapter we will model the first ordination axis, i.e., the floristic gradient, as a function of environmental predictors such as altitude, slope, catchment area and NDVI.
-For this, we will make use of a random forest model - a very popular machine learning algorithm <span class="citation">(Probst, Wright, and Boulesteix <a href="#ref-probst_hyperparameters_2018">2018</a>)</span>.
+For this, we will make use of a random forest model - a very popular machine learning algorithm <span class="citation">(<span class="citeproc-not-found" data-reference-id="breiman_random_2001"><strong>???</strong></span>)</span>.
 The model will allow us to make spatial predictions of the floristic composition anywhere in the study area.
 To guarantee an optimal prediction, it is advisable to tune beforehand the hyperparameters with the help of spatial cross-validation (see section <a href="spatial-cv.html#svm">11.5.2</a>).</p>
 </div>
@@ -454,10 +454,10 @@ To guarantee an optimal prediction, it is advisable to tune beforehand the hyper
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;study_area&quot;</span>, <span class="st">&quot;random_points&quot;</span>, <span class="st">&quot;comm&quot;</span>, <span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>)</a></code></pre></div>
 <p><code>study_area</code> is an sf polygon representing the outlines of the study area.
 <code>random_points</code> is an sf-object, and contains the 100 randomly chosen sites.
-<code>comm</code> is a community matrix where the rows represent the visited sites and the columns the observed species.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
+<code>comm</code> is a community matrix of the wide data format <span class="citation">(<span class="citeproc-not-found" data-reference-id="wickham_tidy_2014"><strong>???</strong></span>)</span> where the rows represent the visited sites and the columns the observed species.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
 The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points.
 The rownames of <code>comm</code> correspond to the <code>id</code> column of <code>random_points</code>.
-Though <code>comm</code> only consists of 86 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
+Though <code>comm</code> only consists of 84 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
 <code>dem</code> is the digital elevation model for the study area, and <code>ndvi</code> is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section <a href="spatial-operations.html#local-operations">4.3.3</a> and <code>?ndvi</code>).
 Visualizing the data helps to get more familiar with the data:</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
@@ -470,34 +470,23 @@ Figure 14.2: Study mask (polgyon), location of the sampling sites (black points)
 <p>Specifically, we will compute catchment slope and catchment area from a digital elevation model using R-GIS bridges (see Chapter <a href="gis.html#gis">9</a>).
 Curvatures might also represent valuable predictors, in the exercise section you can find out how they would change the modeling result.</p>
 <p>To compute catchment area and catchment slope, we will make use of the <code>saga:sagawetnessindex</code> function.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a>
-<code>get_usage()</code> returns all function parameters and default values of a specific geoalgorithm.</p>
+<code>get_usage()</code> returns all function parameters and default values of a specific geoalgorithm.
+Here, we present only a selection of the complete output.</p>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1"><span class="kw">get_usage</span>(<span class="st">&quot;saga:sagawetnessindex&quot;</span>)</a>
 <a class="sourceLine" id="cb438-2" data-line-number="2"><span class="co">#&gt;ALGORITHM: Saga wetness index</span></a>
 <a class="sourceLine" id="cb438-3" data-line-number="3"><span class="co">#&gt;  DEM &lt;ParameterRaster&gt;</span></a>
-<a class="sourceLine" id="cb438-4" data-line-number="4"><span class="co">#&gt;  SUCTION &lt;ParameterNumber&gt;</span></a>
-<a class="sourceLine" id="cb438-5" data-line-number="5"><span class="co">#&gt;  AREA_TYPE &lt;ParameterSelection&gt;</span></a>
-<a class="sourceLine" id="cb438-6" data-line-number="6"><span class="co">#&gt;  SLOPE_TYPE &lt;ParameterSelection&gt;</span></a>
-<a class="sourceLine" id="cb438-7" data-line-number="7"><span class="co">#&gt;  SLOPE_MIN &lt;ParameterNumber&gt;</span></a>
-<a class="sourceLine" id="cb438-8" data-line-number="8"><span class="co">#&gt;  SLOPE_OFF &lt;ParameterNumber&gt;</span></a>
-<a class="sourceLine" id="cb438-9" data-line-number="9"><span class="co">#&gt;  SLOPE_WEIGHT &lt;ParameterNumber&gt;</span></a>
-<a class="sourceLine" id="cb438-10" data-line-number="10"><span class="co">#&gt;  _RESAMPLING &lt;ParameterSelection&gt;</span></a>
-<a class="sourceLine" id="cb438-11" data-line-number="11"><span class="co">#&gt;  AREA &lt;OutputRaster&gt;</span></a>
-<a class="sourceLine" id="cb438-12" data-line-number="12"><span class="co">#&gt;  SLOPE &lt;OutputRaster&gt;</span></a>
-<a class="sourceLine" id="cb438-13" data-line-number="13"><span class="co">#&gt;  AREA_MOD &lt;OutputRaster&gt;</span></a>
-<a class="sourceLine" id="cb438-14" data-line-number="14"><span class="co">#&gt;  TWI &lt;OutputRaster&gt;</span></a>
-<a class="sourceLine" id="cb438-15" data-line-number="15"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb438-16" data-line-number="16"><span class="co">#&gt;AREA_TYPE(Type of Area)</span></a>
-<a class="sourceLine" id="cb438-17" data-line-number="17"><span class="co">#&gt;  0 - [0] absolute catchment area</span></a>
-<a class="sourceLine" id="cb438-18" data-line-number="18"><span class="co">#&gt;  1 - [1] square root of catchment area</span></a>
-<a class="sourceLine" id="cb438-19" data-line-number="19"><span class="co">#&gt;  2 - [2] specific catchment area</span></a>
-<a class="sourceLine" id="cb438-20" data-line-number="20"><span class="co">#&gt;SLOPE_TYPE(Type of Slope)</span></a>
-<a class="sourceLine" id="cb438-21" data-line-number="21"><span class="co">#&gt;  0 - [0] local slope</span></a>
-<a class="sourceLine" id="cb438-22" data-line-number="22"><span class="co">#&gt;  1 - [1] catchment slope</span></a>
-<a class="sourceLine" id="cb438-23" data-line-number="23"><span class="co">#&gt;_RESAMPLING(Resampling method)</span></a>
-<a class="sourceLine" id="cb438-24" data-line-number="24"><span class="co">#&gt;  0 - Nearest Neighbour</span></a>
-<a class="sourceLine" id="cb438-25" data-line-number="25"><span class="co">#&gt;  1 - Bilinear Interpolation</span></a>
-<a class="sourceLine" id="cb438-26" data-line-number="26"><span class="co">#&gt;  2 - Bicubic Spline Interpolation</span></a>
-<a class="sourceLine" id="cb438-27" data-line-number="27"><span class="co">#&gt;  3 - B-Spline Interpolation</span></a></code></pre></div>
+<a class="sourceLine" id="cb438-4" data-line-number="4"><span class="co">#&gt;  ...</span></a>
+<a class="sourceLine" id="cb438-5" data-line-number="5"><span class="co">#&gt;  SLOPE_TYPE &lt;ParameterSelection&gt;</span></a>
+<a class="sourceLine" id="cb438-6" data-line-number="6"><span class="co">#&gt;  ...</span></a>
+<a class="sourceLine" id="cb438-7" data-line-number="7"><span class="co">#&gt;  AREA &lt;OutputRaster&gt;</span></a>
+<a class="sourceLine" id="cb438-8" data-line-number="8"><span class="co">#&gt;  SLOPE &lt;OutputRaster&gt;</span></a>
+<a class="sourceLine" id="cb438-9" data-line-number="9"><span class="co">#&gt;  AREA_MOD &lt;OutputRaster&gt;</span></a>
+<a class="sourceLine" id="cb438-10" data-line-number="10"><span class="co">#&gt;  TWI &lt;OutputRaster&gt;</span></a>
+<a class="sourceLine" id="cb438-11" data-line-number="11"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb438-12" data-line-number="12"><span class="co">#&gt;SLOPE_TYPE(Type of Slope)</span></a>
+<a class="sourceLine" id="cb438-13" data-line-number="13"><span class="co">#&gt;  0 - [0] local slope</span></a>
+<a class="sourceLine" id="cb438-14" data-line-number="14"><span class="co">#&gt;  1 - [1] catchment slope</span></a>
+<a class="sourceLine" id="cb438-15" data-line-number="15"><span class="co">#&gt; ...</span></a></code></pre></div>
 <p>Subsequently, we can specify the needed parameters using R named arguments (see section <a href="gis.html#rqgis">9.2</a>).
 Remember that we can use a <code>RasterLayer</code> living in R’s global environment to specify the input raster <code>DEM</code> (see section <a href="gis.html#rqgis">9.2</a>).
 Specifying 1 as the <code>SLOPE_TYPE</code> makes sure that the algorithm will return the catchment slope.
@@ -540,7 +529,7 @@ Then we really should refrain from counting this as a similarity because it is v
 NMDS reduces the rank-based differences between the distances between objects in the original matrix and distances between the ordinated objects.
 The difference is expressed as stress.
 The lower the stress value, the better the ordination, i.e. the low-dimensional representation of the original matrix.
-Stress values lower than 10 represent an excellent fit, stress values of around 15 are still good, and values greater than 20 represent a poor fit.
+Stress values lower than 10 represent an excellent fit, stress values of around 15 are still good, and values greater than 20 represent a poor fit <span class="citation">(<span class="citeproc-not-found" data-reference-id="mccune_analysis_2002"><strong>???</strong></span>)</span>.
 In R, <code>metaMDS()</code> of the <strong>vegan</strong> package can execute a NMDS.
 As input it expects a community matrix with the sites as rows and the species as columns, e.g.:</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1"><span class="co"># sites 35 to 40 and corresponding occurrences of the first five species in the</span></a>
@@ -557,7 +546,7 @@ As input it expects a community matrix with the sites as rows and the species as
 <code>decostand()</code> converts numerical observations into presences and absences with 1 indicating the occurrence of a species and 0 the absence of a species.</p>
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1">pa =<span class="st"> </span><span class="kw">decostand</span>(comm, <span class="st">&quot;pa&quot;</span>)</a></code></pre></div>
 <p>The resulting output matrix serves as input for the NMDS.
-<code>k</code> specifies the number of output axes, here, set to 4.
+<code>k</code> specifies the number of output axes, here, set to 4.<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a>
 NMDS is an iterative procedure trying to make the ordinated space more similar to the input matrix in each step.
 To make sure that the algorithm converges, we set the number of steps to 500 (<code>try</code> parameter).</p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">25072018</span>)</a>
@@ -594,7 +583,7 @@ Plotting the result reveals that the first axis is, as intended, clearly associa
 Figure 14.3: Plotting the first NMDS axis against altitude.
 </p>
 </div>
-<p>The scores of the first NMDS axis represent the different vegetation formations appearing along the slope of Mt. Mongón.
+<p>The scores of the first NMDS axis represent the different vegetation formations, i.e. the floristic gradient, appearing along the slope of Mt. Mongón.
 To spatially visualize them, we can model the NMDS scores with the previously created predictors (section <a href="eco.html#data-and-data-preparation">14.2</a>), and use the resulting model for predictive mapping (see next section).</p>
 </div>
 <div id="modeling-the-floristic-gradient" class="section level2">
@@ -814,9 +803,6 @@ Report the mean RMSE and use a boxplot to visualize all retrieved RMSEs.</li>
 <div id="ref-muenchow_soil_2013">
 <p>Muenchow, Jannes, Simon Hauenstein, Achim Bräuning, Rupert Bäumler, Eric Frank Rodríguez, and Henrik von Wehrden. 2013. “Soil Texture and Altitude, Respectively, Largely Determine the Floristic Gradient of the Most Diverse Fog Oasis in the Peruvian Desert.” <em>Journal of Tropical Ecology</em> 29 (05): 427–38. <a href="https://doi.org/10.1017/S0266467413000436" class="uri">https://doi.org/10.1017/S0266467413000436</a>.</p>
 </div>
-<div id="ref-probst_hyperparameters_2018">
-<p>Probst, Philipp, Marvin Wright, and Anne-Laure Boulesteix. 2018. “Hyperparameters and Tuning Strategies for Random Forest.” <em>arXiv:1804.03515 [Cs, Stat]</em>, April. <a href="http://arxiv.org/abs/1804.03515" class="uri">http://arxiv.org/abs/1804.03515</a>.</p>
-</div>
 <div id="ref-borcard_numerical_2011">
 <p>Borcard, Daniel, François Gillet, and Pierre Legendre. 2011. <em>Numerical Ecology with R</em>. Use R! New York: Springer.</p>
 </div>
@@ -832,6 +818,9 @@ Report the mean RMSE and use a boxplot to visualize all retrieved RMSEs.</li>
 <div id="ref-james_introduction_2013">
 <p>James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani, eds. 2013. <em>An Introduction to Statistical Learning: With Applications in R</em>. Springer Texts in Statistics 103. New York: Springer.</p>
 </div>
+<div id="ref-probst_hyperparameters_2018">
+<p>Probst, Philipp, Marvin Wright, and Anne-Laure Boulesteix. 2018. “Hyperparameters and Tuning Strategies for Random Forest.” <em>arXiv:1804.03515 [Cs, Stat]</em>, April. <a href="http://arxiv.org/abs/1804.03515" class="uri">http://arxiv.org/abs/1804.03515</a>.</p>
+</div>
 <div id="ref-zuur_mixed_2009">
 <p>Zuur, Alain, Elena N. Ieno, Neil Walker, Anatoly A. Saveliev, and Graham M. Smith. 2009. <em>Mixed Effects Models and Extensions in Ecology with R</em>. Statistics for Biology and Health. New York: Springer-Verlag.</p>
 </div>
@@ -842,8 +831,9 @@ Report the mean RMSE and use a boxplot to visualize all retrieved RMSEs.</li>
 <div class="footnotes">
 <hr />
 <ol start="79">
-<li id="fn79"><p>In statistics this is also called a contingency or cross-table, and in data science we refer to this as the wide data format.<a href="eco.html#fnref79" class="footnote-back">↩</a></p></li>
+<li id="fn79"><p>In statistics this is also called a contingency or cross-table.<a href="eco.html#fnref79" class="footnote-back">↩</a></p></li>
 <li id="fn80"><p>Admittedly, it is a bit unsatisfying, that the only way of knowing that <code>sagawetnessindex</code> computes the desired terrain attributes, is to be familiar with SAGA and/or google for “SAGA catchment slope”.<a href="eco.html#fnref80" class="footnote-back">↩</a></p></li>
+<li id="fn81"><p>One way of choosing <code>k</code> is to try <code>k</code> values between 1 and 6 and then using the result which yields the best stress value <span class="citation">(<span class="citeproc-not-found" data-reference-id="mccune_analysis_2002"><strong>???</strong></span>)</span>.<a href="eco.html#fnref81" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
