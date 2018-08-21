@@ -451,7 +451,7 @@ This shrinks to zero at the poles.
 At the latitude of London, for example, meridians are less than 70 km apart (challenge: execute code that verifies this).
 <!-- `geosphere::distGeo(c(0, 51.5), c(1, 51.5))` -->
 Lines of latitude, by contrast, have constant distance from each other irrespective of latitude: they are always around 111 km apart, including at the equator and near the poles.
-This is illustrated in Figures <a href="reproj-geo-data.html#fig:crs-buf">6.1</a> and <a href="reproj-geo-data.html#fig:wintriproj">6.3</a>.
+This is illustrated in Figures <a href="reproj-geo-data.html#fig:crs-buf">6.1</a> and <a href="#fig:wintriproj"><strong>??</strong></a>.
 </div>
 
 <p>Do not interpret the warning about the geographic (<code>longitude/latitude</code>) CRS as “the CRS should not be set”: it almost always should be!
@@ -650,17 +650,11 @@ Figure 6.2: Mollweide projection of the world.
 </p>
 </div>
 <p>On the other hand, when mapping the world, it is often desirable to have as little distortion as possible for all spatial properties (area, direction, distance).
-One of the most popular projections to achieve this is the Winkel tripel projection (Figure <a href="reproj-geo-data.html#fig:wintriproj">6.3</a>).<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a>
+One of the most popular projections to achieve this is the Winkel tripel projection (Figure <a href="#fig:wintriproj"><strong>??</strong></a>).<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a>
 <code>st_transform_proj()</code> from the <strong>lwgeom</strong> package which allows for coordinate transformations to a wide range of CRSs, including the Winkel tripel projection:</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1">world_wintri =<span class="st"> </span>lwgeom<span class="op">::</span><span class="kw">st_transform_proj</span>(world, <span class="dt">crs =</span> <span class="st">&quot;+proj=wintri&quot;</span>)</a></code></pre></div>
 <!-- plot(world_wintri$geom) -->
 <!-- plot(world_wintri$geom, graticule = TRUE) -->
-<div class="figure" style="text-align: center"><span id="fig:wintriproj"></span>
-<img src="images/wintriproj-1.png" alt="Winkel tripel projection of the world." width="576" />
-<p class="caption">
-Figure 6.3: Winkel tripel projection of the world.
-</p>
-</div>
 
 <div class="rmdnote">
 The two main functions for transformation of simple features coordinates are <code>sf::st_transform()</code> and <code>sf::sf_project()</code>.
@@ -670,25 +664,25 @@ The second one allows for greater customization of a projection, which includes 
 </div>
 
 <p>Moreover, PROJ parameters can be modified in most CRS definitions.
-The below code transforms the coordinates to the Lambert azimuthal equal-area projection centered on longitude and latitude of <code>0</code> (Figure <a href="reproj-geo-data.html#fig:laeaproj1">6.4</a>).</p>
+The below code transforms the coordinates to the Lambert azimuthal equal-area projection centered on longitude and latitude of <code>0</code> (Figure <a href="reproj-geo-data.html#fig:laeaproj1">6.3</a>).</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">world_laea1 =<span class="st"> </span><span class="kw">st_transform</span>(world, <span class="dt">crs =</span> <span class="st">&quot;+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0&quot;</span>)</a></code></pre></div>
 <!-- plot(world_laea1$geom) -->
 <!-- plot(world_laea1$geom, graticule = TRUE) -->
 <div class="figure" style="text-align: center"><span id="fig:laeaproj1"></span>
 <img src="figures/laeaproj1-1.png" alt="Lambert azimuthal equal-area projection of the world centered on longitude and latitude of 0." width="576" />
 <p class="caption">
-Figure 6.4: Lambert azimuthal equal-area projection of the world centered on longitude and latitude of 0.
+Figure 6.3: Lambert azimuthal equal-area projection of the world centered on longitude and latitude of 0.
 </p>
 </div>
 <p>We can change the PROJ parameters, for example the center of the projection, using the <code>+lon_0</code> and <code>+lat_0</code> parameters.
-The code below gives the map centered on New York City (Figure <a href="reproj-geo-data.html#fig:laeaproj2">6.5</a>).</p>
+The code below gives the map centered on New York City (Figure <a href="reproj-geo-data.html#fig:laeaproj2">6.4</a>).</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1">world_laea2 =<span class="st"> </span><span class="kw">st_transform</span>(world, <span class="dt">crs =</span> <span class="st">&quot;+proj=laea +x_0=0 +y_0=0 +lon_0=-74 +lat_0=40&quot;</span>)</a></code></pre></div>
 <!-- plot(world_laea2$geom) -->
 <!-- plot(world_laea2$geom, graticule = TRUE) -->
 <div class="figure" style="text-align: center"><span id="fig:laeaproj2"></span>
 <img src="figures/laeaproj2-1.png" alt="Lambert azimuthal equal-area projection of the world centered on New York City." width="576" />
 <p class="caption">
-Figure 6.5: Lambert azimuthal equal-area projection of the world centered on New York City.
+Figure 6.4: Lambert azimuthal equal-area projection of the world centered on New York City.
 </p>
 </div>
 <p>More information on CRS modifications can be found in the <a href="http://proj4.org/usage/index.html">Using PROJ</a> documentation.</p>
