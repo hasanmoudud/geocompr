@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserveaf2a00a5ddaace64
+preserveb624765922886b05
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3055,7 +3055,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preservefafd8d9ed5447f43
+preserve30b0d6876b5b4803
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -5140,7 +5140,10 @@ world_wintri = lwgeom::st_transform_proj(world, crs = "+proj=wintri")
 <!-- plot(world_wintri$geom) -->
 <!-- plot(world_wintri$geom, graticule = TRUE) -->
 
-
+<div class="figure" style="text-align: center">
+<img src="images/wintriproj-1.png" alt="Winkel tripel projection of the world." width="576" />
+<p class="caption">(\#fig:wintriproj)Winkel tripel projection of the world.</p>
+</div>
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">The two main functions for transformation of simple features coordinates are `sf::st_transform()` and `sf::sf_project()`. 
 The `st_transform` function uses the GDAL interface to PROJ, while `sf_project()` (which works with two-column numeric matrices, representing points) and `lwgeom::st_transform_proj()` use the PROJ API directly.
@@ -6540,7 +6543,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec5369ce59315625b
+preserve18d5d9e45d2ef7c0
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6640,7 +6643,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve522581faa9628aab
+preserve25f80f1c10e06a1d
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10178,7 +10181,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve2ff2f1caf6dca79b
+preserve8c9eb4570f5d913e
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
