@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve59e98b47ce0a5c0c
+preserve92cf84dbbe4c6f31
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -520,7 +520,7 @@ As of 2018 map making in R is a hot topic with dedicated packages such as **tmap
 
 ## Exercises
 
-1. Think about the terms 'GIS', 'GDS' and 'Geocomputation' described above. Which is your favorite, and why?
+1. Think about the terms 'GIS', 'GDS' and 'Geocomputation' described above. Which (if any) best describes the work you would like to do using geo* methods and software and why?
 
 1. Provide three reasons for using a scriptable language such as R for geocomputation instead of using an established GIS program such as QGIS.
 
@@ -3055,7 +3055,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve1af3583bdb51c727
+preserve4e6ecbdd32a1598d
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6543,7 +6543,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preserve24238f810b0aa704
+preserve4bc18db032a6c14e
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6643,7 +6643,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6c5ee1f99085635c
+preserve17f7fe52b9919182
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -10186,7 +10186,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve42fecbc7cdbbf60e
+preserve6af47ca988dc14bc
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 
