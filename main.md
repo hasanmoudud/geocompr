@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve6b762a3eb9f1a173
+preserve97d337e37b158fc1
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3055,7 +3055,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserve4d203969f0b93148
+preservefd6dd9491cf9c54e
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6543,7 +6543,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservece26c1390d739ee4
+preservea933ac0e8564e1ec
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6643,7 +6643,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve305c8ad055c7e06e
+preserve361582cb52722931
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7931,7 +7931,7 @@ Inputs must be formally defined in a suitable data structure [@wise_gis_2001].
 Algorithms often start as flow charts or psuedocode showing the aim of the process before being implemented in code.
 To ease usability, common algorithms are often packaged inside functions, which may hide some or all of the steps taken (unless you look at the function's source code, see section \@ref(functions)).
 
-Geoalgorithms such, as those we encountered in Chapter \@ref(gis), are algorithms that take geographic data in and, generally, return geographic results (alternative terms for the same thing include *GIS algorithms* and *geometric algorithms*).
+Geoalgorithms, such as those we encountered in Chapter \@ref(gis), are algorithms that take geographic data in and, generally, return geographic results (alternative terms for the same thing include *GIS algorithms* and *geometric algorithms*).
 That may sound simple but it is a deep subject with an entire academic field --- *Computational Geometry*, a branch of computer science --- dedicated to their study [@berg_computational_2008].
 
 An example is an algorithm that finds the centroid of a polygon.
@@ -8000,7 +8000,7 @@ The result can be verified using the formula for the area of a triangle whose ba
 area is half of the base width times its height or $A = B * H / 2$.
 In this case $10 * 10 / 2 = 50$.
 ]
-The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
+The problem is that code is clunky and must by re-typed if we want to run it on another triangle matrix.
 To make the code more generalizable, we will see how it can be converted into a function in the next section (\@ref(functions)).
 
 Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
@@ -8064,7 +8064,7 @@ The source code underlying GEOS function `Centroid::getCentroid()` can be found 
 
 ## Functions
 
-Like algorithms functions take an input and return an output.
+Like algorithms, functions take an input and return an output.
 The difference is that functions are 'first class' objects in R and are more flexible than scripts.
 We can, for example, create function that undertakes step 2 of our centroid generation algorithm as follows:
 
@@ -8210,7 +8210,7 @@ identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
 
 1. Read the script `10-centroid-alg.R` in the `code` folder of the book's GitHub repo.
     - Which of the best practices covered in section \@ref(scripts) does it follow?
-    - Create a version of the script on your computer in an IDE such as RStudio (preferably by typing-out the script line-by-line, in your own coding style and with your own comments, rather than copy-pasting --- this will help you learn how to type scripts) and, using the example of a square polygon (e.g. created with `poly_mat = cbind(x = c(0, 0, 9, 9, 0), y = c(0, 9, 9, 0, 0))`) execute the script line-by-line.
+    - Create a version of the script on your computer in an IDE such as RStudio (preferably by typing-out the script line-by-line, in your own coding style and with your own comments, rather than copy-pasting --- this will help you learn how to type scripts). Using the example of a square polygon (e.g. created with `poly_mat = cbind(x = c(0, 0, 9, 9, 0), y = c(0, 9, 9, 0, 0))`) execute the script line-by-line.
     - What changes could be made to the script to make it more reproducible?
     <!-- - Answer: The script could state that it needs a an object called `poly_mat` to be present and, if none is present, create an example dataset at the outset for testing. -->
 <!-- 1. Check-out the script `10-earthquakes.R` in the `code` folder of the book's GitHub [repo](https://github.com/Robinlovelace/geocompr/blob/master/code/10-earthquakes.R). -->
@@ -8231,7 +8231,7 @@ identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
 <!-- The algorithm would need to be able to have negative as well as positive area values. -->
      - Bonus 2: Building on the contents of `10-centroid-alg.R`, write an algorithm only using base R functions that can find the total length of linestrings represented in matrix form.
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. -->
-1. In section \@ref(functions) we created a different versions of the `poly_centroid()` function that generated outputs of class `sfg` (`poly_centroid_sfg()`) and type-stable `matrix` outputs (`poly_centroid_type_stable()`). Further extend the function by creating a version (e.g. called `poly_centroid_sf()`) that is type stable (only accepts inputs of class `sf`) *and* returns `sf` objects (hint: you may need to convert the object `x` into a matrix with the command `sf::st_coordinates(x)`.
+1. In section \@ref(functions) we created different versions of the `poly_centroid()` function that generated outputs of class `sfg` (`poly_centroid_sfg()`) and type-stable `matrix` outputs (`poly_centroid_type_stable()`). Further extend the function by creating a version (e.g. called `poly_centroid_sf()`) that is type stable (only accepts inputs of class `sf`) *and* returns `sf` objects (hint: you may need to convert the object `x` into a matrix with the command `sf::st_coordinates(x)`).
     - Verify it works by running `poly_centroid_sf(sf::st_sf(sf::st_sfc(poly_sfc)))`
     - What error message do you get when you try to run `poly_centroid_sf(poly_mat)`?
     
@@ -10184,7 +10184,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preserve5148b3ac120ed4e0
+preserve80cc6ba5a5e3f939
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

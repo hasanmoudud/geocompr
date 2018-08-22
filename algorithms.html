@@ -500,7 +500,7 @@ In the computing age algorithm refers to a series of steps that solves a problem
 Inputs must be formally defined in a suitable data structure <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>.
 Algorithms often start as flow charts or psuedocode showing the aim of the process before being implemented in code.
 To ease usability, common algorithms are often packaged inside functions, which may hide some or all of the steps taken (unless you look at the function’s source code, see section <a href="algorithms.html#functions">10.4</a>).</p>
-<p>Geoalgorithms such, as those we encountered in Chapter <a href="gis.html#gis">9</a>, are algorithms that take geographic data in and, generally, return geographic results (alternative terms for the same thing include <em>GIS algorithms</em> and <em>geometric algorithms</em>).
+<p>Geoalgorithms, such as those we encountered in Chapter <a href="gis.html#gis">9</a>, are algorithms that take geographic data in and, generally, return geographic results (alternative terms for the same thing include <em>GIS algorithms</em> and <em>geometric algorithms</em>).
 That may sound simple but it is a deep subject with an entire academic field — <em>Computational Geometry</em>, a branch of computer science — dedicated to their study <span class="citation">(Berg et al. <a href="#ref-berg_computational_2008">2008</a>)</span>.</p>
 <p>An example is an algorithm that finds the centroid of a polygon.
 There are many approaches to centroid calculation, some of which work only on specific types of <a href="https://en.wikipedia.org/wiki/Centroid">spatial data</a>.
@@ -544,7 +544,7 @@ A translation of this formula into R code that works with the data in the matrix
 <a class="sourceLine" id="cb344-3" data-line-number="3"><span class="st">  </span>T1[<span class="dv">3</span>, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>(T1[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>T1[<span class="dv">2</span>, <span class="dv">2</span>]) ) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb344-4" data-line-number="4"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
 <p>This code chunk outputs the correct result.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>
-The problem is that code is clunky and must by re-typed we want to run it on another triangle matrix.
+The problem is that code is clunky and must by re-typed if we want to run it on another triangle matrix.
 To make the code more generalizable, we will see how it can be converted into a function in the next section (<a href="algorithms.html#functions">10.4</a>).</p>
 <p>Step 4 requires steps 2 and 3 to be undertaken not just on one triangle (as demonstrated above) but on all triangles.
 This requires <em>iteration</em> to create all triangles representing the polygon, illustrated in Figure <a href="algorithms.html#fig:polycent">10.3</a>.
@@ -589,7 +589,7 @@ A great advantage of the open source nature of such libraries is that their sour
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">10.4</span> Functions</h2>
-<p>Like algorithms functions take an input and return an output.
+<p>Like algorithms, functions take an input and return an output.
 The difference is that functions are ‘first class’ objects in R and are more flexible than scripts.
 We can, for example, create function that undertakes step 2 of our centroid generation algorithm as follows:</p>
 <div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1">t_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
@@ -680,7 +680,7 @@ To return the result as an object of class <code>sfg</code>, for example, a ‘w
 <li>Read the script <code>10-centroid-alg.R</code> in the <code>code</code> folder of the book’s GitHub repo.
 <ul>
 <li>Which of the best practices covered in section <a href="algorithms.html#scripts">10.2</a> does it follow?</li>
-<li>Create a version of the script on your computer in an IDE such as RStudio (preferably by typing-out the script line-by-line, in your own coding style and with your own comments, rather than copy-pasting — this will help you learn how to type scripts) and, using the example of a square polygon (e.g. created with <code>poly_mat = cbind(x = c(0, 0, 9, 9, 0), y = c(0, 9, 9, 0, 0))</code>) execute the script line-by-line.</li>
+<li>Create a version of the script on your computer in an IDE such as RStudio (preferably by typing-out the script line-by-line, in your own coding style and with your own comments, rather than copy-pasting — this will help you learn how to type scripts). Using the example of a square polygon (e.g. created with <code>poly_mat = cbind(x = c(0, 0, 9, 9, 0), y = c(0, 9, 9, 0, 0))</code>) execute the script line-by-line.</li>
 <li>What changes could be made to the script to make it more reproducible?
 <!-- - Answer: The script could state that it needs a an object called `poly_mat` to be present and, if none is present, create an example dataset at the outset for testing. -->
 <!-- 1. Check-out the script `10-earthquakes.R` in the `code` folder of the book's GitHub [repo](https://github.com/Robinlovelace/geocompr/blob/master/code/10-earthquakes.R). -->
@@ -705,7 +705,7 @@ To return the result as an object of class <code>sfg</code>, for example, a ‘w
 <li>Bonus 2: Building on the contents of <code>10-centroid-alg.R</code>, write an algorithm only using base R functions that can find the total length of linestrings represented in matrix form.
 <!-- Todo: add example of matrix representing a linestring, demonstrate code to verify the answer, suggest alternative functions to decompose as a bonus. --></li>
 </ul></li>
-<li>In section <a href="algorithms.html#functions">10.4</a> we created a different versions of the <code>poly_centroid()</code> function that generated outputs of class <code>sfg</code> (<code>poly_centroid_sfg()</code>) and type-stable <code>matrix</code> outputs (<code>poly_centroid_type_stable()</code>). Further extend the function by creating a version (e.g. called <code>poly_centroid_sf()</code>) that is type stable (only accepts inputs of class <code>sf</code>) <em>and</em> returns <code>sf</code> objects (hint: you may need to convert the object <code>x</code> into a matrix with the command <code>sf::st_coordinates(x)</code>.
+<li>In section <a href="algorithms.html#functions">10.4</a> we created different versions of the <code>poly_centroid()</code> function that generated outputs of class <code>sfg</code> (<code>poly_centroid_sfg()</code>) and type-stable <code>matrix</code> outputs (<code>poly_centroid_type_stable()</code>). Further extend the function by creating a version (e.g. called <code>poly_centroid_sf()</code>) that is type stable (only accepts inputs of class <code>sf</code>) <em>and</em> returns <code>sf</code> objects (hint: you may need to convert the object <code>x</code> into a matrix with the command <code>sf::st_coordinates(x)</code>).
 <ul>
 <li>Verify it works by running <code>poly_centroid_sf(sf::st_sf(sf::st_sfc(poly_sfc)))</code></li>
 <li>What error message do you get when you try to run <code>poly_centroid_sf(poly_mat)</code>?</li>
