@@ -307,7 +307,7 @@ leaflet() %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve285bb419d84e1947
+preserveb5b0ff854514496c
 <p class="caption">(\#fig:interactive)Where the authors are from. The basemap is a tiled image of the Earth at Night provided by NASA. Interact with the online version at robinlovelace.net/geocompr, for example by zooming-in and clicking on the popups.</p>
 </div>
 
@@ -3055,7 +3055,7 @@ any(st_touches(cycle_hire, cycle_hire_osm, sparse = FALSE))
 
 
 <div class="figure" style="text-align: center">
-preserveff85026c0ff28cd7
+preservec56c15b8ecc3231f
 <p class="caption">(\#fig:cycle-hire)The spatial distribution of cycle hire points in London based on official data (blue) and OpenStreetMap data (red).</p>
 </div>
 
@@ -6543,7 +6543,7 @@ map_nz
 ```
 
 <div class="figure" style="text-align: center">
-preservec95fc8dba4a487f1
+preservea55bd1c4a79335ae
 <p class="caption">(\#fig:tmview)Interactive map of New Zealand created with tmap in view mode.</p>
 </div>
 
@@ -6643,7 +6643,7 @@ leaflet(data = cycle_hire) %>%
 ```
 
 <div class="figure" style="text-align: center">
-preserve81df1f4ec7621bd4
+preserve38a51ea7bac63d32
 <p class="caption">(\#fig:leaflet)The leaflet package in action, showing cycle hire points in London.</p>
 </div>
 
@@ -7827,7 +7827,7 @@ reproducible code is often better in every way than code written to be run only 
 
 Scripts are the basis of reproducible R code, a topic covered in section \@ref(scripts).
 Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section \@ref(geographic-algorithms).
-To ease sharing and reproducibility algorithms can be placed into functions.
+To ease sharing and reproducibility, algorithms can be placed into functions.
 That is the topic of section \@ref(functions).
 <!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
 <!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
@@ -7871,7 +7871,7 @@ Lines of code that do not contain valid R should be commented to prevent errors,
 There are, however, some conventions worth following:
 
 - Write the script in order: just like the script of a film, scripts should have a clear order such as 'setup', 'data processing' and 'save results' (roughly equivalent to 'beginning', 'middle' and 'end' in a film).
-- Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure \@ref(fig:codecheck)) and (for long scripts) divide it into sections (e.g. with `Ctrl+Shift+R` in RStudio which creates comments ending in `----` that can be 'folded' in the editor).
+- Comment the script sufficiently for others (and your future self) to understand it, but not too much. At a minimum a comment should state the purpose of the script (see Figure \@ref(fig:codecheck)) and (for long scripts) divide it into sections (e.g. with `Ctrl+Shift+R` in RStudio which creates comments ending in `----` that can be 'folded' in the editor).
 - Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.^[
 Prior steps can be referred to with a comment or with an if statement such as `if(!exists("x")) source("x.R")` (which would run the script file `x.R` if the object `x` is missing).
 ]
@@ -7886,7 +7886,7 @@ By default RStudio 'code-checks' R scripts and underlines faulty code with a red
 
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">A useful tool for reproducibility is the **reprex** package.
-Its main function `reprex()` tests of lines of R code to check if they are reproducible, and provides markdown output to facilitate communication on sites such as GitHub.
+Its main function `reprex()` tests lines of R code to check if they are reproducible, and provides markdown output to facilitate communication on sites such as GitHub.
 See [reprex.tidyverse.org/](http://reprex.tidyverse.org/) for details.</div>\EndKnitrBlock{rmdnote}
 
 The contents of this section apply to any type of R script.
@@ -7916,7 +7916,7 @@ source("https://git.io/10-centroid-alg.R") # short url
 ## Geographic algorithms
 
 Algorithms can be understood as the computing equivalent of a cooking recipe.
-They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs.
+They are a complete set of instructions which, when undertaken on the input (ingredients) <!-- does that make sense? -->, result in useful (tasty) outputs.
 Before diving into a concrete case study, a brief history will show how they relate to scripts (covered in section \@ref(scripts)) and functions (which can be used to generalize algorithms, as we'll see in section \@ref(functions)).
 
 The word algorithm originated in 9^th^ Century Baghdad with the publication of *Hisab al-jabr w’al-muqabala*, an early maths textbook.
@@ -10184,7 +10184,7 @@ result = sum(reclass)
 For instance, a score greater than 9 might be a suitable threshold indicating raster cells where a bike shop could be placed (Figure \@ref(fig:bikeshop-berlin); see also `code/13-location-jm.R`).
 
 <div class="figure" style="text-align: center">
-preservea2f6f9c521ab3e5a
+preserve28f3b99ae2138042
 <p class="caption">(\#fig:bikeshop-berlin)Suitable areas (i.e. raster cells with a score > 9) in accordance with our hypothetical survey for bike stores in Berlin.</p>
 </div>
 

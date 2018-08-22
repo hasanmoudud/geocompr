@@ -422,7 +422,7 @@ The advantages of reproduciblity go beyond allowing others to replicate your wor
 reproducible code is often better in every way than code written to be run only once, including in terms of computational efficiency, scalability and ease of adapting and maintaining it.</p>
 <p>Scripts are the basis of reproducible R code, a topic covered in section <a href="algorithms.html#scripts">10.2</a>.
 Algorithms are recipes for modifying inputs using a series of steps, resulting in an output, as described in section <a href="algorithms.html#geographic-algorithms">10.3</a>.
-To ease sharing and reproducibility algorithms can be placed into functions.
+To ease sharing and reproducibility, algorithms can be placed into functions.
 That is the topic of section <a href="algorithms.html#functions">10.4</a>.
 <!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
 <!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
@@ -454,7 +454,7 @@ Saved scripts can be called and executed in their entirety with <code>source()</
 There are, however, some conventions worth following:</p>
 <ul>
 <li>Write the script in order: just like the script of a film, scripts should have a clear order such as ‘setup’, ‘data processing’ and ‘save results’ (roughly equivalent to ‘beginning’, ‘middle’ and ‘end’ in a film).</li>
-<li>Comment the script sufficiently for others (and your future self) to understand it but not too much. At a minimum a comment should state the purpose of the script (see Figure <a href="algorithms.html#fig:codecheck">10.1</a>) and (for long scripts) divide it into sections (e.g. with <code>Ctrl+Shift+R</code> in RStudio which creates comments ending in <code>----</code> that can be ‘folded’ in the editor).</li>
+<li>Comment the script sufficiently for others (and your future self) to understand it, but not too much. At a minimum a comment should state the purpose of the script (see Figure <a href="algorithms.html#fig:codecheck">10.1</a>) and (for long scripts) divide it into sections (e.g. with <code>Ctrl+Shift+R</code> in RStudio which creates comments ending in <code>----</code> that can be ‘folded’ in the editor).</li>
 <li>Above all scripts should be reproducible: self-contained scripts that will work on any computer are more useful than scripts that only run on your computer, on a good day. This involves attaching required packages at the beginning, reading-in data from persistent sources (e.g. from a reliable website or API) and ensuring that previous steps have been taken.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></li>
 </ul>
 <p>It is hard to enforce reproducibility in R scripts, but there are tools that can help.
@@ -468,7 +468,7 @@ Figure 10.1: Illustration of ‘code checking’ in RStudio. This example, from 
 
 <div class="rmdnote">
 A useful tool for reproducibility is the <strong>reprex</strong> package.
-Its main function <code>reprex()</code> tests of lines of R code to check if they are reproducible, and provides markdown output to facilitate communication on sites such as GitHub.
+Its main function <code>reprex()</code> tests lines of R code to check if they are reproducible, and provides markdown output to facilitate communication on sites such as GitHub.
 See <a href="http://reprex.tidyverse.org/">reprex.tidyverse.org/</a> for details.
 </div>
 
@@ -487,7 +487,7 @@ The work undertaken by this script is demonstrated in the reproducible example b
 <div id="geographic-algorithms" class="section level2">
 <h2><span class="header-section-number">10.3</span> Geographic algorithms</h2>
 <p>Algorithms can be understood as the computing equivalent of a cooking recipe.
-They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs.
+They are a complete set of instructions which, when undertaken on the input (ingredients) <!-- does that make sense? -->, result in useful (tasty) outputs.
 Before diving into a concrete case study, a brief history will show how they relate to scripts (covered in section <a href="algorithms.html#scripts">10.2</a>) and functions (which can be used to generalize algorithms, as we’ll see in section <a href="algorithms.html#functions">10.4</a>).</p>
 <p>The word algorithm originated in 9<sup>th</sup> Century Baghdad with the publication of <em>Hisab al-jabr w’al-muqabala</em>, an early maths textbook.
 The book was translated into Latin and became so popular that the author’s last name <a href="https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi">al-Khwārizmī</a> “was immortalized as a scientific term: Al-Khwarizmi
